@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_eTQ-MMtPEeWd--HpWZq3qQ/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_eTQ-MMtPEeWd--HpWZq3qQ/1 adm.profile.uml#_eTRlQMtPEeWd--HpWZq3qQ">
+  <uml:Model xmi:id="_mdtJ4MQZEeWG9YrmNU0sHg" name="RootElement">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_md3h8MQZEeWG9YrmNU0sHg" name="Book Management" node="_Tm3NcMQeEeWG9YrmNU0sHg _5a6d8MQdEeWG9YrmNU0sHg _gfKLAMQdEeWG9YrmNU0sHg _cjrz8MQdEeWG9YrmNU0sHg _LPdTEMQdEeWG9YrmNU0sHg _ERT1MMQdEeWG9YrmNU0sHg _AK0g8MQdEeWG9YrmNU0sHg _H2uuoMQbEeWG9YrmNU0sHg _HWsZIMQaEeWG9YrmNU0sHg _Dbpf4MQaEeWG9YrmNU0sHg _36UxwMQZEeWG9YrmNU0sHg _xo86UMQZEeWG9YrmNU0sHg _pBS8YMTnEeWOvrtXJpvMBg _qGzL4MTnEeWOvrtXJpvMBg">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Rg3LMMTXEeWw36UBf5eFZg" name="Google Authentication"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Vg7HUMTXEeWw36UBf5eFZg" name="Payment Calculator"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_8Pv54MQZEeWG9YrmNU0sHg" target="_xo86UMQZEeWG9YrmNU0sHg" source="_36UxwMQZEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Le7Z0MQaEeWG9YrmNU0sHg" target="_HWsZIMQaEeWG9YrmNU0sHg" source="_xo86UMQZEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_MdR4cMQaEeWG9YrmNU0sHg" target="_Dbpf4MQaEeWG9YrmNU0sHg" source="_HWsZIMQaEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_NENVkMQaEeWG9YrmNU0sHg" name="add more books" target="_xo86UMQZEeWG9YrmNU0sHg" source="_Dbpf4MQaEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_U9Tt4MQcEeWG9YrmNU0sHg" name="checkout" target="_H2uuoMQbEeWG9YrmNU0sHg" source="_Dbpf4MQaEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_R0KWMMQdEeWG9YrmNU0sHg" target="_AK0g8MQdEeWG9YrmNU0sHg" source="_H2uuoMQbEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_SkFXQMQdEeWG9YrmNU0sHg" target="_ERT1MMQdEeWG9YrmNU0sHg" source="_AK0g8MQdEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_TU3T8MQdEeWG9YrmNU0sHg" target="_LPdTEMQdEeWG9YrmNU0sHg" source="_ERT1MMQdEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_UhoCAMQdEeWG9YrmNU0sHg" target="_pBS8YMTnEeWOvrtXJpvMBg" source="_LPdTEMQdEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_r5b18MQdEeWG9YrmNU0sHg" target="_cjrz8MQdEeWG9YrmNU0sHg" source="_pBS8YMTnEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_slJscMQdEeWG9YrmNU0sHg" target="_gfKLAMQdEeWG9YrmNU0sHg" source="_pBS8YMTnEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_72iL0MQdEeWG9YrmNU0sHg" name="invalid card" target="_5a6d8MQdEeWG9YrmNU0sHg" source="_LPdTEMQdEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_8w138MQdEeWG9YrmNU0sHg" target="_qGzL4MTnEeWOvrtXJpvMBg" source="_cjrz8MQdEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PtpgMMQeEeWG9YrmNU0sHg" target="_qGzL4MTnEeWOvrtXJpvMBg" source="_gfKLAMQdEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_SShQsMQeEeWG9YrmNU0sHg" target="_5a6d8MQdEeWG9YrmNU0sHg" source="_qGzL4MTnEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_WCqhgMQeEeWG9YrmNU0sHg" target="_Tm3NcMQeEeWG9YrmNU0sHg" source="_5a6d8MQdEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_xo86UMQZEeWG9YrmNU0sHg" name="Book Management" incoming="_8Pv54MQZEeWG9YrmNU0sHg _NENVkMQaEeWG9YrmNU0sHg" outgoing="_Le7Z0MQaEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_36UxwMQZEeWG9YrmNU0sHg" name="" outgoing="_8Pv54MQZEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_Dbpf4MQaEeWG9YrmNU0sHg" name="" incoming="_MdR4cMQaEeWG9YrmNU0sHg" outgoing="_NENVkMQaEeWG9YrmNU0sHg _U9Tt4MQcEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_HWsZIMQaEeWG9YrmNU0sHg" name="Shopping Cart" incoming="_Le7Z0MQaEeWG9YrmNU0sHg" outgoing="_MdR4cMQaEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_H2uuoMQbEeWG9YrmNU0sHg" name="Google Authentication" incoming="_U9Tt4MQcEeWG9YrmNU0sHg" outgoing="_R0KWMMQdEeWG9YrmNU0sHg" behavior="_Rg3LMMTXEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_AK0g8MQdEeWG9YrmNU0sHg" name="Payment Calculator" incoming="_R0KWMMQdEeWG9YrmNU0sHg" outgoing="_SkFXQMQdEeWG9YrmNU0sHg" behavior="_Vg7HUMTXEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_ERT1MMQdEeWG9YrmNU0sHg" name="Credit Card Payment" incoming="_SkFXQMQdEeWG9YrmNU0sHg" outgoing="_TU3T8MQdEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_LPdTEMQdEeWG9YrmNU0sHg" incoming="_TU3T8MQdEeWG9YrmNU0sHg" outgoing="_UhoCAMQdEeWG9YrmNU0sHg _72iL0MQdEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_cjrz8MQdEeWG9YrmNU0sHg" name="Shipment" incoming="_r5b18MQdEeWG9YrmNU0sHg" outgoing="_8w138MQdEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_gfKLAMQdEeWG9YrmNU0sHg" name="Invoice delivery" incoming="_slJscMQdEeWG9YrmNU0sHg" outgoing="_PtpgMMQeEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_5a6d8MQdEeWG9YrmNU0sHg" name="" incoming="_72iL0MQdEeWG9YrmNU0sHg _SShQsMQeEeWG9YrmNU0sHg" outgoing="_WCqhgMQeEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_Tm3NcMQeEeWG9YrmNU0sHg" incoming="_WCqhgMQeEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_pBS8YMTnEeWOvrtXJpvMBg" name="" incoming="_UhoCAMQdEeWG9YrmNU0sHg" outgoing="_slJscMQdEeWG9YrmNU0sHg _r5b18MQdEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_qGzL4MTnEeWOvrtXJpvMBg" name="" incoming="_PtpgMMQeEeWG9YrmNU0sHg _8w138MQdEeWG9YrmNU0sHg" outgoing="_SShQsMQeEeWG9YrmNU0sHg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_20hjIMQgEeWG9YrmNU0sHg" name="Amazon Book Management" node="_-XSJ8MQgEeWG9YrmNU0sHg _HQC6YMQhEeWG9YrmNU0sHg">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_GJcJkMQfEeWG9YrmNU0sHg" name="Amazon Books" node="_fF_twMQfEeWG9YrmNU0sHg _j80SwMQfEeWG9YrmNU0sHg _nxFOkMQfEeWG9YrmNU0sHg _xx_54MQfEeWG9YrmNU0sHg _04DE0MQfEeWG9YrmNU0sHg">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_3FksUMQfEeWG9YrmNU0sHg" target="_j80SwMQfEeWG9YrmNU0sHg" source="_fF_twMQfEeWG9YrmNU0sHg"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_4GMb0MQfEeWG9YrmNU0sHg" target="_xx_54MQfEeWG9YrmNU0sHg" source="_j80SwMQfEeWG9YrmNU0sHg"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_4vURUMQfEeWG9YrmNU0sHg" name="book found" target="_nxFOkMQfEeWG9YrmNU0sHg" source="_xx_54MQfEeWG9YrmNU0sHg"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_5S7UsMQfEeWG9YrmNU0sHg" target="_04DE0MQfEeWG9YrmNU0sHg" source="_nxFOkMQfEeWG9YrmNU0sHg"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_6ZaboMQfEeWG9YrmNU0sHg" name="book not found" target="_j80SwMQfEeWG9YrmNU0sHg" source="_xx_54MQfEeWG9YrmNU0sHg"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_fF_twMQfEeWG9YrmNU0sHg" name="" outgoing="_3FksUMQfEeWG9YrmNU0sHg"/>
+        <node xmi:type="uml:CallBehaviorAction" xmi:id="_j80SwMQfEeWG9YrmNU0sHg" name="Book Searching" incoming="_3FksUMQfEeWG9YrmNU0sHg _6ZaboMQfEeWG9YrmNU0sHg" outgoing="_4GMb0MQfEeWG9YrmNU0sHg"/>
+        <node xmi:type="uml:CallBehaviorAction" xmi:id="_nxFOkMQfEeWG9YrmNU0sHg" name="Book Description" incoming="_4vURUMQfEeWG9YrmNU0sHg" outgoing="_5S7UsMQfEeWG9YrmNU0sHg"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_xx_54MQfEeWG9YrmNU0sHg" name="" incoming="_4GMb0MQfEeWG9YrmNU0sHg" outgoing="_4vURUMQfEeWG9YrmNU0sHg _6ZaboMQfEeWG9YrmNU0sHg"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_04DE0MQfEeWG9YrmNU0sHg" name="" incoming="_5S7UsMQfEeWG9YrmNU0sHg"/>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_bklvYMTWEeWw36UBf5eFZg" name="Related Titles"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Y4ILYMQhEeWG9YrmNU0sHg" target="_HQC6YMQhEeWG9YrmNU0sHg" source="_-XSJ8MQgEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_-XSJ8MQgEeWG9YrmNU0sHg" name="Amazon Books" outgoing="_Y4ILYMQhEeWG9YrmNU0sHg" behavior="_GJcJkMQfEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_HQC6YMQhEeWG9YrmNU0sHg" name="Related Titles" incoming="_Y4ILYMQhEeWG9YrmNU0sHg" behavior="_bklvYMTWEeWw36UBf5eFZg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_vHNAMMQiEeWG9YrmNU0sHg" name="Barnes &amp; Noble Books" node="_28mPIMQiEeWG9YrmNU0sHg _4jvMEMQiEeWG9YrmNU0sHg _90CoEMQiEeWG9YrmNU0sHg _EwZWMMQjEeWG9YrmNU0sHg _IVqMsMQjEeWG9YrmNU0sHg _NbVGAMQjEeWG9YrmNU0sHg _4NcWcMTnEeWOvrtXJpvMBg _5eOo4MTnEeWOvrtXJpvMBg">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Tk7hgMQjEeWG9YrmNU0sHg" target="_4jvMEMQiEeWG9YrmNU0sHg" source="_28mPIMQiEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_U14zEMQjEeWG9YrmNU0sHg" target="_90CoEMQiEeWG9YrmNU0sHg" source="_4jvMEMQiEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_VcBmAMQjEeWG9YrmNU0sHg" name="book found" target="_4NcWcMTnEeWOvrtXJpvMBg" source="_90CoEMQiEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_WBUEYMQjEeWG9YrmNU0sHg" target="_EwZWMMQjEeWG9YrmNU0sHg" source="_4NcWcMTnEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Wfo_IMQjEeWG9YrmNU0sHg" target="_IVqMsMQjEeWG9YrmNU0sHg" source="_4NcWcMTnEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_XZjpsMQjEeWG9YrmNU0sHg" target="_5eOo4MTnEeWOvrtXJpvMBg" source="_EwZWMMQjEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_X9_zgMQjEeWG9YrmNU0sHg" target="_5eOo4MTnEeWOvrtXJpvMBg" source="_IVqMsMQjEeWG9YrmNU0sHg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Yl458MQjEeWG9YrmNU0sHg" target="_NbVGAMQjEeWG9YrmNU0sHg" source="_5eOo4MTnEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_dlYSwMQjEeWG9YrmNU0sHg" name="book not found" target="_4jvMEMQiEeWG9YrmNU0sHg" source="_90CoEMQiEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_28mPIMQiEeWG9YrmNU0sHg" name="" outgoing="_Tk7hgMQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_4jvMEMQiEeWG9YrmNU0sHg" name="Search Book" incoming="_Tk7hgMQjEeWG9YrmNU0sHg _dlYSwMQjEeWG9YrmNU0sHg" outgoing="_U14zEMQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_90CoEMQiEeWG9YrmNU0sHg" name="" incoming="_U14zEMQjEeWG9YrmNU0sHg" outgoing="_VcBmAMQjEeWG9YrmNU0sHg _dlYSwMQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_EwZWMMQjEeWG9YrmNU0sHg" name="Show Book Info" incoming="_WBUEYMQjEeWG9YrmNU0sHg" outgoing="_XZjpsMQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_IVqMsMQjEeWG9YrmNU0sHg" name="Show Related Titles" incoming="_Wfo_IMQjEeWG9YrmNU0sHg" outgoing="_X9_zgMQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_NbVGAMQjEeWG9YrmNU0sHg" name="" incoming="_Yl458MQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_4NcWcMTnEeWOvrtXJpvMBg" name="" incoming="_VcBmAMQjEeWG9YrmNU0sHg" outgoing="_WBUEYMQjEeWG9YrmNU0sHg _Wfo_IMQjEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_5eOo4MTnEeWOvrtXJpvMBg" name="" incoming="_XZjpsMQjEeWG9YrmNU0sHg _X9_zgMQjEeWG9YrmNU0sHg" outgoing="_Yl458MQjEeWG9YrmNU0sHg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_jqD3IMTVEeWSqrPMaQlZ5A" name="Book Management Adaptation 2" node="_yDT0oMTVEeWSqrPMaQlZ5A _11HSUMTVEeWSqrPMaQlZ5A _wPzaMMTWEeWw36UBf5eFZg _FjpLQMTXEeWw36UBf5eFZg _YtBP4MTXEeWw36UBf5eFZg _ogER4MTXEeWw36UBf5eFZg _w3l9gMTXEeWw36UBf5eFZg _GEsNYMTYEeWw36UBf5eFZg _SDjzIMTYEeWw36UBf5eFZg _goajsMTYEeWw36UBf5eFZg _mDFcoMTYEeWw36UBf5eFZg _z4DBUMTYEeWw36UBf5eFZg _Fx7PIMToEeWOvrtXJpvMBg _IYOjAMToEeWOvrtXJpvMBg">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_wcmgEMTWEeWw36UBf5eFZg" name="Bernes &amp; Noble Shopping Cart"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_xEdU0MTXEeWw36UBf5eFZg" name="Bank of America Credit Card Payment"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_mfKUoMTYEeWw36UBf5eFZg" name="UPS Shipping"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_0FuQ8MTYEeWw36UBf5eFZg" name="Email invoice"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_BtcLMMTWEeWSqrPMaQlZ5A" target="_11HSUMTVEeWSqrPMaQlZ5A" source="_yDT0oMTVEeWSqrPMaQlZ5A"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_HjFTcMTXEeWw36UBf5eFZg" target="_FjpLQMTXEeWw36UBf5eFZg" source="_wPzaMMTWEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_IwkaQMTXEeWw36UBf5eFZg" name="add more books" target="_11HSUMTVEeWSqrPMaQlZ5A" source="_FjpLQMTXEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_fGbpAMTXEeWw36UBf5eFZg" name="checkout" target="_YtBP4MTXEeWw36UBf5eFZg" source="_FjpLQMTXEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_u_biAMTXEeWw36UBf5eFZg" target="_ogER4MTXEeWw36UBf5eFZg" source="_YtBP4MTXEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_6c9VQMTXEeWw36UBf5eFZg" target="_w3l9gMTXEeWw36UBf5eFZg" source="_ogER4MTXEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_LOpw0MTYEeWw36UBf5eFZg" target="_GEsNYMTYEeWw36UBf5eFZg" source="_w3l9gMTXEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_MKyo8MTYEeWw36UBf5eFZg" name="valid card" target="_Fx7PIMToEeWOvrtXJpvMBg" source="_GEsNYMTYEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_aKCLAMTYEeWw36UBf5eFZg" name="invalid card" target="_SDjzIMTYEeWw36UBf5eFZg" source="_GEsNYMTYEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_dugXUMTYEeWw36UBf5eFZg" target="_SDjzIMTYEeWw36UBf5eFZg" source="_IYOjAMToEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_kB3LwMTYEeWw36UBf5eFZg" target="_goajsMTYEeWw36UBf5eFZg" source="_SDjzIMTYEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_sDDbAMTYEeWw36UBf5eFZg" target="_mDFcoMTYEeWw36UBf5eFZg" source="_Fx7PIMToEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_ssTzYMTYEeWw36UBf5eFZg" target="_IYOjAMToEeWOvrtXJpvMBg" source="_mDFcoMTYEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_J6tnQMTZEeWw36UBf5eFZg" target="_z4DBUMTYEeWw36UBf5eFZg" source="_Fx7PIMToEeWOvrtXJpvMBg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_M1gkcMTZEeWw36UBf5eFZg" target="_IYOjAMToEeWOvrtXJpvMBg" source="_z4DBUMTYEeWw36UBf5eFZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_r_xyoMTaEeWVKucDXyXNxg" target="_wPzaMMTWEeWw36UBf5eFZg" source="_11HSUMTVEeWSqrPMaQlZ5A"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_yDT0oMTVEeWSqrPMaQlZ5A" outgoing="_BtcLMMTWEeWSqrPMaQlZ5A"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_11HSUMTVEeWSqrPMaQlZ5A" name="Barnes &amp; Nobles Books" incoming="_BtcLMMTWEeWSqrPMaQlZ5A _IwkaQMTXEeWw36UBf5eFZg" outgoing="_r_xyoMTaEeWVKucDXyXNxg" behavior="_GJcJkMQfEeWG9YrmNU0sHg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_wPzaMMTWEeWw36UBf5eFZg" name="Bernes &amp; Noble Shopping Cart" incoming="_r_xyoMTaEeWVKucDXyXNxg" outgoing="_HjFTcMTXEeWw36UBf5eFZg" behavior="_wcmgEMTWEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_FjpLQMTXEeWw36UBf5eFZg" incoming="_HjFTcMTXEeWw36UBf5eFZg" outgoing="_IwkaQMTXEeWw36UBf5eFZg _fGbpAMTXEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_YtBP4MTXEeWw36UBf5eFZg" name="Google Authentication" incoming="_fGbpAMTXEeWw36UBf5eFZg" outgoing="_u_biAMTXEeWw36UBf5eFZg" behavior="_Rg3LMMTXEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_ogER4MTXEeWw36UBf5eFZg" name="Payment Calculator" incoming="_u_biAMTXEeWw36UBf5eFZg" outgoing="_6c9VQMTXEeWw36UBf5eFZg" behavior="_Vg7HUMTXEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_w3l9gMTXEeWw36UBf5eFZg" name="Bank of America Credit Card Payment" incoming="_6c9VQMTXEeWw36UBf5eFZg" outgoing="_LOpw0MTYEeWw36UBf5eFZg" behavior="_xEdU0MTXEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_GEsNYMTYEeWw36UBf5eFZg" name="" incoming="_LOpw0MTYEeWw36UBf5eFZg" outgoing="_MKyo8MTYEeWw36UBf5eFZg _aKCLAMTYEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_SDjzIMTYEeWw36UBf5eFZg" name="" incoming="_aKCLAMTYEeWw36UBf5eFZg _dugXUMTYEeWw36UBf5eFZg" outgoing="_kB3LwMTYEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_goajsMTYEeWw36UBf5eFZg" name="" incoming="_kB3LwMTYEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_mDFcoMTYEeWw36UBf5eFZg" name="UPS Shipping" incoming="_sDDbAMTYEeWw36UBf5eFZg" outgoing="_ssTzYMTYEeWw36UBf5eFZg" behavior="_mfKUoMTYEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_z4DBUMTYEeWw36UBf5eFZg" name="Email invoice" incoming="_J6tnQMTZEeWw36UBf5eFZg" outgoing="_M1gkcMTZEeWw36UBf5eFZg" behavior="_0FuQ8MTYEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_Fx7PIMToEeWOvrtXJpvMBg" name="" incoming="_MKyo8MTYEeWw36UBf5eFZg" outgoing="_J6tnQMTZEeWw36UBf5eFZg _sDDbAMTYEeWw36UBf5eFZg"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_IYOjAMToEeWOvrtXJpvMBg" name="" incoming="_M1gkcMTZEeWw36UBf5eFZg _ssTzYMTYEeWw36UBf5eFZg" outgoing="_dugXUMTYEeWw36UBf5eFZg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0mrgcMtQEeWd--HpWZq3qQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0msukMtQEeWd--HpWZq3qQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msukctQEeWd--HpWZq3qQ" key="Version" value="0.1.0"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msukstQEeWd--HpWZq3qQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msuk8tQEeWd--HpWZq3qQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msulMtQEeWd--HpWZq3qQ" key="Date" value="2016-02-04"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msulctQEeWd--HpWZq3qQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0msHgMtQEeWd--HpWZq3qQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="adm.profile.uml#_eTRlQMtPEeWd--HpWZq3qQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+  </uml:Model>
+  <ADM:Joinpoint xmi:id="_2T6eUMtQEeWd--HpWZq3qQ" base_RedefinableElement="_xo86UMQZEeWG9YrmNU0sHg"/>
+  <ADM:Joinpoint xmi:id="_3J7gUMtQEeWd--HpWZq3qQ" base_RedefinableElement="_HWsZIMQaEeWG9YrmNU0sHg"/>
+  <ADM:Joinpoint xmi:id="_4Md7YMtQEeWd--HpWZq3qQ" base_RedefinableElement="_ERT1MMQdEeWG9YrmNU0sHg"/>
+  <ADM:Joinpoint xmi:id="_43f1YMtQEeWd--HpWZq3qQ" base_RedefinableElement="_cjrz8MQdEeWG9YrmNU0sHg"/>
+  <ADM:Joinpoint xmi:id="_5qOS0MtQEeWd--HpWZq3qQ" base_RedefinableElement="_gfKLAMQdEeWG9YrmNU0sHg"/>
+  <ADM:Advice xmi:id="_BPieYMtREeWd--HpWZq3qQ" base_Class="_md3h8MQZEeWG9YrmNU0sHg"/>
+  <ADM:Advice xmi:id="_FB5VsMtREeWd--HpWZq3qQ" base_Class="_vHNAMMQiEeWG9YrmNU0sHg"/>
+  <ADM:Advice xmi:id="_If3RYMtREeWd--HpWZq3qQ" base_Class="_20hjIMQgEeWG9YrmNU0sHg"/>
+</xmi:XMI>
