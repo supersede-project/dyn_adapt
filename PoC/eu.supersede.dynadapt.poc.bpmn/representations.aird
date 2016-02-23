@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_P8iQsMTiEeWOvrtXJpvMBg" selectedViews="_QALakMTiEeWOvrtXJpvMBg" version="10.0.0.201505222000">
+  <semanticResources>amazon%20book%20shopping.bpmn</semanticResources>
+  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_QALakMTiEeWOvrtXJpvMBg">
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_BtgJsMTjEeWOvrtXJpvMBg" name="Amazon Book Shopping">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_BtgJscTjEeWOvrtXJpvMBg" source="DANNOTATION_CUSTOMIZATION_KEY">
+        <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_BtgJssTjEeWOvrtXJpvMBg"/>
+      </ownedAnnotationEntries>
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_Bt050MTjEeWOvrtXJpvMBg" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_Bt050cTjEeWOvrtXJpvMBg" type="Sirius" element="_BtgJsMTjEeWOvrtXJpvMBg" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_YMthsMTjEeWOvrtXJpvMBg" type="2002" element="_YMiikMTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_YMuIwMTjEeWOvrtXJpvMBg" type="5006"/>
+            <children xmi:type="notation:Node" xmi:id="_YMuIwcTjEeWOvrtXJpvMBg" type="7001">
+              <children xmi:type="notation:Node" xmi:id="_YMvW4MTjEeWOvrtXJpvMBg" type="3008" element="_YMnbEMTjEeWOvrtXJpvMBg">
+                <children xmi:type="notation:Node" xmi:id="_YMvW48TjEeWOvrtXJpvMBg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_YMvW5MTjEeWOvrtXJpvMBg" type="7002">
+                  <children xmi:type="notation:Node" xmi:id="_c9jagMTjEeWOvrtXJpvMBg" type="3007" element="_c9cs0MTjEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_c9kooMTjEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_c9koocTjEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_c9qIMMTjEeWOvrtXJpvMBg" type="3005" element="_c9eiAMTjEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_c9qIMcTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c9qIMsTjEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_c9jagcTjEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c9jagsTjEeWOvrtXJpvMBg" x="16" y="92" width="32" height="32"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_kaJu8MTjEeWOvrtXJpvMBg" type="3008" element="_kaBzIMTjEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_kaKWAMTjEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_kaKWAcTjEeWOvrtXJpvMBg" type="7002">
+                      <children xmi:type="notation:Node" xmi:id="_vcaigMTjEeWOvrtXJpvMBg" type="3008" element="_vcUb4MTjEeWOvrtXJpvMBg">
+                        <children xmi:type="notation:Node" xmi:id="_vcaig8TjEeWOvrtXJpvMBg" type="5005"/>
+                        <children xmi:type="notation:Node" xmi:id="_vcbJkMTjEeWOvrtXJpvMBg" type="7002">
+                          <styles xmi:type="notation:SortingStyle" xmi:id="_vcbJkcTjEeWOvrtXJpvMBg"/>
+                          <styles xmi:type="notation:FilteringStyle" xmi:id="_vcbJksTjEeWOvrtXJpvMBg"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_vcaigcTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vcaigsTjEeWOvrtXJpvMBg" x="88" y="68"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_ynCEYMTjEeWOvrtXJpvMBg" type="3008" element="_ym-aAMTjEeWOvrtXJpvMBg">
+                        <children xmi:type="notation:Node" xmi:id="_ynCEY8TjEeWOvrtXJpvMBg" type="5005"/>
+                        <children xmi:type="notation:Node" xmi:id="_ynCrcMTjEeWOvrtXJpvMBg" type="7002">
+                          <styles xmi:type="notation:SortingStyle" xmi:id="_ynCrccTjEeWOvrtXJpvMBg"/>
+                          <styles xmi:type="notation:FilteringStyle" xmi:id="_ynCrcsTjEeWOvrtXJpvMBg"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_ynCEYcTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ynCEYsTjEeWOvrtXJpvMBg" x="352" y="68"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_1k15UMTjEeWOvrtXJpvMBg" type="3007" element="_1kvysMTjEeWOvrtXJpvMBg">
+                        <children xmi:type="notation:Node" xmi:id="_1k2gYMTjEeWOvrtXJpvMBg" type="5003">
+                          <layoutConstraint xmi:type="notation:Location" xmi:id="_1k2gYcTjEeWOvrtXJpvMBg" x="-1"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_1k3ugMTjEeWOvrtXJpvMBg" type="3005" element="_1kxA0MTjEeWOvrtXJpvMBg">
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_1k3ugcTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1k3ugsTjEeWOvrtXJpvMBg"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_1k15UcTjEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1k15UsTjEeWOvrtXJpvMBg" x="16" y="87" width="32" height="32"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_4SRv8MTjEeWOvrtXJpvMBg" type="3007" element="_4SMQYMTjEeWOvrtXJpvMBg">
+                        <children xmi:type="notation:Node" xmi:id="_4SSXAsTjEeWOvrtXJpvMBg" type="5003">
+                          <layoutConstraint xmi:type="notation:Location" xmi:id="_4SSXA8TjEeWOvrtXJpvMBg" x="-1"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_4SUMMMTjEeWOvrtXJpvMBg" type="3005" element="_4SMQYcTjEeWOvrtXJpvMBg">
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_4SUMMcTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4SUMMsTjEeWOvrtXJpvMBg"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_4SSXAMTjEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4SSXAcTjEeWOvrtXJpvMBg" x="556" y="87" width="32" height="32"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_-LzvIMTjEeWOvrtXJpvMBg" type="3007" element="_-LwEwMTjEeWOvrtXJpvMBg">
+                        <children xmi:type="notation:Node" xmi:id="_-L0WMMTjEeWOvrtXJpvMBg" type="5003">
+                          <layoutConstraint xmi:type="notation:Location" xmi:id="_-L0WMcTjEeWOvrtXJpvMBg" x="-1"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_-L1kUMTjEeWOvrtXJpvMBg" type="3005" element="_-LwEwcTjEeWOvrtXJpvMBg">
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_-L1kUcTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-L1kUsTjEeWOvrtXJpvMBg"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_-LzvIcTjEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-LzvIsTjEeWOvrtXJpvMBg" x="280" y="81" width="41" height="41"/>
+                      </children>
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_kaKWAsTjEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_kaKWA8TjEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_kaJu8cTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kaJu8sTjEeWOvrtXJpvMBg" x="112" y="8" width="627" height="183"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_MOK2oMTkEeWOvrtXJpvMBg" type="3008" element="_MOBFoMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_MOK2o8TkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_MOLdsMTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_MOLdscTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_MOLdssTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_MOK2ocTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MOK2osTkEeWOvrtXJpvMBg" x="208" y="248"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_POfNAMTkEeWOvrtXJpvMBg" type="3008" element="_POVcAMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_POf0EMTkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_POf0EcTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_POf0EsTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_POf0E8TkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_POfNAcTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_POfNAsTkEeWOvrtXJpvMBg" x="208" y="356"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_SyKvIMTkEeWOvrtXJpvMBg" type="3008" element="_SyFPkMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_SyLWMMTkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_SyLWMcTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_SyLWMsTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_SyLWM8TkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_SyKvIcTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SyKvIsTkEeWOvrtXJpvMBg" x="496" y="356"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_VFEl4MTkEeWOvrtXJpvMBg" type="3008" element="_VE9RIMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_VFEl48TkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_VFFM8MTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_VFFM8cTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_VFFM8sTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_VFEl4cTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VFEl4sTkEeWOvrtXJpvMBg" x="724" y="356"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_YRVGgMTkEeWOvrtXJpvMBg" type="3007" element="_YRPm8MTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_YRVtkMTkEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_YRVtkcTkEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_YRW7sMTkEeWOvrtXJpvMBg" type="3005" element="_YRQOAMTkEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_YRW7scTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YRW7ssTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_YRVGgcTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YRVGgsTkEeWOvrtXJpvMBg" x="404" y="372" width="41" height="41"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_kHElcMTkEeWOvrtXJpvMBg" type="3008" element="_kG7bgMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_kHElc8TkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_kHEldMTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_kHEldcTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_kHEldsTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_kHElccTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kHElcsTkEeWOvrtXJpvMBg" x="937" y="356" width="207"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_l8iSQMTkEeWOvrtXJpvMBg" type="3008" element="_l8X6MMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_l8iSQ8TkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_l8i5UMTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_l8i5UcTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_l8i5UsTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_l8iSQcTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_l8iSQsTkEeWOvrtXJpvMBg" x="1141" y="127"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_mNqegMTkEeWOvrtXJpvMBg" type="3008" element="_mNjJwMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_mNrFkMTkEeWOvrtXJpvMBg" type="5005"/>
+                    <children xmi:type="notation:Node" xmi:id="_mNrFkcTkEeWOvrtXJpvMBg" type="7002">
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_mNrFksTkEeWOvrtXJpvMBg"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_mNrFk8TkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_mNqegcTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mNqegsTkEeWOvrtXJpvMBg" x="1141" y="8"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_nLDT0MTkEeWOvrtXJpvMBg" type="3007" element="_nK90QMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_nLDT08TkEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_nLDT1MTkEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_nLFJAMTkEeWOvrtXJpvMBg" type="3005" element="_nK90QcTkEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_nLFJAcTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nLFJAsTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_nLDT0cTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nLDT0sTkEeWOvrtXJpvMBg" x="1020" y="248" width="41" height="41"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_uzgS8MTkEeWOvrtXJpvMBg" type="3007" element="_uzazYMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_uzgS88TkEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_uzgS9MTkEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_uzhhEMTkEeWOvrtXJpvMBg" type="3005" element="_uzazYcTkEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_uzhhEcTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uzhhEsTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_uzgS8cTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uzgS8sTkEeWOvrtXJpvMBg" x="1376" y="248" width="41" height="41"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_6R8sMMTkEeWOvrtXJpvMBg" type="3007" element="_6RxtEMTkEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_6R9TQMTkEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_6R9TQcTkEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_6R_IcMTkEeWOvrtXJpvMBg" type="3005" element="_6RyUIMTkEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_6R_IccTkEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6R_IcsTkEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_6R8sMcTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6R8sMsTkEeWOvrtXJpvMBg" x="1481" y="253" width="32" height="32"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_Kv5sYMTlEeWOvrtXJpvMBg" type="3007" element="_KvxwkMTlEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_Kv5sY8TlEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_Kv5sZMTlEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_Kv7hkMTlEeWOvrtXJpvMBg" type="3005" element="_KvxwkcTlEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_Kv7hkcTlEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kv7hksTlEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_Kv5sYcTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kv5sYsTlEeWOvrtXJpvMBg" x="1020" y="140" width="41" height="41"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_PYC8MMTlEeWOvrtXJpvMBg" type="3007" element="_PX5yQMTlEeWOvrtXJpvMBg">
+                    <children xmi:type="notation:Node" xmi:id="_PYDjQsTlEeWOvrtXJpvMBg" type="5003">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_PYDjQ8TlEeWOvrtXJpvMBg" x="-1"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_PYExYMTlEeWOvrtXJpvMBg" type="3005" element="_PX6ZUMTlEeWOvrtXJpvMBg">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_PYExYcTlEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PYExYsTlEeWOvrtXJpvMBg"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_PYDjQMTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PYDjQcTlEeWOvrtXJpvMBg" x="1376" y="140" width="41" height="41"/>
+                  </children>
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_YMvW5cTjEeWOvrtXJpvMBg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_YMvW5sTjEeWOvrtXJpvMBg"/>
+                  <styles xmi:type="notation:DrawerStyle" xmi:id="_YMvW58TjEeWOvrtXJpvMBg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_YMvW4cTjEeWOvrtXJpvMBg" fontName="Cantarell"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YMvW4sTjEeWOvrtXJpvMBg" width="1547" height="473"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_YMuIwsTjEeWOvrtXJpvMBg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_YMuIw8TjEeWOvrtXJpvMBg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_YMthscTjEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="12" bold="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YMthssTjEeWOvrtXJpvMBg" x="12" y="12" width="1551"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_Bt050sTjEeWOvrtXJpvMBg"/>
+          <edges xmi:type="notation:Edge" xmi:id="__9lOwMTjEeWOvrtXJpvMBg" type="4001" element="__9V-MMTjEeWOvrtXJpvMBg" source="_1k15UMTjEeWOvrtXJpvMBg" target="_vcaigMTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="__9nD8MTjEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="__9nD8cTjEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="__9pgMMTjEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="__9pgMcTjEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="__9vm0MTjEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="__9vm0cTjEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="__9lOwcTjEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="__9lOwsTjEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__9lOw8TjEeWOvrtXJpvMBg" points="[0, 0, -40, 0]$[40, 0, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__9w08MTjEeWOvrtXJpvMBg" id="(1.0,0.46875)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__9w08cTjEeWOvrtXJpvMBg" id="(0.0,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_AgK-cMTkEeWOvrtXJpvMBg" type="4001" element="_AgB0gMTkEeWOvrtXJpvMBg" source="_vcaigMTjEeWOvrtXJpvMBg" target="_-LzvIMTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_AgK-dMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AgK-dcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_AgLlgMTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AgLlgcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_AgLlgsTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AgLlg8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_AgK-ccTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_AgK-csTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AgK-c8TkEeWOvrtXJpvMBg" points="[0, 0, -44, 1]$[44, -1, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AgLlhMTkEeWOvrtXJpvMBg" id="(1.0,0.5147058823529411)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AgLlhcTkEeWOvrtXJpvMBg" id="(0.0,0.5121951219512195)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_BPF58MTkEeWOvrtXJpvMBg" type="4001" element="_BO7h4MTkEeWOvrtXJpvMBg" source="_-LzvIMTjEeWOvrtXJpvMBg" target="_ynCEYMTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_BPGhAMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BPGhAcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_BPGhAsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BPGhA8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_BPGhBMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BPGhBcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_BPF58cTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_BPF58sTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BPF588TkEeWOvrtXJpvMBg" points="[0, 0, -31, 0]$[31, 0, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BPGhBsTkEeWOvrtXJpvMBg" id="(1.0,0.5121951219512195)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BPGhB8TkEeWOvrtXJpvMBg" id="(0.0,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_B18ekMTkEeWOvrtXJpvMBg" type="4001" element="_B1w4YMTkEeWOvrtXJpvMBg" source="_ynCEYMTjEeWOvrtXJpvMBg" target="_4SRv8MTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_B19FoMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B19FocTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_B19FosTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B19Fo8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_B19ssMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B19sscTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_B18ekcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_B18eksTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_B18ek8TkEeWOvrtXJpvMBg" points="[0, 0, -56, 0]$[56, 0, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_B19sssTkEeWOvrtXJpvMBg" id="(1.0,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_B19ss8TkEeWOvrtXJpvMBg" id="(0.0,0.46875)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_DMMf0MTkEeWOvrtXJpvMBg" type="4001" element="_DMCu0MTkEeWOvrtXJpvMBg" source="_-LzvIMTjEeWOvrtXJpvMBg" target="_vcaigMTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_DMNG4MTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DMNG4cTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_DMNG4sTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DMNG48TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_DMNG5MTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DMNG5cTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_DMMf0cTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_DMMf0sTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DMMf08TkEeWOvrtXJpvMBg" points="[-5, -4, 64, 13]$[-5, -46, 64, -29]$[-145, -46, -76, -29]$[-145, -17, -76, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DMNG5sTkEeWOvrtXJpvMBg" id="(0.6097560975609756,0.0975609756097561)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DMNG58TkEeWOvrtXJpvMBg" id="(1.0,0.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_I21HYMTkEeWOvrtXJpvMBg" type="4001" element="_I2md4MTkEeWOvrtXJpvMBg" source="_c9jagMTjEeWOvrtXJpvMBg" target="_kaJu8MTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_I21ucMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I21uccTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_I21ucsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I21uc8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_I21udMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I21udcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_I21HYcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_I21HYsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_I21HY8TkEeWOvrtXJpvMBg" points="[0, 0, -64, 0]$[64, 0, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_I21udsTkEeWOvrtXJpvMBg" id="(1.0,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_I21ud8TkEeWOvrtXJpvMBg" id="(0.0,0.5524861878453039)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_cEKe8MTkEeWOvrtXJpvMBg" type="4001" element="_cD7OYMTkEeWOvrtXJpvMBg" source="_kaJu8MTjEeWOvrtXJpvMBg" target="_MOK2oMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_cELGAMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cELGAcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_cELGAsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cELGA8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_cELGBMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cELGBcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_cEKe8cTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_cEKe8sTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cEKe88TkEeWOvrtXJpvMBg" points="[0, 0, 0, -59]$[0, 59, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cELGBsTkEeWOvrtXJpvMBg" id="(0.272,1.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cELGB8TkEeWOvrtXJpvMBg" id="(0.5,0.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_c5zGcMTkEeWOvrtXJpvMBg" type="4001" element="_c5lrEMTkEeWOvrtXJpvMBg" source="_MOK2oMTkEeWOvrtXJpvMBg" target="_POfNAMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_c5zGdMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c5zGdcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_c5zGdsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c5zGd8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_c5zGeMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c5zGecTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_c5zGccTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_c5zGcsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_c5zGc8TkEeWOvrtXJpvMBg" points="[0, 0, 0, -40]$[0, 40, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_c5ztgMTkEeWOvrtXJpvMBg" id="(0.5,1.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_c5ztgcTkEeWOvrtXJpvMBg" id="(0.5,0.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_dnvKgMTkEeWOvrtXJpvMBg" type="4001" element="_dnjkUMTkEeWOvrtXJpvMBg" source="_POfNAMTkEeWOvrtXJpvMBg" target="_YRVGgMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_dnvKhMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dnvKhcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_dnvxkMTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dnvxkcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_dnvxksTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dnvxk8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_dnvKgcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_dnvKgsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dnvKg8TkEeWOvrtXJpvMBg" points="[0, 0, -48, -3]$[48, 3, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dnvxlMTkEeWOvrtXJpvMBg" id="(1.0,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dnvxlcTkEeWOvrtXJpvMBg" id="(0.0,0.5121951219512195)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_eYB_AMTkEeWOvrtXJpvMBg" type="4001" element="_eX1KsMTkEeWOvrtXJpvMBg" source="_YRVGgMTkEeWOvrtXJpvMBg" target="_SyKvIMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_eYCmEMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eYCmEcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_eYCmEsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eYCmE8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_eYCmFMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eYCmFcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_eYB_AcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_eYB_AsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_eYB_A8TkEeWOvrtXJpvMBg" points="[0, 0, -51, 0]$[51, 0, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eYDNIMTkEeWOvrtXJpvMBg" id="(1.0,0.43902439024390244)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eYDNIcTkEeWOvrtXJpvMBg" id="(0.0,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_e3tkoMTkEeWOvrtXJpvMBg" type="4001" element="_e3jMkMTkEeWOvrtXJpvMBg" source="_YRVGgMTkEeWOvrtXJpvMBg" target="_kaJu8MTjEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_e3tkpMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_e3tkpcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_e3uLsMTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_e3uLscTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_e3uLssTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_e3uLs8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_e3tkocTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_e3tkosTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_e3tko8TkEeWOvrtXJpvMBg" points="[0, 0, 0, 183]$[0, -183, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_e3uLtMTkEeWOvrtXJpvMBg" id="(0.5121951219512195,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_e3uLtcTkEeWOvrtXJpvMBg" id="(0.5008,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_idFv4MTkEeWOvrtXJpvMBg" type="4001" element="_ic3GYMTkEeWOvrtXJpvMBg" source="_SyKvIMTkEeWOvrtXJpvMBg" target="_VFEl4MTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_idGW8MTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_idGW8cTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_idGW8sTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_idGW88TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_idGW9MTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_idGW9cTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_idFv4cTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_idFv4sTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_idFv48TkEeWOvrtXJpvMBg" points="[0, 10, -80, 0]$[80, 10, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_idG-AMTkEeWOvrtXJpvMBg" id="(1.0,0.35294117647058826)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_idG-AcTkEeWOvrtXJpvMBg" id="(0.0,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_rtbS0MTkEeWOvrtXJpvMBg" type="4001" element="_rtPsoMTkEeWOvrtXJpvMBg" source="_VFEl4MTkEeWOvrtXJpvMBg" target="_kHElcMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_rtbS1MTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rtbS1cTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_rtb54MTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rtb54cTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_rtb54sTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rtb548TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_rtbS0cTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_rtbS0sTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rtbS08TkEeWOvrtXJpvMBg" points="[0, 10, -73, 0]$[95, 10, 22, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rtb55MTkEeWOvrtXJpvMBg" id="(1.0,0.35294117647058826)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rtb55cTkEeWOvrtXJpvMBg" id="(0.03902439024390244,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_tJpZMMTkEeWOvrtXJpvMBg" type="4001" element="_tJck4MTkEeWOvrtXJpvMBg" source="_kHElcMTkEeWOvrtXJpvMBg" target="_nLDT0MTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_tJpZNMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tJpZNcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_tJpZNsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tJpZN8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_tJpZOMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tJpZOcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_tJpZMcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_tJpZMsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tJpZM8TkEeWOvrtXJpvMBg" points="[0, 0, 2, 67]$[0, -35, 2, 32]$[-2, -35, 0, 32]$[-2, -69, 0, -2]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tJqAQMTkEeWOvrtXJpvMBg" id="(0.5195121951219512,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tJqAQcTkEeWOvrtXJpvMBg" id="(0.5121951219512195,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_x3S0EMTkEeWOvrtXJpvMBg" type="4001" element="_x3DjgMTkEeWOvrtXJpvMBg" source="_nLDT0MTkEeWOvrtXJpvMBg" target="_uzgS8MTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_x3TbIMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x3TbIcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_x3UCMMTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x3UCMcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_x3UpQMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x3UpQcTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_x3S0EcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_x3S0EsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_x3S0E8TkEeWOvrtXJpvMBg" points="[-2, 0, -317, 0]$[309, 0, -6, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_x3UpQsTkEeWOvrtXJpvMBg" id="(1.0,0.5121951219512195)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_x3UpQ8TkEeWOvrtXJpvMBg" id="(0.0,0.5121951219512195)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_7UWkYMTkEeWOvrtXJpvMBg" type="4001" element="_7ULlQMTkEeWOvrtXJpvMBg" source="_uzgS8MTkEeWOvrtXJpvMBg" target="_6R8sMMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_7UWkZMTkEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7UWkZcTkEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_7UWkZsTkEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7UWkZ8TkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_7UWkaMTkEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7UWkacTkEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_7UWkYcTkEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_7UWkYsTkEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7UWkY8TkEeWOvrtXJpvMBg" points="[-8, 0, -72, 0]$[64, 0, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_7UWkasTkEeWOvrtXJpvMBg" id="(1.0,0.5121951219512195)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_7UWka8TkEeWOvrtXJpvMBg" id="(0.0,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_LPS-IMTlEeWOvrtXJpvMBg" type="4001" element="_tsxUYMTkEeWOvrtXJpvMBg" source="_nLDT0MTkEeWOvrtXJpvMBg" target="_Kv5sYMTlEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_LPS-JMTlEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LPS-JcTlEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_LPS-JsTlEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LPS-J8TlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_LPTlMMTlEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LPTlMcTlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_LPS-IcTlEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_LPS-IsTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_LPS-I8TlEeWOvrtXJpvMBg" points="[0, -20, -8, 68]$[0, -102, -8, -14]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LPVaYMTlEeWOvrtXJpvMBg" id="(0.4878048780487805,0.4878048780487805)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LPVaYcTlEeWOvrtXJpvMBg" id="(0.6829268292682927,0.975609756097561)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_L6AvEMTlEeWOvrtXJpvMBg" type="4001" element="_0cNA0MTkEeWOvrtXJpvMBg" source="_Kv5sYMTlEeWOvrtXJpvMBg" target="_mNqegMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_L6BWIMTlEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L6BWIcTlEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_L6BWIsTlEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L6BWI8TlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_L6BWJMTlEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L6BWJcTlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_L6AvEcTlEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_L6AvEsTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_L6AvE8TlEeWOvrtXJpvMBg" points="[3, -20, -172, 87]$[3, -105, -172, 2]$[101, -105, -74, 2]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_L6B9MMTlEeWOvrtXJpvMBg" id="(0.4878048780487805,0.21951219512195122)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_L6B9McTlEeWOvrtXJpvMBg" id="(0.5,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_MUo1kMTlEeWOvrtXJpvMBg" type="4001" element="_zGbgsMTkEeWOvrtXJpvMBg" source="_Kv5sYMTlEeWOvrtXJpvMBg" target="_l8iSQMTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_MUpcoMTlEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MUpcocTlEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_MUpcosTlEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MUpco8TlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_MUpcpMTlEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MUpcpcTlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_MUo1kcTlEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_MUo1ksTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MUo1k8TlEeWOvrtXJpvMBg" points="[-1, 0, -158, 2]$[83, 0, -74, 2]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MUpcpsTlEeWOvrtXJpvMBg" id="(0.926829268292683,0.5609756097560976)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MUpcp8TlEeWOvrtXJpvMBg" id="(0.5,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_QEkrAMTlEeWOvrtXJpvMBg" type="4001" element="_1EQfUMTkEeWOvrtXJpvMBg" source="_mNqegMTkEeWOvrtXJpvMBg" target="_PYC8MMTlEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_QEkrBMTlEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QEkrBcTlEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QEkrBsTlEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QEkrB8TlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QEkrCMTlEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QEkrCcTlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_QEkrAcTlEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_QEkrAsTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QEkrA8TlEeWOvrtXJpvMBg" points="[74, 0, -107, -104]$[180, 0, -1, -104]$[180, 98, -1, -6]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QElSEMTlEeWOvrtXJpvMBg" id="(0.5,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QElSEcTlEeWOvrtXJpvMBg" id="(0.4878048780487805,0.14634146341463414)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_QflzEMTlEeWOvrtXJpvMBg" type="4001" element="_zwtz0MTkEeWOvrtXJpvMBg" source="_l8iSQMTkEeWOvrtXJpvMBg" target="_PYC8MMTlEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_QfmaIMTlEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QfmaIcTlEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QfmaIsTlEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QfmaI8TlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QfmaJMTlEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QfmaJcTlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_QflzEcTlEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_QflzEsTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QflzE8TlEeWOvrtXJpvMBg" points="[74, 2, -97, 0]$[157, 2, -14, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QfmaJsTlEeWOvrtXJpvMBg" id="(0.5,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QfmaJ8TlEeWOvrtXJpvMBg" id="(0.24390243902439024,0.5609756097560976)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_X1tsEMTlEeWOvrtXJpvMBg" type="4001" element="_X1iF4MTlEeWOvrtXJpvMBg" source="_PYC8MMTlEeWOvrtXJpvMBg" target="_uzgS8MTkEeWOvrtXJpvMBg">
+            <children xmi:type="notation:Node" xmi:id="_X1tsFMTlEeWOvrtXJpvMBg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X1tsFcTlEeWOvrtXJpvMBg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_X1tsFsTlEeWOvrtXJpvMBg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X1tsF8TlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_X1uTIMTlEeWOvrtXJpvMBg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X1uTIcTlEeWOvrtXJpvMBg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_X1tsEcTlEeWOvrtXJpvMBg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_X1tsEsTlEeWOvrtXJpvMBg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_X1tsE8TlEeWOvrtXJpvMBg" points="[-1, -2, 8, -69]$[-1, 67, 8, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_X1uTIsTlEeWOvrtXJpvMBg" id="(0.5121951219512195,1.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_X1uTI8TlEeWOvrtXJpvMBg" id="(0.2926829268292683,0.0)"/>
+          </edges>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_YMiikMTjEeWOvrtXJpvMBg" name="Book Shop" childrenPresentation="VerticalStack">
+        <target xmi:type="bpmn:LaneSet" href="amazon%20book%20shopping.bpmn#_YMhUcMTjEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:LaneSet" href="amazon%20book%20shopping.bpmn#_YMhUcMTjEeWOvrtXJpvMBg"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_YMjJoMTjEeWOvrtXJpvMBg" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="221,230,133" backgroundColor="221,230,133" foregroundColor="233,236,197">
+          <labelFormat>bold</labelFormat>
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']"/>
+        <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_YMnbEMTjEeWOvrtXJpvMBg">
+          <target xmi:type="bpmn:Lane" href="amazon%20book%20shopping.bpmn#_YMh7gMTjEeWOvrtXJpvMBg"/>
+          <semanticElements xmi:type="bpmn:Lane" href="amazon%20book%20shopping.bpmn#_YMh7gMTjEeWOvrtXJpvMBg"/>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_YMnbEcTjEeWOvrtXJpvMBg" labelSize="9" showIcon="false" labelAlignment="LEFT" borderSize="3" borderSizeComputationExpression="3" borderColor="221,230,133" backgroundColor="233,236,197" foregroundColor="255,255,255">
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']"/>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_c9cs0MTjEeWOvrtXJpvMBg" outgoingEdges="_I2md4MTkEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:StartEvent" href="amazon%20book%20shopping.bpmn#_c9XNQMTjEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:StartEvent" href="amazon%20book%20shopping.bpmn#_c9XNQMTjEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_c9eiAMTjEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/start-event/start.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='StartEvent']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='StartEvent']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_kaBzIMTjEeWOvrtXJpvMBg" name=" &#xA;&#xA;Amazon Books" outgoingEdges="_cD7OYMTkEeWOvrtXJpvMBg" incomingEdges="_I2md4MTkEeWOvrtXJpvMBg _e3jMkMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:SubProcess" href="amazon%20book%20shopping.bpmn#_kZ9hsMTjEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:SubProcess" href="amazon%20book%20shopping.bpmn#_kZ9hsMTjEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_kaCaMMTjEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="4" borderSizeComputationExpression="4" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']"/>
+            <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_vcUb4MTjEeWOvrtXJpvMBg" name=" &#xA;&#xA;Book Searching" outgoingEdges="_AgB0gMTkEeWOvrtXJpvMBg" incomingEdges="__9V-MMTjEeWOvrtXJpvMBg _DMCu0MTkEeWOvrtXJpvMBg">
+              <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_vcPjYMTjEeWOvrtXJpvMBg"/>
+              <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_vcPjYMTjEeWOvrtXJpvMBg"/>
+              <decorations xmi:type="viewpoint:Decoration" xmi:id="_vcYGQMTjEeWOvrtXJpvMBg">
+                <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+              </decorations>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_vcUb4cTjEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+                <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subContainerMappings[name='SPTask']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subContainerMappings[name='SPTask']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_ym-aAMTjEeWOvrtXJpvMBg" name=" &#xA;&#xA;Book Description" outgoingEdges="_B1w4YMTkEeWOvrtXJpvMBg" incomingEdges="_BO7h4MTkEeWOvrtXJpvMBg">
+              <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_ym6voMTjEeWOvrtXJpvMBg"/>
+              <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_ym6voMTjEeWOvrtXJpvMBg"/>
+              <decorations xmi:type="viewpoint:Decoration" xmi:id="_ynAPMMTjEeWOvrtXJpvMBg">
+                <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+              </decorations>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_ym-aAcTjEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+                <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subContainerMappings[name='SPTask']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subContainerMappings[name='SPTask']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_1kvysMTjEeWOvrtXJpvMBg" outgoingEdges="__9V-MMTjEeWOvrtXJpvMBg" width="-1" height="-1">
+              <target xmi:type="bpmn:StartEvent" href="amazon%20book%20shopping.bpmn#_1ksIUMTjEeWOvrtXJpvMBg"/>
+              <semanticElements xmi:type="bpmn:StartEvent" href="amazon%20book%20shopping.bpmn#_1ksIUMTjEeWOvrtXJpvMBg"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_1kxA0MTjEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/start-event/start.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subNodeMappings[name='SPStartEvent']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subNodeMappings[name='SPStartEvent']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_4SMQYMTjEeWOvrtXJpvMBg" incomingEdges="_B1w4YMTkEeWOvrtXJpvMBg" width="-1" height="-1">
+              <target xmi:type="bpmn:EndEvent" href="amazon%20book%20shopping.bpmn#_4SH-8MTjEeWOvrtXJpvMBg"/>
+              <semanticElements xmi:type="bpmn:EndEvent" href="amazon%20book%20shopping.bpmn#_4SH-8MTjEeWOvrtXJpvMBg"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_4SMQYcTjEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/end-event/end.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subNodeMappings[name='SPEndEvent']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subNodeMappings[name='SPEndEvent']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_-LwEwMTjEeWOvrtXJpvMBg" outgoingEdges="_BO7h4MTkEeWOvrtXJpvMBg _DMCu0MTkEeWOvrtXJpvMBg" incomingEdges="_AgB0gMTkEeWOvrtXJpvMBg" width="-1" height="-1">
+              <target xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_-Lp-IMTjEeWOvrtXJpvMBg"/>
+              <semanticElements xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_-Lp-IMTjEeWOvrtXJpvMBg"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_-LwEwcTjEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/gateway/exclusive-gateway.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subNodeMappings[name='SPExclusiveGateway']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='SubProcess']/@subNodeMappings[name='SPExclusiveGateway']"/>
+            </ownedDiagramElements>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_MOBFoMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;Related Titles" outgoingEdges="_c5lrEMTkEeWOvrtXJpvMBg" incomingEdges="_cD7OYMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_MN80MMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_MN80MMTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_MOF-IMTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_MOBFocTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_POVcAMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;Amazon Shopping Cart" outgoingEdges="_dnjkUMTkEeWOvrtXJpvMBg" incomingEdges="_c5lrEMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_POSYsMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_POSYsMTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_POZtcMTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_POWDEMTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_SyFPkMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;Google Authentication" outgoingEdges="_ic3GYMTkEeWOvrtXJpvMBg" incomingEdges="_eX1KsMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_SyAXEMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_SyAXEMTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_SyHr0MTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_SyFPkcTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_VE9RIMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;Payment Calculator" outgoingEdges="_rtPsoMTkEeWOvrtXJpvMBg" incomingEdges="_ic3GYMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_VE4_sMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_VE4_sMTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_VFA7gMTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_VE9RIcTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_YRPm8MTkEeWOvrtXJpvMBg" outgoingEdges="_eX1KsMTkEeWOvrtXJpvMBg _e3jMkMTkEeWOvrtXJpvMBg" incomingEdges="_dnjkUMTkEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_YRISMMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_YRISMMTkEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_YRQOAMTkEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/gateway/exclusive-gateway.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ExclusiveGateway']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ExclusiveGateway']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_nK90QMTkEeWOvrtXJpvMBg" outgoingEdges="_tsxUYMTkEeWOvrtXJpvMBg _x3DjgMTkEeWOvrtXJpvMBg" incomingEdges="_tJck4MTkEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_nK47wMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_nK47wMTkEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_nK90QcTkEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/gateway/exclusive-gateway.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ExclusiveGateway']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ExclusiveGateway']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_uzazYMTkEeWOvrtXJpvMBg" outgoingEdges="_7ULlQMTkEeWOvrtXJpvMBg" incomingEdges="_x3DjgMTkEeWOvrtXJpvMBg _X1iF4MTlEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_uzUFsMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:ExclusiveGateway" href="amazon%20book%20shopping.bpmn#_uzUFsMTkEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_uzazYcTkEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/gateway/exclusive-gateway.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ExclusiveGateway']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ExclusiveGateway']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_kG7bgMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;Bank of America Credit Card Payment" outgoingEdges="_tJck4MTkEeWOvrtXJpvMBg" incomingEdges="_rtPsoMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_kG2jAMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_kG2jAMTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_kG-e0MTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_kG7bgcTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_l8X6MMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;UPS Shipping" outgoingEdges="_zwtz0MTkEeWOvrtXJpvMBg" incomingEdges="_zGbgsMTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_l8U24MTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_l8U24MTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_l8bkkMTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_l8X6McTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_mNjJwMTkEeWOvrtXJpvMBg" name=" &#xA;&#xA;Email Invoice" outgoingEdges="_1EQfUMTkEeWOvrtXJpvMBg" incomingEdges="_0cNA0MTkEeWOvrtXJpvMBg">
+            <target xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_mNe4UMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:Task" href="amazon%20book%20shopping.bpmn#_mNe4UMTkEeWOvrtXJpvMBg"/>
+            <decorations xmi:type="viewpoint:Decoration" xmi:id="_mNmNEMTkEeWOvrtXJpvMBg">
+              <description xmi:type="description_1:MappingBasedDecoration" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Task']"/>
+            </decorations>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_mNjw0MTkEeWOvrtXJpvMBg" labelSize="9" showIcon="false" borderSize="2" borderSizeComputationExpression="2" borderColor="0,60,109" backgroundColor="213,243,255" foregroundColor="238,250,255">
+              <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subContainerMappings[name='Task']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_6RxtEMTkEeWOvrtXJpvMBg" incomingEdges="_7ULlQMTkEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:EndEvent" href="amazon%20book%20shopping.bpmn#_6Rq_YMTkEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:EndEvent" href="amazon%20book%20shopping.bpmn#_6Rq_YMTkEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_6RyUIMTkEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/end-event/end.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='EndEvent']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='EndEvent']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_KvxwkMTlEeWOvrtXJpvMBg" outgoingEdges="_0cNA0MTkEeWOvrtXJpvMBg _zGbgsMTkEeWOvrtXJpvMBg" incomingEdges="_tsxUYMTkEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:ParallelGateway" href="amazon%20book%20shopping.bpmn#_Kvrp8MTlEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:ParallelGateway" href="amazon%20book%20shopping.bpmn#_Kvrp8MTlEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_KvxwkcTlEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/gateway/parallel-gateway.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ParallelGateway']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ParallelGateway']"/>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_PX5yQMTlEeWOvrtXJpvMBg" outgoingEdges="_X1iF4MTlEeWOvrtXJpvMBg" incomingEdges="_1EQfUMTkEeWOvrtXJpvMBg _zwtz0MTkEeWOvrtXJpvMBg" width="-1" height="-1">
+            <target xmi:type="bpmn:ParallelGateway" href="amazon%20book%20shopping.bpmn#_PXydgMTlEeWOvrtXJpvMBg"/>
+            <semanticElements xmi:type="bpmn:ParallelGateway" href="amazon%20book%20shopping.bpmn#_PXydgMTlEeWOvrtXJpvMBg"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_PX6ZUMTlEeWOvrtXJpvMBg" showIcon="false" workspacePath="/org.obeonetwork.dsl.bpmn2.design/icons2/nodes/gateway/parallel-gateway.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ParallelGateway']/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@containerMappings[name='HorizontalLaneSet']/@subContainerMappings[name='Lane']/@subNodeMappings[name='ParallelGateway']"/>
+          </ownedDiagramElements>
+        </ownedDiagramElements>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="__9V-MMTjEeWOvrtXJpvMBg" sourceNode="_1kvysMTjEeWOvrtXJpvMBg" targetNode="_vcUb4MTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#__9UJAMTjEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#__9UJAMTjEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="__9WlQMTjEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="__9WlQcTjEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_AgB0gMTkEeWOvrtXJpvMBg" sourceNode="_vcUb4MTjEeWOvrtXJpvMBg" targetNode="_-LwEwMTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_Af-xMMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_Af-xMMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_AgCbkMTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_AgCbkcTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_BO7h4MTkEeWOvrtXJpvMBg" sourceNode="_-LwEwMTjEeWOvrtXJpvMBg" targetNode="_ym-aAMTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_BO5ssMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_BO5ssMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_BO7h4cTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_BO7h4sTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_B1w4YMTkEeWOvrtXJpvMBg" sourceNode="_ym-aAMTjEeWOvrtXJpvMBg" targetNode="_4SMQYMTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_B1vDMMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_B1vDMMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_B1w4YcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_B1w4YsTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_DMCu0MTkEeWOvrtXJpvMBg" sourceNode="_-LwEwMTjEeWOvrtXJpvMBg" targetNode="_vcUb4MTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_DMASkMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_DMASkMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_DMCu0cTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_DMCu0sTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_I2md4MTkEeWOvrtXJpvMBg" sourceNode="_c9cs0MTjEeWOvrtXJpvMBg" targetNode="_kaBzIMTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_I2kosMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_I2kosMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_I2nE8MTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_I2nE8cTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_cD7OYMTkEeWOvrtXJpvMBg" sourceNode="_kaBzIMTjEeWOvrtXJpvMBg" targetNode="_MOBFoMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_cD288MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_cD288MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_cD71cMTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_cD71ccTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_c5lrEMTkEeWOvrtXJpvMBg" sourceNode="_MOBFoMTkEeWOvrtXJpvMBg" targetNode="_POVcAMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_c5inwMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_c5inwMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_c5lrEcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_c5lrEsTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_dnjkUMTkEeWOvrtXJpvMBg" sourceNode="_POVcAMTkEeWOvrtXJpvMBg" targetNode="_YRPm8MTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_dnfS4MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_dnfS4MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_dnjkUcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dnjkUsTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_eX1KsMTkEeWOvrtXJpvMBg" sourceNode="_YRPm8MTkEeWOvrtXJpvMBg" targetNode="_SyFPkMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_eXw5QMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_eXw5QMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_eX1KscTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_eX1KssTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_e3jMkMTkEeWOvrtXJpvMBg" sourceNode="_YRPm8MTkEeWOvrtXJpvMBg" targetNode="_kaBzIMTjEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_e3gJQMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_e3gJQMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_e3jMkcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_e3jMksTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ic3GYMTkEeWOvrtXJpvMBg" sourceNode="_SyFPkMTkEeWOvrtXJpvMBg" targetNode="_VE9RIMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_icxm0MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_icxm0MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_ic3GYcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_ic3GYsTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_rtPsoMTkEeWOvrtXJpvMBg" sourceNode="_VE9RIMTkEeWOvrtXJpvMBg" targetNode="_kG7bgMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_rtMpUMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_rtMpUMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_rtPsocTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_rtPsosTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_tJck4MTkEeWOvrtXJpvMBg" sourceNode="_kG7bgMTkEeWOvrtXJpvMBg" targetNode="_nK90QMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_tJXFUMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_tJXFUMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_tJck4cTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_tJck4sTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_tsxUYMTkEeWOvrtXJpvMBg" sourceNode="_nK90QMTkEeWOvrtXJpvMBg" targetNode="_KvxwkMTlEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_tsr00MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_tsr00MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_tsxUYcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_tsxUYsTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_x3DjgMTkEeWOvrtXJpvMBg" sourceNode="_nK90QMTkEeWOvrtXJpvMBg" targetNode="_uzazYMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_x2-D8MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_x2-D8MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_x3EKkMTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_x3EKkcTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_zGbgsMTkEeWOvrtXJpvMBg" sourceNode="_KvxwkMTlEeWOvrtXJpvMBg" targetNode="_l8X6MMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_zGYdYMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_zGYdYMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_zGbgscTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_zGbgssTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_zwtz0MTkEeWOvrtXJpvMBg" sourceNode="_l8X6MMTkEeWOvrtXJpvMBg" targetNode="_PX5yQMTlEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_zwpiYMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_zwpiYMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_zwtz0cTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_zwtz0sTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0cNA0MTkEeWOvrtXJpvMBg" sourceNode="_KvxwkMTlEeWOvrtXJpvMBg" targetNode="_mNjJwMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_0cIvYMTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_0cIvYMTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0cNA0cTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0cNA0sTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_1EQfUMTkEeWOvrtXJpvMBg" sourceNode="_mNjJwMTkEeWOvrtXJpvMBg" targetNode="_PX5yQMTlEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_1EMN4MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_1EMN4MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_1EQfUcTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_1EQfUsTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_7ULlQMTkEeWOvrtXJpvMBg" sourceNode="_uzazYMTkEeWOvrtXJpvMBg" targetNode="_6RxtEMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_7UHT0MTkEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_7UHT0MTkEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_7UMMUMTkEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_7UMMUcTkEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_X1iF4MTlEeWOvrtXJpvMBg" sourceNode="_PX5yQMTlEeWOvrtXJpvMBg" targetNode="_uzazYMTkEeWOvrtXJpvMBg">
+        <target xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_X1fCkMTlEeWOvrtXJpvMBg"/>
+        <semanticElements xmi:type="bpmn:SequenceFlow" href="amazon%20book%20shopping.bpmn#_X1fCkMTlEeWOvrtXJpvMBg"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_X1iF4cTlEeWOvrtXJpvMBg" targetArrow="InputFillClosedArrow" size="2" routingStyle="manhattan" strokeColor="125,125,125">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_X1iF4sTlEeWOvrtXJpvMBg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer/@edgeMappings[name='SequenceFlow']"/>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_BtgJs8TjEeWOvrtXJpvMBg"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']/@ownedRepresentations[name='ProcessDiagram']/@defaultLayer"/>
+      <target xmi:type="bpmn:Process" href="amazon%20book%20shopping.bpmn#_P9FqUMTiEeWOvrtXJpvMBg"/>
+    </ownedRepresentations>
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.obeonetwork.dsl.bpmn2.design/description/BPMN2.odesign#//@ownedViewpoints[name='Process']"/>
+  </ownedViews>
+</viewpoint:DAnalysis>

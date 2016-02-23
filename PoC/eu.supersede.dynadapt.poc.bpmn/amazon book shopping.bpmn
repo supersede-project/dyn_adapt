@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bpmn:Definitions xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI" id="_P9FqUcTiEeWOvrtXJpvMBg">
+  <rootElements xsi:type="bpmn:Process" id="_P9FqUMTiEeWOvrtXJpvMBg">
+    <flowElements xsi:type="bpmn:StartEvent" id="_c9XNQMTjEeWOvrtXJpvMBg" outgoing="_I2kosMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SubProcess" id="_kZ9hsMTjEeWOvrtXJpvMBg" name="Amazon Books" outgoing="_cD288MTkEeWOvrtXJpvMBg" incoming="_I2kosMTkEeWOvrtXJpvMBg _e3gJQMTkEeWOvrtXJpvMBg">
+      <flowElements xsi:type="bpmn:Task" id="_vcPjYMTjEeWOvrtXJpvMBg" name="Book Searching" outgoing="_Af-xMMTkEeWOvrtXJpvMBg" incoming="__9UJAMTjEeWOvrtXJpvMBg _DMASkMTkEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:Task" id="_ym6voMTjEeWOvrtXJpvMBg" name="Book Description" outgoing="_B1vDMMTkEeWOvrtXJpvMBg" incoming="_BO5ssMTkEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:StartEvent" id="_1ksIUMTjEeWOvrtXJpvMBg" outgoing="__9UJAMTjEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:EndEvent" id="_4SH-8MTjEeWOvrtXJpvMBg" incoming="_B1vDMMTkEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:ExclusiveGateway" id="_-Lp-IMTjEeWOvrtXJpvMBg" outgoing="_BO5ssMTkEeWOvrtXJpvMBg _DMASkMTkEeWOvrtXJpvMBg" incoming="_Af-xMMTkEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:SequenceFlow" id="__9UJAMTjEeWOvrtXJpvMBg" targetRef="_vcPjYMTjEeWOvrtXJpvMBg" sourceRef="_1ksIUMTjEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:SequenceFlow" id="_Af-xMMTkEeWOvrtXJpvMBg" targetRef="_-Lp-IMTjEeWOvrtXJpvMBg" sourceRef="_vcPjYMTjEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:SequenceFlow" id="_BO5ssMTkEeWOvrtXJpvMBg" targetRef="_ym6voMTjEeWOvrtXJpvMBg" sourceRef="_-Lp-IMTjEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:SequenceFlow" id="_B1vDMMTkEeWOvrtXJpvMBg" targetRef="_4SH-8MTjEeWOvrtXJpvMBg" sourceRef="_ym6voMTjEeWOvrtXJpvMBg"/>
+      <flowElements xsi:type="bpmn:SequenceFlow" id="_DMASkMTkEeWOvrtXJpvMBg" targetRef="_vcPjYMTjEeWOvrtXJpvMBg" sourceRef="_-Lp-IMTjEeWOvrtXJpvMBg"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_I2kosMTkEeWOvrtXJpvMBg" targetRef="_kZ9hsMTjEeWOvrtXJpvMBg" sourceRef="_c9XNQMTjEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_MN80MMTkEeWOvrtXJpvMBg" name="Related Titles" outgoing="_c5inwMTkEeWOvrtXJpvMBg" incoming="_cD288MTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_POSYsMTkEeWOvrtXJpvMBg" name="Amazon Shopping Cart" outgoing="_dnfS4MTkEeWOvrtXJpvMBg" incoming="_c5inwMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_SyAXEMTkEeWOvrtXJpvMBg" name="Google Authentication" outgoing="_icxm0MTkEeWOvrtXJpvMBg" incoming="_eXw5QMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_VE4_sMTkEeWOvrtXJpvMBg" name="Payment Calculator" outgoing="_rtMpUMTkEeWOvrtXJpvMBg" incoming="_icxm0MTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:ExclusiveGateway" id="_YRISMMTkEeWOvrtXJpvMBg" outgoing="_eXw5QMTkEeWOvrtXJpvMBg _e3gJQMTkEeWOvrtXJpvMBg" incoming="_dnfS4MTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_cD288MTkEeWOvrtXJpvMBg" targetRef="_MN80MMTkEeWOvrtXJpvMBg" sourceRef="_kZ9hsMTjEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_c5inwMTkEeWOvrtXJpvMBg" targetRef="_POSYsMTkEeWOvrtXJpvMBg" sourceRef="_MN80MMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_dnfS4MTkEeWOvrtXJpvMBg" targetRef="_YRISMMTkEeWOvrtXJpvMBg" sourceRef="_POSYsMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_eXw5QMTkEeWOvrtXJpvMBg" targetRef="_SyAXEMTkEeWOvrtXJpvMBg" sourceRef="_YRISMMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_e3gJQMTkEeWOvrtXJpvMBg" targetRef="_kZ9hsMTjEeWOvrtXJpvMBg" sourceRef="_YRISMMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_icxm0MTkEeWOvrtXJpvMBg" targetRef="_VE4_sMTkEeWOvrtXJpvMBg" sourceRef="_SyAXEMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_kG2jAMTkEeWOvrtXJpvMBg" name="Bank of America Credit Card Payment" outgoing="_tJXFUMTkEeWOvrtXJpvMBg" incoming="_rtMpUMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_l8U24MTkEeWOvrtXJpvMBg" name="UPS Shipping" outgoing="_zwpiYMTkEeWOvrtXJpvMBg" incoming="_zGYdYMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:Task" id="_mNe4UMTkEeWOvrtXJpvMBg" name="Email Invoice" outgoing="_1EMN4MTkEeWOvrtXJpvMBg" incoming="_0cIvYMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:ExclusiveGateway" id="_nK47wMTkEeWOvrtXJpvMBg" outgoing="_tsr00MTkEeWOvrtXJpvMBg _x2-D8MTkEeWOvrtXJpvMBg" incoming="_tJXFUMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:ParallelGateway" id="_Kvrp8MTlEeWOvrtXJpvMBg" outgoing="_0cIvYMTkEeWOvrtXJpvMBg _zGYdYMTkEeWOvrtXJpvMBg" incoming="_tsr00MTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_rtMpUMTkEeWOvrtXJpvMBg" targetRef="_kG2jAMTkEeWOvrtXJpvMBg" sourceRef="_VE4_sMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_tJXFUMTkEeWOvrtXJpvMBg" targetRef="_nK47wMTkEeWOvrtXJpvMBg" sourceRef="_kG2jAMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_tsr00MTkEeWOvrtXJpvMBg" targetRef="_Kvrp8MTlEeWOvrtXJpvMBg" sourceRef="_nK47wMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:ExclusiveGateway" id="_uzUFsMTkEeWOvrtXJpvMBg" outgoing="_7UHT0MTkEeWOvrtXJpvMBg" incoming="_x2-D8MTkEeWOvrtXJpvMBg _X1fCkMTlEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:ParallelGateway" id="_PXydgMTlEeWOvrtXJpvMBg" outgoing="_X1fCkMTlEeWOvrtXJpvMBg" incoming="_1EMN4MTkEeWOvrtXJpvMBg _zwpiYMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_x2-D8MTkEeWOvrtXJpvMBg" targetRef="_uzUFsMTkEeWOvrtXJpvMBg" sourceRef="_nK47wMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_zGYdYMTkEeWOvrtXJpvMBg" targetRef="_l8U24MTkEeWOvrtXJpvMBg" sourceRef="_Kvrp8MTlEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_zwpiYMTkEeWOvrtXJpvMBg" targetRef="_PXydgMTlEeWOvrtXJpvMBg" sourceRef="_l8U24MTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_0cIvYMTkEeWOvrtXJpvMBg" targetRef="_mNe4UMTkEeWOvrtXJpvMBg" sourceRef="_Kvrp8MTlEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_1EMN4MTkEeWOvrtXJpvMBg" targetRef="_PXydgMTlEeWOvrtXJpvMBg" sourceRef="_mNe4UMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_7UHT0MTkEeWOvrtXJpvMBg" targetRef="_6Rq_YMTkEeWOvrtXJpvMBg" sourceRef="_uzUFsMTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:EndEvent" id="_6Rq_YMTkEeWOvrtXJpvMBg" incoming="_7UHT0MTkEeWOvrtXJpvMBg"/>
+    <flowElements xsi:type="bpmn:SequenceFlow" id="_X1fCkMTlEeWOvrtXJpvMBg" targetRef="_uzUFsMTkEeWOvrtXJpvMBg" sourceRef="_PXydgMTlEeWOvrtXJpvMBg"/>
+    <laneSets id="_YMhUcMTjEeWOvrtXJpvMBg" name="Book Shop">
+      <lanes id="_YMh7gMTjEeWOvrtXJpvMBg" flowNodeRefs="_c9XNQMTjEeWOvrtXJpvMBg _kZ9hsMTjEeWOvrtXJpvMBg _MN80MMTkEeWOvrtXJpvMBg _POSYsMTkEeWOvrtXJpvMBg _SyAXEMTkEeWOvrtXJpvMBg _VE4_sMTkEeWOvrtXJpvMBg _YRISMMTkEeWOvrtXJpvMBg _kG2jAMTkEeWOvrtXJpvMBg _l8U24MTkEeWOvrtXJpvMBg _mNe4UMTkEeWOvrtXJpvMBg _nK47wMTkEeWOvrtXJpvMBg _Kvrp8MTlEeWOvrtXJpvMBg _uzUFsMTkEeWOvrtXJpvMBg _PXydgMTlEeWOvrtXJpvMBg _6Rq_YMTkEeWOvrtXJpvMBg"/>
+    </laneSets>
+  </rootElements>
+</bpmn:Definitions>
