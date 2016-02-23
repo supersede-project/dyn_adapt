@@ -1,0 +1,19 @@
+# Lists all features from the model with manual (first digit) and automatic (second digit) selection
+# 0 = deselected, 1 = selected, 2 = undefined
+21online book shopping
+21Book Management
+21Look for a Book
+22Barnes & Noble Books
+22Search Book
+22Show Book Info
+22Show related books
+22Amazon Books
+22Book searching
+22Book description
+21Look Again for a Book
+22Related Titles
+21Shopping Cart
+21Add a book
+22Amazon Shopping Cart
+22Barnes & Noble Shopping Cart
+21Add more books

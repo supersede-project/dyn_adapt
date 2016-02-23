@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="online book shopping">
+				<and mandatory="true" name="Book Management">
+					<alt mandatory="true" name="Look for a Book">
+						<and mandatory="true" name="Barnes &amp; Noble Books">
+							<feature mandatory="true" name="Search Book"/>
+							<feature mandatory="true" name="Show Book Info"/>
+							<feature name="Show related books"/>
+						</and>
+						<and abstract="true" mandatory="true" name="Amazon Books">
+							<feature abstract="true" mandatory="true" name="Book searching"/>
+							<feature abstract="true" mandatory="true" name="Book description"/>
+						</and>
+					</alt>
+					<feature mandatory="true" name="Look Again for a Book"/>
+					<feature abstract="true" name="Related Titles"/>
+				</and>
+				<and mandatory="true" name="Shopping Cart">
+					<alt mandatory="true" name="Add a book">
+						<feature abstract="true" mandatory="true" name="Amazon Shopping Cart"/>
+						<feature mandatory="true" name="Barnes &amp; Noble Shopping Cart"/>
+					</alt>
+					<feature mandatory="true" name="Add more books"/>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>Amazon Books</var>
+					<var>Amazon Shopping Cart</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Amazon Books</var>
+					<var>Related Titles</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Barnes &amp; Noble Books</var>
+					<var>Barnes &amp; Noble Shopping Cart</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
