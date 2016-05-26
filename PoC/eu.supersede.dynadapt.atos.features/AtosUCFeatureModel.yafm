@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="AtosUCFeatureModel" version="1.0.0">
+  <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModel" lower="1" upper="1">
+    <feature id="f_1333934151" name="Smart Player" lower="0" upper="1">
+      <feature id="f_179675879" name="SP Specification" lower="1" upper="1">
+        <attribute id="a_1019334979" name="New Attribute" type="integer" description=""/>
+      </feature>
+      <feature id="f_417793762" name=" SP Component" lower="1" upper="1"/>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

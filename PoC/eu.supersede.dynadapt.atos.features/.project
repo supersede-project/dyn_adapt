@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>eu.supersede.dynadapt.atos.features</name>
+	<comment></comment>
+	<projects>
+		<project>cz.zcu.yafmt.model</project>
+		<project>eu.supersede.dynadapt.poc.features</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>de.ovgu.featureide.core.extensibleFeatureProjectBuilder</name>
+			<arguments>
+				<dictionary>
+					<key>build</key>
+					<value>src</value>
+				</dictionary>
+				<dictionary>
+					<key>composer</key>
+					<value>de.ovgu.featureide.core.FeatureModeling</value>
+				</dictionary>
+				<dictionary>
+					<key>equations</key>
+					<value>configs</value>
+				</dictionary>
+				<dictionary>
+					<key>source</key>
+					<value>src</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>de.ovgu.featureide.core.featureProjectNature</nature>
+	</natures>
+</projectDescription>
