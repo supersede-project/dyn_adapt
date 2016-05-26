@@ -1606,7 +1606,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_yDYtIcTVEeWSqrPMaQlZ5A"/>
           <element xmi:type="uml:InitialNode" href="Online_Book_Shopping_variant2.uml#_yDT0oMTVEeWSqrPMaQlZ5A"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yDYtIsTVEeWSqrPMaQlZ5A" x="20" y="137"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yDYtIsTVEeWSqrPMaQlZ5A" x="95" y="33"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_2deS0MTVEeWSqrPMaQlZ5A" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_2de54MTVEeWSqrPMaQlZ5A" type="5004">
@@ -1618,7 +1618,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2deS0cTVEeWSqrPMaQlZ5A"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_11HSUMTVEeWSqrPMaQlZ5A"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2deS0sTVEeWSqrPMaQlZ5A" x="67" y="126" width="161"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2deS0sTVEeWSqrPMaQlZ5A" x="21" y="77" width="161"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_wdDMAMTWEeWw36UBf5eFZg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_wdDzEMTWEeWw36UBf5eFZg" type="5004">
@@ -1630,7 +1630,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_wdDMAcTWEeWw36UBf5eFZg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_wPzaMMTWEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wdDMAsTWEeWw36UBf5eFZg" x="51" y="285" width="193"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wdDMAsTWEeWw36UBf5eFZg" x="6" y="153" width="193"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_Fj30wMTXEeWw36UBf5eFZg" type="3038">
           <children xmi:type="notation:DecorationNode" xmi:id="_Fj30w8TXEeWw36UBf5eFZg" type="6036">
@@ -1647,7 +1647,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Fj30wcTXEeWw36UBf5eFZg"/>
           <element xmi:type="uml:DecisionNode" href="Online_Book_Shopping_variant2.uml#_FjpLQMTXEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Fj30wsTXEeWw36UBf5eFZg" x="284" y="288"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Fj30wsTXEeWw36UBf5eFZg" x="218" y="156"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_Y6GpoMTXEeWw36UBf5eFZg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_Y6HQsMTXEeWw36UBf5eFZg" type="5004">
@@ -1659,7 +1659,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Y6GpocTXEeWw36UBf5eFZg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_YtBP4MTXEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y6GposTXEeWw36UBf5eFZg" x="346" y="284" width="164"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y6GposTXEeWw36UBf5eFZg" x="259" y="153" width="164"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_osGiwMTXEeWw36UBf5eFZg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_osHJ0MTXEeWw36UBf5eFZg" type="5004">
@@ -1671,7 +1671,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_osGiwcTXEeWw36UBf5eFZg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_ogER4MTXEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_osGiwsTXEeWw36UBf5eFZg" x="568" y="283" width="144"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_osGiwsTXEeWw36UBf5eFZg" x="270" y="77" width="144"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_xFB8kMTXEeWw36UBf5eFZg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_xFB8k8TXEeWw36UBf5eFZg" type="5004">
@@ -1683,7 +1683,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_xFB8kcTXEeWw36UBf5eFZg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_w3l9gMTXEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xFB8ksTXEeWw36UBf5eFZg" x="517" y="201" width="245"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xFB8ksTXEeWw36UBf5eFZg" x="218" y="-6" width="245"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_GE8sEMTYEeWw36UBf5eFZg" type="3038">
           <children xmi:type="notation:DecorationNode" xmi:id="_GE8sE8TYEeWw36UBf5eFZg" type="6036">
@@ -1700,7 +1700,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_GE8sEcTYEeWw36UBf5eFZg"/>
           <element xmi:type="uml:DecisionNode" href="Online_Book_Shopping_variant2.uml#_GEsNYMTYEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GE8sEsTYEeWw36UBf5eFZg" x="629" y="136"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GE8sEsTYEeWw36UBf5eFZg" x="496" y="167"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_SD2uEMTYEeWw36UBf5eFZg" type="3038">
           <children xmi:type="notation:DecorationNode" xmi:id="_SD3VIMTYEeWw36UBf5eFZg" type="6036">
@@ -1717,7 +1717,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SD2uEcTYEeWw36UBf5eFZg"/>
           <element xmi:type="uml:DecisionNode" href="Online_Book_Shopping_variant2.uml#_SDjzIMTYEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SD2uEsTYEeWw36UBf5eFZg" x="919" y="136"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SD2uEsTYEeWw36UBf5eFZg" x="668" y="166"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_go2okMTYEeWw36UBf5eFZg" type="3005">
           <children xmi:type="notation:DecorationNode" xmi:id="_go2ok8TYEeWw36UBf5eFZg" type="6033">
@@ -1730,7 +1730,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_go2okcTYEeWw36UBf5eFZg"/>
           <element xmi:type="uml:ActivityFinalNode" href="Online_Book_Shopping_variant2.uml#_goajsMTYEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_go2oksTYEeWw36UBf5eFZg" x="1003" y="141"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_go2oksTYEeWw36UBf5eFZg" x="668" y="225"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_mfvjcMTYEeWw36UBf5eFZg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_mfwKgMTYEeWw36UBf5eFZg" type="5004">
@@ -1742,7 +1742,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_mfvjccTYEeWw36UBf5eFZg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_mDFcoMTYEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mfvjcsTYEeWw36UBf5eFZg" x="731" y="69" width="118"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mfvjcsTYEeWw36UBf5eFZg" x="531" y="103" width="118"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_0GUt4MTYEeWw36UBf5eFZg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_0GUt48TYEeWw36UBf5eFZg" type="5004">
@@ -1754,7 +1754,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_0GUt4cTYEeWw36UBf5eFZg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant2.uml#_z4DBUMTYEeWw36UBf5eFZg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0GUt4sTYEeWw36UBf5eFZg" x="742" y="-12" width="96"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0GUt4sTYEeWw36UBf5eFZg" x="524" y="22" width="129"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_FyLGwMToEeWOvrtXJpvMBg" type="3040">
           <children xmi:type="notation:DecorationNode" xmi:id="_FyLt0MToEeWOvrtXJpvMBg" type="6038">
@@ -1765,7 +1765,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_FyLGwcToEeWOvrtXJpvMBg"/>
           <element xmi:type="uml:ForkNode" href="Online_Book_Shopping_variant2.uml#_Fx7PIMToEeWOvrtXJpvMBg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FyLGwsToEeWOvrtXJpvMBg" x="634" y="73"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FyLGwsToEeWOvrtXJpvMBg" x="501" y="104"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_IYgP0MToEeWOvrtXJpvMBg" type="3040">
           <children xmi:type="notation:DecorationNode" xmi:id="_IYg24MToEeWOvrtXJpvMBg" type="6038">
@@ -1776,13 +1776,13 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_IYgP0cToEeWOvrtXJpvMBg"/>
           <element xmi:type="uml:ForkNode" href="Online_Book_Shopping_variant2.uml#_IYOjAMToEeWOvrtXJpvMBg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IYgP0sToEeWOvrtXJpvMBg" x="923" y="74"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IYgP0sToEeWOvrtXJpvMBg" x="672" y="104"/>
         </children>
         <element xmi:type="uml:Activity" href="Online_Book_Shopping_variant2.uml#_jqD3IMTVEeWSqrPMaQlZ5A"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jrxHX8TVEeWSqrPMaQlZ5A"/>
       </children>
       <element xmi:type="uml:Activity" href="Online_Book_Shopping_variant2.uml#_jqD3IMTVEeWSqrPMaQlZ5A"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jrwgQcTVEeWSqrPMaQlZ5A" x="11" y="100" width="597" height="424"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jrwgQcTVEeWSqrPMaQlZ5A" x="8" y="94" width="597" height="430"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_BP2ncMtREeWd--HpWZq3qQ" type="StereotypeComment">
       <styles xmi:type="notation:TitleStyle" xmi:id="_BP2ncctREeWd--HpWZq3qQ" showTitle="true"/>
@@ -1818,8 +1818,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_BtkHAcTWEeWSqrPMaQlZ5A"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_BtcLMMTWEeWSqrPMaQlZ5A"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BtkHAsTWEeWSqrPMaQlZ5A" points="[8, 1, -66, 0]$[56, 2, -18, 1]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BuDPMMTWEeWSqrPMaQlZ5A" id="(1.0,0.55)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BuDPMcTWEeWSqrPMaQlZ5A" id="(0.0,0.55)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BuDPMMTWEeWSqrPMaQlZ5A" id="(0.4,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BuDPMcTWEeWSqrPMaQlZ5A" id="(0.5093167701863354,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_HjT88MTXEeWw36UBf5eFZg" type="4004" source="_wdDMAMTWEeWw36UBf5eFZg" target="_Fj30wMTXEeWw36UBf5eFZg">
       <children xmi:type="notation:DecorationNode" xmi:id="_HjUkAMTXEeWw36UBf5eFZg" type="6003">
@@ -1847,7 +1847,7 @@
     <edges xmi:type="notation:Connector" xmi:id="_Iwx1oMTXEeWw36UBf5eFZg" type="4004" source="_Fj30wMTXEeWw36UBf5eFZg" target="_2deS0MTVEeWSqrPMaQlZ5A">
       <children xmi:type="notation:DecorationNode" xmi:id="_Iwx1o8TXEeWw36UBf5eFZg" type="6003">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_IwkaQMTXEeWw36UBf5eFZg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Iwx1pMTXEeWw36UBf5eFZg" x="-52" y="15"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Iwx1pMTXEeWw36UBf5eFZg" x="-43" y="25"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_Iwx1pcTXEeWw36UBf5eFZg" type="6004">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_IwkaQMTXEeWw36UBf5eFZg"/>
@@ -1863,14 +1863,14 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_Iwx1ocTXEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_IwkaQMTXEeWw36UBf5eFZg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Iwx1osTXEeWw36UBf5eFZg" points="[0, 1, 65, 148]$[0, -147, 65, 0]$[-65, -147, 0, 0]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Iwx1osTXEeWw36UBf5eFZg" points="[0, 1, 45, 65]$[0, -64, 45, 0]$[-45, -64, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IxUoMMTXEeWw36UBf5eFZg" id="(0.45,0.0)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IxUoMcTXEeWw36UBf5eFZg" id="(1.0,0.375)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_fGmoIMTXEeWw36UBf5eFZg" type="4004" source="_Fj30wMTXEeWw36UBf5eFZg" target="_Y6GpoMTXEeWw36UBf5eFZg">
       <children xmi:type="notation:DecorationNode" xmi:id="_fGnPMMTXEeWw36UBf5eFZg" type="6003">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_fGbpAMTXEeWw36UBf5eFZg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_fGnPMcTXEeWw36UBf5eFZg" x="-25" y="22"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_fGnPMcTXEeWw36UBf5eFZg" x="-34" y="33"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_fGnPMsTXEeWw36UBf5eFZg" type="6004">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_fGbpAMTXEeWw36UBf5eFZg"/>
@@ -1910,8 +1910,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_u_pkccTXEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_u_biAMTXEeWw36UBf5eFZg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_u_pkcsTXEeWw36UBf5eFZg" points="[14, 0, -67, 0]$[72, -1, -9, -1]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vATEsMTXEeWw36UBf5eFZg" id="(1.0,0.45)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vATEscTXEeWw36UBf5eFZg" id="(0.0,0.475)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vATEsMTXEeWw36UBf5eFZg" id="(0.49390243902439024,0.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vATEscTXEeWw36UBf5eFZg" id="(0.4930555555555556,1.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_6dL-wMTXEeWw36UBf5eFZg" type="4004" source="_osGiwMTXEeWw36UBf5eFZg" target="_xFB8kMTXEeWw36UBf5eFZg">
       <children xmi:type="notation:DecorationNode" xmi:id="_6dMl0MTXEeWw36UBf5eFZg" type="6003">
@@ -1934,7 +1934,7 @@
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_6c9VQMTXEeWw36UBf5eFZg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6dL-wsTXEeWw36UBf5eFZg" points="[0, -4, 0, 62]$[0, -86, 0, -20]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_6d6XgMTXEeWw36UBf5eFZg" id="(0.4930555555555556,0.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_6d6XgcTXEeWw36UBf5eFZg" id="(0.49795918367346936,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_6d6XgcTXEeWw36UBf5eFZg" id="(0.5061224489795918,1.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_LO3zQMTYEeWw36UBf5eFZg" type="4004" source="_xFB8kMTXEeWw36UBf5eFZg" target="_GE8sEMTYEeWw36UBf5eFZg">
       <children xmi:type="notation:DecorationNode" xmi:id="_LO4aUMTYEeWw36UBf5eFZg" type="6003">
@@ -1955,14 +1955,14 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_LO3zQcTYEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_LOpw0MTYEeWw36UBf5eFZg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_LO3zQsTYEeWw36UBf5eFZg" points="[-1, -20, -1, 50]$[-1, -57, -1, 13]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LPk94MTYEeWw36UBf5eFZg" id="(0.49795918367346936,0.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LPk94cTYEeWw36UBf5eFZg" id="(0.5,1.0)"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_LO3zQsTYEeWw36UBf5eFZg" points="[0, 0, -33, -167]$[14, 0, -19, -167]$[14, 165, -19, -2]$[35, 165, 2, -2]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LPk94MTYEeWw36UBf5eFZg" id="(1.0,0.475)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_x7Z_0BxLEeabLJzXofMtwg" id="(0.0,0.43333333333333335)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_MLCgkMTYEeWw36UBf5eFZg" type="4004" source="_GE8sEMTYEeWw36UBf5eFZg" target="_FyLGwMToEeWOvrtXJpvMBg">
       <children xmi:type="notation:DecorationNode" xmi:id="_MLDHoMTYEeWw36UBf5eFZg" type="6003">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_MKyo8MTYEeWw36UBf5eFZg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_MLDHocTYEeWw36UBf5eFZg" x="-22" y="-39"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_MLDHocTYEeWw36UBf5eFZg" x="-14" y="35"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_MLDHosTYEeWw36UBf5eFZg" type="6004">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_MKyo8MTYEeWw36UBf5eFZg"/>
@@ -1985,7 +1985,7 @@
     <edges xmi:type="notation:Connector" xmi:id="_aKQ0gMTYEeWw36UBf5eFZg" type="4004" source="_GE8sEMTYEeWw36UBf5eFZg" target="_SD2uEMTYEeWw36UBf5eFZg">
       <children xmi:type="notation:DecorationNode" xmi:id="_aKRbkMTYEeWw36UBf5eFZg" type="6003">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_aKCLAMTYEeWw36UBf5eFZg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKRbkcTYEeWw36UBf5eFZg" x="-223" y="13"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKRbkcTYEeWw36UBf5eFZg" x="-73" y="16"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_aKRbksTYEeWw36UBf5eFZg" type="6004">
         <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_aKCLAMTYEeWw36UBf5eFZg"/>
@@ -2048,8 +2048,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_kCIRgcTYEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_kB3LwMTYEeWw36UBf5eFZg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kCIRgsTYEeWw36UBf5eFZg" points="[10, 0, -74, 0]$[75, 0, -9, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kCsSMMTYEeWw36UBf5eFZg" id="(1.0,0.4666666666666667)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kCsSMcTYEeWw36UBf5eFZg" id="(0.0,0.45)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kCsSMMTYEeWw36UBf5eFZg" id="(0.65,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kCsSMcTYEeWw36UBf5eFZg" id="(0.5,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_sDVH0MTYEeWw36UBf5eFZg" type="4004" source="_FyLGwMToEeWOvrtXJpvMBg" target="_mfvjcMTYEeWw36UBf5eFZg">
       <children xmi:type="notation:DecorationNode" xmi:id="_sDVu4MTYEeWw36UBf5eFZg" type="6003">
@@ -2071,8 +2071,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_sDVH0cTYEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_sDDbAMTYEeWw36UBf5eFZg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sDVH0sTYEeWw36UBf5eFZg" points="[9, -1, -105, 0]$[108, -2, -6, -1]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sEdwQMTYEeWw36UBf5eFZg" id="(1.0,0.35)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sEdwQcTYEeWw36UBf5eFZg" id="(0.0,0.475)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sEdwQMTYEeWw36UBf5eFZg" id="(1.0,0.45)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sEdwQcTYEeWw36UBf5eFZg" id="(0.0,0.5)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_sslgMMTYEeWw36UBf5eFZg" type="4004" source="_mfvjcMTYEeWw36UBf5eFZg" target="_IYgP0MToEeWOvrtXJpvMBg">
       <children xmi:type="notation:DecorationNode" xmi:id="_sslgM8TYEeWw36UBf5eFZg" type="6003">
@@ -2094,7 +2094,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_sslgMcTYEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_ssTzYMTYEeWw36UBf5eFZg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sslgMsTYEeWw36UBf5eFZg" points="[46, 1, -90, 1]$[132, 9, -4, 9]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_stKH8MTYEeWw36UBf5eFZg" id="(1.0,0.625)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_stKH8MTYEeWw36UBf5eFZg" id="(1.0,0.525)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Jw9QgMToEeWOvrtXJpvMBg" id="(0.0,0.5)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_J6_UEMTZEeWw36UBf5eFZg" type="4004" source="_FyLGwMToEeWOvrtXJpvMBg" target="_0GUt4MTYEeWw36UBf5eFZg">
@@ -2116,7 +2116,7 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_J6_UEcTZEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_J6tnQMTZEeWw36UBf5eFZg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_J6_UEsTZEeWw36UBf5eFZg" points="[0, 0, -104, 65]$[0, -65, -104, 0]$[104, -65, 0, 0]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_J6_UEsTZEeWw36UBf5eFZg" points="[0, 0, -19, 62]$[0, -62, -19, 0]$[19, -62, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_J8FgQMTZEeWw36UBf5eFZg" id="(0.4,0.0)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_J8FgQcTZEeWw36UBf5eFZg" id="(0.0,0.5)"/>
     </edges>
@@ -2139,8 +2139,8 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_M10tgcTZEeWw36UBf5eFZg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_M1gkcMTZEeWw36UBf5eFZg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M10tgsTZEeWw36UBf5eFZg" points="[0, 0, -90, -66]$[90, 0, 0, -66]$[90, 67, 0, 1]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M2qbAMTZEeWw36UBf5eFZg" id="(1.0,0.6)"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M10tgsTZEeWw36UBf5eFZg" points="[0, 0, -23, -63]$[23, 0, 0, -63]$[23, 63, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M2qbAMTZEeWw36UBf5eFZg" id="(1.0,0.475)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M2qbAcTZEeWw36UBf5eFZg" id="(0.4,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_sB3dUMTaEeWVKucDXyXNxg" type="4004" source="_2deS0MTVEeWSqrPMaQlZ5A" target="_wdDMAMTWEeWw36UBf5eFZg">
@@ -2159,8 +2159,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_sB4EYMTaEeWVKucDXyXNxg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant2.uml#_r_xyoMTaEeWVKucDXyXNxg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sB4EYcTaEeWVKucDXyXNxg" points="[-5, 20, -5, -139]$[-5, 139, -5, -20]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sDkGcMTaEeWVKucDXyXNxg" id="(0.4658385093167702,1.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sDkGccTaEeWVKucDXyXNxg" id="(0.47150259067357514,0.0)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sDkGcMTaEeWVKucDXyXNxg" id="(0.5093167701863354,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sDkGccTaEeWVKucDXyXNxg" id="(0.5025906735751295,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_BP3OgctREeWd--HpWZq3qQ" type="StereotypeCommentLink" source="_McT-IcTVEeWSqrPMaQlZ5A" target="_BP2ncMtREeWd--HpWZq3qQ">
       <styles xmi:type="notation:FontStyle" xmi:id="_BP3OgstREeWd--HpWZq3qQ"/>

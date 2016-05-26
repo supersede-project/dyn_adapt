@@ -29,18 +29,18 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_zb--McQZEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_xo86UMQZEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zb--MsQZEeWG9YrmNU0sHg" x="65" y="126" width="167"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zb--MsQZEeWG9YrmNU0sHg" x="6" y="88" width="167"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_36ZDMMQZEeWG9YrmNU0sHg" type="3004">
           <children xmi:type="notation:DecorationNode" xmi:id="_36ZqQMQZEeWG9YrmNU0sHg" type="6034">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_36ZqQcQZEeWG9YrmNU0sHg" y="5"/>
           </children>
           <children xmi:type="notation:DecorationNode" xmi:id="_36ZqQsQZEeWG9YrmNU0sHg" type="5080">
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_36ZqQ8QZEeWG9YrmNU0sHg" y="5"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_36ZqQ8QZEeWG9YrmNU0sHg" x="37" y="-91"/>
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_36ZDMcQZEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:InitialNode" href="Online_Book_Shopping_variant1.uml#_36UxwMQZEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_36ZDMsQZEeWG9YrmNU0sHg" x="20" y="132"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_36ZDMsQZEeWG9YrmNU0sHg" x="78" y="28"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_DbxbsMQaEeWG9YrmNU0sHg" type="3038">
           <children xmi:type="notation:DecorationNode" xmi:id="_Dbxbs8QaEeWG9YrmNU0sHg" type="6036">
@@ -54,7 +54,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_DbxbscQaEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:DecisionNode" href="Online_Book_Shopping_variant1.uml#_Dbpf4MQaEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DbxbssQaEeWG9YrmNU0sHg" x="281" y="216"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DbxbssQaEeWG9YrmNU0sHg" x="182" y="178"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_HkF78MQaEeWG9YrmNU0sHg" type="3008" fillColor="10011046">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wUbWYMQkEeWG9YrmNU0sHg" source="PapyrusCSSForceValue">
@@ -66,7 +66,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_HkF78cQaEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_HWsZIMQaEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HkF78sQaEeWG9YrmNU0sHg" x="91" y="211" width="115"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HkF78sQaEeWG9YrmNU0sHg" x="32" y="173" width="115"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_IFzFYMQbEeWG9YrmNU0sHg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_IFzscMQbEeWG9YrmNU0sHg" type="5004"/>
@@ -75,7 +75,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_IFzFYcQbEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_H2uuoMQbEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IFzFYsQbEeWG9YrmNU0sHg" x="362" y="211" width="158"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IFzFYsQbEeWG9YrmNU0sHg" x="224" y="174" width="158"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_Aa_q8MQdEeWG9YrmNU0sHg" type="3008">
           <children xmi:type="notation:DecorationNode" xmi:id="_AbASAMQdEeWG9YrmNU0sHg" type="5004"/>
@@ -84,7 +84,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Aa_q8cQdEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_AK0g8MQdEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Aa_q8sQdEeWG9YrmNU0sHg" x="561" y="211" width="139"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Aa_q8sQdEeWG9YrmNU0sHg" x="316" y="85" width="139"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_EgsVAMQdEeWG9YrmNU0sHg" type="3008" fillColor="10011046">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wUjSMMQkEeWG9YrmNU0sHg" source="PapyrusCSSForceValue">
@@ -96,7 +96,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_EgsVAcQdEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_ERT1MMQdEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EgsVAsQdEeWG9YrmNU0sHg" x="746" y="213" width="154"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EgsVAsQdEeWG9YrmNU0sHg" x="403" y="174" width="154"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_LPsjoMQdEeWG9YrmNU0sHg" type="3038">
           <children xmi:type="notation:DecorationNode" xmi:id="_LPtKsMQdEeWG9YrmNU0sHg" type="6036">
@@ -110,7 +110,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_LPsjocQdEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:DecisionNode" href="Online_Book_Shopping_variant1.uml#_LPdTEMQdEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LPsjosQdEeWG9YrmNU0sHg" x="944" y="218"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LPsjosQdEeWG9YrmNU0sHg" x="584" y="177"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_czB3gMQdEeWG9YrmNU0sHg" type="3008" fillColor="10011046">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wUscIMQkEeWG9YrmNU0sHg" source="PapyrusCSSForceValue">
@@ -122,7 +122,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_czB3gcQdEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_cjrz8MQdEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_czB3gsQdEeWG9YrmNU0sHg" x="1021" y="114" width="99"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_czB3gsQdEeWG9YrmNU0sHg" x="625" y="74" width="99"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_gtp6AMQdEeWG9YrmNU0sHg" type="3008" fillColor="10011046">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wUx7sMQkEeWG9YrmNU0sHg" source="PapyrusCSSForceValue">
@@ -134,7 +134,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_gtp6AcQdEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:CallBehaviorAction" href="Online_Book_Shopping_variant1.uml#_gfKLAMQdEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gtp6AsQdEeWG9YrmNU0sHg" x="1007" y="24" width="129"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gtp6AsQdEeWG9YrmNU0sHg" x="615" y="-17" width="129"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_5bKVkMQdEeWG9YrmNU0sHg" type="3038">
           <children xmi:type="notation:DecorationNode" xmi:id="_5bKVk8QdEeWG9YrmNU0sHg" type="6036">
@@ -148,18 +148,18 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_5bKVkcQdEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:DecisionNode" href="Online_Book_Shopping_variant1.uml#_5a6d8MQdEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5bKVksQdEeWG9YrmNU0sHg" x="1176" y="217"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5bKVksQdEeWG9YrmNU0sHg" x="747" y="176"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_TnJhUMQeEeWG9YrmNU0sHg" type="3005">
           <children xmi:type="notation:DecorationNode" xmi:id="_TnJhU8QeEeWG9YrmNU0sHg" type="6033">
             <layoutConstraint xmi:type="notation:Location" xmi:id="_TnJhVMQeEeWG9YrmNU0sHg" y="5"/>
           </children>
           <children xmi:type="notation:DecorationNode" xmi:id="_TnJhVcQeEeWG9YrmNU0sHg" type="5081">
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_TnJhVsQeEeWG9YrmNU0sHg" y="5"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_TnJhVsQeEeWG9YrmNU0sHg" x="-120" y="5"/>
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_TnJhUcQeEeWG9YrmNU0sHg"/>
           <element xmi:type="uml:ActivityFinalNode" href="Online_Book_Shopping_variant1.uml#_Tm3NcMQeEeWG9YrmNU0sHg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TnJhUsQeEeWG9YrmNU0sHg" x="1273" y="223"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TnJhUsQeEeWG9YrmNU0sHg" x="784" y="182" width="20"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_mgHOgMTmEeWOvrtXJpvMBg" type="3041">
           <children xmi:type="notation:DecorationNode" xmi:id="_mgH1kMTmEeWOvrtXJpvMBg" type="6039">
@@ -173,7 +173,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_mgHOgcTmEeWOvrtXJpvMBg"/>
           <element xmi:type="uml:JoinNode" href="Online_Book_Shopping_variant1.uml#_mejvUMTmEeWOvrtXJpvMBg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mgHOgsTmEeWOvrtXJpvMBg" x="944" y="114"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mgHOgsTmEeWOvrtXJpvMBg" x="584" y="73"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_usKp8MTmEeWOvrtXJpvMBg" type="3041">
           <children xmi:type="notation:DecorationNode" xmi:id="_usLRAMTmEeWOvrtXJpvMBg" type="6039">
@@ -187,7 +187,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_usKp8cTmEeWOvrtXJpvMBg"/>
           <element xmi:type="uml:JoinNode" href="Online_Book_Shopping_variant1.uml#_uqyJ4MTmEeWOvrtXJpvMBg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_usKp8sTmEeWOvrtXJpvMBg" x="1176" y="115"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_usKp8sTmEeWOvrtXJpvMBg" x="748" y="75"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_NXzGJMtQEeWd--HpWZq3qQ" type="StereotypeComment">
           <styles xmi:type="notation:TitleStyle" xmi:id="_NXzGJctQEeWd--HpWZq3qQ" showTitle="true"/>
@@ -232,7 +232,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_md5XMcQZEeWG9YrmNU0sHg"/>
       </children>
       <element xmi:type="uml:Activity" href="Online_Book_Shopping_variant1.uml#_md3h8MQZEeWG9YrmNU0sHg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_md5XMsQZEeWG9YrmNU0sHg" x="-94" width="729" height="448"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_md5XMsQZEeWG9YrmNU0sHg" x="-215" y="-130" width="729" height="448"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_md5XM8QZEeWG9YrmNU0sHg" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_md5XNMQZEeWG9YrmNU0sHg"/>
@@ -256,8 +256,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_8P2nkcQZEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_8Pv54MQZEeWG9YrmNU0sHg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_8P2nksQZEeWG9YrmNU0sHg" points="[8, -4, -86, 0]$[73, -6, -21, -2]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8QTTgMQZEeWG9YrmNU0sHg" id="(1.0,0.4)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8QTTgcQZEeWG9YrmNU0sHg" id="(0.0,0.4)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8QTTgMQZEeWG9YrmNU0sHg" id="(0.2,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8QTTgcQZEeWG9YrmNU0sHg" id="(0.47904191616766467,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_LfD8sMQaEeWG9YrmNU0sHg" type="4004" source="_zb--MMQZEeWG9YrmNU0sHg" target="_HkF78MQaEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_LfEjwMQaEeWG9YrmNU0sHg" type="6003">
@@ -299,7 +299,7 @@
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_NEZi0MQaEeWG9YrmNU0sHg" type="4004" source="_DbxbsMQaEeWG9YrmNU0sHg" target="_zb--MMQZEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_NEZi08QaEeWG9YrmNU0sHg" type="6003">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_NEZi1MQaEeWG9YrmNU0sHg" x="-46" y="13"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_NEZi1MQaEeWG9YrmNU0sHg" x="-19" y="38"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_NEZi1cQaEeWG9YrmNU0sHg" type="6004">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_NEZi1sQaEeWG9YrmNU0sHg" y="20"/>
@@ -312,19 +312,19 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_NEZi0cQaEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_NENVkMQaEeWG9YrmNU0sHg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NEZi0sQaEeWG9YrmNU0sHg" points="[-11, -10, 71, 76]$[-11, -80, 71, 6]$[-82, -80, 0, 6]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Qrvc8MQaEeWG9YrmNU0sHg" id="(0.5,0.0)"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NEZi0sQaEeWG9YrmNU0sHg" points="[0, 1, 18, 73]$[0, -72, 18, 0]$[-18, -72, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Qrvc8MQaEeWG9YrmNU0sHg" id="(0.45,0.0)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NE88ccQaEeWG9YrmNU0sHg" id="(1.0,0.425)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_U9f7IMQcEeWG9YrmNU0sHg" type="4004" source="_DbxbsMQaEeWG9YrmNU0sHg" target="_IFzFYMQbEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_U9giMMQcEeWG9YrmNU0sHg" type="6003">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_U9giMcQcEeWG9YrmNU0sHg" x="-29" y="17"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_U9giMcQcEeWG9YrmNU0sHg" x="-32" y="27"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_U9giMsQcEeWG9YrmNU0sHg" type="6004">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_U9giM8QcEeWG9YrmNU0sHg" y="20"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_U9giNMQcEeWG9YrmNU0sHg" type="6009">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_U9giNcQcEeWG9YrmNU0sHg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_U9giNcQcEeWG9YrmNU0sHg" x="19" y="18"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_U9giNsQcEeWG9YrmNU0sHg" type="6011">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_U9giN8QcEeWG9YrmNU0sHg" y="-20"/>
@@ -332,8 +332,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_U9f7IcQcEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_U9Tt4MQcEeWG9YrmNU0sHg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_U9f7IsQcEeWG9YrmNU0sHg" points="[7, 4, -85, 0]$[74, 3, -18, -1]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U9_qYMQcEeWG9YrmNU0sHg" id="(1.0,0.5333333333333333)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U9_qYcQcEeWG9YrmNU0sHg" id="(0.0,0.525)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U9_qYMQcEeWG9YrmNU0sHg" id="(1.0,0.4666666666666667)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U9_qYcQcEeWG9YrmNU0sHg" id="(0.0,0.45)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_R0cDAMQdEeWG9YrmNU0sHg" type="4004" source="_IFzFYMQbEeWG9YrmNU0sHg" target="_Aa_q8MQdEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_R0cDA8QdEeWG9YrmNU0sHg" type="6003">
@@ -351,8 +351,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_R0cDAcQdEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_R0KWMMQdEeWG9YrmNU0sHg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_R0cDAsQdEeWG9YrmNU0sHg" points="[10, 1, -56, 0]$[51, 1, -15, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_R1PUQMQdEeWG9YrmNU0sHg" id="(1.0,0.475)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_R1P7UMQdEeWG9YrmNU0sHg" id="(0.0,0.475)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_R1PUQMQdEeWG9YrmNU0sHg" id="(0.7151898734177216,0.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_R1P7UMQdEeWG9YrmNU0sHg" id="(0.1510791366906475,1.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_SkSLkMQdEeWG9YrmNU0sHg" type="4004" source="_Aa_q8MQdEeWG9YrmNU0sHg" target="_EgsVAMQdEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_SkSyoMQdEeWG9YrmNU0sHg" type="6003">
@@ -370,8 +370,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_SkSLkcQdEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_SkFXQMQdEeWG9YrmNU0sHg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SkSLksQdEeWG9YrmNU0sHg" points="[9, 3, -60, 0]$[55, 2, -14, -1]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Sk4BcMQdEeWG9YrmNU0sHg" id="(1.0,0.45)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Sk4BccQdEeWG9YrmNU0sHg" id="(0.0,0.45)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Sk4BcMQdEeWG9YrmNU0sHg" id="(0.7841726618705036,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Sk4BccQdEeWG9YrmNU0sHg" id="(0.14285714285714285,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_TVEvUMQdEeWG9YrmNU0sHg" type="4004" source="_EgsVAMQdEeWG9YrmNU0sHg" target="_LPsjoMQdEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_TVEvU8QdEeWG9YrmNU0sHg" type="6003">
@@ -419,7 +419,7 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_r5p4Y8QdEeWG9YrmNU0sHg" y="20"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_r5p4ZMQdEeWG9YrmNU0sHg" type="6009">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_r5p4ZcQdEeWG9YrmNU0sHg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_r5p4ZcQdEeWG9YrmNU0sHg" x="-34"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_r5p4ZsQdEeWG9YrmNU0sHg" type="6011">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_r5p4Z8QdEeWG9YrmNU0sHg" y="-20"/>
@@ -445,9 +445,9 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_slayMcQdEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_slJscMQdEeWG9YrmNU0sHg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_slayMsQdEeWG9YrmNU0sHg" points="[0, 0, -54, 65]$[0, -65, -54, 0]$[54, -65, 0, 0]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_slayMsQdEeWG9YrmNU0sHg" points="[0, 0, -22, 72]$[0, -72, -22, 0]$[22, -72, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oC9hUMTmEeWOvrtXJpvMBg" id="(0.45,0.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_smTjAMQdEeWG9YrmNU0sHg" id="(0.0,0.625)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_smTjAMQdEeWG9YrmNU0sHg" id="(0.0,0.45)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_721t0MQdEeWG9YrmNU0sHg" type="4004" source="_LPsjoMQdEeWG9YrmNU0sHg" target="_5bKVkMQdEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_722U4MQdEeWG9YrmNU0sHg" type="6003">
@@ -502,7 +502,7 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_Pt70EcQeEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_PtpgMMQeEeWG9YrmNU0sHg"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Pt70EsQeEeWG9YrmNU0sHg" points="[0, 0, -49, -69]$[49, 0, 0, -69]$[49, 70, 0, 1]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Pt70EsQeEeWG9YrmNU0sHg" points="[0, 0, -13, -74]$[13, 0, 0, -74]$[13, 74, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PuueQMQeEeWG9YrmNU0sHg" id="(1.0,0.45)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PuueQcQeEeWG9YrmNU0sHg" id="(0.45,0.0)"/>
     </edges>
@@ -522,8 +522,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_SSy9gcQeEeWG9YrmNU0sHg"/>
       <element xmi:type="uml:ControlFlow" href="Online_Book_Shopping_variant1.uml#_SShQsMQeEeWG9YrmNU0sHg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSy9gsQeEeWG9YrmNU0sHg" points="[1, 27, 1, -138]$[1, 155, 1, -10]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_STorAMQeEeWG9YrmNU0sHg" id="(0.35,1.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_STorAcQeEeWG9YrmNU0sHg" id="(0.45,0.0)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_STorAMQeEeWG9YrmNU0sHg" id="(0.45,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_STorAcQeEeWG9YrmNU0sHg" id="(0.5,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_WC9ccMQeEeWG9YrmNU0sHg" type="4004" source="_5bKVkMQdEeWG9YrmNU0sHg" target="_TnJhUMQeEeWG9YrmNU0sHg">
       <children xmi:type="notation:DecorationNode" xmi:id="_WC9cc8QeEeWG9YrmNU0sHg" type="6003">
@@ -931,7 +931,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vHpsMcQiEeWG9YrmNU0sHg"/>
       </children>
       <element xmi:type="uml:Activity" href="Online_Book_Shopping_variant1.uml#_vHNAMMQiEeWG9YrmNU0sHg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vHpsIcQiEeWG9YrmNU0sHg" x="28" y="132" width="619" height="280"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vHpsIcQiEeWG9YrmNU0sHg" x="28" y="132" width="606" height="280"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_qMYr0MtQEeWd--HpWZq3qQ" type="StereotypeComment">
       <styles xmi:type="notation:TitleStyle" xmi:id="_qMYr0ctQEeWd--HpWZq3qQ" showTitle="true"/>
