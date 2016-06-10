@@ -42,6 +42,12 @@
     <packagedElement xmi:type="uml:Component" xmi:id="_uBGY8CNHEeaAV7iIHwGF1A" name="Player Configuration"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_liLE0CNHEeaAV7iIHwGF1A" name="SGA Configuration"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_zwYP8CNHEeaAV7iIHwGF1A" name="BC Phys Configuration"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_IVQaUCMpEeaAV7iIHwGF1A" name="Video Encoder"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_JraU8CMpEeaAV7iIHwGF1A" name="Encoding Manager"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_WAWRUCMpEeaAV7iIHwGF1A" name="SPR"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_wY9acCNCEeaAV7iIHwGF1A" name="DSS"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_QPY_UCMpEeaAV7iIHwGF1A" name="CRE"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_TRQ04CMpEeaAV7iIHwGF1A" name="MIP"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_ovmOoCM9EeaAV7iIHwGF1A" name="Instances">
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_UdT0cCMtEeaAV7iIHwGF1A" name="CMS Default Configuration Instance" classifier="_bPtx0CMsEeaAV7iIHwGF1A">
@@ -58,7 +64,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_IhDy8iMvEeaAV7iIHwGF1A" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Up5qsCNIEeaAV7iIHwGF1A" name="CMS Instance Conf link" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Up5qsCNIEeaAV7iIHwGF1A" name="CMS Instance link to CMS Default Configuration Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VAatQCNIEeaAV7iIHwGF1A" source="InstanceEnd" references="_UdT0cCMtEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
       <slot xmi:type="uml:Slot" xmi:id="_VAatQyNIEeaAV7iIHwGF1A" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
         <value xmi:type="uml:InstanceValue" xmi:id="_VAbUUCNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
@@ -115,11 +121,109 @@
         <value xmi:type="uml:LiteralInteger" xmi:id="_LyYWwCNQEeaAV7iIHwGF1A" value="5"/>
       </slot>
     </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IIwmsCM6EeaAV7iIHwGF1A" name="CMS  Instance" classifier="_NSuZ4CMpEeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="_NBB9MCM6EeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_NBB9MSM6EeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_Nkl7QCNQEeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Nkl7QSNQEeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_Cy0awCNQEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_huroQCNLEeaAV7iIHwGF1A" name="DC VM Instance" classifier="_6fi60CNAEeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="_5mnGsSNLEeaAV7iIHwGF1A" definingFeature="_0CXQciNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_5mntwCNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_vuH7cCNHEeaAV7iIHwGF1A" instance="_kmlpgCNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ao5agCNIEeaAV7iIHwGF1A" name="SGA Instance" classifier="_RiDhECMpEeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="_XUxVgCNIEeaAV7iIHwGF1A" definingFeature="_PL7mIyNIEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_XUxVgSNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_liLE0CNHEeaAV7iIHwGF1A" instance="_EJvEACNIEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_3J-XECNJEeaAV7iIHwGF1A" name="Player Instance" classifier="_jBpNUCM9EeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_BwvsACNLEeaAV7iIHwGF1A" name="BC Phys Instance" classifier="_R___UCM_EeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="_tm_6ECNLEeaAV7iIHwGF1A" definingFeature="_7dKOEiNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_tm_6ESNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_zwYP8CNHEeaAV7iIHwGF1A" instance="_EfIk4CNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IURDYCNLEeaAV7iIHwGF1A" name="DC Phys Instance" classifier="_2LvjUCNAEeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="_0qfyASNLEeaAV7iIHwGF1A" definingFeature="_3v-KoiNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_0qfyAiNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_xqF44CNHEeaAV7iIHwGF1A" instance="_UJ_7QCNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_lH7t8CNJEeaAV7iIHwGF1A" name="LB Instance" classifier="_DdcC4CNBEeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="_vxTgYSNJEeaAV7iIHwGF1A" definingFeature="_gx4TsiNJEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_vxUHcCNJEeaAV7iIHwGF1A" name="InstanceValue1" type="_rYoh4CNHEeaAV7iIHwGF1A" instance="_nS37gCNJEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zYh7MCNIEeaAV7iIHwGF1A" name="HSK Instance" classifier="_BTiXICNBEeaAV7iIHwGF1A">
+      <slot xmi:type="uml:Slot" xmi:id="__BwoISNIEeaAV7iIHwGF1A" definingFeature="_smSLUiNIEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="__BxPMCNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_oMVlACNHEeaAV7iIHwGF1A" instance="_2P5J4CNIEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zfzTgCi8EeadYuI5gUeaYQ" name="CMS Instance link to CMS Overloaded Configuration Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z68XYCi8EeadYuI5gUeaYQ" source="InstanceEnd" references="_Cy0awCNQEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_z68-cSi8EeadYuI5gUeaYQ" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_z68-cii8EeadYuI5gUeaYQ" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_QYcAECNJEeaAV7iIHwGF1A" name="nodes">
     <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_a7hzECNDEeaAV7iIHwGF1A" name="DC Physical Env">
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_gpcYICNDEeaAV7iIHwGF1A" name="SPR Artifact">
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_gpcYICNDEeaAV7iIHwGF1A" name="SPR Service" fileName="">
         <manifestation xmi:type="uml:Manifestation" xmi:id="_mIZ7MCNDEeaAV7iIHwGF1A" client="_gpcYICNDEeaAV7iIHwGF1A" supplier="_WAWRUCMpEeaAV7iIHwGF1A" utilizedElement="_WAWRUCMpEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_mplxICNNEeaAV7iIHwGF1A" name="Load Balancer Node">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_GzuWUCNOEeaAV7iIHwGF1A" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_GztvQCNOEeaAV7iIHwGF1A"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_qBfhECNNEeaAV7iIHwGF1A" name="LB Service" fileName="">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="_M4xzkCNPEeaAV7iIHwGF1A" client="_qBfhECNNEeaAV7iIHwGF1A" supplier="_lH7t8CNJEeaAV7iIHwGF1A" utilizedElement="_lH7t8CNJEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_oVG3wCNNEeaAV7iIHwGF1A" name="HandShake Node">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_HfR0wSNOEeaAV7iIHwGF1A" name="data center" type="_nnGQICMqEeaAV7iIHwGF1A" association="_HfRNsCNOEeaAV7iIHwGF1A"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_rs6hECNNEeaAV7iIHwGF1A" name="HSK Service" fileName="">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="_N8rgkCNPEeaAV7iIHwGF1A" client="_rs6hECNNEeaAV7iIHwGF1A" supplier="_zYh7MCNIEeaAV7iIHwGF1A" utilizedElement="_zYh7MCNIEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_gtEvMCMoEeaAV7iIHwGF1A" name="BroadCast Center">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_u7P7wCNBEeaAV7iIHwGF1A" name="BC Physical Env">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_ukYXEiNFEeaAV7iIHwGF1A" name="dc physical env" type="_a7hzECNDEeaAV7iIHwGF1A" association="_ukXwACNFEeaAV7iIHwGF1A"/>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_FX8LQCNCEeaAV7iIHwGF1A" name="EM Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_rZ0m8CNCEeaAV7iIHwGF1A" client="_FX8LQCNCEeaAV7iIHwGF1A" supplier="_JraU8CMpEeaAV7iIHwGF1A" utilizedElement="_JraU8CMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_fLVQ0CNCEeaAV7iIHwGF1A" name="VE Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_pPgEcCNCEeaAV7iIHwGF1A" client="_fLVQ0CNCEeaAV7iIHwGF1A" supplier="_IVQaUCMpEeaAV7iIHwGF1A" utilizedElement="_IVQaUCMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_lDhyECMoEeaAV7iIHwGF1A" name="Data Center">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_nnGQICMqEeaAV7iIHwGF1A" name="DC Virtualized Env">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_s_hGUCMqEeaAV7iIHwGF1A" name="CMS Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_VcE24CM6EeaAV7iIHwGF1A" client="_s_hGUCMqEeaAV7iIHwGF1A" supplier="_IIwmsCM6EeaAV7iIHwGF1A" utilizedElement="_IIwmsCM6EeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_HJZZQCMrEeaAV7iIHwGF1A" name="DSS Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_k2vCgCNEEeaAV7iIHwGF1A" client="_HJZZQCMrEeaAV7iIHwGF1A" supplier="_wY9acCNCEeaAV7iIHwGF1A" utilizedElement="_wY9acCNCEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_nMbukCNEEeaAV7iIHwGF1A" name="CRE Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_4S8jkCNEEeaAV7iIHwGF1A" client="_nMbukCNEEeaAV7iIHwGF1A" supplier="_QPY_UCMpEeaAV7iIHwGF1A" utilizedElement="_QPY_UCMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_5UaAkCNEEeaAV7iIHwGF1A" name="SGA Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_AlH1ICNFEeaAV7iIHwGF1A" client="_5UaAkCNEEeaAV7iIHwGF1A" supplier="_Ao5agCNIEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CkTeoCNFEeaAV7iIHwGF1A" name="MIP Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_HoQgsCNFEeaAV7iIHwGF1A" client="_CkTeoCNFEeaAV7iIHwGF1A" supplier="_TRQ04CMpEeaAV7iIHwGF1A" utilizedElement="_TRQ04CMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_xY8JYCNFEeaAV7iIHwGF1A" name="CDN">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JhTQgyNGEeaAV7iIHwGF1A" name="dc virtualized env" type="_mplxICNNEeaAV7iIHwGF1A" association="_JhTQgCNGEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_axdwwCNGEeaAV7iIHwGF1A" name="Player Device">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_GdTUAiNGEeaAV7iIHwGF1A" name="cdn" type="_xY8JYCNFEeaAV7iIHwGF1A" association="_GdSs8CNGEeaAV7iIHwGF1A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_00rkICY9EeaPTdlPuA_7kA" name="dc virtualized env" type="_nnGQICMqEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7a5qMSY9EeaPTdlPuA_7kA" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_baxzgCNGEeaAV7iIHwGF1A" name="Player App" fileName="">
+        <manifestation xmi:type="uml:Manifestation" xmi:id="_tjwyICNGEeaAV7iIHwGF1A" client="_baxzgCNGEeaAV7iIHwGF1A" supplier="_3J-XECNJEeaAV7iIHwGF1A"/>
       </nestedClassifier>
     </packagedElement>
   </packagedElement>
@@ -136,7 +240,7 @@
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_GdTUAyNGEeaAV7iIHwGF1A" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_GdSs8CNGEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_f3XSYCMsEeaAV7iIHwGF1A" memberEnd="_f3gcUCMsEeaAV7iIHwGF1A _f3hDYCMsEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_f3XSYCMsEeaAV7iIHwGF1A" name="CMS2Configuration" memberEnd="_f3gcUCMsEeaAV7iIHwGF1A _f3hDYCMsEeaAV7iIHwGF1A">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_f3fOMCMsEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f3fOMSMsEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
@@ -208,134 +312,18 @@
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_GzuWUSNOEeaAV7iIHwGF1A" name="load balancer" type="_mplxICNNEeaAV7iIHwGF1A" association="_GztvQCNOEeaAV7iIHwGF1A"/>
     </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Node" xmi:id="_mplxICNNEeaAV7iIHwGF1A" name="Load Balancer">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_GzuWUCNOEeaAV7iIHwGF1A" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_GztvQCNOEeaAV7iIHwGF1A"/>
-    <nestedClassifier xmi:type="uml:Artifact" xmi:id="_qBfhECNNEeaAV7iIHwGF1A" name="LB Artifact">
-      <manifestation xmi:type="uml:Manifestation" xmi:id="_M4xzkCNPEeaAV7iIHwGF1A" client="_qBfhECNNEeaAV7iIHwGF1A" supplier="_lH7t8CNJEeaAV7iIHwGF1A" utilizedElement="_lH7t8CNJEeaAV7iIHwGF1A"/>
-    </nestedClassifier>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Node" xmi:id="_oVG3wCNNEeaAV7iIHwGF1A" name="HandShake">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_HfR0wSNOEeaAV7iIHwGF1A" name="data center" type="_nnGQICMqEeaAV7iIHwGF1A" association="_HfRNsCNOEeaAV7iIHwGF1A"/>
-    <nestedClassifier xmi:type="uml:Artifact" xmi:id="_rs6hECNNEeaAV7iIHwGF1A" name="HSK Artifact">
-      <manifestation xmi:type="uml:Manifestation" xmi:id="_N8rgkCNPEeaAV7iIHwGF1A" client="_rs6hECNNEeaAV7iIHwGF1A" supplier="_zYh7MCNIEeaAV7iIHwGF1A" utilizedElement="_zYh7MCNIEeaAV7iIHwGF1A"/>
-    </nestedClassifier>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_NR5BsCNQEeaAV7iIHwGF1A" name="InstanceSpecification1" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NklUMCNQEeaAV7iIHwGF1A" source="InstanceEnd" references="_Cy0awCNQEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
-    <slot xmi:type="uml:Slot" xmi:id="_NkmiUCNQEeaAV7iIHwGF1A" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_NkmiUSNQEeaAV7iIHwGF1A" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_pzzpYCNYEeaAV7iIHwGF1A" name="InstanceSpecification2" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qGZOMCNYEeaAV7iIHwGF1A" source="InstanceEnd" references="_Cy0awCNQEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
-    <slot xmi:type="uml:Slot" xmi:id="_qGZ1QSNYEeaAV7iIHwGF1A" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_qGZ1QiNYEeaAV7iIHwGF1A" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Node" xmi:id="_gtEvMCMoEeaAV7iIHwGF1A" name="BroadCast Center">
-    <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_u7P7wCNBEeaAV7iIHwGF1A" name="BC Physical Env">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_ukYXEiNFEeaAV7iIHwGF1A" name="dc physical env" type="_a7hzECNDEeaAV7iIHwGF1A" association="_ukXwACNFEeaAV7iIHwGF1A"/>
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_FX8LQCNCEeaAV7iIHwGF1A" name="EM Artifact">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_rZ0m8CNCEeaAV7iIHwGF1A" client="_FX8LQCNCEeaAV7iIHwGF1A" supplier="_JraU8CMpEeaAV7iIHwGF1A" utilizedElement="_JraU8CMpEeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_fLVQ0CNCEeaAV7iIHwGF1A" name="VE Artifact">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_pPgEcCNCEeaAV7iIHwGF1A" client="_fLVQ0CNCEeaAV7iIHwGF1A" supplier="_IVQaUCMpEeaAV7iIHwGF1A" utilizedElement="_IVQaUCMpEeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-    </nestedClassifier>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Node" xmi:id="_lDhyECMoEeaAV7iIHwGF1A" name="Data Center">
-    <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_nnGQICMqEeaAV7iIHwGF1A" name="DC Virtualized Env">
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_s_hGUCMqEeaAV7iIHwGF1A" name="CMS_Artifact" fileName="">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_VcE24CM6EeaAV7iIHwGF1A" client="_s_hGUCMqEeaAV7iIHwGF1A" supplier="_IIwmsCM6EeaAV7iIHwGF1A" utilizedElement="_IIwmsCM6EeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_HJZZQCMrEeaAV7iIHwGF1A" name="DSS Artifact" fileName="">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_k2vCgCNEEeaAV7iIHwGF1A" client="_HJZZQCMrEeaAV7iIHwGF1A" supplier="_wY9acCNCEeaAV7iIHwGF1A" utilizedElement="_wY9acCNCEeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_nMbukCNEEeaAV7iIHwGF1A" name="CRE Artifact" fileName="">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_4S8jkCNEEeaAV7iIHwGF1A" client="_nMbukCNEEeaAV7iIHwGF1A" supplier="_QPY_UCMpEeaAV7iIHwGF1A" utilizedElement="_QPY_UCMpEeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_5UaAkCNEEeaAV7iIHwGF1A" name="SGA Artifact" fileName="">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_AlH1ICNFEeaAV7iIHwGF1A" client="_5UaAkCNEEeaAV7iIHwGF1A" supplier="_Ao5agCNIEeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CkTeoCNFEeaAV7iIHwGF1A" name="MIP Artifact" fileName="">
-        <manifestation xmi:type="uml:Manifestation" xmi:id="_HoQgsCNFEeaAV7iIHwGF1A" client="_CkTeoCNFEeaAV7iIHwGF1A" supplier="_TRQ04CMpEeaAV7iIHwGF1A" utilizedElement="_TRQ04CMpEeaAV7iIHwGF1A"/>
-      </nestedClassifier>
-    </nestedClassifier>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IIwmsCM6EeaAV7iIHwGF1A" name="CMS  Instance" classifier="_NSuZ4CMpEeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="_NBB9MCM6EeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_NBB9MSM6EeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_VAatQSNIEeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_VAatQiNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_Nkl7QCNQEeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_Nkl7QSNQEeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_Cy0awCNQEeaAV7iIHwGF1A"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_qGZOMSNYEeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_qGZ1QCNYEeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_Cy0awCNQEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Component" xmi:id="_IVQaUCMpEeaAV7iIHwGF1A" name="Video Encoder"/>
-  <packagedElement xmi:type="uml:Component" xmi:id="_JraU8CMpEeaAV7iIHwGF1A" name="Encoding Manager"/>
-  <packagedElement xmi:type="uml:Component" xmi:id="_WAWRUCMpEeaAV7iIHwGF1A" name="SPR"/>
-  <packagedElement xmi:type="uml:Component" xmi:id="_wY9acCNCEeaAV7iIHwGF1A" name="DSS"/>
-  <packagedElement xmi:type="uml:Component" xmi:id="_QPY_UCMpEeaAV7iIHwGF1A" name="CRE"/>
-  <packagedElement xmi:type="uml:Component" xmi:id="_TRQ04CMpEeaAV7iIHwGF1A" name="MIP"/>
-  <packagedElement xmi:type="uml:Node" xmi:id="_xY8JYCNFEeaAV7iIHwGF1A" name="CDN">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_JhTQgyNGEeaAV7iIHwGF1A" name="dc virtualized env" type="_mplxICNNEeaAV7iIHwGF1A" association="_JhTQgCNGEeaAV7iIHwGF1A"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Node" xmi:id="_axdwwCNGEeaAV7iIHwGF1A" name="Player">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_GdTUAiNGEeaAV7iIHwGF1A" name="cdn" type="_xY8JYCNFEeaAV7iIHwGF1A" association="_GdSs8CNGEeaAV7iIHwGF1A"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_00rkICY9EeaPTdlPuA_7kA" name="dc virtualized env" type="_nnGQICMqEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_7a5qMSY9EeaPTdlPuA_7kA" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
-    <nestedClassifier xmi:type="uml:Artifact" xmi:id="_baxzgCNGEeaAV7iIHwGF1A" name="Player Artifact" fileName="">
-      <manifestation xmi:type="uml:Manifestation" xmi:id="_tjwyICNGEeaAV7iIHwGF1A" client="_baxzgCNGEeaAV7iIHwGF1A" supplier="_3J-XECNJEeaAV7iIHwGF1A"/>
-    </nestedClassifier>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_huroQCNLEeaAV7iIHwGF1A" name="DC VM Instance" classifier="_6fi60CNAEeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="_5mnGsSNLEeaAV7iIHwGF1A" definingFeature="_0CXQciNKEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_5mntwCNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_vuH7cCNHEeaAV7iIHwGF1A" instance="_kmlpgCNLEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ao5agCNIEeaAV7iIHwGF1A" name="SGA Instance" classifier="_RiDhECMpEeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="_XUxVgCNIEeaAV7iIHwGF1A" definingFeature="_PL7mIyNIEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_XUxVgSNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_liLE0CNHEeaAV7iIHwGF1A" instance="_EJvEACNIEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_3J-XECNJEeaAV7iIHwGF1A" name="Player Instance" classifier="_jBpNUCM9EeaAV7iIHwGF1A"/>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_BwvsACNLEeaAV7iIHwGF1A" name="BC Phys Instance" classifier="_R___UCM_EeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="_tm_6ECNLEeaAV7iIHwGF1A" definingFeature="_7dKOEiNKEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_tm_6ESNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_zwYP8CNHEeaAV7iIHwGF1A" instance="_EfIk4CNLEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IURDYCNLEeaAV7iIHwGF1A" name="DC Phys Instance" classifier="_2LvjUCNAEeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="_0qfyASNLEeaAV7iIHwGF1A" definingFeature="_3v-KoiNKEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_0qfyAiNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_xqF44CNHEeaAV7iIHwGF1A" instance="_UJ_7QCNLEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_lH7t8CNJEeaAV7iIHwGF1A" name="LB Instance" classifier="_DdcC4CNBEeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="_vxTgYSNJEeaAV7iIHwGF1A" definingFeature="_gx4TsiNJEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="_vxUHcCNJEeaAV7iIHwGF1A" name="InstanceValue1" type="_rYoh4CNHEeaAV7iIHwGF1A" instance="_nS37gCNJEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zYh7MCNIEeaAV7iIHwGF1A" name="HSK Instance" classifier="_BTiXICNBEeaAV7iIHwGF1A">
-    <slot xmi:type="uml:Slot" xmi:id="__BwoISNIEeaAV7iIHwGF1A" definingFeature="_smSLUiNIEeaAV7iIHwGF1A">
-      <value xmi:type="uml:InstanceValue" xmi:id="__BxPMCNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_oMVlACNHEeaAV7iIHwGF1A" instance="_2P5J4CNIEeaAV7iIHwGF1A"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_00n5wCY9EeaPTdlPuA_7kA" memberEnd="_00rkICY9EeaPTdlPuA_7kA _00rkISY9EeaPTdlPuA_7kA">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_00qWACY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_00qWASY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_00rkISY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_7a5DICY9EeaPTdlPuA_7kA" memberEnd="_7a5qMSY9EeaPTdlPuA_7kA _7a5qMiY9EeaPTdlPuA_7kA">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7a5DISY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7a5qMCY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_7a5qMiY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_00n5wCY9EeaPTdlPuA_7kA" memberEnd="_00rkICY9EeaPTdlPuA_7kA _00rkISY9EeaPTdlPuA_7kA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_00qWACY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_00qWASY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_00rkISY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_7a5DICY9EeaPTdlPuA_7kA" memberEnd="_7a5qMSY9EeaPTdlPuA_7kA _7a5qMiY9EeaPTdlPuA_7kA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7a5DISY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7a5qMCY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_7a5qMiY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
+    </packagedElement>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_C5spMCMsEeaAV7iIHwGF1A">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_C5t3UCMsEeaAV7iIHwGF1A" source="http://www.eclipse.org/uml2/2.0.0/UML">
