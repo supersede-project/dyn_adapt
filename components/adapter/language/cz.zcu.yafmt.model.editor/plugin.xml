@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated FeatureModel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="cz.zcu.yafmt.model.fm.presentation.FeatureModelModelWizardID"
+            name="%_UI_FeatureModelModelWizard_label"
+            class="cz.zcu.yafmt.model.fm.presentation.FeatureModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeatureModelModelFile.gif">
+         <description>%_UI_FeatureModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated FeatureModel -->
+      <editor
+            id="cz.zcu.yafmt.model.fm.presentation.FeatureModelEditorID"
+            name="%_UI_FeatureModelEditor_label"
+            icon="icons/full/obj16/FeatureModelModelFile.gif"
+            extensions="yafm"
+            class="cz.zcu.yafmt.model.fm.presentation.FeatureModelEditor"
+            contributorClass="cz.zcu.yafmt.model.fm.presentation.FeatureModelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated FeatureModel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="cz.zcu.yafmt.model.fc.presentation.FeatureConfigurationModelWizardID"
+            name="%_UI_FeatureConfigurationModelWizard_label"
+            class="cz.zcu.yafmt.model.fc.presentation.FeatureConfigurationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeatureConfigurationModelFile.gif">
+         <description>%_UI_FeatureConfigurationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated FeatureModel -->
+      <editor
+            id="cz.zcu.yafmt.model.fc.presentation.FeatureConfigurationEditorID"
+            name="%_UI_FeatureConfigurationEditor_label"
+            icon="icons/full/obj16/FeatureConfigurationModelFile.gif"
+            extensions="yafc"
+            class="cz.zcu.yafmt.model.fc.presentation.FeatureConfigurationEditor"
+            contributorClass="cz.zcu.yafmt.model.fc.presentation.FeatureConfigurationActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

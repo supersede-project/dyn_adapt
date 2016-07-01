@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.supersede.dynadapt.aom.dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.uml2.uml;bundle-version="5.1.2",
+ org.eclipse.uml2.codegen.ecore;bundle-version="2.1.2",
+ cz.zcu.yafmt.model;bundle-version="0.3.0",
+ org.eclipse.viatra.query.patternlanguage;bundle-version="1.2.1",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: eu.supersede.dynadapt.dsl,
+ eu.supersede.dynadapt.dsl.scoping,
+ eu.supersede.dynadapt.dsl.validation,
+ eu.supersede.dynadapt.dsl.services,
+ eu.supersede.dynadapt.dsl.aspect.util,
+ eu.supersede.dynadapt.dsl.parser.antlr.internal,
+ eu.supersede.dynadapt.dsl.aspect,
+ eu.supersede.dynadapt.dsl.generator,
+ eu.supersede.dynadapt.dsl.aspect.impl,
+ eu.supersede.dynadapt.dsl.serializer,
+ eu.supersede.dynadapt.dsl.parser.antlr
+Import-Package: org.apache.log4j
