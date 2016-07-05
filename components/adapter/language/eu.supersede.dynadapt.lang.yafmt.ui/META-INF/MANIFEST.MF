@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ui
+Bundle-Name: text Reference for YAFMT-FM UI
 Bundle-SymbolicName: eu.supersede.dynadapt.lang.yafmt.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: eu.supersede.dynadapt.lang.yafmt.ui.Activator

@@ -26,8 +26,10 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  * <p/>
  * This class provides some static instances for the more often used
  * languages.
+ * Adapted from NFRVT Tool in ARTIST project (www.artist-project.eu) to Supersede Project
  * 
  * @author Martin Fleck
+ * @author Jesús Gorroñogoitia
  *
  */
 public class XtextLanguageUnit {

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: eu.supersede.dynadapt.aom.dsl.ui
-Bundle-Vendor: My Company
+Bundle-Vendor: Supersede Project
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
