@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class DslActivator extends AbstractUIPlugin {
 	
-	public static final String EU_ARTIST_POSTMIGRATION_NFRVT_LANG_GML_GML = "eu.artist.postmigration.nfrvt.lang.gml.GML";
+	public static final String EU_SUPERSEDE_DYNADAPT_LANG_AOM = "eu.supersede.dynadapt.dsl.Aspect";
 	
 	private static final Logger logger = Logger.getLogger(DslActivator.class);
 	
@@ -73,7 +73,7 @@ public class DslActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (EU_ARTIST_POSTMIGRATION_NFRVT_LANG_GML_GML.equals(grammar)) {
+		if (EU_SUPERSEDE_DYNADAPT_LANG_AOM.equals(grammar)) {
 			return new eu.supersede.dynadapt.dsl.AspectRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class DslActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (EU_ARTIST_POSTMIGRATION_NFRVT_LANG_GML_GML.equals(grammar)) {
+		if (EU_SUPERSEDE_DYNADAPT_LANG_AOM.equals(grammar)) {
 			return new eu.supersede.dynadapt.dsl.ui.AspectUiModule(this);
 		}
 		

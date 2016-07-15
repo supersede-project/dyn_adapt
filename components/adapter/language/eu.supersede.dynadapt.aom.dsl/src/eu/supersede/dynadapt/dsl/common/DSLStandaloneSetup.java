@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 Vienna University of Technology.
+ * Copyright (c) 2014-2016 Vienna University of Technology.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,10 @@
  *
  * Contributors:
  * Martin Fleck (Vienna University of Technology) - initial API and implementation
+ * Jesús Gorroñogoitia (Atos Spain S.A.) - Adapted to Supersede project
  *
  * Initially developed in the context of ARTIST EU project www.artist-project.eu
+ * Adapted in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
 package eu.supersede.dynadapt.dsl.common;
 
@@ -20,13 +22,13 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 /**
  * A convenience class to declare the standalone setup in model workflow files 
  * (mwe). It provides methods to specify the usage of common packages and 
- * libraries, e.g., Ecore, UML or MARTE, as well as of the ARTIST migration 
+ * libraries, e.g., Ecore, UML, as well as of the SUPERSEDE 
  * languages, e.g., the goal modeling language GML.
  * <p/>
  * As single point of configuration, the class 
  * {@link DSLStandaloneUsageDependencies} is used.
  * 
- * @author Martin Fleck
+ * @author Martin Fleck, Jesús Gorroñogoitia
  * @see DSLStandaloneUsageDependencies
  *
  */

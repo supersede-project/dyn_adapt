@@ -47,7 +47,7 @@ public class SupersedeDSLResourceUtil {
 	public static final String UML_DELIMITER = "::";
 	
 	/**
-	 * Initializes a resource set to be usable with the ARTIST migration 
+	 * Initializes a resource set to be usable with the SUPERSEDE DSL 
 	 * languages. This method registers and initializes all necessary 
 	 * packages.
 	 * 
@@ -192,7 +192,7 @@ public class SupersedeDSLResourceUtil {
 	 * object in the Xtext format, i.e., using '.' as delimiter. If the name
 	 * can not be determined, null is returned.
 	 * <p/>
-	 * Example: eu.artist.postmigration.nfrvt.&#42;
+	 * Example: eu.supersede.dynadapt.aom.dsl.&#42;
 	 * 
 	 * @param obj object for which the qualified name should be returned or
 	 * null if the name can not be determined
@@ -224,7 +224,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the given fully qualified name or null
 	 * 
 	 * @see #getFullyQualifiedName(EObject)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(MigrationResourceSet, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(SupersedeDSLResourceSet, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static <T extends EObject> T findByFullyQualifiedName(SupersedeDSLResourceSet set, String fqn) {
 		return findByFullyQualifiedName(set.getResourceSet(), fqn);
@@ -244,7 +244,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the given fully qualified name or null
 	 * 
 	 * @see #getFullyQualifiedName(EObject)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(ResourceSet, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(ResourceSet, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static <T extends EObject> T findByFullyQualifiedName(ResourceSet set, String fqn) {
 		T found = null;
@@ -265,7 +265,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the given fully qualified name or null
 	 * 
 	 * @see #getFullyQualifiedName(EObject)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(Resource, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(Resource, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static <T extends EObject> T findByFullyQualifiedName(Resource res, String fqn) {
 		if(res == null || res.getContents().isEmpty())
@@ -282,7 +282,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the given fully qualified name or null
 	 * 
 	 * @see #getFullyQualifiedName(EObject)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(EObject, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(EObject, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T findByFullyQualifiedName(EObject root, String fqn) {
@@ -310,7 +310,7 @@ public class SupersedeDSLResourceUtil {
 	 * @param roots container elements in which elements are searched
 	 * @param clazz class an element must be an instance of
 	 * @return all elements with the given class contained in root
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(Iterable, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link ClassQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(Iterable, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link ClassQuery}
 	 */
 	public static <T extends EObject> List<T> findByClass(List<? extends EObject> roots, Class<T> clazz) {
 		List<T> objects = new ArrayList<>();
@@ -326,7 +326,7 @@ public class SupersedeDSLResourceUtil {
 	 * @param root container element in which elements are searched
 	 * @param clazz class an element must be an instance of
 	 * @return all elements with the given class contained in root
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(EObject, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link ClassQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(EObject, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link ClassQuery}
 	 */
 	public static <T extends EObject> List<T> findByClass(EObject root, Class<T> clazz) {
 		if(clazz == null || root == null)
@@ -381,7 +381,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the specified qualified name and class or null
 	 * 
 	 * @see UMLUtil#findNamedElements(Resource, String)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(EObject, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(EObject, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static NamedElement findUMLNamedElement(EObject obj, String qualifiedName) {
 		return findUMLNamedElement(obj.eResource(), qualifiedName);
@@ -402,7 +402,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the specified qualified name and class or null
 	 * 
 	 * @see UMLUtil#findNamedElements(Resource, String)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(Resource, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(Resource, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static NamedElement findUMLNamedElement(Resource resource, String qualifiedName) {
 		String qn = qualifiedName.replace(XTEXT_DELIMITER, UML_DELIMITER);
@@ -428,7 +428,7 @@ public class SupersedeDSLResourceUtil {
 	 * 
 	 * @see #findUMLNamedElement(Resource, String, Class)
 	 * @see UMLUtil#findNamedElements(Resource, String)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(EObject, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(EObject, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static <T extends NamedElement> T findUMLNamedElement(EObject obj, String qualifiedName, Class<T> clazz) {
 		return findUMLNamedElement(obj.eResource(), qualifiedName, clazz);
@@ -448,7 +448,7 @@ public class SupersedeDSLResourceUtil {
 	 * @return element with the specified qualified name and class or null
 	 * 
 	 * @see UMLUtil#findNamedElements(Resource, String)
-	 * @deprecated use {@link MigrationModelSelector#selectFirst(Resource, eu.artist.postmigration.nfrvt.lang.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
+	 * @deprecated use {@link SupersedeDSLModelSelector#selectFirst(Resource, eu.supersede.dynadapt.aom.util.selector.query.ISelectionQuery)} with {@link FQNQuery}
 	 */
 	public static <T extends NamedElement> T findUMLNamedElement(Resource resource, String qualifiedName, Class<T> clazz) {
 		String qn = qualifiedName.replace(XTEXT_DELIMITER, UML_DELIMITER); // just in case

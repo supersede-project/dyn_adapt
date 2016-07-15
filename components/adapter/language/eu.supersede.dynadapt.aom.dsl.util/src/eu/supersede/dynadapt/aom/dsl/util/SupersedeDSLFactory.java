@@ -24,9 +24,9 @@ import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
 
 /**
- * The migration factory encapsulates the access to the different ARTIST 
- * migration language factories (e.g., {@link GmlFactory}) and provides
- * convenient methods for creating objects for any of the migration 
+ * The SUPERSEDE DSL factory encapsulates the access to the different SUPERSEDE DSL
+ * language factories (e.g., {@link GmlFactory}) and provides
+ * convenient methods for creating objects for any of the SUPERSEDE DSL 
  * languages, i.e., also methods where optional parameters must not be
  * specified explicitly.
  * 

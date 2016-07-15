@@ -11,7 +11,8 @@
  *
  * Initially developed in the context of ARTIST EU project www.artist-project.eu
  * Adapted in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/package eu.supersede.dynadapt.aom.dsl.util;
+ *******************************************************************************/
+package eu.supersede.dynadapt.aom.dsl.util;
 
 import java.io.IOException;
 import java.util.Date;
@@ -77,7 +78,7 @@ public class SupersedeDSLResourceSet {
 	
 	/**
 	 * Creates a new SupersedeDSLResourceSet, that can load and save UML and 
-	 * ARTIST migration models.
+	 * SUPERSEDE DSL models.
 	 * <p/>
 	 * Note: To refer from one model to another, both must be contained in
 	 * the same resource set.
@@ -97,7 +98,7 @@ public class SupersedeDSLResourceSet {
 	/**
 	 * Initializes the resource set with all necessary {@link EPackage}s,
 	 * {@link IResourceFactory}s, and {@link IResourceServiceProvider}s to 
-	 * load and save UML and ARTIST migration models.
+	 * load and save UML and SUPERSEDE DSL models.
 	 */
 	private void initResourceSet() {
 		UMLResourcesUtil.init(getResourceSet());
@@ -322,7 +323,7 @@ public class SupersedeDSLResourceSet {
 	 * using {@link SupersedeDSLResourceUtil#getPlatformResourceURI(String)}.
 	 * If the specified resource can not be found, null is returned.
 	 * 
-	 * @param uriString uri of the migration evaluation
+	 * @param uriString uri of the SUPERSEDE DSL evaluation
 	 * @return the referenced model
 	 * 
 	 * @see SupersedeDSLResourceUtil#getPlatformResourceURI(String)

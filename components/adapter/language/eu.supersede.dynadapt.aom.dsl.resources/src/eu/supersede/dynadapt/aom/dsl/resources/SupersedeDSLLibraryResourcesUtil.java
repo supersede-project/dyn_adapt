@@ -7,7 +7,7 @@
  *
  * Contributors:
  * Martin Fleck (Vienna University of Technology) - initial API and implementation
- * Jesús Gorroñogoitia (Atos Spain S.A.) - Adapted to Supesede project
+ * Jesús Gorroñogoitia (Atos Spain S.A.) - Adapted to Supersede project
  *
  * Initially developed in the context of ARTIST EU project www.artist-project.eu
  * Adapted in the context of SUPERSEDE EU project www.supersede.eu
@@ -37,25 +37,25 @@ import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceUtil;
  */
 public class SupersedeDSLLibraryResourcesUtil {
 	/**
-	 * Base pathmap to the directory of the ARTIST libraries
+	 * Base pathmap to the directory of the SUPERSEDE libraries
 	 */
 	public static String BASE_PATHMAP = "pathmap://SUPERSEDE_LIBRARIES/";
 	
 	/**
-	 * Creates a new, initialized migration resource set without loading any models.
-	 * @return new, initialized migration resource set
+	 * Creates a new, initialized Supersede DSL resource set without loading any models.
+	 * @return new, initialized Supersede DSL resource set
 	 */
-	public static SupersedeDSLResourceSet createMigrationResourceSet() {
-		return createMigrationResourceSet(false);
+	public static SupersedeDSLResourceSet createSupersedeDSLResourceSet() {
+		return createSupersedeDSLResourceSet(false);
 	}
 	
 	/**
-	 * Creates a new, initialized migration resource set and loads all known libraries
-	 * (UML, MARTE, ARTIST) if loadKnownResources is set to true.
+	 * Creates a new, initialized Supersede DSL resource set and loads all known libraries
+	 * (UML) if loadKnownResources is set to true.
 	 * @param loadKnownResources if true, all known libraries will be pre-loaded
-	 * @return new, initialized migration resource set
+	 * @return new, initialized Supersede DSL resource set
 	 */
-	public static SupersedeDSLResourceSet createMigrationResourceSet(boolean loadKnownResources) {
+	public static SupersedeDSLResourceSet createSupersedeDSLResourceSet(boolean loadKnownResources) {
 		SupersedeDSLResourceSet set = new SupersedeDSLResourceSet();
 		init(set, loadKnownResources);
 		return set;
@@ -73,8 +73,7 @@ public class SupersedeDSLLibraryResourcesUtil {
 	
 	/**
 	 * Initializes the given resource set for the use with the known libraries. Specifically,
-	 * it prepares the uri map for the use of the pathmaps-uris. All known libraries (UML, MARTE,
-	 * ARTIST) will be pre-loaded if loadKnownResources is set to true.
+	 * it prepares the uri map for the use of the pathmaps-uris. All known libraries (UML) will be pre-loaded if loadKnownResources is set to true.
 	 * @param resourceSet resource set to be initialized
 	 * @param loadKnownResources if true, all known libraries will be pre-loaded
 	 * @return initialized resource set
@@ -96,8 +95,7 @@ public class SupersedeDSLLibraryResourcesUtil {
 	
 	/**
 	 * Initializes the given resource set for the use with the known libraries. Specifically,
-	 * it prepares the uri map for the use of the pathmaps-uris. All known libraries (UML, MARTE,
-	 * ARTIST) will be pre-loaded if loadKnownResources is set to true.
+	 * it prepares the uri map for the use of the pathmaps-uris. All known libraries (UML) will be pre-loaded if loadKnownResources is set to true.
 	 * @param resourceSet resource set to be initialized
 	 * @param loadKnownResources if true, all known libraries will be pre-loaded
 	 * @return initialized resource set
@@ -132,8 +130,6 @@ public class SupersedeDSLLibraryResourcesUtil {
 		URI result;
 
 		if (resultURL != null) {
-			// remove the /resources/ARTIST_NFPCatalogue.prop segments of the resource
-			// we found
 			result = URI.createURI(resultURL.toExternalForm(), true)
 				.trimSegments(2);
 		} else {

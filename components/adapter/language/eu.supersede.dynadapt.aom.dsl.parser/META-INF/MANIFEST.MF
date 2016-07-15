@@ -4,7 +4,7 @@ Bundle-Name: Xtext Utils for Supersede DSL
 Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl.parser;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Supersede Project
-Export-Package: eu.supersede.dynadapt.aom.dsl.util
+Export-Package: eu.supersede.dynadapt.aom.dsl.parser.actions
 Require-Bundle: org.eclipse.emf.mwe.utils;bundle-version="1.3.20",
  org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.xtext.generator;bundle-version="2.9.1",

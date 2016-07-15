@@ -7,7 +7,7 @@
  *
  * Contributors:
  * Martin Fleck (Vienna University of Technology) - initial API and implementation
- * Jesús Gorroñogoitia (Atos Spain S.A.) - Adapted to Supesede project
+ * Jesús Gorroñogoitia (Atos Spain S.A.) - Adapted to Supersede project
  *
  * Initially developed in the context of ARTIST EU project www.artist-project.eu
  * Adapted in the context of SUPERSEDE EU project www.supersede.eu
@@ -31,7 +31,7 @@ public class SupersedeResources {
 	 * Creates a {@link SupersedeDSLResourceSet} with all the basic resources for
 	 * our examples
 	 * 
-	 * @return migration resource set with loaded resources
+	 * @return SUPERSEDE DSL resource set with loaded resources
 	 */
 	public static SupersedeDSLResourceSet createResourceSet() {
 		SupersedeDSLStandaloneSetup.doSetup();

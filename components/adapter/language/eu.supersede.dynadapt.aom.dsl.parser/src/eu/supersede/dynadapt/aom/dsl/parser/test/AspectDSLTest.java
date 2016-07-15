@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.aom.dsl.util.test;
+package eu.supersede.dynadapt.aom.dsl.parser.test;
 
 import org.eclipse.emf.common.util.URI;
 import org.junit.Assert;

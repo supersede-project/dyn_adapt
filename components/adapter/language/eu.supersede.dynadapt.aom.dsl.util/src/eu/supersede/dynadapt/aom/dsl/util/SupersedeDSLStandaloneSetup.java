@@ -28,8 +28,8 @@ import eu.supersede.dynadapt.lang.uml.UmlSupport;
 import eu.supersede.dynadapt.lang.yafmt.YafmtSupport;
 
 /**
- * This class provides a way to initialize support for running the ARTIST 
- * migration Xtext languages without the equinox extension registry.
+ * This class provides a way to initialize support for running the SUPERSEDE 
+ * DSL Xtext languages without the equinox extension registry.
  * 
  * @author Martin Fleck
  * @author Jesús Gorroñogoitia
@@ -38,7 +38,7 @@ public class SupersedeDSLStandaloneSetup {
 	private static boolean initialized = false;
 	
 	/**
-	 * This method initializes support for running the ARTIST migration Xtext
+	 * This method initializes support for running the SUPERSEDE DSL Xtext
 	 * languages without the equinox extension registry. Calling this method
 	 * creates the necessary injectors, registers the EMF packages of the 
 	 * languages and provides the necessary resource factory and service 

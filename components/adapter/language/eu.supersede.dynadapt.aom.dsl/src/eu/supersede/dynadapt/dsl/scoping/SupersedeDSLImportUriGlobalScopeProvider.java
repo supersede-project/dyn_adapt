@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 Vienna University of Technology.
+ * Copyright (c) 2014-2016 Vienna University of Technology.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,10 @@
  *
  * Contributors:
  * Martin Fleck (Vienna University of Technology) - initial API and implementation
+ * Jesús Gorroñogoitia (Atos Spain S.A.) - Adapted to Supersede project
  *
  * Initially developed in the context of ARTIST EU project www.artist-project.eu
+ * Adapted in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
 package eu.supersede.dynadapt.dsl.scoping;
 

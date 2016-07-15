@@ -9,7 +9,7 @@
             nameFilter="*.aspect"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               class="eu.supersede.dynadapt.aom.dsl.util.actions.ParseAdaptationModelDelegate"
+               class="eu.supersede.dynadapt.aom.dsl.parser.actions.ParseAdaptationModelDelegate"
                id="eu.supersede.dynadapt.aom.dsl.util.actions.ParseAdaptationModel"
                label="Parse Model"
                menubarPath="additions">
