@@ -16,10 +16,11 @@ Require-Bundle: eu.supersede.dynadapt.aom.dsl,
  org.eclipse.compare,
  org.eclipse.xtext.builder,
  org.eclipse.xtend.lib;resolution:=optional,
- org.eclipse.xtext.xbase.lib
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.common.types.ui;bundle-version="2.9.1"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: eu.supersede.dynadapt.aom.dsl.ui.internal,
  eu.supersede.dynadapt.dsl.ui.contentassist,
  eu.supersede.dynadapt.dsl.ui.quickfix
-Bundle-Activator: eu.supersede.dynadapt.aom.dsl.ui.internal.DslActivator
+Bundle-Activator: eu.supersede.dynadapt.aom.dsl.ui.internal.AspectActivator

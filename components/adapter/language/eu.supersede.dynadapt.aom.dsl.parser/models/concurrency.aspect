@@ -1,0 +1,18 @@
+aspect concurrency {
+	feature AtosUCFeatureModel.AtosUCFeatureModel.SmartPlatform.Behaviour.Concurrency,
+	advice AtosBaseModel,
+	pointcuts{
+		pointcut HSK_VM_Configuration{
+			pattern eu.supersede.dynadapt.atos.queries.CMSConfigurationInstances,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition replaceConfiguration{
+			feature_enabled true,
+			jointpointRole ADM.Joinpoint, 
+			adviceRole ADM.Advice,
+			action add
+		}
+	}
+}

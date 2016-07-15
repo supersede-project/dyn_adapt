@@ -11,5 +11,12 @@ public class YafmtSupport extends AbstractGenericResourceSupport {
 		// TODO Auto-generated method stub
 		return new YafmtRuntimeModule();
 	}
+	
+	/**
+	 * Initializes the Yafmt support for standalone applications.
+	 */
+	public static void doSetup() {
+		new YafmtSupport().preInvoke();
+	}
 
 }
