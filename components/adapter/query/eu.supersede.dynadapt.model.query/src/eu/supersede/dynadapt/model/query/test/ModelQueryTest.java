@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 
@@ -23,10 +24,12 @@ public class ModelQueryTest {
 	String patternModelPath = "./models/atos_queries.vql";
 	String patternFQN = "eu.supersede.dynadapt.atos.queries.nodeArtifacts";
 	IModelQuery modelQuery = null;
+	ModelManager modelManager = null;
 	
 	@Before
-	public void setUp() throws ViatraQueryException{		
-		modelQuery = new ModelQuery (modelPath);
+	public void setUp() throws Exception{	
+		modelManager = new ModelManager (modelPath);
+		modelQuery = new ModelQuery (modelManager);
 	}
 
 	@After
@@ -37,6 +40,7 @@ public class ModelQueryTest {
 	
 	@Test
 	public void modelQueryTest() throws ViatraQueryException {
+		Assert.assertNotNull(modelManager);
 		Assert.assertNotNull(modelQuery);
 		
 		Collection<? extends IPatternMatch> matches = modelQuery.query(patternFQN, patternModelPath);
