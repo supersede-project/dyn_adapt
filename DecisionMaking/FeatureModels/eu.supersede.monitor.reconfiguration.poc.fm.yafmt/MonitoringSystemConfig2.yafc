@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="MonitoringSystemConfig2" version="1.0.0">
+  <featureModel href="MonitoringSystem.yafm#/"/>
+  <featureModelCopy name="MonitoringSystem" version="1.0.0">
+    <rootFeature id="monitoringsystem" name="MonitoringSystem" lower="1" upper="1">
+      <feature id="Social_Networks_Monitor" name="Social_Networks_Monitor" lower="0" upper="1">
+        <feature id="Social_Mention_API" name="Twitter_Monitoring" lower="1" upper="1">
+          <feature id="Frequency" name="Frequency" lower="1" upper="1">
+            <group lower="1" upper="1">
+              <feature id="High" name="High" lower="0" upper="1"/>
+              <feature id="Medium" name="Medium" lower="0" upper="1"/>
+              <feature id="Low" name="Low" lower="0" upper="1"/>
+            </group>
+          </feature>
+          <feature id="f_2035383236" name="Parameters" lower="1" upper="1">
+            <feature id="Keywords" name="Keywords" lower="1" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="Event1" name="KGroup1" lower="0" upper="1"/>
+                <feature id="Event2" name="KGroup2" lower="0" upper="1"/>
+                <feature id="UC_Brand" name="KGroup3" lower="0" upper="1"/>
+              </group>
+            </feature>
+            <feature id="f_403360289" name="Accounts" lower="1" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="f_540100723" name="AGroup1" lower="0" upper="1"/>
+                <feature id="f_1480769757" name="AGroup2" lower="0" upper="1"/>
+              </group>
+            </feature>
+          </feature>
+        </feature>
+      </feature>
+      <feature id="M2" name="Market_Places_Monitor" lower="0" upper="1">
+        <feature id="f_1055104605" name="MarketPlaces_Monitoring" lower="1" upper="1">
+          <feature id="f_1301226087" name="Frequency" lower="1" upper="1">
+            <group lower="1" upper="1">
+              <feature id="f_1901936997" name="High" lower="0" upper="1"/>
+              <feature id="f_371095442" name="Medium" lower="0" upper="1"/>
+              <feature id="f_528130099" name="Low" lower="0" upper="1"/>
+            </group>
+          </feature>
+          <feature id="f_1386304351" name="Parameters" lower="1" upper="1">
+            <feature id="f_1254155463" name="Applications" lower="1" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="f_1425818986" name="AppGroup1" lower="0" upper="1"/>
+                <feature id="f_1529096352" name="AppGroup2" lower="0" upper="1"/>
+              </group>
+            </feature>
+          </feature>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="monitoringsystem">
+    <selection id="Social_Networks_Monitor">
+      <selection id="Social_Mention_API">
+        <selection id="Frequency">
+          <selection id="High"/>
+        </selection>
+        <selection id="f_2035383236">
+          <selection id="Keywords">
+            <selection id="Event2"/>
+          </selection>
+          <selection id="f_403360289">
+            <selection id="f_540100723"/>
+            <selection id="f_1480769757"/>
+          </selection>
+        </selection>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>
