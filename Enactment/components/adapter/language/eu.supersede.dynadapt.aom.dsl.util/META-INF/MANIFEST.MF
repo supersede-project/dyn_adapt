@@ -7,11 +7,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.xtext,
  eu.supersede.dynadapt.aom.dsl,
- org.eclipse.uml2.uml;bundle-version="5.1.2",
  org.eclipse.viatra.query.patternlanguage;bundle-version="1.2.1",
  cz.zcu.yafmt.model;bundle-version="0.3.0",
  org.eclipse.uml2.uml.resources;bundle-version="5.1.0",
  eu.supersede.dynadapt.lang.yafmt,
- eu.supersede.dynadapt.lang.uml
+ eu.supersede.dynadapt.lang.uml,
+ org.eclipse.uml2.uml.ecore.exporter;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: eu.supersede.dynadapt.aom.dsl.util
