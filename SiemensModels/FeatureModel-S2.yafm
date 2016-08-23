@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeatureModel-S2" version="1.0.0">
+  <rootFeature id="featuremodels2" name="Privacy management" lower="1" upper="1">
+    <group lower="1" upper="1">
+      <feature id="f_580715373" name="No privacy required" lower="0" upper="1"/>
+      <feature id="f_454673609" name="Privacy required" lower="0" upper="1">
+        <group lower="1" upper="-1">
+          <feature id="f_184581387" name="Transparency and awareness" lower="0" upper="1">
+            <group lower="1" upper="1">
+              <feature id="f_1916128760" name="Create a user managed repo" lower="0" upper="1">
+                <feature id="f_1964109331" name="Get data from user's managed repo" lower="1" upper="1"/>
+              </feature>
+              <feature id="f_1013507857" name="Assign central data protection body" lower="0" upper="1">
+                <feature id="f_412609402" name="Get data from cenral data protection body" lower="1" upper="1"/>
+              </feature>
+            </group>
+          </feature>
+          <feature id="f_235560521" name="User control" lower="0" upper="1">
+            <feature id="f_2024030168" name="Use privacy preference tools" lower="1" upper="1"/>
+          </feature>
+          <feature id="f_1483288986" name="Data minimization" lower="0" upper="1">
+            <feature id="f_1922181637" name="Use data minimization techniques" lower="1" upper="1"/>
+          </feature>
+          <feature id="f_799679152" name="Access control and encryption" lower="0" upper="1">
+            <group lower="1" upper="1">
+              <feature id="f_423349272" name="Store data with encryption or anonymization" lower="0" upper="1"/>
+              <feature id="f_1074271831" name="Delete data after TTL" lower="0" upper="1"/>
+            </group>
+          </feature>
+        </group>
+      </feature>
+    </group>
+  </rootFeature>
+</fm:featureModel>

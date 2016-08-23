@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Lley0GkjEeaAz74w8vLPEg" name="RootElement">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_LmRdAGkjEeaAz74w8vLPEg" name="Ensure data privacy (requirements: privacy required: transparency and awareness )" node="_kMNbgGkkEeaAz74w8vLPEg _lMZGIGkkEeaAz74w8vLPEg _zVPQIGkkEeaAz74w8vLPEg _z5LqsGkkEeaAz74w8vLPEg _3kcbgGkkEeaAz74w8vLPEg _B2_pYGklEeaAz74w8vLPEg _EVCZIGklEeaAz74w8vLPEg _GW_CwGklEeaAz74w8vLPEg _Oz_EQGklEeaAz74w8vLPEg">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Ho59oGklEeaAz74w8vLPEg" target="_zVPQIGkkEeaAz74w8vLPEg" source="_lMZGIGkkEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_IIBikGklEeaAz74w8vLPEg" name="[central protection]" target="_z5LqsGkkEeaAz74w8vLPEg" source="_zVPQIGkkEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Kku1kGklEeaAz74w8vLPEg" name="[user's own repo]" target="_3kcbgGkkEeaAz74w8vLPEg" source="_zVPQIGkkEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_NC-ZoGklEeaAz74w8vLPEg" target="_B2_pYGklEeaAz74w8vLPEg" source="_z5LqsGkkEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_NcNZAGklEeaAz74w8vLPEg" target="_EVCZIGklEeaAz74w8vLPEg" source="_3kcbgGkkEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_NxN_sGklEeaAz74w8vLPEg" target="_GW_CwGklEeaAz74w8vLPEg" source="_B2_pYGklEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_OIeCEGklEeaAz74w8vLPEg" target="_GW_CwGklEeaAz74w8vLPEg" source="_EVCZIGklEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_QFXMkGklEeaAz74w8vLPEg" target="_Oz_EQGklEeaAz74w8vLPEg" source="_GW_CwGklEeaAz74w8vLPEg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Q9nDMGklEeaAz74w8vLPEg" target="_lMZGIGkkEeaAz74w8vLPEg" source="_kMNbgGkkEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_kMNbgGkkEeaAz74w8vLPEg" name="" outgoing="_Q9nDMGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_lMZGIGkkEeaAz74w8vLPEg" name="Prompt for preferances" incoming="_Q9nDMGklEeaAz74w8vLPEg" outgoing="_Ho59oGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_zVPQIGkkEeaAz74w8vLPEg" name="" incoming="_Ho59oGklEeaAz74w8vLPEg" outgoing="_IIBikGklEeaAz74w8vLPEg _Kku1kGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_z5LqsGkkEeaAz74w8vLPEg" name="Assign central protection body" incoming="_IIBikGklEeaAz74w8vLPEg" outgoing="_NC-ZoGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_3kcbgGkkEeaAz74w8vLPEg" name="Create user managed repo" incoming="_Kku1kGklEeaAz74w8vLPEg" outgoing="_NcNZAGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_B2_pYGklEeaAz74w8vLPEg" name="Get data from the central body" incoming="_NC-ZoGklEeaAz74w8vLPEg" outgoing="_NxN_sGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_EVCZIGklEeaAz74w8vLPEg" name="Get data from the repo" incoming="_NcNZAGklEeaAz74w8vLPEg" outgoing="_OIeCEGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_GW_CwGklEeaAz74w8vLPEg" name="" incoming="_NxN_sGklEeaAz74w8vLPEg _OIeCEGklEeaAz74w8vLPEg" outgoing="_QFXMkGklEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_Oz_EQGklEeaAz74w8vLPEg" name="" incoming="_QFXMkGklEeaAz74w8vLPEg"/>
+  </packagedElement>
+</uml:Model>
