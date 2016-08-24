@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="__d4UcGhJEeaUmbAUinmY7w" name="RootElement">
+  <packagedElement xmi:type="uml:Activity" xmi:id="__m8w4GhJEeaUmbAUinmY7w" name="Get Meteorological Data (requirements: availability: above 90%, format: F1, quality of data: provided)" node="_gI038GhbEeaUmbAUinmY7w _WiFnMGhbEeaUmbAUinmY7w _OeDfUGhbEeaUmbAUinmY7w _FhRxkGhbEeaUmbAUinmY7w _5jMO8GhaEeaUmbAUinmY7w _3yUHMGhaEeaUmbAUinmY7w _1bSlcGhaEeaUmbAUinmY7w _k_ao4GhaEeaUmbAUinmY7w _m8ZvcGhZEeaUmbAUinmY7w _kKBucGhZEeaUmbAUinmY7w _NfID0GhZEeaUmbAUinmY7w _Ay1-cGhZEeaUmbAUinmY7w __iwPkGhYEeaUmbAUinmY7w _HC8gAGhYEeaUmbAUinmY7w _n_en8GhXEeaUmbAUinmY7w _PmJjEGhLEeaUmbAUinmY7w _HmlrgGhLEeaUmbAUinmY7w _FkEaIGhLEeaUmbAUinmY7w">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_36I4YGhYEeaUmbAUinmY7w" target="_HC8gAGhYEeaUmbAUinmY7w" source="_FkEaIGhLEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_4j0HgGhYEeaUmbAUinmY7w" target="_n_en8GhXEeaUmbAUinmY7w" source="_HC8gAGhYEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5O32sGhYEeaUmbAUinmY7w" name="[yes]" target="_HmlrgGhLEeaUmbAUinmY7w" source="_n_en8GhXEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Fg1XkGhZEeaUmbAUinmY7w" name="[no]" target="__iwPkGhYEeaUmbAUinmY7w" source="_n_en8GhXEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Gy1K8GhZEeaUmbAUinmY7w" target="_kKBucGhZEeaUmbAUinmY7w" source="__iwPkGhYEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_O8pKsGhZEeaUmbAUinmY7w" target="_NfID0GhZEeaUmbAUinmY7w" source="_Ay1-cGhZEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_zhdLcGhZEeaUmbAUinmY7w" name="[yes]" target="_m8ZvcGhZEeaUmbAUinmY7w" source="_kKBucGhZEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_0gAeYGhZEeaUmbAUinmY7w" target="_Ay1-cGhZEeaUmbAUinmY7w" source="_m8ZvcGhZEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_uXNesGhaEeaUmbAUinmY7w" name="[no]" target="_k_ao4GhaEeaUmbAUinmY7w" source="_kKBucGhZEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Hfr_AGhbEeaUmbAUinmY7w" target="_1bSlcGhaEeaUmbAUinmY7w" source="_k_ao4GhaEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Jm_CsGhbEeaUmbAUinmY7w" name="[yes]" target="_3yUHMGhaEeaUmbAUinmY7w" source="_1bSlcGhaEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_LCkP4GhbEeaUmbAUinmY7w" target="_5jMO8GhaEeaUmbAUinmY7w" source="_3yUHMGhaEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_LdAwMGhbEeaUmbAUinmY7w" target="_FhRxkGhbEeaUmbAUinmY7w" source="_5jMO8GhaEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Tfh1IGhbEeaUmbAUinmY7w" name="[no]" target="_OeDfUGhbEeaUmbAUinmY7w" source="_1bSlcGhaEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_YUwesGhbEeaUmbAUinmY7w" target="_WiFnMGhbEeaUmbAUinmY7w" source="_OeDfUGhbEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Y3TLEGhbEeaUmbAUinmY7w" target="_WiFnMGhbEeaUmbAUinmY7w" source="_FhRxkGhbEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_emoscGhbEeaUmbAUinmY7w" target="_NfID0GhZEeaUmbAUinmY7w" source="_WiFnMGhbEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_hYWmIGhbEeaUmbAUinmY7w" target="_gI038GhbEeaUmbAUinmY7w" source="_NfID0GhZEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_hyJmMGhbEeaUmbAUinmY7w" target="_PmJjEGhLEeaUmbAUinmY7w" source="_gI038GhbEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_iRHaIGhbEeaUmbAUinmY7w" target="_gI038GhbEeaUmbAUinmY7w" source="_HmlrgGhLEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_FkEaIGhLEeaUmbAUinmY7w" outgoing="_36I4YGhYEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_HmlrgGhLEeaUmbAUinmY7w" name="Service S1" incoming="_5O32sGhYEeaUmbAUinmY7w" outgoing="_iRHaIGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_PmJjEGhLEeaUmbAUinmY7w" incoming="_hyJmMGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_n_en8GhXEeaUmbAUinmY7w" incoming="_4j0HgGhYEeaUmbAUinmY7w" outgoing="_5O32sGhYEeaUmbAUinmY7w _Fg1XkGhZEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_HC8gAGhYEeaUmbAUinmY7w" name="Is Service S1 available?" incoming="_36I4YGhYEeaUmbAUinmY7w" outgoing="_4j0HgGhYEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="__iwPkGhYEeaUmbAUinmY7w" name="Are Services S2 and S5 avail.?" incoming="_Fg1XkGhZEeaUmbAUinmY7w" outgoing="_Gy1K8GhZEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_Ay1-cGhZEeaUmbAUinmY7w" name="Service S5 (format conversion)" incoming="_0gAeYGhZEeaUmbAUinmY7w" outgoing="_O8pKsGhZEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_NfID0GhZEeaUmbAUinmY7w" incoming="_O8pKsGhZEeaUmbAUinmY7w _emoscGhbEeaUmbAUinmY7w" outgoing="_hYWmIGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_kKBucGhZEeaUmbAUinmY7w" incoming="_Gy1K8GhZEeaUmbAUinmY7w" outgoing="_zhdLcGhZEeaUmbAUinmY7w _uXNesGhaEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_m8ZvcGhZEeaUmbAUinmY7w" name="Service S2" incoming="_zhdLcGhZEeaUmbAUinmY7w" outgoing="_0gAeYGhZEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_k_ao4GhaEeaUmbAUinmY7w" name="Are Services S3, S4, and S5 available?" incoming="_uXNesGhaEeaUmbAUinmY7w" outgoing="_Hfr_AGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_1bSlcGhaEeaUmbAUinmY7w" incoming="_Hfr_AGhbEeaUmbAUinmY7w" outgoing="_Jm_CsGhbEeaUmbAUinmY7w _Tfh1IGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_3yUHMGhaEeaUmbAUinmY7w" name="Service S3" incoming="_Jm_CsGhbEeaUmbAUinmY7w" outgoing="_LCkP4GhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_5jMO8GhaEeaUmbAUinmY7w" name="Service S4" incoming="_LCkP4GhbEeaUmbAUinmY7w" outgoing="_LdAwMGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_FhRxkGhbEeaUmbAUinmY7w" name="Service S5" incoming="_LdAwMGhbEeaUmbAUinmY7w" outgoing="_Y3TLEGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_OeDfUGhbEeaUmbAUinmY7w" name="Change service parameters" incoming="_Tfh1IGhbEeaUmbAUinmY7w" outgoing="_YUwesGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_WiFnMGhbEeaUmbAUinmY7w" name="" incoming="_YUwesGhbEeaUmbAUinmY7w _Y3TLEGhbEeaUmbAUinmY7w" outgoing="_emoscGhbEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_gI038GhbEeaUmbAUinmY7w" name="" incoming="_hYWmIGhbEeaUmbAUinmY7w _iRHaIGhbEeaUmbAUinmY7w" outgoing="_hyJmMGhbEeaUmbAUinmY7w"/>
+  </packagedElement>
+</uml:Model>

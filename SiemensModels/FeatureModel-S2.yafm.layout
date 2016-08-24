@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="129 20 131 30">
+    <key href="FeatureModel-S2.yafm#//@root"/>
+  </mapping>
+  <mapping value="46 99 120 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="231 101 120 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1"/>
+  </mapping>
+  <mapping/>
+  <mapping value="172 28 45 45">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0"/>
+  </mapping>
+  <mapping value="74 241 178 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="283 241 120 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="-213 429 300 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.0/@groups.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="112 430 234 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.0/@groups.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="140 249 45 45"/>
+  <mapping value="247 344 177 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="421 239 120 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="385 405 217 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.2/@features.0"/>
+  </mapping>
+  <mapping value="573 240 207 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.3"/>
+  </mapping>
+  <mapping value="495 334 281 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.3/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="746 379 187 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.3/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="654 248 45 45">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.3/@groups.0"/>
+  </mapping>
+  <mapping value="268 109 45 45">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0"/>
+  </mapping>
+  <mapping value="-118 311 231 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="126 309 188 30">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="140 249 45 45">
+    <key href="FeatureModel-S2.yafm#//@root/@groups.0/@features.1/@groups.0/@features.0/@groups.0"/>
+  </mapping>
+</layout:LayoutData>
