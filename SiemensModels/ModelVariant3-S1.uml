@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_YCO5YGhdEeaUmbAUinmY7w" name="RootElement">
-  <packagedElement xmi:type="uml:Activity" xmi:id="_YCrlUGhdEeaUmbAUinmY7w" name="Get Meteorological Data (requirements: availability: above 99%, format: F3, quality of data: not provided)" node="_mHC38GhdEeaUmbAUinmY7w _nABuYGhdEeaUmbAUinmY7w _rTd5gGhdEeaUmbAUinmY7w _r6HCwGhdEeaUmbAUinmY7w _tyeSkGhdEeaUmbAUinmY7w _0vAm4GhdEeaUmbAUinmY7w _3A_3oGhdEeaUmbAUinmY7w">
-    <edge xmi:type="uml:ControlFlow" xmi:id="_wvWTYGhdEeaUmbAUinmY7w" target="_nABuYGhdEeaUmbAUinmY7w" source="_mHC38GhdEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_xTb34GhdEeaUmbAUinmY7w" target="_rTd5gGhdEeaUmbAUinmY7w" source="_nABuYGhdEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_xnkU0GhdEeaUmbAUinmY7w" name="[no]" target="_tyeSkGhdEeaUmbAUinmY7w" source="_rTd5gGhdEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_yogNYGhdEeaUmbAUinmY7w" name="[yes]" target="_r6HCwGhdEeaUmbAUinmY7w" source="_rTd5gGhdEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_1o2Y8GhdEeaUmbAUinmY7w" target="_0vAm4GhdEeaUmbAUinmY7w" source="_tyeSkGhdEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_2GglUGhdEeaUmbAUinmY7w" target="_0vAm4GhdEeaUmbAUinmY7w" source="_r6HCwGhdEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_44CRwGhdEeaUmbAUinmY7w" target="_3A_3oGhdEeaUmbAUinmY7w" source="_0vAm4GhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:InitialNode" xmi:id="_mHC38GhdEeaUmbAUinmY7w" name="" outgoing="_wvWTYGhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_nABuYGhdEeaUmbAUinmY7w" name="Is Service S3 available?" incoming="_wvWTYGhdEeaUmbAUinmY7w" outgoing="_xTb34GhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:DecisionNode" xmi:id="_rTd5gGhdEeaUmbAUinmY7w" name="" incoming="_xTb34GhdEeaUmbAUinmY7w" outgoing="_xnkU0GhdEeaUmbAUinmY7w _yogNYGhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_r6HCwGhdEeaUmbAUinmY7w" name="Service S3" incoming="_yogNYGhdEeaUmbAUinmY7w" outgoing="_2GglUGhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_tyeSkGhdEeaUmbAUinmY7w" name="Change service parameters" incoming="_xnkU0GhdEeaUmbAUinmY7w" outgoing="_1o2Y8GhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:MergeNode" xmi:id="_0vAm4GhdEeaUmbAUinmY7w" name="" incoming="_1o2Y8GhdEeaUmbAUinmY7w _2GglUGhdEeaUmbAUinmY7w" outgoing="_44CRwGhdEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:ActivityFinalNode" xmi:id="_3A_3oGhdEeaUmbAUinmY7w" name="" incoming="_44CRwGhdEeaUmbAUinmY7w"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_daWyQGqaEea9j5eeGnhsGg" name="RootElement">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_da9PMGqaEea9j5eeGnhsGg" name="Get Meteorological Data (requirements: availability: above 90%, format: F1, quality of data: provided)" node="_poGhgGqaEea9j5eeGnhsGg _rXOVwGqaEea9j5eeGnhsGg _usLfYGqaEea9j5eeGnhsGg _wkrSEGqaEea9j5eeGnhsGg _zBM-4GqaEea9j5eeGnhsGg">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_0Pxq0GqaEea9j5eeGnhsGg" target="_rXOVwGqaEea9j5eeGnhsGg" source="_poGhgGqaEea9j5eeGnhsGg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_0svToGqaEea9j5eeGnhsGg" target="_usLfYGqaEea9j5eeGnhsGg" source="_rXOVwGqaEea9j5eeGnhsGg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_1IcYMGqaEea9j5eeGnhsGg" target="_wkrSEGqaEea9j5eeGnhsGg" source="_usLfYGqaEea9j5eeGnhsGg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_1hxeMGqaEea9j5eeGnhsGg" target="_zBM-4GqaEea9j5eeGnhsGg" source="_wkrSEGqaEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_poGhgGqaEea9j5eeGnhsGg" name="" outgoing="_0Pxq0GqaEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_rXOVwGqaEea9j5eeGnhsGg" name="Service S3" incoming="_0Pxq0GqaEea9j5eeGnhsGg" outgoing="_0svToGqaEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_usLfYGqaEea9j5eeGnhsGg" name="Service S4" incoming="_0svToGqaEea9j5eeGnhsGg" outgoing="_1IcYMGqaEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_wkrSEGqaEea9j5eeGnhsGg" name="Service S5" incoming="_1IcYMGqaEea9j5eeGnhsGg" outgoing="_1hxeMGqaEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_zBM-4GqaEea9j5eeGnhsGg" name="" incoming="_1hxeMGqaEea9j5eeGnhsGg"/>
   </packagedElement>
 </uml:Model>
