@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_shCZsGh6EeaUmbAUinmY7w" name="RootElement">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_shfFoGh6EeaUmbAUinmY7w" name="Data privacy management" node="_1aKhEGh7EeaUmbAUinmY7w _Zl-L8Gh8EeaUmbAUinmY7w _ls4zEGh_EeaUmbAUinmY7w _n9cgcGh_EeaUmbAUinmY7w __BMO4GquEea9j5eeGnhsGg">
+    <ownedBehavior xmi:type="uml:Activity" xmi:id="_B6nTEGqvEea9j5eeGnhsGg" name="Ensure privacy"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_tVrwcGh_EeaUmbAUinmY7w" target="_n9cgcGh_EeaUmbAUinmY7w" source="_ls4zEGh_EeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_o6-78GkdEeaAz74w8vLPEg" target="_ls4zEGh_EeaUmbAUinmY7w" source="_Zl-L8Gh8EeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_HgNpoGqvEea9j5eeGnhsGg" target="__BMO4GquEea9j5eeGnhsGg" source="_1aKhEGh7EeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_H7EZoGqvEea9j5eeGnhsGg" target="_Zl-L8Gh8EeaUmbAUinmY7w" source="__BMO4GquEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_1aKhEGh7EeaUmbAUinmY7w" name="" outgoing="_HgNpoGqvEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_Zl-L8Gh8EeaUmbAUinmY7w" name="Data extraction for the analytics APP" incoming="_H7EZoGqvEea9j5eeGnhsGg" outgoing="_o6-78GkdEeaAz74w8vLPEg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_ls4zEGh_EeaUmbAUinmY7w" name="Compute analytics" incoming="_o6-78GkdEeaAz74w8vLPEg" outgoing="_tVrwcGh_EeaUmbAUinmY7w"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_n9cgcGh_EeaUmbAUinmY7w" name="" incoming="_tVrwcGh_EeaUmbAUinmY7w"/>
+    <node xmi:type="uml:CallBehaviorAction" xmi:id="__BMO4GquEea9j5eeGnhsGg" name="Ensure data privacy" incoming="_HgNpoGqvEea9j5eeGnhsGg" outgoing="_H7EZoGqvEea9j5eeGnhsGg" behavior="_B6nTEGqvEea9j5eeGnhsGg"/>
+  </packagedElement>
+</uml:Model>
