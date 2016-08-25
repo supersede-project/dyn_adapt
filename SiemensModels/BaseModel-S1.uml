@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_I5_MQGYKEeaNFfJ_821P-Q" name="RootElement">
-  <packagedElement xmi:type="uml:Activity" xmi:id="_I9S-8GYKEeaNFfJ_821P-Q" name="SmartDataAnalyser" node="_LdtbUGYMEeaNFfJ_821P-Q _jVViUGYNEeaNFfJ_821P-Q _8E-r4GYNEeaNFfJ_821P-Q _HCh-kGYOEeaNFfJ_821P-Q _ImBKkGYOEeaNFfJ_821P-Q _K_cVgGYNEeaNFfJ_821P-Q _foN64GYOEeaNFfJ_821P-Q">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_I9S-8GYKEeaNFfJ_821P-Q" name="SmartDataAnalyser" isReentrant="true" node="_LdtbUGYMEeaNFfJ_821P-Q _8E-r4GYNEeaNFfJ_821P-Q _HCh-kGYOEeaNFfJ_821P-Q _ImBKkGYOEeaNFfJ_821P-Q _K_cVgGYNEeaNFfJ_821P-Q _foN64GYOEeaNFfJ_821P-Q _RfHHQGqlEea9j5eeGnhsGg">
+    <ownedBehavior xmi:type="uml:Activity" xmi:id="_bES40GqlEea9j5eeGnhsGg" name="Get Meteorological Data"/>
     <edge xmi:type="uml:ControlFlow" xmi:id="_BI0ZMGYOEeaNFfJ_821P-Q" target="_K_cVgGYNEeaNFfJ_821P-Q" source="_LdtbUGYMEeaNFfJ_821P-Q"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_CHHNcGYOEeaNFfJ_821P-Q" target="_jVViUGYNEeaNFfJ_821P-Q" source="_K_cVgGYNEeaNFfJ_821P-Q"/>
     <edge xmi:type="uml:ControlFlow" xmi:id="_CxzJMGYOEeaNFfJ_821P-Q" target="_8E-r4GYNEeaNFfJ_821P-Q" source="_K_cVgGYNEeaNFfJ_821P-Q"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_NHCesGYOEeaNFfJ_821P-Q" target="_HCh-kGYOEeaNFfJ_821P-Q" source="_jVViUGYNEeaNFfJ_821P-Q"/>
     <edge xmi:type="uml:ControlFlow" xmi:id="_NpFb0GYOEeaNFfJ_821P-Q" target="_HCh-kGYOEeaNFfJ_821P-Q" source="_8E-r4GYNEeaNFfJ_821P-Q"/>
     <edge xmi:type="uml:ControlFlow" xmi:id="_OWvzEGYOEeaNFfJ_821P-Q" target="_ImBKkGYOEeaNFfJ_821P-Q" source="_HCh-kGYOEeaNFfJ_821P-Q"/>
     <edge xmi:type="uml:ControlFlow" xmi:id="_hNU3gGYOEeaNFfJ_821P-Q" target="_foN64GYOEeaNFfJ_821P-Q" source="_ImBKkGYOEeaNFfJ_821P-Q"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_flQikGqlEea9j5eeGnhsGg" target="_RfHHQGqlEea9j5eeGnhsGg" source="_K_cVgGYNEeaNFfJ_821P-Q"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_gGUBMGqlEea9j5eeGnhsGg" target="_HCh-kGYOEeaNFfJ_821P-Q" source="_RfHHQGqlEea9j5eeGnhsGg"/>
     <node xmi:type="uml:InitialNode" xmi:id="_LdtbUGYMEeaNFfJ_821P-Q" outgoing="_BI0ZMGYOEeaNFfJ_821P-Q"/>
-    <node xmi:type="uml:ForkNode" xmi:id="_K_cVgGYNEeaNFfJ_821P-Q" incoming="_BI0ZMGYOEeaNFfJ_821P-Q" outgoing="_CHHNcGYOEeaNFfJ_821P-Q _CxzJMGYOEeaNFfJ_821P-Q"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_jVViUGYNEeaNFfJ_821P-Q" name="Get Meteorological Data" incoming="_CHHNcGYOEeaNFfJ_821P-Q" outgoing="_NHCesGYOEeaNFfJ_821P-Q"/>
+    <node xmi:type="uml:ForkNode" xmi:id="_K_cVgGYNEeaNFfJ_821P-Q" incoming="_BI0ZMGYOEeaNFfJ_821P-Q" outgoing="_CxzJMGYOEeaNFfJ_821P-Q _flQikGqlEea9j5eeGnhsGg"/>
     <node xmi:type="uml:OpaqueAction" xmi:id="_8E-r4GYNEeaNFfJ_821P-Q" name="Get Smart Meter Data" incoming="_CxzJMGYOEeaNFfJ_821P-Q" outgoing="_NpFb0GYOEeaNFfJ_821P-Q"/>
-    <node xmi:type="uml:JoinNode" xmi:id="_HCh-kGYOEeaNFfJ_821P-Q" incoming="_NHCesGYOEeaNFfJ_821P-Q _NpFb0GYOEeaNFfJ_821P-Q" outgoing="_OWvzEGYOEeaNFfJ_821P-Q"/>
+    <node xmi:type="uml:JoinNode" xmi:id="_HCh-kGYOEeaNFfJ_821P-Q" incoming="_NpFb0GYOEeaNFfJ_821P-Q _gGUBMGqlEea9j5eeGnhsGg" outgoing="_OWvzEGYOEeaNFfJ_821P-Q"/>
     <node xmi:type="uml:OpaqueAction" xmi:id="_ImBKkGYOEeaNFfJ_821P-Q" name="Correlation Analysis" incoming="_OWvzEGYOEeaNFfJ_821P-Q" outgoing="_hNU3gGYOEeaNFfJ_821P-Q"/>
     <node xmi:type="uml:ActivityFinalNode" xmi:id="_foN64GYOEeaNFfJ_821P-Q" incoming="_hNU3gGYOEeaNFfJ_821P-Q"/>
+    <node xmi:type="uml:CallBehaviorAction" xmi:id="_RfHHQGqlEea9j5eeGnhsGg" name="Get Mteorological Data" incoming="_flQikGqlEea9j5eeGnhsGg" outgoing="_gGUBMGqlEea9j5eeGnhsGg" behavior="_bES40GqlEea9j5eeGnhsGg"/>
   </packagedElement>
 </uml:Model>

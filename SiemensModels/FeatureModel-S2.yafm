@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeatureModel-S2" version="1.0.0">
   <rootFeature id="featuremodels2" name="Privacy management" lower="1" upper="1">
-    <group lower="1" upper="1">
-      <feature id="f_580715373" name="No privacy required" lower="0" upper="1"/>
-      <feature id="f_454673609" name="Privacy required" lower="0" upper="1">
-        <group lower="1" upper="-1">
-          <feature id="f_184581387" name="Transparency and awareness" lower="0" upper="1">
-            <group lower="1" upper="1">
-              <feature id="f_1916128760" name="Create a user managed repo" lower="0" upper="1">
-                <feature id="f_1964109331" name="Get data from user's managed repo" lower="1" upper="1"/>
-              </feature>
-              <feature id="f_1013507857" name="Assign central data protection body" lower="0" upper="1">
-                <feature id="f_412609402" name="Get data from cenral data protection body" lower="1" upper="1"/>
-              </feature>
+    <feature id="f_454673609" name="Privacy preserving techniques" lower="1" upper="-1">
+      <attribute id="a_1498391605" name="Time to live" type="double"/>
+      <group lower="1" upper="1">
+        <feature id="f_184581387" name="Transparency and awareness" lower="0" upper="1">
+          <feature id="f_1916128760" name="User managed repository" lower="1" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="f_1964109331" name="Create user account" lower="0" upper="1"/>
+              <feature id="f_517745290" name="Choose storage type" lower="0" upper="1"/>
+              <feature id="f_2029816126" name="Manage storage" lower="0" upper="1"/>
             </group>
           </feature>
-          <feature id="f_235560521" name="User control" lower="0" upper="1">
-            <feature id="f_2024030168" name="Use privacy preference tools" lower="1" upper="1"/>
-          </feature>
-          <feature id="f_1483288986" name="Data minimization" lower="0" upper="1">
-            <feature id="f_1922181637" name="Use data minimization techniques" lower="1" upper="1"/>
-          </feature>
-          <feature id="f_799679152" name="Access control and encryption" lower="0" upper="1">
-            <group lower="1" upper="1">
-              <feature id="f_423349272" name="Store data with encryption or anonymization" lower="0" upper="1"/>
-              <feature id="f_1074271831" name="Delete data after TTL" lower="0" upper="1"/>
-            </group>
-          </feature>
-        </group>
-      </feature>
-    </group>
+        </feature>
+        <feature id="f_235560521" name="Anonimization" lower="0" upper="1">
+          <group lower="1" upper="1">
+            <feature id="f_180131077" name="Substitution" lower="0" upper="1">
+              <attribute id="a_1344505727" name="list size" type="integer"/>
+            </feature>
+            <feature id="f_1483288986" name="Aggregation" lower="0" upper="1">
+              <attribute id="a_1127862858" name="aggregation function" type="string"/>
+            </feature>
+            <feature id="f_2024030168" name="Encryption" lower="0" upper="1">
+              <attribute id="a_322152900" name="schema" type="string"/>
+            </feature>
+            <feature id="f_1989146050" name="Minimization" lower="0" upper="1"/>
+            <feature id="f_803541413" name="Randomization" lower="0" upper="1"/>
+          </group>
+        </feature>
+      </group>
+    </feature>
   </rootFeature>
 </fm:featureModel>
