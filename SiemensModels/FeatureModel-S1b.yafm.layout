@@ -70,72 +70,72 @@
     <key href="FeatureModel.yafm#//@root/@features.1/@features.3/@features.0"/>
   </mapping>
   <mapping value="471 429 45 45">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.0/@groups.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.4/@groups.0"/>
   </mapping>
   <mapping value="1337 549 45 45">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.2/@groups.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.2/@groups.0"/>
   </mapping>
   <mapping value="1753 669 45 45">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3/@features.1/@groups.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3/@features.1/@groups.0"/>
   </mapping>
   <mapping value="923 15 159 30">
     <key href="FeatureModel-S1b.yafm#//@root"/>
   </mapping>
   <mapping value="443 421 104 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.4"/>
   </mapping>
   <mapping value="277 541 106 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.0/@groups.0/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.4/@groups.0/@features.0"/>
   </mapping>
   <mapping value="398 541 138 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.0/@groups.0/@features.1"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.4/@groups.0/@features.1"/>
   </mapping>
   <mapping value="551 541 161 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.0/@groups.0/@features.2"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.4/@groups.0/@features.2"/>
   </mapping>
-  <mapping value="1264 421 159 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1"/>
+  <mapping value="1367 342 190 63">
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3"/>
   </mapping>
   <mapping value="841 541 131 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.0"/>
   </mapping>
   <mapping value="749 661 149 53">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.0/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.0/@features.0"/>
   </mapping>
   <mapping value="913 661 149 53">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.0/@features.1"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.0/@features.1"/>
   </mapping>
   <mapping value="1085 541 149 53">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.1"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.1"/>
   </mapping>
   <mapping value="1306 541 115 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.2"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.2"/>
   </mapping>
   <mapping value="1256 661 90 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.2/@groups.0/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.2/@groups.0/@features.0"/>
   </mapping>
   <mapping value="1361 661 108 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.2/@groups.0/@features.1"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.2/@groups.0/@features.1"/>
   </mapping>
   <mapping value="1673 541 90 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3"/>
   </mapping>
   <mapping value="1499 661 106 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3/@features.0"/>
   </mapping>
   <mapping value="1720 661 116 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3/@features.1"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3/@features.1"/>
   </mapping>
   <mapping value="1627 781 90 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3/@features.1/@groups.0/@features.0"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3/@features.1/@groups.0/@features.0"/>
   </mapping>
   <mapping value="1732 781 90 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3/@features.1/@groups.0/@features.1"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3/@features.1/@groups.0/@features.1"/>
   </mapping>
   <mapping value="1837 781 90 30">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0/@features.1/@features.3/@features.1/@groups.0/@features.2"/>
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@features.3/@features.1/@groups.0/@features.2"/>
   </mapping>
-  <mapping value="1037 255 149 76">
+  <mapping value="1023 228 175 129">
     <key href="FeatureModel-S1b.yafm#//@root/@features.1/@features.0"/>
   </mapping>
   <mapping value="64 255 149 53">
@@ -150,5 +150,8 @@
   </mapping>
   <mapping value="50 398 175 63">
     <key href="FeatureModel-S1b.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="1382 137 175 85">
+    <key href="FeatureModel-S1b.yafm#//@root/@features.2"/>
   </mapping>
 </layout:LayoutData>
