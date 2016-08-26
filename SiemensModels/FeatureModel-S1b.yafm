@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeatureModel" version="1.0.0" description="Supersede feature model">
+  <rootFeature id="featuremodel" name="Service management" lower="1" upper="1">
+    <feature id="f_1219897384" name="Service Compositions" lower="1" upper="1">
+      <feature id="f_1197131323" name="Composition variant" lower="1" upper="-1">
+        <attribute id="a_2139899001" name="name" type="string"/>
+        <feature id="service_task" name="Service Task" lower="1" upper="-1">
+          <attribute id="a_499629862" name="service instance" type="string"/>
+        </feature>
+      </feature>
+    </feature>
+    <feature id="f_340449501" name="Service Repository" lower="1" upper="1">
+      <feature id="service_instance" name="Service instance" lower="1" upper="-1">
+        <attribute id="a_1292782839" name="name" type="string"/>
+        <attribute id="a_1638379754" name="endpoint" type="string"/>
+        <feature id="f_1624340703" name="Service type" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="f_1044909881" name="Meteorology" lower="0" upper="1"/>
+            <feature id="f_1816037924" name="Format conversion" lower="0" upper="1"/>
+            <feature id="f_1679672486" name="Data quality evaluation" lower="0" upper="1"/>
+          </group>
+        </feature>
+        <feature id="f_1357124429" name="Service characteristics" lower="1" upper="1">
+          <feature id="f_225262360" name="Quality of service" lower="1" upper="1">
+            <feature id="f_1795115956" name="Availability" lower="1" upper="1">
+              <attribute id="a_459657206" name="availability" type="integer"/>
+            </feature>
+            <feature id="f_1241007622" name="Response time" lower="1" upper="1">
+              <attribute id="a_708104329" name="reponse time" type="double"/>
+            </feature>
+          </feature>
+          <feature id="f_641418278" name="Price" lower="1" upper="1">
+            <attribute id="a_1993625124" name="price" type="double"/>
+          </feature>
+          <feature id="f_1891041792" name="Quality of data" lower="0" upper="1">
+            <group lower="1" upper="1">
+              <feature id="f_906590893" name="Provided" lower="0" upper="1"/>
+              <feature id="f_517030459" name="Not provided" lower="0" upper="1"/>
+            </group>
+          </feature>
+          <feature id="f_1215574173" name="Format" lower="1" upper="1">
+            <feature id="f_321765729" name="Input format" lower="0" upper="1"/>
+            <feature id="f_1608357468" name="Output format" lower="1" upper="1">
+              <group lower="1" upper="1">
+                <feature id="f_758556272" name="F1" lower="0" upper="1"/>
+                <feature id="f_951995279" name="F2" lower="0" upper="1"/>
+                <feature id="f_1070267471" name="F3" lower="0" upper="1"/>
+              </group>
+            </feature>
+          </feature>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+  <constraint value="service_task implies service_instance" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+</fm:featureModel>
