@@ -4,8 +4,9 @@
   <featureModelCopy name="FeatureModel" version="1.0.0" description="Supersede feature model">
     <rootFeature id="featuremodel" name="Service management" lower="1" upper="1">
       <feature id="f_1219897384" name="Service Compositions" lower="1" upper="1">
-        <feature id="f_1197131323" name="Composition variant" lower="1" upper="-1">
+        <feature id="composition_variant" name="Composition variant" lower="1" upper="-1">
           <attribute id="a_2139899001" name="name" type="string"/>
+          <attribute id="a_1646182181" name="behaviour" type="string"/>
           <feature id="service_task" name="Service Task" lower="1" upper="-1">
             <attribute id="a_499629862" name="service instance" type="string"/>
           </feature>
@@ -15,57 +16,77 @@
         <feature id="service_instance" name="Service instance" lower="1" upper="-1">
           <attribute id="a_1292782839" name="name" type="string"/>
           <attribute id="a_1638379754" name="endpoint" type="string"/>
-          <feature id="f_1624340703" name="Service type" lower="1" upper="1">
-            <group lower="1" upper="1">
-              <feature id="f_1044909881" name="Meteorology" lower="0" upper="1"/>
-              <feature id="f_1816037924" name="Format conversion" lower="0" upper="1"/>
-              <feature id="f_1679672486" name="Data quality evaluation" lower="0" upper="1"/>
-            </group>
-          </feature>
-          <feature id="f_1357124429" name="Service characteristics" lower="1" upper="1">
-            <feature id="f_225262360" name="Quality of service" lower="1" upper="1">
-              <feature id="f_1795115956" name="Availability" lower="1" upper="1">
+          <attribute id="a_1466612885" name="characteristics" type="string"/>
+          <attribute id="a_945505381" name="type" type="string"/>
+        </feature>
+      </feature>
+      <feature id="service_behavior" name="Service Behavior" lower="1" upper="-1">
+        <attribute id="a_1150323955" name="characteristics" type="string"/>
+        <attribute id="a_1410393087" name="type" type="string"/>
+        <attribute id="a_1749280998" name="name" type="string"/>
+      </feature>
+      <feature id="service_characteristics" name="Service characteristics" lower="1" upper="-1">
+        <attribute id="a_651741399" name="name" type="string"/>
+        <group lower="1" upper="-1">
+          <feature id="f_225262360" name="Quality of service" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="f_1795115956" name="Availability" lower="0" upper="1">
                 <attribute id="a_459657206" name="availability" type="integer"/>
               </feature>
-              <feature id="f_1241007622" name="Response time" lower="1" upper="1">
+              <feature id="f_1241007622" name="Response time" lower="0" upper="1">
                 <attribute id="a_708104329" name="reponse time" type="double"/>
               </feature>
-            </feature>
-            <feature id="f_641418278" name="Price" lower="1" upper="1">
-              <attribute id="a_1993625124" name="price" type="double"/>
-            </feature>
-            <feature id="f_1891041792" name="Quality of data" lower="0" upper="1">
+            </group>
+          </feature>
+          <feature id="f_641418278" name="Price" lower="0" upper="1">
+            <attribute id="a_1993625124" name="price" type="double"/>
+          </feature>
+          <feature id="f_1215574173" name="Format" lower="0" upper="1">
+            <feature id="f_321765729" name="Input format" lower="0" upper="1"/>
+            <feature id="f_1608357468" name="Output format" lower="1" upper="1">
               <group lower="1" upper="1">
-                <feature id="f_906590893" name="Provided" lower="0" upper="1"/>
-                <feature id="f_517030459" name="Not provided" lower="0" upper="1"/>
+                <feature id="f_758556272" name="F1" lower="0" upper="1"/>
+                <feature id="f_951995279" name="F2" lower="0" upper="1"/>
+                <feature id="f_1070267471" name="F3" lower="0" upper="1"/>
               </group>
             </feature>
-            <feature id="f_1215574173" name="Format" lower="1" upper="1">
-              <feature id="f_321765729" name="Input format" lower="0" upper="1"/>
-              <feature id="f_1608357468" name="Output format" lower="1" upper="1">
-                <group lower="1" upper="1">
-                  <feature id="f_758556272" name="F1" lower="0" upper="1"/>
-                  <feature id="f_951995279" name="F2" lower="0" upper="1"/>
-                  <feature id="f_1070267471" name="F3" lower="0" upper="1"/>
-                </group>
-              </feature>
-            </feature>
           </feature>
-        </feature>
+          <feature id="f_1891041792" name="Quality of data" lower="0" upper="1">
+            <group lower="1" upper="1">
+              <feature id="f_906590893" name="Provided" lower="0" upper="1"/>
+              <feature id="f_517030459" name="Not provided" lower="0" upper="1"/>
+            </group>
+          </feature>
+        </group>
+      </feature>
+      <feature id="service_type" name="Service type" lower="1" upper="-1">
+        <attribute id="a_325048499" name="name" type="string"/>
+        <group lower="1" upper="1">
+          <feature id="f_1044909881" name="Meteorology" lower="0" upper="1"/>
+          <feature id="f_1816037924" name="Format conversion" lower="0" upper="1"/>
+          <feature id="f_1679672486" name="Data quality evaluation" lower="0" upper="1"/>
+        </group>
       </feature>
     </rootFeature>
     <constraint value="service_task implies service_instance" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="service_behavior implies service_characteristics" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="service_behavior implies service_type" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="service_instance implies service_type" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="service_instance implies service_characteristics" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="composition_variant implies service_behavior" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
   </featureModelCopy>
   <rootSelection id="featuremodel">
     <selection id="f_1219897384">
-      <selection id="f_1197131323">
-        <attributeValue xsi:type="fc:string" id="a_2139899001" value="Variant 1"/>
+      <selection id="composition_variant">
+        <attributeValue xsi:type="fc:string" id="a_2139899001" value="V1"/>
+        <attributeValue xsi:type="fc:string" id="a_1646182181" value="B1"/>
         <selection id="service_task">
           <attributeValue xsi:type="fc:string" id="a_499629862" value="S1"/>
         </selection>
       </selection>
-      <selection id="f_1197131323">
-        <attributeValue xsi:type="fc:string" id="a_2139899001" value="Variant 2"/>
+      <selection id="composition_variant">
+        <attributeValue xsi:type="fc:string" id="a_2139899001" value="V2"/>
+        <attributeValue xsi:type="fc:string" id="a_1646182181" value="B2"/>
         <selection id="service_task">
           <attributeValue xsi:type="fc:string" id="a_499629862" value="S2"/>
         </selection>
@@ -73,8 +94,9 @@
           <attributeValue xsi:type="fc:string" id="a_499629862" value="S5"/>
         </selection>
       </selection>
-      <selection id="f_1197131323">
-        <attributeValue xsi:type="fc:string" id="a_2139899001" value="Variant 3"/>
+      <selection id="composition_variant">
+        <attributeValue xsi:type="fc:string" id="a_2139899001" value="V3"/>
+        <attributeValue xsi:type="fc:string" id="a_1646182181" value="B1"/>
         <selection id="service_task">
           <attributeValue xsi:type="fc:string" id="a_499629862" value="S3"/>
         </selection>
@@ -85,145 +107,227 @@
           <attributeValue xsi:type="fc:string" id="a_499629862" value="S5"/>
         </selection>
       </selection>
+      <selection id="composition_variant">
+        <attributeValue xsi:type="fc:string" id="a_2139899001" value="V4"/>
+        <attributeValue xsi:type="fc:string" id="a_1646182181" value="B3"/>
+        <selection id="service_task">
+          <attributeValue xsi:type="fc:string" id="a_499629862" value="S3"/>
+        </selection>
+      </selection>
     </selection>
     <selection id="f_340449501">
       <selection id="service_instance">
         <attributeValue xsi:type="fc:string" id="a_1292782839" value="S1"/>
         <attributeValue xsi:type="fc:string" id="a_1638379754" value="http://localhost:8080/foo/mywebservice1"/>
-        <selection id="f_1624340703">
-          <selection id="f_1044909881"/>
-        </selection>
-        <selection id="f_1357124429">
-          <selection id="f_225262360">
-            <selection id="f_1795115956">
-              <attributeValue xsi:type="fc:integer" id="a_459657206" value="95"/>
-            </selection>
-            <selection id="f_1241007622">
-              <attributeValue xsi:type="fc:double" id="a_708104329" value="0.1"/>
-            </selection>
-          </selection>
-          <selection id="f_641418278">
-            <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.5"/>
-          </selection>
-          <selection id="f_1891041792">
-            <selection id="f_906590893"/>
-          </selection>
-          <selection id="f_1215574173">
-            <selection id="f_1608357468">
-              <selection id="f_758556272"/>
-            </selection>
-          </selection>
-        </selection>
+        <attributeValue xsi:type="fc:string" id="a_1466612885" value="C1"/>
+        <attributeValue xsi:type="fc:string" id="a_945505381" value="T1"/>
       </selection>
       <selection id="service_instance">
         <attributeValue xsi:type="fc:string" id="a_1292782839" value="S2"/>
         <attributeValue xsi:type="fc:string" id="a_1638379754" value="http://localhost:8080/foo/mywebservice2"/>
-        <selection id="f_1624340703">
-          <selection id="f_1044909881"/>
-        </selection>
-        <selection id="f_1357124429">
-          <selection id="f_225262360">
-            <selection id="f_1795115956">
-              <attributeValue xsi:type="fc:integer" id="a_459657206" value="90"/>
-            </selection>
-            <selection id="f_1241007622">
-              <attributeValue xsi:type="fc:double" id="a_708104329" value="0.05"/>
-            </selection>
-          </selection>
-          <selection id="f_641418278">
-            <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.4"/>
-          </selection>
-          <selection id="f_1891041792">
-            <selection id="f_906590893"/>
-          </selection>
-          <selection id="f_1215574173">
-            <selection id="f_1608357468">
-              <selection id="f_951995279"/>
-            </selection>
-          </selection>
-        </selection>
+        <attributeValue xsi:type="fc:string" id="a_1466612885" value="C2"/>
+        <attributeValue xsi:type="fc:string" id="a_945505381" value="T1"/>
       </selection>
       <selection id="service_instance">
         <attributeValue xsi:type="fc:string" id="a_1292782839" value="S3"/>
         <attributeValue xsi:type="fc:string" id="a_1638379754" value="http://localhost:8080/foo/mywebservice3"/>
-        <selection id="f_1624340703">
-          <selection id="f_1044909881"/>
-        </selection>
-        <selection id="f_1357124429">
-          <selection id="f_225262360">
-            <selection id="f_1795115956">
-              <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
-            </selection>
-            <selection id="f_1241007622">
-              <attributeValue xsi:type="fc:double" id="a_708104329" value="0.1"/>
-            </selection>
-          </selection>
-          <selection id="f_641418278">
-            <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.06"/>
-          </selection>
-          <selection id="f_1891041792">
-            <selection id="f_517030459"/>
-          </selection>
-          <selection id="f_1215574173">
-            <selection id="f_1608357468">
-              <selection id="f_1070267471"/>
-            </selection>
-          </selection>
-        </selection>
+        <attributeValue xsi:type="fc:string" id="a_1466612885" value="C3"/>
+        <attributeValue xsi:type="fc:string" id="a_945505381" value="T3"/>
       </selection>
       <selection id="service_instance">
         <attributeValue xsi:type="fc:string" id="a_1292782839" value="S4"/>
         <attributeValue xsi:type="fc:string" id="a_1638379754" value="http://localhost:8080/foo/mywebservice4"/>
-        <selection id="f_1624340703">
-          <selection id="f_1679672486"/>
-        </selection>
-        <selection id="f_1357124429">
-          <selection id="f_225262360">
-            <selection id="f_1795115956">
-              <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
-            </selection>
-            <selection id="f_1241007622">
-              <attributeValue xsi:type="fc:double" id="a_708104329" value="0.01"/>
-            </selection>
-          </selection>
-          <selection id="f_641418278">
-            <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.05"/>
-          </selection>
-          <selection id="f_1891041792">
-            <selection id="f_906590893"/>
-          </selection>
-          <selection id="f_1215574173">
-            <selection id="f_1608357468">
-              <selection id="f_1070267471"/>
-            </selection>
-          </selection>
-        </selection>
+        <attributeValue xsi:type="fc:string" id="a_1466612885" value="C4"/>
+        <attributeValue xsi:type="fc:string" id="a_945505381" value="T2"/>
       </selection>
       <selection id="service_instance">
         <attributeValue xsi:type="fc:string" id="a_1292782839" value="S5"/>
         <attributeValue xsi:type="fc:string" id="a_1638379754" value="http://localhost:8080/foo/mywebservice5"/>
-        <selection id="f_1624340703">
-          <selection id="f_1816037924"/>
+        <attributeValue xsi:type="fc:string" id="a_1466612885" value="C5"/>
+        <attributeValue xsi:type="fc:string" id="a_945505381" value="T3"/>
+      </selection>
+    </selection>
+    <selection id="service_behavior">
+      <attributeValue xsi:type="fc:string" id="a_1150323955" value="C6"/>
+      <attributeValue xsi:type="fc:string" id="a_1410393087" value="T1"/>
+      <attributeValue xsi:type="fc:string" id="a_1749280998" value="B1"/>
+    </selection>
+    <selection id="service_behavior">
+      <attributeValue xsi:type="fc:string" id="a_1150323955" value="C7"/>
+      <attributeValue xsi:type="fc:string" id="a_1410393087" value="T1"/>
+      <attributeValue xsi:type="fc:string" id="a_1749280998" value="B2"/>
+    </selection>
+    <selection id="service_behavior">
+      <attributeValue xsi:type="fc:string" id="a_1150323955" value="C8"/>
+      <attributeValue xsi:type="fc:string" id="a_1410393087" value="T3"/>
+      <attributeValue xsi:type="fc:string" id="a_1749280998" value="B3"/>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C1"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="95"/>
         </selection>
-        <selection id="f_1357124429">
-          <selection id="f_225262360">
-            <selection id="f_1795115956">
-              <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
-            </selection>
-            <selection id="f_1241007622">
-              <attributeValue xsi:type="fc:double" id="a_708104329" value="0.02"/>
-            </selection>
-          </selection>
-          <selection id="f_641418278">
-            <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.05"/>
-          </selection>
-          <selection id="f_1215574173">
-            <selection id="f_1608357468">
-              <selection id="f_758556272"/>
-            </selection>
-          </selection>
+        <selection id="f_1241007622">
+          <attributeValue xsi:type="fc:double" id="a_708104329" value="0.1"/>
         </selection>
       </selection>
+      <selection id="f_641418278">
+        <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.5"/>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_758556272"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_906590893"/>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C2"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="90"/>
+        </selection>
+        <selection id="f_1241007622">
+          <attributeValue xsi:type="fc:double" id="a_708104329" value="0.05"/>
+        </selection>
+      </selection>
+      <selection id="f_641418278">
+        <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.4"/>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_951995279"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_906590893"/>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C3"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
+        </selection>
+        <selection id="f_1241007622">
+          <attributeValue xsi:type="fc:double" id="a_708104329" value="0.1"/>
+        </selection>
+      </selection>
+      <selection id="f_641418278">
+        <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.06"/>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_1070267471"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_517030459"/>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C4"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
+        </selection>
+        <selection id="f_1241007622">
+          <attributeValue xsi:type="fc:double" id="a_708104329" value="0.01"/>
+        </selection>
+      </selection>
+      <selection id="f_641418278">
+        <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.05"/>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_1070267471"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_906590893"/>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C5"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
+        </selection>
+        <selection id="f_1241007622">
+          <attributeValue xsi:type="fc:double" id="a_708104329" value="0.02"/>
+        </selection>
+      </selection>
+      <selection id="f_641418278">
+        <attributeValue xsi:type="fc:double" id="a_1993625124" value="0.05"/>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_758556272"/>
+        </selection>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C6"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="90"/>
+        </selection>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_758556272"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_906590893"/>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C7"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="95"/>
+        </selection>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_758556272"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_906590893"/>
+      </selection>
+    </selection>
+    <selection id="service_characteristics">
+      <attributeValue xsi:type="fc:string" id="a_651741399" value="C8"/>
+      <selection id="f_225262360">
+        <selection id="f_1795115956">
+          <attributeValue xsi:type="fc:integer" id="a_459657206" value="99"/>
+        </selection>
+      </selection>
+      <selection id="f_1215574173">
+        <selection id="f_1608357468">
+          <selection id="f_1070267471"/>
+        </selection>
+      </selection>
+      <selection id="f_1891041792">
+        <selection id="f_517030459"/>
+      </selection>
+    </selection>
+    <selection id="service_type">
+      <attributeValue xsi:type="fc:string" id="a_325048499" value="T1"/>
+      <selection id="f_1044909881"/>
+    </selection>
+    <selection id="service_type">
+      <attributeValue xsi:type="fc:string" id="a_325048499" value="T2"/>
+      <selection id="f_1679672486"/>
+    </selection>
+    <selection id="service_type">
+      <attributeValue xsi:type="fc:string" id="a_325048499" value="T3"/>
+      <selection id="f_1816037924"/>
     </selection>
   </rootSelection>
 </fc:FeatureConfiguration>
