@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="602 16 185 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root"/>
+  </mapping>
+  <mapping value="424 124 138 57">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="177 301 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="120 395 157 133">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="-54 395 149 114">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="327 412 143 76">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.3"/>
+  </mapping>
+  <mapping value="317 603 104 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.3/@features.0"/>
+  </mapping>
+  <mapping value="524 606 108 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.3/@features.1"/>
+  </mapping>
+  <mapping value="519 530 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.3/@features.2"/>
+  </mapping>
+  <mapping value="-61 262 122 95">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="504 306 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="591 379 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="503 423 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="353 305 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="785 364 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.3"/>
+  </mapping>
+  <mapping value="673 439 153 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.3/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="769 489 149 57">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.3/@groups.0/@features.1"/>
+  </mapping>
+  <mapping/>
+  <mapping value="822 372 45 45">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.3/@groups.0"/>
+  </mapping>
+  <mapping value="214 309 45 45"/>
+  <mapping value="12 488 45 45"/>
+  <mapping value="963 366 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.4"/>
+  </mapping>
+  <mapping value="899 437 99 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.4/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1030 439 99 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.4/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="1000 374 45 45">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.4/@groups.0"/>
+  </mapping>
+  <mapping value="116 110 163 76">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.5"/>
+  </mapping>
+  <mapping value="1228 321 45 45"/>
+  <mapping value="1383 319 45 45"/>
+  <mapping value="845 525 45 45"/>
+  <mapping value="543 491 139 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.3/@features.4"/>
+  </mapping>
+  <mapping value="379 564 135 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.0/@features.0/@features.3/@features.3"/>
+  </mapping>
+  <mapping value="157 97 45 45"/>
+  <mapping value="157 97 45 45"/>
+  <mapping value="157 97 45 45"/>
+  <mapping value="900 144 45 45"/>
+  <mapping value="870 120 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.1"/>
+  </mapping>
+  <mapping value="781 186 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="872 231 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.1/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="957 183 120 30">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="907 128 45 45">
+    <key href="FeedbackGatheringConfig.yafm#//@root/@features.1/@groups.0"/>
+  </mapping>
+</layout:LayoutData>

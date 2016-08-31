@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel>
+		<properties/>
+		<struct>
+			<and abstract="true" mandatory="true" name="eusupersededynadaptatosfeatures">
+				<description>
+					
+				</description>
+				<and abstract="true" name="SmartPlayer">
+					<description>
+						
+					</description>
+					<and abstract="true" mandatory="true" name="SP Specification">
+						<description>
+							
+						</description>
+						<and name="QoS">
+							<description>
+								
+							</description>
+							<feature name="System Health">
+								<description>
+									
+								</description>
+							</feature>
+							<and name="Performance">
+								<description>
+									
+								</description>
+								<feature name="Peak Detection">
+									<description>
+										
+									</description>
+								</feature>
+							</and>
+							<alt name="Latency">
+								<description>
+									
+								</description>
+								<feature mandatory="true" name="Low CDN Latency">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="Average CDN latency">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="High CDN Latency">
+									<description>
+										
+									</description>
+								</feature>
+							</alt>
+							<alt name="Request load">
+								<description>
+									
+								</description>
+								<feature mandatory="true" name="Low load">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="Average load">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="High load">
+									<description>
+										
+									</description>
+								</feature>
+							</alt>
+						</and>
+						<and name="Security">
+							<description>
+								
+							</description>
+							<or name="Piracy intrusion">
+								<description>
+									
+								</description>
+								<feature mandatory="true" name="Detected">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="Notified">
+									<description>
+										
+									</description>
+								</feature>
+							</or>
+						</and>
+						<and name="Usage">
+							<description>
+								
+							</description>
+							<alt name="User behavior">
+								<description>
+									
+								</description>
+								<feature mandatory="true" name="Correct Usage">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="Wrong usage">
+									<description>
+										
+									</description>
+								</feature>
+							</alt>
+						</and>
+						<and name="Hardware Conditions">
+							<description>
+								
+							</description>
+							<and name="CPU">
+								<description>
+									
+								</description>
+								<alt name="Temperature">
+									<description>
+										
+									</description>
+									<feature mandatory="true" name="High CPU Usage">
+										<description>
+											
+										</description>
+									</feature>
+									<feature mandatory="true" name="Normal Temperature">
+										<description>
+											
+										</description>
+									</feature>
+								</alt>
+							</and>
+							<and name="Network">
+								<description>
+									
+								</description>
+								<alt name="Bandwith">
+									<description>
+										
+									</description>
+									<feature mandatory="true" name="Low Bandwith">
+										<description>
+											
+										</description>
+									</feature>
+									<feature mandatory="true" name="Normal Bandwith">
+										<description>
+											
+										</description>
+									</feature>
+								</alt>
+							</and>
+							<alt name="Memory">
+								<description>
+									
+								</description>
+								<feature mandatory="true" name="High Mem Usage">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="Normal memory usage">
+									<description>
+										
+									</description>
+								</feature>
+							</alt>
+						</and>
+					</and>
+					<and abstract="true" mandatory="true" name="SP Components">
+						<description>
+							
+						</description>
+						<feature mandatory="true" name="Player">
+							<description>
+								
+							</description>
+						</feature>
+						<and mandatory="true" name="SMART Platform">
+							<description>
+								
+							</description>
+							<and mandatory="true" name="Remote Data Center">
+								<description>
+									
+								</description>
+								<and abstract="true" mandatory="true" name="Virtual">
+									<description>
+										
+									</description>
+									<and mandatory="true" name="CMS">
+										<description>
+											
+										</description>
+										<feature name="Default">
+											<description>
+												
+											</description>
+										</feature>
+										<feature mandatory="true" name="Overloaded">
+											<description>
+												
+											</description>
+										</feature>
+									</and>
+									<feature mandatory="true" name="DSS">
+										<description>
+											
+										</description>
+									</feature>
+									<feature mandatory="true" name="CRE">
+										<description>
+											
+										</description>
+									</feature>
+									<feature mandatory="true" name="SGA">
+										<description>
+											
+										</description>
+									</feature>
+									<feature mandatory="true" name="MIP">
+										<description>
+											
+										</description>
+									</feature>
+									<feature name="IBC">
+										<description>
+											
+										</description>
+									</feature>
+									<feature name="BDFP">
+										<description>
+											
+										</description>
+									</feature>
+									<feature name="PTR">
+										<description>
+											
+										</description>
+									</feature>
+								</and>
+								<and abstract="true" mandatory="true" name="Physical">
+									<description>
+										
+									</description>
+									<feature mandatory="true" name="SPR">
+										<description>
+											
+										</description>
+									</feature>
+								</and>
+							</and>
+							<feature mandatory="true" name="Network Infrastructure">
+								<description>
+									
+								</description>
+							</feature>
+							<and mandatory="true" name="Broadcast Center">
+								<description>
+									
+								</description>
+								<feature mandatory="true" name="Encoder Manager">
+									<description>
+										
+									</description>
+								</feature>
+								<feature mandatory="true" name="Video Encoder">
+									<description>
+										
+									</description>
+								</feature>
+							</and>
+						</and>
+						<alt mandatory="true" name="CDN">
+							<description>
+								
+							</description>
+							<feature mandatory="true" name="Master CDN">
+								<description>
+									
+								</description>
+							</feature>
+							<feature mandatory="true" name="Switched CDN">
+								<description>
+									
+								</description>
+							</feature>
+						</alt>
+					</and>
+				</and>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
