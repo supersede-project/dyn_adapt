@@ -1,0 +1,87 @@
+
+<FeedbackConfiguration> ::= <FeedbackIssue> <Device>
+
+<Device> ::= "Web-client" 
+		| "Android"
+		| "iOS"
+
+<FeedbackIssue> ::= <ConfirmationMessage_opt> <Mechanism> <Attachment_opt> <Category_opt> <Receiver> <Presentation>
+
+<ConfirmationMessage_opt> ::= <ConfirmationMessage>
+		|
+
+<ConfirmationMessage> ::= "ConfirmationMessage"
+
+<Mechanism> ::= <Audio_opt> <Rating_opt> <TextFeedback_opt> <ScreenShot_opt>
+
+<Audio_opt> ::= <Audio>
+	|
+
+<Audio> ::= "Audio"
+
+<Rating_opt> ::= <Rating>
+	|
+
+<Rating> ::= "Rating"
+
+<TextFeedback_opt> ::= <TextFeedback>
+	|
+
+<TextFeedback> ::= "TextFeedback"
+
+<ScreenShot_opt> ::= <ScreenShot>
+	|
+
+<ScreenShot> ::= <Annotation> <FreeHandDrawing_opt> <BasicShapes_opt> <SelectionColor_opt> <BasicEditionOption_opt>
+
+<Annotation> ::= "Annotation"
+
+<FreeHandDrawing_opt> ::= <FreeHandDrawing>
+	|
+
+<FreeHandDrawing> ::= "FreeHandDrawing"
+
+<BasicShapes_opt> ::= <BasicShapes>
+	|
+
+<BasicShapes> ::= "BasicShapes"
+
+<SelectionColor_opt> ::= <SelectionColor>
+	|
+
+<SelectionColor> ::= "SelectionColor"
+
+<BasicEditionOption_opt> ::= <BasicEditionOption>
+	|
+
+<BasicEditionOption> ::= "BasicEditionOption"
+
+<Attachment_opt> ::= <Attachment>
+	|
+
+<Attachment> ::= "Attachment"
+
+<Category_opt> ::= <Category>
+
+<Category> ::= <NewCategory_opt> <SelectCategory>
+
+<NewCategory_opt> ::= <NewCategory>
+
+<NewCategory> ::= "NewCategory"
+
+<SelectCategory> ::= "SelectCategory"
+
+<Receiver> ::= <ShareWithWorkTeam>
+	| <ShareWithAll>
+
+<ShareWithWorkTeam> ::= "ShareWithWorkTeam"
+
+<ShareWithAll> ::= "ShareWithAll"
+
+<Presentation> ::= <Link>
+	| <Popup>
+
+<Link> ::= "Link"
+
+<Popup> ::= "Pop-up"
+
