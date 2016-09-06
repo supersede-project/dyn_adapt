@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
@@ -24,7 +25,7 @@ public class ModelQueryTest {
 	String patternModelPath = "./models/atos_queries.vql";
 	String patternFQN = "eu.supersede.dynadapt.atos.queries.nodeArtifacts";
 	IModelQuery modelQuery = null;
-	ModelManager modelManager = null;
+	IModelManager modelManager = null;
 	
 	@Before
 	public void setUp() throws Exception{	

@@ -1,20 +1,14 @@
 package eu.supersede.dynadapt.model.tagger;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
-
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
-import eu.supersede.dynadapt.model.ModelManager;
-import eu.supersede.dynadapt.model.query.IModelQuery;
-import eu.supersede.dynadapt.model.query.ModelQuery;
+import eu.supersede.dynadapt.model.IModelManager;
 
 public class ModelTagger implements IModelTagger{
-	private ModelManager modelManager = null;
+	private IModelManager modelManager = null;
 	private static final String OUTPUT_FILE_SUFFIX = "_tagged.uml";
 	private Profile profile;
 	private Package rootPackage;
@@ -23,11 +17,17 @@ public class ModelTagger implements IModelTagger{
 	 * Creates an instance of ModelTagger that tags model elements with referenced profile stereotypes
 	 * @param targetModelPath
 	 */
-	public ModelTagger (ModelManager modelManager){
+	public ModelTagger (IModelManager modelManager){
 		this.modelManager = modelManager;
 	}
 	
 	public void tagModel(NamedElement element, Profile profile, String stereotypeName)
+			throws Exception {
+		Stereotype stereotype = profile.getOwnedStereotype(stereotypeName);
+		tagModel(element, profile, stereotype);
+	}
+	
+	public void tagModel(NamedElement element, Profile profile, Stereotype stereotype)
 			throws Exception {
 		// Get the root package
 		rootPackage = element.getNearestPackage();
@@ -36,7 +36,6 @@ public class ModelTagger implements IModelTagger{
 		if (rootPackage.getAppliedProfile(profile.getQualifiedName()) == null) {
 			rootPackage.applyProfile(profile);
 		}
-		Stereotype stereotype = profile.getOwnedStereotype(stereotypeName);
 		if (element.getAppliedStereotype(stereotype.getQualifiedName()) == null) {
 			element.applyStereotype(stereotype);
 			System.out.println ("Tagged element " + element.getQualifiedName() + " with stereotype " + stereotype.getQualifiedName());
@@ -46,6 +45,7 @@ public class ModelTagger implements IModelTagger{
 	public void tagModel(NamedElement element, String profileURI, String stereotypeName)
 			throws Exception {
 		profile = modelManager.loadProfile(profileURI);
+//		this.modelManager.registerPackage(profile.getDefinition());
 		tagModel(element, profile, stereotypeName);
 	}
 	

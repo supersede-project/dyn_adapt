@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -16,11 +17,15 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
-public class ModelManager {
+public class ModelManager implements IModelManager {
 	private static ResourceSet resourceSet = new ResourceSetImpl();
 	private Resource targetModelResource = null;
 	private URI targetModelURI = null;
 	
+	/**
+	 * Static registration of common EMF metamodels for Ecore, UML2
+	 * Registration of UML extension
+	 */
 	static {
 		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 		resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
@@ -28,36 +33,43 @@ public class ModelManager {
 				UMLResource.Factory.INSTANCE);
 		UMLResourcesUtil.init(resourceSet);
 		Map<URI,URI> uriMap = resourceSet.getURIConverter().getURIMap();
-		final URI uri2 = URI.createURI("jar:file:/home/yosu/Projects/Supersede/Eclipses/eclipse-mars-modeling/plugins/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
+//		final URI uri2 = URI.createURI("jar:file:/home/yosu/Projects/Supersede/Eclipses/eclipse-mars-modeling/plugins/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
+		final URI uri2 = URI.createURI("jar:file:./lib/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri2.appendSegment("libraries").appendSegment(""));
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri2.appendSegment("metamodels").appendSegment(""));
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri2.appendSegment("profiles").appendSegment(""));
 	}
 	
-	/**
-	 * Loads the resource from the passed file and returns this Resource object.
-	 * 
-	 * @param file
-	 *            IFile object to be loaded as the resource
-	 * @return Resource object loaded from the passed file
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#registerPackage(org.eclipse.emf.ecore.EPackage)
 	 */
+	public void registerPackage (EPackage ePackage){
+		resourceSet.getPackageRegistry().put (ePackage.getNsURI(), ePackage);
+	}
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#loadResource(java.lang.String)
+	 */
+	@Override
 	public Resource loadResource(String targetModelPath) {
 		return resourceSet.getResource(URI.createURI(targetModelPath), true);
 	}
 
-	/**
-	 * Loads the profile of the given name and returns this Profile object.
-	 * 
-	 * @param profileFileName
-	 *            Name of the file to be loaded as a profile
-	 * @return Profie loaded from the file
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#loadProfile(java.lang.String)
 	 */
+	@Override
 	public Profile loadProfile(String profilePath) {
 
 		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
 		return (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PROFILE);
 	}
 	
+	/**
+	 * Creates an instance of ModelManager, associated to a target UML base model defined by its path
+	 * @param targetModelPath path of the associated target UML base model
+	 * @throws Exception
+	 */
 	public ModelManager (String targetModelPath) throws Exception{
 		this.targetModelURI = URI.createURI(targetModelPath);
 		targetModelResource = loadResource(targetModelPath);
@@ -66,22 +78,26 @@ public class ModelManager {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#getTargetModel()
+	 */
+	@Override
 	public Resource getTargetModel (){
 		return targetModelResource;
 	}
 	
-	public URI getTargetModelURI(){
+	/**
+	 * returns the URI locator of associated UML target base model
+	 * @return
+	 */
+	private URI getTargetModelURI(){
 		return targetModelURI;
 	}
 	
-	/**
-	 * @throws IOException 
-	 * Save a model resource included in current resource set, into the outputModelURI recipient, adding suffixe to that URI
-	 * @param modelResource
-	 * @param outputModelURI
-	 * @param suffixe
-	 * @throws  
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#saveModel(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.common.util.URI, java.lang.String)
 	 */
+	@Override
 	public URI saveModel (Resource modelResource, URI outputModelURI, String suffixe) throws IOException{
 		FileOutputStream foStream = null;
 		if (modelResource != null) {
@@ -107,8 +123,20 @@ public class ModelManager {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel(java.lang.String)
+	 */
+	@Override
 	public URI saveTargetModel (String suffixe) throws IOException{
 		return saveModel(getTargetModel(), getTargetModelURI(), suffixe);
+	}
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel()
+	 */
+	@Override
+	public URI saveTargetModel () throws IOException{
+		return saveModel(getTargetModel(), getTargetModelURI(), null);
 	}
 
 	/**

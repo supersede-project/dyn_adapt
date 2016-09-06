@@ -20,7 +20,7 @@ import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
-import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.dynadapt.model.IModelManager;
 
 /**
  * Code taken from Viatra IncQuery API User Documentation:
@@ -30,7 +30,7 @@ import eu.supersede.dynadapt.model.ModelManager;
  *         IncQuery patterns selected from a given pattern model
  */
 public class ModelQuery implements IModelQuery {
-	private ModelManager modelManager = null;
+	private IModelManager modelManager = null;
 	private AdvancedViatraQueryEngine engine = null;
 	private boolean patternLanguageInitialize = false;
 
@@ -41,7 +41,7 @@ public class ModelQuery implements IModelQuery {
 	 * @param targetModelPath
 	 * @throws ViatraQueryException
 	 */
-	public ModelQuery(ModelManager modelManager) throws ViatraQueryException {
+	public ModelQuery(IModelManager modelManager) throws ViatraQueryException {
 		this.modelManager = modelManager;
 		createQueryEngine();
 	}
@@ -52,7 +52,7 @@ public class ModelQuery implements IModelQuery {
 	 * @param targetModelPath
 	 * @throws ViatraQueryException
 	 */
-	public void resetTargetModelPath(ModelManager modelManager) throws ViatraQueryException {
+	public void resetTargetModelPath(IModelManager modelManager) throws ViatraQueryException {
 		this.modelManager = modelManager;
 		createQueryEngine();
 	}

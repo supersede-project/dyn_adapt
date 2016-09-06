@@ -6,13 +6,12 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
@@ -21,15 +20,16 @@ import eu.supersede.dynadapt.model.tagger.ModelTagger;
 
 
 public class ModelTaggerTest {
-	String modelPath = "../models/atos_base_model.uml";
-	String profilePath = "../models/adm.profile.uml";
-	String patternModelPath = "../models/atos_queries.vql";
+	String modelPath = "./models/atos_base_model.uml";
+	String profilePath = "./models/adm.profile.uml";
+	String patternModelPath = "./models/atos_queries.vql";
+	
 	String patternFQN = "eu.supersede.dynadapt.atos.queries.nodeArtifacts";
 	private static final String OUTPUT_FILE_SUFFIX = "_tagged.uml";
 	
 	IModelQuery modelQuery = null;
 	IModelTagger modelTagger = null;
-	ModelManager modelManager = null;
+	IModelManager modelManager = null;
 	
 	@Before
 	public void setUp() throws Exception{	
