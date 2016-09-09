@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="AtosUCFeatureModel" version="1.0.0" description="">
+  <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModel" lower="1" upper="1">
+    <feature id="smart_platform" name="Smart Platform" lower="0" upper="1">
+      <feature id="behaviour" name="Behaviour" lower="1" upper="1">
+        <feature id="concurrency" name="Concurrency" lower="0" upper="1">
+          <group lower="1" upper="1">
+            <feature id="low_concurrency" name="Low Concurrency" lower="0" upper="1">
+              <attribute id="duration" name="average_duration" type="double"/>
+              <attribute id="a_1486249175" name="maximum_users" type="integer"/>
+              <attribute id="a_1342994313" name="average_concurrent_users" type="integer"/>
+            </feature>
+            <feature id="average_concurrency" name="Average Concurrency" lower="0" upper="1">
+              <attribute id="a_1817185456" name="average_duration" type="double"/>
+              <attribute id="a_218142809" name="maximum_users" type="integer"/>
+              <attribute id="a_1010072638" name="average_concurrent_users" type="integer"/>
+            </feature>
+            <feature id="high_concurrency" name="High Concurrency" lower="0" upper="1">
+              <attribute id="a_604995701" name="average_duration" type="double"/>
+              <attribute id="a_49762024" name="maximum_users" type="integer"/>
+              <attribute id="a_738944109" name="average_concurrent_users" type="integer"/>
+            </feature>
+          </group>
+        </feature>
+        <feature id="latency" name="Latency" lower="0" upper="1">
+          <feature id="latency_threshold" name="Latency Threshold" lower="1" upper="1">
+            <attribute id="a_844117948" name="audience_threshold" type="double"/>
+            <attribute id="a_854622864" name="latency_threshold" type="double"/>
+          </feature>
+        </feature>
+        <feature id="capacity" name="Capacity" lower="0" upper="1">
+          <group lower="1" upper="-1">
+            <feature id="capacity_cms" name="Capacity CMS" lower="0" upper="1">
+              <group lower="1" upper="1">
+                <feature id="capacity_cms_low" name="Capacity CMS Low" lower="0" upper="1">
+                  <attribute id="a_1091342646" name="memory_threshold" type="double"/>
+                  <attribute id="a_1145478449" name="cpu_overload_threshold" type="double"/>
+                  <attribute id="a_237526754" name="service" type="string"/>
+                </feature>
+                <feature id="capacity_cms_average" name="Capacity CMS Average" lower="0" upper="1">
+                  <attribute id="a_914865138" name="memory_threshold" type="double"/>
+                  <attribute id="a_2042827869" name="cpu_overload_threshold" type="double"/>
+                  <attribute id="a_95233076" name="service" type="string"/>
+                </feature>
+                <feature id="capacity_cms_high" name="Capacity CMS High" lower="0" upper="1">
+                  <attribute id="a_1687638285" name="memory_threshold" type="double"/>
+                  <attribute id="a_776365166" name="cpu_overload_threshold" type="double"/>
+                  <attribute id="a_209325174" name="service" type="string"/>
+                </feature>
+              </group>
+            </feature>
+            <feature id="capacity_spr" name="Capacity SPR" lower="0" upper="1">
+              <group lower="1" upper="1">
+                <feature id="capacity_spr_low" name="Capacity SPR Low" lower="0" upper="1">
+                  <attribute id="a_1099391289" name="memory_threshold" type="double"/>
+                  <attribute id="a_1254713667" name="cpu_overload_threshold" type="double"/>
+                  <attribute id="a_2103560960" name="service" type="string"/>
+                </feature>
+                <feature id="capacity_spr_average" name="Capacity SPR Average" lower="0" upper="1">
+                  <attribute id="a_1766306281" name="memory_threshold" type="double"/>
+                  <attribute id="a_2090999452" name="cpu_overload_threshold" type="double"/>
+                  <attribute id="a_175047447" name="service" type="string"/>
+                </feature>
+                <feature id="capacity_spr_high" name="Capacity SPR High" lower="0" upper="1">
+                  <attribute id="a_1085195071" name="memory_threshold" type="double"/>
+                  <attribute id="a_501222138" name="cpu_overload_threshold" type="double"/>
+                  <attribute id="a_329157523" name="service" type="string"/>
+                </feature>
+              </group>
+            </feature>
+          </group>
+        </feature>
+        <feature id="temperature" name="Temperature" lower="0" upper="1">
+          <group lower="1" upper="-1">
+            <feature id="temperature_bc1" name="Temperature BC1" lower="0" upper="1">
+              <attribute id="a_722396405" name="node" type="string"/>
+              <attribute id="a_1653828460" name="temperature_threshold" type="double"/>
+            </feature>
+            <feature id="temperature_dc1" name="Temperature DC1" lower="0" upper="1">
+              <attribute id="a_1400697492" name="node" type="string"/>
+              <attribute id="a_854432644" name="temperature_threshold" type="string"/>
+            </feature>
+          </group>
+        </feature>
+        <feature id="connectivity" name="Connectivity" lower="0" upper="1">
+          <group lower="1" upper="-1">
+            <feature id="connectivity_bc1" name="Connectivity BC1" lower="0" upper="1">
+              <attribute id="a_1692554681" name="node" type="string"/>
+              <attribute id="a_714810708" name="bandwith_threshold" type="double"/>
+            </feature>
+            <feature id="f_1563160320" name="Connectivity DC1" lower="0" upper="1">
+              <attribute id="a_1213705103" name="node" type="string"/>
+              <attribute id="a_1595178653" name="bandwith_threshold" type="string"/>
+            </feature>
+          </group>
+        </feature>
+      </feature>
+      <feature id="infrastructure" name="Infrastructure" lower="1" upper="1">
+        <feature id="vm_configurations" name="VM Configurations" lower="1" upper="1">
+          <feature id="hsk_configuration" name="HSK Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="hsk_standard_configuration" name="HSK_Standard_Configuration" lower="0" upper="1">
+                <attribute id="number_cores" name="number_cores" type="integer"/>
+                <attribute id="memory" name="memory" type="double"/>
+                <attribute id="storage" name="storage" type="double"/>
+                <attribute id="bandwidth" name="bandwidth" type="double"/>
+              </feature>
+              <feature id="hsk_optimal_configuration" name="HSK_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_29902074" name="number_cores" type="integer"/>
+                <attribute id="a_1605826203" name="memory" type="double"/>
+                <attribute id="a_1034723842" name="storage" type="double"/>
+                <attribute id="a_1920764702" name="bandwidth" type="double"/>
+              </feature>
+            </group>
+          </feature>
+          <feature id="lb_configuration" name="LB Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="lb_standard_configuration" name="LB_Standard_Configuration" lower="0" upper="1">
+                <attribute id="a_2117129726" name="number_cores" type="integer"/>
+                <attribute id="a_1152865514" name="memory" type="double"/>
+                <attribute id="a_1906249887" name="storage" type="double"/>
+                <attribute id="a_1429160399" name="bandwidth" type="double"/>
+              </feature>
+              <feature id="lb_optimal_configuration" name="LB_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_1770208397" name="number_cores" type="integer"/>
+                <attribute id="a_788664747" name="memory" type="double"/>
+                <attribute id="a_3323496" name="storage" type="double"/>
+                <attribute id="a_1422878792" name="bandwidth" type="double"/>
+              </feature>
+            </group>
+          </feature>
+          <feature id="sga_configuration" name="SGA Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="sga_standard_configuration" name="SGA_Standard_Configuration" lower="0" upper="1">
+                <attribute id="a_489688453" name="number_cores" type="integer"/>
+                <attribute id="a_870342316" name="memory" type="double"/>
+                <attribute id="a_1943704051" name="storage" type="double"/>
+                <attribute id="a_386358561" name="bandwidth" type="double"/>
+              </feature>
+              <feature id="sga_optimal_configuration" name="SGA_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_1116084945" name="number_cores" type="integer"/>
+                <attribute id="a_973097227" name="memory" type="double"/>
+                <attribute id="a_896633346" name="storage" type="double"/>
+                <attribute id="a_1967483184" name="bandwidth" type="double"/>
+              </feature>
+            </group>
+          </feature>
+          <feature id="cms_configuration" name="CMS Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="cms_standard_configuration" name="CMS_Standard_Configuration" lower="0" upper="1">
+                <attribute id="a_1731440037" name="number_cores" type="integer"/>
+                <attribute id="a_1152630234" name="memory" type="double"/>
+                <attribute id="a_1581630567" name="storage" type="double"/>
+                <attribute id="a_1774097776" name="bandwidth" type="double"/>
+              </feature>
+              <feature id="cms_optimal_configuration" name="CMS_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_1451712971" name="number_cores" type="integer"/>
+                <attribute id="a_35063786" name="memory" type="double"/>
+                <attribute id="a_2130879428" name="storage" type="double"/>
+                <attribute id="a_1937523407" name="bandwidth" type="double"/>
+              </feature>
+            </group>
+          </feature>
+        </feature>
+        <feature id="nodes" name="Nodes" lower="1" upper="1">
+          <feature id="data_center" name="Data Center" lower="1" upper="1">
+            <feature id="dc1" name="DC1" lower="1" upper="1">
+              <attribute id="a_942174481" name="CPU overload" type="double"/>
+              <attribute id="a_1040542835" name="temperature" type="double"/>
+              <attribute id="a_985459650" name="bandwith" type="double"/>
+              <attribute id="a_221035660" name="memory" type="double"/>
+              <feature id="cms" name="CMS" lower="0" upper="1">
+                <group lower="1" upper="1">
+                  <feature id="cms_low" name="CMS (Low)" lower="0" upper="1">
+                    <attribute id="a_1027143618" name="number_cms" type="integer"/>
+                    <attribute id="a_64208970" name="VMConfiguration" type="string"/>
+                  </feature>
+                  <feature id="cms_average" name="CMS (Average)" lower="0" upper="1">
+                    <attribute id="a_1251520554" name="number_cms" type="string"/>
+                    <attribute id="a_1226436969" name="VMConfiguration" type="string"/>
+                  </feature>
+                  <feature id="cms_high" name="CMS (High)" lower="0" upper="1">
+                    <attribute id="a_580826517" name="number_cms" type="string"/>
+                    <attribute id="a_183241826" name="VMConfiguration" type="string"/>
+                  </feature>
+                </group>
+              </feature>
+              <feature id="spr" name="SPR" lower="1" upper="1">
+                <feature id="spr1" name="SPR1" lower="1" upper="1">
+                  <attribute id="a_297697201" name="cdn" type="string"/>
+                  <attribute id="a_2132706357" name="cpu_overload" type="double"/>
+                  <attribute id="a_1260743401" name="memory" type="double"/>
+                </feature>
+                <feature id="spr2" name="SPR2" lower="1" upper="1">
+                  <attribute id="a_506186491" name="cdn" type="string"/>
+                  <attribute id="a_245523864" name="cpu_overload" type="double"/>
+                  <attribute id="a_2064146230" name="memory" type="double"/>
+                </feature>
+              </feature>
+              <feature id="sga" name="SGA" lower="0" upper="1">
+                <group lower="1" upper="1">
+                  <feature id="sga_low" name="SGA (Low)" lower="0" upper="1">
+                    <attribute id="a_1451159970" name="number_sgas" type="integer"/>
+                    <attribute id="a_960654815" name="VMConfiguration" type="string"/>
+                  </feature>
+                  <feature id="sga_average" name="SGA (Average)" lower="0" upper="1">
+                    <attribute id="a_1789873139" name="number_sgas" type="integer"/>
+                    <attribute id="a_1827343064" name="VMConfiguration" type="string"/>
+                  </feature>
+                  <feature id="sga_high" name="SGA (High)" lower="0" upper="1">
+                    <attribute id="a_224290714" name="number_sgas" type="integer"/>
+                    <attribute id="a_696292157" name="VMConfiguration" type="string"/>
+                  </feature>
+                </group>
+              </feature>
+            </feature>
+          </feature>
+          <feature id="broadcast_center" name="Broadcast Center" lower="1" upper="1">
+            <feature id="bc1" name="BC1" lower="1" upper="1">
+              <attribute id="a_1015099579" name="CPU overload" type="double"/>
+              <attribute id="a_1518990154" name="temperature" type="double"/>
+              <attribute id="a_286890545" name="bandwith" type="double"/>
+              <attribute id="a_598827580" name="memory" type="double"/>
+            </feature>
+          </feature>
+          <feature id="lb" name="LB" lower="1" upper="1">
+            <feature id="lbnode1" name="LBNode1" lower="1" upper="1">
+              <attribute id="a_1644548477" name="CPU overload" type="double"/>
+              <attribute id="a_643309707" name="temperature" type="double"/>
+              <attribute id="a_1783049222" name="bandwith" type="double"/>
+              <attribute id="a_13166753" name="memory" type="double"/>
+              <group lower="1" upper="1">
+                <feature id="lb_low" name="LB (Low)" lower="0" upper="1">
+                  <attribute id="a_512052611" name="number_lbs" type="integer"/>
+                  <attribute id="lb_vmconfiguration" name="VMConfiguration" type="string"/>
+                </feature>
+                <feature id="lb_average" name="LB (Average)" lower="0" upper="1">
+                  <attribute id="a_1759762415" name="number_lbs" type="integer"/>
+                  <attribute id="a_1948846419" name="VMConfiguration" type="string"/>
+                </feature>
+                <feature id="lb_high" name="LB (High)" lower="0" upper="1">
+                  <attribute id="a_478391514" name="number_lbs" type="integer"/>
+                  <attribute id="a_612085461" name="VMConfiguration" type="string"/>
+                </feature>
+              </group>
+            </feature>
+          </feature>
+          <feature id="hsk" name="HSK" lower="1" upper="1">
+            <feature id="hsknode1" name="HSKNode1" lower="1" upper="1">
+              <attribute id="a_1041090282" name="CPU overload" type="double"/>
+              <attribute id="a_1124394929" name="temperature" type="double"/>
+              <attribute id="a_82407481" name="bandwith" type="double"/>
+              <attribute id="a_402248714" name="memory" type="double"/>
+              <group lower="1" upper="1">
+                <feature id="hsk_low" name="HSK (Low)" lower="0" upper="1">
+                  <attribute id="a_304948751" name="number_hsks" type="integer"/>
+                  <attribute id="hsk_vmconfiguration" name="VMConfiguration" type="string"/>
+                </feature>
+                <feature id="hsk_average" name="HSK (Average)" lower="0" upper="1">
+                  <attribute id="a_1671329125" name="number_hsks" type="integer"/>
+                  <attribute id="a_1715848079" name="VMConfiguration" type="string"/>
+                </feature>
+                <feature id="hsk_high" name="HSK (High)" lower="0" upper="1">
+                  <attribute id="a_2040561053" name="number_hsks" type="integer"/>
+                  <attribute id="a_468586259" name="VMConfiguration" type="string"/>
+                </feature>
+              </group>
+            </feature>
+          </feature>
+          <feature id="player" name="Player" lower="1" upper="1">
+            <feature id="player_configuration" name="Player_Configuration" lower="1" upper="1">
+              <attribute id="cdn" name="cdn" type="string"/>
+            </feature>
+          </feature>
+          <feature id="cdn" name="CDN" lower="1" upper="1">
+            <group lower="1" upper="1">
+              <feature id="level3" name="Level3" lower="0" upper="1"/>
+              <feature id="akamai" name="Akamai" lower="0" upper="1"/>
+            </group>
+          </feature>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+  <constraint value="hsk implies hsk_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies lb_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="latency implies (cdn and player_configuration)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage" description=""/>
+  <constraint value="player_configuration implies cdn" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="cms implies cms_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="sga implies sga_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="capacity implies (spr or cms)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="concurrency implies (sga and hsk and lb)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="temperature implies (data_center or broadcast_center)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="connectivity implies (data_center or broadcast_center)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+</fm:featureModel>
