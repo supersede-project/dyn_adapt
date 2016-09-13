@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="__d4UcGhJEeaUmbAUinmY7w" name="RootElement">
   <packagedElement xmi:type="uml:Activity" xmi:id="__m8w4GhJEeaUmbAUinmY7w" name="Get Meteorological Data (requirements: availability: above 90%, format: F1, quality of data: provided)" node="_PmJjEGhLEeaUmbAUinmY7w _HmlrgGhLEeaUmbAUinmY7w _FkEaIGhLEeaUmbAUinmY7w">
-    <edge xmi:type="uml:ControlFlow" xmi:id="_0qo3UGqZEea9j5eeGnhsGg" target="_HmlrgGhLEeaUmbAUinmY7w" source="_FkEaIGhLEeaUmbAUinmY7w"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_1KVEAGqZEea9j5eeGnhsGg" target="_PmJjEGhLEeaUmbAUinmY7w" source="_HmlrgGhLEeaUmbAUinmY7w"/>
-    <node xmi:type="uml:InitialNode" xmi:id="_FkEaIGhLEeaUmbAUinmY7w" outgoing="_0qo3UGqZEea9j5eeGnhsGg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_0qo3UGqZEea9j5eeGnhsGg" name="E1" target="_HmlrgGhLEeaUmbAUinmY7w" source="_FkEaIGhLEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_1KVEAGqZEea9j5eeGnhsGg" name="E2" target="_PmJjEGhLEeaUmbAUinmY7w" source="_HmlrgGhLEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_FkEaIGhLEeaUmbAUinmY7w" name="I1" outgoing="_0qo3UGqZEea9j5eeGnhsGg"/>
     <node xmi:type="uml:OpaqueAction" xmi:id="_HmlrgGhLEeaUmbAUinmY7w" name="Service S1" incoming="_0qo3UGqZEea9j5eeGnhsGg" outgoing="_1KVEAGqZEea9j5eeGnhsGg"/>
-    <node xmi:type="uml:ActivityFinalNode" xmi:id="_PmJjEGhLEeaUmbAUinmY7w" incoming="_1KVEAGqZEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_PmJjEGhLEeaUmbAUinmY7w" name="F1" incoming="_1KVEAGqZEea9j5eeGnhsGg"/>
   </packagedElement>
 </uml:Model>
