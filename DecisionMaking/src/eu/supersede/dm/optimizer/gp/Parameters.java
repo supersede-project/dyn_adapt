@@ -2,6 +2,10 @@ package eu.supersede.dm.optimizer.gp;
 
 public class Parameters {
 	
+	// feature model parameters
+	public static String FEATURE_ATTRIBUTE_PATH = "input/monitoring/feedbackreconfig";
+	
+	// Metaheuristic algorithm parameters
 	public static int SEARCH_BUDGET = 1000;
 	public static Long RANDOM_SEED = null;
 	public static int TOURNAMENT_SIZE = 2;

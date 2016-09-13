@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import eu.supersede.dm.optimizer.gp.Parameters;
+
 public class ConfigurationLoader {
 	
 	private String configurationPath;
 	
 	public ConfigurationLoader() {
-		configurationPath = "Grammar/monitoring/feedbackreconfig";
+		configurationPath = Parameters.FEATURE_ATTRIBUTE_PATH;
 		
 	}
 	

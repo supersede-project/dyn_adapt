@@ -7,7 +7,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.classic.Level;
 import eu.supersede.dm.optimizer.gp.Parameters;
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dm.optimizer.gp.chromosome.ChromosomeFactory;
@@ -15,32 +14,36 @@ import eu.supersede.dm.optimizer.gp.fitness.FitnessFunction;
 import eu.supersede.dm.optimizer.gp.fitness.SingleObjectiveFitnessFunction;
 import eu.supersede.dm.optimizer.gp.operators.CrossoverFunction;
 import eu.supersede.dm.optimizer.gp.operators.MutationFunction;
+import eu.supersede.dm.optimizer.gp.operators.ReplacementFunction;
 import eu.supersede.dm.optimizer.gp.operators.SelectionFunction;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeCrossover;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeMutation;
 import eu.supersede.dm.optimizer.gp.operators.TournamentSelection;
 import eu.supersede.dm.util.RandomNumber;
 
-public class GP {
+public class StandardGP {
 	
-	private static final Logger logger = LoggerFactory.getLogger(GP.class);
+	private static final Logger logger = LoggerFactory.getLogger(StandardGP.class);
 	
-	List<Chromosome> population;
-	ChromosomeFactory chromosomeFactory;
-	FitnessFunction fitnessFunction;
-	SelectionFunction selectionFunction;
-	CrossoverFunction crossoverFunction;
-	MutationFunction mutationFunction;
+	protected List<Chromosome> population;
+	protected ChromosomeFactory chromosomeFactory;
+	protected FitnessFunction fitnessFunction;
+	protected SelectionFunction selectionFunction;
+	protected CrossoverFunction crossoverFunction;
+	protected MutationFunction mutationFunction;
+	protected ReplacementFunction replacementFunction;
+	
+	protected int fitnessEvaluations = 0;
+	protected int generation = 0;
 
-	private int fitnessEvaluations = 0;
-
-	public GP(String grammarFile, int depth, double probRecursive) {
+	public StandardGP(String grammarFile, int depth, double probRecursive) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
 		fitnessFunction = new SingleObjectiveFitnessFunction();
 		selectionFunction = new TournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
 		mutationFunction = new SubtreeMutation(chromosomeFactory);
+		replacementFunction = new ReplacementFunction(fitnessFunction.isMaximizationFunction());
 	}
 
 	public List<Chromosome> generateSolution() {
@@ -52,10 +55,11 @@ public class GP {
 			calculateFitnessAndSortPopulation();
 		}
 		solutions.add(population.get(0));
+		logger.debug("Done after: {} generations.", generation);
 		return solutions;
 	}
 
-	private void initializePopulation() {
+	protected void initializePopulation() {
 		population = new ArrayList<Chromosome>();
 		while (population.size() < Parameters.POPULATION_SIZE) {
 			Chromosome chromosome = chromosomeFactory.getChromosome();
@@ -69,13 +73,13 @@ public class GP {
 	 * temporary debug function
 	 */
 	
-	private void printPopulation(){
+	protected void printPopulation(){
 		for (Chromosome chromosome : population){
 			logger.debug(chromosome.toString());
 		}
 	}
 	
-	private void calculateFitnessAndSortPopulation() {
+	protected void calculateFitnessAndSortPopulation() {
 		for (Chromosome chromosome : population) {
 			boolean unique = fitnessFunction.evaluate(chromosome);
 			if (unique){
@@ -85,7 +89,7 @@ public class GP {
 		sortPopulation();
 	}
 
-	private void evolve() {
+	protected void evolve() {
 		List<Chromosome> nextGeneration = new ArrayList<Chromosome>();
 		nextGeneration.addAll(elitism());
 		while (nextGeneration.size() < Parameters.POPULATION_SIZE) {
@@ -102,8 +106,13 @@ public class GP {
 				}
 
 				// Mutation
-				mutationFunction.mutate(offspring1);
-				mutationFunction.mutate(offspring2);
+				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
+					mutationFunction.mutate(offspring1);
+				}
+				
+				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
+					mutationFunction.mutate(offspring2);
+				}
 				
 				nextGeneration.add(offspring1);
 				nextGeneration.add(offspring2);
@@ -113,9 +122,10 @@ public class GP {
 		}
 
 		population = nextGeneration;
+		generation++;
 	}
 
-	private List<Chromosome> elitism() {
+	protected List<Chromosome> elitism() {
 
 		List<Chromosome> elite = new ArrayList<Chromosome>();
 
@@ -125,7 +135,7 @@ public class GP {
 		return elite;
 	}
 
-	private boolean isFinished() {
+	protected boolean isFinished() {
 		return (fitnessEvaluations > Parameters.SEARCH_BUDGET);
 	}
 	
@@ -142,7 +152,7 @@ public class GP {
 		String grammarFile = "Grammar/FeedbackGatheringConfig.bnf";
 		int depth = 10;
 		double probRecursive = 0.4;
-		GP gp = new GP(grammarFile, depth, probRecursive);
+		StandardGP gp = new StandardGP(grammarFile, depth, probRecursive);
 		List<Chromosome> solutions = gp.generateSolution();
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());
