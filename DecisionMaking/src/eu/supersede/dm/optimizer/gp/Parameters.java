@@ -3,6 +3,7 @@ package eu.supersede.dm.optimizer.gp;
 public class Parameters {
 	
 	// feature model parameters
+	public static String GRAMMAR_FILE = "Grammar/FeedbackGatheringConfig.bnf";
 	public static String FEATURE_ATTRIBUTE_PATH = "input/monitoring/feedbackreconfig";
 	
 	// Metaheuristic algorithm parameters

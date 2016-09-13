@@ -92,10 +92,9 @@ public class SteadyStateGP extends StandardGP {
 
 	// For testing purposes only!!
 	public static void main (String[] args){
-		String grammarFile = "Grammar/FeedbackGatheringConfig.bnf";
 		int depth = 10;
 		double probRecursive = 0.4;
-		SteadyStateGP gp = new SteadyStateGP(grammarFile, depth, probRecursive);
+		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive);
 		List<Chromosome> solutions = gp.generateSolution();
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());

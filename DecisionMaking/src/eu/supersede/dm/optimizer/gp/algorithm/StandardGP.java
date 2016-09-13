@@ -100,7 +100,7 @@ public class StandardGP {
 			Chromosome offspring2 = parent2.clone();
 
 			try {
-				// Chrossover
+				// Crossover
 				if (RandomNumber.nextDouble() <= Parameters.CROSSOVER_RATE) {
 					crossoverFunction.crossOver(offspring1, offspring2);
 				}
@@ -147,12 +147,19 @@ public class StandardGP {
 		}
 	}
 	
+	public int getGenerations(){
+		return generation;
+	}
+	
+	public int getFitnessEvaluations(){
+		return fitnessEvaluations;
+	}
+	
 	// For testing purposes only!!
 	public static void main (String[] args){
-		String grammarFile = "Grammar/FeedbackGatheringConfig.bnf";
 		int depth = 10;
 		double probRecursive = 0.4;
-		StandardGP gp = new StandardGP(grammarFile, depth, probRecursive);
+		StandardGP gp = new StandardGP(Parameters.GRAMMAR_FILE, depth, probRecursive);
 		List<Chromosome> solutions = gp.generateSolution();
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());
