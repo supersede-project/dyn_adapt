@@ -17,16 +17,6 @@ public class ConfigurationLoaderTest {
 	}
 
 	@Test
-	public void testLoadAttributesString() {
-		String feature = "ios";
-		ConfigurationLoader configurationLoader = new ConfigurationLoader();
-		Properties attributes = configurationLoader.loadAttributes(feature);
-		assertTrue(attributes != null);
-		assertTrue(attributes.size() == 4);
-		
-	}
-
-	@Test
 	public void testLoadAttributesListOfString() {
 		List<String> configuration = new ArrayList<String>();
 		configuration.add("webclient");

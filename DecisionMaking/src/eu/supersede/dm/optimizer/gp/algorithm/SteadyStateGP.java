@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import eu.supersede.dm.optimizer.gp.Parameters;
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
+import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.RandomNumber;
 
 public class SteadyStateGP extends StandardGP {
@@ -15,8 +16,8 @@ public class SteadyStateGP extends StandardGP {
 	private static final Logger logger = LoggerFactory.getLogger(SteadyStateGP.class);
 	
 
-	public SteadyStateGP(String grammarFile, int depth, double probRecursive) {
-		super(grammarFile, depth, probRecursive);
+	public SteadyStateGP(String grammarFile, int depth, double probRecursive, List<String> currentConfiguration) {
+		super(grammarFile, depth, probRecursive, currentConfiguration);
 	}
 
 	@Override
@@ -94,7 +95,8 @@ public class SteadyStateGP extends StandardGP {
 	public static void main (String[] args){
 		int depth = 10;
 		double probRecursive = 0.4;
-		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive);
+		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
+		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = gp.generateSolution();
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());

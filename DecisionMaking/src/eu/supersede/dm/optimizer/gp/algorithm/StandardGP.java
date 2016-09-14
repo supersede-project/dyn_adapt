@@ -19,6 +19,7 @@ import eu.supersede.dm.optimizer.gp.operators.SelectionFunction;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeCrossover;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeMutation;
 import eu.supersede.dm.optimizer.gp.operators.TournamentSelection;
+import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.RandomNumber;
 
 public class StandardGP {
@@ -36,10 +37,10 @@ public class StandardGP {
 	protected int fitnessEvaluations = 0;
 	protected int generation = 0;
 
-	public StandardGP(String grammarFile, int depth, double probRecursive) {
+	public StandardGP(String grammarFile, int depth, double probRecursive, List<String> currentConfiguration) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
-		fitnessFunction = new SingleObjectiveFitnessFunction();
+		fitnessFunction = new SingleObjectiveFitnessFunction(currentConfiguration);
 		selectionFunction = new TournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
 		mutationFunction = new SubtreeMutation(chromosomeFactory);
@@ -136,7 +137,9 @@ public class StandardGP {
 	}
 
 	protected boolean isFinished() {
-		return (fitnessEvaluations > Parameters.SEARCH_BUDGET);
+		boolean finished =  fitnessFunction.isFinished(population.get(0))
+				|| (fitnessEvaluations > Parameters.SEARCH_BUDGET);
+		return finished;
 	}
 	
 	protected void sortPopulation() {
@@ -159,7 +162,8 @@ public class StandardGP {
 	public static void main (String[] args){
 		int depth = 10;
 		double probRecursive = 0.4;
-		StandardGP gp = new StandardGP(Parameters.GRAMMAR_FILE, depth, probRecursive);
+		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
+		StandardGP gp = new StandardGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = gp.generateSolution();
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());
