@@ -15,7 +15,7 @@ public class SteadyStateGPTest {
 		String grammarFile = Parameters.GRAMMAR_FILE;
 		int depth = 6;
 		double probRecursive = 0.1;
-		Parameters.SEARCH_BUDGET = 100;
+		Parameters.SEARCH_BUDGET = 50;
 		Parameters.POPULATION_SIZE = 10;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		SteadyStateGP algorithm = new SteadyStateGP(grammarFile, depth, probRecursive, currentConfiguration);

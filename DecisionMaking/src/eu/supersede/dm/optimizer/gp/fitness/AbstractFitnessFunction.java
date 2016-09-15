@@ -11,7 +11,7 @@ public abstract class AbstractFitnessFunction implements FitnessFunction {
 	
 	protected Map<Integer,Double> fitnessCache = new HashMap<Integer, Double>();
 	
-	protected ConfigurationLoader configurationLoader = new ConfigurationLoader();
+	protected ConfigurationLoader configurationLoader = ConfigurationLoader.getInstance();
 	
 	private List<String> currentConfiguration;
 	

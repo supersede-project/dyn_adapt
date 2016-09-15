@@ -11,7 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import eu.supersede.dm.optimizer.gp.Parameters;
+import eu.supersede.dm.util.FeatureAttribute.Aggregators;
 
 public class ConfigurationLoader {
 	
@@ -19,9 +23,78 @@ public class ConfigurationLoader {
 	
 	private Map<String, Properties> featureAttributes;
 	
-	public ConfigurationLoader() {
+	private Map<String, List<FeatureAttribute>> jsonAttributes;
+	
+	private static ConfigurationLoader instance;
+	
+	private static String[] ATTRIBUTE_NAMES = {"memory_consumption", "availability", "response_time", "configuration_time"};
+	
+	public static ConfigurationLoader getInstance(){
+		if (instance == null){
+			instance = new ConfigurationLoader();
+		}
+		return instance;
+	}
+	
+	private ConfigurationLoader() {
 		configurationPath = Parameters.FEATURE_ATTRIBUTE_PATH;
 		featureAttributes = new HashMap<String, Properties>();
+		jsonAttributes = new HashMap<String, List<FeatureAttribute>>();
+	}
+	
+	public List<List<FeatureAttribute>> loadAttributesJSON(List<String> configuration){
+		List<List<FeatureAttribute>> attrs = new ArrayList<List<FeatureAttribute>> ();
+		for (String feature : configuration){
+			if (feature.isEmpty()){
+				continue;
+			}
+			List<FeatureAttribute> attributes = new ArrayList<FeatureAttribute>();
+			
+			String jsonFile = configurationPath + File.separator + feature + ".json";
+			FileReader fileReader;
+			try {
+				fileReader = new FileReader(jsonFile);
+				JSONTokener jsonTokener = new JSONTokener(fileReader);
+				JSONObject jsonObject = new JSONObject(jsonTokener);
+				for (String attributeName : ATTRIBUTE_NAMES){
+					FeatureAttribute featureAttribute = new FeatureAttribute();
+					
+					featureAttribute.setName(attributeName);
+					
+					
+					/*
+					 * IMPORTANT!! If maximization, convert to minimization, hence we always do minimization
+					 */
+					String opt = jsonObject.query("/" + attributeName + "/opt").toString();
+					featureAttribute.setMinimize(true);
+					double value = Double.parseDouble(jsonObject.query("/" + attributeName + "/value").toString());
+					if ("max".equalsIgnoreCase(opt)){
+						value = 1d / (1d + value); // convert to minimization
+					}
+					featureAttribute.setValue(value);
+					
+					
+					String domain = jsonObject.query("/" + attributeName + "/domain").toString();
+					if ("int".equalsIgnoreCase(domain)){
+						featureAttribute.setDomain(Integer.class);
+					}else{
+						featureAttribute.setDomain(Double.class);
+					}
+					
+					Aggregators aggregator = Aggregators.valueOf(jsonObject.query("/" + attributeName + "/aggregator").toString());
+					featureAttribute.setAggregator(aggregator);
+					
+					attributes.add(featureAttribute);
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			jsonAttributes.put(feature, attributes);
+			attrs.add(attributes);
+		}
+		return attrs;
 	}
 	
 	// Load the quality attributes corresponding to a given feature

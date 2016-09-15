@@ -12,7 +12,7 @@ public class ConfigurationLoaderTest {
 
 	@Test
 	public void testConfigurationLoader() {
-		ConfigurationLoader configurationLoader = new ConfigurationLoader();
+		ConfigurationLoader configurationLoader = ConfigurationLoader.getInstance();
 		assertNotEquals(configurationLoader, null);
 	}
 
@@ -23,7 +23,7 @@ public class ConfigurationLoaderTest {
 		configuration.add("ios");
 		configuration.add("audio");
 		
-		ConfigurationLoader configurationLoader = new ConfigurationLoader();
+		ConfigurationLoader configurationLoader = ConfigurationLoader.getInstance();
 		List<Properties> attributes = configurationLoader.loadAttributes(configuration);
 		assertTrue(attributes != null);
 		assertTrue(attributes.size() == 3);

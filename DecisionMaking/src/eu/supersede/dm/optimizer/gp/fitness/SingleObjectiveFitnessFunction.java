@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
+import eu.supersede.dm.util.FeatureAttribute;
+import eu.supersede.dm.util.FeatureAttribute.Aggregators;
 
 public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	
@@ -23,7 +25,7 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 		
 		// calculate the fitness of the current configuration
 		
-		currentConfigurationFitness = calculate(currentConfig);
+		currentConfigurationFitness = calculateJson(currentConfig);
 		logger.debug("Fitness of current config: {}", currentConfigurationFitness);
 	}
 
@@ -45,7 +47,7 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 		}else{
 			List<String> features = Arrays.asList(chromosome.toString().split(" "));
 			
-			fitness = calculate(features);
+			fitness = calculateJson(features);
 			
 			chromosome.setFitness(fitness);
 			// save this fitness in cache
@@ -67,9 +69,28 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 		return result;
 	}
 	
+	private double calculateJson (List<String> features){
+		double result;
+		double sum = 0;
+		double product = 1;
+		List<List<FeatureAttribute>> attributesJSON = configurationLoader.loadAttributesJSON(features);
+		for (List<FeatureAttribute> attrs : attributesJSON){
+			for (FeatureAttribute featureAttribute : attrs){
+				// TODO currently, we convert maximization values to minimization values when loading the feature attributes
+				if (Aggregators.sum == featureAttribute.getAggregator()){
+					sum += featureAttribute.getValue();
+				}else if (Aggregators.product == featureAttribute.getAggregator()){
+					product *= featureAttribute.getValue();
+				}
+			}
+		}
+		result = sum + product;
+		return result;
+	}
+	
 	@Override
 	public boolean isMaximizationFunction() {
-		return true;
+		return false;
 	}
 
 
