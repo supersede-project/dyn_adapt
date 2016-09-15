@@ -274,5 +274,10 @@ public class ModelQuery implements IModelQuery {
 			newUriString = "/" + newUriString;
 		return URI.createPlatformResourceURI(newUriString, true);
 	}
-
+	
+	@Override
+	public PatternModel loadPatternModel (URI uri){
+		return modelManager.loadModel(uri, PatternModel.class);
+	}
+	
 }

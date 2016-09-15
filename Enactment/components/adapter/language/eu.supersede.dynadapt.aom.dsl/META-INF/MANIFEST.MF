@@ -1,10 +1,21 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: eu.supersede.dynadapt.aom.dsl
-Bundle-Vendor: Supersede Project
+Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl; singleton:=true
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Supersede Project
+Export-Package: eu.supersede.dynadapt.dsl,
+ eu.supersede.dynadapt.dsl.aspect,
+ eu.supersede.dynadapt.dsl.aspect.impl,
+ eu.supersede.dynadapt.dsl.aspect.util,
+ eu.supersede.dynadapt.dsl.formatting,
+ eu.supersede.dynadapt.dsl.generator,
+ eu.supersede.dynadapt.dsl.parser.antlr,
+ eu.supersede.dynadapt.dsl.parser.antlr.internal,
+ eu.supersede.dynadapt.dsl.scoping,
+ eu.supersede.dynadapt.dsl.serializer,
+ eu.supersede.dynadapt.dsl.services,
+ eu.supersede.dynadapt.dsl.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
  org.eclipse.xtext.generator;bundle-version="2.9.1",
@@ -23,16 +34,5 @@ Require-Bundle: org.eclipse.xtext,
  eu.supersede.dynadapt.aom.dsl.extensionpoint;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="5.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: eu.supersede.dynadapt.dsl,
- eu.supersede.dynadapt.dsl.scoping,
- eu.supersede.dynadapt.dsl.validation,
- eu.supersede.dynadapt.dsl.services,
- eu.supersede.dynadapt.dsl.aspect.util,
- eu.supersede.dynadapt.dsl.parser.antlr.internal,
- eu.supersede.dynadapt.dsl.aspect,
- eu.supersede.dynadapt.dsl.generator,
- eu.supersede.dynadapt.dsl.aspect.impl,
- eu.supersede.dynadapt.dsl.serializer,
- eu.supersede.dynadapt.dsl.parser.antlr,
- eu.supersede.dynadapt.dsl.formatting
 Import-Package: org.apache.log4j
+Bundle-ActivationPolicy: lazy

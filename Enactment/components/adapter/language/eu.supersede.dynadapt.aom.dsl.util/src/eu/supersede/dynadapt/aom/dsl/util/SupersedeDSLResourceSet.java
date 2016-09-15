@@ -16,22 +16,33 @@ package eu.supersede.dynadapt.aom.dsl.util;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.SaveOptions;
 import org.eclipse.xtext.resource.XtextResourceSet;
 
+import cz.zcu.yafmt.model.fc.util.FeatureConfigurationUtil;
+import cz.zcu.yafmt.model.fm.Feature;
+import cz.zcu.yafmt.model.fm.FeatureModel;
+import cz.zcu.yafmt.model.fm.util.FeatureModelUtil;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 
 /**
@@ -54,6 +65,16 @@ import eu.supersede.dynadapt.dsl.aspect.Aspect;
  *
  */
 public class SupersedeDSLResourceSet {
+	
+	static {
+		//FeatureModel initialization before creating the resource set in standalone mode
+		if(!Platform.isRunning()){
+			FeatureModelUtil.hookPackageRegistry();
+			FeatureModelUtil.hookResourceFactoryRegistry();
+			FeatureConfigurationUtil.hookPackageRegistry();
+			FeatureConfigurationUtil.hookResourceFactoryRegistry();
+		}
+	}
 	
 	private XtextResourceSet resourceSet; // internal resource set
 	
@@ -264,6 +285,14 @@ public class SupersedeDSLResourceSet {
 		return loadModel(uri, Aspect.class);
 	}
 	
+	public PatternModel loadPatternModel(URI uri) {
+		return loadModel(uri, PatternModel.class);
+	}
+	
+	public FeatureModel loadFeatureModel(URI uri) {
+		return loadModel(uri, FeatureModel.class);
+	}
+	
 	/**
 	 * Creates a new aspect model. Please note, that the name of the
 	 * newly created model is empty and needs to be set by the caller
@@ -344,7 +373,7 @@ public class SupersedeDSLResourceSet {
 		try {
 			resource = getResourceSet().getResource(uri, true);
 		} catch(Exception e) {
-			resource = getResourceSet().getResource(uri, true);
+			return null;
 		}
 		if(resource != null)
 			EcoreUtil.resolveAll(getResourceSet());

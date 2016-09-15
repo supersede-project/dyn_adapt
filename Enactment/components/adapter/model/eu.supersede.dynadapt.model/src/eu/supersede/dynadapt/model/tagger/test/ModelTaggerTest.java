@@ -45,7 +45,7 @@ public class ModelTaggerTest {
 	}
 	
 	@Test
-	public void modelQueryTest() throws Exception {
+	public void modelTaggerTest() throws Exception {
 		Assert.assertNotNull(modelManager);
 		Assert.assertNotNull(modelQuery);
 		Assert.assertNotNull(modelTagger);

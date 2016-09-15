@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -17,42 +18,46 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
+import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceSet;
+
 public class ModelManager implements IModelManager {
-	private static ResourceSet resourceSet = new ResourceSetImpl();
+//	private static ResourceSet resourceSet = new ResourceSetImpl();
+	SupersedeDSLResourceSet resourceSet = new SupersedeDSLResourceSet();
 	private Resource targetModelResource = null;
 	private URI targetModelURI = null;
 	
-	/**
-	 * Static registration of common EMF metamodels for Ecore, UML2
-	 * Registration of UML extension
-	 */
-	static {
-		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-		resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION,
-				UMLResource.Factory.INSTANCE);
-		UMLResourcesUtil.init(resourceSet);
-		Map<URI,URI> uriMap = resourceSet.getURIConverter().getURIMap();
-//		final URI uri2 = URI.createURI("jar:file:/home/yosu/Projects/Supersede/Eclipses/eclipse-mars-modeling/plugins/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
-		final URI uri2 = URI.createURI("jar:file:./lib/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
-		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri2.appendSegment("libraries").appendSegment(""));
-		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri2.appendSegment("metamodels").appendSegment(""));
-		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri2.appendSegment("profiles").appendSegment(""));
-	}
+//	/**
+//	 * Static registration of common EMF metamodels for Ecore, UML2
+//	 * Registration of UML extension
+//	 */
+//	static {
+//		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+//		resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
+//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION,
+//				UMLResource.Factory.INSTANCE);
+//		UMLResourcesUtil.init(resourceSet);
+//		Map<URI,URI> uriMap = resourceSet.getURIConverter().getURIMap();
+////		final URI uri2 = URI.createURI("jar:file:/home/yosu/Projects/Supersede/Eclipses/eclipse-mars-modeling/plugins/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
+//		final URI uri2 = URI.createURI("jar:file:./lib/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
+//		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri2.appendSegment("libraries").appendSegment(""));
+//		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri2.appendSegment("metamodels").appendSegment(""));
+//		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri2.appendSegment("profiles").appendSegment(""));
+//	}
 	
-	/* (non-Javadoc)
-	 * @see eu.supersede.dynadapt.model.IModelManager#registerPackage(org.eclipse.emf.ecore.EPackage)
-	 */
-	public void registerPackage (EPackage ePackage){
-		resourceSet.getPackageRegistry().put (ePackage.getNsURI(), ePackage);
-	}
+//	/* (non-Javadoc)
+//	 * @see eu.supersede.dynadapt.model.IModelManager#registerPackage(org.eclipse.emf.ecore.EPackage)
+//	 */
+//	public void registerPackage (EPackage ePackage){
+//		resourceSet.getPackageRegistry().put (ePackage.getNsURI(), ePackage);
+//	}
 	
 	/* (non-Javadoc)
 	 * @see eu.supersede.dynadapt.model.IModelManager#loadResource(java.lang.String)
 	 */
 	@Override
 	public Resource loadResource(String targetModelPath) {
-		return resourceSet.getResource(URI.createURI(targetModelPath), true);
+		return resourceSet.loadModel(URI.createURI(targetModelPath));
+//		return resourceSet.getResource(URI.createURI(targetModelPath), true);
 	}
 
 	/* (non-Javadoc)
@@ -61,9 +66,11 @@ public class ModelManager implements IModelManager {
 	@Override
 	public Profile loadProfile(String profilePath) {
 
-		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
+//		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
+		Resource resource = resourceSet.loadModel(URI.createURI(profilePath));
 		return (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PROFILE);
 	}
+	
 	
 	/**
 	 * Creates an instance of ModelManager, associated to a target UML base model defined by its path
@@ -167,5 +174,33 @@ public class ModelManager implements IModelManager {
 		}
 
 		return outputFile;
+	}
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#loadModel(org.eclipse.emf.common.util.URI, java.lang.Class)
+	 */
+
+	@Override
+	public <T extends EObject> T loadModel(URI uri, Class<T> clazz) { 
+		Resource resource = null;
+		try {
+//			resource = resourceSet.getResource(uri, true);
+			resource = resourceSet.loadModel(uri);
+			if(resource == null)
+				return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+			
+		if(resource == null || resource.getContents().isEmpty())
+			return null;
+	
+		EObject root = resource.getContents().get(0);
+		try {
+			return clazz.cast(root);
+		} catch(ClassCastException e) {
+			return null;
+		}
 	}
 }
