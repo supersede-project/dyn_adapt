@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.model;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -59,11 +60,23 @@ public interface IModelManager {
 	 */
 	URI saveTargetModel() throws IOException;
 	
+//	/**
+//	 * Regiser given model into the ModelManager resource set
+//	 * @param ePackage model to register
+//	 * @see org.eclipse.uml2.uml.resource.UMLResource
+//	 */
+//	void registerPackage (EPackage ePackage);
+	
 	/**
-	 * Regiser given model into the ModelManager resource set
-	 * @param ePackage model to register
-	 * @see org.eclipse.uml2.uml.resource.UMLResource
+	 * Loads the model resource with the given uri into this resource set. If
+	 * no such resource is found or the root object is not an instance of the
+	 * given class, null is returned.
+	 * 
+	 * @param uri uri of the model to be loaded
+	 * @param clazz class the model resource should have
+	 * @return model resource with the given uri or null.
 	 */
-	void registerPackage (EPackage ePackage);
+
+	<T extends EObject> T loadModel(URI uri, Class<T> clazz);
 
 }
