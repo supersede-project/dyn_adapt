@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="AtosUCFeatureModel" version="1.0.0" description="">
+  <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModel" lower="1" upper="1">
+    <feature id="smart_platform" name="Smart Platform" lower="0" upper="1">
+      <feature id="behaviour" name="Behaviour" lower="1" upper="1">
+        <feature id="concurrency" name="Concurrency" lower="0" upper="1">
+          <group lower="1" upper="1">
+            <feature id="low_concurrency" name="Low Concurrency" lower="0" upper="1">
+              <attribute id="duration" name="average_duration" type="double"/>
+              <attribute id="a_409707719" name="minimum_users" type="integer"/>
+              <attribute id="a_1486249175" name="maximum_users" type="integer"/>
+              <attribute id="a_1342994313" name="average_concurrent_users" type="integer"/>
+            </feature>
+            <feature id="average_concurrency" name="Average Concurrency" lower="0" upper="1">
+              <attribute id="a_1817185456" name="average_duration" type="double"/>
+              <attribute id="a_911722840" name="minimum_users" type="integer"/>
+              <attribute id="a_218142809" name="maximum_users" type="integer"/>
+              <attribute id="a_1010072638" name="average_concurrent_users" type="integer"/>
+            </feature>
+            <feature id="high_concurrency" name="High Concurrency" lower="0" upper="1">
+              <attribute id="a_604995701" name="average_duration" type="double"/>
+              <attribute id="a_494709289" name="minimum_users" type="integer"/>
+              <attribute id="a_49762024" name="maximum_users" type="integer"/>
+              <attribute id="a_738944109" name="average_concurrent_users" type="integer"/>
+            </feature>
+          </group>
+        </feature>
+      </feature>
+      <feature id="infrastructure" name="Infrastructure" lower="1" upper="1">
+        <feature id="vm_configurations" name="VM Configurations" lower="1" upper="1">
+          <feature id="hsk_configuration" name="HSK Configuration" lower="0" upper="1">
+            <feature id="hsk_optimal_configuration" name="HSK_Optimal_Configuration" lower="1" upper="1">
+              <attribute id="a_29902074" name="number_cores" type="integer"/>
+              <attribute id="a_1605826203" name="memory" type="double"/>
+              <attribute id="a_1034723842" name="storage" type="double"/>
+              <attribute id="a_1920764702" name="bandwidth" type="double"/>
+            </feature>
+            <feature id="hsk_standard_configuration" name="HSK_Standard_Configuration" lower="1" upper="1">
+              <attribute id="number_cores" name="number_cores" type="integer"/>
+              <attribute id="memory" name="memory" type="double"/>
+              <attribute id="storage" name="storage" type="double"/>
+              <attribute id="bandwidth" name="bandwidth" type="double"/>
+            </feature>
+          </feature>
+          <feature id="lb_configuration" name="LB Configuration" lower="0" upper="1">
+            <feature id="lb_optimal_configuration" name="LB_Optimal_Configuration" lower="1" upper="1">
+              <attribute id="a_1770208397" name="number_cores" type="integer"/>
+              <attribute id="a_788664747" name="memory" type="double"/>
+              <attribute id="a_3323496" name="storage" type="double"/>
+              <attribute id="a_1422878792" name="bandwidth" type="double"/>
+            </feature>
+            <feature id="lb_standard_configuration" name="LB_Standard_Configuration" lower="1" upper="1">
+              <attribute id="a_2117129726" name="number_cores" type="integer"/>
+              <attribute id="a_1152865514" name="memory" type="double"/>
+              <attribute id="a_1906249887" name="storage" type="double"/>
+              <attribute id="a_1429160399" name="bandwidth" type="double"/>
+            </feature>
+          </feature>
+          <feature id="sga_configuration" name="SGA Configuration" lower="0" upper="1">
+            <feature id="sga_standard_configuration" name="SGA_Standard_Configuration" lower="1" upper="1">
+              <attribute id="a_489688453" name="number_cores" type="integer"/>
+              <attribute id="a_870342316" name="memory" type="double"/>
+              <attribute id="a_1943704051" name="storage" type="double"/>
+              <attribute id="a_386358561" name="bandwidth" type="double"/>
+            </feature>
+            <feature id="sga_optimal_configuration" name="SGA_Optimal_Configuration" lower="1" upper="1">
+              <attribute id="a_1116084945" name="number_cores" type="integer"/>
+              <attribute id="a_973097227" name="memory" type="double"/>
+              <attribute id="a_896633346" name="storage" type="double"/>
+              <attribute id="a_1967483184" name="bandwidth" type="double"/>
+            </feature>
+          </feature>
+        </feature>
+        <feature id="nodes" name="Nodes" lower="1" upper="1">
+          <feature id="data_centers" name="Data Centers" lower="1" upper="1">
+            <feature id="dc1" name="DC1" lower="1" upper="1">
+              <attribute id="a_942174481" name="cpu_overload" type="double"/>
+              <attribute id="a_1040542835" name="temperature" type="double"/>
+              <attribute id="a_985459650" name="bandwith" type="double"/>
+              <attribute id="a_221035660" name="memory" type="double"/>
+              <feature id="sga" name="SGA" lower="1" upper="-1">
+                <attribute id="a_224280311" name="name" type="string"/>
+                <attribute id="a_1451159970" name="cpu_overload" type="double"/>
+                <attribute id="a_510465660" name="memory" type="double"/>
+                <attribute id="a_885281544" name="bandwith" type="double"/>
+                <attribute id="a_960654815" name="VMConfiguration" type="string"/>
+              </feature>
+            </feature>
+          </feature>
+          <feature id="load_balancers" name="Load Balancers" lower="1" upper="1">
+            <feature id="lbnode1" name="LBNode1" lower="1" upper="1">
+              <attribute id="a_1644548477" name="cpu_overload" type="double"/>
+              <attribute id="a_643309707" name="temperature" type="double"/>
+              <attribute id="a_1783049222" name="bandwith" type="double"/>
+              <attribute id="a_13166753" name="memory" type="double"/>
+              <feature id="lb" name="LB" lower="1" upper="-1">
+                <attribute id="a_63710985" name="name" type="string"/>
+                <attribute id="a_512052611" name="cpu_overload" type="double"/>
+                <attribute id="a_909214805" name="memory" type="double"/>
+                <attribute id="a_1353093373" name="bandwith" type="double"/>
+                <attribute id="lb_vmconfiguration" name="VMConfiguration" type="string"/>
+                <attribute id="a_71057980" name="hsk" type="string"/>
+              </feature>
+            </feature>
+          </feature>
+          <feature id="handshakes" name="Handshakes" lower="1" upper="1">
+            <feature id="hsknode1" name="HSKNode1" lower="1" upper="1">
+              <attribute id="a_1041090282" name="cpu_overload" type="double"/>
+              <attribute id="a_1124394929" name="temperature" type="double"/>
+              <attribute id="a_82407481" name="bandwith" type="double"/>
+              <attribute id="a_402248714" name="memory" type="double"/>
+              <feature id="hsk" name="HSK" lower="1" upper="-1">
+                <attribute id="a_1183336673" name="name" type="string"/>
+                <attribute id="a_304948751" name="cpu_overload" type="double"/>
+                <attribute id="a_1339648302" name="memory" type="double"/>
+                <attribute id="a_1234897471" name="bandwith" type="double"/>
+                <attribute id="hsk_vmconfiguration" name="VMConfiguration" type="string"/>
+                <attribute id="a_2082488607" name="lb" type="string"/>
+              </feature>
+            </feature>
+          </feature>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+  <constraint value="hsk implies hsk_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies lb_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="sga implies sga_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="concurrency implies (sga and hsk and lb)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="hsk implies lb" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies hsk" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+</fm:featureModel>

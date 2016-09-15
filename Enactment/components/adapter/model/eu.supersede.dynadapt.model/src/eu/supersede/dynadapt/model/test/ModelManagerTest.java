@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
@@ -25,6 +26,7 @@ public class ModelManagerTest {
 	String profilePath = "platform:/resource/eu.supersede.dynadapt.model/models/adm.profile.uml";
 	String patternModelPath = "platform:/resource/eu.supersede.dynadapt.model/models/atos_queries.vql";
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.model/models/AtosUCFeatureModel.yafm";
+	String featureConfigurationPath = "platform:/resource/eu.supersede.dynadapt.model/models/AtosDefaultFeatureConfiguration.yafc";
 	
 	IModelManager modelManager = null;
 	
@@ -47,10 +49,12 @@ public class ModelManagerTest {
 		Profile profile = modelManager.loadProfile(profilePath);
 		PatternModel patternModel = modelManager.loadPatternModel(patternModelPath);
 		FeatureModel featureModel = modelManager.loadFeatureModel(featureModelPath);
+		FeatureConfiguration featureConfiguration = modelManager.loadFeatureConfiguration(featureConfigurationPath);
 		
 		Assert.assertNotNull(umlModel);
 		Assert.assertNotNull(profile);
 		Assert.assertNotNull(patternModel);
 		Assert.assertNotNull(featureModel);
+		Assert.assertNotNull(featureConfiguration);
 	}
 }

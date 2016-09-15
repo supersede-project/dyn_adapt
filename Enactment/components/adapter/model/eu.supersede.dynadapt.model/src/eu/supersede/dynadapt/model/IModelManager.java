@@ -87,6 +87,6 @@ public interface IModelManager {
 	public Model loadUMLModel(String modelPath);
 	public PatternModel loadPatternModel(String patternPath);
 	public FeatureModel loadFeatureModel(String fmPath);
-	public FeatureConfiguration loadFFeatureConfiguration(String fcPath);
+	public FeatureConfiguration loadFeatureConfiguration(String fcPath);
 
 }
