@@ -7,7 +7,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
+
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fm.FeatureModel;
 
 public interface IModelManager {
 
@@ -78,5 +83,10 @@ public interface IModelManager {
 	 */
 
 	<T extends EObject> T loadModel(URI uri, Class<T> clazz);
+	
+	public Model loadUMLModel(String modelPath);
+	public PatternModel loadPatternModel(String patternPath);
+	public FeatureModel loadFeatureModel(String fmPath);
+	public FeatureConfiguration loadFFeatureConfiguration(String fcPath);
 
 }

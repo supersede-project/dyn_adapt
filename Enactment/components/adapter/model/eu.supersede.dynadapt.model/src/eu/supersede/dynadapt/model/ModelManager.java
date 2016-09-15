@@ -13,11 +13,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceSet;
 
 public class ModelManager implements IModelManager {
@@ -69,6 +73,27 @@ public class ModelManager implements IModelManager {
 //		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
 		Resource resource = resourceSet.loadModel(URI.createURI(profilePath));
 		return (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PROFILE);
+	}
+	
+	
+	@Override
+	public Model loadUMLModel(String modelPath) {
+		return resourceSet.loadModel(URI.createURI(modelPath), Model.class);
+	}
+	
+	@Override
+	public PatternModel loadPatternModel(String patternPath) {
+		return resourceSet.loadModel(URI.createURI(patternPath), PatternModel.class);
+	}
+	
+	@Override
+	public FeatureModel loadFeatureModel(String fmPath) {
+		return resourceSet.loadModel(URI.createURI(fmPath), FeatureModel.class);
+	}
+	
+	@Override
+	public FeatureConfiguration loadFFeatureConfiguration(String fcPath) {
+		return resourceSet.loadModel(URI.createURI(fcPath), FeatureConfiguration.class);
 	}
 	
 	
