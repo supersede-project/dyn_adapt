@@ -23,6 +23,8 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.11.2",
  org.apache.log4j;bundle-version="1.2.15",
  eu.supersede.dynadapt.aom.dsl.resources,
  eu.supersede.dynadapt.aom.dsl.util,
- eu.supersede.dynadapt.lang.uml
+ eu.supersede.dynadapt.lang.uml,
+ cz.zcu.yafmt.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.apache.log4j
+Import-Package: cz.zcu.yafmt.model.fm,
+ org.apache.log4j
