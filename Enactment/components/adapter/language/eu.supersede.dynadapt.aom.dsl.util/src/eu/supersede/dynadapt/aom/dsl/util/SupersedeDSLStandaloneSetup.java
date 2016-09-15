@@ -50,10 +50,9 @@ public class SupersedeDSLStandaloneSetup {
 	 */
 	public static void doSetup() {
 		if(!Platform.isRunning() && !initialized) {
+			//Register EMF/XText cross-referenced metamodels
 			UmlSupport.doSetup();
-//			YafmtSupport.doSetup();
-//			PatternLanguageStandaloneSetup.doSetup();
-//			new EMFYafmtStandaloneSetup().createInjectorAndDoEMFRegistration();
+			YafmtSupport.doSetup();
 			new EMFPatternLanguageStandaloneSetup().createInjectorAndDoEMFRegistration();
 			AspectStandaloneSetup.doSetup();
 			
@@ -61,7 +60,7 @@ public class SupersedeDSLStandaloneSetup {
 			EcorePackage.eINSTANCE.eClass();
 			TypesPackage.eINSTANCE.eClass();
 			UMLPackage.eINSTANCE.eClass();
-//			FeatureModelPackage.eINSTANCE.eClass();
+			FeatureModelPackage.eINSTANCE.eClass();
 			PatternLanguagePackage.eINSTANCE.eClass();
 			AspectPackage.eINSTANCE.eClass();
 			
