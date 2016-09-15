@@ -92,7 +92,7 @@ public class ModelManager implements IModelManager {
 	}
 	
 	@Override
-	public FeatureConfiguration loadFFeatureConfiguration(String fcPath) {
+	public FeatureConfiguration loadFeatureConfiguration(String fcPath) {
 		return resourceSet.loadModel(URI.createURI(fcPath), FeatureConfiguration.class);
 	}
 	
