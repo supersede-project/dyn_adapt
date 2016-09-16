@@ -110,6 +110,9 @@ public class ModelManager implements IModelManager {
 		}
 	}
 	
+	public ModelManager () {
+	}
+	
 	/* (non-Javadoc)
 	 * @see eu.supersede.dynadapt.model.IModelManager#getTargetModel()
 	 */
