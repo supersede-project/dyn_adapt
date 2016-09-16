@@ -5,6 +5,7 @@ import eu.fbk.gbtlib.gp.individual.GPIndividual;
 public class Chromosome implements Comparable {
 	private GPIndividual configuration;
 	private double fitness;
+	private double crowdingDistance;
 	public double getFitness() {
 		return fitness;
 	}
@@ -39,5 +40,11 @@ public class Chromosome implements Comparable {
 		}else{
 			return configuration.toString();
 		}
+	}
+	public double getCrowdingDistance() {
+		return crowdingDistance;
+	}
+	public void setCrowdingDistance(double crowdingDistance) {
+		this.crowdingDistance = crowdingDistance;
 	}
 }

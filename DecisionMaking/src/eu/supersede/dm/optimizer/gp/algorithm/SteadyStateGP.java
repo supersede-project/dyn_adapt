@@ -49,12 +49,12 @@ public class SteadyStateGP extends StandardGP {
 			try {
 				// Chrossover
 				if (RandomNumber.nextDouble() <= Parameters.CROSSOVER_RATE) {
-					crossoverFunction.crossOver(offspring1, offspring2);
+					crossoverFunction.crossOver(offspring1.getConfiguration(), offspring2.getConfiguration());
 				}
 
 				// Mutation
 				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
-					mutationFunction.mutate(offspring1);
+					mutationFunction.mutate(offspring1.getConfiguration());
 				}
 				
 				// compute fitness of offspring
@@ -63,7 +63,7 @@ public class SteadyStateGP extends StandardGP {
 				}
 				
 				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
-					mutationFunction.mutate(offspring2);
+					mutationFunction.mutate(offspring2.getConfiguration());
 				}
 				
 				// compute fitness of offspring

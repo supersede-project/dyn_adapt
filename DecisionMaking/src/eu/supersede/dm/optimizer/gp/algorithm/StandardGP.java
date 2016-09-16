@@ -43,7 +43,7 @@ public class StandardGP {
 		fitnessFunction = new SingleObjectiveFitnessFunction(currentConfiguration);
 		selectionFunction = new TournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
-		mutationFunction = new SubtreeMutation(chromosomeFactory);
+		mutationFunction = new SubtreeMutation(chromosomeFactory.getConfigurationFactory());
 		replacementFunction = new ReplacementFunction(fitnessFunction.isMaximizationFunction());
 	}
 
@@ -90,6 +90,15 @@ public class StandardGP {
 		sortPopulation();
 	}
 
+	protected void calculateFitness() {
+		for (Chromosome chromosome : population) {
+			boolean unique = fitnessFunction.evaluate(chromosome);
+			if (unique){
+				fitnessEvaluations++;
+			}
+		}
+	}
+	
 	protected void evolve() {
 		List<Chromosome> nextGeneration = new ArrayList<Chromosome>();
 		nextGeneration.addAll(elitism());
@@ -103,16 +112,16 @@ public class StandardGP {
 			try {
 				// Crossover
 				if (RandomNumber.nextDouble() <= Parameters.CROSSOVER_RATE) {
-					crossoverFunction.crossOver(offspring1, offspring2);
+					crossoverFunction.crossOver(offspring1.getConfiguration(), offspring2.getConfiguration());
 				}
 
 				// Mutation
 				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
-					mutationFunction.mutate(offspring1);
+					mutationFunction.mutate(offspring1.getConfiguration());
 				}
 				
 				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
-					mutationFunction.mutate(offspring2);
+					mutationFunction.mutate(offspring2.getConfiguration());
 				}
 				
 				nextGeneration.add(offspring1);

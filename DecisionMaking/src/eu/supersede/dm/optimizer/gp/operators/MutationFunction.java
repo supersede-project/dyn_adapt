@@ -1,8 +1,8 @@
 package eu.supersede.dm.optimizer.gp.operators;
 
-import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
+import eu.fbk.gbtlib.gp.individual.GPIndividual;
 
 public abstract class MutationFunction {
-	public abstract void mutate(Chromosome offspring) throws Exception;
+	public abstract void mutate(GPIndividual offspring) throws Exception;
 	
 }

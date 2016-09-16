@@ -23,7 +23,7 @@ public class JSONReaderTest {
 
 	@Test
 	public void test1() throws FileNotFoundException {
-		String jsonFile = "input/monitoring/feedbackreconfig/android.json";
+		String jsonFile = "input/monitoring/feedbackreconfig/json/android.json";
 		FileReader fileReader = new FileReader(jsonFile);
 		JSONTokener jsonTokener = new JSONTokener(fileReader);
 		JSONObject jsonObject = new JSONObject(jsonTokener);
@@ -40,14 +40,19 @@ public class JSONReaderTest {
 	
 	@Test
 	public void test2() throws FileNotFoundException {
-		String jsonFile = "input/monitoring/feedbackreconfig/android.json";
+		String jsonFile = "input/monitoring/feedbackreconfig/json/android.json";
 		FileReader fileReader = new FileReader(jsonFile);
 		JSONTokener jsonTokener = new JSONTokener(fileReader);
 		JSONObject jsonObject = new JSONObject(jsonTokener);
-		String key = "/memory_consumption/opt";
+//		String key = "/memory_consumption/opt";
 		Map<String, Object> map = jsonObject.toMap();
 		for (Entry<String, Object> entry : map.entrySet()){
-			System.out.println(entry.getKey() + " " + entry.getValue());
+			System.err.println(entry.getKey());
+			Map<Object, Object> innerMap = (Map<Object, Object>)entry.getValue();
+			System.out.println(innerMap.get("opt"));
+//			for (Entry<Object, Object> innerEntry : innerMap.entrySet()){
+//				System.out.println(innerEntry.getKey() + " " + innerEntry.getValue());
+//			}
 		}
 	}
 

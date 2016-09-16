@@ -1,31 +1,38 @@
-package eu.supersede.dm.optimizer.gp.fitness;
+/**
+ * 
+ */
+package eu.supersede.dm.optimizer.gp.mo.fitness;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
+import eu.supersede.dm.optimizer.gp.Parameters;
+import eu.supersede.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dm.util.FeatureAttributeMetadata;
 import eu.supersede.dm.util.FeatureAttributeMetadata.Aggregators;
 
-public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
-	
-	private static final Logger logger = LoggerFactory.getLogger(SingleObjectiveFitnessFunction.class);
+/**
+ * @author fitsum
+ *
+ */
+public class MultiObjectiveFitnessFunction extends AbstractFitnessFunction {
+	private static final Logger logger = LoggerFactory.getLogger(MultiObjectiveFitnessFunction.class);
 
-	private double currentConfigurationFitness;
+	private double[] currentConfigurationFitness;
 	
 	private Map<String, FeatureAttributeMetadata> featureAttributeMetadata = configurationLoader.getFeatureAttributeMetadata();
 	
 	/**
 	 * @param currentConfig
 	 */
-	public SingleObjectiveFitnessFunction(List<String> currentConfig) {
+	public MultiObjectiveFitnessFunction(List<String> currentConfig) {
 		super(currentConfig);
 		
 		// calculate the fitness of the current configuration
@@ -44,9 +51,9 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	public boolean evaluate(Chromosome chromosome) {
 		boolean unique = true;
 		// first check if the individual has been evaluated before
-		Double fitness = getCashedFitness(chromosome);
+		double[] fitness = getCashedFitness(chromosome);
 		if (fitness != null){
-			chromosome.setFitness(fitness);
+			chromosome.setObjective(fitness);
 			unique = false;
 //			logger.debug("Cache size: {} >> Chromsome: {} = {}", fitnessCache.size(), chromosome.getConfiguration().toString(), fitness);
 		}else{
@@ -54,7 +61,7 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 			
 			fitness = calculate(features);
 			
-			chromosome.setFitness(fitness);
+			chromosome.setObjective(fitness);
 			// save this fitness in cache
 			cacheFitness(chromosome);
 		}
@@ -62,7 +69,7 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	}
 
 	
-	private double calculate (List<String> features){
+	private double[] calculate (List<String> features){
 		
 		List<Properties> allAttributes =  configurationLoader.loadAttributes(features);
 		Map<String, Double> aggregatedValues = new HashMap<String, Double>();
@@ -109,10 +116,9 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 		}
 		
 		// overall aggregate sum of all attribute values
-		double result = 0;
-		for (Double v : aggregatedValues.values()){
-			result += v;
-		}
+		double[] result = new double[Parameters.NUM_OBJECTIVES];
+		result[0] = aggregatedValues.get("availability");
+		result[1] = aggregatedValues.get("memory_consumption") + aggregatedValues.get("response_time") + aggregatedValues.get("configuration_time");
 		return result;
 	}
 	
@@ -146,11 +152,26 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	 */
 	@Override
 	public boolean isFinished(Chromosome chromosome) {
+		
+		
+		boolean finished = true;
 		if (isMaximizationFunction()){
-			return (currentConfigurationFitness < chromosome.getFitness());
-		} else{
-			return (currentConfigurationFitness > chromosome.getFitness());
+			for (int i = 0; i < chromosome.getNumberOfObjectives(); i++){
+				if (currentConfigurationFitness[i] > chromosome.getObjective()[i]){
+					finished = false;
+					break;
+				}
+			}
+		}else{
+			for (int i = 0; i < chromosome.getNumberOfObjectives(); i++){
+				if (currentConfigurationFitness[i] < chromosome.getObjective()[i]){
+					finished = false;
+					break;
+				}
+			}
 		}
+		return finished;
+		
 	}
 
 }

@@ -1,20 +1,20 @@
 package eu.supersede.dm.optimizer.gp.operators;
 
+import eu.fbk.gbtlib.gp.individual.GPAnnotatedIndividualFactory;
+import eu.fbk.gbtlib.gp.individual.GPIndividual;
 import eu.fbk.gbtlib.gp.operators.AnnotatedSubtreeMutation;
-import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
-import eu.supersede.dm.optimizer.gp.chromosome.ChromosomeFactory;
 
 public class SubtreeMutation extends MutationFunction {
 
 	AnnotatedSubtreeMutation subtreeMutation;
 	
-	public SubtreeMutation(ChromosomeFactory chromosomeFactory) {
-		subtreeMutation = new AnnotatedSubtreeMutation(chromosomeFactory.getConfigurationFactory());
+	public SubtreeMutation(GPAnnotatedIndividualFactory chromosomeFactory) {
+		subtreeMutation = new AnnotatedSubtreeMutation(chromosomeFactory);
 	}
 	
 	@Override
-	public void mutate(Chromosome offspring) throws Exception {
-		subtreeMutation.mutate(offspring.getConfiguration());
+	public void mutate(GPIndividual offspring) throws Exception {
+		subtreeMutation.mutate(offspring);
 
 	}
 

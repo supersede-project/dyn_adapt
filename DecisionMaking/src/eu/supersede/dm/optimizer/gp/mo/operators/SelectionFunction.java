@@ -1,9 +1,9 @@
-package eu.supersede.dm.optimizer.gp.operators;
+package eu.supersede.dm.optimizer.gp.mo.operators;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
+import eu.supersede.dm.optimizer.gp.mo.chromosome.Chromosome;
 
 public abstract class SelectionFunction {
 	protected boolean maximize = true;
