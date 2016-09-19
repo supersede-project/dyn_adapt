@@ -7,7 +7,7 @@ package eu.supersede.dynadapt.featuremodel.fm;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 
-import eu.supersede.dynadapt.model.IModelManager;
+import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.model.ModelManager;
 
 public class FeatureModelDAO implements IFeatureModelDAO {
@@ -17,11 +17,9 @@ public class FeatureModelDAO implements IFeatureModelDAO {
 	}
 	
 	@Override
-	public IFeatureModelSUPERSEDE loadFeatureModel(String featureModelPath) {
+	public FeatureModel loadFeatureModel(String featureModelPath) {
 		new StandaloneSetup().setPlatformUri("../");
-		IModelManager modelManager = new ModelManager();
-		FeatureModelSUPERSEDE fm = new FeatureModelSUPERSEDE(modelManager.loadFeatureModel(featureModelPath));
-		return fm;
+		return (new ModelManager()).loadFeatureModel(featureModelPath);
 	}
 
 }

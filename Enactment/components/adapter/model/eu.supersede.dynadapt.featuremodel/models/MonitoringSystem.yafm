@@ -10,7 +10,7 @@
           </group>
         </feature>
         <feature id="timeSlot_twitter" name="timeSlot" lower="1" upper="1">
-          <attribute id="a_944977732" name="timeSlot" type="integer"/>
+          <attribute id="timeSlotValue" name="timeSlotValue" type="integer"/>
         </feature>
       </feature>
     </feature>

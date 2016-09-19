@@ -20,45 +20,14 @@ public class FeatureConfigSUPERSEDE implements IFeatureConfigSUPERSEDE {
 	private List<Selection> selections;
 
 	/**
-	 * Creates an instance of FeatureConfigSUPERSEDE from a given Feature
-	 * Configuration
+	 * Creates an instance of FeatureConfigSUPERSEDE 
 	 * 
-	 * @param FeatureConfiguration
+	 * @param name, selections
 	 */
-	public FeatureConfigSUPERSEDE(FeatureConfiguration fc) {
+	public FeatureConfigSUPERSEDE(String name, List<Selection> selections) {
 		super();
-		this.name = fc.getName();
-		this.selections = new ArrayList<Selection>();
-		loadModelSelections(fc.getRoot());
-	}
-
-	/**
-	 * This recursive method loads all the features below a given feature. In
-	 * this class it is used for loading all the features of an
-	 * FeatureModelSUPERSEDE instance, given its root.
-	 * 
-	 * @param startingFeature
-	 */
-
-	private void loadModelSelections(Selection selection) {
-		this.selections.add(selection);
-		List<Selection> selectionsVar = selection.getSelections();
-
-		// List<Group> featureGroups = selection.getGroups();
-		// if (!featureGroups.isEmpty()) {
-		// Iterator<Group> itgroups = featureGroups.iterator();
-		// while (itgroups.hasNext()) {
-		// Group g = itgroups.next();
-		// List<Feature> featuresGroup = g.getFeatures();
-		// featuresVar.addAll(featuresGroup);
-		// }
-		// }
-
-		Iterator<Selection> itselections = selectionsVar.iterator();
-		while (itselections.hasNext()) {
-			Selection s = itselections.next();
-			loadModelSelections(s);
-		}
+		this.name = name;
+		this.selections = selections;
 	}
 
 	public String getName() {
@@ -67,14 +36,15 @@ public class FeatureConfigSUPERSEDE implements IFeatureConfigSUPERSEDE {
 
 	public void setName(String name) {
 		this.name = name;
-		// fm.setName(name);
 	}
 
 	public List<Selection> getSelections() {
 		return selections;
 	}
 
-	// public void setSelections(List<Selection> selections) {
-	// this.selections = selections;
-	// }
+	public void setSelections(List<Selection> selections) {
+		this.selections = selections;
+	}
+
+	
 }
