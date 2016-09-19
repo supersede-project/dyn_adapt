@@ -7,7 +7,6 @@ package eu.supersede.dynadapt.featuremodel.fmtest;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.After;
 import org.junit.Before;
@@ -15,20 +14,24 @@ import org.junit.Test;
 
 import cz.zcu.yafmt.model.fm.Constraint;
 import cz.zcu.yafmt.model.fm.Feature;
+import eu.supersede.dynadapt.featuremodel.fm.FeatureModelDAO;
+import eu.supersede.dynadapt.featuremodel.fm.FeatureModelLAO;
 import eu.supersede.dynadapt.featuremodel.fm.FeatureModelSUPERSEDE;
+import eu.supersede.dynadapt.featuremodel.fm.IFeatureModelLAO;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 
-public class FeatureModelSUPERSEDETest {
+public class FeatureModelLAOTest {
 	
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.featuremodel/models/MonitoringSystem.yafm";
 	
-	IModelManager modelManager = null;
+	IFeatureModelLAO fmLAO = null;
+	
 	
 	@Before
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
-		modelManager = new ModelManager ();
+		fmLAO = new FeatureModelLAO(new FeatureModelDAO());
 	}
 
 	@After
@@ -38,7 +41,7 @@ public class FeatureModelSUPERSEDETest {
 	
 	@Test
 	public void testValidFeatureModelSUPERSEDE(){
-		FeatureModelSUPERSEDE fm = new FeatureModelSUPERSEDE(modelManager.loadFeatureModel(featureModelPath));
+		FeatureModelSUPERSEDE fm = fmLAO.getFeatureModelSUPERSEDE(featureModelPath);
 		
 //		System.out.println("Model name: " + fm.getName());
 //

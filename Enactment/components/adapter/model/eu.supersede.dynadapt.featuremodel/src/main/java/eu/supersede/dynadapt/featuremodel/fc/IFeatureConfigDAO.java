@@ -5,7 +5,9 @@
 
 package eu.supersede.dynadapt.featuremodel.fc;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+
 public interface IFeatureConfigDAO {
 
-	public IFeatureConfigSUPERSEDE loadFeatureConfig(String featureConfigPath);
+	public FeatureConfiguration loadFeatureConfig(String featureConfigPath);
 }

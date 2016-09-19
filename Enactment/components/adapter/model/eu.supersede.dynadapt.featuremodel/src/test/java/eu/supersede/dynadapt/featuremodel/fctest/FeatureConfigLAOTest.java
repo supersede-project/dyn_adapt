@@ -5,25 +5,32 @@
 
 package eu.supersede.dynadapt.featuremodel.fctest;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.Selection;
+import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
+import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigSUPERSEDE;
+import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 
-public class FeatureConfigSUPERSEDETest {
+public class FeatureConfigLAOTest {
 	
 	String featureConfigPath = "platform:/resource/eu.supersede.dynadapt.featuremodel/models/MonitoringSystemConfigDefault.yafc";
 	
-	IModelManager modelManager = null;
+	IFeatureConfigLAO fcLAO = null;
+	
 	
 	@Before
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
-		modelManager = new ModelManager ();
+		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 	}
 
 	@After
@@ -33,7 +40,7 @@ public class FeatureConfigSUPERSEDETest {
 	
 	@Test
 	public void testValidFeatureConfigSUPERSEDE(){
-		FeatureConfigSUPERSEDE fc = new FeatureConfigSUPERSEDE(modelManager.loadFeatureConfiguration(featureConfigPath));
+		FeatureConfigSUPERSEDE fc = fcLAO.getFeatureConfigSUPERSEDE(featureConfigPath);
 
 //		System.out.println("Model name: " + fc.getName());
 //		

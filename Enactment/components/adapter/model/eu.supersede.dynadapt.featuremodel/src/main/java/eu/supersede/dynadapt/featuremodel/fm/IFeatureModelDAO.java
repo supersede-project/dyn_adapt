@@ -5,7 +5,9 @@
 
 package eu.supersede.dynadapt.featuremodel.fm;
 
+import cz.zcu.yafmt.model.fm.FeatureModel;
+
 public interface IFeatureModelDAO {
 
-	public IFeatureModelSUPERSEDE loadFeatureModel(String featureModelPath);
+	public FeatureModel loadFeatureModel(String featureModelPath);
 }

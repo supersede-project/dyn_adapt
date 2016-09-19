@@ -12,7 +12,7 @@
             </group>
           </feature>
           <feature id="timeSlot_twitter" name="timeSlot" lower="1" upper="1">
-            <attribute id="a_944977732" name="timeSlot" type="integer"/>
+            <attribute id="timeSlotValue" name="timeSlotValue" type="integer"/>
           </feature>
         </feature>
       </feature>
@@ -50,7 +50,7 @@
           <selection id="KeywordsExpression1"/>
         </selection>
         <selection id="timeSlot_twitter">
-          <attributeValue xsi:type="fc:integer" id="a_944977732" value="300"/>
+          <attributeValue xsi:type="fc:integer" id="timeSlotValue" value="300"/>
         </selection>
       </selection>
     </selection>
