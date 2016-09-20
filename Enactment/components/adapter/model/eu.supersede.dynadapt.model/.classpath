@@ -5,6 +5,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
 	<classpathentry kind="src" path="models"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.aom.dsl.util"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
