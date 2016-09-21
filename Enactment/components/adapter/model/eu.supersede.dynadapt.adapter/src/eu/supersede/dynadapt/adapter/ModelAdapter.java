@@ -7,6 +7,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
@@ -42,42 +43,37 @@ public class ModelAdapter implements IModelAdapter {
 			Element jointpointVariantModelElement) throws Exception {
 		
 		List<Element> elements = null;
-								
-		switch (jointpointVariantModelElement.getClass().getSimpleName()) {
-			
-			case CLASS:
-				ClassImpl classEl = (ClassImpl) jointpointVariantModelElement;
-				elements = inBaseModel.getPackagedElement("Components").getOwnedElements();		
-				Element rm = null;
-				//Navigate through all the components
-				for (Element e : elements) {
-					//If the class name matches then we keep the reference
-					if (((ClassImpl) e).getQualifiedName().equals(classEl.getQualifiedName())) {
-						rm = e;
-					}
-				}
-				//Delete all references
-				for (Relationship r : rm.getRelationships()) {
-					AssociationImpl a = (AssociationImpl) r;
-					for (Element e : a.getMemberEnds()) e.destroy();
-					r.destroy();
-				}
-				//Delete the element itself
-				rm.destroy();
-				break;
-			
-			case INSTANCE:
-				//TODO delete instance
-				break;
-			
-			case ATTRIBUTE:
-				//TODO delete attribute from class
-				break;
-			
-			default:
-				throw new Exception("Invalid element type");
+		String type = jointpointVariantModelElement.getClass().getSimpleName();
 		
+		if (type.equals(CLASS) || type.equals(INSTANCE)) {
+			NamedElement el = (NamedElement) jointpointVariantModelElement;
+			String s;
+			if (type.equals(CLASS)) s = "Components";
+			else s = "Instances";
+			elements = inBaseModel.getPackagedElement(s).getOwnedElements();		
+			Element rm = null;
+			//Navigate through all the components
+			for (Element e : elements) {
+				//If the class name matches then we keep the reference
+				if (((NamedElement) e).getQualifiedName().equals(el.getQualifiedName())) {
+					rm = e;
+				}
+			}
+			//Delete all references
+			for (Relationship r : rm.getRelationships()) {
+				AssociationImpl a = (AssociationImpl) r;
+				for (Element e : a.getMemberEnds()) e.destroy();
+				r.destroy();
+			}
+			//Delete the element itself
+			rm.destroy();
+			
+		} else if (type.equals(INSTANCE)) {
+			
+		} else if (type.equals(ATTRIBUTE)) {
+			
 		}
+		
 		
 		return inBaseModel;
 		
