@@ -1,35 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_I4JUwH8aEeaQEIE3SeJ_9A" name="RootElement">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_I4JUwH8aEeaQEIE3SeJ_9A" name="RootElement">
   <packagedElement xmi:type="uml:Package" xmi:id="_NprxIH8aEeaQEIE3SeJ_9A" name="Components">
     <packagedElement xmi:type="uml:Class" xmi:id="_J9WpUH8aEeaQEIE3SeJ_9A" name="A">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_XB5ZgX8hEeaQEIE3SeJ_9A" name="c" type="_yctlUH8gEeaQEIE3SeJ_9A" association="_XB4ycH8hEeaQEIE3SeJ_9A"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_sPVno38hEeaQEIE3SeJ_9A" name="b" type="_W4AlEH8eEeaQEIE3SeJ_9A" association="_sPVnoH8hEeaQEIE3SeJ_9A"/>
+      <ownedAttribute xmi:id="_WpuxQYAKEea1lLj2WU1gOg" name="c" type="_UTFqAIAKEea1lLj2WU1gOg" association="_WpuKMIAKEea1lLj2WU1gOg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_W4AlEH8eEeaQEIE3SeJ_9A" name="B"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_yctlUH8gEeaQEIE3SeJ_9A" name="C">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_Yyud8n8hEeaQEIE3SeJ_9A" name="b" type="_W4AlEH8eEeaQEIE3SeJ_9A" association="_Yyt24H8hEeaQEIE3SeJ_9A"/>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UTFqAIAKEea1lLj2WU1gOg" name="C"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_WvQ1kH8aEeaQEIE3SeJ_9A" name="Instances"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_f6ARYH8bEeaQEIE3SeJ_9A" name="nodes"/>
-  <packagedElement xmi:type="uml:Package" xmi:id="_hsSHUH8bEeaQEIE3SeJ_9A" name="relationships">
-    <packagedElement xmi:type="uml:Association" xmi:id="_XB4ycH8hEeaQEIE3SeJ_9A" memberEnd="_XB5ZgX8hEeaQEIE3SeJ_9A _XB5Zgn8hEeaQEIE3SeJ_9A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XB4ycX8hEeaQEIE3SeJ_9A" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XB5ZgH8hEeaQEIE3SeJ_9A" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_XB5Zgn8hEeaQEIE3SeJ_9A" name="a" type="_J9WpUH8aEeaQEIE3SeJ_9A" association="_XB4ycH8hEeaQEIE3SeJ_9A"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_Yyt24H8hEeaQEIE3SeJ_9A" memberEnd="_Yyud8n8hEeaQEIE3SeJ_9A _Yyud838hEeaQEIE3SeJ_9A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Yyud8H8hEeaQEIE3SeJ_9A" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yyud8X8hEeaQEIE3SeJ_9A" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_Yyud838hEeaQEIE3SeJ_9A" name="c" type="_yctlUH8gEeaQEIE3SeJ_9A" association="_Yyt24H8hEeaQEIE3SeJ_9A"/>
-    </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_sPVnoH8hEeaQEIE3SeJ_9A" memberEnd="_sPVno38hEeaQEIE3SeJ_9A _sPWOsH8hEeaQEIE3SeJ_9A">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sPVnoX8hEeaQEIE3SeJ_9A" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sPVnon8hEeaQEIE3SeJ_9A" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_hsSHUH8bEeaQEIE3SeJ_9A" name="relationships"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_WpuKMIAKEea1lLj2WU1gOg" memberEnd="_WpuxQYAKEea1lLj2WU1gOg _WpuxQoAKEea1lLj2WU1gOg">
+    <eAnnotations xmi:id="_WpuKMYAKEea1lLj2WU1gOg" source="org.eclipse.papyrus">
+      <details xmi:id="_WpuxQIAKEea1lLj2WU1gOg" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_sPWOsH8hEeaQEIE3SeJ_9A" name="a" type="_J9WpUH8aEeaQEIE3SeJ_9A" association="_sPVnoH8hEeaQEIE3SeJ_9A"/>
+    <ownedEnd xmi:id="_WpuxQoAKEea1lLj2WU1gOg" name="a" type="_J9WpUH8aEeaQEIE3SeJ_9A" association="_WpuKMIAKEea1lLj2WU1gOg"/>
   </packagedElement>
 </uml:Model>
