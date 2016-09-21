@@ -44,7 +44,7 @@ public class ModelAdapterTest {
 				
 		Model umlResult;
 		try {
-			umlResult = modelAdapter.applyDeleteComposition(umlModel, null, null, umlModel.getPackagedElement("Components").getOwnedElements().get(2));
+			umlResult = modelAdapter.applyDeleteComposition(umlModel, null, null, umlModel.getPackagedElement("Components").getOwnedElements().get(1));
 			save(umlResult, URI.createURI(umlModelPath));
 		} catch (Exception e) {
 			e.printStackTrace();

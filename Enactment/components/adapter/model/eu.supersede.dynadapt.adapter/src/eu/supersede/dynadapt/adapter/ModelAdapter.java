@@ -11,6 +11,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.internal.impl.AssociationImpl;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 
@@ -46,31 +47,27 @@ public class ModelAdapter implements IModelAdapter {
 			
 			case CLASS:
 				ClassImpl classEl = (ClassImpl) jointpointVariantModelElement;
-				elements = inBaseModel.getPackagedElement("Components").getOwnedElements();
-								
+				elements = inBaseModel.getPackagedElement("Components").getOwnedElements();		
 				Element rm = null;
-				
+				//Navigate through all the components
 				for (Element e : elements) {
+					//If the class name matches then we keep the reference
 					if (((ClassImpl) e).getQualifiedName().equals(classEl.getQualifiedName())) {
 						rm = e;
 					}
-					System.out.println(e.getOwnedElements());
 				}
-				
-				
-				for (Relationship r : rm.getRelationships()) r.destroy();
+				//Delete all references
+				for (Relationship r : rm.getRelationships()) {
+					AssociationImpl a = (AssociationImpl) r;
+					for (Element e : a.getMemberEnds()) e.destroy();
+					r.destroy();
+				}
+				//Delete the element itself
 				rm.destroy();
-				
 				break;
 			
 			case INSTANCE:
-				InstanceSpecificationImpl instance = (InstanceSpecificationImpl) jointpointVariantModelElement;
-				elements = inBaseModel.getPackagedElement("Instances").getOwnedElements();
-				for (Element e : elements) {
-					if (((ClassImpl) e).getQualifiedName().equals(instance.getQualifiedName())) {
-						deleteAllReferencedElements(e);
-					}
-				}
+				//TODO delete instance
 				break;
 			
 			case ATTRIBUTE:
@@ -80,12 +77,6 @@ public class ModelAdapter implements IModelAdapter {
 			default:
 				throw new Exception("Invalid element type");
 		
-		}
-						
-		for (int i = 0; i < inBaseModel.getPackagedElement("Instances").getOwnedElements().size(); ++i) {
-			InstanceSpecificationImpl instance = ((InstanceSpecificationImpl) inBaseModel.getPackagedElement("Instances").getOwnedElements().get(i));
-			if (instance.getLabel().equals("CMS Default Configuration Instance"))
-				instance.destroy();
 		}
 		
 		return inBaseModel;
@@ -104,13 +95,6 @@ public class ModelAdapter implements IModelAdapter {
 			Model usingVariantModel, ValueSpecification newValue) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	private void deleteAllReferencedElements(Element e) {
-		
-		for (Element el : e.getOwnedElements()) el.destroy();
-		
-		
 	}
 
 }
