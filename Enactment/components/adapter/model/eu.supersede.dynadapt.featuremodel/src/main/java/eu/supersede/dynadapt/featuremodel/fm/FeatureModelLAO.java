@@ -9,19 +9,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cz.zcu.yafmt.model.fm.Attribute;
+import cz.zcu.yafmt.model.fm.Constraint;
 import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
+import eu.supersede.dynadapt.featuremodel.feature.FeatureLAO;
+import eu.supersede.dynadapt.featuremodel.feature.FeatureSUPERSEDE;
 
 public class FeatureModelLAO implements IFeatureModelLAO {
 
 	FeatureModelDAO fmDAO;
-	
-	public FeatureModelLAO(FeatureModelDAO fmDAO){
+	FeatureLAO fLAO;
+
+	public FeatureModelLAO(FeatureModelDAO fmDAO) {
 		super();
 		this.fmDAO = fmDAO;
+		fLAO = new FeatureLAO();
 	}
-	
+
 	/**
 	 * Creates an instance of FeatureModelSUPERSEDE from a given Feature Model
 	 * Path
@@ -32,20 +38,36 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 	@Override
 	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath) {
 		FeatureModel fmSUPERSEDE = fmDAO.loadFeatureModel(featureModelPath);
-		List<Feature> features = new ArrayList<Feature>();
-		loadModelFeatures(fmSUPERSEDE.getRoot(), features);
-		return new FeatureModelSUPERSEDE(fmSUPERSEDE.getName(), features, fmSUPERSEDE.getConstraints());
+		List<FeatureSUPERSEDE> featuresSUPERSEDE = new ArrayList<FeatureSUPERSEDE>();
+		FeatureSUPERSEDE rootSUPERSEDE = new FeatureSUPERSEDE(fmSUPERSEDE.getRoot().getName(),
+				new ArrayList<FeatureSUPERSEDE>(), null, new ArrayList<FeatureSUPERSEDE>(),
+				fmSUPERSEDE.getRoot().getAttributes(), new ArrayList<Constraint>());
+		loadModelFeaturesSUPERSEDE(fmSUPERSEDE.getRoot(), rootSUPERSEDE, featuresSUPERSEDE);
+		calculateFeaturesSUPERSEDESiblings(featuresSUPERSEDE);
+
+		/**
+		 * private String name; private List<FeatureSUPERSEDE> children; private
+		 * FeatureSUPERSEDE parent; private List<FeatureSUPERSEDE> siblings;
+		 * private List<Attribute> attributes; private List<Constraint>
+		 * constraints;
+		 */
+
+		// List<FeatureSUPERSEDE> featuresSUPERSEDE =
+		// fLAO.createFeaturesSUPERSEDE(features);
+		return new FeatureModelSUPERSEDE(fmSUPERSEDE.getName(), featuresSUPERSEDE, fmSUPERSEDE.getConstraints());
 	}
 
 	/**
 	 * This recursive method loads all the features, in the features list, below
 	 * a given feature.
 	 * 
-	 * @param feature, features list
+	 * @param feature,
+	 *            features list
 	 */
 
-	private void loadModelFeatures(Feature feature, List<Feature> features) {
-		features.add(feature);
+	private void loadModelFeaturesSUPERSEDE(Feature feature, FeatureSUPERSEDE fSUPERSEDE,
+			List<FeatureSUPERSEDE> featuresSUPERSEDE) {
+		featuresSUPERSEDE.add(fSUPERSEDE);
 		List<Feature> featuresVar = feature.getFeatures();
 
 		List<Group> featureGroups = feature.getGroups();
@@ -61,8 +83,19 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 		Iterator<Feature> itfeatures = featuresVar.iterator();
 		while (itfeatures.hasNext()) {
 			Feature f = itfeatures.next();
-			loadModelFeatures(f, features);
+			FeatureSUPERSEDE newFeatureSUPERSEDE = new FeatureSUPERSEDE(f.getName(), new ArrayList<FeatureSUPERSEDE>(),
+					fSUPERSEDE, new ArrayList<FeatureSUPERSEDE>(), f.getAttributes(),
+					fLAO.getFeatureConstraints(f));
+			fLAO.addChild(fSUPERSEDE, newFeatureSUPERSEDE);
+			loadModelFeaturesSUPERSEDE(f, newFeatureSUPERSEDE, featuresSUPERSEDE);
 		}
 	}
-
+	
+	private void calculateFeaturesSUPERSEDESiblings(List<FeatureSUPERSEDE> featuresSUPERSEDE) {
+		Iterator<FeatureSUPERSEDE> itfeaturesSUPERSEDE = featuresSUPERSEDE.iterator();
+		while (itfeaturesSUPERSEDE.hasNext()) {
+			FeatureSUPERSEDE f = itfeaturesSUPERSEDE.next();
+			fLAO.setFeatureSiblings(f);
+		}
+	}
 }

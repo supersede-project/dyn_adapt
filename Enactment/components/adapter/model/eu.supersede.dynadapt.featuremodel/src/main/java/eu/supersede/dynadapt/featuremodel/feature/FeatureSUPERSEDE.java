@@ -9,14 +9,14 @@ import cz.zcu.yafmt.model.fm.Feature;
 public class FeatureSUPERSEDE implements IFeatureSUPERSEDE{
 
 	private String name;
-	private List<Feature> children;
-	private Feature parent;
-	private List<Feature> siblings;
+	private List<FeatureSUPERSEDE> children;
+	private FeatureSUPERSEDE parent;
+	private List<FeatureSUPERSEDE> siblings;
 	private List<Attribute> attributes;
 	private List<Constraint> constraints;
 	
 		
-	public FeatureSUPERSEDE(String name, List<Feature> children, Feature parent, List<Feature> siblings, List<Attribute> attributes,
+	public FeatureSUPERSEDE(String name, List<FeatureSUPERSEDE> children, FeatureSUPERSEDE parent, List<FeatureSUPERSEDE> siblings, List<Attribute> attributes,
 			List<Constraint> constraints) {
 		super();
 		this.name = name;
@@ -34,22 +34,22 @@ public class FeatureSUPERSEDE implements IFeatureSUPERSEDE{
 		this.name = name;
 	}
 	
-	public List<Feature> getChildren() {
+	public List<FeatureSUPERSEDE> getChildren() {
 		return children;
 	}
-	public void setChildren(List<Feature> children) {
+	public void setChildren(List<FeatureSUPERSEDE> children) {
 		this.children = children;
 	}
-	public Feature getParent() {
+	public FeatureSUPERSEDE getParent() {
 		return parent;
 	}
-	public void setParent(Feature parent) {
+	public void setParent(FeatureSUPERSEDE parent) {
 		this.parent = parent;
 	}
-	public List<Feature> getSiblings() {
+	public List<FeatureSUPERSEDE> getSiblings() {
 		return siblings;
 	}
-	public void setSiblings(List<Feature> siblings) {
+	public void setSiblings(List<FeatureSUPERSEDE> siblings) {
 		this.siblings = siblings;
 	}
 	public List<Attribute> getAttributes() {

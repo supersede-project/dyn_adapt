@@ -12,14 +12,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cz.zcu.yafmt.model.fm.Constraint;
-import cz.zcu.yafmt.model.fm.Feature;
+import eu.supersede.dynadapt.featuremodel.feature.FeatureSUPERSEDE;
 import eu.supersede.dynadapt.featuremodel.fm.FeatureModelDAO;
 import eu.supersede.dynadapt.featuremodel.fm.FeatureModelLAO;
 import eu.supersede.dynadapt.featuremodel.fm.FeatureModelSUPERSEDE;
 import eu.supersede.dynadapt.featuremodel.fm.IFeatureModelLAO;
-import eu.supersede.dynadapt.model.IModelManager;
-import eu.supersede.dynadapt.model.ModelManager;
 
 public class FeatureModelLAOTest {
 	
@@ -46,9 +43,16 @@ public class FeatureModelLAOTest {
 //		System.out.println("Model name: " + fm.getName());
 //
 //		System.out.println("Model features-------------");
-//		Iterator<Feature> itfeatures = fm.getFeatures().iterator();
+//		Iterator<FeatureSUPERSEDE> itfeatures = fm.getFeatures().iterator();
 //		while (itfeatures.hasNext()) {
-//			System.out.println(itfeatures.next().getName());
+//			FeatureSUPERSEDE f = itfeatures.next();
+//			System.out.println("-------------------------------------------------");
+//			System.out.println("Feature name: " + f.getName());
+//			System.out.println("Feature attributes: " + f.getAttributes());
+//			System.out.println("Feature parent: " + f.getParent());
+//			System.out.println("Feature children: " + f.getChildren());
+//			System.out.println("Feature siblings: " + f.getSiblings());
+//			System.out.println("Feature constraints: " + f.getConstraints());
 //		}
 //
 //		System.out.println("Model constraints-------------");

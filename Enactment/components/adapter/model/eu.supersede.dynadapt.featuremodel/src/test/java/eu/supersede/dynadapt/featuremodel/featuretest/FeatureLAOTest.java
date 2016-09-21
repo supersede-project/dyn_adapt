@@ -21,15 +21,12 @@ public class FeatureLAOTest {
 	
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.featuremodel/models/MonitoringSystem.yafm";
 	
-	Feature feature = null;
 	IFeatureLAO fLAO = null;
 	
 	
 	@Before
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
-		/*Use Root feature as an example feature*/
-		feature = ((new FeatureModelLAO(new FeatureModelDAO())).getFeatureModelSUPERSEDE(featureModelPath)).getFeatures().get(0);
 		fLAO = new FeatureLAO();
 	}
 
@@ -40,7 +37,9 @@ public class FeatureLAOTest {
 	
 	@Test
 	public void testCreateValidFeatureSUPERSEDE(){
-		FeatureSUPERSEDE f = fLAO.createFeatureSUPERSEDE(feature);
+		/*Use Root feature as an example feature*/
+//		FeatureSUPERSEDE f = fLAO.createFeatureSUPERSEDE(((new FeatureModelDAO()).loadFeatureModel(featureModelPath)).getRoot());
+		
 //		System.out.println("Feature name: " + f.getName());
 //		System.out.println("Feature attributes: " + f.getAttributes());
 //		System.out.println("Feature parent: " + f.getParent());

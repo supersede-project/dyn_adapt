@@ -9,11 +9,12 @@ import java.util.List;
 
 import cz.zcu.yafmt.model.fm.Constraint;
 import cz.zcu.yafmt.model.fm.Feature;
+import eu.supersede.dynadapt.featuremodel.feature.FeatureSUPERSEDE;
 
 public class FeatureModelSUPERSEDE implements IFeatureModelSUPERSEDE {
 
 	private String name;
-	private List<Feature> features;
+	private List<FeatureSUPERSEDE> features;
 	private List<Constraint> constraints;
 
 	/**
@@ -21,7 +22,7 @@ public class FeatureModelSUPERSEDE implements IFeatureModelSUPERSEDE {
 	 * 
 	 * @param name, features, constraints
 	 */
-	public FeatureModelSUPERSEDE(String name, List<Feature> features, List<Constraint> constraints) {
+	public FeatureModelSUPERSEDE(String name, List<FeatureSUPERSEDE> features, List<Constraint> constraints) {
 		super();
 		this.name = name;
 		this.features = features;
@@ -36,11 +37,11 @@ public class FeatureModelSUPERSEDE implements IFeatureModelSUPERSEDE {
 		this.name = name;
 	}
 
-	public List<Feature> getFeatures() {
+	public List<FeatureSUPERSEDE> getFeatures() {
 		return features;
 	}
 
-	public void setFeatures(List<Feature> features) {
+	public void setFeatures(List<FeatureSUPERSEDE> features) {
 		this.features = features;
 	}
 

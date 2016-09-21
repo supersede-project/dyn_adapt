@@ -21,15 +21,12 @@ public class SelectionLAOTest {
 	
 	String featureConfigPath = "platform:/resource/eu.supersede.dynadapt.featuremodel/models/MonitoringSystemConfigDefault.yafc";
 	
-	Selection selection = null;
 	ISelectionLAO sLAO = null;
 	
 	
 	@Before
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
-		/*Use Root feature as an example feature*/
-		selection = ((new FeatureConfigLAO(new FeatureConfigDAO())).getFeatureConfigSUPERSEDE(featureConfigPath)).getSelections().get(5);
 		sLAO = new SelectionLAO();
 	}
 
@@ -40,9 +37,11 @@ public class SelectionLAOTest {
 	
 	@Test
 	public void testCreateValidFeatureSUPERSEDE(){
-		SelectionSUPERSEDE s = sLAO.createSelectionSUPERSEDE(selection);
-		System.out.println("Selection name: " + s.getFeature().getName());
-		System.out.println("Selection attribute value: " + s.getAttValue());
+		/*Use Root as an example selection*/
+		SelectionSUPERSEDE s = sLAO.createSelectionSUPERSEDE(((new FeatureConfigDAO()).loadFeatureConfig(featureConfigPath)).getRoot());
+		
+//		System.out.println("Selection name: " + s.getFeature().getName());
+//		System.out.println("Selection attribute value: " + s.getAttValue());
 	}
 	
 }
