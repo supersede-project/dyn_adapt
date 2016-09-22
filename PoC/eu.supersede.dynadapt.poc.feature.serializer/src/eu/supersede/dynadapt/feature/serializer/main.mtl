@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[module main('http://zcu.cz/yafmt/model/fm')/]
+[import eu::supersede::dynadapt::feature::serializer::files::fmSerializer/]
+
+
+[template public mainFeatureModel(aFeatureModel : FeatureModel)]
+	
+	[comment @main /]
+	[aFeatureModel.serializeFeatureModel()/]
+	
+[/template]
