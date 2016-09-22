@@ -38,22 +38,16 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 	@Override
 	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath) {
 		FeatureModel fmSUPERSEDE = fmDAO.loadFeatureModel(featureModelPath);
+
 		List<FeatureSUPERSEDE> featuresSUPERSEDE = new ArrayList<FeatureSUPERSEDE>();
+
 		FeatureSUPERSEDE rootSUPERSEDE = new FeatureSUPERSEDE(fmSUPERSEDE.getRoot().getName(),
 				new ArrayList<FeatureSUPERSEDE>(), null, new ArrayList<FeatureSUPERSEDE>(),
 				fmSUPERSEDE.getRoot().getAttributes(), new ArrayList<Constraint>());
 		loadModelFeaturesSUPERSEDE(fmSUPERSEDE.getRoot(), rootSUPERSEDE, featuresSUPERSEDE);
+
 		calculateFeaturesSUPERSEDESiblings(featuresSUPERSEDE);
 
-		/**
-		 * private String name; private List<FeatureSUPERSEDE> children; private
-		 * FeatureSUPERSEDE parent; private List<FeatureSUPERSEDE> siblings;
-		 * private List<Attribute> attributes; private List<Constraint>
-		 * constraints;
-		 */
-
-		// List<FeatureSUPERSEDE> featuresSUPERSEDE =
-		// fLAO.createFeaturesSUPERSEDE(features);
 		return new FeatureModelSUPERSEDE(fmSUPERSEDE.getName(), featuresSUPERSEDE, fmSUPERSEDE.getConstraints());
 	}
 
@@ -84,18 +78,55 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 		while (itfeatures.hasNext()) {
 			Feature f = itfeatures.next();
 			FeatureSUPERSEDE newFeatureSUPERSEDE = new FeatureSUPERSEDE(f.getName(), new ArrayList<FeatureSUPERSEDE>(),
-					fSUPERSEDE, new ArrayList<FeatureSUPERSEDE>(), f.getAttributes(),
-					fLAO.getFeatureConstraints(f));
+					fSUPERSEDE, new ArrayList<FeatureSUPERSEDE>(), f.getAttributes(), getFeatureConstraints(f));
 			fLAO.addChild(fSUPERSEDE, newFeatureSUPERSEDE);
 			loadModelFeaturesSUPERSEDE(f, newFeatureSUPERSEDE, featuresSUPERSEDE);
 		}
 	}
-	
+
 	private void calculateFeaturesSUPERSEDESiblings(List<FeatureSUPERSEDE> featuresSUPERSEDE) {
 		Iterator<FeatureSUPERSEDE> itfeaturesSUPERSEDE = featuresSUPERSEDE.iterator();
 		while (itfeaturesSUPERSEDE.hasNext()) {
 			FeatureSUPERSEDE f = itfeaturesSUPERSEDE.next();
 			fLAO.setFeatureSiblings(f);
 		}
+	}
+
+	/**
+	 * This method return a list of constraints related to a feature if exist.
+	 * 
+	 * @param feature
+	 */
+	private List<Constraint> getFeatureConstraints(Feature feature) {
+		FeatureModel fm = feature.getFeatureModel();
+		List<Constraint> fConstraints = new ArrayList<Constraint>();
+
+		List<Constraint> mConstraints = fm.getConstraints();
+		if (!mConstraints.isEmpty()) {
+			Iterator<Constraint> itconstraints = mConstraints.iterator();
+			while (itconstraints.hasNext()) {
+				Constraint c = itconstraints.next();
+				String regex = "(.*)" + feature.getId() + "($|[ ](.*))";
+				if (c.getValue().matches(regex))
+					fConstraints.add(c);
+			}
+		}
+
+		return fConstraints;
+	}
+
+	@Override
+	public FeatureSUPERSEDE getFeatureSUPERSEDEByName(FeatureModelSUPERSEDE m, String name) {
+		List<FeatureSUPERSEDE> fSUPERSEDE = m.getFeatures();
+		FeatureSUPERSEDE f = null;
+		Iterator<FeatureSUPERSEDE> itfSUPERSEDE = fSUPERSEDE.iterator();
+		while (itfSUPERSEDE.hasNext()) {
+			FeatureSUPERSEDE mfeature = itfSUPERSEDE.next();
+			if (mfeature.getName().equalsIgnoreCase(name)) {
+				f = mfeature;
+				break;
+			}
+		}
+		return f;
 	}
 }

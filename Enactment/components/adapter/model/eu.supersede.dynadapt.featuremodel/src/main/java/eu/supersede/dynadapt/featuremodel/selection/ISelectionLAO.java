@@ -1,7 +1,9 @@
 package eu.supersede.dynadapt.featuremodel.selection;
 
-import cz.zcu.yafmt.model.fc.Selection;
+import java.util.List;
+import java.util.Map;
 
 public interface ISelectionLAO {
-	public SelectionSUPERSEDE createSelectionSUPERSEDE(Selection s);
+	
+	public Map<String,String> getAttrValueMap(SelectionSUPERSEDE s);
 }

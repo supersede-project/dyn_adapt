@@ -8,5 +8,5 @@ public interface IFeatureConfigLAO {
 
 	//public void creatFeatureConfigSUPERSEDE(FeatureConfigSUPERSEDE featureConfigSUPERSEDE);
 	
-	public FeatureConfigSUPERSEDE getFeatureConfigSUPERSEDE(String featureConfigPath);
+	public FeatureConfigSUPERSEDE getFeatureConfigSUPERSEDE(String featureConfigPath, String featureModelPath);
 }

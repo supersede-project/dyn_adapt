@@ -5,26 +5,21 @@
 
 package eu.supersede.dynadapt.featuremodel.fc;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import cz.zcu.yafmt.model.fc.FeatureConfiguration;
-import cz.zcu.yafmt.model.fc.Selection;
-import cz.zcu.yafmt.model.fm.Feature;
-import cz.zcu.yafmt.model.fm.Group;
+import eu.supersede.dynadapt.featuremodel.selection.SelectionSUPERSEDE;
 
 public class FeatureConfigSUPERSEDE implements IFeatureConfigSUPERSEDE {
 
 	private String name;
-	private List<Selection> selections;
+	private List<SelectionSUPERSEDE> selections;
 
 	/**
 	 * Creates an instance of FeatureConfigSUPERSEDE 
 	 * 
 	 * @param name, selections
 	 */
-	public FeatureConfigSUPERSEDE(String name, List<Selection> selections) {
+	public FeatureConfigSUPERSEDE(String name, List<SelectionSUPERSEDE> selections) {
 		super();
 		this.name = name;
 		this.selections = selections;
@@ -38,11 +33,11 @@ public class FeatureConfigSUPERSEDE implements IFeatureConfigSUPERSEDE {
 		this.name = name;
 	}
 
-	public List<Selection> getSelections() {
+	public List<SelectionSUPERSEDE> getSelections() {
 		return selections;
 	}
 
-	public void setSelections(List<Selection> selections) {
+	public void setSelections(List<SelectionSUPERSEDE> selections) {
 		this.selections = selections;
 	}
 

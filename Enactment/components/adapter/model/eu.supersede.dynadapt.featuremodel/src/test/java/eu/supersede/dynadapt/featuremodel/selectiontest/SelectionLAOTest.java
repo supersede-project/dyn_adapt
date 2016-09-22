@@ -8,11 +8,16 @@ package eu.supersede.dynadapt.featuremodel.selectiontest;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import cz.zcu.yafmt.model.fc.Selection;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
+import eu.supersede.dynadapt.featuremodel.feature.FeatureSUPERSEDE;
 import eu.supersede.dynadapt.featuremodel.selection.ISelectionLAO;
 import eu.supersede.dynadapt.featuremodel.selection.SelectionLAO;
 import eu.supersede.dynadapt.featuremodel.selection.SelectionSUPERSEDE;
@@ -23,6 +28,11 @@ public class SelectionLAOTest {
 	
 	ISelectionLAO sLAO = null;
 	
+	@Mock
+	SelectionSUPERSEDE sSUPERSEDE;
+
+	@Rule
+	public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
 	@Before
 	public void setUp() throws Exception{
@@ -37,11 +47,7 @@ public class SelectionLAOTest {
 	
 	@Test
 	public void testCreateValidFeatureSUPERSEDE(){
-		/*Use Root as an example selection*/
-		SelectionSUPERSEDE s = sLAO.createSelectionSUPERSEDE(((new FeatureConfigDAO()).loadFeatureConfig(featureConfigPath)).getRoot());
-		
-//		System.out.println("Selection name: " + s.getFeature().getName());
-//		System.out.println("Selection attribute value: " + s.getAttValue());
+		sLAO.getAttrValueMap(sSUPERSEDE);
 	}
 	
 }

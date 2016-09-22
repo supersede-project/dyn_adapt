@@ -3,14 +3,14 @@ package eu.supersede.dynadapt.featuremodel.selection;
 import java.util.List;
 
 import cz.zcu.yafmt.model.fc.AttributeValue;
-import cz.zcu.yafmt.model.fm.Feature;
+import eu.supersede.dynadapt.featuremodel.feature.FeatureSUPERSEDE;
 
 public class SelectionSUPERSEDE implements ISelectionSUPERSEDE{
 
 	private List<AttributeValue> attValue;
-	private Feature feature;
+	private FeatureSUPERSEDE feature;
 
-	public SelectionSUPERSEDE(List<AttributeValue> attValue, Feature feature) {
+	public SelectionSUPERSEDE(List<AttributeValue> attValue, FeatureSUPERSEDE feature) {
 		super();
 		this.attValue = attValue;
 		this.feature = feature;
@@ -24,11 +24,11 @@ public class SelectionSUPERSEDE implements ISelectionSUPERSEDE{
 		this.attValue = attValue;
 	}
 	
-	public Feature getFeature() {
+	public FeatureSUPERSEDE getFeature() {
 		return feature;
 	}
 
-	public void setFeature(Feature feature) {
+	public void setFeature(FeatureSUPERSEDE feature) {
 		this.feature = feature;
 	}
 	
