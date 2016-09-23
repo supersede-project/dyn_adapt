@@ -27,7 +27,7 @@ public class FeatureModelLAOTest {
 	
 	@Before
 	public void setUp() throws Exception{
-		new StandaloneSetup().setPlatformUri("../");
+//		new StandaloneSetup().setPlatformUri("../");
 		fmLAO = new FeatureModelLAO(new FeatureModelDAO());
 	}
 
@@ -47,7 +47,7 @@ public class FeatureModelLAOTest {
 //		while (itfeatures.hasNext()) {
 //			FeatureSUPERSEDE f = itfeatures.next();
 //			System.out.println("-------------------------------------------------");
-//			System.out.println("Feature name: " + f.getName());
+//			System.out.println("Feature name: " + f.getId());
 //			System.out.println("Feature attributes: " + f.getAttributes());
 //			System.out.println("Feature parent: " + f.getParent());
 //			System.out.println("Feature children: " + f.getChildren());

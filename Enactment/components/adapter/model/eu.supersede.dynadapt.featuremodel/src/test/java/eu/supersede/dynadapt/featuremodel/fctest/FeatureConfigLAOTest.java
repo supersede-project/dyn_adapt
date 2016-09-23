@@ -29,7 +29,7 @@ public class FeatureConfigLAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-		new StandaloneSetup().setPlatformUri("../");
+//		new StandaloneSetup().setPlatformUri("../");
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 	}
 
@@ -48,7 +48,7 @@ public class FeatureConfigLAOTest {
 //		Iterator<SelectionSUPERSEDE> itselections = fc.getSelections().iterator();
 //		SelectionLAO sLAO = new SelectionLAO();
 //		while (itselections.hasNext()) {
-//			System.out.println(sLAO.getAttrValueMap(itselections.next()));
+//			System.out.println(itselections.next().getClass());
 //		}
 	}
 

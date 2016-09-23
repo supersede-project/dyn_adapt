@@ -37,18 +37,18 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 
 	@Override
 	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath) {
-		FeatureModel fmSUPERSEDE = fmDAO.loadFeatureModel(featureModelPath);
-
+		FeatureModel fm = fmDAO.loadFeatureModel(featureModelPath);
+	
 		List<FeatureSUPERSEDE> featuresSUPERSEDE = new ArrayList<FeatureSUPERSEDE>();
 
-		FeatureSUPERSEDE rootSUPERSEDE = new FeatureSUPERSEDE(fmSUPERSEDE.getRoot().getName(),
+		FeatureSUPERSEDE rootSUPERSEDE = new FeatureSUPERSEDE(fm.getRoot().getId(), fm.getRoot().getName(),
 				new ArrayList<FeatureSUPERSEDE>(), null, new ArrayList<FeatureSUPERSEDE>(),
-				fmSUPERSEDE.getRoot().getAttributes(), new ArrayList<Constraint>());
-		loadModelFeaturesSUPERSEDE(fmSUPERSEDE.getRoot(), rootSUPERSEDE, featuresSUPERSEDE);
+				fm.getRoot().getAttributes(), new ArrayList<Constraint>());
+		loadModelFeaturesSUPERSEDE(fm.getRoot(), rootSUPERSEDE, featuresSUPERSEDE);
 
 		calculateFeaturesSUPERSEDESiblings(featuresSUPERSEDE);
 
-		return new FeatureModelSUPERSEDE(fmSUPERSEDE.getName(), featuresSUPERSEDE, fmSUPERSEDE.getConstraints());
+		return new FeatureModelSUPERSEDE(fm.getName(), featuresSUPERSEDE, fm.getConstraints());
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 		Iterator<Feature> itfeatures = featuresVar.iterator();
 		while (itfeatures.hasNext()) {
 			Feature f = itfeatures.next();
-			FeatureSUPERSEDE newFeatureSUPERSEDE = new FeatureSUPERSEDE(f.getName(), new ArrayList<FeatureSUPERSEDE>(),
+			FeatureSUPERSEDE newFeatureSUPERSEDE = new FeatureSUPERSEDE(f.getId(), f.getName(), new ArrayList<FeatureSUPERSEDE>(),
 					fSUPERSEDE, new ArrayList<FeatureSUPERSEDE>(), f.getAttributes(), getFeatureConstraints(f));
 			fLAO.addChild(fSUPERSEDE, newFeatureSUPERSEDE);
 			loadModelFeaturesSUPERSEDE(f, newFeatureSUPERSEDE, featuresSUPERSEDE);
@@ -111,7 +111,6 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 					fConstraints.add(c);
 			}
 		}
-
 		return fConstraints;
 	}
 

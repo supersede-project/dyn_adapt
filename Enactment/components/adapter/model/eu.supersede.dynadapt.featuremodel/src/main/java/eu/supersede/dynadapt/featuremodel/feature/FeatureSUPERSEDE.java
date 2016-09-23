@@ -9,6 +9,7 @@ import cz.zcu.yafmt.model.fm.Feature;
 public class FeatureSUPERSEDE implements IFeatureSUPERSEDE{
 
 	private String name;
+	private String id;
 	private List<FeatureSUPERSEDE> children;
 	private FeatureSUPERSEDE parent;
 	private List<FeatureSUPERSEDE> siblings;
@@ -16,16 +17,24 @@ public class FeatureSUPERSEDE implements IFeatureSUPERSEDE{
 	private List<Constraint> constraints;
 	
 		
-	public FeatureSUPERSEDE(String name, List<FeatureSUPERSEDE> children, FeatureSUPERSEDE parent, List<FeatureSUPERSEDE> siblings, List<Attribute> attributes,
+	public FeatureSUPERSEDE(String id, String name, List<FeatureSUPERSEDE> children, FeatureSUPERSEDE parent, List<FeatureSUPERSEDE> siblings, List<Attribute> attributes,
 			List<Constraint> constraints) {
 		super();
 		this.name = name;
+		this.id = id;
 		this.children = children;
 		this.parent = parent;
 		this.siblings = siblings;
 		this.attributes = attributes;
 		this.constraints = constraints;
 	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}	
 	
 	public String getName() {
 		return name;

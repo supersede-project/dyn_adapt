@@ -1,0 +1,24 @@
+aspect googleplayapi {
+	feature MonitoringSystem.MonitoringSystem.Market_Places.GooglePlay.Tool.GooglePlay_API,
+	advice GooglePlayAPI,
+	pointcuts{
+		pointcut GooglePlay{
+			pattern eu.supersede.monitor.reconfiguration.poc.uml.query.GooglePlay,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition deleteAppTwaek{
+			feature_enabled false,
+			jointpointRole ADM.Joinpoint, 
+			adviceRole ADM.Advice,
+			action delete
+		}
+		composition addGooglePlayAPI{
+		feature_enabled true,
+		jointpointRole ADM.Joinpoint, 
+		adviceRole ADM.Advice,
+		action remove
+		}
+	}
+}
