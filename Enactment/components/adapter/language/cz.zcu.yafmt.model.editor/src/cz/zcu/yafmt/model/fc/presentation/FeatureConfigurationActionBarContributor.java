@@ -73,14 +73,14 @@ public class FeatureConfigurationActionBarContributor
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction =
-		new Action(FeatureModelEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		new Action(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 			@Override
 			public void run() {
 				try {
 					getPage().showView("org.eclipse.ui.views.PropertySheet");
 				}
 				catch (PartInitException exception) {
-					FeatureModelEditorPlugin.INSTANCE.log(exception);
+					cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -93,7 +93,7 @@ public class FeatureConfigurationActionBarContributor
 	 * @generated
 	 */
 	protected IAction refreshViewerAction =
-		new Action(FeatureModelEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		new Action(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
@@ -180,7 +180,7 @@ public class FeatureConfigurationActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditor_menu"), "cz.zcu.yafmt.model.fcMenuID");
+		IMenuManager submenuManager = new MenuManager(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditor_menu"), "cz.zcu.yafmt.model.fcMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -189,12 +189,12 @@ public class FeatureConfigurationActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -385,11 +385,11 @@ public class FeatureConfigurationActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager = new MenuManager(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		populateManager(submenuManager, createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
-		submenuManager = new MenuManager(FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager = new MenuManager(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}

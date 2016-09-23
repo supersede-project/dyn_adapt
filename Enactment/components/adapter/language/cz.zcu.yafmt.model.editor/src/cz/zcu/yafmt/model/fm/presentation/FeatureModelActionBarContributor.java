@@ -2,6 +2,7 @@
  */
 package cz.zcu.yafmt.model.fm.presentation;
 
+import cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin;
 import java.util.ArrayList;
 import java.util.Collection;
 
