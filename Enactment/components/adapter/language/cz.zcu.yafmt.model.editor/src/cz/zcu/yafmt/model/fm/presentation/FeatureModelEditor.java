@@ -156,6 +156,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import cz.zcu.yafmt.model.fm.provider.FeatureModelItemProviderAdapterFactory;
 
+import cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin;
 import cz.zcu.yafmt.model.fc.provider.FeatureConfigurationItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -703,8 +704,8 @@ public class FeatureModelEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new FeatureModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FeatureConfigurationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new FeatureModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

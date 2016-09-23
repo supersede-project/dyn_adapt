@@ -71,8 +71,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 import cz.zcu.yafmt.model.fc.FeatureConfigurationFactory;
 import cz.zcu.yafmt.model.fc.FeatureConfigurationPackage;
-import cz.zcu.yafmt.model.fm.provider.FeatureModelEditPlugin;
-
+import cz.zcu.yafmt.model.fc.provider.FeatureModelEditPlugin;
 
 import cz.zcu.yafmt.model.fm.presentation.FeatureModelEditorPlugin;
 
@@ -101,7 +100,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -110,7 +109,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -177,8 +176,8 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(FeatureModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(FeatureModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFeatureConfiguration")));
+		setWindowTitle(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFeatureConfiguration")));
 	}
 
 	/**
@@ -261,7 +260,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							FeatureModelEditorPlugin.INSTANCE.log(exception);
+							cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -294,14 +293,14 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), FeatureModelEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			FeatureModelEditorPlugin.INSTANCE.log(exception);
+			cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -335,7 +334,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(FeatureModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -397,8 +396,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -413,7 +411,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(FeatureModelEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+				containerLabel.setText(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -439,7 +437,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(FeatureModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -541,7 +539,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 				return FeatureModelEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
 			catch(MissingResourceException mre) {
-				FeatureModelEditorPlugin.INSTANCE.log(mre);
+				cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -554,7 +552,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(FeatureModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -573,9 +571,9 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new FeatureConfigurationModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationModelWizard_label"));
-		newFileCreationPage.setDescription(FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationModelWizard_description"));
-		newFileCreationPage.setFileName(FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setTitle(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationModelWizard_label"));
+		newFileCreationPage.setDescription(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationModelWizard_description"));
+		newFileCreationPage.setFileName(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -601,7 +599,7 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -612,8 +610,8 @@ public class FeatureConfigurationModelWizard extends Wizard implements INewWizar
 			}
 		}
 		initialObjectCreationPage = new FeatureConfigurationModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationModelWizard_label"));
-		initialObjectCreationPage.setDescription(FeatureModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage.setTitle(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_FeatureConfigurationModelWizard_label"));
+		initialObjectCreationPage.setDescription(cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 
