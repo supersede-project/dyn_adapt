@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -20,16 +22,18 @@ import eu.supersede.dynadapt.model.ModelManager;
 
 public class ModelAdapterTest {
 	
-	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/model.uml";
+	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_base_model.uml";
 	
 	IModelManager modelManager = null;
 	IModelAdapter modelAdapter = null;
+	Model umlModel = null;
 	
 	@Before
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
 		modelManager = new ModelManager(umlModelPath);
 		modelAdapter = new ModelAdapter();
+		umlModel = modelManager.loadUMLModel(umlModelPath);
 	}
 
 	@After
@@ -38,18 +42,34 @@ public class ModelAdapterTest {
 	}
 	
 	@Test
-	public void deleteClass() {
-		
-		Model umlModel = modelManager.loadUMLModel(umlModelPath);
-				
-		Model umlResult;
+	public void applyAddComposition() {
+						
+		Model umlResult = null;
 		try {
-			umlResult = modelAdapter.applyDeleteComposition(umlModel, null, null, umlModel.getPackagedElement("Components").getOwnedElements().get(0));
+			umlResult = modelAdapter.applyAddComposition(
+					umlModel, 
+					umlModel.getPackagedElement("Instances").getOwnedElements().get(18), 
+					null, 
+					umlModel.getPackagedElement("Instances").getOwnedElements().get(18));
 			save(umlResult, URI.createURI(umlModelPath));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void applyModify() {
+		Model umlResult = null;
+		try {
+			/*umlResult = modelAdapter.applyModifyValueComposition(
+					umlModel, 
+					(Property) umlModel.getPackagedElement("Instances").getOwnedElements().get(0).getOwnedElements().get(0), 
+					null);*/
+			//save(umlResult, URI.createURI(umlModelPath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	protected void save(Model model, URI uri) {

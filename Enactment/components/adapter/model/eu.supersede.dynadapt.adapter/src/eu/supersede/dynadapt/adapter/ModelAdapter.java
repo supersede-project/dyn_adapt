@@ -2,14 +2,14 @@ package eu.supersede.dynadapt.adapter;
 
 import java.util.List;
 
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.AssociationImpl;
@@ -34,8 +34,66 @@ public class ModelAdapter implements IModelAdapter {
 	@Override
 	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String type = jointpointVariantModelElement.getClass().getSimpleName();
+		
+		if (type.equals(INSTANCE)) {
+
+			InstanceSpecificationImpl instanceBase = (InstanceSpecificationImpl) jointpointBaseModelElement;
+			InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
+			
+			for (int i = 0; i < instanceVariant.getSlots().size(); ++i) {
+				Slot s = instanceVariant.getSlots().get(i);
+				ValueSpecification v = s.getValues().get(0);
+				
+				Slot newSlot = instanceBase.createSlot();
+				newSlot.setDefiningFeature(s.getDefiningFeature());
+				newSlot.createValue(v.getName(), v.getType(), v.eClass());
+			}
+			
+		} else {
+			//TODO future use cases
+		}
+		
+		return inBaseModel;
+		
+		/*if (type.equals(CLASS) || type.equals(INSTANCE)) {
+			for (Relationship r : jointpointVariantModelElement.getRelationships()) {
+				System.out.println("Relationship: " + ((NamedElement) r).getName());
+				for (Element e : r.getRelatedElements()) {
+					if (!e.equals(jointpointVariantModelElement)) {
+						ClassImpl classEnt = (ClassImpl) e;
+						System.out.println("Element: " + ((NamedElement) e).getName());
+						if (type.equals(CLASS)) {
+							Class c = ((Package)inBaseModel.getPackagedElement("Components")).createOwnedClass(
+									classEnt.getName(), classEnt.isAbstract());
+							for (Property p : classEnt.getAllAttributes()) c.createOwnedAttribute(p.getName(), p.getType());
+							//TODO create associations
+						} else if (type.equals(INSTANCE)) {
+							//TODO create instances
+						}
+					}
+					
+				}
+			}			
+		}
+		else if (type.equals(ATTRIBUTE)) {
+			String baseType = jointpointBaseModelElement.getClass().getSimpleName();
+			Property slot = (Property) jointpointVariantModelElement;
+			
+			if (baseType.equals(CLASS)) {
+				ClassImpl classEnt = (ClassImpl) jointpointBaseModelElement;
+				classEnt.createOwnedAttribute(slot.getName(), slot.getType());
+				
+			} else {
+				//TODO study different situations
+				throw new Error("Invalid element type");
+			}
+			
+		}
+		
+		return inBaseModel;*/
+		
 	}
 
 	@Override
@@ -50,7 +108,7 @@ public class ModelAdapter implements IModelAdapter {
 			String s;
 			if (type.equals(CLASS)) s = "Components";
 			else s = "Instances";
-			elements = inBaseModel.getPackagedElement(s).getOwnedElements();		
+			elements = inBaseModel.getPackagedElement(s).getOwnedElements();
 			Element rm = null;
 			//Navigate through all the components
 			for (Element e : elements) {
@@ -62,18 +120,28 @@ public class ModelAdapter implements IModelAdapter {
 			//Delete all references
 			for (Relationship r : rm.getRelationships()) {
 				AssociationImpl a = (AssociationImpl) r;
-				for (Element e : a.getMemberEnds()) e.destroy();
+				for (Element e : a.getMemberEnds()) {
+					e.destroy();
+				}
 				r.destroy();
 			}
 			//Delete the element itself
 			rm.destroy();
 			
-		} else if (type.equals(INSTANCE)) {
-			
 		} else if (type.equals(ATTRIBUTE)) {
 			
-		}
-		
+			String baseType = jointpointBaseModelElement.getClass().getSimpleName();
+			Property slot = (Property) jointpointVariantModelElement;
+			
+			if (baseType.equals(CLASS)) {
+				ClassImpl classEnt = (ClassImpl) jointpointBaseModelElement;
+				classEnt.getOwnedAttribute(slot.getName(), slot.getType()).destroy();;
+			} else {
+				throw new Error("Invalid element type");
+				//TODO study different situations
+			}
+			
+		} else throw new Error("Invalid element type");
 		
 		return inBaseModel;
 		
@@ -87,10 +155,12 @@ public class ModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Model applyModifyValueComposition(Model inBaseModel, Property jointpointBaseModelProperty,
-			Model usingVariantModel, ValueSpecification newValue) {
-		// TODO Auto-generated method stub
-		return null;
+	public Model applyModifyValueComposition(Model inBaseModel, Property jointpointBaseModelProperty, 
+			ValueSpecification newValue) {
+				
+		System.out.println(jointpointBaseModelProperty.getApplicableStereotypes());
+		
+		return inBaseModel;
 	}
 
 }
