@@ -11,22 +11,22 @@ import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class ModelRepositoryTest {
 
-	String loc = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/";
+	String repository = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/";
 
-	Map<String, String> models;
+	Map<String, String> modelsLocation;
 
 	ModelRepository mr = null;
 
 	@Before
 	public void setUp() throws Exception {
-		models = new HashMap<String, String>();
-		models.put("aspects", "aspects/");
-		models.put("advices", "advices/");
-		models.put("profiles", "profiles/adm.profile.uml");
-		models.put("patterns", "patterns/monitoring_reconfiguration_queries.vql");
-		models.put("featureconfigmodels", "featureconfigmodels/MonitoringSystem.yafm");
+		modelsLocation = new HashMap<String, String>();
+		modelsLocation.put("aspects", "adaptability_models/");
+		modelsLocation.put("variants", "uml_models/variants/");
+		modelsLocation.put("profiles", "uml_models/profiles/");
+		modelsLocation.put("patterns", "patterns/");
+		modelsLocation.put("features", "features/models");
 
-		mr = new ModelRepository(loc, models);
+		mr = new ModelRepository(repository);
 	}
 
 	@After
@@ -36,12 +36,12 @@ public class ModelRepositoryTest {
 
 	@Test
 	public void testGetValidFeatureAspects() {
-		mr.getAspectModels("GooglePlay_API_GooglePlay");
+		mr.getAspectModels("GooglePlay_API_GooglePlay", modelsLocation);
 	}
 	
-	@Test
-	public void testGetValidFeatureAspectsURIs() {
-		mr.getAspectModelsURIs("GooglePlay_API_GooglePlay");
-	}
+//	@Test
+//	public void testGetValidFeatureAspectsURIs() {
+//		mr.getAspectModelsURIs("GooglePlay_API_GooglePlay");
+//	}
 	
 }
