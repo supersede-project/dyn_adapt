@@ -13,6 +13,6 @@ public interface IModelAdapter {
 	
 	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
 	
-	public Model applyModifyValueComposition(Model inBaseModel, Property jointpointBaseModelProperty, Model usingVariantModel, ValueSpecification newValue) throws Exception;
+	public Model applyModifyValueComposition(Model inBaseModel, Property jointpointBaseModelProperty, ValueSpecification newValue) throws Exception;
 
 }
