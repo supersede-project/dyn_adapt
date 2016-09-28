@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xmi:id="_HyuXwIVPEeaeJIjB0tkngA" version="10.1.0.201509162000">
+  <semanticResources>models/base/atos_base_model.notation</semanticResources>
+  <semanticResources>models/base/atos_base_model.uml</semanticResources>
+  <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+  <semanticResources>pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml</semanticResources>
+  <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
+  <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
+  <semanticResources>http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard</semanticResources>
+  <semanticResources>http://www.eclipse.org/uml2/5.0.0/UML</semanticResources>
+  <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
+  <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
+  <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
+  <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
+  <semanticResources>http://www.eclipse.org/uml2/5.0.0/Types</semanticResources>
+  <semanticResources>models/variants/atos_cms_default_variant.notation</semanticResources>
+  <semanticResources>models/variants/atos_cms_default_variant.uml</semanticResources>
+  <semanticResources>models/variants/atos_cms_overloaded_variant.notation</semanticResources>
+  <semanticResources>models/variants/atos_cms_overloaded_variant.uml</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel.yafm</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel_B.yafm</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel_Concurrency.yafm</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel.yafm.layout</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel_Concurrency.yafm.layout</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel_B.yafm.layout</semanticResources>
+  <semanticResources>features/configurations/AtosDefaultFeatureConfiguration_B.yafc</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel_CMS_Capacity.yafm</semanticResources>
+  <semanticResources>features/models/AtosUCFeatureModel_CMS_Capacity.yafm.layout</semanticResources>
+  <semanticResources>features/configurations/AtosNormalConcurrencyConfiguration.yafc</semanticResources>
+  <semanticResources>features/configurations/AtosNormalCMSCapacityConfiguration.yafc</semanticResources>
+  <semanticResources>features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc</semanticResources>
+  <semanticResources>src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql</semanticResources>
+  <semanticResources>models/profiles/adm.profile.uml</semanticResources>
+</viewpoint:DAnalysis>
