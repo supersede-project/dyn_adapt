@@ -1,0 +1,89 @@
+#<AtosUCFeatureModel> ::= <SmartPlatform_opt>
+
+#<SmartPlatform_opt> ::= <SmartPlatform>
+#	|
+
+<SmartPlatform> ::= <Behaviour> <Infrastructure>
+
+<Behaviour> ::= <Concurrency> <Latency> <Capacity_star> <Temperature_star> <Connectivity>
+
+<Concurrency> ::= Concurrency
+
+<Latency> ::= Latency
+
+<Capacity_star> ::= <Capacity> <Capacity_star>
+	|
+
+<Capacity> ::= Capacity
+
+<Temperature_star> ::= <Temperature> <Temperature_star>
+	|
+
+<Temperature> ::= Temperature
+
+<Connectivity> ::= Connectivity
+
+<Infrastructure> ::= <Configuration> <Nodes> <BroadcastCenter_plus>
+
+<Configuration> ::= <Physical_opt> <Virtual_opt>
+
+<Physical_opt> ::= <Physical>
+	|
+
+<Physical> ::= <Physical_Environment_star>
+
+<Physical_Environment_star> ::= <Physical_Environment> <Physical_Environment_star>
+	|
+
+<Physical_Environment> ::= Physical_Environment
+
+<Virtual_opt> ::= <Virtual>
+	|
+
+<Virtual> ::= <VM_Configuration_star>
+
+<VM_Configuration_star> ::= <VM_Configuration> <VM_Configuration_star>
+	|
+
+<VM_Configuration> ::= VM_Configuration
+
+<Nodes> ::= <Datacenter_plus> <LB_plus> <Player> <CDN> <HSK>
+
+<Datacenter_plus> ::= <Datacenter> <Datacenter_plus>
+	| <Datacenter>
+
+<Datacenter> ::= <SPR_plus> <CMS_star> <SGA_star>
+
+<SPR_plus> ::= <SPR> <SPR_plus>
+	| <SPR>
+
+<SPR> ::= SPR
+
+<CMS_star> ::= <CMS> <CMS_star>
+	| 
+
+<CMS> ::= CMS
+
+<SGA_star> ::= <SGA> <SGA_star>
+	|
+
+<SGA> ::= SGA
+
+<LB_plus> ::= <LB> <LB_plus>
+	| <LB>
+
+<LB> ::= LB
+
+<Player> ::= <Player_Configuration>
+
+<Player_Configuration> ::= Player_Configuration
+
+<CDN> ::= CDN
+
+<HSK> ::= HSK
+
+<BroadcastCenter_plus> ::= <BroadcastCenter> <BroadcastCenter_plus>
+	| <BroadcastCenter>
+
+<BroadcastCenter> ::= BroadcastCenter
+

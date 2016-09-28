@@ -1,65 +1,65 @@
 
 <FeedbackConfiguration> ::= <FeedbackIssue> <Device>
 
-<Device> ::= "Web-client" 
-		| "Android"
-		| "iOS"
+<Device> ::= "webclient" 
+		| "android"
+		| "ios"
 
 <FeedbackIssue> ::= <ConfirmationMessage_opt> <Mechanism> <Attachment_opt> <Category_opt> <Receiver> <Presentation>
 
 <ConfirmationMessage_opt> ::= <ConfirmationMessage>
 		|
 
-<ConfirmationMessage> ::= "ConfirmationMessage"
+<ConfirmationMessage> ::= "confirmationmessage"
 
 <Mechanism> ::= <Audio_opt> <Rating_opt> <TextFeedback_opt> <ScreenShot_opt>
 
 <Audio_opt> ::= <Audio>
 	|
 
-<Audio> ::= "Audio"
+<Audio> ::= "audio"
 
 <Rating_opt> ::= <Rating>
 	|
 
-<Rating> ::= "Rating"
+<Rating> ::= "rating"
 
 <TextFeedback_opt> ::= <TextFeedback>
 	|
 
-<TextFeedback> ::= "TextFeedback"
+<TextFeedback> ::= "textfeedback"
 
 <ScreenShot_opt> ::= <ScreenShot>
 	|
 
 <ScreenShot> ::= <Annotation> <FreeHandDrawing_opt> <BasicShapes_opt> <SelectionColor_opt> <BasicEditionOption_opt>
 
-<Annotation> ::= "Annotation"
+<Annotation> ::= "annotation"
 
 <FreeHandDrawing_opt> ::= <FreeHandDrawing>
 	|
 
-<FreeHandDrawing> ::= "FreeHandDrawing"
+<FreeHandDrawing> ::= "freehanddrawing"
 
 <BasicShapes_opt> ::= <BasicShapes>
 	|
 
-<BasicShapes> ::= "BasicShapes"
+<BasicShapes> ::= "basicshapes"
 
 <SelectionColor_opt> ::= <SelectionColor>
 	|
 
-<SelectionColor> ::= "SelectionColor"
+<SelectionColor> ::= "selectioncolor"
 
 <BasicEditionOption_opt> ::= <BasicEditionOption>
 	|
 
-<BasicEditionOption> ::= "BasicEditionOption"
+<BasicEditionOption> ::= "basiceditionoption"
 
 <Attachment_opt> ::= <Attachment>
 	|
 
-<Attachment> ::= "Attachment"
+<Attachment> ::= "attachment"
 
 <Category_opt> ::= <Category>
 
@@ -67,21 +67,21 @@
 
 <NewCategory_opt> ::= <NewCategory>
 
-<NewCategory> ::= "NewCategory"
+<NewCategory> ::= "newcategory"
 
-<SelectCategory> ::= "SelectCategory"
+<SelectCategory> ::= "selectcategory"
 
 <Receiver> ::= <ShareWithWorkTeam>
 	| <ShareWithAll>
 
-<ShareWithWorkTeam> ::= "ShareWithWorkTeam"
+<ShareWithWorkTeam> ::= "sharewithworkteam"
 
-<ShareWithAll> ::= "ShareWithAll"
+<ShareWithAll> ::= "sharewithall"
 
-<Presentation> ::= <Link>
-	| <Popup>
+<Presentation> ::= <link>
+	| <popup>
 
-<Link> ::= "Link"
+<Link> ::= "link"
 
-<Popup> ::= "Pop-up"
+<Popup> ::= "popup"
 
