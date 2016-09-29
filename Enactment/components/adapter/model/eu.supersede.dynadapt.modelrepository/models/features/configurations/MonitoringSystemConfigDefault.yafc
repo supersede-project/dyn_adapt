@@ -44,13 +44,13 @@
     <constraint value="KeywordsExpression1 implies not KeywordsExpression2" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
   </featureModelCopy>
   <rootSelection id="monitoringsystem">
-    <selection id="Social_Networks">
-      <selection id="Twitter">
-        <selection id="KeywordsExpression">
-          <selection id="KeywordsExpression1"/>
+    <selection id="M2">
+      <selection id="GooglePlay">
+        <selection id="timeSlot_GooglePlay">
+          <attributeValue xsi:type="fc:integer" id="a_1591649839" value="0"/>
         </selection>
-        <selection id="timeSlot_twitter">
-          <attributeValue xsi:type="fc:integer" id="timeSlotValue" value="300"/>
+        <selection id="Tool_GooglePlay">
+          <selection id="GooglePlay_API_GooglePlay"/>
         </selection>
       </selection>
     </selection>

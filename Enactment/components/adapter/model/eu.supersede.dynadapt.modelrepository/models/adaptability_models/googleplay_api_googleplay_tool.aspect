@@ -3,7 +3,7 @@ aspect googleplayapi {
 	advice GooglePlayAPI,
 	pointcuts{
 		pointcut GooglePlay{
-			pattern eu.supersede.monitor.reconfiguration.poc.uml.query.GooglePlay,
+			pattern eu.supersede.monitor.reconfiguration.queries.Monitors,
 			role ADM.Joinpoint
 		}
 	},

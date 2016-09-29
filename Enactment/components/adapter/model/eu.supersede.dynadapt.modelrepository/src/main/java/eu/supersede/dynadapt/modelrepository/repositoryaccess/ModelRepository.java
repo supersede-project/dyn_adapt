@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
@@ -31,9 +30,10 @@ public class ModelRepository {
 	/**
 	 * This method returns a list of aspect models linked to an specific
 	 * featureSUPERSEDE given the featureSUPERSEDE id and the models' location
-	 * required for loading the aspect
+	 * required for loading the aspects
 	 * 
-	 * @param featureSUPERSEDEId
+	 * @param featureSUPERSEDEId,
+	 *            modelsLocation
 	 */
 	public List<Aspect> getAspectModels(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		List<Aspect> aspects = new ArrayList<Aspect>();
@@ -41,69 +41,88 @@ public class ModelRepository {
 		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
 
 		IAdaptationParser ap = loadModels(modelsLocation);
-		// Models required for loading an aspect model should be provided
+
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
-				Aspect a = getAspectModel(ap,repository + modelsLocation.get("aspects")+ aspectsFiles[i].getName());
-				if(a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)){
+				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					aspects.add(a);
 				}
 			}
 		}
 		return aspects;
 	}
+	
+	/**
+	 * This method returns a list of aspect models URIs linked to an specific
+	 * featureSUPERSEDE given the featureSUPERSEDE id and the models' location
+	 * required for loading the aspects
+	 * 
+	 * The URIs returned are of the form: platform:/resource/eclipse_project/aspect.aspect
+	 * 
+	 * @param featureSUPERSEDEId,
+	 *            modelsLocation
+	 */
+
+	public List<URI> getAspectModelsURIs(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
+		List<URI> uris = new ArrayList<URI>();
+
+		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
+
+		IAdaptationParser ap = loadModels(modelsLocation);
+
+		if (aspectsFiles != null) {
+			for (int i = 0; i < aspectsFiles.length; i++) {
+				String aspectModelPath = repository + modelsLocation.get("aspects") + aspectsFiles[i].getName();
+				Aspect a = getAspectModel(ap, aspectModelPath);
+				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
+					uris.add(URI.createURI(aspectModelPath));
+				}
+			}
+		}
+		return uris;
+	}
 
 	private IAdaptationParser loadModels(Map<String, String> modelsLocation) {
 		IAdaptationParser parser = new AdaptationParser();
 
-		new StandaloneSetup().setPlatformUri("../");
-		
 		File[] variants = getFiles(modelsLocation.get("variants"));
-		for(int i=0; i<variants.length;i++){
+		for (int i = 0; i < variants.length; i++) {
 			parser.loadUMLResource(URI.createURI(repository + modelsLocation.get("variants") + variants[i].getName()));
 		}
 
 		File[] profiles = getFiles(modelsLocation.get("profiles"));
-		for(int i=0; i<profiles.length;i++){
-			parser.loadProfileResource(URI.createURI(repository + modelsLocation.get("profiles") + profiles[i].getName()));
+		for (int i = 0; i < profiles.length; i++) {
+			parser.loadProfileResource(
+					URI.createURI(repository + modelsLocation.get("profiles") + profiles[i].getName()));
 		}
-		
+
 		File[] patterns = getFiles(modelsLocation.get("patterns"));
-		for(int i=0; i<patterns.length;i++){
-			parser.loadPatternResource(URI.createURI(repository + modelsLocation.get("patterns") + patterns[i].getName()));
+		for (int i = 0; i < patterns.length; i++) {
+			parser.loadPatternResource(
+					URI.createURI(repository + modelsLocation.get("patterns") + patterns[i].getName()));
 		}
 
 		File[] features = getFiles(modelsLocation.get("features"));
-		for(int i=0; i<features.length;i++){
-			parser.loadFeatureResource(URI.createURI(repository + modelsLocation.get("features") + patterns[i].getName()));
+		for (int i = 0; i < features.length; i++) {
+			parser.loadFeatureResource(
+					URI.createURI(repository + modelsLocation.get("features") + features[i].getName()));
 		}
-		
+
 		return parser;
 	}
 	
+	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
+		URI aspectModelURI = URI.createURI(aspectModelPath);
 
-	// public List<URI> getAspectModelsURIs(String featureSUPERSEDEId) {
-	// List<URI> aspectsURIs = new ArrayList<URI>();
-	//
-	// File[] aspectsFiles = lookForAspects(featureSUPERSEDEId);
-	//
-	// if (aspectsFiles != null) {
-	// for (int i = 0; i < aspectsFiles.length; i++) {
-	// /*
-	// * Models are placed into the project, non-hard coded URI should
-	// * be retrieved when external model repository is considered
-	// */
-	// aspectsURIs.add(URI.createURI(
-	// repository + models.get("aspects") + featureSUPERSEDEId + "/" +
-	// aspectsFiles[i].getName()));
-	// }
-	// }
-	// return aspectsURIs;
-	// }
+		Aspect adaptation = parser.parseAdaptationModel(aspectModelURI);
 
+		return adaptation;
+	}
+	
 	private File[] getFiles(String folderPath) {
 		/*
-		 * Adaptability models in class path
+		 * Models in class path
 		 */
 		URL url = getClass().getResource("/" + folderPath);
 		File[] files = null;
@@ -117,15 +136,4 @@ public class ModelRepository {
 
 		return files = folder.listFiles();
 	}
-
-	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
-
-		new StandaloneSetup().setPlatformUri("../");
-		URI aspectModelURI = URI.createURI(aspectModelPath);
-
-		Aspect adaptation = parser.parseAdaptationModel(aspectModelURI);
-
-		return adaptation;
-	}
-
 }

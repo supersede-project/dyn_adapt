@@ -44,5 +44,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.eclipse.viatra/viatra-query-language
 	compile group: 'org.eclipse.viatra', name: 'viatra-query-language', version: '1.4.0.M2'
 	
+	// https://mvnrepository.com/artifact/org.mockito/mockito-core
+	compile group: 'org.mockito', name: 'mockito-core', version: '2.1.0-RC.1'
+	
 		
 }
