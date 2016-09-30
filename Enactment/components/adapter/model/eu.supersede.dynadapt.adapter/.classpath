@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.monitor.reconfiguration.poc.uml.query"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
