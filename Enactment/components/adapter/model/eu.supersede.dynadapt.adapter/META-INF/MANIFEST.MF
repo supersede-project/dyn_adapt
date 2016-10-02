@@ -5,7 +5,8 @@ Bundle-SymbolicName: eu.supersede.dynadapt.adapter
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: eu.supersede.dynadapt.adapter.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: eu.supersede.dynadapt.atos.search,

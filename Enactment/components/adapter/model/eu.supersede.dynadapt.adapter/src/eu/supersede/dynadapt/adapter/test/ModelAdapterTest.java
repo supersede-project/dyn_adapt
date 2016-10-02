@@ -71,9 +71,9 @@ public class ModelAdapterTest {
 		try {
 			umlResult = modelAdapter.applyAddComposition(
 					umlBaseModel, 
-					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(15), 
-					umlOverloadedModel, 
-					umlOverloadedModel.getOwnedElements().get(0));
+					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
+					umlDefaultModel, 
+					umlDefaultModel.getOwnedElements().get(0));
 			save(umlResult, URI.createURI(umlModelPath));
 		} catch (Exception e) {
 			e.printStackTrace();
