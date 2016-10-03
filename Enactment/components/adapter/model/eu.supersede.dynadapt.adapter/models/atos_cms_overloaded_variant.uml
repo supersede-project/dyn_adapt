@@ -4,8 +4,9 @@
     <classifier xmi:type="uml:Component" href="atos_base_model.uml#_NSuZ4CMpEeaAV7iIHwGF1A"/>
     <slot xmi:type="uml:Slot" xmi:id="_xaKK0YTAEeaUVtHvx6A39w">
       <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
-      <value xmi:type="uml:InstanceValue" xmi:id="_xaKK0oTAEeaUVtHvx6A39w" name="InstanceValue1" instance="_2x3PUITAEeaUVtHvx6A39w">
+      <value xmi:type="uml:InstanceValue" xmi:id="_xaKK0oTAEeaUVtHvx6A39w" name="InstanceValue1">
         <type xmi:type="uml:Class" href="atos_base_model.uml#_bPtx0CMsEeaAV7iIHwGF1A"/>
+        <instance xmi:type="uml:InstanceSpecification" href="atos_cms_default_variant.uml#_wZgN0IS6EeaUVtHvx6A39w"/>
       </value>
     </slot>
   </packagedElement>

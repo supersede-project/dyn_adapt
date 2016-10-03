@@ -6,15 +6,24 @@ import java.util.List;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.uml2.uml.LiteralBoolean;
+import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralReal;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
@@ -23,14 +32,6 @@ import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 public class ModelAdapter implements IModelAdapter {
 	
 	private final String INSTANCE = "InstanceSpecificationImpl";
-		
-	public void stereotypeElement(Element element, Stereotype withRole) {
-		
-	}
-	
-	public void applyCompositionDirective(CompositionDirective compositionDirective, Model inBaseModel, Stereotype forRoleStereotype, Model usingVariantModel) {
-		
-	}
 
 	@Override
 	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
@@ -69,10 +70,9 @@ public class ModelAdapter implements IModelAdapter {
 							&& a.getRelatedElements().contains(newInstance.getClassifiers().get(0))) {
 						InstanceSpecification rel = (InstanceSpecificationImpl) UMLFactory.eINSTANCE.createInstanceSpecification();
 						rel.setName("InstanceSpecificationLink_" + instanceBase.getName() + "_to_" + newInstance.getName());
-						Slot relSlot = rel.createSlot();
-						relSlot.setOwningInstance(rel);
+						rel.getClassifiers().add((Classifier) a);
 						
-						//TODO add reference to owner of relationship
+						addReference(rel, instanceBase, a);
 						
 						baseInst.getNearestPackage().getPackagedElements().add(rel);
 						
@@ -86,6 +86,24 @@ public class ModelAdapter implements IModelAdapter {
 		
 		return inBaseModel;
 		
+	}
+
+	/**
+	 * Adds a slot to e1 with value reference to e2 on relationship r
+	 * @param rel
+	 * @param instanceBase
+	 */
+	private void addReference(InstanceSpecification e1, InstanceSpecification e2, Relationship r) {
+		//Creates the new slot
+		Slot relSlot = e1.createSlot();
+		Property p = (Property) r.getOwnedElements().get(0);
+		relSlot.setDefiningFeature(p);
+		//Adds the reference to the instance value
+		InstanceValue v = UMLFactory.eINSTANCE.createInstanceValue();
+		v.setInstance(e2);
+		InstanceValue value = (InstanceValue) relSlot.createValue("InstanceValue1", v.getType(), v.eClass());
+		value.setInstance(e2);
+		//relSlot.setDefiningFeature((StructuralFeature) e2.eGet(e2.eClass().getEStructuralFeature("classifier")));
 	}
 
 	@Override
@@ -172,10 +190,27 @@ public class ModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Model applyModifyValueComposition(Model inBaseModel, Property jointpointBaseModelProperty, 
+	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, 
 			ValueSpecification newValue) {
-				
 		
+		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
+		for (Element e : jointpointBaseModelSlot.allOwnedElements()) {
+			e.destroy();
+		}
+		
+		if (feat.getType().getName().equals("Integer")) {
+			LiteralInteger value =(LiteralInteger) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralInteger());
+			value.setValue(newValue.integerValue());
+		} else if (feat.getType().getName().equals("Boolean")) {
+			LiteralBoolean value =(LiteralBoolean) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralBoolean());
+			value.setValue(newValue.booleanValue());
+		} else if (feat.getType().getName().equals("String")) {
+			LiteralString value =(LiteralString) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralString());
+			value.setValue(newValue.stringValue());
+		} else if (feat.getType().getName().equals("Real")) {
+			LiteralReal value =(LiteralReal) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralReal());
+			value.setValue(newValue.realValue());
+		}
 		
 		return inBaseModel;
 	}

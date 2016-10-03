@@ -7,8 +7,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
@@ -60,9 +63,9 @@ public class ModelAdapterTest {
 	
 	@Test
 	public void test() {
-		applyAddComposition();
+		//applyAddComposition();
 		//applyDeleteComposition();
-		//applyModifyValueComposition();
+		applyModifyValueComposition();
 	}
 	
 	private void applyAddComposition() {
@@ -87,7 +90,7 @@ public class ModelAdapterTest {
 		try {
 			umlResult = modelAdapter.applyDeleteComposition(
 					umlBaseModel, 
-					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(15), 
+					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
 					umlDefaultModel, 
 					umlDefaultModel.getOwnedElements().get(0));
 			save(umlResult, URI.createURI(umlModelPath));
@@ -103,11 +106,13 @@ public class ModelAdapterTest {
 		Model umlResult = null;
 		try {
 			InstanceSpecificationImpl instance = (InstanceSpecificationImpl) umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(0);			
-			Property p = instance.getClassifiers().get(0).getAllAttributes().get(1);
+			Slot s = (Slot) instance.getOwnedElements().get(1);
+			LiteralInteger integer = UMLFactory.eINSTANCE.createLiteralInteger();
+			integer.setValue(20);
 			umlResult = modelAdapter.applyModifyValueComposition(
 					umlBaseModel, 
-					p, 
-					null);
+					s, 
+					integer);
 			save(umlResult, URI.createURI(umlModelPath));
 		} catch (Exception e) {
 			e.printStackTrace();
