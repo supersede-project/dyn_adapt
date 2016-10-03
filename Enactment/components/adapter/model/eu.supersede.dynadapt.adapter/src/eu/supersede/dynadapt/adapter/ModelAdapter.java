@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -20,7 +19,6 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -32,6 +30,7 @@ import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 public class ModelAdapter implements IModelAdapter {
 	
 	private final String INSTANCE = "InstanceSpecificationImpl";
+	private final String CLASS = "ClassImpl";
 
 	@Override
 	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
@@ -43,27 +42,21 @@ public class ModelAdapter implements IModelAdapter {
 
 			InstanceSpecificationImpl instanceBase = (InstanceSpecificationImpl) jointpointBaseModelElement;
 			InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
-			
 			for (int i = 0; i < instanceVariant.getSlots().size(); ++i) {
 				Slot s = instanceVariant.getSlots().get(i);
 				ValueSpecification v = s.getValues().get(0);
-				
 				//Creates the new slot referencing new object
 				Slot newSlot = instanceBase.createSlot();
 				newSlot.setDefiningFeature(s.getDefiningFeature());
 				newSlot.createValue(v.getName(), v.getType(), v.eClass());
 				newSlot.setOwningInstance(instanceBase);
-				
 				InstanceValue baseInst = (InstanceValue) newSlot.getValues().get(0);
 				InstanceValue variantInst = (InstanceValue) s.getValues().get(0);
-				
 				//Adds the instance to the model in the proper package
 				InstanceSpecification newInstance = variantInst.getInstance();
 				baseInst.getNearestPackage().getPackagedElements().add(newInstance);
-				
 				//Creates the reference between base object and referenced object in base model
 				baseInst.setInstance(newInstance);
-								
 				//Creates the instance relationship
 				for (Relationship a : newInstance.getClassifiers().get(0).getRelationships()) {
 					if (a.getRelatedElements().contains(instanceBase.getClassifiers().get(0)) 
@@ -71,39 +64,17 @@ public class ModelAdapter implements IModelAdapter {
 						InstanceSpecification rel = (InstanceSpecificationImpl) UMLFactory.eINSTANCE.createInstanceSpecification();
 						rel.setName("InstanceSpecificationLink_" + instanceBase.getName() + "_to_" + newInstance.getName());
 						rel.getClassifiers().add((Classifier) a);
-						
 						addReference(rel, instanceBase, a);
-						
 						baseInst.getNearestPackage().getPackagedElements().add(rel);
-						
 					}
 				}
 			}
-			
 		} else {
-			//TODO future use cases
+			
 		}
 		
 		return inBaseModel;
 		
-	}
-
-	/**
-	 * Adds a slot to e1 with value reference to e2 on relationship r
-	 * @param rel
-	 * @param instanceBase
-	 */
-	private void addReference(InstanceSpecification e1, InstanceSpecification e2, Relationship r) {
-		//Creates the new slot
-		Slot relSlot = e1.createSlot();
-		Property p = (Property) r.getOwnedElements().get(0);
-		relSlot.setDefiningFeature(p);
-		//Adds the reference to the instance value
-		InstanceValue v = UMLFactory.eINSTANCE.createInstanceValue();
-		v.setInstance(e2);
-		InstanceValue value = (InstanceValue) relSlot.createValue("InstanceValue1", v.getType(), v.eClass());
-		value.setInstance(e2);
-		//relSlot.setDefiningFeature((StructuralFeature) e2.eGet(e2.eClass().getEStructuralFeature("classifier")));
 	}
 
 	@Override
@@ -129,9 +100,7 @@ public class ModelAdapter implements IModelAdapter {
 					if (baseInst.getInstance().getName().equals(variantInst.getInstance().getName())) {
 						//Destroy instance and references
 						destroy.put(baseInst.getInstance().getName(), sb);
-						
 						Relationship r = getRelationship(baseInst.getInstance(), variantInst.getInstance());
-												
 						TreeIterator<EObject> tree = inBaseModel.eAllContents();
 						while (tree.hasNext()) {
 							EObject a = tree.next();
@@ -139,47 +108,38 @@ public class ModelAdapter implements IModelAdapter {
 								((InstanceSpecification) a).destroy();
 							}
 						}
-						
-						baseInst.getInstance().destroy();
-						
+						baseInst.getInstance().destroy();	
+					}	
+				}
+			}
+			for (Slot s : destroy.values()) s.destroy();
+			
+		} else if (type.equals(CLASS)){
+			
+			ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
+			ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
+			//For each relationship of the class
+			for (int i = 0; i < classVariant.getRelationships().size(); ++i) {
+				Relationship r1 = classVariant.getRelationships().get(i);
+				for (int j = 0; j < classBase.getRelationships().size(); ++j) {
+					Relationship r2 = classBase.getRelationships().get(j);
+					if (checkSameRelationship(r1,r2)) {
+						ClassImpl deleteClass = null;
+						if (!r2.getRelatedElements().get(0).equals(classBase)) {
+							deleteClass = (ClassImpl) r2.getRelatedElements().get(0);
+						} else deleteClass = (ClassImpl) r2.getRelatedElements().get(1);
+						r2.destroy();
+						deleteClass.destroy();
+						break;
 					}
-					
 				}
 				
 			}
 			
-			for (Slot s : destroy.values()) s.destroy();
-			
-		} else {
-			//TODO future use cases
 		}
 		
 		return inBaseModel;
 		
-	}
-
-	/**
-	 * Checks if the object a is an instance specification of the relationship r with parent instance baseInst
-	 * @param a
-	 * @param r
-	 * @param baseInst
-	 * @return
-	 */
-	private boolean isAssociationInstance(EObject a, Relationship r, InstanceSpecification baseInst) {
-		if (a.eClass().getName().equalsIgnoreCase("InstanceSpecification")) {
-			EObject aa = (EObject) ((EObjectResolvingEList<?>) a.eGet(a.eClass().getEStructuralFeature("classifier"))).get(0);
-			if (aa.eGet(aa.eClass().getEStructuralFeature("name")) != null &&
-					(aa.eGet(aa.eClass().getEStructuralFeature("name")).
-							equals(r.eGet(r.eClass().getEStructuralFeature("name"))))) {
-				InstanceSpecification instance = (InstanceSpecification) a;
-				for (Slot s : instance.getSlots()) {
-					if (((InstanceValue) s.getValues().get(0)).getInstance().getName().equals(baseInst.getName())) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
 	}
 
 	@Override
@@ -231,6 +191,64 @@ public class ModelAdapter implements IModelAdapter {
 			}
 		}
 		return rel;
+	}
+	
+	/**
+	 * Adds a slot to e1 with value reference to e2 on relationship r
+	 * @param rel
+	 * @param instanceBase
+	 */
+	private void addReference(InstanceSpecification e1, InstanceSpecification e2, Relationship r) {
+		//Creates the new slot
+		Slot relSlot = e1.createSlot();
+		Property p = (Property) r.getOwnedElements().get(0);
+		relSlot.setDefiningFeature(p);
+		//Adds the reference to the instance value
+		InstanceValue v = UMLFactory.eINSTANCE.createInstanceValue();
+		v.setInstance(e2);
+		InstanceValue value = (InstanceValue) relSlot.createValue("InstanceValue1", v.getType(), v.eClass());
+		value.setInstance(e2);
+		//relSlot.setDefiningFeature((StructuralFeature) e2.eGet(e2.eClass().getEStructuralFeature("classifier")));
+	}
+	
+	/**
+	 * Checks if the object a is an instance specification of the relationship r with parent instance baseInst
+	 * @param a
+	 * @param r
+	 * @param baseInst
+	 * @return
+	 */
+	private boolean isAssociationInstance(EObject a, Relationship r, InstanceSpecification baseInst) {
+		if (a.eClass().getName().equalsIgnoreCase("InstanceSpecification")) {
+			EObject aa = (EObject) ((EObjectResolvingEList<?>) a.eGet(a.eClass().getEStructuralFeature("classifier"))).get(0);
+			if (aa.eGet(aa.eClass().getEStructuralFeature("name")) != null &&
+					(aa.eGet(aa.eClass().getEStructuralFeature("name")).
+							equals(r.eGet(r.eClass().getEStructuralFeature("name"))))) {
+				InstanceSpecification instance = (InstanceSpecification) a;
+				for (Slot s : instance.getSlots()) {
+					if (((InstanceValue) s.getValues().get(0)).getInstance().getName().equals(baseInst.getName())) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	private boolean checkSameRelationship(Relationship r1, Relationship r2) {
+		for (int i = 0; i < r1.getRelatedElements().size(); ++i) {
+			NamedElement e1 = (NamedElement) r1.getRelatedElements().get(i);
+			boolean found = false;
+			for (int j = 0; j < r2.getRelatedElements().size(); ++j) {
+				NamedElement e2 = (NamedElement) r2.getRelatedElements().get(j);
+				if (e1.getName().equals(e2.getName())) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) return false;
+		}
+		return true;
 	}
 
 }

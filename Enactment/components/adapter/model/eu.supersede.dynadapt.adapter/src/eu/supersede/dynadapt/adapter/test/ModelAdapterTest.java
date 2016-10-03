@@ -34,6 +34,8 @@ public class ModelAdapterTest {
 	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_base_model.uml";
 	String defaultVariantPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_cms_default_variant.uml";
 	String overloadedVariantPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_cms_overloaded_variant.uml";
+	String monitoringBasePath = "platform:/resource/eu.supersede.dynadapt.adapter/models/MonitoringSystemBaseModel.uml";
+	String monitoringVariantPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/MonitoringSystemVariantModel.uml";
 	
 	IModelManager modelManager = null;
 	IModelAdapter modelAdapter = null;
@@ -42,6 +44,8 @@ public class ModelAdapterTest {
 	Model umlBaseModel = null;
 	Model umlDefaultModel = null;
 	Model umlOverloadedModel = null;
+	Model monitoringBaseModel = null;
+	Model monitoringVariantModel = null;
 	
 	//Search search = null;
 	
@@ -54,6 +58,9 @@ public class ModelAdapterTest {
 		umlBaseModel = modelManager.loadUMLModel(umlModelPath);
 		umlDefaultModel = modelManager.loadUMLModel(defaultVariantPath);
 		umlOverloadedModel = modelManager.loadUMLModel(overloadedVariantPath);
+		monitoringBaseModel = modelManager.loadUMLModel(monitoringBasePath);
+		monitoringVariantModel = modelManager.loadUMLModel(monitoringVariantPath);
+		
 	}
 
 	@After
@@ -63,12 +70,14 @@ public class ModelAdapterTest {
 	
 	@Test
 	public void test() {
-		//applyAddComposition();
-		//applyDeleteComposition();
-		applyModifyValueComposition();
+		//applyAddInstanceComposition();
+		//applyDeleteInstanceComposition();
+		//applyAddClassComposition();
+		applyDeleteClassComposition();
+		//applyModifyValueComposition();
 	}
 	
-	private void applyAddComposition() {
+	private void applyAddInstanceComposition() {
 						
 		Model umlResult = null;
 		try {
@@ -84,7 +93,7 @@ public class ModelAdapterTest {
 		
 	}
 	
-	private void applyDeleteComposition() {
+	private void applyDeleteInstanceComposition() {
 						
 		Model umlResult = null;
 		try {
@@ -93,7 +102,39 @@ public class ModelAdapterTest {
 					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
 					umlDefaultModel, 
 					umlDefaultModel.getOwnedElements().get(0));
-			save(umlResult, URI.createURI(umlModelPath));
+			save(umlResult, URI.createURI(monitoringBasePath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void applyAddClassComposition() {
+		
+		Model umlResult = null;
+		try {
+			umlResult = modelAdapter.applyAddComposition(
+					monitoringBaseModel, 
+					monitoringBaseModel.getOwnedElements().get(0), 
+					monitoringVariantModel,
+					monitoringVariantModel.getOwnedElements().get(0));
+			save(umlResult, URI.createURI(monitoringBasePath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void applyDeleteClassComposition() {
+						
+		Model umlResult = null;
+		try {
+			umlResult = modelAdapter.applyDeleteComposition(
+					monitoringBaseModel, 
+					monitoringBaseModel.getOwnedElements().get(0), 
+					monitoringVariantModel, 
+					monitoringVariantModel.getOwnedElements().get(0));
+			save(umlResult, URI.createURI(monitoringBasePath));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
