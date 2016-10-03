@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'eu.supersede.dynadapt.modelrepository'
+/*rootProject.name = 'eu.supersede.dynadapt.modelrepository'*/
