@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/eu.supersede.dynadapt.aom.dsl.feature_1.0.0.201609271819.jar" id="eu.supersede.dynadapt.aom.dsl.feature" version="1.0.0.201609271819">
+      <category name="supersede_dynadapt_updateSite"/>
+   </feature>
+   <category-def name="supersede_dynadapt_updateSite" label="SUPERSEDE Dynamic Adaptation"/>
+</site>

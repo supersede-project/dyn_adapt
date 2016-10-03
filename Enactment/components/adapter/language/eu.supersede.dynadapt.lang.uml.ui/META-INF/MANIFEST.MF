@@ -5,7 +5,7 @@ Bundle-SymbolicName: eu.supersede.dynadapt.lang.uml.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: eu.supersede.dynadapt.lang.uml.ui.Activator
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext.ui,
  org.apache.log4j,
  org.eclipse.xtext.ui.shared,

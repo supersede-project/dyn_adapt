@@ -1,0 +1,25 @@
+{ "memory_consumption":{
+	"domain":"double",
+	"value":10,
+	"opt":"min",
+	"aggregator":"sum"
+},
+"response_time":{
+	"domain":"double",
+	"value":2,
+	"opt":"min",
+	"aggregator":"sum"
+},
+"configuration_time":{
+	"domain":"double",
+	"value":5,
+	"opt":"min",
+	"aggregator":"sum"
+},
+"availability":{
+	"domain":"double",
+	"value":0.9,
+	"opt":"max",
+	"aggregator":"product"
+}
+}

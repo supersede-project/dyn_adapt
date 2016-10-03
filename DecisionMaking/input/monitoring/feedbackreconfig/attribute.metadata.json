@@ -1,0 +1,33 @@
+{ "memory_consumption":{
+	"domain":"double",
+	"min":0,
+	"max":100,
+	"weight":0.25,
+	"minimize":true,
+        "aggregator":"sum"
+},
+"response_time":{
+	"domain":"double",
+	"min":0,
+	"max":100,
+	"weight":0.25,
+	"minimize":true,
+        "aggregator":"sum"
+},
+"configuration_time":{
+	"domain":"double",
+	"min":0,
+	"max":100,
+	"weight":0.25,
+	"minimize":true,
+        "aggregator":"sum"
+},
+"availability":{
+	"domain":"double",
+	"min":0,
+	"max":1,
+	"weight":0.25,
+	"minimize":false,
+        "aggregator":"product"
+}
+}

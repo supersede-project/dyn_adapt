@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_N2kjQCMoEeaAV7iIHwGF1A" name="Atos Base Model">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_N2kjQCMoEeaAV7iIHwGF1A" name="Atos_UC_Base_Model">
   <packagedElement xmi:type="uml:Package" xmi:id="_jd6a8CMvEeaAV7iIHwGF1A" name="Components">
     <packagedElement xmi:type="uml:Component" xmi:id="_RiDhECMpEeaAV7iIHwGF1A" name="SGA">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_PL7mIyNIEeaAV7iIHwGF1A" name="conf" type="_liLE0CNHEeaAV7iIHwGF1A" association="_PL7mICNIEeaAV7iIHwGF1A"/>
@@ -12,8 +12,17 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_G4ehACMuEeaAV7iIHwGF1A" name="Default CMS_Configuration" value="http://www.atos.smart.eu/cms"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_tLQXECM8EeaAV7iIHwGF1A" name="max_threads">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_tLQXECM8EeaAV7iIHwGF1A" name="number_cores">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_6mb_EIS-EeaUVtHvx6A39w" name="memory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AfCKIIS_EeaUVtHvx6A39w" name="storage" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_DNKkUIS_EeaUVtHvx6A39w" name="bandwidth" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_jBpNUCM9EeaAV7iIHwGF1A" name="Player">
@@ -57,17 +66,14 @@
       <slot xmi:type="uml:Slot" xmi:id="_2t_RkCM8EeaAV7iIHwGF1A" definingFeature="_tLQXECM8EeaAV7iIHwGF1A">
         <value xmi:type="uml:LiteralInteger" xmi:id="_5FxBQCM8EeaAV7iIHwGF1A" value="2"/>
       </slot>
-    </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ILGxECMvEeaAV7iIHwGF1A" name="CMS_Instance_Default_Configuration" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IhDL4CMvEeaAV7iIHwGF1A" source="InstanceEnd" references="_UdT0cCMtEeaAV7iIHwGF1A"/>
-      <slot xmi:type="uml:Slot" xmi:id="_IhDy8SMvEeaAV7iIHwGF1A" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
-        <value xmi:type="uml:InstanceValue" xmi:id="_IhDy8iMvEeaAV7iIHwGF1A" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_QYf9MIS_EeaUVtHvx6A39w" definingFeature="_6mb_EIS-EeaUVtHvx6A39w">
+        <value xmi:type="uml:LiteralReal" xmi:id="_WqJhcIS_EeaUVtHvx6A39w" value="8.0"/>
       </slot>
-    </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Up5qsCNIEeaAV7iIHwGF1A" name="CMS Instance link to CMS Default Configuration Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VAatQCNIEeaAV7iIHwGF1A" source="InstanceEnd" references="_UdT0cCMtEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
-      <slot xmi:type="uml:Slot" xmi:id="_VAatQyNIEeaAV7iIHwGF1A" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
-        <value xmi:type="uml:InstanceValue" xmi:id="_VAbUUCNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_XPRAsIS_EeaUVtHvx6A39w" definingFeature="_AfCKIIS_EeaUVtHvx6A39w">
+        <value xmi:type="uml:LiteralReal" xmi:id="_aMg08IS_EeaUVtHvx6A39w" value="500.0"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_bfzBwIS_EeaUVtHvx6A39w" definingFeature="_DNKkUIS_EeaUVtHvx6A39w">
+        <value xmi:type="uml:LiteralReal" xmi:id="_fFBcAIS_EeaUVtHvx6A39w" value="1.0"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_XAcEQCNIEeaAV7iIHwGF1A" name="ia_sga" classifier="_PL7mICNIEeaAV7iIHwGF1A">
@@ -116,17 +122,15 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_tm_6EyNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_R___UCM_EeaAV7iIHwGF1A" instance="_BwvsACNLEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Cy0awCNQEeaAV7iIHwGF1A" name="CMS Overloaded Configuration Advice" classifier="_bPtx0CMsEeaAV7iIHwGF1A">
-      <slot xmi:type="uml:Slot" xmi:id="_JOvVUCNQEeaAV7iIHwGF1A" definingFeature="_tLQXECM8EeaAV7iIHwGF1A">
-        <value xmi:type="uml:LiteralInteger" xmi:id="_LyYWwCNQEeaAV7iIHwGF1A" value="5"/>
-      </slot>
-    </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IIwmsCM6EeaAV7iIHwGF1A" name="CMS  Instance" classifier="_NSuZ4CMpEeaAV7iIHwGF1A">
       <slot xmi:type="uml:Slot" xmi:id="_NBB9MCM6EeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
         <value xmi:type="uml:InstanceValue" xmi:id="_NBB9MSM6EeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_Nkl7QCNQEeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Nkl7QSNQEeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_Cy0awCNQEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Nkl7QSNQEeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_7Hi9gYS9EeaUVtHvx6A39w" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_7Hi9goS9EeaUVtHvx6A39w" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_huroQCNLEeaAV7iIHwGF1A" name="DC VM Instance" classifier="_6fi60CNAEeaAV7iIHwGF1A">
@@ -160,10 +164,10 @@
         <value xmi:type="uml:InstanceValue" xmi:id="__BxPMCNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_oMVlACNHEeaAV7iIHwGF1A" instance="_2P5J4CNIEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zfzTgCi8EeadYuI5gUeaYQ" name="CMS Instance link to CMS Overloaded Configuration Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z68XYCi8EeadYuI5gUeaYQ" source="InstanceEnd" references="_Cy0awCNQEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
-      <slot xmi:type="uml:Slot" xmi:id="_z68-cSi8EeadYuI5gUeaYQ" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
-        <value xmi:type="uml:InstanceValue" xmi:id="_z68-cii8EeadYuI5gUeaYQ" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_6yTGQIS9EeaUVtHvx6A39w" name="InstanceSpecificationLink_CMS_Instance_to_Default_Configuration_Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7Hi9gIS9EeaUVtHvx6A39w" source="InstanceEnd" references="_UdT0cCMtEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_7HjkkIS9EeaUVtHvx6A39w" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_7HjkkYS9EeaUVtHvx6A39w" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
   </packagedElement>
