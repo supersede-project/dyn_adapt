@@ -3,10 +3,16 @@ package eu.supersede.dynadapt.model;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
+
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fm.FeatureModel;
 
 public interface IModelManager {
 
@@ -59,11 +65,28 @@ public interface IModelManager {
 	 */
 	URI saveTargetModel() throws IOException;
 	
+//	/**
+//	 * Regiser given model into the ModelManager resource set
+//	 * @param ePackage model to register
+//	 * @see org.eclipse.uml2.uml.resource.UMLResource
+//	 */
+//	void registerPackage (EPackage ePackage);
+	
 	/**
-	 * Regiser given model into the ModelManager resource set
-	 * @param ePackage model to register
-	 * @see org.eclipse.uml2.uml.resource.UMLResource
+	 * Loads the model resource with the given uri into this resource set. If
+	 * no such resource is found or the root object is not an instance of the
+	 * given class, null is returned.
+	 * 
+	 * @param uri uri of the model to be loaded
+	 * @param clazz class the model resource should have
+	 * @return model resource with the given uri or null.
 	 */
-	void registerPackage (EPackage ePackage);
+
+	<T extends EObject> T loadModel(URI uri, Class<T> clazz);
+	
+	public Model loadUMLModel(String modelPath);
+	public PatternModel loadPatternModel(String patternPath);
+	public FeatureModel loadFeatureModel(String fmPath);
+	public FeatureConfiguration loadFeatureConfiguration(String fcPath);
 
 }

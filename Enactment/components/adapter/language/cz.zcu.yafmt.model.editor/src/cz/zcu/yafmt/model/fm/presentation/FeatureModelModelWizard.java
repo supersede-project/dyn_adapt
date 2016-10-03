@@ -71,7 +71,8 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 import cz.zcu.yafmt.model.fm.FeatureModelFactory;
 import cz.zcu.yafmt.model.fm.FeatureModelPackage;
-import cz.zcu.yafmt.model.fm.provider.FeatureModelEditPlugin;
+import cz.zcu.yafmt.model.fc.provider.FeatureModelEditPlugin;
+import cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin;
 
 
 import org.eclipse.core.runtime.Path;
@@ -395,8 +396,7 @@ public class FeatureModelModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;

@@ -19,12 +19,14 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.viatra.query.patternlanguage.PatternLanguageStandaloneSetup;
+import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternLanguagePackage;
 
 import cz.zcu.yafmt.model.fm.FeatureModelPackage;
 import eu.supersede.dynadapt.dsl.AspectStandaloneSetup;
 import eu.supersede.dynadapt.dsl.aspect.AspectPackage;
 import eu.supersede.dynadapt.lang.uml.UmlSupport;
+import eu.supersede.dynadapt.lang.yafmt.EMFYafmtStandaloneSetup;
 import eu.supersede.dynadapt.lang.yafmt.YafmtSupport;
 
 /**
@@ -48,10 +50,10 @@ public class SupersedeDSLStandaloneSetup {
 	 */
 	public static void doSetup() {
 		if(!Platform.isRunning() && !initialized) {
+			//Register EMF/XText cross-referenced metamodels
 			UmlSupport.doSetup();
 			YafmtSupport.doSetup();
-			PatternLanguageStandaloneSetup.doSetup();
-			
+			new EMFPatternLanguageStandaloneSetup().createInjectorAndDoEMFRegistration();
 			AspectStandaloneSetup.doSetup();
 			
 			// Initialize simple dependencies
@@ -60,7 +62,6 @@ public class SupersedeDSLStandaloneSetup {
 			UMLPackage.eINSTANCE.eClass();
 			FeatureModelPackage.eINSTANCE.eClass();
 			PatternLanguagePackage.eINSTANCE.eClass();
-			
 			AspectPackage.eINSTANCE.eClass();
 			
 			initialized = true;

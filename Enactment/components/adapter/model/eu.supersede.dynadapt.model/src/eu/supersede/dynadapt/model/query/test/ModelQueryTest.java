@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.junit.After;
@@ -55,6 +57,17 @@ public class ModelQueryTest {
 		Collection <Map<String, Object>>results = modelQuery.query(patternFQN, patternModelPath, Arrays.asList(parameters));
 		Assert.assertNotNull(results);
 		
+	}
+	
+	@Test
+	public void loadPatternModelTest() throws ViatraQueryException {
+		Assert.assertNotNull(modelManager);
+		Assert.assertNotNull(modelQuery);
+		
+		PatternModel patternModel = modelQuery.loadPatternModel(URI.createURI(patternModelPath));
+		
+		Assert.assertNotNull(patternModel);
+		Assert.assertTrue(patternModel.getPackageName().equals("eu.supersede.dynadapt.atos.queries"));
 	}
 
 }
