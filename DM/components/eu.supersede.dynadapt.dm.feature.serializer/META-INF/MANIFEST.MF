@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Acceleo Serializer Module Runtime Plug-in
-Bundle-SymbolicName: eu.supersede.dynadapt.poc.feature.serializer
+Bundle-SymbolicName: eu.supersede.dynadapt.dm.feature.serializer
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: eu.supersede.dynadapt.feature.serializer.Activator
 Bundle-Vendor: Eclipse Modeling Project

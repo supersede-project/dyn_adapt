@@ -36,7 +36,7 @@ public class FeatureModelGrammarSerializerTest {
 		
 		// NOTE: Edit this absolute paths before testing
 		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/yafmt/examples/CarExample/CarExample.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/PoC/eu.supersede.dynadapt.poc.feature.serializer/serialization";
+		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
 		FMGrammarSerializer.serializeGrammarInFolder(absoluteModelPath, absolutetargetFolderPath);
 	}
 }
