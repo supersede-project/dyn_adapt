@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_eTQ-MMtPEeWd--HpWZq3qQ/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_eTQ-MMtPEeWd--HpWZq3qQ/1 adm.profile.uml#_eTRlQMtPEeWd--HpWZq3qQ">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
   <uml:Model xmi:id="_mdtJ4MQZEeWG9YrmNU0sHg" name="RootElement">
     <packagedElement xmi:type="uml:Activity" xmi:id="_md3h8MQZEeWG9YrmNU0sHg" name="Book Management" node="_Tm3NcMQeEeWG9YrmNU0sHg _5a6d8MQdEeWG9YrmNU0sHg _gfKLAMQdEeWG9YrmNU0sHg _cjrz8MQdEeWG9YrmNU0sHg _LPdTEMQdEeWG9YrmNU0sHg _ERT1MMQdEeWG9YrmNU0sHg _AK0g8MQdEeWG9YrmNU0sHg _H2uuoMQbEeWG9YrmNU0sHg _HWsZIMQaEeWG9YrmNU0sHg _Dbpf4MQaEeWG9YrmNU0sHg _36UxwMQZEeWG9YrmNU0sHg _xo86UMQZEeWG9YrmNU0sHg _pBS8YMTnEeWOvrtXJpvMBg _qGzL4MTnEeWOvrtXJpvMBg">
       <ownedBehavior xmi:type="uml:Activity" xmi:id="_Rg3LMMTXEeWw36UBf5eFZg" name="Google Authentication"/>
@@ -109,25 +109,20 @@
       <node xmi:type="uml:JoinNode" xmi:id="_5eOo4MTnEeWOvrtXJpvMBg" name="" incoming="_XZjpsMQjEeWG9YrmNU0sHg _X9_zgMQjEeWG9YrmNU0sHg" outgoing="_Yl458MQjEeWG9YrmNU0sHg"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0mrgcMtQEeWd--HpWZq3qQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0msukMtQEeWd--HpWZq3qQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msukctQEeWd--HpWZq3qQ" key="Version" value="0.1.0"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msukstQEeWd--HpWZq3qQ" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msuk8tQEeWd--HpWZq3qQ" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msulMtQEeWd--HpWZq3qQ" key="Date" value="2016-02-04"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0msulctQEeWd--HpWZq3qQ" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Yx79IG3xEeahgqz5BWa8Pw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yx79IW3xEeahgqz5BWa8Pw" key="Version" value="0.1.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yx79Im3xEeahgqz5BWa8Pw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yx79I23xEeahgqz5BWa8Pw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yx79JG3xEeahgqz5BWa8Pw" key="Date" value="2016-07-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yx79JW3xEeahgqz5BWa8Pw" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0msHgMtQEeWd--HpWZq3qQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="adm.profile.uml#_eTRlQMtPEeWd--HpWZq3qQ"/>
+        <references xmi:type="ecore:EPackage" href="adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
   </uml:Model>
-  <ADM:Joinpoint xmi:id="_2T6eUMtQEeWd--HpWZq3qQ" base_RedefinableElement="_xo86UMQZEeWG9YrmNU0sHg"/>
-  <ADM:Joinpoint xmi:id="_3J7gUMtQEeWd--HpWZq3qQ" base_RedefinableElement="_HWsZIMQaEeWG9YrmNU0sHg"/>
-  <ADM:Joinpoint xmi:id="_4Md7YMtQEeWd--HpWZq3qQ" base_RedefinableElement="_ERT1MMQdEeWG9YrmNU0sHg"/>
-  <ADM:Joinpoint xmi:id="_43f1YMtQEeWd--HpWZq3qQ" base_RedefinableElement="_cjrz8MQdEeWG9YrmNU0sHg"/>
-  <ADM:Joinpoint xmi:id="_5qOS0MtQEeWd--HpWZq3qQ" base_RedefinableElement="_gfKLAMQdEeWG9YrmNU0sHg"/>
-  <ADM:Advice xmi:id="_BPieYMtREeWd--HpWZq3qQ" base_Class="_md3h8MQZEeWG9YrmNU0sHg"/>
-  <ADM:Advice xmi:id="_FB5VsMtREeWd--HpWZq3qQ" base_Class="_vHNAMMQiEeWG9YrmNU0sHg"/>
-  <ADM:Advice xmi:id="_If3RYMtREeWd--HpWZq3qQ" base_Class="_20hjIMQgEeWG9YrmNU0sHg"/>
+  <ADM:Advice xmi:id="_BPieYMtREeWd--HpWZq3qQ" base_Class="_md3h8MQZEeWG9YrmNU0sHg" base_NamedElement="_md3h8MQZEeWG9YrmNU0sHg"/>
+  <ADM:Advice xmi:id="_FB5VsMtREeWd--HpWZq3qQ" base_Class="_vHNAMMQiEeWG9YrmNU0sHg" base_NamedElement="_vHNAMMQiEeWG9YrmNU0sHg"/>
+  <ADM:Advice xmi:id="_If3RYMtREeWd--HpWZq3qQ" base_Class="_20hjIMQgEeWG9YrmNU0sHg" base_NamedElement="_20hjIMQgEeWG9YrmNU0sHg"/>
 </xmi:XMI>

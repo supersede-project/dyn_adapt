@@ -17,8 +17,8 @@ public class StandardGPTest {
 		String grammarFile = Parameters.GRAMMAR_FILE;
 		int depth = 6;
 		double probRecursive = 0.1;
-		Parameters.SEARCH_BUDGET = 50;
-		Parameters.POPULATION_SIZE = 10;
+		Parameters.SEARCH_BUDGET = 5000;
+		Parameters.POPULATION_SIZE = 50;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		StandardGP algorithm = new StandardGP(grammarFile, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = algorithm.generateSolution();

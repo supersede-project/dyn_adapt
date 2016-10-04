@@ -18,9 +18,10 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	
 	private static final Logger logger = LoggerFactory.getLogger(SingleObjectiveFitnessFunction.class);
 
-	private double currentConfigurationFitness;
+	protected double currentConfigurationFitness;
+	protected double currentConfigurationOverallConstraint;
 	
-	private Map<String, FeatureAttributeMetadata> featureAttributeMetadata = configurationLoader.getFeatureAttributeMetadata();
+	protected Map<String, FeatureAttributeMetadata> featureAttributeMetadata = configurationLoader.getFeatureAttributeMetadata();
 	
 	/**
 	 * @param currentConfig
@@ -29,9 +30,10 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 		super(currentConfig);
 		
 		// calculate the fitness of the current configuration
-		
-		currentConfigurationFitness = calculate(currentConfig);
-		logger.debug("Fitness of current config: {}", currentConfigurationFitness);
+		double[] result = calculate(currentConfig);
+		currentConfigurationFitness = result[0];
+		currentConfigurationOverallConstraint = result[1];
+		logger.debug("Fitness of current config: {}, overall constraint: {}", currentConfigurationFitness, currentConfigurationOverallConstraint);
 	}
 
 	
@@ -44,17 +46,19 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	public boolean evaluate(Chromosome chromosome) {
 		boolean unique = true;
 		// first check if the individual has been evaluated before
-		Double fitness = getCashedFitness(chromosome);
+		Double[] fitness = getCashedFitness(chromosome);
 		if (fitness != null){
-			chromosome.setFitness(fitness);
+			chromosome.setFitness(fitness[0]);
+			chromosome.setOverallConstraint(fitness[1]);
 			unique = false;
 //			logger.debug("Cache size: {} >> Chromsome: {} = {}", fitnessCache.size(), chromosome.getConfiguration().toString(), fitness);
 		}else{
 			List<String> features = Arrays.asList(chromosome.toString().split(" "));
 			
-			fitness = calculate(features);
+			double[] result = calculate(features);
 			
-			chromosome.setFitness(fitness);
+			chromosome.setFitness(result[0]);
+			chromosome.setOverallConstraint(result[1]);
 			// save this fitness in cache
 			cacheFitness(chromosome);
 		}
@@ -62,7 +66,7 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	}
 
 	
-	private double calculate (List<String> features){
+	protected double[] calculate (List<String> features){
 		
 		List<Properties> allAttributes =  configurationLoader.loadAttributes(features);
 		Map<String, Double> aggregatedValues = new HashMap<String, Double>();
@@ -109,9 +113,9 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 		}
 		
 		// overall aggregate sum of all attribute values
-		double result = 0;
+		double[] result = {0d, 0d};
 		for (Double v : aggregatedValues.values()){
-			result += v;
+			result[0] += v;
 		}
 		return result;
 	}
