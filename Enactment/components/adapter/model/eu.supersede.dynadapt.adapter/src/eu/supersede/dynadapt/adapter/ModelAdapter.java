@@ -16,6 +16,7 @@ import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
@@ -69,8 +70,20 @@ public class ModelAdapter implements IModelAdapter {
 					}
 				}
 			}
-		} else {
-			
+		} else if (type.equals(CLASS)) {
+			ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
+			ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
+			//For each relationship of the class
+			for (int i = 0; i < classVariant.getRelationships().size(); ++i) {
+				Relationship r = classVariant.getRelationships().get(i);
+				for (int j = 0; j < r.getRelatedElements().size(); ++j) {
+					Element e = r.getRelatedElements().get(j);
+					if (!((NamedElement) e).getName().equals(classBase.getName())) {
+						classBase.getNearestPackage().getPackagedElements().add((PackageableElement) e);
+					}
+				}
+				classBase.getNearestPackage().getPackagedElements().add((PackageableElement) r.eContainer());
+			}
 		}
 		
 		return inBaseModel;
@@ -231,6 +244,15 @@ public class ModelAdapter implements IModelAdapter {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Retrieves the list of all the instances of the specified class
+	 * @param c
+	 * @return
+	 */
+	private List<Element> getInstances(ClassImpl c) {
+		return null;
 	}
 	
 	private boolean checkSameRelationship(Relationship r1, Relationship r2) {

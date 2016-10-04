@@ -115,9 +115,9 @@ public class ModelAdapterTest {
 		try {
 			umlResult = modelAdapter.applyAddComposition(
 					monitoringBaseModel, 
-					monitoringBaseModel.getOwnedElements().get(0), 
+					monitoringBaseModel.getOwnedElements().get(6), 
 					monitoringVariantModel,
-					monitoringVariantModel.getOwnedElements().get(0));
+					monitoringVariantModel.getOwnedElements().get(1));
 			save(umlResult, URI.createURI(monitoringBasePath));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,10 +131,10 @@ public class ModelAdapterTest {
 		try {
 			umlResult = modelAdapter.applyDeleteComposition(
 					monitoringBaseModel, 
-					monitoringBaseModel.getOwnedElements().get(0), 
+					monitoringBaseModel.getOwnedElements().get(6), 
 					monitoringVariantModel, 
-					monitoringVariantModel.getOwnedElements().get(0));
-			//save(umlResult, URI.createURI(monitoringBasePath));
+					monitoringVariantModel.getOwnedElements().get(1));
+			save(umlResult, URI.createURI(monitoringBasePath));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
