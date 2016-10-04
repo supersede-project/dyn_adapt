@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_I4JUwH8aEeaQEIE3SeJ_9A" name="RootElement">
+  <packagedElement xmi:type="uml:Package" xmi:id="_NprxIH8aEeaQEIE3SeJ_9A" name="Components">
+    <packagedElement xmi:type="uml:Class" xmi:id="_W8wwEIAMEea1lLj2WU1gOg" name="B"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UTFqAIAKEea1lLj2WU1gOg" name="C">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_X9WqY4AMEea1lLj2WU1gOg" name="b" type="_W8wwEIAMEea1lLj2WU1gOg" association="_X9WqYIAMEea1lLj2WU1gOg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WvQ1kH8aEeaQEIE3SeJ_9A" name="Instances">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_hnzWcIAMEea1lLj2WU1gOg" name="c1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_f6ARYH8bEeaQEIE3SeJ_9A" name="nodes"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_hsSHUH8bEeaQEIE3SeJ_9A" name="relationships">
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9WqYIAMEea1lLj2WU1gOg" memberEnd="_X9WqY4AMEea1lLj2WU1gOg _X9WqZIAMEea1lLj2WU1gOg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X9WqYYAMEea1lLj2WU1gOg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_X9WqYoAMEea1lLj2WU1gOg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_X9WqZIAMEea1lLj2WU1gOg" name="c" type="_UTFqAIAKEea1lLj2WU1gOg" association="_X9WqYIAMEea1lLj2WU1gOg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_tuuE8IAMEea1lLj2WU1gOg" name="InstanceSpecification1"/>
+</uml:Model>
