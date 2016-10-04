@@ -1,0 +1,72 @@
+[comment encoding = UTF-8 /]
+[module qualityAttributesSerializer('http://zcu.cz/yafmt/model/fm')]
+
+
+[template public serializeQualityAttributes(aFeatureModel : FeatureModel)]
+
+[file (aFeatureModel.name.concat('.quality'), false, 'UTF-8')]
+[if (not aFeatureModel.root.oclIsUndefined())]
+[let rootFeature : Feature = aFeatureModel.root]
+[feature(rootFeature)/]
+[/let]
+[/if]
+[/file]
+[/template]
+
+
+[template public feature (aFeature : Feature) post(trim())]
+[for (anAttribute : Attribute | aFeature.attributes)]
+[attribute(anAttribute)/]
+[/for]
+[if (aFeature.hasANDGroup())]
+[for (anChildFeature : Feature | aFeature.features)]
+[feature(anChildFeature)/]
+[/for]
+[/if]
+[if (aFeature.hasORGroup() or aFeature.hasXORGroup())]
+[for (anChildFeature : Feature | aFeature.groups->first().features)]
+[feature(anChildFeature)/]
+[/for]
+[/if]
+[/template]
+
+[template public feature2 (aFeature : Feature)]
+	[let theAttributes : Collection(Attribute) = allNestedAttributes(aFeature)]
+		[for (anAttribute : Attribute | theAttributes)]
+			[attribute(anAttribute)/]
+		[/for]
+	[/let]
+[/template]
+
+[template public attribute (anAttribute : Attribute) ? (anAttribute.qualityAttribute)]
+{
+"domain":[anAttribute.type/],
+"min":[anAttribute.minRangeValue/],
+"max":[anAttribute.maxRangeValue/],
+"weight":[anAttribute.weight/],
+"minimize":[anAttribute.minimize/],
+"aggregator":[anAttribute.objectiveFunctionAggregator/]
+}
+[/template]
+
+[query public hasANDGroup(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) /]
+[query public hasORGroup(aFeature : Feature) : Boolean = not (aFeature.groups->isEmpty()) and aFeature.groups->first()._or /]
+[query public hasXORGroup(aFeature : Feature) : Boolean = not (aFeature.groups->isEmpty()) and aFeature.groups->first()._xor /]
+
+[query public allNestedAttributes (aFeature : Feature) : Collection(Attribute) = 
+	aFeature.attributes->union(aFeature.childFeatures()->collect(childFeature|allNestedAttributes(childFeature)))/]
+
+[query public childFeatures(aFeature : Feature) : Collection(Feature) = 
+	if aFeature.hasANDGroup() 
+		then aFeature.features 
+		else  
+			if aFeature.hasORGroup() or aFeature.hasXORGroup()
+				then
+					aFeature.groups->first().features
+				else
+					Sequence{}
+			endif
+	endif /]
+
+	
+
