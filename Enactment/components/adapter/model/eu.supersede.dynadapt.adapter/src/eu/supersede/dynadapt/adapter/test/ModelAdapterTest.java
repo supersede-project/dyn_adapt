@@ -134,7 +134,7 @@ public class ModelAdapterTest {
 					monitoringBaseModel.getOwnedElements().get(0), 
 					monitoringVariantModel, 
 					monitoringVariantModel.getOwnedElements().get(0));
-			save(umlResult, URI.createURI(monitoringBasePath));
+			//save(umlResult, URI.createURI(monitoringBasePath));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

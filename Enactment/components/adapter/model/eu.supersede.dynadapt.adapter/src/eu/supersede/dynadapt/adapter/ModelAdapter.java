@@ -115,7 +115,6 @@ public class ModelAdapter implements IModelAdapter {
 			for (Slot s : destroy.values()) s.destroy();
 			
 		} else if (type.equals(CLASS)){
-			
 			ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
 			ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
 			//For each relationship of the class
@@ -128,7 +127,6 @@ public class ModelAdapter implements IModelAdapter {
 						if (!r2.getRelatedElements().get(0).equals(classBase)) {
 							deleteClass = (ClassImpl) r2.getRelatedElements().get(0);
 						} else deleteClass = (ClassImpl) r2.getRelatedElements().get(1);
-						r2.destroy();
 						deleteClass.destroy();
 						break;
 					}
