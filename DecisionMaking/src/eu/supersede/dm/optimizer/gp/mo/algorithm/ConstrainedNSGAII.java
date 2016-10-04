@@ -8,7 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import eu.supersede.dm.optimizer.gp.Parameters;
 import eu.supersede.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dm.optimizer.gp.mo.chromosome.ChromosomeFactory;
+import eu.supersede.dm.optimizer.gp.mo.fitness.ConstrainedMultiObjectiveFitnessFunction;
 import eu.supersede.dm.optimizer.gp.mo.fitness.FitnessFunction;
 import eu.supersede.dm.optimizer.gp.mo.fitness.MultiObjectiveFitnessFunction;
 import eu.supersede.dm.optimizer.gp.mo.operators.MultiObjectiveTournamentSelection;
@@ -28,6 +31,7 @@ import eu.supersede.dm.optimizer.gp.operators.SubtreeMutation;
 import eu.supersede.dm.optimizer.gp.stoppingconditions.MaxFitnessEvaluationStoppingCondition;
 import eu.supersede.dm.optimizer.gp.stoppingconditions.MaxTimeStoppingCondition;
 import eu.supersede.dm.optimizer.gp.stoppingconditions.StoppingCondition;
+import eu.supersede.dm.util.ChromosomeUtils;
 import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.CrowdingComparator;
 import eu.supersede.dm.util.Distance;
@@ -38,9 +42,9 @@ import eu.supersede.dm.util.Ranking;
  * @author fitsum
  *
  */
-public class NSGAII {
+public class ConstrainedNSGAII {
 
-	private static final Logger logger = LoggerFactory.getLogger(NSGAII.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConstrainedNSGAII.class);
 
 	protected List<Chromosome> population;
 	protected ChromosomeFactory chromosomeFactory;
@@ -60,11 +64,11 @@ public class NSGAII {
 	 * @param probRecursive
 	 * @param currentConfiguration
 	 */
-	public NSGAII(String grammarFile, int depth, double probRecursive,
+	public ConstrainedNSGAII(String grammarFile, int depth, double probRecursive,
 			List<String> currentConfiguration) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
-		fitnessFunction = new MultiObjectiveFitnessFunction(
+		fitnessFunction = new ConstrainedMultiObjectiveFitnessFunction(
 				currentConfiguration);
 		selectionFunction = new MultiObjectiveTournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
@@ -94,9 +98,12 @@ public class NSGAII {
 			calculateFitness(offspringPopulation);
 
 			List<Chromosome> union = new ArrayList<Chromosome>();
-			union.addAll(population);
-			union.addAll(offspringPopulation);
+			Set<Chromosome> unionSet = new HashSet<Chromosome>();
+			unionSet.addAll(population);
+			unionSet.addAll(offspringPopulation);
 
+			union.addAll(unionSet);
+			
 			Ranking ranking = new Ranking(union);
 
 			int remain = population.size();
@@ -141,7 +148,13 @@ public class NSGAII {
 
 		Ranking ranking = new Ranking(population);
 		List<Chromosome> solutions = ranking.getSubfront(0);
-		printObjectivesToFile(solutions, "FUN");
+		printObjectivesToFile(solutions, "FUN", false);
+		printObjectivesToFile(solutions, "FUN_feasible", true);
+		if (ranking.getNumberOfSubfronts() > 1){
+			List<Chromosome> secondFront = ranking.getSubfront(1);
+			printObjectivesToFile(secondFront, "SUB", false);
+			printObjectivesToFile(secondFront, "SUB_feasible", true);
+		}
 		return solutions;
 	}
 
@@ -175,8 +188,10 @@ public class NSGAII {
 					mutationFunction.mutate(offspring2.getConfiguration());
 				}
 
-				nextGeneration.add(offspring1);
-				nextGeneration.add(offspring2);
+				if (!offspring1.equals(parent1) && !offspring1.equals(parent2) && !ChromosomeUtils.exists(offspring1, nextGeneration))
+					nextGeneration.add(offspring1);
+				if (!offspring2.equals(parent1) && !offspring2.equals(parent2) && !ChromosomeUtils.exists(offspring2, nextGeneration))
+					nextGeneration.add(offspring2);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -186,15 +201,17 @@ public class NSGAII {
 		return nextGeneration;
 	}
 
+	
+	
 	protected void initializePopulation() {
 		population = new ArrayList<Chromosome>();
 		while (population.size() < Parameters.POPULATION_SIZE) {
 			Chromosome chromosome = chromosomeFactory.getChromosome();
 			population.add(chromosome);
 		}
-		// logger.debug("Duplicates: {}",
-		// chromosomeFactory.getNumberOfDuplicates());
-		// printPopulation();
+		 logger.debug("Duplicates: {}",
+		 chromosomeFactory.getNumberOfDuplicates());
+//		 printPopulation();
 	}
 
 	protected void calculateFitness(List<Chromosome> pop) {
@@ -208,9 +225,10 @@ public class NSGAII {
 	}
 
 	protected boolean isFinished() {
-		boolean finished = fitnessFunction.isFinished(population.get(0))
-				|| (stoppingCondition.isFinished());
-		return finished;
+//		boolean finished = fitnessFunction.isFinished(population.get(0))
+//				|| (stoppingCondition.isFinished());
+//		return finished;
+		return stoppingCondition.isFinished();
 	}
 
 	public int getFitnessEvaluations() {
@@ -221,42 +239,87 @@ public class NSGAII {
 		return generation;
 	}
 
-	public void printObjectivesToFile(List<Chromosome> solutions, String path) {
+//	public void printObjectivesToFile(List<Chromosome> solutions, String path) {
+//		StringBuffer bw = new StringBuffer();
+//		bw.append("cost,value,constr,config\n");
+//		StringBuffer configs = new StringBuffer();
+//		configs.append("config_id,configuration\n");
+//		int sol = 1;
+//		for (Chromosome solution : solutions) {
+//			String msg = buildLine(solution, sol);
+//			bw.append(msg);
+//			String config = "c" + sol + "," + solution.toString() + "\n"; 
+//			configs.append(config);
+//			sol++;
+//		}
+//		writeToFile(bw.toString(), path);
+//		writeToFile(configs.toString(), path + "_configs");
+//	} // printObjectivesToFile
+	
+	
+	public void printObjectivesToFile(List<Chromosome> solutions, String path, boolean feasibleOnly) {
+		StringBuffer bw = new StringBuffer();
+		bw.append("cost,value,constr,config\n");
+		StringBuffer configs = new StringBuffer();
+		configs.append("config_id,configuration\n");
+		int sol = 1;
+		for (Chromosome solution : solutions) {
+			if (feasibleOnly && !(solution.getOverallConstraintViolation() < Parameters.CONSTRAINT_THRESHOLD))
+				continue;
+			
+			String msg = buildLine (solution, sol);
+			bw.append(msg);
+			String config = "c" + sol + "," + solution.toString() + "\n"; 
+			configs.append(config);
+			sol++;
+		}
+		writeToFile(bw.toString(), path);
+		writeToFile(configs.toString(), path + "_configs");
+	} // printObjectivesToFile
+	
+	
+	private void writeToFile (String content, String path){
 		try {
 			/* Open the file */
 			FileOutputStream fos = new FileOutputStream(path);
 			OutputStreamWriter osw = new OutputStreamWriter(fos);
 			BufferedWriter bw = new BufferedWriter(osw);
-			bw.write("cost,value,config\n");
-//			bw.newLine();
-//			int numberOfObjectives = solutions.get(0).getNumberOfObjectives();
-			int sol = 1;
-			for (Chromosome solution : solutions) {
-//				String msg = "";
-//				for (int i = 0; i < numberOfObjectives; i++)
-				String msg = solution.getObjective()[0] + "," + (1 - solution.getObjective()[1]) + ",c" + (sol++) + "\n";
-				bw.write(msg); //solution.toString());
-//				bw.newLine();
-			}
-
+			bw.write(content);
+				
 			/* Close the file */
 			bw.close();
 		} catch (IOException e) {
 			logger.error("Error acceding to the file");
 			e.printStackTrace();
 		}
-	} // printObjectivesToFile
+	}
 	
+	/**
+	 * @param solution
+	 * @param sol
+	 * @return
+	 */
+	private String buildLine(Chromosome solution, int sol) {
+		double cost = solution.getObjective()[0];
+		double value = -1d * solution.getObjective()[1]; // invert minimization to maximization 
+		String msg = cost + "," + value + "," + solution.getOverallConstraintViolation() + ",c" + (sol) + "\n";
+		return msg;
+	}
+
 	public static void main(String[] args) {
-		int depth = 5;
-		double probRecursive = 0.1;
-		Parameters.SEARCH_BUDGET = 10; // 10 seconds
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
+		Parameters.SEARCH_BUDGET = 5;
+		Parameters.CONSTRAINT_THRESHOLD = 20;
+		Parameters.POPULATION_SIZE = 100;
+		int depth = 15;
+		double probRecursive = 0.005;
+		Parameters.CROSSOVER_RATE = 0.6;
+		Parameters.MUTATION_RATE = 0.2;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-		NSGAII nsgaii = new NSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
+		ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = nsgaii.generateSolution();
-		Chromosome solution = solutions.get(0);
-		System.out.println(solution.getConfiguration().toString());
-		System.out.println(solution.getFitness());
+//		Chromosome solution = solutions.get(0);
+//		System.out.println(solution.getConfiguration().toString());
+//		System.out.println(solution.getFitness());
 	}
 }

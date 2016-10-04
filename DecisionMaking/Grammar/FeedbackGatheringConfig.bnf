@@ -1,87 +1,55 @@
-
-<FeedbackConfiguration> ::= <FeedbackIssue> <Device>
-
-<Device> ::= "webclient" 
-		| "android"
-		| "ios"
-
-<FeedbackIssue> ::= <ConfirmationMessage_opt> <Mechanism> <Attachment_opt> <Category_opt> <Receiver> <Presentation>
-
+<FeedbackIssue> ::= <ConfirmationMessage_opt> <Mechanism_or> <Attachment_opt> <Category_opt> <Receiver> <Presentation>
 <ConfirmationMessage_opt> ::= <ConfirmationMessage>
 		|
-
 <ConfirmationMessage> ::= "confirmationmessage"
 
-<Mechanism> ::= <Audio_opt> <Rating_opt> <TextFeedback_opt> <ScreenShot_opt>
+<Mechanism_or> ::= <Mechanism> <Mechanism_or>
+	| <Mechanism>
 
+<Mechanism> ::= <Audio> 
+	| <Rating> 
+	| <TextFeedback> 
+	| <ScreenShot>
 <Audio_opt> ::= <Audio>
 	|
-
 <Audio> ::= "audio"
-
 <Rating_opt> ::= <Rating>
 	|
-
 <Rating> ::= "rating"
-
 <TextFeedback_opt> ::= <TextFeedback>
 	|
-
 <TextFeedback> ::= "textfeedback"
-
 <ScreenShot_opt> ::= <ScreenShot>
 	|
-
 <ScreenShot> ::= <Annotation> <FreeHandDrawing_opt> <BasicShapes_opt> <SelectionColor_opt> <BasicEditionOption_opt>
-
 <Annotation> ::= "annotation"
-
 <FreeHandDrawing_opt> ::= <FreeHandDrawing>
 	|
-
 <FreeHandDrawing> ::= "freehanddrawing"
-
 <BasicShapes_opt> ::= <BasicShapes>
 	|
-
 <BasicShapes> ::= "basicshapes"
-
 <SelectionColor_opt> ::= <SelectionColor>
 	|
-
 <SelectionColor> ::= "selectioncolor"
-
 <BasicEditionOption_opt> ::= <BasicEditionOption>
 	|
-
 <BasicEditionOption> ::= "basiceditionoption"
-
 <Attachment_opt> ::= <Attachment>
 	|
-
 <Attachment> ::= "attachment"
-
 <Category_opt> ::= <Category>
-
+	|
 <Category> ::= <NewCategory_opt> <SelectCategory>
-
 <NewCategory_opt> ::= <NewCategory>
-
+	|
 <NewCategory> ::= "newcategory"
-
 <SelectCategory> ::= "selectcategory"
-
 <Receiver> ::= <ShareWithWorkTeam>
 	| <ShareWithAll>
-
 <ShareWithWorkTeam> ::= "sharewithworkteam"
-
 <ShareWithAll> ::= "sharewithall"
-
 <Presentation> ::= <link>
 	| <popup>
-
 <Link> ::= "link"
-
 <Popup> ::= "popup"
-

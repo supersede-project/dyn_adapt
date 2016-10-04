@@ -1,12 +1,15 @@
 package eu.supersede.dm.optimizer.gp.mo.chromosome;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import eu.fbk.gbtlib.gp.individual.GPAnnotatedIndividualFactory;
 import eu.fbk.gbtlib.gp.individual.GPIndividual;
 import eu.supersede.dm.optimizer.gp.Parameters;
 
 public class ChromosomeFactory {
-//	private Map<Integer, Chromosome> chromosomeCache = new HashMap<Integer, Chromosome>();
-//	private int duplicates = 0;
+	private Map<Integer, Chromosome> chromosomeCache = new HashMap<Integer, Chromosome>();
+	private int duplicates = 0;
 	private GPAnnotatedIndividualFactory configurationFactory;
 	public ChromosomeFactory(String grammarFile, int depth, double probRecursive) {
 		String learnedGrammarFile = "";
@@ -19,18 +22,19 @@ public class ChromosomeFactory {
 		
 		GPIndividual configuration = getConfigurationFactory().getNewIndividual();
 		
+		while (chromosomeCache.put(configuration.toString().hashCode(), chromosome) != null){
+			configuration = getConfigurationFactory().getNewIndividual();
+			duplicates++;
+		}
 		chromosome.setConfiguration(configuration);
 		chromosome.setNumberOfObjectives(Parameters.NUM_OBJECTIVES);
 		
-//		if (chromosomeCache.put(chromosome.getConfiguration().toString().hashCode(), chromosome) != null){
-//			duplicates++;
-//		}
 		return chromosome;
 	}
 
-//	public int getNumberOfDuplicates(){
-//		return duplicates;
-//	}
+	public int getNumberOfDuplicates(){
+		return duplicates;
+	}
 	
 	public GPAnnotatedIndividualFactory getConfigurationFactory() {
 		return configurationFactory;

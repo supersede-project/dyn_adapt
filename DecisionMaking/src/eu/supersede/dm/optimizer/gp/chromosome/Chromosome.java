@@ -1,10 +1,12 @@
 package eu.supersede.dm.optimizer.gp.chromosome;
 
 import eu.fbk.gbtlib.gp.individual.GPIndividual;
+import eu.supersede.dm.optimizer.gp.Parameters;
 
 public class Chromosome implements Comparable {
 	private GPIndividual configuration;
 	private double fitness;
+	private double overallConstraint;
 	private double crowdingDistance;
 	public double getFitness() {
 		return fitness;
@@ -24,6 +26,7 @@ public class Chromosome implements Comparable {
 		GPIndividual cloneConfig = (GPIndividual) configuration.clone();
 		clone.setConfiguration(cloneConfig);
 		clone.setFitness(fitness);
+		clone.setOverallConstraint(overallConstraint);
 		return clone;
 	}
 	
@@ -38,7 +41,7 @@ public class Chromosome implements Comparable {
 		if (configuration == null){
 			return "";
 		}else{
-			return configuration.toString();
+			return configuration.toString().replaceAll("\\s+", " ");
 		}
 	}
 	public double getCrowdingDistance() {
@@ -46,5 +49,42 @@ public class Chromosome implements Comparable {
 	}
 	public void setCrowdingDistance(double crowdingDistance) {
 		this.crowdingDistance = crowdingDistance;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj){
+			return true;
+		}else if (obj instanceof Chromosome){
+			Chromosome other = (Chromosome)obj;
+			if (other.toString().equalsIgnoreCase(toString())){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean violatesConstraint(){
+		return (overallConstraint > Parameters.CONSTRAINT_THRESHOLD);
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return toString().hashCode();
+	}
+	public double getOverallConstraint() {
+		return overallConstraint;
+	}
+	public void setOverallConstraint(double overallConstraint) {
+		this.overallConstraint = overallConstraint;
 	}
 }

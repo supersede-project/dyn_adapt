@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.supersede.dm.optimizer.gp.Parameters;
+import eu.supersede.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.RandomNumber;
@@ -20,18 +21,21 @@ public class SteadyStateGP extends StandardGP {
 		super(grammarFile, depth, probRecursive, currentConfiguration);
 	}
 
+//	@Override
+//	protected boolean isFinished() {
+//		return stoppingCondition.isFinished();
+//	}
+	
 	@Override
 	public List<Chromosome> generateSolution() {
-		List<Chromosome> solutions = new ArrayList<Chromosome>();
 		initializePopulation();
 		calculateFitnessAndSortPopulation();
 		while (!isFinished()) {
 			evolve();
 			sortPopulation();
 		}
-		solutions.add(population.get(0));
 		logger.debug("Done after: {} generations.", generation);
-		return solutions;
+		return population.subList(0, 1); //return the top of the (sorted) list
 	}
 
 	
@@ -59,7 +63,7 @@ public class SteadyStateGP extends StandardGP {
 				
 				// compute fitness of offspring
 				if (fitnessFunction.evaluate(offspring1)){
-					fitnessEvaluations++;
+					stoppingCondition.fitnessEvaluation();
 				}
 				
 				if (RandomNumber.nextDouble() <= Parameters.MUTATION_RATE){
@@ -68,11 +72,13 @@ public class SteadyStateGP extends StandardGP {
 				
 				// compute fitness of offspring
 				if (fitnessFunction.evaluate(offspring2)){
-					fitnessEvaluations++;
+					stoppingCondition.fitnessEvaluation();
 				}
 				
+				
 				// add offsprings if they are not worse than their parents
-				if (replacementFunction.keepOffspring(parent1, parent2, offspring1, offspring2)){
+				if ((!offspring1.violatesConstraint() && !offspring2.violatesConstraint())
+						&& replacementFunction.keepOffspring(parent1, parent2, offspring1, offspring2)){
 					nextGeneration.add(offspring1);
 					nextGeneration.add(offspring2);
 //					logger.debug("Keeping offspring");
@@ -93,13 +99,17 @@ public class SteadyStateGP extends StandardGP {
 
 	// For testing purposes only!!
 	public static void main (String[] args){
-		int depth = 10;
-		double probRecursive = 0.4;
+		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
+		Parameters.SEARCH_BUDGET = 5;
+		Parameters.CONSTRAINT_THRESHOLD = 20;
+		Parameters.POPULATION_SIZE = 100;
+		int depth = 15;
+		double probRecursive = 0.005;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = gp.generateSolution();
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());
-		System.out.println(solution.getFitness());
+		System.out.println("fitness:" + solution.getFitness() + ", constraint: " + solution.getOverallConstraint());
 	}
 }

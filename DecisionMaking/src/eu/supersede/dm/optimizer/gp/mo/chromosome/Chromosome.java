@@ -70,7 +70,7 @@ public class Chromosome {
 		if (configuration == null){
 			return "";
 		}else{
-			return configuration.toString();
+			return configuration.toString().replaceAll("\\s+", " ");
 		}
 	}
 	public double getCrowdingDistance() {
@@ -108,5 +108,32 @@ public class Chromosome {
 	}
 	public void setNumberOfViolatedConstraints(int numberOfViolatedConstraints) {
 		this.numberOfViolatedConstraints = numberOfViolatedConstraints;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj){
+			return true;
+		}else if (obj instanceof Chromosome){
+			Chromosome other = (Chromosome)obj;
+			if (other.toString().equalsIgnoreCase(toString())){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return toString().hashCode();
 	}
 }
