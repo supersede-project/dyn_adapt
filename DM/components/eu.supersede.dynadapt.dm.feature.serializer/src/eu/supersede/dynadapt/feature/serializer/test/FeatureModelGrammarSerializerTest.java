@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.URI;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.supersede.dynadapt.feature.serializer.FMGrammarSerializer;
+import eu.supersede.dynadapt.feature.serializer.FMSerializer;
 import eu.supersede.dynadapt.feature.serializer.Main;
 
 public class FeatureModelGrammarSerializerTest {
@@ -31,12 +31,10 @@ public class FeatureModelGrammarSerializerTest {
 	}
 	
 	@Test
-	public void serializeFMGrammarTest () throws IOException{
-//		generator.doGenerate(new BasicMonitor());
-		
+	public void FMSerializerTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
-		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/yafmt/examples/CarExample/CarExample.yafm";
+		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
-		FMGrammarSerializer.serializeGrammarInFolder(absoluteModelPath, absolutetargetFolderPath);
+		FMSerializer.serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
 	}
 }
