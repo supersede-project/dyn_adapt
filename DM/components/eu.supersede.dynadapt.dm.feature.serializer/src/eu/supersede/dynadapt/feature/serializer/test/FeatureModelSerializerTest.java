@@ -13,7 +13,7 @@ import org.junit.Test;
 import eu.supersede.dynadapt.feature.serializer.FMSerializer;
 import eu.supersede.dynadapt.feature.serializer.Main;
 
-public class FeatureModelGrammarSerializerTest {
+public class FeatureModelSerializerTest {
 	private URI modelURI;
 	private File targetFolder;
 	private List<String> arguments = new ArrayList<String>();
