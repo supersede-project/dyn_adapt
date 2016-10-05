@@ -33,7 +33,12 @@ public class Chromosome implements Comparable {
 	@Override
 	public int compareTo(Object o) {
 		Chromosome other = (Chromosome)o;
-		return Double.compare(fitness, other.getFitness());
+//		return Double.compare(fitness, other.getFitness());
+		int compare = Double.compare(overallConstraint, other.getOverallConstraint());
+		if (compare == 0){
+			compare = Double.compare(fitness, other.getFitness());
+		}
+		return compare;
 	}
 	
 	@Override

@@ -5,7 +5,7 @@ public class Parameters {
 	// feature model parameters
 	public static String GRAMMAR_FILE = "Grammar/FeedbackGatheringConfig.bnf";
 	public static String FEATURE_ATTRIBUTE_PATH = "input/refsq17/monitoring/feedbackreconfig/";
-	public static String CURRENT_CONFIGURATION = "input/refsq17/monitoring/feedbackreconfig/current3.conf";
+	public static String CURRENT_CONFIGURATION = "input/refsq17/monitoring/feedbackreconfig/current.conf";
 	public static String ATTRIBUTE_METADATA = "input/refsq17/monitoring/feedbackreconfig/attribute.metadata.json";
 	
 	// Metaheuristic algorithm parameters

@@ -101,8 +101,8 @@ public class SteadyStateGP extends StandardGP {
 	public static void main (String[] args){
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD = 20;
-		Parameters.POPULATION_SIZE = 100;
+		Parameters.CONSTRAINT_THRESHOLD = 30;
+		Parameters.POPULATION_SIZE = 150;
 		int depth = 15;
 		double probRecursive = 0.005;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
