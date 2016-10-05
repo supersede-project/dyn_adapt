@@ -8,6 +8,7 @@
 [/file]
 [/template]
 
+[comment Post action removes last comma placed after last quality attribute serialized by attributeJSON template/]
 [template public featureModel(aFeatureModel : FeatureModel) post (substitute('},\n}', '}\n}').trim())]
 {
 [if (not aFeatureModel.root.oclIsUndefined())]
@@ -34,6 +35,10 @@
 [/if]
 [/template]
 
+[comment RemovesDuplicates:Boolean determines whether or not quality attributes with same name will be serialized only once.
+First occurrence of attribute will be serialized, not the others
+TODO: investigate and implement the external parameterization of this behavior, that is, passing this boolean to this template
+from an external Java invocation, so the caller can customize this behavior /]
 [template public attribute (anAttribute : Attribute, removeDuplicates:Boolean) 
 	? (anAttribute.qualityAttribute) post(trim())]
 [if (removeDuplicates)]
@@ -66,9 +71,12 @@
 		'attributeHasBeenSerialized(java.lang.String)', Sequence{anAttribute.name})
   /]
 
+[comment Below code is a more elegant attempt to implement this quality attribute serialization but it not working
+NOTE: From Eclipse Luna, Acceleo compiler does not work, so debugging is not possible
+TODO: Investigate how to place debugging information in console when invoking queries /]
+
 [comment FIXME: this approach using recursive queries to collect all attributes, aiming at removing duplicates
 does not work /]
-
 [template public featureUsingRecursion (aFeature : Feature)]
 	[let theAttributes : Collection(Attribute) = allNestedAttributes(aFeature)]
 		[for (anAttribute : Attribute | theAttributes)]
