@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.adapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -130,23 +131,30 @@ public class ModelAdapter implements IModelAdapter {
 		} else if (type.equals(CLASS)){
 			ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
 			ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
-			//For each relationship of the class
+			//For each relationship of the class in the variant
 			for (int i = 0; i < classVariant.getRelationships().size(); ++i) {
 				Relationship r1 = classVariant.getRelationships().get(i);
+				//For each relationship of the class in the base model
 				for (int j = 0; j < classBase.getRelationships().size(); ++j) {
 					Relationship r2 = classBase.getRelationships().get(j);
+					//Check which relationships are present in the variant
 					if (checkSameRelationship(r1,r2)) {
+						//Retrieve the related object
 						ClassImpl deleteClass = null;
 						if (!r2.getRelatedElements().get(0).equals(classBase)) {
 							deleteClass = (ClassImpl) r2.getRelatedElements().get(0);
 						} else deleteClass = (ClassImpl) r2.getRelatedElements().get(1);
-						deleteClass.destroy();
+						//Delete it if present in variant
+						if (modelContainsElement(deleteClass, usingVariantModel)) deleteClass.destroy();
 						break;
 					}
 				}
-				
 			}
-			
+			//Delete all instances of the class in the variant
+			List<NamedElement> baseInstances = getInstances(classVariant, inBaseModel);
+			for (NamedElement e : baseInstances) {
+				if (modelContainsElement(e, usingVariantModel)) e.destroy();
+			}
 		}
 		
 		return inBaseModel;
@@ -251,8 +259,21 @@ public class ModelAdapter implements IModelAdapter {
 	 * @param c
 	 * @return
 	 */
-	private List<Element> getInstances(ClassImpl c) {
-		return null;
+	private List<NamedElement> getInstances(ClassImpl c, Model model) {
+		List<NamedElement> instances = new ArrayList<>();
+		TreeIterator<EObject> tree = model.eAllContents();
+		while (tree.hasNext()) {
+			EObject a = tree.next();
+			if (a.eClass().getEStructuralFeature("classifier")!=null) {
+				EObjectResolvingEList eList = (EObjectResolvingEList) a.eGet(a.eClass().getEStructuralFeature("classifier"));
+				if (eList!=null && eList.size() > 0) {
+					Classifier classifier = (Classifier) eList.get(0);
+					if (classifier.getName().equals(c.getName())) 
+						instances.add((NamedElement) a);
+				}
+			}
+		}
+		return instances;
 	}
 	
 	private boolean checkSameRelationship(Relationship r1, Relationship r2) {
@@ -269,6 +290,26 @@ public class ModelAdapter implements IModelAdapter {
 			if (!found) return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * 
+	 * @param deleteClass
+	 * @param usingVariantModel
+	 * @return
+	 */
+	private boolean modelContainsElement(NamedElement element, Model model) {
+		TreeIterator<EObject> tree = model.eAllContents();
+		while (tree.hasNext()) {
+			EObject a = tree.next();
+			if (a.eClass().getEStructuralFeature("name")!=null) {
+				Object name = a.eGet(a.eClass().getEStructuralFeature("name"));
+				if (name != null) {
+					if (name.toString().equals(element.getName())) return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

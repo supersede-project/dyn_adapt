@@ -272,7 +272,7 @@
     <element xmi:type="uml:InstanceSpecification" href="MonitoringSystemBaseModel.uml#_6bTlUC1XEeavvcSdbQigPQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6bX2wS1XEeavvcSdbQigPQ" x="446" y="16"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_HjFi4SyzEeaIzdWnkCl-Vg" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_HjFi4SyzEeaIzdWnkCl-Vg" name="diagram_compatibility_version" stringValue="1.1.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_HjFi4iyzEeaIzdWnkCl-Vg"/>
   <styles xmi:type="style:PapyrusViewStyle" xmi:id="_HjFi4yyzEeaIzdWnkCl-Vg">
     <owner xmi:type="uml:Model" href="MonitoringSystemBaseModel.uml#_HhPv0CyzEeaIzdWnkCl-Vg"/>
