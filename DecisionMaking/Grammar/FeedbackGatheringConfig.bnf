@@ -1,4 +1,4 @@
-<FeedbackIssue> ::= <ConfirmationMessage_opt> <Mechanism_or> <Attachment_opt> <Category_opt> <Receiver> <Presentation>
+<FeedbackIssue> ::= <ConfirmationMessage_opt> <Mechanism_or> <Attachment_opt> <Category> <Receiver> <Presentation>
 <ConfirmationMessage_opt> ::= <ConfirmationMessage>
 		|
 <ConfirmationMessage> ::= "confirmationmessage"
@@ -38,7 +38,7 @@
 <Attachment_opt> ::= <Attachment>
 	|
 <Attachment> ::= "attachment"
-<Category_opt> ::= <Category>
+#<Category_opt> ::= <Category>
 	|
 <Category> ::= <NewCategory_opt> <SelectCategory>
 <NewCategory_opt> ::= <NewCategory>
