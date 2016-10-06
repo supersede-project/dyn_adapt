@@ -144,7 +144,7 @@ public class ConfigurationLoader {
 				
 				Map<Object, Object> valueMap = (Map<Object, Object>)entry.getValue();
 
-
+				boolean alert = Boolean.parseBoolean(valueMap.get("alert").toString());
 				double weight = Double.parseDouble(valueMap.get("weight").toString());
 				double minimumValue = Double.parseDouble(valueMap.get("min").toString());
 				double maximumValue = Double.parseDouble(valueMap.get("max").toString());
@@ -167,6 +167,7 @@ public class ConfigurationLoader {
 				attributeMetadata.setWeight(weight);
 				attributeMetadata.setAggregator(aggregator);
 				attributeMetadata.setMinimize(minimize);
+				attributeMetadata.setAlert(alert);
 				
 				getFeatureAttributeMetadata().put(attributeName, attributeMetadata);
 			}

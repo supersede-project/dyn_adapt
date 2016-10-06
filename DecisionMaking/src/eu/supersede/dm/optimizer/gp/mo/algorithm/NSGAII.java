@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.supersede.dm.optimizer.gp.Parameters;
-import eu.supersede.dm.optimizer.gp.algorithm.StandardGP;
+import eu.supersede.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dm.optimizer.gp.mo.chromosome.ChromosomeFactory;
 import eu.supersede.dm.optimizer.gp.mo.fitness.FitnessFunction;
@@ -25,6 +25,10 @@ import eu.supersede.dm.optimizer.gp.operators.CrossoverFunction;
 import eu.supersede.dm.optimizer.gp.operators.MutationFunction;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeCrossover;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeMutation;
+import eu.supersede.dm.optimizer.gp.stoppingconditions.MaxFitnessEvaluationStoppingCondition;
+import eu.supersede.dm.optimizer.gp.stoppingconditions.MaxTimeStoppingCondition;
+import eu.supersede.dm.optimizer.gp.stoppingconditions.StoppingCondition;
+import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.CrowdingComparator;
 import eu.supersede.dm.util.Distance;
 import eu.supersede.dm.util.RandomNumber;
@@ -45,8 +49,9 @@ public class NSGAII {
 	protected CrossoverFunction crossoverFunction;
 	protected MutationFunction mutationFunction;
 	// protected ReplacementFunction replacementFunction;
+	protected StoppingCondition stoppingCondition;
 
-	private int fitnessEvaluations = 0;
+//	private int fitnessEvaluations = 0;
 	private int generation = 0;
 
 	/**
@@ -67,7 +72,11 @@ public class NSGAII {
 				chromosomeFactory.getConfigurationFactory());
 		// replacementFunction = new
 		// ReplacementFunction(fitnessFunction.isMaximizationFunction());
-
+		if (Parameters.BUDGET_TYPE == BudgetType.MAX_TIME){
+			stoppingCondition = new MaxTimeStoppingCondition();
+		}else if (Parameters.BUDGET_TYPE == BudgetType.MAX_FITNESS){
+			stoppingCondition = new MaxFitnessEvaluationStoppingCondition();
+		}
 	}
 
 	/*
@@ -192,19 +201,20 @@ public class NSGAII {
 		for (Chromosome chromosome : pop) {
 			boolean unique = fitnessFunction.evaluate(chromosome);
 			if (unique) {
-				fitnessEvaluations++;
+//				fitnessEvaluations++;
+				stoppingCondition.fitnessEvaluation();
 			}
 		}
 	}
 
 	protected boolean isFinished() {
 		boolean finished = fitnessFunction.isFinished(population.get(0))
-				|| (fitnessEvaluations > Parameters.SEARCH_BUDGET);
+				|| (stoppingCondition.isFinished());
 		return finished;
 	}
 
 	public int getFitnessEvaluations() {
-		return fitnessEvaluations;
+		return (int) stoppingCondition.getCurrentValue();
 	}
 
 	public int getGeneration() {
@@ -217,13 +227,16 @@ public class NSGAII {
 			FileOutputStream fos = new FileOutputStream(path);
 			OutputStreamWriter osw = new OutputStreamWriter(fos);
 			BufferedWriter bw = new BufferedWriter(osw);
-
+			bw.write("cost,value,config\n");
+//			bw.newLine();
+//			int numberOfObjectives = solutions.get(0).getNumberOfObjectives();
+			int sol = 1;
 			for (Chromosome solution : solutions) {
-				String msg = "";
-				for (int i = 0; i < solution.getNumberOfObjectives(); i++)
-					msg = msg + solution.getObjective()[i] + " ";
+//				String msg = "";
+//				for (int i = 0; i < numberOfObjectives; i++)
+				String msg = solution.getObjective()[0] + "," + (1 - solution.getObjective()[1]) + ",c" + (sol++) + "\n";
 				bw.write(msg); //solution.toString());
-				bw.newLine();
+//				bw.newLine();
 			}
 
 			/* Close the file */
@@ -233,4 +246,17 @@ public class NSGAII {
 			e.printStackTrace();
 		}
 	} // printObjectivesToFile
+	
+	public static void main(String[] args) {
+		int depth = 5;
+		double probRecursive = 0.1;
+		Parameters.SEARCH_BUDGET = 10; // 10 seconds
+		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
+		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
+		NSGAII nsgaii = new NSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
+		List<Chromosome> solutions = nsgaii.generateSolution();
+		Chromosome solution = solutions.get(0);
+		System.out.println(solution.getConfiguration().toString());
+		System.out.println(solution.getFitness());
+	}
 }

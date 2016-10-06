@@ -26,12 +26,12 @@ public abstract class AbstractFitnessFunction implements FitnessFunction {
 	 * Returns the cached fitness value for the individual, else returns NULL
 	 */
 	protected double[] getCashedFitness (Chromosome chromosome){
-		Integer hashCode = chromosome.toString().hashCode();
+		Integer hashCode = chromosome.hashCode();
 		return fitnessCache.get(hashCode);
 	}
 	
 	protected void cacheFitness (Chromosome chromosome){
-		Integer hashCode = chromosome.toString().hashCode();
+		Integer hashCode = chromosome.hashCode();
 		fitnessCache.put(hashCode, chromosome.getObjective());
 	}
 

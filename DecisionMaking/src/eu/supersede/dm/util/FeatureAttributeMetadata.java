@@ -16,6 +16,7 @@ public class FeatureAttributeMetadata {
 	private double maximumValue;
 	private double weight;
 	private boolean minimize;
+	private boolean alert;
 	
 	private Aggregators aggregator;
 	
@@ -64,5 +65,11 @@ public class FeatureAttributeMetadata {
 	}
 	public void setAggregator(Aggregators aggregator) {
 		this.aggregator = aggregator;
+	}
+	public boolean isAlert() {
+		return alert;
+	}
+	public void setAlert(boolean alert) {
+		this.alert = alert;
 	}
 }

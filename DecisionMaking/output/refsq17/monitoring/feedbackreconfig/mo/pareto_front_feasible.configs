@@ -1,0 +1,5 @@
+config_id,configuration
+c1, rating selectcategory sharewithall popup 
+c2, rating selectcategory sharewithall link 
+c3, textfeedback selectcategory sharewithall popup 
+

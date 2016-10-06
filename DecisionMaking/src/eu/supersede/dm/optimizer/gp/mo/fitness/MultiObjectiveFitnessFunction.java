@@ -117,8 +117,8 @@ public class MultiObjectiveFitnessFunction extends AbstractFitnessFunction {
 		
 		// overall aggregate sum of all attribute values
 		double[] result = new double[Parameters.NUM_OBJECTIVES];
-		result[0] = aggregatedValues.get("availability");
-		result[1] = aggregatedValues.get("memory_consumption") + aggregatedValues.get("response_time") + aggregatedValues.get("configuration_time");
+		result[0] = aggregatedValues.get("memory_consumption");
+		result[1] = aggregatedValues.get("availability"); // + aggregatedValues.get("response_time") + aggregatedValues.get("configuration_time");
 		return result;
 	}
 	
