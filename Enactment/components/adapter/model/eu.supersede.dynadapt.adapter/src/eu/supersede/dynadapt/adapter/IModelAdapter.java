@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.adapter;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public interface IModelAdapter {
@@ -13,6 +14,6 @@ public interface IModelAdapter {
 	
 	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
 	
-	public Model applyModifyValueComposition(Model inBaseModel, Property jointpointBaseModelProperty, Model usingVariantModel, ValueSpecification newValue) throws Exception;
+	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, ValueSpecification newValue) throws Exception;
 
 }

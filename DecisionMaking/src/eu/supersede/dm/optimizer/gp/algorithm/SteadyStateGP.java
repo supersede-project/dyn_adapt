@@ -10,6 +10,7 @@ import eu.supersede.dm.optimizer.gp.Parameters;
 import eu.supersede.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dm.util.ConfigurationLoader;
+import eu.supersede.dm.util.FileUtils;
 import eu.supersede.dm.util.RandomNumber;
 
 public class SteadyStateGP extends StandardGP {
@@ -111,5 +112,7 @@ public class SteadyStateGP extends StandardGP {
 		Chromosome solution = solutions.get(0);
 		System.out.println(solution.getConfiguration().toString());
 		System.out.println("fitness:" + solution.getFitness() + ", constraint: " + solution.getOverallConstraint());
+		// save solution to file
+		FileUtils.writeToFile(solution.toString(), Parameters.OUTPUT_DIR + "so/optimal.config");
 	}
 }

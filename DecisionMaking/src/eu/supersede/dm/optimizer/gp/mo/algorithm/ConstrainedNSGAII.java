@@ -35,6 +35,7 @@ import eu.supersede.dm.util.ChromosomeUtils;
 import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.CrowdingComparator;
 import eu.supersede.dm.util.Distance;
+import eu.supersede.dm.util.FileUtils;
 import eu.supersede.dm.util.RandomNumber;
 import eu.supersede.dm.util.Ranking;
 
@@ -148,13 +149,13 @@ public class ConstrainedNSGAII {
 
 		Ranking ranking = new Ranking(population);
 		List<Chromosome> solutions = ranking.getSubfront(0);
-		printObjectivesToFile(solutions, "FUN", false);
-		printObjectivesToFile(solutions, "FUN_feasible", true);
-		if (ranking.getNumberOfSubfronts() > 1){
-			List<Chromosome> secondFront = ranking.getSubfront(1);
-			printObjectivesToFile(secondFront, "SUB", false);
-			printObjectivesToFile(secondFront, "SUB_feasible", true);
-		}
+//		printObjectivesToFile(solutions, "FUN", false);
+//		printObjectivesToFile(solutions, "FUN_feasible", true);
+//		if (ranking.getNumberOfSubfronts() > 1){
+//			List<Chromosome> secondFront = ranking.getSubfront(1);
+//			printObjectivesToFile(secondFront, "SUB", false);
+//			printObjectivesToFile(secondFront, "SUB_feasible", true);
+//		}
 		return solutions;
 	}
 
@@ -239,73 +240,6 @@ public class ConstrainedNSGAII {
 		return generation;
 	}
 
-//	public void printObjectivesToFile(List<Chromosome> solutions, String path) {
-//		StringBuffer bw = new StringBuffer();
-//		bw.append("cost,value,constr,config\n");
-//		StringBuffer configs = new StringBuffer();
-//		configs.append("config_id,configuration\n");
-//		int sol = 1;
-//		for (Chromosome solution : solutions) {
-//			String msg = buildLine(solution, sol);
-//			bw.append(msg);
-//			String config = "c" + sol + "," + solution.toString() + "\n"; 
-//			configs.append(config);
-//			sol++;
-//		}
-//		writeToFile(bw.toString(), path);
-//		writeToFile(configs.toString(), path + "_configs");
-//	} // printObjectivesToFile
-	
-	
-	public void printObjectivesToFile(List<Chromosome> solutions, String path, boolean feasibleOnly) {
-		StringBuffer bw = new StringBuffer();
-		bw.append("cost,value,constr,config\n");
-		StringBuffer configs = new StringBuffer();
-		configs.append("config_id,configuration\n");
-		int sol = 1;
-		for (Chromosome solution : solutions) {
-			if (feasibleOnly && !(solution.getOverallConstraintViolation() < Parameters.CONSTRAINT_THRESHOLD))
-				continue;
-			
-			String msg = buildLine (solution, sol);
-			bw.append(msg);
-			String config = "c" + sol + "," + solution.toString() + "\n"; 
-			configs.append(config);
-			sol++;
-		}
-		writeToFile(bw.toString(), path);
-		writeToFile(configs.toString(), path + "_configs");
-	} // printObjectivesToFile
-	
-	
-	private void writeToFile (String content, String path){
-		try {
-			/* Open the file */
-			FileOutputStream fos = new FileOutputStream(path);
-			OutputStreamWriter osw = new OutputStreamWriter(fos);
-			BufferedWriter bw = new BufferedWriter(osw);
-			bw.write(content);
-				
-			/* Close the file */
-			bw.close();
-		} catch (IOException e) {
-			logger.error("Error acceding to the file");
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * @param solution
-	 * @param sol
-	 * @return
-	 */
-	private String buildLine(Chromosome solution, int sol) {
-		double cost = solution.getObjective()[0];
-		double value = -1d * solution.getObjective()[1]; // invert minimization to maximization 
-		String msg = cost + "," + value + "," + solution.getOverallConstraintViolation() + ",c" + (sol) + "\n";
-		return msg;
-	}
-
 	public static void main(String[] args) {
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
@@ -318,8 +252,9 @@ public class ConstrainedNSGAII {
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = nsgaii.generateSolution();
-//		Chromosome solution = solutions.get(0);
-//		System.out.println(solution.getConfiguration().toString());
-//		System.out.println(solution.getFitness());
+		
+		FileUtils.printObjectivesToFile(solutions, Parameters.OUTPUT_DIR + "mo/pareto_front_all", false);
+		FileUtils.printObjectivesToFile(solutions, Parameters.OUTPUT_DIR + "mo/pareto_front_feasible", true);
+		
 	}
 }

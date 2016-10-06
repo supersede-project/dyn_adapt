@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HhPv0CyzEeaIzdWnkCl-Vg" name="RootElement">
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_-3ErIIrPEeasbvAXF61FUw" name="TwitterMonitor">
+    <classifier xmi:type="uml:Class" href="MonitoringSystemBaseModel.uml#_dit7UC1VEeavvcSdbQigPQ"/>
+    <slot xmi:type="uml:Slot" xmi:id="_-3ErIYrPEeasbvAXF61FUw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_MSELwCy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_-3ErIorPEeasbvAXF61FUw" name="name" value="TwitterMonitoring"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_-3ErI4rPEeasbvAXF61FUw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_P7nsYCy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_-3ErJIrPEeasbvAXF61FUw" value="active"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_-3ErJYrPEeasbvAXF61FUw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_R5pfUCy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralInteger" xmi:id="_-3ErJorPEeasbvAXF61FUw" value="300"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_-3ErJ4rPEeasbvAXF61FUw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_S_VVACy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_-3ErKIrPEeasbvAXF61FUw" value="http://localhost:9092"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_-3ErKYrPEeasbvAXF61FUw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_UNdVACy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_-3ErKorPEeasbvAXF61FUw" value="twitterMonitoring"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_-3ErK4rPEeasbvAXF61FUw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_WAYEICy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_-3ErLIrPEeasbvAXF61FUw" value="{&quot;keywordExpression&quot;: &quot;KGroup1&quot;,&quot;accounts&quot;: &quot;AGroup1&quot;}"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZvgtMIrQEeasbvAXF61FUw" name="SocialNetworksMonitor">
+    <generalization xmi:type="uml:Generalization" xmi:id="_ZvgtMYrQEeasbvAXF61FUw">
+      <general xmi:type="uml:Class" href="MonitoringSystemBaseModel.uml#_AsJRgCy5EealKu3_PJbmWg"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_-3GgUIrPEeasbvAXF61FUw" client="_-3ErIIrPEeasbvAXF61FUw">
+    <supplier xmi:type="uml:Class" href="MonitoringSystemBaseModel.uml#_dit7UC1VEeavvcSdbQigPQ"/>
+  </packagedElement>
+</uml:Model>

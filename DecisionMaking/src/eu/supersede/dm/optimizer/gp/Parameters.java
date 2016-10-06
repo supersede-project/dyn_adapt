@@ -2,11 +2,15 @@ package eu.supersede.dm.optimizer.gp;
 
 public class Parameters {
 	
+	public static String INPUT_DIR = "input/refsq17/monitoring/feedbackreconfig/";
+	public static String OUTPUT_DIR = "output/refsq17/monitoring/feedbackreconfig/";
+	
 	// feature model parameters
-	public static String GRAMMAR_FILE = "Grammar/FeedbackGatheringConfig.bnf";
-	public static String FEATURE_ATTRIBUTE_PATH = "input/refsq17/monitoring/feedbackreconfig/";
-	public static String CURRENT_CONFIGURATION = "input/refsq17/monitoring/feedbackreconfig/current.conf";
-	public static String ATTRIBUTE_METADATA = "input/refsq17/monitoring/feedbackreconfig/attribute.metadata.json";
+	public static String GRAMMAR_FILE = INPUT_DIR + "grammar/FeedbackGatheringConfig.bnf";
+	public static String FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+	public static String CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+	public static String ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+	
 	
 	// Metaheuristic algorithm parameters
 	public static int SEARCH_BUDGET = 5;
