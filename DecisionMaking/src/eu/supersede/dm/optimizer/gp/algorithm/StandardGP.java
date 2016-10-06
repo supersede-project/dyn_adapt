@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.supersede.dm.optimizer.gp.Parameters;
+import eu.supersede.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dm.optimizer.gp.chromosome.ChromosomeFactory;
+import eu.supersede.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunction;
 import eu.supersede.dm.optimizer.gp.fitness.FitnessFunction;
 import eu.supersede.dm.optimizer.gp.fitness.SingleObjectiveFitnessFunction;
 import eu.supersede.dm.optimizer.gp.operators.CrossoverFunction;
@@ -19,6 +21,9 @@ import eu.supersede.dm.optimizer.gp.operators.SelectionFunction;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeCrossover;
 import eu.supersede.dm.optimizer.gp.operators.SubtreeMutation;
 import eu.supersede.dm.optimizer.gp.operators.TournamentSelection;
+import eu.supersede.dm.optimizer.gp.stoppingconditions.MaxFitnessEvaluationStoppingCondition;
+import eu.supersede.dm.optimizer.gp.stoppingconditions.MaxTimeStoppingCondition;
+import eu.supersede.dm.optimizer.gp.stoppingconditions.StoppingCondition;
 import eu.supersede.dm.util.ConfigurationLoader;
 import eu.supersede.dm.util.RandomNumber;
 
@@ -33,18 +38,24 @@ public class StandardGP {
 	protected CrossoverFunction crossoverFunction;
 	protected MutationFunction mutationFunction;
 	protected ReplacementFunction replacementFunction;
+	protected StoppingCondition stoppingCondition;
 	
-	protected int fitnessEvaluations = 0;
+//	protected int fitnessEvaluations = 0;
 	protected int generation = 0;
 
 	public StandardGP(String grammarFile, int depth, double probRecursive, List<String> currentConfiguration) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
-		fitnessFunction = new SingleObjectiveFitnessFunction(currentConfiguration);
+		fitnessFunction = new ConstrainedSingleObjectiveFitnessFunction(currentConfiguration);
 		selectionFunction = new TournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
 		mutationFunction = new SubtreeMutation(chromosomeFactory.getConfigurationFactory());
 		replacementFunction = new ReplacementFunction(fitnessFunction.isMaximizationFunction());
+		if (Parameters.BUDGET_TYPE == BudgetType.MAX_TIME){
+			stoppingCondition = new MaxTimeStoppingCondition();
+		}else if (Parameters.BUDGET_TYPE == BudgetType.MAX_FITNESS){
+			stoppingCondition = new MaxFitnessEvaluationStoppingCondition();
+		}
 	}
 
 	public List<Chromosome> generateSolution() {
@@ -84,7 +95,7 @@ public class StandardGP {
 		for (Chromosome chromosome : population) {
 			boolean unique = fitnessFunction.evaluate(chromosome);
 			if (unique){
-				fitnessEvaluations++;
+				stoppingCondition.fitnessEvaluation();
 			}
 		}
 		sortPopulation();
@@ -94,7 +105,7 @@ public class StandardGP {
 		for (Chromosome chromosome : population) {
 			boolean unique = fitnessFunction.evaluate(chromosome);
 			if (unique){
-				fitnessEvaluations++;
+				stoppingCondition.fitnessEvaluation();
 			}
 		}
 	}
@@ -147,7 +158,7 @@ public class StandardGP {
 
 	protected boolean isFinished() {
 		boolean finished =  fitnessFunction.isFinished(population.get(0))
-				|| (fitnessEvaluations > Parameters.SEARCH_BUDGET);
+				|| (stoppingCondition.isFinished());
 		return finished;
 	}
 	
@@ -164,13 +175,13 @@ public class StandardGP {
 	}
 	
 	public int getFitnessEvaluations(){
-		return fitnessEvaluations;
+		return (int)stoppingCondition.getCurrentValue();
 	}
 	
 	// For testing purposes only!!
 	public static void main (String[] args){
 		int depth = 10;
-		double probRecursive = 0.4;
+		double probRecursive = 0.005;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		StandardGP gp = new StandardGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 		List<Chromosome> solutions = gp.generateSolution();

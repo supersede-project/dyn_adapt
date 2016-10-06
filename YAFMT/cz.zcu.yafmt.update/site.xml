@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.itemis.xtext.utils.jface_2.1.0.201303141104.jar" id="de.itemis.xtext.utils.jface" version="2.1.0.201303141104">
+      <category name="dependencies"/>
+   </feature>
+   <feature url="features/org.eclipse.gef_3.9.0.201212170307.jar" id="org.eclipse.gef" version="3.9.0.201212170307">
+      <category name="dependencies"/>
+   </feature>
+   <feature url="features/org.eclipse.xtext.runtime_2.4.1.v201304180855.jar" id="org.eclipse.xtext.runtime" version="2.4.1.v201304180855">
+      <category name="dependencies"/>
+   </feature>
+   <feature url="features/org.eclipse.zest_1.5.0.201212170307.jar" id="org.eclipse.zest" version="1.5.0.201212170307">
+      <category name="dependencies"/>
+   </feature>
+   <feature url="features/org.eclipse.xtext.ui_2.4.1.v201304180855.jar" id="org.eclipse.xtext.ui" version="2.4.1.v201304180855">
+      <category name="dependencies"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.clang.bcl.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.clang.bcl.feature" version="0.3.0.201609230958">
+      <category name="yafmt"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.ui.editors.fc.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.ui.editors.fc.feature" version="0.3.0.201609230958">
+      <category name="yafmt"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.ui.editors.fm.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.ui.editors.fm.feature" version="0.3.0.201609230958">
+      <category name="yafmt"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.ui.views.fm.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.ui.views.fm.feature" version="0.3.0.201609230958">
+      <category name="yafmt"/>
+   </feature>
+   <category-def name="yafmt" label="YAFMT">
+      <description>
+         Yet Another Feature Modeling Tool. Collection of Eclipse plug-ins for feature modeling.
+      </description>
+   </category-def>
+   <category-def name="dependencies" label="Dependencies">
+      <description>
+         YAFMT dependencies.
+      </description>
+   </category-def>
+</site>

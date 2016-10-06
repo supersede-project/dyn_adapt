@@ -1,8 +1,30 @@
+/*******************************************************************************
+ * Copyright (c) 2016 UPC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ * 	Edith Zavala (UPC) - main development
+ * 	
+ * Initially developed in the context of SUPERSEDE EU project
+ * www.supersede.eu
+ *******************************************************************************/
 package eu.supersede.dynadapt.featuremodel.feature;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import cz.zcu.yafmt.model.fm.Constraint;
 import cz.zcu.yafmt.model.fm.Feature;
@@ -11,84 +33,43 @@ import cz.zcu.yafmt.model.fm.Group;
 
 public class FeatureLAO implements IFeatureLAO {
 
-	public FeatureLAO() {
-
-	}
-
+	/**
+	 * This method add a featureSUPERSEDE child to a featureSUPERSEDE parent.
+	 * 
+	 * @param parent,
+	 *            child
+	 */
 	@Override
-	public FeatureSUPERSEDE createFeatureSUPERSEDE(Feature f) {
-		/**
-		 * FeatureSUPERSEDE
-		 * 
-		 * String name, List<Feature> children, Feature parent, List<Feature>
-		 * siblings, List<Attribute> attributes, List<Constraint> constraints
-		 *
-		 */
-		List<Feature> children = getFeatureChildren(f);
-
-		List<Feature> siblings = getFeatureSiblings(f);
-
-		List<Constraint> constraints = getFeatureConstraints(f);
-
-		return (new FeatureSUPERSEDE(f.getName(), children, f.getParentFeature(), siblings, f.getAttributes(), constraints));
+	public void addChild(FeatureSUPERSEDE parent, FeatureSUPERSEDE child) {
+		List<FeatureSUPERSEDE> children = parent.getChildren();
+		children.add(child);
+		parent.setChildren(children);
 	}
 
 	/**
-	 * This method return the children of a given feature if exist. Features
-	 * under groups are also considered children
+	 * This method return the siblings of a given featureSUPERSEDE if exist.
+	 * Siblings are featuresSUPERSEDE with the same parent.
 	 * 
-	 * @param feature
+	 * @param featureSUPERSEDE
 	 */
-
-	private List<Feature> getFeatureChildren(Feature feature) {
-		List<Feature> children = feature.getFeatures();
-
-		List<Group> featureGroups = feature.getGroups();
-		if (!featureGroups.isEmpty()) {
-			Iterator<Group> itgroups = featureGroups.iterator();
-			while (itgroups.hasNext()) {
-				Group g = itgroups.next();
-				List<Feature> featuresGroup = g.getFeatures();
-				children.addAll(featuresGroup);
-			}
+	@Override
+	public void setFeatureSiblings(FeatureSUPERSEDE featureSUPERSEDE) {
+		FeatureSUPERSEDE parent = featureSUPERSEDE.getParent();
+		if (parent != null) {
+			List<FeatureSUPERSEDE> siblings = parent.getChildren();
+			featureSUPERSEDE.setSiblings(removeFeature(featureSUPERSEDE, siblings));
 		}
-
-		return children;
 	}
 
-	/**
-	 * This method return the siblings of a given feature if exist. Siblings are
-	 * features with the same parent.
-	 * 
-	 * @param feature
-	 */
-
-	private List<Feature> getFeatureSiblings(Feature feature) {
-		Feature parent = feature.getParentFeature();
-		return getFeatureChildren(parent);
-	}
-
-	/**
-	 * This method return the constraints related with a given feature if exist.
-	 * 
-	 * @param feature
-	 */
-
-	private List<Constraint> getFeatureConstraints(Feature feature) {
-		FeatureModel fm = feature.getFeatureModel();
-		List<Constraint> fConstraints = new ArrayList<Constraint>();
-		
-		List<Constraint> mConstraints = fm.getConstraints();
-		if (!mConstraints.isEmpty()) {
-			Iterator<Constraint> itconstraints = mConstraints.iterator();
-			while (itconstraints.hasNext()) {
-				Constraint c = itconstraints.next();
-				if (c.getValue().contains(feature.getId()))
-					fConstraints.add(c);
-			}
+	private List<FeatureSUPERSEDE> removeFeature(FeatureSUPERSEDE featureSUPERSEDE, List<FeatureSUPERSEDE> featuresSUPERSEDEList) {
+		List<FeatureSUPERSEDE> outputList = new ArrayList<FeatureSUPERSEDE>();
+		Iterator<FeatureSUPERSEDE> itList = featuresSUPERSEDEList.iterator();
+		while (itList.hasNext()) {
+			FeatureSUPERSEDE f = itList.next();
+			if (!featureSUPERSEDE.equals(f))
+				outputList.add(f);
 		}
-
-		return fConstraints;
+		return outputList;
 	}
 
 }

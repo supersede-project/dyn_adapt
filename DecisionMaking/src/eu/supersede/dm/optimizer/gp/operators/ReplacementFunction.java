@@ -2,17 +2,14 @@ package eu.supersede.dm.optimizer.gp.operators;
 
 import eu.supersede.dm.optimizer.gp.chromosome.Chromosome;
 
-
 public class ReplacementFunction {
 	protected boolean maximize = false;
 
-	
 	public ReplacementFunction(boolean maximize) {
 		this.maximize = maximize;
 	}
 
-	
-	protected boolean isBetter(Chromosome chromosome1, Chromosome chromosome2) {
+	public boolean isBetter(Chromosome chromosome1, Chromosome chromosome2) {
 		if (maximize) {
 			return chromosome1.compareTo(chromosome2) > 0;
 		} else {
@@ -20,8 +17,8 @@ public class ReplacementFunction {
 		}
 	}
 
-	
-	protected boolean isBetterOrEqual(Chromosome chromosome1, Chromosome chromosome2) {
+	public boolean isBetterOrEqual(Chromosome chromosome1,
+			Chromosome chromosome2) {
 		if (maximize) {
 			return chromosome1.compareTo(chromosome2) >= 0;
 		} else {
@@ -29,7 +26,6 @@ public class ReplacementFunction {
 		}
 	}
 
-	
 	protected Chromosome getBest(Chromosome chromosome1, Chromosome chromosome2) {
 		if (isBetter(chromosome1, chromosome2))
 			return chromosome1;
@@ -37,21 +33,19 @@ public class ReplacementFunction {
 			return chromosome2;
 	}
 
-	
 	public boolean keepOffspring(Chromosome parent1, Chromosome parent2,
-	        Chromosome offspring1, Chromosome offspring2) {
+			Chromosome offspring1, Chromosome offspring2) {
 		if (maximize) {
-			return compareBestOffspringToBestParent(parent1, parent2, offspring1,
-			                                        offspring2) >= 0;
+			return compareBestOffspringToBestParent(parent1, parent2,
+					offspring1, offspring2) >= 0;
 		} else {
-			return compareBestOffspringToBestParent(parent1, parent2, offspring1,
-			                                        offspring2) <= 0;
+			return compareBestOffspringToBestParent(parent1, parent2,
+					offspring1, offspring2) <= 0;
 		}
 	}
 
-	
-	protected int compareBestOffspringToBestParent(Chromosome parent1,
-	        Chromosome parent2, Chromosome offspring1, Chromosome offspring2) {
+	public int compareBestOffspringToBestParent(Chromosome parent1,
+			Chromosome parent2, Chromosome offspring1, Chromosome offspring2) {
 
 		Chromosome bestOffspring = getBest(offspring1, offspring2);
 		Chromosome bestParent = getBest(parent1, parent2);
@@ -59,7 +53,6 @@ public class ReplacementFunction {
 		return bestOffspring.compareTo(bestParent);
 	}
 
-	
 	public boolean keepOffspring(Chromosome parent, Chromosome offspring) {
 		return isBetterOrEqual(offspring, parent);
 	}

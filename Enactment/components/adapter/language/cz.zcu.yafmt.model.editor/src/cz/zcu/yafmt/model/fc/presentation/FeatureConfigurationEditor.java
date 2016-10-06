@@ -534,7 +534,7 @@ public class FeatureConfigurationEditor
 					}
 				}
 				catch (CoreException exception) {
-					FeatureModelEditorPlugin.INSTANCE.log(exception);
+					cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -650,7 +650,7 @@ public class FeatureConfigurationEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					FeatureModelEditorPlugin.INSTANCE.log(exception);
+					cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -661,7 +661,7 @@ public class FeatureConfigurationEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						FeatureModelEditorPlugin.INSTANCE.log(exception);
+						cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -705,8 +705,8 @@ public class FeatureConfigurationEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new FeatureModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FeatureConfigurationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new FeatureModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1528,7 +1528,7 @@ public class FeatureConfigurationEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			FeatureModelEditorPlugin.INSTANCE.log(exception);
+			cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1732,7 +1732,7 @@ public class FeatureConfigurationEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return FeatureModelEditorPlugin.INSTANCE.getString(key);
+		return cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1742,7 +1742,7 @@ public class FeatureConfigurationEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return FeatureModelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return cz.zcu.yafmt.model.fc.presentation.FeatureModelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

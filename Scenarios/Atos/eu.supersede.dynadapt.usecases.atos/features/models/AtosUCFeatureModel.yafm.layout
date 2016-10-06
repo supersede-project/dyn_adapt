@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="1518 15 177 30">
+    <key href="AtosUCFeatureModel.yafm#//@root"/>
+  </mapping>
+  <mapping value="1537 135 138 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="568 255 99 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="50 375 262 107">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="327 375 218 85">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="560 375 216 107">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="791 375 158 85">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.0/@features.3"/>
+  </mapping>
+  <mapping value="964 375 219 85">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.0/@features.4"/>
+  </mapping>
+  <mapping value="2124 255 127 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="1360 375 132 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1273 495 90 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="1227 615 181 129">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="1486 495 90 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="1438 615 184 151">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="2275 375 90 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="1853 495 158 63">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1667 648 119 63">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="1801 648 190 107">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="2006 648 190 107">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="2219 495 190 129">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="2475 495 90 30">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.2"/>
+  </mapping>
+  <mapping value="2431 615 176 63">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0"/>
+  </mapping>
+  <mapping value="2630 495 144 85">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.3"/>
+  </mapping>
+  <mapping value="2789 495 190 151">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.1/@features.4"/>
+  </mapping>
+  <mapping value="3002 375 158 63">
+    <key href="AtosUCFeatureModel.yafm#//@root/@features.0/@features.1/@features.2"/>
+  </mapping>
+</layout:LayoutData>

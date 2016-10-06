@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="AtosUCFeatureModel" version="1.0.0" description="">
+  <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModel" lower="1" upper="1">
+    <feature id="smart_platform" name="Smart Platform" lower="0" upper="1">
+      <feature id="behaviour" name="Behaviour" lower="1" upper="1">
+        <feature id="concurrency" name="Concurrency" lower="0" upper="1">
+          <attribute id="a_1342994313" name="average_concurrent_users" type="integer"/>
+          <attribute id="a_1486249175" name="maximum_users" type="string"/>
+          <attribute id="duration" name="average_duration" type="double"/>
+        </feature>
+        <feature id="latency" name="Latency" lower="0" upper="1">
+          <attribute id="a_854622864" name="latency_threshold" type="double"/>
+          <attribute id="a_844117948" name="audience_threshold" type="double"/>
+        </feature>
+        <feature id="capacity" name="Capacity" lower="0" upper="-1">
+          <attribute id="a_237526754" name="service" type="string"/>
+          <attribute id="a_1145478449" name="overload_threshold" type="double"/>
+          <attribute id="a_1091342646" name="memory_threshold" type="double"/>
+        </feature>
+        <feature id="temperature" name="Temperature" lower="0" upper="-1">
+          <attribute id="a_1653828460" name="threshold" type="double"/>
+          <attribute id="a_722396405" name="physicalEnv" type="string"/>
+        </feature>
+        <feature id="connectivity" name="Connectivity" lower="0" upper="-1">
+          <attribute id="a_714810708" name="bandwith_threshold" type="double"/>
+          <attribute id="a_1692554681" name="physicalEnv" type="string"/>
+        </feature>
+      </feature>
+      <feature id="infrastructure" name="Infrastructure" lower="1" upper="1">
+        <feature id="f_518412160" name="Configurations" lower="1" upper="1">
+          <feature id="f_1896012172" name="Physical" lower="0" upper="1">
+            <feature id="physical_environment" name="Physical_Environment" lower="0" upper="-1">
+              <attribute id="a_1707616626" name="name" type="string"/>
+              <attribute id="a_942174481" name="overload" type="double"/>
+              <attribute id="a_1040542835" name="temperature" type="double"/>
+              <attribute id="a_985459650" name="bandwith" type="double"/>
+            </feature>
+          </feature>
+          <feature id="f_284474110" name="Virtual" lower="0" upper="1">
+            <feature id="vm_configuration" name="VM_Configuration" lower="0" upper="-1">
+              <attribute id="name" name="name" type="string"/>
+              <attribute id="number_cores" name="number_cores" type="integer"/>
+              <attribute id="memory" name="memory" type="double"/>
+              <attribute id="storage" name="storage" type="double"/>
+              <attribute id="bandwidth" name="bandwidth" type="double"/>
+            </feature>
+          </feature>
+        </feature>
+        <feature id="f_94111631" name="Nodes" lower="1" upper="1">
+          <feature id="data_center" name="Data Center" lower="1" upper="-1">
+            <attribute id="a_183922619" name="physicalEnv" type="string"/>
+            <feature id="spr" name="SPR" lower="1" upper="-1">
+              <attribute id="a_297697201" name="name" type="string"/>
+            </feature>
+            <feature id="cms" name="CMS" lower="0" upper="-1">
+              <attribute id="a_1027143618" name="name" type="string"/>
+              <attribute id="a_64208970" name="VMConfiguration" type="string"/>
+              <attribute id="a_117817530" name="overload" type="double"/>
+            </feature>
+            <feature id="sga" name="SGA" lower="0" upper="-1">
+              <attribute id="a_1451159970" name="name" type="string"/>
+              <attribute id="a_960654815" name="VMConfiguration" type="string"/>
+              <attribute id="a_557657548" name="overload" type="double"/>
+            </feature>
+          </feature>
+          <feature id="lb" name="LB" lower="1" upper="-1">
+            <attribute id="a_512052611" name="name" type="string"/>
+            <attribute id="lb_vmconfiguration" name="VMConfiguration" type="string"/>
+            <attribute id="a_327625940" name="physicalEnv" type="string"/>
+            <attribute id="a_2078688115" name="overload" type="double"/>
+          </feature>
+          <feature id="player" name="Player" lower="1" upper="1">
+            <feature id="player_configuration" name="Player_Configuration" lower="1" upper="1">
+              <attribute id="cdn" name="cdn" type="string"/>
+            </feature>
+          </feature>
+          <feature id="cdn" name="CDN" lower="1" upper="2">
+            <attribute id="a_1636485355" name="name" type="string"/>
+            <attribute id="current" name="current" type="boolean"/>
+          </feature>
+          <feature id="hsk" name="HSK" lower="1" upper="-1">
+            <attribute id="a_304948751" name="name" type="string"/>
+            <attribute id="hsk_vmconfiguration" name="VMConfiguration" type="string"/>
+            <attribute id="a_1113214892" name="lb" type="string"/>
+            <attribute id="a_1096863643" name="physicalEnv" type="string"/>
+            <attribute id="a_1159830829" name="overload" type="double"/>
+          </feature>
+        </feature>
+        <feature id="broadcast_center" name="Broadcast Center" lower="1" upper="-1">
+          <attribute id="a_129432520" name="physicalEnv" type="string"/>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+  <constraint value="hsk implies vm_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies vm_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="hsk equals lb" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="latency implies (cdn and player_configuration)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage" description=""/>
+  <constraint value="player_configuration implies cdn" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="hsk implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="data_center implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="broadcast_center implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="data_center implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="cms implies vm_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="sga implies vm_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="capacity implies (spr or cms)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="concurrency implies (sga and hsk and lb)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="temperature implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="connectivity implies physical_environment" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+</fm:featureModel>

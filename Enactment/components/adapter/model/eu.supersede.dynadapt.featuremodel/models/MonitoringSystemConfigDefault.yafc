@@ -17,7 +17,7 @@
         </feature>
       </feature>
       <feature id="M2" name="Market_Places" lower="0" upper="1">
-        <feature id="f_1055104605" name="GooglePlay" lower="0" upper="1">
+        <feature id="GooglePlay" name="GooglePlay" lower="0" upper="1">
           <feature id="timeSlot_GooglePlay" name="timeSlot" lower="1" upper="1">
             <attribute id="a_1591649839" name="timeSlot" type="integer"/>
           </feature>

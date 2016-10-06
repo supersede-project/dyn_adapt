@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.supersede.dynadapt.usecases.atos
+Bundle-SymbolicName: eu.supersede.dynadapt.usecases.atos;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Export-Package: eu.supersede.dynadapt.usecases.atos.patterns,
+ eu.supersede.dynadapt.usecases.atos.patterns.util
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.viatra.query.runtime,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.uml2.uml;bundle-version="5.1.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.apache.log4j

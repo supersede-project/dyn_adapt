@@ -5,8 +5,10 @@ package eu.supersede.dm.optimizer.gp.mo.operators;
 
 import java.util.List;
 
+import jmetal.util.PseudoRandom;
 import eu.supersede.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dm.util.DominanceComparator;
+import eu.supersede.dm.util.PermutationUtility;
 import eu.supersede.dm.util.RandomNumber;
 
 /**
@@ -52,11 +54,31 @@ public class MultiObjectiveTournamentSelection extends SelectionFunction {
 
 	@Override
 	public Chromosome select(List<Chromosome> population) {
+		Chromosome solution1, solution2;
+		solution1 = population.get(RandomNumber.nextInt(0, population.size()));
+		solution2 = population.get(RandomNumber.nextInt(0, population.size()));
+
+		if (population.size() >= 2)
+			while (solution1 == solution2)
+				solution2 = population.get(RandomNumber.nextInt(0,
+						population.size()));
+
+		int flag = dominance_.compare(solution1, solution2);
+		if (flag == -1)
+			return solution1;
+		else if (flag == 1)
+			return solution2;
+		else if (RandomNumber.nextDouble() < 0.5)
+			return solution1;
+		else
+			return solution2;
+	}
+
+	public Chromosome _select(List<Chromosome> population) {
 		// SolutionSet population = (SolutionSet)object;
 		if (index_ == 0) // Create the permutation
 		{
-			a_ = (new jmetal.util.PermutationUtility())
-					.intPermutation(population.size());
+			a_ = PermutationUtility.intPermutation(population.size());
 		}
 
 		Chromosome solution1, solution2;
