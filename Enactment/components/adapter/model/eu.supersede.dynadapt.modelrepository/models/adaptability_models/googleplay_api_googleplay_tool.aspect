@@ -1,5 +1,5 @@
 aspect googleplayapi {
-	feature MonitoringSystem.MonitoringSystem.Market_Places.GooglePlay.Tool.GooglePlay_API,
+	feature MonitorinSystem.MonitoringSystem.Market_Places.GooglePlay.Tool.GooglePlay_API,
 	advice GooglePlayAPI,
 	pointcuts{
 		pointcut GooglePlay{
