@@ -90,6 +90,21 @@ public class AspectAdapterFactory extends AdapterFactoryImpl
         return createCompositionAdapter();
       }
       @Override
+      public Adapter caseActionOptionType(ActionOptionType object)
+      {
+        return createActionOptionTypeAdapter();
+      }
+      @Override
+      public Adapter caseUpdateValue(UpdateValue object)
+      {
+        return createUpdateValueAdapter();
+      }
+      @Override
+      public Adapter caseAction(Action object)
+      {
+        return createActionAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -152,6 +167,51 @@ public class AspectAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCompositionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link eu.supersede.dynadapt.dsl.aspect.ActionOptionType <em>Action Option Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see eu.supersede.dynadapt.dsl.aspect.ActionOptionType
+   * @generated
+   */
+  public Adapter createActionOptionTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link eu.supersede.dynadapt.dsl.aspect.UpdateValue <em>Update Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see eu.supersede.dynadapt.dsl.aspect.UpdateValue
+   * @generated
+   */
+  public Adapter createUpdateValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link eu.supersede.dynadapt.dsl.aspect.Action <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see eu.supersede.dynadapt.dsl.aspect.Action
+   * @generated
+   */
+  public Adapter createActionAdapter()
   {
     return null;
   }

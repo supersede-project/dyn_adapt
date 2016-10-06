@@ -213,7 +213,7 @@ public interface AspectPackage extends EPackage
   int COMPOSITION__ADVICE = 3;
 
   /**
-   * The feature id for the '<em><b>Action</b></em>' attribute.
+   * The feature id for the '<em><b>Action</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -229,6 +229,108 @@ public interface AspectPackage extends EPackage
    * @ordered
    */
   int COMPOSITION_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link eu.supersede.dynadapt.dsl.aspect.impl.ActionOptionTypeImpl <em>Action Option Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see eu.supersede.dynadapt.dsl.aspect.impl.ActionOptionTypeImpl
+   * @see eu.supersede.dynadapt.dsl.aspect.impl.AspectPackageImpl#getActionOptionType()
+   * @generated
+   */
+  int ACTION_OPTION_TYPE = 3;
+
+  /**
+   * The number of structural features of the '<em>Action Option Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION_OPTION_TYPE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl <em>Update Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl
+   * @see eu.supersede.dynadapt.dsl.aspect.impl.AspectPackageImpl#getUpdateValue()
+   * @generated
+   */
+  int UPDATE_VALUE = 4;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UPDATE_VALUE__VALUE = ACTION_OPTION_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Update Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UPDATE_VALUE_FEATURE_COUNT = ACTION_OPTION_TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link eu.supersede.dynadapt.dsl.aspect.impl.ActionImpl <em>Action</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see eu.supersede.dynadapt.dsl.aspect.impl.ActionImpl
+   * @see eu.supersede.dynadapt.dsl.aspect.impl.AspectPackageImpl#getAction()
+   * @generated
+   */
+  int ACTION = 5;
+
+  /**
+   * The feature id for the '<em><b>ADD</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION__ADD = ACTION_OPTION_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>DELETE</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION__DELETE = ACTION_OPTION_TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>REPLACE</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION__REPLACE = ACTION_OPTION_TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>UPDATE</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION__UPDATE = ACTION_OPTION_TYPE_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Action</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION_FEATURE_COUNT = ACTION_OPTION_TYPE_FEATURE_COUNT + 4;
 
 
   /**
@@ -394,15 +496,100 @@ public interface AspectPackage extends EPackage
   EReference getComposition_Advice();
 
   /**
-   * Returns the meta object for the attribute '{@link eu.supersede.dynadapt.dsl.aspect.Composition#getAction <em>Action</em>}'.
+   * Returns the meta object for the containment reference '{@link eu.supersede.dynadapt.dsl.aspect.Composition#getAction <em>Action</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Action</em>'.
+   * @return the meta object for the containment reference '<em>Action</em>'.
    * @see eu.supersede.dynadapt.dsl.aspect.Composition#getAction()
    * @see #getComposition()
    * @generated
    */
-  EAttribute getComposition_Action();
+  EReference getComposition_Action();
+
+  /**
+   * Returns the meta object for class '{@link eu.supersede.dynadapt.dsl.aspect.ActionOptionType <em>Action Option Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Action Option Type</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.ActionOptionType
+   * @generated
+   */
+  EClass getActionOptionType();
+
+  /**
+   * Returns the meta object for class '{@link eu.supersede.dynadapt.dsl.aspect.UpdateValue <em>Update Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Update Value</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.UpdateValue
+   * @generated
+   */
+  EClass getUpdateValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link eu.supersede.dynadapt.dsl.aspect.UpdateValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.UpdateValue#getValue()
+   * @see #getUpdateValue()
+   * @generated
+   */
+  EAttribute getUpdateValue_Value();
+
+  /**
+   * Returns the meta object for class '{@link eu.supersede.dynadapt.dsl.aspect.Action <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Action</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.Action
+   * @generated
+   */
+  EClass getAction();
+
+  /**
+   * Returns the meta object for the attribute '{@link eu.supersede.dynadapt.dsl.aspect.Action#getADD <em>ADD</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>ADD</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.Action#getADD()
+   * @see #getAction()
+   * @generated
+   */
+  EAttribute getAction_ADD();
+
+  /**
+   * Returns the meta object for the attribute '{@link eu.supersede.dynadapt.dsl.aspect.Action#getDELETE <em>DELETE</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>DELETE</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.Action#getDELETE()
+   * @see #getAction()
+   * @generated
+   */
+  EAttribute getAction_DELETE();
+
+  /**
+   * Returns the meta object for the attribute '{@link eu.supersede.dynadapt.dsl.aspect.Action#getREPLACE <em>REPLACE</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>REPLACE</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.Action#getREPLACE()
+   * @see #getAction()
+   * @generated
+   */
+  EAttribute getAction_REPLACE();
+
+  /**
+   * Returns the meta object for the attribute '{@link eu.supersede.dynadapt.dsl.aspect.Action#getUPDATE <em>UPDATE</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>UPDATE</em>'.
+   * @see eu.supersede.dynadapt.dsl.aspect.Action#getUPDATE()
+   * @see #getAction()
+   * @generated
+   */
+  EAttribute getAction_UPDATE();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -554,12 +741,82 @@ public interface AspectPackage extends EPackage
     EReference COMPOSITION__ADVICE = eINSTANCE.getComposition_Advice();
 
     /**
-     * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Action</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COMPOSITION__ACTION = eINSTANCE.getComposition_Action();
+    EReference COMPOSITION__ACTION = eINSTANCE.getComposition_Action();
+
+    /**
+     * The meta object literal for the '{@link eu.supersede.dynadapt.dsl.aspect.impl.ActionOptionTypeImpl <em>Action Option Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see eu.supersede.dynadapt.dsl.aspect.impl.ActionOptionTypeImpl
+     * @see eu.supersede.dynadapt.dsl.aspect.impl.AspectPackageImpl#getActionOptionType()
+     * @generated
+     */
+    EClass ACTION_OPTION_TYPE = eINSTANCE.getActionOptionType();
+
+    /**
+     * The meta object literal for the '{@link eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl <em>Update Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl
+     * @see eu.supersede.dynadapt.dsl.aspect.impl.AspectPackageImpl#getUpdateValue()
+     * @generated
+     */
+    EClass UPDATE_VALUE = eINSTANCE.getUpdateValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute UPDATE_VALUE__VALUE = eINSTANCE.getUpdateValue_Value();
+
+    /**
+     * The meta object literal for the '{@link eu.supersede.dynadapt.dsl.aspect.impl.ActionImpl <em>Action</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see eu.supersede.dynadapt.dsl.aspect.impl.ActionImpl
+     * @see eu.supersede.dynadapt.dsl.aspect.impl.AspectPackageImpl#getAction()
+     * @generated
+     */
+    EClass ACTION = eINSTANCE.getAction();
+
+    /**
+     * The meta object literal for the '<em><b>ADD</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTION__ADD = eINSTANCE.getAction_ADD();
+
+    /**
+     * The meta object literal for the '<em><b>DELETE</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTION__DELETE = eINSTANCE.getAction_DELETE();
+
+    /**
+     * The meta object literal for the '<em><b>REPLACE</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTION__REPLACE = eINSTANCE.getAction_REPLACE();
+
+    /**
+     * The meta object literal for the '<em><b>UPDATE</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTION__UPDATE = eINSTANCE.getAction_UPDATE();
 
   }
 

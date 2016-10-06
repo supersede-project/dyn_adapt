@@ -24,7 +24,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//Composition/feature_enabled"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aspect.ecore#//Composition/jointpointRole"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aspect.ecore#//Composition/advice"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//Composition/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aspect.ecore#//Composition/action"/>
+    </genClasses>
+    <genClasses ecoreClass="Aspect.ecore#//ActionOptionType"/>
+    <genClasses ecoreClass="Aspect.ecore#//UpdateValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//UpdateValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Aspect.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//Action/ADD"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//Action/DELETE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//Action/REPLACE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aspect.ecore#//Action/UPDATE"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

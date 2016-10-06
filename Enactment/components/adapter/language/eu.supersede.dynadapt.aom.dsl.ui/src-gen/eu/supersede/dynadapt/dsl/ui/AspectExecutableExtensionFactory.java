@@ -8,7 +8,7 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
-import eu.supersede.dynadapt.aom.dsl.ui.internal.AspectActivator;
+import eu.supersede.dynadapt.dsl.ui.internal.AspectActivator;
 
 /**
  * This class was generated. Customizations should only happen in a newly

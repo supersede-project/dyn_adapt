@@ -21,6 +21,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature_enabled" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBooleanObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jointpointRole" eType="ecore:EClass platform:/resource/org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="advice" eType="ecore:EClass platform:/resource/org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="#//ActionOptionType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionOptionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateValue" eSuperTypes="#//ActionOptionType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//ActionOptionType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ADD" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DELETE" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="REPLACE" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="UPDATE" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

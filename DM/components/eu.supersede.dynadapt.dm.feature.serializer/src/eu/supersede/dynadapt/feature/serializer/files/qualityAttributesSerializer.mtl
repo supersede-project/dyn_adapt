@@ -21,7 +21,7 @@
 
 [template public feature (aFeature : Feature) post (trim())]
 [for (anAttribute : Attribute | aFeature.attributes)]
-[attribute(anAttribute, true)/]
+[attributeJSON(aFeature.id ,anAttribute)/]
 [/for]
 [if (aFeature.hasANDGroup())]
 [for (anChildFeature : Feature | aFeature.features)]
@@ -38,20 +38,21 @@
 [comment RemovesDuplicates:Boolean determines whether or not quality attributes with same name will be serialized only once.
 First occurrence of attribute will be serialized, not the others
 TODO: investigate and implement the external parameterization of this behavior, that is, passing this boolean to this template
-from an external Java invocation, so the caller can customize this behavior /]
-[template public attribute (anAttribute : Attribute, removeDuplicates:Boolean) 
+from an external Java invocation, so the caller can customize this behavior 
+NOTE: This template is not used anymore, since attribute serialization is prefixed with feature_id /]
+[template public attribute (feature_id: String, anAttribute : Attribute, removeDuplicates:Boolean) 
 	? (anAttribute.qualityAttribute) post(trim())]
 [if (removeDuplicates)]
 [if not anAttribute.hasBeenAlreadySerialized()]
-[attributeJSON(anAttribute)/]
+[attributeJSON(feature_id, anAttribute)/]
 [/if]
 [else]
-[attributeJSON(anAttribute)/]
+[attributeJSON(feature_id, anAttribute)/]
 [/if]
 [/template]
 
-[template public attributeJSON(anAttribute : Attribute)]
-"[anAttribute.name/]":{
+[template public attributeJSON(feature_id: String, anAttribute : Attribute)]
+"[feature_id/].[anAttribute.name/]":{
 	"domain":"[anAttribute.type/]",
 	"min":[anAttribute.minRangeValue/],
 	"max":[anAttribute.maxRangeValue/],
@@ -80,7 +81,7 @@ does not work /]
 [template public featureUsingRecursion (aFeature : Feature)]
 	[let theAttributes : Collection(Attribute) = allNestedAttributes(aFeature)]
 		[for (anAttribute : Attribute | theAttributes)]
-			[attribute(anAttribute, true)/]
+			[attribute(aFeature.id, anAttribute, false)/]
 		[/for]
 	[/let]
 [/template]
