@@ -10,7 +10,7 @@ generate aspect "http://www.supersede.eu/dynadapt/dsl/Aspect"
 Aspect:
 	"aspect" name = ID "{"
 		"feature" feature = [fm::Feature | QualifiedName] 
-		"," "advice" advice = [uml::Model | QualifiedName]
+		("," "advice" advice = [uml::Model | QualifiedName])?
 		"," "pointcuts" "{" pointcuts += Pointcut ("," pointcuts += Pointcut)* "}"
 		"," "compositions" "{" compositions += Composition ("," compositions += Composition)* "}"
 	"}"
@@ -28,13 +28,22 @@ Composition:
 		"feature_enabled" feature_enabled = EBOOLEAN
 		("," "jointpointRole" jointpointRole = [uml::Stereotype | QualifiedName])?
 		("," "adviceRole" advice = [uml::Stereotype | QualifiedName])?
-		"," "action" action = Action
+		"," "action" action = ActionOptionType
 	"}"
+;
+
+
+ActionOptionType:
+	Action | UpdateValue	
+;
+
+UpdateValue:
+	'update value' value = STRING
 ;
 	
 Action:
-	'add' | 'delete' | 'replace' | 'associate'
-;	
+	ADD='add' | DELETE='delete' | REPLACE='replace' | UPDATE ='update'
+;
 	
 QualifiedName:
   ID (=>'.' ID)*;

@@ -133,29 +133,29 @@ public interface Composition extends EObject
   void setAdvice(Stereotype value);
 
   /**
-   * Returns the value of the '<em><b>Action</b></em>' attribute.
+   * Returns the value of the '<em><b>Action</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Action</em>' attribute isn't clear,
+   * If the meaning of the '<em>Action</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Action</em>' attribute.
-   * @see #setAction(String)
+   * @return the value of the '<em>Action</em>' containment reference.
+   * @see #setAction(ActionOptionType)
    * @see eu.supersede.dynadapt.dsl.aspect.AspectPackage#getComposition_Action()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getAction();
+  ActionOptionType getAction();
 
   /**
-   * Sets the value of the '{@link eu.supersede.dynadapt.dsl.aspect.Composition#getAction <em>Action</em>}' attribute.
+   * Sets the value of the '{@link eu.supersede.dynadapt.dsl.aspect.Composition#getAction <em>Action</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Action</em>' attribute.
+   * @param value the new value of the '<em>Action</em>' containment reference.
    * @see #getAction()
    * @generated
    */
-  void setAction(String value);
+  void setAction(ActionOptionType value);
 
 } // Composition

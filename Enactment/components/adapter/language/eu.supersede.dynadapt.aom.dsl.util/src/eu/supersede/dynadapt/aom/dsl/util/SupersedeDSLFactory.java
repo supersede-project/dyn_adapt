@@ -18,6 +18,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
 
 import cz.zcu.yafmt.model.fm.Feature;
+import eu.supersede.dynadapt.dsl.aspect.Action;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.AspectFactory;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
@@ -106,7 +107,7 @@ public class SupersedeDSLFactory {
 	 * Creates a composition with the given data.
 	 * <p/>
 	 */
-	public static Composition createComposition(String name, String action, Stereotype advice, boolean featureEnabled, Stereotype jointPointRole) {
+	public static Composition createComposition(String name, Action action, Stereotype advice, boolean featureEnabled, Stereotype jointPointRole) {
 		Composition composition = ASPECT.createComposition();
 		composition.setName(toQualifiedName(name));
 		composition.setAction(action);

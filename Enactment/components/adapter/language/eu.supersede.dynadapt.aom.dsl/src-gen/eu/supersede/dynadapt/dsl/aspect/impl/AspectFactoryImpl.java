@@ -67,6 +67,9 @@ public class AspectFactoryImpl extends EFactoryImpl implements AspectFactory
       case AspectPackage.ASPECT: return createAspect();
       case AspectPackage.POINTCUT: return createPointcut();
       case AspectPackage.COMPOSITION: return createComposition();
+      case AspectPackage.ACTION_OPTION_TYPE: return createActionOptionType();
+      case AspectPackage.UPDATE_VALUE: return createUpdateValue();
+      case AspectPackage.ACTION: return createAction();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -103,6 +106,39 @@ public class AspectFactoryImpl extends EFactoryImpl implements AspectFactory
   {
     CompositionImpl composition = new CompositionImpl();
     return composition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ActionOptionType createActionOptionType()
+  {
+    ActionOptionTypeImpl actionOptionType = new ActionOptionTypeImpl();
+    return actionOptionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UpdateValue createUpdateValue()
+  {
+    UpdateValueImpl updateValue = new UpdateValueImpl();
+    return updateValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Action createAction()
+  {
+    ActionImpl action = new ActionImpl();
+    return action;
   }
 
   /**

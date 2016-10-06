@@ -29,43 +29,43 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFeatureAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cFeatureFeatureCrossReference_4_0 = (CrossReference)cFeatureAssignment_4.eContents().get(0);
 		private final RuleCall cFeatureFeatureQualifiedNameParserRuleCall_4_0_1 = (RuleCall)cFeatureFeatureCrossReference_4_0.eContents().get(1);
-		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cAdviceKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cAdviceAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final CrossReference cAdviceModelCrossReference_7_0 = (CrossReference)cAdviceAssignment_7.eContents().get(0);
-		private final RuleCall cAdviceModelQualifiedNameParserRuleCall_7_0_1 = (RuleCall)cAdviceModelCrossReference_7_0.eContents().get(1);
-		private final Keyword cCommaKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cPointcutsKeyword_9 = (Keyword)cGroup.eContents().get(9);
-		private final Keyword cLeftCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cPointcutsAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cPointcutsPointcutParserRuleCall_11_0 = (RuleCall)cPointcutsAssignment_11.eContents().get(0);
-		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
-		private final Keyword cCommaKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
-		private final Assignment cPointcutsAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
-		private final RuleCall cPointcutsPointcutParserRuleCall_12_1_0 = (RuleCall)cPointcutsAssignment_12_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Keyword cCommaKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Keyword cCompositionsKeyword_15 = (Keyword)cGroup.eContents().get(15);
-		private final Keyword cLeftCurlyBracketKeyword_16 = (Keyword)cGroup.eContents().get(16);
-		private final Assignment cCompositionsAssignment_17 = (Assignment)cGroup.eContents().get(17);
-		private final RuleCall cCompositionsCompositionParserRuleCall_17_0 = (RuleCall)cCompositionsAssignment_17.eContents().get(0);
-		private final Group cGroup_18 = (Group)cGroup.eContents().get(18);
-		private final Keyword cCommaKeyword_18_0 = (Keyword)cGroup_18.eContents().get(0);
-		private final Assignment cCompositionsAssignment_18_1 = (Assignment)cGroup_18.eContents().get(1);
-		private final RuleCall cCompositionsCompositionParserRuleCall_18_1_0 = (RuleCall)cCompositionsAssignment_18_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
-		private final Keyword cRightCurlyBracketKeyword_20 = (Keyword)cGroup.eContents().get(20);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cAdviceKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cAdviceAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final CrossReference cAdviceModelCrossReference_5_2_0 = (CrossReference)cAdviceAssignment_5_2.eContents().get(0);
+		private final RuleCall cAdviceModelQualifiedNameParserRuleCall_5_2_0_1 = (RuleCall)cAdviceModelCrossReference_5_2_0.eContents().get(1);
+		private final Keyword cCommaKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cPointcutsKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cPointcutsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cPointcutsPointcutParserRuleCall_9_0 = (RuleCall)cPointcutsAssignment_9.eContents().get(0);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cCommaKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cPointcutsAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cPointcutsPointcutParserRuleCall_10_1_0 = (RuleCall)cPointcutsAssignment_10_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cCommaKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cCompositionsKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Keyword cLeftCurlyBracketKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Assignment cCompositionsAssignment_15 = (Assignment)cGroup.eContents().get(15);
+		private final RuleCall cCompositionsCompositionParserRuleCall_15_0 = (RuleCall)cCompositionsAssignment_15.eContents().get(0);
+		private final Group cGroup_16 = (Group)cGroup.eContents().get(16);
+		private final Keyword cCommaKeyword_16_0 = (Keyword)cGroup_16.eContents().get(0);
+		private final Assignment cCompositionsAssignment_16_1 = (Assignment)cGroup_16.eContents().get(1);
+		private final RuleCall cCompositionsCompositionParserRuleCall_16_1_0 = (RuleCall)cCompositionsAssignment_16_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_17 = (Keyword)cGroup.eContents().get(17);
+		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		
 		//Aspect:
 		//	"aspect" name=ID "{"
-		//	"feature" feature=[fm::Feature|QualifiedName]
-		//	"," "advice" advice=[uml::Model|QualifiedName]
+		//	"feature" feature=[fm::Feature|QualifiedName] ("," "advice" advice=[uml::Model|QualifiedName])?
 		//	"," "pointcuts" "{" pointcuts+=Pointcut ("," pointcuts+=Pointcut)* "}"
 		//	"," "compositions" "{" compositions+=Composition ("," compositions+=Composition)* "}"
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"aspect" name=ID "{" "feature" feature=[fm::Feature|QualifiedName] "," "advice" advice=[uml::Model|QualifiedName] ","
+		//"aspect" name=ID "{" "feature" feature=[fm::Feature|QualifiedName] ("," "advice" advice=[uml::Model|QualifiedName])? ","
 		//"pointcuts" "{" pointcuts+=Pointcut ("," pointcuts+=Pointcut)* "}" "," "compositions" "{" compositions+=Composition
 		//("," compositions+=Composition)* "}" "}"
 		public Group getGroup() { return cGroup; }
@@ -94,83 +94,86 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getFeatureFeatureQualifiedNameParserRuleCall_4_0_1() { return cFeatureFeatureQualifiedNameParserRuleCall_4_0_1; }
 
+		//("," "advice" advice=[uml::Model|QualifiedName])?
+		public Group getGroup_5() { return cGroup_5; }
+
 		//","
-		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 
 		//"advice"
-		public Keyword getAdviceKeyword_6() { return cAdviceKeyword_6; }
+		public Keyword getAdviceKeyword_5_1() { return cAdviceKeyword_5_1; }
 
 		//advice=[uml::Model|QualifiedName]
-		public Assignment getAdviceAssignment_7() { return cAdviceAssignment_7; }
+		public Assignment getAdviceAssignment_5_2() { return cAdviceAssignment_5_2; }
 
 		//[uml::Model|QualifiedName]
-		public CrossReference getAdviceModelCrossReference_7_0() { return cAdviceModelCrossReference_7_0; }
+		public CrossReference getAdviceModelCrossReference_5_2_0() { return cAdviceModelCrossReference_5_2_0; }
 
 		//QualifiedName
-		public RuleCall getAdviceModelQualifiedNameParserRuleCall_7_0_1() { return cAdviceModelQualifiedNameParserRuleCall_7_0_1; }
+		public RuleCall getAdviceModelQualifiedNameParserRuleCall_5_2_0_1() { return cAdviceModelQualifiedNameParserRuleCall_5_2_0_1; }
 
 		//","
-		public Keyword getCommaKeyword_8() { return cCommaKeyword_8; }
+		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
 
 		//"pointcuts"
-		public Keyword getPointcutsKeyword_9() { return cPointcutsKeyword_9; }
+		public Keyword getPointcutsKeyword_7() { return cPointcutsKeyword_7; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_10() { return cLeftCurlyBracketKeyword_10; }
+		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
 
 		//pointcuts+=Pointcut
-		public Assignment getPointcutsAssignment_11() { return cPointcutsAssignment_11; }
+		public Assignment getPointcutsAssignment_9() { return cPointcutsAssignment_9; }
 
 		//Pointcut
-		public RuleCall getPointcutsPointcutParserRuleCall_11_0() { return cPointcutsPointcutParserRuleCall_11_0; }
+		public RuleCall getPointcutsPointcutParserRuleCall_9_0() { return cPointcutsPointcutParserRuleCall_9_0; }
 
 		//("," pointcuts+=Pointcut)*
-		public Group getGroup_12() { return cGroup_12; }
+		public Group getGroup_10() { return cGroup_10; }
 
 		//","
-		public Keyword getCommaKeyword_12_0() { return cCommaKeyword_12_0; }
+		public Keyword getCommaKeyword_10_0() { return cCommaKeyword_10_0; }
 
 		//pointcuts+=Pointcut
-		public Assignment getPointcutsAssignment_12_1() { return cPointcutsAssignment_12_1; }
+		public Assignment getPointcutsAssignment_10_1() { return cPointcutsAssignment_10_1; }
 
 		//Pointcut
-		public RuleCall getPointcutsPointcutParserRuleCall_12_1_0() { return cPointcutsPointcutParserRuleCall_12_1_0; }
+		public RuleCall getPointcutsPointcutParserRuleCall_10_1_0() { return cPointcutsPointcutParserRuleCall_10_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_13() { return cRightCurlyBracketKeyword_13; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 
 		//","
-		public Keyword getCommaKeyword_14() { return cCommaKeyword_14; }
+		public Keyword getCommaKeyword_12() { return cCommaKeyword_12; }
 
 		//"compositions"
-		public Keyword getCompositionsKeyword_15() { return cCompositionsKeyword_15; }
+		public Keyword getCompositionsKeyword_13() { return cCompositionsKeyword_13; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_16() { return cLeftCurlyBracketKeyword_16; }
+		public Keyword getLeftCurlyBracketKeyword_14() { return cLeftCurlyBracketKeyword_14; }
 
 		//compositions+=Composition
-		public Assignment getCompositionsAssignment_17() { return cCompositionsAssignment_17; }
+		public Assignment getCompositionsAssignment_15() { return cCompositionsAssignment_15; }
 
 		//Composition
-		public RuleCall getCompositionsCompositionParserRuleCall_17_0() { return cCompositionsCompositionParserRuleCall_17_0; }
+		public RuleCall getCompositionsCompositionParserRuleCall_15_0() { return cCompositionsCompositionParserRuleCall_15_0; }
 
 		//("," compositions+=Composition)*
-		public Group getGroup_18() { return cGroup_18; }
+		public Group getGroup_16() { return cGroup_16; }
 
 		//","
-		public Keyword getCommaKeyword_18_0() { return cCommaKeyword_18_0; }
+		public Keyword getCommaKeyword_16_0() { return cCommaKeyword_16_0; }
 
 		//compositions+=Composition
-		public Assignment getCompositionsAssignment_18_1() { return cCompositionsAssignment_18_1; }
+		public Assignment getCompositionsAssignment_16_1() { return cCompositionsAssignment_16_1; }
 
 		//Composition
-		public RuleCall getCompositionsCompositionParserRuleCall_18_1_0() { return cCompositionsCompositionParserRuleCall_18_1_0; }
+		public RuleCall getCompositionsCompositionParserRuleCall_16_1_0() { return cCompositionsCompositionParserRuleCall_16_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_19() { return cRightCurlyBracketKeyword_19; }
+		public Keyword getRightCurlyBracketKeyword_17() { return cRightCurlyBracketKeyword_17; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_20() { return cRightCurlyBracketKeyword_20; }
+		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
 	}
 
 	public class PointcutElements extends AbstractParserRuleElementFinder {
@@ -273,20 +276,20 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cActionKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Assignment cActionAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cActionActionParserRuleCall_9_0 = (RuleCall)cActionAssignment_9.eContents().get(0);
+		private final RuleCall cActionActionOptionTypeParserRuleCall_9_0 = (RuleCall)cActionAssignment_9.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//Composition:
 		//	"composition" name=ID "{"
 		//	"feature_enabled" feature_enabled=EBOOLEAN ("," "jointpointRole" jointpointRole=[uml::Stereotype|QualifiedName])? (","
 		//	"adviceRole" advice=[uml::Stereotype|QualifiedName])?
-		//	"," "action" action=Action
+		//	"," "action" action=ActionOptionType
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"composition" name=ID "{" "feature_enabled" feature_enabled=EBOOLEAN ("," "jointpointRole"
 		//jointpointRole=[uml::Stereotype|QualifiedName])? ("," "adviceRole" advice=[uml::Stereotype|QualifiedName])? ","
-		//"action" action=Action "}"
+		//"action" action=ActionOptionType "}"
 		public Group getGroup() { return cGroup; }
 
 		//"composition"
@@ -352,42 +355,102 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 		//"action"
 		public Keyword getActionKeyword_8() { return cActionKeyword_8; }
 
-		//action=Action
+		//action=ActionOptionType
 		public Assignment getActionAssignment_9() { return cActionAssignment_9; }
 
-		//Action
-		public RuleCall getActionActionParserRuleCall_9_0() { return cActionActionParserRuleCall_9_0; }
+		//ActionOptionType
+		public RuleCall getActionActionOptionTypeParserRuleCall_9_0() { return cActionActionOptionTypeParserRuleCall_9_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
 
+	public class ActionOptionTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "eu.supersede.dynadapt.dsl.Aspect.ActionOptionType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cActionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cUpdateValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ActionOptionType:
+		//	Action | UpdateValue;
+		@Override public ParserRule getRule() { return rule; }
+
+		//Action | UpdateValue
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//Action
+		public RuleCall getActionParserRuleCall_0() { return cActionParserRuleCall_0; }
+
+		//UpdateValue
+		public RuleCall getUpdateValueParserRuleCall_1() { return cUpdateValueParserRuleCall_1; }
+	}
+
+	public class UpdateValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "eu.supersede.dynadapt.dsl.Aspect.UpdateValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cUpdateValueKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//UpdateValue:
+		//	'update value' value=STRING;
+		@Override public ParserRule getRule() { return rule; }
+
+		//'update value' value=STRING
+		public Group getGroup() { return cGroup; }
+
+		//'update value'
+		public Keyword getUpdateValueKeyword_0() { return cUpdateValueKeyword_0; }
+
+		//value=STRING
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_1_0() { return cValueSTRINGTerminalRuleCall_1_0; }
+	}
+
 	public class ActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "eu.supersede.dynadapt.dsl.Aspect.Action");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cAddKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cDeleteKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cReplaceKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cAssociateKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Assignment cADDAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Keyword cADDAddKeyword_0_0 = (Keyword)cADDAssignment_0.eContents().get(0);
+		private final Assignment cDELETEAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final Keyword cDELETEDeleteKeyword_1_0 = (Keyword)cDELETEAssignment_1.eContents().get(0);
+		private final Assignment cREPLACEAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final Keyword cREPLACEReplaceKeyword_2_0 = (Keyword)cREPLACEAssignment_2.eContents().get(0);
+		private final Assignment cUPDATEAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final Keyword cUPDATEUpdateKeyword_3_0 = (Keyword)cUPDATEAssignment_3.eContents().get(0);
 		
 		//Action:
-		//	'add' | 'delete' | 'replace' | 'associate';
+		//	ADD='add' | DELETE='delete' | REPLACE='replace' | UPDATE='update';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'add' | 'delete' | 'replace' | 'associate'
+		//ADD='add' | DELETE='delete' | REPLACE='replace' | UPDATE='update'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//ADD='add'
+		public Assignment getADDAssignment_0() { return cADDAssignment_0; }
+
 		//'add'
-		public Keyword getAddKeyword_0() { return cAddKeyword_0; }
+		public Keyword getADDAddKeyword_0_0() { return cADDAddKeyword_0_0; }
+
+		//DELETE='delete'
+		public Assignment getDELETEAssignment_1() { return cDELETEAssignment_1; }
 
 		//'delete'
-		public Keyword getDeleteKeyword_1() { return cDeleteKeyword_1; }
+		public Keyword getDELETEDeleteKeyword_1_0() { return cDELETEDeleteKeyword_1_0; }
+
+		//REPLACE='replace'
+		public Assignment getREPLACEAssignment_2() { return cREPLACEAssignment_2; }
 
 		//'replace'
-		public Keyword getReplaceKeyword_2() { return cReplaceKeyword_2; }
+		public Keyword getREPLACEReplaceKeyword_2_0() { return cREPLACEReplaceKeyword_2_0; }
 
-		//'associate'
-		public Keyword getAssociateKeyword_3() { return cAssociateKeyword_3; }
+		//UPDATE='update'
+		public Assignment getUPDATEAssignment_3() { return cUPDATEAssignment_3; }
+
+		//'update'
+		public Keyword getUPDATEUpdateKeyword_3_0() { return cUPDATEUpdateKeyword_3_0; }
 	}
 
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
@@ -422,6 +485,8 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 	private final AspectElements pAspect;
 	private final PointcutElements pPointcut;
 	private final CompositionElements pComposition;
+	private final ActionOptionTypeElements pActionOptionType;
+	private final UpdateValueElements pUpdateValue;
 	private final ActionElements pAction;
 	private final QualifiedNameElements pQualifiedName;
 	private final TerminalRule tEBOOLEAN;
@@ -438,6 +503,8 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAspect = new AspectElements();
 		this.pPointcut = new PointcutElements();
 		this.pComposition = new CompositionElements();
+		this.pActionOptionType = new ActionOptionTypeElements();
+		this.pUpdateValue = new UpdateValueElements();
 		this.pAction = new ActionElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.tEBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "eu.supersede.dynadapt.dsl.Aspect.EBOOLEAN");
@@ -472,8 +539,7 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Aspect:
 	//	"aspect" name=ID "{"
-	//	"feature" feature=[fm::Feature|QualifiedName]
-	//	"," "advice" advice=[uml::Model|QualifiedName]
+	//	"feature" feature=[fm::Feature|QualifiedName] ("," "advice" advice=[uml::Model|QualifiedName])?
 	//	"," "pointcuts" "{" pointcuts+=Pointcut ("," pointcuts+=Pointcut)* "}"
 	//	"," "compositions" "{" compositions+=Composition ("," compositions+=Composition)* "}"
 	//	"}";
@@ -501,7 +567,7 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 	//	"composition" name=ID "{"
 	//	"feature_enabled" feature_enabled=EBOOLEAN ("," "jointpointRole" jointpointRole=[uml::Stereotype|QualifiedName])? (","
 	//	"adviceRole" advice=[uml::Stereotype|QualifiedName])?
-	//	"," "action" action=Action
+	//	"," "action" action=ActionOptionType
 	//	"}";
 	public CompositionElements getCompositionAccess() {
 		return pComposition;
@@ -511,8 +577,28 @@ public class AspectGrammarAccess extends AbstractGrammarElementFinder {
 		return getCompositionAccess().getRule();
 	}
 
+	//ActionOptionType:
+	//	Action | UpdateValue;
+	public ActionOptionTypeElements getActionOptionTypeAccess() {
+		return pActionOptionType;
+	}
+	
+	public ParserRule getActionOptionTypeRule() {
+		return getActionOptionTypeAccess().getRule();
+	}
+
+	//UpdateValue:
+	//	'update value' value=STRING;
+	public UpdateValueElements getUpdateValueAccess() {
+		return pUpdateValue;
+	}
+	
+	public ParserRule getUpdateValueRule() {
+		return getUpdateValueAccess().getRule();
+	}
+
 	//Action:
-	//	'add' | 'delete' | 'replace' | 'associate';
+	//	ADD='add' | DELETE='delete' | REPLACE='replace' | UPDATE='update';
 	public ActionElements getActionAccess() {
 		return pAction;
 	}

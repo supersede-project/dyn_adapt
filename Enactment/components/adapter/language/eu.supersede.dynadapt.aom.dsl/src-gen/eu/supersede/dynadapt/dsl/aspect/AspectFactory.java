@@ -50,6 +50,33 @@ public interface AspectFactory extends EFactory
   Composition createComposition();
 
   /**
+   * Returns a new object of class '<em>Action Option Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action Option Type</em>'.
+   * @generated
+   */
+  ActionOptionType createActionOptionType();
+
+  /**
+   * Returns a new object of class '<em>Update Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Update Value</em>'.
+   * @generated
+   */
+  UpdateValue createUpdateValue();
+
+  /**
+   * Returns a new object of class '<em>Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action</em>'.
+   * @generated
+   */
+  Action createAction();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

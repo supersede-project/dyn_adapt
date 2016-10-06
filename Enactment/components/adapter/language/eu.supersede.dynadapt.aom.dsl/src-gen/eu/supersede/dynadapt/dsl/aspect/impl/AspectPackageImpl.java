@@ -4,11 +4,14 @@ package eu.supersede.dynadapt.dsl.aspect.impl;
 
 import cz.zcu.yafmt.model.fm.FeatureModelPackage;
 
+import eu.supersede.dynadapt.dsl.aspect.Action;
+import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.AspectFactory;
 import eu.supersede.dynadapt.dsl.aspect.AspectPackage;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
+import eu.supersede.dynadapt.dsl.aspect.UpdateValue;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -50,6 +53,27 @@ public class AspectPackageImpl extends EPackageImpl implements AspectPackage
    * @generated
    */
   private EClass compositionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actionOptionTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass updateValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actionEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -274,9 +298,89 @@ public class AspectPackageImpl extends EPackageImpl implements AspectPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getComposition_Action()
+  public EReference getComposition_Action()
   {
-    return (EAttribute)compositionEClass.getEStructuralFeatures().get(4);
+    return (EReference)compositionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getActionOptionType()
+  {
+    return actionOptionTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUpdateValue()
+  {
+    return updateValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUpdateValue_Value()
+  {
+    return (EAttribute)updateValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAction()
+  {
+    return actionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAction_ADD()
+  {
+    return (EAttribute)actionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAction_DELETE()
+  {
+    return (EAttribute)actionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAction_REPLACE()
+  {
+    return (EAttribute)actionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAction_UPDATE()
+  {
+    return (EAttribute)actionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -326,7 +430,18 @@ public class AspectPackageImpl extends EPackageImpl implements AspectPackage
     createEAttribute(compositionEClass, COMPOSITION__FEATURE_ENABLED);
     createEReference(compositionEClass, COMPOSITION__JOINTPOINT_ROLE);
     createEReference(compositionEClass, COMPOSITION__ADVICE);
-    createEAttribute(compositionEClass, COMPOSITION__ACTION);
+    createEReference(compositionEClass, COMPOSITION__ACTION);
+
+    actionOptionTypeEClass = createEClass(ACTION_OPTION_TYPE);
+
+    updateValueEClass = createEClass(UPDATE_VALUE);
+    createEAttribute(updateValueEClass, UPDATE_VALUE__VALUE);
+
+    actionEClass = createEClass(ACTION);
+    createEAttribute(actionEClass, ACTION__ADD);
+    createEAttribute(actionEClass, ACTION__DELETE);
+    createEAttribute(actionEClass, ACTION__REPLACE);
+    createEAttribute(actionEClass, ACTION__UPDATE);
   }
 
   /**
@@ -364,6 +479,8 @@ public class AspectPackageImpl extends EPackageImpl implements AspectPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    updateValueEClass.getESuperTypes().add(this.getActionOptionType());
+    actionEClass.getESuperTypes().add(this.getActionOptionType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(aspectEClass, Aspect.class, "Aspect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -383,7 +500,18 @@ public class AspectPackageImpl extends EPackageImpl implements AspectPackage
     initEAttribute(getComposition_Feature_enabled(), theEcorePackage.getEBooleanObject(), "feature_enabled", null, 0, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getComposition_JointpointRole(), theUMLPackage.getStereotype(), null, "jointpointRole", null, 0, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getComposition_Advice(), theUMLPackage.getStereotype(), null, "advice", null, 0, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getComposition_Action(), theEcorePackage.getEString(), "action", null, 0, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComposition_Action(), this.getActionOptionType(), null, "action", null, 0, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actionOptionTypeEClass, ActionOptionType.class, "ActionOptionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(updateValueEClass, UpdateValue.class, "UpdateValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUpdateValue_Value(), theEcorePackage.getEString(), "value", null, 0, 1, UpdateValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAction_ADD(), theEcorePackage.getEString(), "ADD", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAction_DELETE(), theEcorePackage.getEString(), "DELETE", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAction_REPLACE(), theEcorePackage.getEString(), "REPLACE", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAction_UPDATE(), theEcorePackage.getEString(), "UPDATE", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

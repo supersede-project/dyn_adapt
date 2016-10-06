@@ -8,6 +8,7 @@ import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.AspectPackage;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
+import eu.supersede.dynadapt.dsl.aspect.UpdateValue;
 import eu.supersede.dynadapt.dsl.services.AspectGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -16,7 +17,9 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class AspectSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -32,6 +35,9 @@ public class AspectSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == AspectPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case AspectPackage.ACTION:
+				sequence_Action(context, (eu.supersede.dynadapt.dsl.aspect.Action) semanticObject); 
+				return; 
 			case AspectPackage.ASPECT:
 				sequence_Aspect(context, (Aspect) semanticObject); 
 				return; 
@@ -41,10 +47,26 @@ public class AspectSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case AspectPackage.POINTCUT:
 				sequence_Pointcut(context, (Pointcut) semanticObject); 
 				return; 
+			case AspectPackage.UPDATE_VALUE:
+				sequence_UpdateValue(context, (UpdateValue) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     ActionOptionType returns Action
+	 *     Action returns Action
+	 *
+	 * Constraint:
+	 *     (ADD='add' | DELETE='delete' | REPLACE='replace' | UPDATE='update')
+	 */
+	protected void sequence_Action(ISerializationContext context, eu.supersede.dynadapt.dsl.aspect.Action semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -54,7 +76,7 @@ public class AspectSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         name=ID 
 	 *         feature=[Feature|QualifiedName] 
-	 *         advice=[Model|QualifiedName] 
+	 *         advice=[Model|QualifiedName]? 
 	 *         pointcuts+=Pointcut 
 	 *         pointcuts+=Pointcut* 
 	 *         compositions+=Composition 
@@ -71,7 +93,7 @@ public class AspectSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Composition returns Composition
 	 *
 	 * Constraint:
-	 *     (name=ID feature_enabled=EBOOLEAN jointpointRole=[Stereotype|QualifiedName]? advice=[Stereotype|QualifiedName]? action=Action)
+	 *     (name=ID feature_enabled=EBOOLEAN jointpointRole=[Stereotype|QualifiedName]? advice=[Stereotype|QualifiedName]? action=ActionOptionType)
 	 */
 	protected void sequence_Composition(ISerializationContext context, Composition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -87,6 +109,25 @@ public class AspectSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_Pointcut(ISerializationContext context, Pointcut semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ActionOptionType returns UpdateValue
+	 *     UpdateValue returns UpdateValue
+	 *
+	 * Constraint:
+	 *     value=STRING
+	 */
+	protected void sequence_UpdateValue(ISerializationContext context, UpdateValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AspectPackage.Literals.UPDATE_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AspectPackage.Literals.UPDATE_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getUpdateValueAccess().getValueSTRINGTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	

@@ -2,10 +2,12 @@
  */
 package eu.supersede.dynadapt.dsl.aspect.impl;
 
+import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.AspectPackage;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -95,24 +97,14 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
   protected Stereotype advice;
 
   /**
-   * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAction()
    * @generated
    * @ordered
    */
-  protected static final String ACTION_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAction()
-   * @generated
-   * @ordered
-   */
-  protected String action = ACTION_EDEFAULT;
+  protected ActionOptionType action;
 
   /**
    * <!-- begin-user-doc -->
@@ -272,7 +264,7 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getAction()
+  public ActionOptionType getAction()
   {
     return action;
   }
@@ -282,12 +274,53 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAction(String newAction)
+  public NotificationChain basicSetAction(ActionOptionType newAction, NotificationChain msgs)
   {
-    String oldAction = action;
+    ActionOptionType oldAction = action;
     action = newAction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AspectPackage.COMPOSITION__ACTION, oldAction, action));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AspectPackage.COMPOSITION__ACTION, oldAction, newAction);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAction(ActionOptionType newAction)
+  {
+    if (newAction != action)
+    {
+      NotificationChain msgs = null;
+      if (action != null)
+        msgs = ((InternalEObject)action).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AspectPackage.COMPOSITION__ACTION, null, msgs);
+      if (newAction != null)
+        msgs = ((InternalEObject)newAction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AspectPackage.COMPOSITION__ACTION, null, msgs);
+      msgs = basicSetAction(newAction, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AspectPackage.COMPOSITION__ACTION, newAction, newAction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case AspectPackage.COMPOSITION__ACTION:
+        return basicSetAction(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -339,7 +372,7 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
         setAdvice((Stereotype)newValue);
         return;
       case AspectPackage.COMPOSITION__ACTION:
-        setAction((String)newValue);
+        setAction((ActionOptionType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -368,7 +401,7 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
         setAdvice((Stereotype)null);
         return;
       case AspectPackage.COMPOSITION__ACTION:
-        setAction(ACTION_EDEFAULT);
+        setAction((ActionOptionType)null);
         return;
     }
     super.eUnset(featureID);
@@ -393,7 +426,7 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
       case AspectPackage.COMPOSITION__ADVICE:
         return advice != null;
       case AspectPackage.COMPOSITION__ACTION:
-        return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
+        return action != null;
     }
     return super.eIsSet(featureID);
   }
@@ -413,8 +446,6 @@ public class CompositionImpl extends MinimalEObjectImpl.Container implements Com
     result.append(name);
     result.append(", feature_enabled: ");
     result.append(feature_enabled);
-    result.append(", action: ");
-    result.append(action);
     result.append(')');
     return result.toString();
   }
