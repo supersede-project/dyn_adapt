@@ -21,7 +21,7 @@
 
 [template public feature (aFeature : Feature) post (trim())]
 [for (anAttribute : Attribute | aFeature.attributes)]
-[attribute(aFeature.id ,anAttribute, false)/]
+[attributeJSON(aFeature.id ,anAttribute)/]
 [/for]
 [if (aFeature.hasANDGroup())]
 [for (anChildFeature : Feature | aFeature.features)]
@@ -38,7 +38,8 @@
 [comment RemovesDuplicates:Boolean determines whether or not quality attributes with same name will be serialized only once.
 First occurrence of attribute will be serialized, not the others
 TODO: investigate and implement the external parameterization of this behavior, that is, passing this boolean to this template
-from an external Java invocation, so the caller can customize this behavior /]
+from an external Java invocation, so the caller can customize this behavior 
+NOTE: This template is not used anymore, since attribute serialization is prefixed with feature_id /]
 [template public attribute (feature_id: String, anAttribute : Attribute, removeDuplicates:Boolean) 
 	? (anAttribute.qualityAttribute) post(trim())]
 [if (removeDuplicates)]
