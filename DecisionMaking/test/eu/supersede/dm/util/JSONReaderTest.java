@@ -23,24 +23,7 @@ public class JSONReaderTest {
 
 	@Test
 	public void test1() throws FileNotFoundException {
-		String jsonFile = "input/monitoring/feedbackreconfig/json/android.json";
-		FileReader fileReader = new FileReader(jsonFile);
-		JSONTokener jsonTokener = new JSONTokener(fileReader);
-		JSONObject jsonObject = new JSONObject(jsonTokener);
-		String key = "/memory_consumption/opt";
-		Object object = jsonObject.query(key);
-		System.out.println(object.toString());
-		key = "/memory_consumption/value";
-		object = jsonObject.query(key);
-		System.out.println(object.toString());
-		key = "/memory_consumption/domain";
-		object = jsonObject.query(key);
-		System.out.println(object.toString());
-	}
-	
-	@Test
-	public void test2() throws FileNotFoundException {
-		String jsonFile = "input/monitoring/feedbackreconfig/json/android.json";
+		String jsonFile = "input/refsq17/monitoring/feedbackreconfig/attribute.metadata.json";
 		FileReader fileReader = new FileReader(jsonFile);
 		JSONTokener jsonTokener = new JSONTokener(fileReader);
 		JSONObject jsonObject = new JSONObject(jsonTokener);

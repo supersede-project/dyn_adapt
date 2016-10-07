@@ -27,9 +27,10 @@ public class NSGAIITest {
 		double probRecursive = 0.1;
 		Parameters.SEARCH_BUDGET = 2;
 		Parameters.POPULATION_SIZE = 50;
-//		Parameters.BUDGET_TYPE = BudgetType.MAX_FITNESS;
+		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		NSGAII nsga2 = new NSGAII(grammarFile, depth, probRecursive, currentConfiguration);
+		assertFalse(nsga2 == null);
 		List<Chromosome> solutions = nsga2.generateSolution();
 		System.out.printf("Finished after %d generations and %d fitness evaluations.", nsga2.getGeneration(),nsga2.getFitnessEvaluations());
 		System.out.println();

@@ -19,8 +19,8 @@ public class ConfigurationLoaderTest {
 	@Test
 	public void testLoadAttributesListOfString() {
 		List<String> configuration = new ArrayList<String>();
-		configuration.add("webclient");
-		configuration.add("ios");
+		configuration.add("attachment");
+		configuration.add("sharewithall");
 		configuration.add("audio");
 		
 		ConfigurationLoader configurationLoader = ConfigurationLoader.getInstance();
