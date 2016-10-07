@@ -8,7 +8,7 @@ aspect optimal_cms_capability{
 		}
 	},
 	compositions {
-		composition EnableStandardConfiguration {
+		composition EnableStandardConfiguration {			
 			feature_enabled true, 
 			adviceRole ADM.Joinpoint,
 			action add
