@@ -25,7 +25,6 @@ import cz.zcu.yafmt.model.fm.FeatureModelPackage;
 import eu.supersede.dynadapt.dsl.AspectStandaloneSetup;
 import eu.supersede.dynadapt.dsl.aspect.AspectPackage;
 import eu.supersede.dynadapt.lang.uml.UmlSupport;
-//import eu.supersede.dynadapt.lang.yafmt.EMFYafmtStandaloneSetup;
 import eu.supersede.dynadapt.lang.yafmt.YafmtSupport;
 
 /**

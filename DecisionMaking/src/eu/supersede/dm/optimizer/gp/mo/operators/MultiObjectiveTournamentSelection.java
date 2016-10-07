@@ -5,7 +5,6 @@ package eu.supersede.dm.optimizer.gp.mo.operators;
 
 import java.util.List;
 
-import jmetal.util.PseudoRandom;
 import eu.supersede.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dm.util.DominanceComparator;
 import eu.supersede.dm.util.PermutationUtility;
