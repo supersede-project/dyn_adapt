@@ -39,7 +39,7 @@
 	|
 <Attachment> ::= "attachment"
 #<Category_opt> ::= <Category>
-	|
+#	|
 <Category> ::= <NewCategory_opt> <SelectCategory>
 <NewCategory_opt> ::= <NewCategory>
 	|
