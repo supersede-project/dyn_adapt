@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -33,6 +34,10 @@ public class ModelAdapter implements IModelAdapter {
 	
 	private final String INSTANCE = "InstanceSpecificationImpl";
 	private final String CLASS = "ClassImpl";
+	
+	public void stereotypeElement(Element e, Stereotype role) {
+		e.applyStereotype(role);
+	}
 
 	@Override
 	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
