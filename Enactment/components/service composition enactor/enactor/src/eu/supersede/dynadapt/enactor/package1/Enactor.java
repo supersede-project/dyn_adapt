@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.enactor.package1;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -18,18 +19,17 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 public class Enactor implements IEnactor{
 
 	public static void main(String[] args) {
-	// TODO Auto-generated method stub
-		
+			
 		Enactor main_class=new Enactor();
 		System.out.print(main_class.getEnactmentCode());
         
 	}
 
 	@Override
-	public String getEnactmentCode() {
+	public ArrayList<String> getEnactmentCode() {
 		
 		// TODO Auto-generated method stub
-		// getting a UML resource 
+		// getting a UML resource (activity diagram from which the enactment code is generated)
 		ResourceSet set = new ResourceSetImpl();
 		set.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 		set.getResourceFactoryRegistry().getExtensionToFactoryMap()
@@ -67,13 +67,10 @@ public class Enactor implements IEnactor{
 		ModelImpl root=(ModelImpl)res.getContents().get(0);
 		ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
 		List <ActivityNode> activity_nodes=activity.getNodes();
-		
 		Adaptation.analyze(activity, activity_nodes);
 						
 		return Adaptation.get_adaptation_string();
-		
-
-		
+				
 	}
 
 }

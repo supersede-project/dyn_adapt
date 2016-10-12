@@ -1,4 +1,5 @@
 package eu.supersede.dynadapt.enactor.package1;
+import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
@@ -14,9 +15,9 @@ import org.eclipse.uml2.uml.Stereotype;
 public class Adaptation {
 
 	//serialized output string
-	private static String adaptation_string="";
+	private static ArrayList<String> adaptation_string = new ArrayList<String>(2);
 	
-	public static String get_adaptation_string()
+	public static ArrayList<String> get_adaptation_string()
 	{
 		return Adaptation.adaptation_string;
 	}
@@ -24,8 +25,9 @@ public class Adaptation {
 	public static String analyze(Activity activity,List<ActivityNode> activity_nodes)
 	{
 		
-		//output curl adaptation string
-		Adaptation.adaptation_string+="curl -k -i -H \"Content-Type: application/json\" \"http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/"+ activity.getName()+"/\""+" -XPOST -d\"{steps: [";
+		//output curl adaptation string (index 0 - URL address, index 1 - adaptation steps to be executed)
+		adaptation_string.add(0,"http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/"+ activity.getName()+"/");
+		adaptation_string.add(1,"{steps: [");
 				
 		// finding the edge that is connected to the initial node
 		ActivityEdge current_edge=null;
@@ -79,11 +81,11 @@ public class Adaptation {
 			if(first_service==1)
 			{
 				first_service=0;
-				Adaptation.adaptation_string+="{ type: 'REST-GET', url:"+"\'"+service_endpoint+"\'"+", callback:\\\""+callback_function+"\\\"}";
+				Adaptation.adaptation_string.set(1, Adaptation.adaptation_string.get(1)+"{ type: 'REST-GET', url:"+"'"+service_endpoint+"'"+", callback:\\\""+callback_function+"\\\"}");
 			}
 			else
 			{
-				Adaptation.adaptation_string+=",{ type: 'REST-GET', url:"+"\'"+service_endpoint+"\'"+", callback:\\\""+callback_function+"\\\"}";
+				Adaptation.adaptation_string.set(1, Adaptation.adaptation_string.get(1)+",{ type: 'REST-GET', url:"+"'"+service_endpoint+"'"+", callback:\\\""+callback_function+"\\\"}");
 			}
 			
 			if(!(following_node instanceof FinalNode))
@@ -94,12 +96,11 @@ public class Adaptation {
 			else
 			{
 				number_nodes=0;
-			}
-							
+			}					
 			
 		}				
 		
-		Adaptation.adaptation_string+="]}";
+		Adaptation.adaptation_string.set(1, Adaptation.adaptation_string.get(1)+"]}");
 		return "";		
 		
 	}
