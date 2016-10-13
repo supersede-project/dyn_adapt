@@ -41,5 +41,14 @@
 	<classpathentry exported="true" kind="lib" path="/home/zavala/eclipse/eclipse (2)/plugins/org.eclipse.emf.common_2.12.0.v20160420-0247.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/zavala/eclipse/eclipse (2)/plugins/org.eclipse.uml2.uml_5.2.1.v20160822-0739.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/zavala/eclipse/eclipse (2)/plugins/org.eclipse.emf.mwe.utils_1.3.20.v201605261103.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.emf.common_2.11.1.v20160208-0816.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/cz.zcu.yafmt.model_0.3.0.201609230958.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.emf.mwe.utils_1.3.20.v201605261103.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.emf.ecore_2.11.2.v20160208-0816.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/com.google.guava_15.0.0.v201403281430.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.core.resources_3.10.1.v20150725-1910.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.uml2.uml_5.1.2.v20160201-0816.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.viatra.query.patternlanguage_1.2.1.201605270938.jar"/>
+	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
