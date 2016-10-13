@@ -22,6 +22,7 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 
+import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
@@ -37,10 +39,12 @@ import eu.supersede.dynadapt.dsl.aspect.Aspect;
 public class ModelRepository {
 
 	private String repository;
+	private URL url;
 
-	public ModelRepository(String repository) {
+	public ModelRepository(String repository, URL url) {
 		super();
 		this.repository = repository;
+		this.url = url;
 	}
 
 	/**
@@ -119,6 +123,7 @@ public class ModelRepository {
 					URI.createURI(repository + modelsLocation.get("patterns") + patterns[i].getName()));
 		}
 
+
 		File[] features = getFiles(modelsLocation.get("features"));
 		for (int i = 0; i < features.length; i++) {
 			parser.loadFeatureResource(
@@ -140,12 +145,21 @@ public class ModelRepository {
 		/*
 		 * Models in class path
 		 */
-		URL url = getClass().getResource("/" + folderPath);
+//		URL uriFolder = this.url.getClass().getResource("/" + folderPath);
+
+		URL uriFolder = null;
+		
+		try {
+			uriFolder = new URL(this.url.toString()+folderPath);
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		}
+		
 		File[] files = null;
 		File folder = null;
 
 		try {
-			folder = new File(url.toURI());
+			folder = new File(uriFolder.toURI());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}

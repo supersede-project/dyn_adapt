@@ -3,16 +3,10 @@
  */
 package eu.supersede.dynadapt.atos.queries;
 
-import eu.supersede.dynadapt.atos.queries.ArtifactManifestationsMatcher;
-import eu.supersede.dynadapt.atos.queries.CMSConfigurationInstancesMatcher;
-import eu.supersede.dynadapt.atos.queries.ConfigurableServiceInstancesMatcher;
-import eu.supersede.dynadapt.atos.queries.InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher;
-import eu.supersede.dynadapt.atos.queries.MaxThreadValuesInCMSConfigurationsMatcher;
-import eu.supersede.dynadapt.atos.queries.NodeArtifactsMatcher;
-import eu.supersede.dynadapt.atos.queries.NodesMatcher;
-import eu.supersede.dynadapt.atos.queries.ServiceConfigurationsMatcher;
-import eu.supersede.dynadapt.atos.queries.ServiceInstancesMatcher;
-import eu.supersede.dynadapt.atos.queries.ServicesMatcher;
+import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
+import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
+import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+
 import eu.supersede.dynadapt.atos.queries.util.ArtifactManifestationsQuerySpecification;
 import eu.supersede.dynadapt.atos.queries.util.CMSConfigurationInstancesQuerySpecification;
 import eu.supersede.dynadapt.atos.queries.util.ConfigurableServiceInstancesQuerySpecification;
@@ -20,12 +14,6 @@ import eu.supersede.dynadapt.atos.queries.util.InstanceSpecificationsAsManifesta
 import eu.supersede.dynadapt.atos.queries.util.MaxThreadValuesInCMSConfigurationsQuerySpecification;
 import eu.supersede.dynadapt.atos.queries.util.NodeArtifactsQuerySpecification;
 import eu.supersede.dynadapt.atos.queries.util.NodesQuerySpecification;
-import eu.supersede.dynadapt.atos.queries.util.ServiceConfigurationsQuerySpecification;
-import eu.supersede.dynadapt.atos.queries.util.ServiceInstancesQuerySpecification;
-import eu.supersede.dynadapt.atos.queries.util.ServicesQuerySpecification;
-import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
-import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
-import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
 /**
  * A pattern group formed of all patterns defined in atos_queries.vql.
@@ -73,10 +61,7 @@ public final class Atos_queries extends BaseGeneratedPatternGroup {
     querySpecifications.add(NodeArtifactsQuerySpecification.instance());
     querySpecifications.add(ArtifactManifestationsQuerySpecification.instance());
     querySpecifications.add(InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification.instance());
-    querySpecifications.add(ServicesQuerySpecification.instance());
-    querySpecifications.add(ServiceInstancesQuerySpecification.instance());
     querySpecifications.add(ConfigurableServiceInstancesQuerySpecification.instance());
-    querySpecifications.add(ServiceConfigurationsQuerySpecification.instance());
     querySpecifications.add(CMSConfigurationInstancesQuerySpecification.instance());
     querySpecifications.add(MaxThreadValuesInCMSConfigurationsQuerySpecification.instance());
   }
@@ -112,37 +97,13 @@ public final class Atos_queries extends BaseGeneratedPatternGroup {
   public InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher getInstanceSpecificationsAsManifestationsOfNodeArtifacts(final ViatraQueryEngine engine) throws ViatraQueryException {
     return InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher.on(engine);
   }
-  
-  public ServicesQuerySpecification getServices() throws ViatraQueryException {
-    return ServicesQuerySpecification.instance();
-  }
-  
-  public ServicesMatcher getServices(final ViatraQueryEngine engine) throws ViatraQueryException {
-    return ServicesMatcher.on(engine);
-  }
-  
-  public ServiceInstancesQuerySpecification getServiceInstances() throws ViatraQueryException {
-    return ServiceInstancesQuerySpecification.instance();
-  }
-  
-  public ServiceInstancesMatcher getServiceInstances(final ViatraQueryEngine engine) throws ViatraQueryException {
-    return ServiceInstancesMatcher.on(engine);
-  }
-  
+    
   public ConfigurableServiceInstancesQuerySpecification getConfigurableServiceInstances() throws ViatraQueryException {
     return ConfigurableServiceInstancesQuerySpecification.instance();
   }
   
   public ConfigurableServiceInstancesMatcher getConfigurableServiceInstances(final ViatraQueryEngine engine) throws ViatraQueryException {
     return ConfigurableServiceInstancesMatcher.on(engine);
-  }
-  
-  public ServiceConfigurationsQuerySpecification getServiceConfigurations() throws ViatraQueryException {
-    return ServiceConfigurationsQuerySpecification.instance();
-  }
-  
-  public ServiceConfigurationsMatcher getServiceConfigurations(final ViatraQueryEngine engine) throws ViatraQueryException {
-    return ServiceConfigurationsMatcher.on(engine);
   }
   
   public CMSConfigurationInstancesQuerySpecification getCMSConfigurationInstances() throws ViatraQueryException {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="MonitoringSystemConfig2" version="1.0.0">
-  <featureModel href="MonitoringSystem.yafm#/"/>
+  <featureModel href="../models/MonitoringSystem.yafm#/"/>
   <featureModelCopy name="MonitoringSystem" version="1.0.0">
     <rootFeature id="monitoringsystem" name="MonitoringSystem" lower="1" upper="1">
       <feature id="Social_Networks" name="Social_Networks" lower="0" upper="1">
