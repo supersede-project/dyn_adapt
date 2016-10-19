@@ -165,6 +165,39 @@ public class ModelQuery implements IModelQuery {
 
 		return matches;
 	}
+	
+	/**
+	 * Queries associated target model with a pattern located in a pattern model
+	 * 
+	 * @param patternFQN
+	 *            the qualified name of the query pattern to search for
+	 * @param patternResource
+	 *            the query pattern model that defines the pattern to apply
+	 * @return a collection of target model matches
+	 * @throws ViatraQueryException
+	 */
+	public Collection<? extends IPatternMatch> query(Pattern pattern)
+			throws ViatraQueryException {
+		// A specification builder is used to translate patterns to
+		// query specifications
+		SpecificationBuilder builder = new SpecificationBuilder();
+
+		// attempt to retrieve a registered query specification
+		ViatraQueryMatcher<? extends IPatternMatch> matcher = engine.getMatcher(builder.getOrCreateSpecification(pattern));
+
+		Collection<? extends IPatternMatch> matches = null;
+		if (matcher != null) {
+			matches = matcher.getAllMatches();
+		}
+
+		// wipe the engine
+		engine.wipe();
+		// after a wipe, new patterns can be rebuilt with much less
+		// overhead than
+		// complete traversal (as the base indexes will be kept)
+
+		return matches;
+	}
 
 	/**
 	 * Queries associated target model with a pattern located in a pattern model
