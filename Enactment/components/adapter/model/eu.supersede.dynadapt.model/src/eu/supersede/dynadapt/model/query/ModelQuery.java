@@ -169,10 +169,8 @@ public class ModelQuery implements IModelQuery {
 	/**
 	 * Queries associated target model with a pattern located in a pattern model
 	 * 
-	 * @param patternFQN
-	 *            the qualified name of the query pattern to search for
-	 * @param patternResource
-	 *            the query pattern model that defines the pattern to apply
+	 * @param pattern
+	 *            the query pattern to search for
 	 * @return a collection of target model matches
 	 * @throws ViatraQueryException
 	 */
@@ -215,6 +213,28 @@ public class ModelQuery implements IModelQuery {
 			throws ViatraQueryException {
 		Collection<Map<String, Object>> result = null;
 		Collection<? extends IPatternMatch> matches = query(patternFQN, patternResource);
+		if (matches != null) {
+			result = filterMatches(matches, parameters);
+		}
+		return result;
+	}
+	
+	/**
+	 * Queries associated target model with a pattern located in a pattern model
+	 * and return the matching objects for given parameters defined in the query
+	 * 
+	 * @param patternFQN
+	 *            the qualified name of the query pattern to search for
+	 * @param patternResource
+	 *            the full path of the query pattern model
+	 * @param parameters
+	 * @return a collection of target model matches for given query parameters
+	 * @throws ViatraQueryException
+	 */
+	public Collection<Map<String, Object>> query(Pattern pattern, List<String> parameters)
+			throws ViatraQueryException {
+		Collection<Map<String, Object>> result = null;
+		Collection<? extends IPatternMatch> matches = query(pattern);
 		if (matches != null) {
 			result = filterMatches(matches, parameters);
 		}
