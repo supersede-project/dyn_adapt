@@ -53,7 +53,7 @@ public class ModelAdapterTest {
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
 		modelManager = new ModelManager(umlModelPath);
-		modelAdapter = new ModelAdapter();
+		modelAdapter = new ModelAdapter(modelManager);
 		
 		umlBaseModel = modelManager.loadUMLModel(umlModelPath);
 		umlDefaultModel = modelManager.loadUMLModel(defaultVariantPath);

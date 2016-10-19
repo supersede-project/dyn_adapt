@@ -14,6 +14,6 @@ public interface IModelAdapter {
 	
 	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
 	
-	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, ValueSpecification newValue) throws Exception;
+	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, Object newValue) throws Exception;
 
 }
