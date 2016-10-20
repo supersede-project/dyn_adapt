@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_UypmkIS6EeaUVtHvx6A39w" type="PapyrusUMLClassDiagram" name="cms default variant" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_UypmkIS6EeaUVtHvx6A39w" type="PapyrusUMLClassDiagram" name="cms default variant" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_hDQckIS6EeaUVtHvx6A39w" type="2001">
     <children xmi:type="notation:DecorationNode" xmi:id="_hDSRwIS6EeaUVtHvx6A39w" type="5002"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_hDSRwYS6EeaUVtHvx6A39w" type="8505">
@@ -48,6 +48,14 @@
     <element xmi:type="uml:InstanceSpecification" href="atos_cms_default_variant.uml#_wZgN0IS6EeaUVtHvx6A39w"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wZiqEYS6EeaUVtHvx6A39w" x="365" y="171" width="304"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_JtllgJa0Eea74PIkp03MHQ" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_JtllgZa0Eea74PIkp03MHQ" showTitle="true"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_Jtllg5a0Eea74PIkp03MHQ" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:InstanceSpecification" href="atos_cms_default_variant.uml#_hDLkEIS6EeaUVtHvx6A39w"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Jtllgpa0Eea74PIkp03MHQ" x="221" y="178"/>
+  </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_UypmkYS6EeaUVtHvx6A39w" name="diagram_compatibility_version" stringValue="1.1.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_UypmkoS6EeaUVtHvx6A39w"/>
   <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Uypmk4S6EeaUVtHvx6A39w">
@@ -66,5 +74,15 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_y-v8UoS7EeaUVtHvx6A39w" points="[28, 0, -154, -1]$[155, 0, -27, -1]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y_HvwIS7EeaUVtHvx6A39w" id="(1.0,0.45)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y_IW0IS7EeaUVtHvx6A39w" id="(0.0,0.4482758620689655)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_JtllhJa0Eea74PIkp03MHQ" type="StereotypeCommentLink" source="_hDQckIS6EeaUVtHvx6A39w" target="_JtllgJa0Eea74PIkp03MHQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_JtllhZa0Eea74PIkp03MHQ"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_JtmzoJa0Eea74PIkp03MHQ" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:InstanceSpecification" href="atos_cms_default_variant.uml#_hDLkEIS6EeaUVtHvx6A39w"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Jtllhpa0Eea74PIkp03MHQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_JtmMkJa0Eea74PIkp03MHQ"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_JtmMkZa0Eea74PIkp03MHQ"/>
   </edges>
 </notation:Diagram>
