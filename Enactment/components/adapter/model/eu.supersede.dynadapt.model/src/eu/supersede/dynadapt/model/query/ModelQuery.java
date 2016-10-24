@@ -165,6 +165,37 @@ public class ModelQuery implements IModelQuery {
 
 		return matches;
 	}
+	
+	/**
+	 * Queries associated target model with a pattern located in a pattern model
+	 * 
+	 * @param pattern
+	 *            the query pattern to search for
+	 * @return a collection of target model matches
+	 * @throws ViatraQueryException
+	 */
+	public Collection<? extends IPatternMatch> query(Pattern pattern)
+			throws ViatraQueryException {
+		// A specification builder is used to translate patterns to
+		// query specifications
+		SpecificationBuilder builder = new SpecificationBuilder();
+
+		// attempt to retrieve a registered query specification
+		ViatraQueryMatcher<? extends IPatternMatch> matcher = engine.getMatcher(builder.getOrCreateSpecification(pattern));
+
+		Collection<? extends IPatternMatch> matches = null;
+		if (matcher != null) {
+			matches = matcher.getAllMatches();
+		}
+
+		// wipe the engine
+		engine.wipe();
+		// after a wipe, new patterns can be rebuilt with much less
+		// overhead than
+		// complete traversal (as the base indexes will be kept)
+
+		return matches;
+	}
 
 	/**
 	 * Queries associated target model with a pattern located in a pattern model
@@ -182,6 +213,28 @@ public class ModelQuery implements IModelQuery {
 			throws ViatraQueryException {
 		Collection<Map<String, Object>> result = null;
 		Collection<? extends IPatternMatch> matches = query(patternFQN, patternResource);
+		if (matches != null) {
+			result = filterMatches(matches, parameters);
+		}
+		return result;
+	}
+	
+	/**
+	 * Queries associated target model with a pattern located in a pattern model
+	 * and return the matching objects for given parameters defined in the query
+	 * 
+	 * @param patternFQN
+	 *            the qualified name of the query pattern to search for
+	 * @param patternResource
+	 *            the full path of the query pattern model
+	 * @param parameters
+	 * @return a collection of target model matches for given query parameters
+	 * @throws ViatraQueryException
+	 */
+	public Collection<Map<String, Object>> query(Pattern pattern, List<String> parameters)
+			throws ViatraQueryException {
+		Collection<Map<String, Object>> result = null;
+		Collection<? extends IPatternMatch> matches = query(pattern);
 		if (matches != null) {
 			result = filterMatches(matches, parameters);
 		}
