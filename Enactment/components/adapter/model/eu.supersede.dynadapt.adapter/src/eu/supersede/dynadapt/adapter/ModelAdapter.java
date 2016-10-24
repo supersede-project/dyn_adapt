@@ -7,6 +7,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -47,32 +48,48 @@ public class ModelAdapter implements IModelAdapter {
 		mt = new ModelTagger(modelManager);
 	}
 	
-	public void applyUpdateCompositionDirective(Model inBaseModel, Object newValue, Stereotype role) {
+	public Model applyUpdateCompositionDirective(Model inBaseModel, 
+			HashMap<Stereotype, List<Element>> elements, String newValue) {
 		
-		Element baseElement = findElementByStereotype(inBaseModel, role);
-		applyModifyValueComposition(inBaseModel, (Slot) baseElement, newValue);
+		Model model = null;
+		
+		for (Stereotype stereotype : elements.keySet()) {
+			for (Element element : elements.get(stereotype)) {
+				Slot s = (Slot) element;
+				model = applyModifyValueComposition(inBaseModel, s, newValue);
+			}
+		}
+		
+		return model;
 		
 	}
 	
-	public void applyCompositionDirective(Composition composition, Model inBaseModel, Stereotype baseRole,
+	public Model applyCompositionDirective(Composition composition, Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
 			Stereotype adviceRole, Model usingVariantModel) throws Exception {
 		
-		Element baseElement = findElementByStereotype(inBaseModel, baseRole);
 		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
 		
 		ActionOptionType actionOptionType = composition.getAction();
+		Model model = null;
 		
-		if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null) 
-			applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-		else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null) 
-			applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-		else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null) 
-			applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+		for (Stereotype stereotype : elements.keySet()) {
+			for (Element baseElement : elements.get(stereotype)) {
+				if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null) 
+					model = applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null) 
+					model = applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null) 
+					model = applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+			}
+		}
+		
+		return model;
 		
 	}
 	
 	public void stereotypeElement(Element e, Stereotype role) throws Exception {
 		mt.tagModel(e, role.getProfile(), role);
+		System.out.println(e.getAppliedStereotypes());
 	}
 
 	@Override
@@ -211,7 +228,7 @@ public class ModelAdapter implements IModelAdapter {
 
 	@Override
 	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, 
-			Object newValue) {
+			String newValue) {
 		
 		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
 		for (Element e : jointpointBaseModelSlot.allOwnedElements()) {
@@ -220,16 +237,16 @@ public class ModelAdapter implements IModelAdapter {
 		
 		if (feat.getType().getName().equals("Integer")) {
 			LiteralInteger value =(LiteralInteger) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralInteger());
-			value.setValue((Integer) newValue);
+			value.setValue(Integer.valueOf(newValue));
 		} else if (feat.getType().getName().equals("Boolean")) {
 			LiteralBoolean value =(LiteralBoolean) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralBoolean());
-			value.setValue((Boolean) newValue);
+			value.setValue(Boolean.valueOf(newValue));
 		} else if (feat.getType().getName().equals("String")) {
 			LiteralString value =(LiteralString) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralString());
-			value.setValue((String) newValue);
+			value.setValue(newValue);
 		} else if (feat.getType().getName().equals("Real")) {
 			LiteralReal value =(LiteralReal) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralReal());
-			value.setValue((Double) newValue);
+			value.setValue(Double.valueOf(newValue));
 		}
 		
 		return inBaseModel;

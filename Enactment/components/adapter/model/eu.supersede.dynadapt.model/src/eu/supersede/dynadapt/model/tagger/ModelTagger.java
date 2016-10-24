@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.model.tagger;
 
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -19,6 +20,21 @@ public class ModelTagger implements IModelTagger{
 	 */
 	public ModelTagger (IModelManager modelManager){
 		this.modelManager = modelManager;
+	}
+	
+	public void tagModel(Element element, Profile profile, Stereotype stereotype)
+			throws Exception {
+		// Get the root package
+		rootPackage = element.getNearestPackage();
+
+		// Tag the model
+		if (rootPackage.getAppliedProfile(profile.getQualifiedName()) == null) {
+			rootPackage.applyProfile(profile);
+		}
+		if (element.getAppliedStereotype(stereotype.getQualifiedName()) == null) {
+			element.applyStereotype(stereotype);
+			System.out.println ("Tagged element " + element + " with stereotype " + stereotype.getQualifiedName());
+		}
 	}
 	
 	public void tagModel(NamedElement element, Profile profile, String stereotypeName)

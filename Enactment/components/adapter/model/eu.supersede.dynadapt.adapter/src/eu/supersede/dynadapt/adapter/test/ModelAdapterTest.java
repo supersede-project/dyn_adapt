@@ -153,7 +153,7 @@ public class ModelAdapterTest {
 			umlResult = modelAdapter.applyModifyValueComposition(
 					umlBaseModel, 
 					s, 
-					integer);
+					integer.toString());
 			save(umlResult, URI.createURI(umlModelPath));
 		} catch (Exception e) {
 			e.printStackTrace();
