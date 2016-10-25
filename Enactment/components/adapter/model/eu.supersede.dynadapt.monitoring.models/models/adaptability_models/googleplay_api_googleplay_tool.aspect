@@ -1,0 +1,24 @@
+aspect googleplayapi {
+	feature MonitoringSystem.MonitoringSystem.Market_Places.GooglePlay.Tool.GooglePlay_API,
+	advice GooglePlayAPIVariant, 
+	pointcuts{	
+		pointcut GooglePlay{
+			pattern patterns.monitors,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition addGooglePlay_API{
+			feature_enabled true,
+			jointpointRole ADM.Joinpoint,
+			adviceRole ADM.Advice,
+			action add
+		},
+			composition deleteGooglePlay_API{
+			feature_enabled false,
+			jointpointRole ADM.Joinpoint,
+			adviceRole ADM.Advice,
+			action delete
+		}
+	}
+}
