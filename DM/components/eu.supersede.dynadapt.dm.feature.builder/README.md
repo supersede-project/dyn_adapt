@@ -1,5 +1,5 @@
 <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-# [![SUPERSEDE](../../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project 
+# [![SUPERSEDE](../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project 
 ## Feature Model Builder
 
 **Feature Configuration Builder** transforms the optimization algorithm outputs (e.g. a list of IDs corresponding to the selected features for the complete feature configuration) into a YAFMT feature configuration, which is the output of this component, as required by the Dynamic Adaptation Enactment platform (see deliverable D4.5 in [Supersede Portal](https://www.supersede.eu/))
@@ -12,4 +12,4 @@ Feature Configuration Builder is licensed under the [Apache License, Version 2.0
 
 Main contacts: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](../../../../images/european.union.logo.png)</center>
+<center>![Project funded by the European Union](../../../images/european.union.logo.png)</center>
