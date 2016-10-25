@@ -13,3 +13,4 @@ Feature Configuration Builder is licensed under the [Apache License, Version 2.0
 Main contacts: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
 <center>![Project funded by the European Union](../../../images/european.union.logo.png)</center>
+
