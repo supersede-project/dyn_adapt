@@ -1,5 +1,5 @@
 <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-# [![SUPERSEDE](../../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project 
+# [![SUPERSEDE](../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project 
 ## Feature Serializer
 
 **Feature Serializer** transforms the feature model into a grammar representation required by the optimization algorithm to support automatic reasoning. It also extracts and serializes the quality and constraint attributes in separate input models
@@ -12,4 +12,4 @@ Feature Serializer component is licensed under the [Apache License, Version 2.0]
 
 Main contacts: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](../../../../images/european.union.logo.png)</center>
+<center>![Project funded by the European Union](../../images/european.union.logo.png)</center>
