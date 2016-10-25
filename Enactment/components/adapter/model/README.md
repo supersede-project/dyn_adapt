@@ -13,7 +13,7 @@ The output for this component will be the adapted base model with the variabilit
 
 See deliverable D4.5 in [Supersede Portal](https://www.supersede.eu/) for more details about this DSL, how to install and use it.
 
-Dynamic Adaptation and Personalization Decision Making and Enactment framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+Model Adapter component is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 *Please check the respective README.md for details.*
 

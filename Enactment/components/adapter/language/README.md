@@ -6,7 +6,7 @@ This editor is used by end-users to associate system variant models to variabili
 
 See deliverable D4.5 in [Supersede Portal](https://www.supersede.eu/) for more details about this DSL, how to install and use it.
 
-Dynamic Adaptation and Personalization Decision Making and Enactment framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+Adaptability DSL and editor are licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 *Please check the respective README.md for details.*
 
