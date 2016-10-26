@@ -1,6 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A, Universitat Politécnica de Catalunya (UPC)
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2016 Universitat Politécnica de Catalunya (UPC), ATOS Spain S.A
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -13,9 +14,10 @@
  * limitations under the License.
  *
  * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ * 	Quim Motger (UPC) - main development
+ * 	
+ * Initially developed in the context of SUPERSEDE EU project
+ * www.supersede.eu
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 

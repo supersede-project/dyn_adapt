@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 UPC
+ * Copyright (c) 2016 Universitat Politécnica de Catalunya (UPC), ATOS Spain S.A
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +21,17 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
+import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.net.URISyntaxException;
-import java.net.URL;
 
-import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigSUPERSEDE;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
@@ -51,7 +46,7 @@ public class ModelRepositoryTest {
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/features/models/MonitoringSystem.yafm";
 
 	URL url = null;
-	
+
 	ModelRepository mr = null;
 
 	IFeatureConfigLAO fcLAO = null;
@@ -80,24 +75,26 @@ public class ModelRepositoryTest {
 	public void testGetValidFeatureAspects() {
 		mr.getAspectModels("GooglePlay_API_GooglePlay", modelsLocation);
 	}
-	
 
-//	@Test
-//	public void testGetValidFeatureAspectsURIs() {
-//		List<URI> uris = mr.getAspectModelsURIs("GooglePlay_API_GooglePlay", modelsLocation);
-//	}
-//
-//	/**
-//	 * This test shows how from a SelectionSUPERSEDE of a FeatureConfigSUPERSEDE model its
-//	 * corresponding adaptation models can be retrieved. 
-//	 */
-//	@Test
-//	public void testGetValidFeatureAspectsForASelection() {
-//		FeatureConfigSUPERSEDE fc = fcLAO.getFeatureConfigSUPERSEDE(featureConfigPath, featureModelPath);
-//		/* Example with google play api - in this iteration selection #5 */
-//		String featureId = fc.getSelections().get(5).getFeature().getId();
-//
-//		List<Aspect> a = mr.getAspectModels(featureId, modelsLocation);
-//	}
+	// @Test
+	// public void testGetValidFeatureAspectsURIs() {
+	// List<URI> uris = mr.getAspectModelsURIs("GooglePlay_API_GooglePlay",
+	// modelsLocation);
+	// }
+	//
+	// /**
+	// * This test shows how from a SelectionSUPERSEDE of a
+	// FeatureConfigSUPERSEDE model its
+	// * corresponding adaptation models can be retrieved.
+	// */
+	// @Test
+	// public void testGetValidFeatureAspectsForASelection() {
+	// FeatureConfigSUPERSEDE fc =
+	// fcLAO.getFeatureConfigSUPERSEDE(featureConfigPath, featureModelPath);
+	// /* Example with google play api - in this iteration selection #5 */
+	// String featureId = fc.getSelections().get(5).getFeature().getId();
+	//
+	// List<Aspect> a = mr.getAspectModels(featureId, modelsLocation);
+	// }
 
 }
