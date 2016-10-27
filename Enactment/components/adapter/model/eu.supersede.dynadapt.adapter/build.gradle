@@ -37,6 +37,5 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.eclipse.uml2/uml
 	compile group: 'org.eclipse.uml2', name: 'uml', version: '5.0.0-v20140602-0749'
-	
-	
-   }
+
+}
