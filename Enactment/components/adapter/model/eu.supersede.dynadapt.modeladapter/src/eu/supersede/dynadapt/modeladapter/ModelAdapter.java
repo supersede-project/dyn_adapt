@@ -19,14 +19,17 @@
  * Initially developed in the context of SUPERSEDE EU project
  * www.supersede.eu
  *******************************************************************************/
-package eu.supersede.dynadapt.adapter;
+
+package eu.supersede.dynadapt.modeladapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -50,7 +53,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 
+import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
+import eu.supersede.dynadapt.model.IModelManager;
+import eu.supersede.dynadapt.model.tagger.ModelTagger;
 
 @SuppressWarnings("restriction")
 public class ModelAdapter implements IModelAdapter {
@@ -58,13 +64,54 @@ public class ModelAdapter implements IModelAdapter {
 	private final String INSTANCE = "InstanceSpecificationImpl";
 	private final String CLASS = "ClassImpl";
 	
-	public void applyCompositionDirective(Composition composition, Model inBaseModel, Stereotype role, 
-			Model usingVariantModel) {
-		//TODO
+	private ModelTagger mt = null;
+	
+	public ModelAdapter(IModelManager modelManager) {
+		mt = new ModelTagger(modelManager);
 	}
 	
-	public void stereotypeElement(Element e, Stereotype role) {
-		e.applyStereotype(role);
+	public Model applyUpdateCompositionDirective(Model inBaseModel, 
+			HashMap<Stereotype, List<Element>> elements, String newValue) {
+		
+		Model model = null;
+		
+		for (Stereotype stereotype : elements.keySet()) {
+			for (Element element : elements.get(stereotype)) {
+				Slot s = (Slot) element;
+				model = applyModifyValueComposition(inBaseModel, s, newValue);
+			}
+		}
+		
+		return model;
+		
+	}
+	
+	public Model applyCompositionDirective(Composition composition, Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
+			Stereotype adviceRole, Model usingVariantModel) throws Exception {
+		
+		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
+		
+		ActionOptionType actionOptionType = composition.getAction();
+		Model model = null;
+		
+		for (Stereotype stereotype : elements.keySet()) {
+			for (Element baseElement : elements.get(stereotype)) {
+				if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null) 
+					model = applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null) 
+					model = applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null) 
+					model = applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+			}
+		}
+		
+		return model;
+		
+	}
+	
+	public void stereotypeElement(Element e, Stereotype role) throws Exception {
+		mt.tagModel(e, role.getProfile(), role);
+		System.out.println(e.getAppliedStereotypes());
 	}
 
 	@Override
@@ -203,7 +250,7 @@ public class ModelAdapter implements IModelAdapter {
 
 	@Override
 	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, 
-			ValueSpecification newValue) {
+			String newValue) {
 		
 		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
 		for (Element e : jointpointBaseModelSlot.allOwnedElements()) {
@@ -212,16 +259,16 @@ public class ModelAdapter implements IModelAdapter {
 		
 		if (feat.getType().getName().equals("Integer")) {
 			LiteralInteger value =(LiteralInteger) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralInteger());
-			value.setValue(newValue.integerValue());
+			value.setValue(Integer.valueOf(newValue));
 		} else if (feat.getType().getName().equals("Boolean")) {
 			LiteralBoolean value =(LiteralBoolean) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralBoolean());
-			value.setValue(newValue.booleanValue());
+			value.setValue(Boolean.valueOf(newValue));
 		} else if (feat.getType().getName().equals("String")) {
 			LiteralString value =(LiteralString) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralString());
-			value.setValue(newValue.stringValue());
+			value.setValue(newValue);
 		} else if (feat.getType().getName().equals("Real")) {
 			LiteralReal value =(LiteralReal) jointpointBaseModelSlot.createValue("", feat.getType(), UMLPackage.eINSTANCE.getLiteralReal());
-			value.setValue(newValue.realValue());
+			value.setValue(Double.valueOf(newValue));
 		}
 		
 		return inBaseModel;
@@ -343,6 +390,16 @@ public class ModelAdapter implements IModelAdapter {
 			}
 		}
 		return false;
+	}
+	
+	private Element findElementByStereotype(Model model, Stereotype stereotype) {
+		EList<Element> list = model.allOwnedElements();
+		for (Element e : list) {
+			if (e.isStereotypeApplied(stereotype)) {
+				return e;
+			}
+		}
+		return null;
 	}
 
 }

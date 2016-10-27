@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HhPv0CyzEeaIzdWnkCl-Vg" name="GooglePlayAPIVariant">
+  <packagedElement xmi:type="uml:Class" xmi:id="_AqhZgCy8EealKu3_PJbmWg" name="" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_G0ttUIGfEeaWHPat9Yqtcw" name="MarketPlacesMonitor">
+    <generalization xmi:type="uml:Generalization" xmi:id="_G0ttUYGfEeaWHPat9Yqtcw">
+      <general xmi:type="uml:Class" href="MonitoringSystemBaseModel.uml#_AsJRgCy5EealKu3_PJbmWg"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_G0uUYIGfEeaWHPat9Yqtcw" name="GooglePlay">
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUYYGfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_c0cl8IGdEeaWHPat9Yqtcw"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_G0uUYoGfEeaWHPat9Yqtcw" value="MarketPlacesMonitor"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUY4GfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_P7nsYCy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_G0uUZIGfEeaWHPat9Yqtcw" value="active"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUZYGfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_R5pfUCy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralInteger" xmi:id="_G0uUZoGfEeaWHPat9Yqtcw" name="800" value="800"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUZ4GfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_S_VVACy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_G0uUaIGfEeaWHPat9Yqtcw" value="http://localhost:9092"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUaYGfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_UNdVACy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_G0uUaoGfEeaWHPat9Yqtcw" value="marketPlacesMonitoring"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUa4GfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_WAYEICy5EealKu3_PJbmWg"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_G0uUbIGfEeaWHPat9Yqtcw" value="{&quot;apps&quot;:&quot;AppGroup1&quot;}"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_G0uUbYGfEeaWHPat9Yqtcw">
+      <definingFeature xmi:type="uml:Property" href="MonitoringSystemBaseModel.uml#_fztzcIGdEeaWHPat9Yqtcw"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_G0uUboGfEeaWHPat9Yqtcw" value="GooglePlay_API"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_G0u7cIGfEeaWHPat9Yqtcw" client="_G0uUYIGfEeaWHPat9Yqtcw" supplier="_G0ttUIGfEeaWHPat9Yqtcw"/>
+</uml:Model>

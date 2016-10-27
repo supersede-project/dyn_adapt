@@ -19,7 +19,7 @@
  * Initially developed in the context of SUPERSEDE EU project
  * www.supersede.eu
  *******************************************************************************/
-package eu.supersede.dynadapt.adapter;
+package eu.supersede.dynadapt.modeladapter;
 
 public enum CompositionDirective {
 	
