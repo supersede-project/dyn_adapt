@@ -14,7 +14,7 @@
 @rem limitations under the License.
 @rem
 @rem Contributors:
-@rem 	Edith Zavala (UPC) - main development
+@rem 	Quim Motger (UPC) - main development
 @rem 	
 @rem Initially developed in the context of SUPERSEDE EU project
 @rem www.supersede.eu

@@ -12,7 +12,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/eu.supersede.dynadapt.model"/>
-	<classpathentry exported="true" kind="lib" path="/home/zavala/eclipse/eclipse (2)/plugins/cz.zcu.yafmt.model_0.3.0.201609230958.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.model"/>
+	<classpathentry exported="true" kind="lib" path="/home/edith/Downloads/eclipse/plugins/cz.zcu.yafmt.model_0.3.0.201305112307.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

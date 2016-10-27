@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 UPC
+ * Copyright (c) 2016 Universitat Politécnica de Catalunya (UPC), ATOS Spain S.A
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
