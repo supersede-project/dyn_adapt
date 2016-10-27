@@ -19,7 +19,8 @@
  * Initially developed in the context of SUPERSEDE EU project
  * www.supersede.eu
  *******************************************************************************/
-package eu.supersede.dynadapt.adapter.test;
+
+package eu.supersede.dynadapt.modeladapter.test;
 
 import java.io.IOException;
 
@@ -41,22 +42,22 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.supersede.dynadapt.adapter.IModelAdapter;
-import eu.supersede.dynadapt.adapter.ModelAdapter;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 //import eu.supersede.monitor.reconfiguration.poc.uml.query;
+import eu.supersede.dynadapt.modeladapter.IModelAdapter;
+import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 
 @SuppressWarnings("restriction")
 public class ModelAdapterTest {
 	
-	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_base_model.uml";
-	String defaultVariantPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_cms_default_variant.uml";
-	String overloadedVariantPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/atos_cms_overloaded_variant.uml";
-	String monitoringBasePath = "platform:/resource/eu.supersede.dynadapt.adapter/models/MonitoringSystemBaseModel.uml";
-	String monitoringVariantPath = "platform:/resource/eu.supersede.dynadapt.adapter/models/MonitoringSystemVariantModel.uml";
+	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/atos_base_model.uml";
+	String defaultVariantPath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/atos_cms_default_variant.uml";
+	String overloadedVariantPath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/atos_cms_overloaded_variant.uml";
+	String monitoringBasePath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/MonitoringSystemBaseModel.uml";
+	String monitoringVariantPath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/MonitoringSystemVariantModel.uml";
 	
 	IModelManager modelManager = null;
 	IModelAdapter modelAdapter = null;
@@ -74,7 +75,7 @@ public class ModelAdapterTest {
 	public void setUp() throws Exception{
 		new StandaloneSetup().setPlatformUri("../");
 		modelManager = new ModelManager(umlModelPath);
-		modelAdapter = new ModelAdapter();
+		modelAdapter = new ModelAdapter(modelManager);
 		
 		umlBaseModel = modelManager.loadUMLModel(umlModelPath);
 		umlDefaultModel = modelManager.loadUMLModel(defaultVariantPath);
@@ -174,7 +175,7 @@ public class ModelAdapterTest {
 			umlResult = modelAdapter.applyModifyValueComposition(
 					umlBaseModel, 
 					s, 
-					integer);
+					integer.toString());
 			save(umlResult, URI.createURI(umlModelPath));
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -19,7 +19,7 @@
  * Initially developed in the context of SUPERSEDE EU project
  * www.supersede.eu
  *******************************************************************************/
-package eu.supersede.dynadapt.adapter;
+package eu.supersede.dynadapt.modeladapter;
 
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Element;
@@ -35,6 +35,6 @@ public interface IModelAdapter {
 	
 	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
 	
-	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, ValueSpecification newValue) throws Exception;
+	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) throws Exception;
 
 }
