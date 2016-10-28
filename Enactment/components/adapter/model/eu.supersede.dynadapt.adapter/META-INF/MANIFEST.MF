@@ -5,7 +5,15 @@ Bundle-SymbolicName: eu.supersede.monitor.reconfiguration.adapter
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: adapter.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.emf.common;bundle-version="2.11.1",
+ org.eclipse.emf.ecore;bundle-version="2.11.2",
+ org.eclipse.viatra.query.runtime;bundle-version="1.2.1",
+ eu.supersede.dynadapt.modeladapter;bundle-version="1.0.0",
+ eu.supersede.dynadapt.modelrepository;bundle-version="1.0.0",
+ eu.supersede.dynadapt.aom.dsl.parser;bundle-version="1.0.0",
+ eu.supersede.dynadapt.aom.dsl;bundle-version="1.0.0",
+ eu.supersede.dynadapt.featuremodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: cz.zcu.yafmt.model.fm,

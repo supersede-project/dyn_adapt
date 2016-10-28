@@ -6,7 +6,5 @@
 	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.uml2.uml_5.1.2.v20160201-0816.jar"/>
-	<classpathentry kind="lib" path="/home/jmotger/Escritorio/SUPERSEDE/modeling_eclipse/plugins/org.eclipse.viatra.query.runtime_1.2.1.201605270938.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

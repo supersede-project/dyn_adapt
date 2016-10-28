@@ -18,5 +18,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.aom.dsl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.aom.dsl.util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.featuremodel"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

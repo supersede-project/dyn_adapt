@@ -5,6 +5,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.model"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry exported="true" kind="lib" path="/home/edith/Downloads/eclipse/plugins/org.eclipse.uml2.uml.resources_5.2.0.v20160516-0939.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
