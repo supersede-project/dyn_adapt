@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2016 FBK
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Fitsum Kifetew (FBK) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
 package eu.supersede.dynadapt.dm.util;
 
 import java.io.BufferedReader;
@@ -51,85 +70,6 @@ public class ConfigurationLoader {
 		jsonAttributes = new HashMap<String, List<FeatureAttribute>>();
 		loadAttributeMetadata();
 	}
-	
-//	public List<List<FeatureAttribute>> loadAttributesJSON(List<String> configuration){
-//		List<List<FeatureAttribute>> attrs = new ArrayList<List<FeatureAttribute>> ();
-//		for (String feature : configuration){
-//			if (feature.isEmpty()){
-//				continue;
-//			}
-//			
-//			List<FeatureAttribute> attributes = loadAttributesJSON(feature, true);
-//			attrs.add(attributes);
-//		}
-//		return attrs;
-//	}
-	
-//	private List<FeatureAttribute> loadAttributesJSON (String feature, boolean useCache){
-//		List<FeatureAttribute> attributes = null;
-//		
-//		if (useCache){
-//			attributes = jsonAttributes.get(feature);
-//		}
-//		
-//		// if not in cache, load it from the json file on disk
-//		if (attributes == null){
-//			attributes = new ArrayList<FeatureAttribute>();
-//			String jsonFile = configurationPath + File.separator + feature + ".json";
-//			FileReader fileReader;
-//			try {
-//				fileReader = new FileReader(jsonFile);
-//				JSONTokener jsonTokener = new JSONTokener(fileReader);
-//				JSONObject jsonObject = new JSONObject(jsonTokener);
-//				
-//				Map<String, Object> map = jsonObject.toMap();
-//				for (Entry<String, Object> entry : map.entrySet()){
-//					String attributeName = entry.getKey();
-//					
-//					Map<Object, Object> valueMap = (Map<Object, Object>)entry.getValue();
-//	
-//					FeatureAttribute featureAttribute = new FeatureAttribute();
-//					
-//					featureAttribute.setName(attributeName);
-//					
-//					/*
-//					 * IMPORTANT!! If maximization, convert to minimization, hence we always do minimization
-//					 */
-//	//				String opt = jsonObject.query("/" + attributeName + "/opt").toString();
-//					String opt = (String) valueMap.get("opt");
-//					featureAttribute.setMinimize(true);
-//	//				double value = Double.parseDouble(jsonObject.query("/" + attributeName + "/value").toString());
-//					double value = Double.parseDouble(valueMap.get("value").toString()); 
-//					if ("max".equalsIgnoreCase(opt)){
-//						value = 1d / (1d + value); // convert to minimization
-//					}
-//					featureAttribute.setValue(value);
-//					
-//					
-//	//				String domain = jsonObject.query("/" + attributeName + "/domain").toString();
-//					String domain = (String) valueMap.get("domain");
-//					if ("int".equalsIgnoreCase(domain)){
-//						featureAttribute.setDomain(Integer.class);
-//					}else{
-//						featureAttribute.setDomain(Double.class);
-//					}
-//					
-//	//				Aggregators aggregator = Aggregators.valueOf(jsonObject.query("/" + attributeName + "/aggregator").toString());
-//					Aggregators aggregator = Aggregators.valueOf((String) valueMap.get("aggregator"));
-//					featureAttribute.setAggregator(aggregator);
-//					
-//					attributes.add(featureAttribute);
-//				}
-//			} catch (FileNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//			// save it in cache
-//			jsonAttributes.put(feature, attributes);
-//		}
-//		return attributes;
-//	}
 	
 	private void loadAttributeMetadata(){
 		featureAttributeMetadata = new HashMap<String, FeatureAttributeMetadata>();
