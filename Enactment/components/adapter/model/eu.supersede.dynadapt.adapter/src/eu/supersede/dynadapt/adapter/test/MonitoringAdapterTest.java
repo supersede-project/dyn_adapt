@@ -9,6 +9,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
@@ -70,8 +71,9 @@ public class MonitoringAdapterTest {
 			
 			FeatureModel featureModel = mm.loadFeatureModel(featureModelPath);
 			List<Aspect> a = mr.getAspectModels("timeSlot_twitter", modelsLocation);
+			FeatureConfiguration featureConfig = mm.loadFeatureConfiguration(featureConfigPath);
 
-			Model model = adapter.adapt(featureModel, a.get(0), baseModel);
+			Model model = adapter.adapt(featureModel, featureConfig, a.get(0), baseModel);
 			
 			System.out.println("Saving model");
 			save(model, URI.createURI(repository + modelsLocation.get("base") + "MonitoringSystemAdaptedBaseModel.uml"));

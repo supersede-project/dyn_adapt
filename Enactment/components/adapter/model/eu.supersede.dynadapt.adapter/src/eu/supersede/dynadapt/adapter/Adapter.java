@@ -33,12 +33,16 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl;
+import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigSUPERSEDE;
+import eu.supersede.dynadapt.featuremodel.selection.SelectionSUPERSEDE;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
@@ -66,13 +70,19 @@ public class Adapter implements IAdapter {
 	}
 
 	@Override
-	public Model adapt(FeatureModel variability, Aspect adaptationModel, Model baseModel) throws Exception {
+	public Model adapt(FeatureModel variability, FeatureConfiguration featureConfig, Aspect adaptationModel, Model baseModel) throws Exception {
 		
-		List<Feature> features = listFeatures(variability.getRoot(), adaptationModel.getFeature().getId());
-		
+		List<Feature> features = new ArrayList<>();
+		features.add(adaptationModel.getFeature());
 		Model model = null;
 		
 		for (Feature f : features) {
+			
+			List<String> enabledFeatureIds = new ArrayList<>();
+			for (Selection selection : featureConfig.getSelectionsById(f.getId())) {
+				if (selection.isEnabled()) enabledFeatureIds.add(selection.getFeature().getId());
+			}
+			
 			System.out.println("Feature ID: " + f.getId());
 			List<Aspect> aspects = mr.getAspectModels(f.getId(), modelsLocation);
 			System.out.println("Adaptations for feature: " + aspects.size());
@@ -96,17 +106,19 @@ public class Adapter implements IAdapter {
 				}
 				Model variant = a.getAdvice();
 				
-				//Select composition
-				Composition c = a.getCompositions().get(0);
-				
-				ActionOptionType actionOptionType = c.getAction();
-				if (actionOptionType instanceof UpdateValueImpl) {
-					String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
-					model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
-				} else {
-					model = ma.applyCompositionDirective(a.getCompositions().get(0), baseModel, elements, c.getAdvice(), variant);
+				for (Composition c : a.getCompositions()) {
+					boolean enabled = c.getFeature_enabled();
+					if (enabled && enabledFeatureIds.contains(f.getId())
+							|| !enabled && !enabledFeatureIds.contains(f.getId())) {
+						ActionOptionType actionOptionType = c.getAction();
+						if (actionOptionType instanceof UpdateValueImpl) {
+							String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
+							model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
+						} else {
+							model = ma.applyCompositionDirective(a.getCompositions().get(0), baseModel, elements, c.getAdvice(), variant);
+						}
+					}
 				}
-
 			}
 		}
 			
@@ -116,6 +128,7 @@ public class Adapter implements IAdapter {
 
 	private List<Feature> listFeatures(Feature root, String featureId) {
 		List<Feature> features = new ArrayList<>();
+		System.out.println(root.getId());
 		if (root.getId().equals(featureId)) features.add(root);
 		if (root.getFeatures().size() > 0) 
 			for (Feature f : root.getFeatures()) features.addAll(listFeatures(f, featureId));

@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  eu.supersede.dynadapt.featuremodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Import-Package: cz.zcu.yafmt.model.fm,
+Import-Package: cz.zcu.yafmt.model.fc,
+ cz.zcu.yafmt.model.fm,
  eu.supersede.dynadapt.dsl.aspect,
  eu.supersede.dynadapt.dsl.parser.antlr,
  eu.supersede.dynadapt.dsl.ui.contentassist.antlr,
