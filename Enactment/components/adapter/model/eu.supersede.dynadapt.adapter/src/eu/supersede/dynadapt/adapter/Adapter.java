@@ -55,22 +55,14 @@ public class Adapter implements IAdapter {
 	ModelAdapter ma;
 	
 	Map<String, String> modelsLocation;
-	
-	String repository = "platform:/resource/eu.supersede.monitor.reconfiguration.models/models/";
-	
-	public Adapter(ModelRepository mr, ModelManager mm) throws Exception {
+		
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation) throws Exception {
 		this.mr = mr;
 		this.parser = new AdaptationParser();
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
-		modelsLocation = new HashMap<String, String>();
-		modelsLocation.put("aspects", "adaptability_models/");
-		modelsLocation.put("variants", "uml_models/variants/");
-		modelsLocation.put("base", "uml_models/base/");
-		modelsLocation.put("profiles", "uml_models/profiles/");
-		modelsLocation.put("patterns", "patterns/");
-		modelsLocation.put("features", "features/models/");
+		this.modelsLocation = modelsLocation;
 	}
 
 	@Override

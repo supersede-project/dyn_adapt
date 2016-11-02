@@ -28,7 +28,7 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
-public class AdapterTest {
+public class MonitoringAdapterTest {
 
 	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.monitoring.models/models/uml_models/base/MonitoringSystemBaseModel.uml";
 	String repository = "platform:/resource/eu.supersede.dynadapt.monitoring.models/models/";
@@ -65,7 +65,7 @@ public class AdapterTest {
 	@Test
 	public void adapt() {
 		try {
-			adapter = new Adapter(mr, mm);
+			adapter = new Adapter(mr, mm, modelsLocation);
 			Model baseModel = mm.loadUMLModel(baseModelPath);
 			
 			FeatureModel featureModel = mm.loadFeatureModel(featureModelPath);
