@@ -32,7 +32,7 @@ public class ATOSAdapterTest {
 	String featureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
 	//TODO: avoid using local paths
-	String localPath = "file:/home/jmotger/Escritorio/SUPERSEDE/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/";
+	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/";
 	Map<String, String> modelsLocation;
 
 	ModelRepository mr = null;
@@ -45,13 +45,13 @@ public class ATOSAdapterTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		new StandaloneSetup().setPlatformUri("../../../../../");
+		new StandaloneSetup().setPlatformUri("../../../../../Scenarios/Atos/");
 		modelsLocation = new HashMap<String, String>();
 		modelsLocation.put("aspects", "adaptability_models/");
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "src/eu/supersede/dynadapt/usecases/atos/patterns");
+		modelsLocation.put("patterns", "src/eu/supersede/dynadapt/usecases/atos/patterns/");
 		modelsLocation.put("features", "features/models/");
 		
 		url = new URL(localPath);
@@ -73,7 +73,10 @@ public class ATOSAdapterTest {
 			Model model = adapter.adapt(featureModel, featureConfig, a.get(0), baseModel);
 			
 			System.out.println("Saving model");
-			save(model, URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml"));
+			//FIXME only save model if successfully adapted
+			if (model != null){
+				save(model, URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

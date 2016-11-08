@@ -22,6 +22,8 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -57,7 +59,7 @@ public class ModelRepository {
 	public List<Aspect> getAspectModels(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		List<Aspect> aspects = new ArrayList<Aspect>();
 
-		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
+		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
 
 		IAdaptationParser ap = loadModels(modelsLocation);
 
@@ -86,7 +88,7 @@ public class ModelRepository {
 	public List<URI> getAspectModelsURIs(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		List<URI> uris = new ArrayList<URI>();
 
-		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
+		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
 
 		IAdaptationParser ap = loadModels(modelsLocation);
 
@@ -105,25 +107,25 @@ public class ModelRepository {
 	private IAdaptationParser loadModels(Map<String, String> modelsLocation) {
 		IAdaptationParser parser = new AdaptationParser();
 
-		File[] variants = getFiles(modelsLocation.get("variants"));
+		File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
 		for (int i = 0; i < variants.length; i++) {
 			parser.loadUMLResource(URI.createURI(repository + modelsLocation.get("variants") + variants[i].getName()));
 		}
 
-		File[] profiles = getFiles(modelsLocation.get("profiles"));
+		File[] profiles = getFiles(modelsLocation.get("profiles"), "uml");
 		for (int i = 0; i < profiles.length; i++) {
 			parser.loadProfileResource(
 					URI.createURI(repository + modelsLocation.get("profiles") + profiles[i].getName()));
 		}
 
-		File[] patterns = getFiles(modelsLocation.get("patterns"));
+		File[] patterns = getFiles(modelsLocation.get("patterns"), "vql");
 		for (int i = 0; i < patterns.length; i++) {
 			parser.loadPatternResource(
 					URI.createURI(repository + modelsLocation.get("patterns") + patterns[i].getName()));
 		}
 
 
-		File[] features = getFiles(modelsLocation.get("features"));
+		File[] features = getFiles(modelsLocation.get("features"), "yafm");
 		for (int i = 0; i < features.length; i++) {
 			parser.loadFeatureResource(
 					URI.createURI(repository + modelsLocation.get("features") + features[i].getName()));
@@ -140,7 +142,7 @@ public class ModelRepository {
 		return adaptation;
 	}
 	
-	private File[] getFiles(String folderPath) {
+	private File[] getFiles(String folderPath, String extension) {
 		/*
 		 * Models in class path
 		 */
@@ -162,7 +164,29 @@ public class ModelRepository {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-
-		return files = folder.listFiles();
+		// create new filename filter
+        FilenameFilter fileNameFilter = new FilenameFilter() {
+  
+           @Override
+           public boolean accept(File dir, String name) {
+              if(name.lastIndexOf('.')>0)
+              {
+                 // get last index for '.' char
+                 int lastIndex = name.lastIndexOf('.');
+                 
+                 // get extension
+                 String str = name.substring(lastIndex);
+                 
+                 // match path name extension
+                 if(str.equals("." + extension))
+                 {
+                    return true;
+                 }
+              }
+              return false;
+           }
+        };
+        
+		return files = folder.listFiles(fileNameFilter);
 	}
 }

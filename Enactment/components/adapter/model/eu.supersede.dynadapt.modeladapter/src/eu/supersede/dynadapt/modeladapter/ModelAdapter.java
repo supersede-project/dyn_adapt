@@ -90,6 +90,11 @@ public class ModelAdapter implements IModelAdapter {
 			Stereotype adviceRole, Model usingVariantModel) throws Exception {
 		
 		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
+		//FIXME Notified if variantElement cannot be found in varian model. In this case, adaptation cannot be applied
+		if (variantElement == null){
+			System.err.println("Role " + adviceRole.getName() + " could not be found in variant model: " + usingVariantModel.getName());
+			return null;
+		}
 		
 		ActionOptionType actionOptionType = composition.getAction();
 		Model model = null;

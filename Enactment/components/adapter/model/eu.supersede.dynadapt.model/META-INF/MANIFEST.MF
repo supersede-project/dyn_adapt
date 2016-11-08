@@ -28,3 +28,6 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.11.2",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: cz.zcu.yafmt.model.fm,
  org.apache.log4j
+Export-Package: eu.supersede.dynadapt.model,
+ eu.supersede.dynadapt.model.query,
+ eu.supersede.dynadapt.model.tagger

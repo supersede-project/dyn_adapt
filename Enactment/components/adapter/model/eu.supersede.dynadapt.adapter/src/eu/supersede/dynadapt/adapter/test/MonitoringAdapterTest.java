@@ -35,7 +35,7 @@ public class MonitoringAdapterTest {
 	String repository = "platform:/resource/eu.supersede.dynadapt.monitoring.models/models/";
 	String featureConfigPath = "platform:/resource/eu.supersede.dynadapt.monitoring.models/models/features/configurations/MonitoringSystemConfigDefault.yafc";
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.monitoring.models/models/features/models/MonitoringSystem.yafm";
-	String localPath = "file:/home/jmotger/Escritorio/SUPERSEDE/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.monitoring.models/bin/";
+	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.monitoring.models/bin/";
 	Map<String, String> modelsLocation;
 
 	ModelRepository mr = null;
@@ -67,7 +67,7 @@ public class MonitoringAdapterTest {
 	public void adapt() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation);
-			Model baseModel = mm.loadUMLModel(baseModelPath);
+			Model baseModel = mm.loadUMLModel(baseModelPath); //FIXME Already loaded during ModelManager instantiation
 			
 			FeatureModel featureModel = mm.loadFeatureModel(featureModelPath);
 			List<Aspect> a = mr.getAspectModels("timeSlot_twitter", modelsLocation);
