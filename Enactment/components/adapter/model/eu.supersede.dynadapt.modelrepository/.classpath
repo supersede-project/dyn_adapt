@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src/main/java">
 		<attributes>
 			<attribute name="FROM_GRADLE_MODEL" value="true"/>
@@ -12,12 +14,5 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src-gen"/>
 	<classpathentry kind="src" path="models"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.aom.dsl.parser"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.aom.dsl"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.aom.dsl.util"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eu.supersede.dynadapt.featuremodel"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
