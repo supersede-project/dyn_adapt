@@ -2,6 +2,7 @@ package eu.supersede.dynadapt.adapter.test;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fc.Selection;
+import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
@@ -29,7 +33,8 @@ public class ATOSAdapterTest {
 	
 	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml";
 	String repository = "platform:/resource/eu.supersede.dynadapt.usecases.atos/";
-	String featureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
+	String originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
+	String newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
 	//TODO: avoid using local paths
 	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/";
@@ -66,14 +71,14 @@ public class ATOSAdapterTest {
 			adapter = new Adapter(mr, mm, modelsLocation);
 			Model baseModel = mm.loadUMLModel(baseModelPath);
 			
-			FeatureModel featureModel = mm.loadFeatureModel(featureModelPath);
-			FeatureConfiguration featureConfig = mm.loadFeatureConfiguration(featureConfigPath);
-			List<Aspect> a = mr.getAspectModels("high_capacity", modelsLocation);
-			
-			Model model = adapter.adapt(featureModel, featureConfig, a.get(0), baseModel);
+			FeatureConfiguration originalFeatureConfig = mm.loadFeatureConfiguration(originalFeatureConfigPath);
+			FeatureConfiguration newFeatureConfig = mm.loadFeatureConfiguration(newFeatureConfigPath);
+			List<Selection> changedSelections = diffFeatureConfigurations (originalFeatureConfig, newFeatureConfig);
+
+			Model model = adapter.adapt(changedSelections, baseModel);
 			
 			System.out.println("Saving model");
-			//FIXME only save model if successfully adapted
+			
 			if (model != null){
 				save(model, URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml"));
 			}
@@ -82,6 +87,65 @@ public class ATOSAdapterTest {
 		}
 	}
 	
+	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {
+		FeatureModel fm = originalFeatureConfig.getFeatureModel();
+		Feature root = fm.getRoot();
+		
+		return diffFeatureConfigurationsInFeature (root, originalFeatureConfig, newFeatureConfig);
+	}
+	
+	private List<Selection> diffFeatureConfigurationsInFeature(Feature feature, FeatureConfiguration originalFeatureConfig,
+			FeatureConfiguration newFeatureConfig) {
+		List<Selection> selections = diffFeatureConfigurationsInFeature (feature.getId(), originalFeatureConfig, newFeatureConfig);
+		
+		for (Feature child: feature.getFeatures()){
+			selections.addAll (diffFeatureConfigurationsInFeature (child, originalFeatureConfig, newFeatureConfig));
+		}
+		
+		for (Group group: feature.getGroups()){
+			for (Feature childInGroup: group.getFeatures()){
+				selections.addAll (diffFeatureConfigurationsInFeature (childInGroup, originalFeatureConfig, newFeatureConfig));
+			}
+		}
+		return selections;
+	}
+
+	private List<Selection> diffFeatureConfigurationsInFeature(String featureId, FeatureConfiguration originalFeatureConfig,
+			FeatureConfiguration newFeatureConfig) {
+		List<Selection> selections = new ArrayList<Selection>();
+		
+		List<Selection> originalSelections = originalFeatureConfig.getSelectionsById(featureId);
+		List<Selection> newSelections = newFeatureConfig.getSelectionsById(featureId);
+		
+		for (Selection s1: originalSelections){
+			if (!selectionExistsInList(s1, newSelections)){
+				s1.setEnabled(false);
+				selections.add (s1);
+			}
+		}
+		
+		for (Selection s1: newSelections){
+			if (!selectionExistsInList(s1, originalSelections)){
+				selections.add (s1);
+			}
+		}
+		
+		return selections;
+	}
+
+	private boolean selectionExistsInList(Selection s1, List<Selection> list) {
+		boolean result = false;
+		
+		for (Selection s: list){
+			if (s.getId().equals(s1.getId())){
+				result = true;
+				break;
+			}
+		}
+		
+		return result;
+	}
+
 	protected void save(Model model, URI uri) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();

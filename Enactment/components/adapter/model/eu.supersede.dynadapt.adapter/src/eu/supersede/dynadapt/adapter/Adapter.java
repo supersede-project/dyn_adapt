@@ -68,7 +68,7 @@ public class Adapter implements IAdapter {
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
 	}
-
+	
 	@Override
 	public Model adapt(FeatureModel variability, FeatureConfiguration featureConfig, Aspect adaptationModel, Model baseModel) throws Exception {
 		
@@ -115,7 +115,59 @@ public class Adapter implements IAdapter {
 							String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
 							model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
 						} else {
-							model = ma.applyCompositionDirective(a.getCompositions().get(0), baseModel, elements, c.getAdvice(), variant);
+							model = ma.applyCompositionDirective(a.getCompositions().get(0).getAction(), baseModel, elements, c.getAdvice(), variant);
+						}
+					}
+				}
+			}
+		}
+			
+		return model;
+		
+	}
+
+	@Override
+	public Model adapt(List<Selection> selections, Model baseModel) throws Exception {
+		
+		Model model = null;
+		
+		for (Selection selection : selections) {
+			Feature feature = selection.getFeature();
+			boolean featureEnabled = selection.isEnabled();
+						
+			System.out.println("Feature <" + feature.getId() + ">" + (featureEnabled?" Enabled":" Disabled"));
+			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
+			System.out.println("Adaptations for feature: " + aspects.size());
+			
+			for (Aspect aspect : aspects) {
+				System.out.println("\tAspect name: " + aspect.getName());
+				Stereotype role = null;
+				List<Pointcut> pointcuts = aspect.getPointcuts();
+				
+				HashMap<Stereotype, List<Element>> matchingElements = new HashMap<>();
+				
+				for (Pointcut p : pointcuts) {
+					role = p.getRole();
+					matchingElements.put(role, new ArrayList<>());
+					System.out.println("\t\tRole: " + role.getName());
+					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern()); 
+					for (IPatternMatch i : matches) {
+						Element e = (Element) i.get(0);
+						System.out.println("\t\t\tMatching Element: " + e);
+						matchingElements.get(role).add(e);
+					}
+				}
+				Model variant = aspect.getAdvice();
+				
+				for (Composition c : aspect.getCompositions()) {
+					boolean compositionEnabled = c.getFeature_enabled();
+					if (featureEnabled == compositionEnabled){
+						ActionOptionType actionOptionType = c.getAction();
+						if (actionOptionType instanceof UpdateValueImpl) {
+							String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
+							model = ma.applyUpdateCompositionDirective(baseModel, matchingElements, value);
+						} else {
+							model = ma.applyCompositionDirective(c.getAction(), baseModel, matchingElements, c.getAdvice(), variant);
 						}
 					}
 				}

@@ -3,6 +3,10 @@
   <uml:Model xmi:id="_9pq40IS5EeaUVtHvx6A39w" name="Atos_UC_CMS_Default_Variant">
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_hDLkEIS6EeaUVtHvx6A39w" name="CMS Instance" visibility="public">
       <classifier xmi:type="uml:Component" href="../base/atos_base_model.uml#_NSuZ4CMpEeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_iLsEsKtQEeaRNLzEGZd_uA">
+        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_EnP58KtREeaRNLzEGZd_uA" name="default cms configuration instance" instance="_wZgN0IS6EeaUVtHvx6A39w"/>
+      </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_wZgN0IS6EeaUVtHvx6A39w" name="CMS Default Configuration">
       <classifier xmi:type="uml:Class" href="../base/atos_base_model.uml#_bPtx0CMsEeaAV7iIHwGF1A"/>
@@ -30,6 +34,14 @@
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_yj0T0IS7EeaUVtHvx6A39w" name="InstanceSpecificationLink_DefaultConfiguration_CMS2Configuration">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_y-oAgIS7EeaUVtHvx6A39w" source="InstanceEnd" references="_wZgN0IS6EeaUVtHvx6A39w _hDLkEIS6EeaUVtHvx6A39w"/>
       <classifier xmi:type="uml:Association" href="../base/atos_base_model.uml#_f3XSYCMsEeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_AdZBQKtUEeaRNLzEGZd_uA">
+        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3hDYCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_JpEtsKtUEeaRNLzEGZd_uA" name="cms1" instance="_hDLkEIS6EeaUVtHvx6A39w"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_BC-akKtUEeaRNLzEGZd_uA">
+        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_OZa3QKtUEeaRNLzEGZd_uA" name="default conf" instance="_wZgN0IS6EeaUVtHvx6A39w"/>
+      </slot>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_6AQJ8JazEea74PIkp03MHQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6AQxAJazEea74PIkp03MHQ" source="PapyrusVersion">

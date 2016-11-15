@@ -86,17 +86,16 @@ public class ModelAdapter implements IModelAdapter {
 		
 	}
 	
-	public Model applyCompositionDirective(Composition composition, Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
+	public Model applyCompositionDirective(ActionOptionType actionOptionType, Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
 			Stereotype adviceRole, Model usingVariantModel) throws Exception {
 		
 		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
-		//FIXME Notified if variantElement cannot be found in varian model. In this case, adaptation cannot be applied
+		//Notified if variantElement cannot be found in variant model. In this case, adaptation cannot be applied
 		if (variantElement == null){
 			System.err.println("Role " + adviceRole.getName() + " could not be found in variant model: " + usingVariantModel.getName());
 			return null;
 		}
 		
-		ActionOptionType actionOptionType = composition.getAction();
 		Model model = null;
 		
 		for (Stereotype stereotype : elements.keySet()) {
@@ -119,6 +118,13 @@ public class ModelAdapter implements IModelAdapter {
 		System.out.println(e.getAppliedStereotypes());
 	}
 
+	/* FIXME: Add composition cases:
+	 * If jointpointBaseModelElement is a container, add to it the jointpointVariantModelElement and all related elements in variant model
+	 * If jointpointBaseModelElement is not a container, and jointpointBaseModelElement == jointpointVariantModelElement (same type and name)
+	 * 	1- then add to jointpointBaseModelElement all slots in jointpointVariantModelElement (not in jointpointBaseModelElement)
+	 * 	   if slot in jointpointVariantModelElement exists in jointpointBaseModelElement, modify value with that in jointpointVariantModelElement
+	 *  2- Add all variant model elements referencing jointpointVariantModelElement into base model referencing jointpointBaseModelElement
+	*/
 	@Override
 	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) {
@@ -176,6 +182,7 @@ public class ModelAdapter implements IModelAdapter {
 		
 	}
 
+	//FIXME: Error when applied to Atos UC
 	@Override
 	public Model applyDeleteComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) throws Exception {

@@ -4,6 +4,9 @@ Bundle-Name: Model Query for Supersede Dynamic Adaptation
 Bundle-SymbolicName: eu.supersede.dynadapt.model;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Supersede Project
+Export-Package: eu.supersede.dynadapt.model,
+ eu.supersede.dynadapt.model.query,
+ eu.supersede.dynadapt.model.tagger
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.11.2",
  org.eclipse.viatra.query.runtime;bundle-version="1.2.1",
  org.eclipse.viatra.query.runtime.base.itc;bundle-version="1.2.1",
@@ -28,6 +31,3 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.11.2",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: cz.zcu.yafmt.model.fm,
  org.apache.log4j
-Export-Package: eu.supersede.dynadapt.model,
- eu.supersede.dynadapt.model.query,
- eu.supersede.dynadapt.model.tagger

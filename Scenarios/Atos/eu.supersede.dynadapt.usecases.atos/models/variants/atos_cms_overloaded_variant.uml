@@ -3,8 +3,12 @@
   <uml:Model xmi:id="_DFoLMIS6EeaUVtHvx6A39w" name="Atos_UC_CMS_Overloaded_Variant">
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_xaKK0ITAEeaUVtHvx6A39w" name="CMS Instance">
       <classifier xmi:type="uml:Component" href="../base/atos_base_model.uml#_NSuZ4CMpEeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_W5HHwKtREeaRNLzEGZd_uA">
+        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_eveAAKtREeaRNLzEGZd_uA" name="overloaded cms configuration instance" instance="_2x3PUITAEeaUVtHvx6A39w"/>
+      </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_2x3PUITAEeaUVtHvx6A39w" name="CMS Overloaded Configuration Instance">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_2x3PUITAEeaUVtHvx6A39w" name="CMS Overloaded Configuration">
       <classifier xmi:type="uml:Class" href="../base/atos_base_model.uml#_bPtx0CMsEeaAV7iIHwGF1A"/>
       <slot xmi:type="uml:Slot" xmi:id="_2x3PUYTAEeaUVtHvx6A39w">
         <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_tLQXECM8EeaAV7iIHwGF1A"/>
@@ -27,8 +31,16 @@
         <value xmi:type="uml:LiteralReal" xmi:id="_2x3PWoTAEeaUVtHvx6A39w" value="2.0"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_7Eb3wITAEeaUVtHvx6A39w" name="InstanceSpecification1">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_7Eb3wITAEeaUVtHvx6A39w" name="InstanceSpecificationLink_OverloadedConfiguration_CMS2Configuration">
       <classifier xmi:type="uml:Association" href="../base/atos_base_model.uml#_f3XSYCMsEeaAV7iIHwGF1A"/>
+      <slot xmi:type="uml:Slot" xmi:id="_pzmw8KtTEeaRNLzEGZd_uA">
+        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3hDYCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_2d5SQKtTEeaRNLzEGZd_uA" name="cms1" instance="_xaKK0ITAEeaUVtHvx6A39w"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_qsEqAKtTEeaRNLzEGZd_uA">
+        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_6ZEuYKtTEeaRNLzEGZd_uA" name="overloaded conf" instance="_2x3PUITAEeaUVtHvx6A39w"/>
+      </slot>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_iTQQEKXQEeaYAK6ukj5FZw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iTWWsKXQEeaYAK6ukj5FZw" source="PapyrusVersion">
