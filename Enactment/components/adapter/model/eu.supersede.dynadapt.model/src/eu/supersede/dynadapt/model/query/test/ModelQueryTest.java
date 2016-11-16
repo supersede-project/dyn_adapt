@@ -22,11 +22,17 @@ package eu.supersede.dynadapt.model.query.test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
+import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
+import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.junit.After;
 import org.junit.Assert;
@@ -37,20 +43,24 @@ import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
+import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkProcessor;
+import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
 
 public class ModelQueryTest {
 //	String modelPath = "file://home/yosu/Projects/Supersede/workspaces/workspace-adaptation/eu.supersede.dynadapt.model.query/models/atos_base_model.uml";
 //	String patternModelPath = "file://home/yosu/Projects/Supersede/workspaces/workspace-adaptation/eu.supersede.dynadapt.model.query/models/atos_queries.vql";
 	String modelPath = "./models/atos_base_model.uml";
-	String patternModelPath = "./models/atos_queries.vql";
-	String patternFQN = "eu.supersede.dynadapt.atos.queries.nodeArtifacts";
+	String variantModelPath = "./models/atos_cms_overloaded_variant.uml";
+	String patternModelPath = "./src/eu/supersede/dynadapt/model/query/test/atos_queries.vql";
+	String patternFQN = "eu.supersede.dynadapt.model.query.test.nodeArtifacts";
 	IModelQuery modelQuery = null;
 	IModelManager modelManager = null;
 	
 	@Before
 	public void setUp() throws Exception{	
 		modelManager = new ModelManager (modelPath);
+		modelManager.loadUMLModel(variantModelPath);
 		modelQuery = new ModelQuery (modelManager);
 	}
 
@@ -78,6 +88,38 @@ public class ModelQueryTest {
 		
 	}
 	
+	@Test
+	public void queryCMSInstanceToConfigurationLinkTest() throws ViatraQueryException {
+		Assert.assertNotNull(modelManager);
+		Assert.assertNotNull(modelQuery);
+		
+		patternFQN = "eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLink";
+		
+		Collection<? extends IPatternMatch> matches = modelQuery.query(patternFQN, patternModelPath);
+		Assert.assertNotNull(matches);
+		
+		StringBuilder result = new StringBuilder();
+		((ModelQuery)modelQuery).prettyPrintMatches(result, matches);
+		System.out.println("Search matches for query " + patternFQN + " are: " + result);
+		
+		String[] parameters = new String[]{"link", "instance"};
+		Collection <Map<String, Object>>results = modelQuery.query(patternFQN, patternModelPath, Arrays.asList(parameters));
+		Assert.assertNotNull(results);
+		
+		InstanceOfInstanceSpecificationLinkMatcher matcher = 
+				(InstanceOfInstanceSpecificationLinkMatcher) modelQuery.queryMatcher(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
+		
+		Set<InstanceSpecification> instances = matcher.getAllValuesOfinstance();
+		InstanceSpecification cmsInstance = findInstance ("CMS  Instance", instances);
+		
+		Assert.assertNotNull(cmsInstance);
+		
+	}
+	
+	private InstanceSpecification findInstance(String name, Set<InstanceSpecification> instances) {
+		return instances.parallelStream().filter(instance -> instance.getName().equals (name)).findFirst().get();
+	}
+
 	@Test
 	public void loadPatternModelTest() throws ViatraQueryException {
 		Assert.assertNotNull(modelManager);

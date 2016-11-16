@@ -36,16 +36,19 @@ import org.eclipse.emf.common.util.URI;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
+import eu.supersede.dynadapt.model.ModelManager;
 
 public class ModelRepository {
 
 	private String repository;
 	private URL url;
+	private ModelManager modelManager;
 
-	public ModelRepository(String repository, URL url) {
+	public ModelRepository(String repository, URL url, ModelManager modelManager) {
 		super();
 		this.repository = repository;
 		this.url = url;
+		this.modelManager = modelManager;
 	}
 
 	/**
@@ -105,41 +108,34 @@ public class ModelRepository {
 	}
 
 	private IAdaptationParser loadModels(Map<String, String> modelsLocation) {
-		IAdaptationParser parser = new AdaptationParser();
+		IAdaptationParser parser = new AdaptationParser(modelManager);
 
 		File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
 		for (int i = 0; i < variants.length; i++) {
-			parser.loadUMLResource(URI.createURI(repository + modelsLocation.get("variants") + variants[i].getName()));
+			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
 		}
 
 		File[] profiles = getFiles(modelsLocation.get("profiles"), "uml");
 		for (int i = 0; i < profiles.length; i++) {
-			parser.loadProfileResource(
-					URI.createURI(repository + modelsLocation.get("profiles") + profiles[i].getName()));
+			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
 		}
 
 		File[] patterns = getFiles(modelsLocation.get("patterns"), "vql");
 		for (int i = 0; i < patterns.length; i++) {
-			parser.loadPatternResource(
-					URI.createURI(repository + modelsLocation.get("patterns") + patterns[i].getName()));
+			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
 		}
 
 
 		File[] features = getFiles(modelsLocation.get("features"), "yafm");
 		for (int i = 0; i < features.length; i++) {
-			parser.loadFeatureResource(
-					URI.createURI(repository + modelsLocation.get("features") + features[i].getName()));
+			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
 		}
 
 		return parser;
 	}
 	
 	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
-		URI aspectModelURI = URI.createURI(aspectModelPath);
-
-		Aspect adaptation = parser.parseAdaptationModel(aspectModelURI);
-
-		return adaptation;
+		return parser.parseAdaptationModel(aspectModelPath);
 	}
 	
 	private File[] getFiles(String folderPath, String extension) {

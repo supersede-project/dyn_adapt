@@ -1,3 +1,4 @@
+package eu.supersede.dynadapt.model.query.test
 
 import "http://www.eclipse.org/uml2/5.0.0/UML"
 
@@ -70,3 +71,25 @@ pattern maxThreadValuesInCMSConfigurations (configuration, name, value){
 	);
 }
 
+pattern InstanceSpecificationLink (link) {
+	InstanceSpecification.classifier (link, classifier);
+	Association (classifier);
+}
+
+pattern InstanceOfInstanceSpecificationLink (link, instance){
+	find InstanceSpecificationLink(link);
+	InstanceSpecification.slot (link, slot);
+	Slot.value (slot,value);
+	InstanceValue.instance (value, instance);
+}
+
+pattern CMSInstanceToConfigurationLink (link, instance){
+	find InstanceSpecificationLink(link);
+	InstanceSpecification.slot (link, slot);
+	Slot.value (slot,value);
+	InstanceValue.instance (value, instance);
+	InstanceSpecification.name (instance, name);
+	check (
+		name.equals("CMS  Instance")
+	);
+}

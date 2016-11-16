@@ -44,35 +44,34 @@ import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.AspectPackage;
 import eu.supersede.dynadapt.lang.uml.UmlSupport;
 import eu.supersede.dynadapt.lang.yafmt.YafmtSupport;
+import eu.supersede.dynadapt.model.ModelManager;
 
 public class AspectDSLTest {
-	IAdaptationParser parser;
+	private IAdaptationParser parser;
+	private ModelManager modelManager;
 	
 	@Before
 	public void setup(){
-		parser = new AdaptationParser();
+		modelManager = new ModelManager();
+		parser = new AdaptationParser(modelManager);
 	}
 
 	@Test
 	public void loadAspectModelTest() {
 		new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("../");
 //		URI aspectModelURI = URI.createFileURI("./models/concurrency.aspect");
-		URI aspectModelURI = URI.createURI("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/concurrency.aspect");
+		String aspectModelPath = "platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/concurrency.aspect";
 		
 //		SupersedeDSLResourceSet set = SupersedeResources.createResourceSet();
 //		Aspect aspectModel = set.loadAspectModel(aspectModelURI);
 //		Assert.assertNotNull(aspectModel);
 		
-		parser.loadUMLResource(
-				URI.createURI("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_base_model.uml"));
-		parser.loadProfileResource(
-				URI.createURI("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/adm.profile.uml"));
-		parser.loadPatternResource(
-				URI.createURI("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_queries.vql"));
-		parser.loadFeatureResource(
-				URI.createURI("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/AtosUCFeatureModel.yafm"));
+		parser.loadUMLResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_base_model.uml");
+		parser.loadProfileResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/adm.profile.uml");
+		parser.loadPatternResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_queries.vql");
+		parser.loadFeatureResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/AtosUCFeatureModel.yafm");
 		
-		Aspect adaptation = parser.parseAdaptationModel(aspectModelURI);
+		Aspect adaptation = parser.parseAdaptationModel(aspectModelPath);
 		
 		String featureName = adaptation.getFeature().getName();
 		String patternName = adaptation.getPointcuts().get(0).getPattern().getName();

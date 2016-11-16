@@ -15,6 +15,7 @@
  *
  * Contributors:
  * 	Quim Motger (UPC) - main development
+ *  Yosu Gorroñogoitia (Atos)
  * 	
  * Initially developed in the context of SUPERSEDE EU project
  * www.supersede.eu
@@ -60,9 +61,12 @@ public class Adapter implements IAdapter {
 	
 	Map<String, String> modelsLocation;
 		
+	//FIXME: Currently two ResourceSets are managed, one by ModelManager, another one by AdaptationParser
+	//FIXME: Manage a single ResourceSet
+	
 	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation) throws Exception {
 		this.mr = mr;
-		this.parser = new AdaptationParser();
+		this.parser = new AdaptationParser(mm);
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
@@ -105,7 +109,6 @@ public class Adapter implements IAdapter {
 					}
 				}
 				Model variant = a.getAdvice();
-				
 				for (Composition c : a.getCompositions()) {
 					boolean enabled = c.getFeature_enabled();
 					if (enabled && enabledFeatureIds.contains(f.getId())

@@ -107,5 +107,6 @@ public interface IModelManager {
 	public PatternModel loadPatternModel(String patternPath);
 	public FeatureModel loadFeatureModel(String fmPath);
 	public FeatureConfiguration loadFeatureConfiguration(String fcPath);
+	public ResourceSet getResourceSet();
 
 }

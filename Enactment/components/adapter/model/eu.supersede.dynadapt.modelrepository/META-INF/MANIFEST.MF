@@ -51,4 +51,5 @@ Require-Bundle: org.eclipse.emf.common;bundle-version="2.11.1",
  org.apache.log4j;bundle-version="1.2.15",
  com.google.guava;bundle-version="15.0.0",
  eu.supersede.dynadapt.featuremodel
-Import-Package: eu.supersede.dynadapt.featuremodel.fc
+Import-Package: eu.supersede.dynadapt.featuremodel.fc,
+ eu.supersede.dynadapt.model

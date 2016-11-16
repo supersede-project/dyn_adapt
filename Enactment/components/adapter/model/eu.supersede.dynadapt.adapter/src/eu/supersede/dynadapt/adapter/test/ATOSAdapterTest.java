@@ -60,8 +60,8 @@ public class ATOSAdapterTest {
 		modelsLocation.put("features", "features/models/");
 		
 		url = new URL(localPath);
-		mr = new ModelRepository(repository,url);
 		mm = new ModelManager(baseModelPath);
+		mr = new ModelRepository(repository,url, mm);
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 	}
 	

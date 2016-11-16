@@ -22,6 +22,7 @@ package eu.supersede.dynadapt.model;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -42,6 +43,7 @@ import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceSet;
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 
 public class ModelManager implements IModelManager {
 //	private static ResourceSet resourceSet = new ResourceSetImpl();
@@ -250,4 +252,17 @@ public class ModelManager implements IModelManager {
 			return null;
 		}
 	}
+
+	public Aspect loadAspectModel(URI uri) {
+		return resourceSet.loadAspectModel(uri);
+	}
+	
+	public Aspect loadAspectModel(String path) {
+		return resourceSet.loadAspectModel(path);
+	}
+	
+	public ResourceSet getResourceSet(){
+		return (ResourceSet) resourceSet.getResourceSet();
+	}
+
 }

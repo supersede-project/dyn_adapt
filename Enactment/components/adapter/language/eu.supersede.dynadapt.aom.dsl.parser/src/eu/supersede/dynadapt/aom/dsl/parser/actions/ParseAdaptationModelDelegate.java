@@ -37,15 +37,17 @@ import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 //import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceSet;
 //import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceUtil;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
+import eu.supersede.dynadapt.model.ModelManager;
 
 public class ParseAdaptationModelDelegate implements IObjectActionDelegate{
 	private IFile selectedFile;
 	private IWorkbenchWindow window;
 	private IAdaptationParser parser;
+	private ModelManager modelManager;
 	
 	public ParseAdaptationModelDelegate() {
-		// TODO Auto-generated constructor stub
-		parser = new AdaptationParser();
+		modelManager = new ModelManager();
+		parser = new AdaptationParser(modelManager);
 	}
 
 	@Override

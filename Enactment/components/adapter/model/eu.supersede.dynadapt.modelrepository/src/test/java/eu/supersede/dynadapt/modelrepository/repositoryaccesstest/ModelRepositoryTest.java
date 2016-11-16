@@ -33,6 +33,7 @@ import org.junit.Test;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
+import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class ModelRepositoryTest {
@@ -48,6 +49,7 @@ public class ModelRepositoryTest {
 	URL url = null;
 
 	ModelRepository mr = null;
+	ModelManager mm = null;
 
 	IFeatureConfigLAO fcLAO = null;
 
@@ -63,7 +65,8 @@ public class ModelRepositoryTest {
 
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 		url = getClass().getResource("/");
-		mr = new ModelRepository(repository, url);
+		mm = new ModelManager();
+		mr = new ModelRepository(repository, url, mm);
 	}
 
 	@After
