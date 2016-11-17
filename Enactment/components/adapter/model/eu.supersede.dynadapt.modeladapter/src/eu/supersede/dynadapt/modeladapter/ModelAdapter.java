@@ -44,6 +44,7 @@ import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
@@ -140,28 +141,28 @@ public class ModelAdapter implements IModelAdapter {
 
 		String type = jointpointVariantModelElement.getClass().getSimpleName();
 
-		// TODO Add other instance referencing this one
+		// TODO Add all instances (from variant model referencing jointpointVariantModelElement) that does not exist in inBaseModel
 		if (type.equals(INSTANCE)) {
 			InstanceSpecificationImpl instanceBase = (InstanceSpecificationImpl) jointpointBaseModelElement;
 			InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
 			//Adding new slots in variant model to insertion point (e.g. Jointpoint) in base model
 			for (Slot slot : instanceVariant.getSlots()) {
-				copySlotInInstanceSpecification(slot, instanceBase);
+				System.out.println("Adding slot: " + slot.getDefiningFeature().getName() + " in instance " + instanceBase.getName());
+				addSlotInInstanceSpecification(slot, instanceBase, inBaseModel);
 			}
 			//Adding new relationships (as instance specification of instance specification links) 
 			// referencing the insertion point
 			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant)){
 				//Add link instance specification
-				System.out.println("Detected link instance specification in variant model: " + linkInstance.getName());
+				System.out.println("Adding detected link instance specification in variant model: " + linkInstance.getName());
+				addInstanceSpecificationInModel (linkInstance, inBaseModel);
 			}	
 		} else if (type.equals(CLASS)) {
 			ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
 			ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
 			// For each relationship of the class
-			for (int i = 0; i < classVariant.getRelationships().size(); ++i) {
-				Relationship r = classVariant.getRelationships().get(i);
-				for (int j = 0; j < r.getRelatedElements().size(); ++j) {
-					Element e = r.getRelatedElements().get(j);
+			for (Relationship r:classVariant.getRelationships()) {
+				for (Element e:r.getRelatedElements()) {
 					if (!((NamedElement) e).getName().equals(classBase.getName())) {
 						classBase.getNearestPackage().getPackagedElements().add((PackageableElement) e);
 					}
@@ -171,7 +172,21 @@ public class ModelAdapter implements IModelAdapter {
 		}
 
 		return inBaseModel;
+	}
 
+	private void addInstanceSpecificationInModel(InstanceSpecification linkInstance, Model model) {
+		//Create InstanceSpecification copy:
+		//Create Slots, Add them to the model
+		//Add instance to the model
+		InstanceSpecification newLinkInstance = UMLFactory.eINSTANCE.createInstanceSpecification();
+		newLinkInstance.setName(linkInstance.getName());
+		newLinkInstance.setSpecification(linkInstance.getSpecification());
+		newLinkInstance.getClassifiers().addAll(linkInstance.getClassifiers());
+		model.getPackagedElements().add(newLinkInstance);
+		
+		for (Slot slot : linkInstance.getSlots()) {
+			addSlotInInstanceSpecification(slot, newLinkInstance, model);
+		}
 	}
 
 	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecificationImpl instanceVariant) {
@@ -187,17 +202,12 @@ public class ModelAdapter implements IModelAdapter {
 		return instances;
 	}
 
-	private void copySlotInInstanceSpecification(Slot slot, InstanceSpecificationImpl instanceSpecification) {
+	private void addSlotInInstanceSpecification(Slot slot, InstanceSpecification instanceSpecification, Model model) {
 		ValueSpecification vs = slot.getValues().get(0);
 		// Creates the new slot referencing new object
 		Slot newSlot = instanceSpecification.createSlot();
-		newSlot.setDefiningFeature(slot.getDefiningFeature()); // FIXME
-																// DefiningFeature
-																// should be
-																// added to base
-																// model if it
-																// does not exit
-																// therein
+		// FIXME DefiningFeature should be added to base model if it does not exit therein
+		newSlot.setDefiningFeature(slot.getDefiningFeature()); 
 		newSlot.createValue(vs.getName(), vs.getType(), vs.eClass());
 		newSlot.setOwningInstance(instanceSpecification);
 
@@ -205,24 +215,17 @@ public class ModelAdapter implements IModelAdapter {
 		InstanceValue newInstanceValue = (InstanceValue) slot.getValues().get(0);
 		// Adds the instance to the model in the proper package
 		InstanceSpecification newInstance = newInstanceValue.getInstance();
-		instanceValue.getNearestPackage().getPackagedElements().add(newInstance); // FIXME
-																					// copy
-																					// variant
-																					// instance
-																					// only
-																					// if
-																					// it
-																					// does
-																					// not
-																					// exist
-																					// in
-																					// base
-																					// model.
+		// FIXME copy variant instance only if it does not exist in base model.
+		if (!modelContainsElement (newInstance, model)){
+			System.out.println("Adding instance: " + newInstance.getName() + " in base model");
+			instanceSpecification.getNearestPackage().getPackagedElements().add(newInstance); 
+		}
 		// Creates the reference between base object and referenced object in
 		// base model
 		instanceValue.setInstance(newInstance);
 	}
 
+	@Deprecated
 	public Model applyAddCompositionOld(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) {
 
@@ -298,50 +301,21 @@ public class ModelAdapter implements IModelAdapter {
 				deleteSlotInInstanceBase (slotInInstanceVariant, instanceBase);
 			}
 
-//			HashMap<String, Slot> destroy = new HashMap<>();
-//
-//			// FIXME: Remove slot in base if slot in variant refers to the same
-//			// defining feature and their value refers to the same instance
-//			// value (by name)
-//			for (int i = 0; i < instanceBase.getSlots().size(); ++i) {
-//				Slot sb = instanceBase.getSlots().get(i);
-//				for (int j = 0; j < instanceVariant.getSlots().size(); ++j) {
-//					Slot sv = instanceVariant.getSlots().get(j);
-//					InstanceValue baseInst = (InstanceValue) sb.getValues().get(0);
-//					InstanceValue variantInst = (InstanceValue) sv.getValues().get(0);
-//
-//					if (baseInst.getInstance().getName().equals(variantInst.getInstance().getName())) {
-//						// Destroy instance and references
-//						destroy.put(baseInst.getInstance().getName(), sb);
-//						// FIXME: Calculate correctly instance specification
-//						// links pointing to variant jointpoint.
-//						// Then, delete in base model similar instance
-//						// specification links relating the same pair of
-//						// elements of the ISL detected in variant model
-//						Relationship r = getRelationship(baseInst.getInstance(), variantInst.getInstance());
-//						TreeIterator<EObject> tree = inBaseModel.eAllContents();
-//						while (tree.hasNext()) {
-//							EObject a = tree.next();
-//							if (isAssociationInstance(a, r, instanceBase)) {
-//								((InstanceSpecification) a).destroy();
-//							}
-//						}
-//						baseInst.getInstance().destroy();
-//					}
-//				}
-//			}
-//			for (Slot s : destroy.values())
-//				s.destroy();
+			//Deleting relationships (as instance specification of instance specification links) 
+			// referencing the insertion point
+			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant)){
+				//Add link instance specification
+				System.out.println("Deleting detected link instance specification in base model: " + linkInstance.getName());
+				deleteInstanceSpecificationInModel (linkInstance, jointpointBaseModelElement, inBaseModel);
+			}	
 
 		} else if (type.equals(CLASS)) {
 			ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
 			ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
 			// For each relationship of the class in the variant
-			for (int i = 0; i < classVariant.getRelationships().size(); ++i) {
-				Relationship r1 = classVariant.getRelationships().get(i);
+			for (Relationship r1:classVariant.getRelationships()) {
 				// For each relationship of the class in the base model
-				for (int j = 0; j < classBase.getRelationships().size(); ++j) {
-					Relationship r2 = classBase.getRelationships().get(j);
+				for (Relationship r2:classBase.getRelationships()) {
 					// Check which relationships are present in the variant
 					if (checkSameRelationship(r1, r2)) {
 						// Retrieve the related object
@@ -366,10 +340,34 @@ public class ModelAdapter implements IModelAdapter {
 		}
 
 		return inBaseModel;
-
 	}
 	
-	
+	private void deleteInstanceSpecificationInModel(InstanceSpecification linkInstance, Element jointpointBaseModelElement, Model inBaseModel) {
+		// Delete instances referenced by slots of the link
+		for (Slot slot : linkInstance.getSlots()) {
+			ValueSpecification valueSpecification = slot.getValues().get(0);
+			if (valueSpecification != null){
+				if (valueSpecification instanceof InstanceValue){
+					InstanceSpecification instance = ((InstanceValue)valueSpecification).getInstance();
+					if (instance != null && areSameElements (instance, (NamedElement) jointpointBaseModelElement)){
+						System.out.println("Removing instance: " + instance.getQualifiedName() + 
+							" from base model since it is referenced in slot " + slot.getDefiningFeature().getName());
+						instance.destroy();
+					}
+				}
+			}
+		}
+		
+		//Delete link
+		linkInstance.destroy();
+	}
+
+	private boolean areSameElements(NamedElement e1, NamedElement e2) {
+		boolean result = true;
+		result = result && (e1.getClass().getSimpleName().equals(e1.getClass().getSimpleName()));
+		result = result && (e1.getName().equals(e2.getName()));
+		return result;
+	}
 
 	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecificationImpl instanceBase) {
 		for (Slot slotInInstanceBase: instanceBase.getSlots()){
@@ -400,7 +398,8 @@ public class ModelAdapter implements IModelAdapter {
 		return slot1.getDefiningFeature().getName().equals(slot2.getDefiningFeature().getName());
 	}
 
-	// FIXME: Error when applied to Atos UC
+	// FIXME: Error when applied to Atos UC (FIXED in new version included in class)
+	@Deprecated
 	public Model applyDeleteCompositionOld(Model inBaseModel, Element jointpointBaseModelElement,
 			Model usingVariantModel, Element jointpointVariantModelElement) throws Exception {
 
