@@ -23,16 +23,20 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -44,7 +48,6 @@ import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
@@ -59,9 +62,7 @@ import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
-import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.model.IModelManager;
-import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLinkMatcher;
@@ -69,15 +70,15 @@ import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificati
 import eu.supersede.dynadapt.model.tagger.ModelTagger;
 
 @SuppressWarnings("restriction")
-public class ModelAdapter implements IModelAdapter {
-
+public class ModelAdapter implements IModelAdapter {	
+	private final static Logger log = LogManager.getLogger(ModelAdapter.class);
 	private final String INSTANCE = "InstanceSpecificationImpl";
 	private final String CLASS = "ClassImpl";
 
 	private ModelTagger mt = null;
 	private IModelManager mm = null;
 	private IModelQuery modelQuery = null;
-
+	
 	public ModelAdapter(IModelManager modelManager) throws ViatraQueryException {
 		mm = modelManager;
 		mt = new ModelTagger(modelManager);
@@ -86,24 +87,20 @@ public class ModelAdapter implements IModelAdapter {
 
 	public Model applyUpdateCompositionDirective(Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
 			String newValue) {
-
 		Model model = null;
-
 		for (Stereotype stereotype : elements.keySet()) {
 			for (Element element : elements.get(stereotype)) {
 				Slot s = (Slot) element;
 				model = applyModifyValueComposition(inBaseModel, s, newValue);
 			}
 		}
-
 		return model;
-
 	}
 
 	public Model applyCompositionDirective(ActionOptionType actionOptionType, Model inBaseModel,
 			HashMap<Stereotype, List<Element>> elements, Stereotype adviceRole, Model usingVariantModel)
 			throws Exception {
-
+		
 		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
 		// Notified if variantElement cannot be found in variant model. In this
 		// case, adaptation cannot be applied
@@ -132,7 +129,7 @@ public class ModelAdapter implements IModelAdapter {
 
 	public void stereotypeElement(Element e, Stereotype role) throws Exception {
 		mt.tagModel(e, role.getProfile(), role);
-		System.out.println(e.getAppliedStereotypes());
+		log.debug(e.getAppliedStereotypes());
 	}
 
 	@Override
@@ -147,14 +144,14 @@ public class ModelAdapter implements IModelAdapter {
 			InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
 			//Adding new slots in variant model to insertion point (e.g. Jointpoint) in base model
 			for (Slot slot : instanceVariant.getSlots()) {
-				System.out.println("Adding slot: " + slot.getDefiningFeature().getName() + " in instance " + instanceBase.getName());
+				log.debug("Adding slot: " + slot.getDefiningFeature().getName() + " in instance " + instanceBase.getName());
 				addSlotInInstanceSpecification(slot, instanceBase, inBaseModel);
 			}
 			//Adding new relationships (as instance specification of instance specification links) 
 			// referencing the insertion point
 			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant)){
 				//Add link instance specification
-				System.out.println("Adding detected link instance specification in variant model: " + linkInstance.getName());
+				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getName());
 				addInstanceSpecificationInModel (linkInstance, inBaseModel);
 			}	
 		} else if (type.equals(CLASS)) {
@@ -217,7 +214,7 @@ public class ModelAdapter implements IModelAdapter {
 		InstanceSpecification newInstance = newInstanceValue.getInstance();
 		// FIXME copy variant instance only if it does not exist in base model.
 		if (!modelContainsElement (newInstance, model)){
-			System.out.println("Adding instance: " + newInstance.getName() + " in base model");
+			log.debug("Adding instance: " + newInstance.getName() + " in base model");
 			instanceSpecification.getNearestPackage().getPackagedElements().add(newInstance); 
 		}
 		// Creates the reference between base object and referenced object in
@@ -305,7 +302,7 @@ public class ModelAdapter implements IModelAdapter {
 			// referencing the insertion point
 			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant)){
 				//Add link instance specification
-				System.out.println("Deleting detected link instance specification in base model: " + linkInstance.getName());
+				log.debug("Deleting detected link instance specification in base model: " + linkInstance.getName());
 				deleteInstanceSpecificationInModel (linkInstance, jointpointBaseModelElement, inBaseModel);
 			}	
 
@@ -350,7 +347,7 @@ public class ModelAdapter implements IModelAdapter {
 				if (valueSpecification instanceof InstanceValue){
 					InstanceSpecification instance = ((InstanceValue)valueSpecification).getInstance();
 					if (instance != null && areSameElements (instance, (NamedElement) jointpointBaseModelElement)){
-						System.out.println("Removing instance: " + instance.getQualifiedName() + 
+						log.debug("Removing instance: " + instance.getQualifiedName() + 
 							" from base model since it is referenced in slot " + slot.getDefiningFeature().getName());
 						instance.destroy();
 					}

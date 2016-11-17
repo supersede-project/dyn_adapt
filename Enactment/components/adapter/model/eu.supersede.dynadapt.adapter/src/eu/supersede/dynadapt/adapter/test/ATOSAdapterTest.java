@@ -22,7 +22,6 @@ import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.adapter.Adapter;
-import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;

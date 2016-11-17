@@ -22,13 +22,14 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
@@ -42,8 +43,6 @@ import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigSUPERSEDE;
-import eu.supersede.dynadapt.featuremodel.selection.SelectionSUPERSEDE;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
@@ -52,6 +51,7 @@ import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class Adapter implements IAdapter {
+	private final static Logger log = LogManager.getLogger(Adapter.class);
 	
 	ModelRepository mr;
 	AdaptationParser parser;
@@ -60,7 +60,7 @@ public class Adapter implements IAdapter {
 	ModelAdapter ma;
 	
 	Map<String, String> modelsLocation;
-		
+			
 	//FIXME: Currently two ResourceSets are managed, one by ModelManager, another one by AdaptationParser
 	//FIXME: Manage a single ResourceSet
 	
@@ -71,6 +71,7 @@ public class Adapter implements IAdapter {
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
+		log.debug("Adapter set up");
 	}
 	
 	@Override
@@ -87,11 +88,11 @@ public class Adapter implements IAdapter {
 				if (selection.isEnabled()) enabledFeatureIds.add(selection.getFeature().getId());
 			}
 			
-			System.out.println("Feature ID: " + f.getId());
+			log.debug("Feature ID: " + f.getId());
 			List<Aspect> aspects = mr.getAspectModels(f.getId(), modelsLocation);
-			System.out.println("Adaptations for feature: " + aspects.size());
+			log.debug("Adaptations for feature: " + aspects.size());
 			for (Aspect a : aspects) {
-				System.out.println("	Aspect name: " + a.getName());
+				log.debug("\tAspect name: " + a.getName());
 				Stereotype role = null;
 				List<Pointcut> pointcuts = a.getPointcuts();
 				
@@ -100,11 +101,11 @@ public class Adapter implements IAdapter {
 				for (Pointcut p : pointcuts) {
 					role = p.getRole();
 					elements.put(role, new ArrayList<>());
-					System.out.println("		Role: " + role.getName());
+					log.debug("		Role: " + role.getName());
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern()); 
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
-						System.out.println("			Element: " + e);
+						log.debug("\t\tElement: " + e);
 						elements.get(role).add(e);
 					}
 				}
@@ -138,12 +139,12 @@ public class Adapter implements IAdapter {
 			Feature feature = selection.getFeature();
 			boolean featureEnabled = selection.isEnabled();
 						
-			System.out.println("Feature <" + feature.getId() + ">" + (featureEnabled?" Enabled":" Disabled"));
+			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled?" Enabled":" Disabled"));
 			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
-			System.out.println("Adaptations for feature: " + aspects.size());
+			log.debug("Adaptations for feature: " + aspects.size());
 			
 			for (Aspect aspect : aspects) {
-				System.out.println("\tAspect name: " + aspect.getName());
+				log.debug("\tAspect name: " + aspect.getName());
 				Stereotype role = null;
 				List<Pointcut> pointcuts = aspect.getPointcuts();
 				
@@ -152,11 +153,11 @@ public class Adapter implements IAdapter {
 				for (Pointcut p : pointcuts) {
 					role = p.getRole();
 					matchingElements.put(role, new ArrayList<>());
-					System.out.println("\t\tRole: " + role.getName());
+					log.debug("\t\tRole: " + role.getName());
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern()); 
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
-						System.out.println("\t\t\tMatching Element: " + e);
+						log.debug("\t\t\tMatching Element: " + e);
 						matchingElements.get(role).add(e);
 					}
 				}
@@ -183,7 +184,7 @@ public class Adapter implements IAdapter {
 
 	private List<Feature> listFeatures(Feature root, String featureId) {
 		List<Feature> features = new ArrayList<>();
-		System.out.println(root.getId());
+		log.debug(root.getId());
 		if (root.getId().equals(featureId)) features.add(root);
 		if (root.getFeatures().size() > 0) 
 			for (Feature f : root.getFeatures()) features.addAll(listFeatures(f, featureId));
