@@ -23,17 +23,14 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -76,63 +73,17 @@ public class ModelAdapter implements IModelAdapter {
 	private final String CLASS = "ClassImpl";
 
 	private ModelTagger mt = null;
-	private IModelManager mm = null;
+//	private IModelManager mm = null;
 	private IModelQuery modelQuery = null;
 	
 	public ModelAdapter(IModelManager modelManager) throws ViatraQueryException {
-		mm = modelManager;
+//		mm = modelManager; 
 		mt = new ModelTagger(modelManager);
 		modelQuery = new ModelQuery (modelManager);
 	}
 
-	public Model applyUpdateCompositionDirective(Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
-			String newValue) {
-		Model model = null;
-		for (Stereotype stereotype : elements.keySet()) {
-			for (Element element : elements.get(stereotype)) {
-				Slot s = (Slot) element;
-				model = applyModifyValueComposition(inBaseModel, s, newValue);
-			}
-		}
-		return model;
-	}
-
-	public Model applyCompositionDirective(ActionOptionType actionOptionType, Model inBaseModel,
-			HashMap<Stereotype, List<Element>> elements, Stereotype adviceRole, Model usingVariantModel)
-			throws Exception {
-		
-		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
-		// Notified if variantElement cannot be found in variant model. In this
-		// case, adaptation cannot be applied
-		if (variantElement == null) {
-			System.err.println("Role " + adviceRole.getName() + " could not be found in variant model: "
-					+ usingVariantModel.getName());
-			return null;
-		}
-
-		Model model = null;
-
-		for (Stereotype stereotype : elements.keySet()) {
-			for (Element baseElement : elements.get(stereotype)) {
-				if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null)
-					model = applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null)
-					model = applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null)
-					model = applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-			}
-		}
-
-		return model;
-
-	}
-
-	public void stereotypeElement(Element e, Stereotype role) throws Exception {
-		mt.tagModel(e, role.getProfile(), role);
-		log.debug(e.getAppliedStereotypes());
-	}
-
 	@Override
+	//All elements copied in base model should be placed in packages they are in variant model
 	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) {
 
@@ -149,7 +100,7 @@ public class ModelAdapter implements IModelAdapter {
 			}
 			//Adding new relationships (as instance specification of instance specification links) 
 			// referencing the insertion point
-			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant)){
+			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant, usingVariantModel)){
 				//Add link instance specification
 				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getName());
 				addInstanceSpecificationInModel (linkInstance, inBaseModel);
@@ -169,57 +120,6 @@ public class ModelAdapter implements IModelAdapter {
 		}
 
 		return inBaseModel;
-	}
-
-	private void addInstanceSpecificationInModel(InstanceSpecification linkInstance, Model model) {
-		//Create InstanceSpecification copy:
-		//Create Slots, Add them to the model
-		//Add instance to the model
-		InstanceSpecification newLinkInstance = UMLFactory.eINSTANCE.createInstanceSpecification();
-		newLinkInstance.setName(linkInstance.getName());
-		newLinkInstance.setSpecification(linkInstance.getSpecification());
-		newLinkInstance.getClassifiers().addAll(linkInstance.getClassifiers());
-		model.getPackagedElements().add(newLinkInstance);
-		
-		for (Slot slot : linkInstance.getSlots()) {
-			addSlotInInstanceSpecification(slot, newLinkInstance, model);
-		}
-	}
-
-	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecificationImpl instanceVariant) {
-		Set<InstanceSpecification> instances = null;
-	
-		try {
-			InstanceOfInstanceSpecificationLinkMatcher matcher = 
-					(InstanceOfInstanceSpecificationLinkMatcher) modelQuery.queryMatcher(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
-			instances = matcher.getAllValuesOflink(instanceVariant);
-		} catch (ViatraQueryException e) {
-			e.printStackTrace();
-		}
-		return instances;
-	}
-
-	private void addSlotInInstanceSpecification(Slot slot, InstanceSpecification instanceSpecification, Model model) {
-		ValueSpecification vs = slot.getValues().get(0);
-		// Creates the new slot referencing new object
-		Slot newSlot = instanceSpecification.createSlot();
-		// FIXME DefiningFeature should be added to base model if it does not exit therein
-		newSlot.setDefiningFeature(slot.getDefiningFeature()); 
-		newSlot.createValue(vs.getName(), vs.getType(), vs.eClass());
-		newSlot.setOwningInstance(instanceSpecification);
-
-		InstanceValue instanceValue = (InstanceValue) newSlot.getValues().get(0);
-		InstanceValue newInstanceValue = (InstanceValue) slot.getValues().get(0);
-		// Adds the instance to the model in the proper package
-		InstanceSpecification newInstance = newInstanceValue.getInstance();
-		// FIXME copy variant instance only if it does not exist in base model.
-		if (!modelContainsElement (newInstance, model)){
-			log.debug("Adding instance: " + newInstance.getName() + " in base model");
-			instanceSpecification.getNearestPackage().getPackagedElements().add(newInstance); 
-		}
-		// Creates the reference between base object and referenced object in
-		// base model
-		instanceValue.setInstance(newInstance);
 	}
 
 	@Deprecated
@@ -282,6 +182,36 @@ public class ModelAdapter implements IModelAdapter {
 
 	}
 
+	public Model applyCompositionDirective(ActionOptionType actionOptionType, Model inBaseModel,
+			HashMap<Stereotype, List<Element>> elements, Stereotype adviceRole, Model usingVariantModel)
+			throws Exception {
+		
+		Element variantElement = findElementByStereotype(usingVariantModel, adviceRole);
+		// Notified if variantElement cannot be found in variant model. In this
+		// case, adaptation cannot be applied
+		if (variantElement == null) {
+			System.err.println("Role " + adviceRole.getName() + " could not be found in variant model: "
+					+ usingVariantModel.getName());
+			return null;
+		}
+
+		Model model = null;
+
+		for (Stereotype stereotype : elements.keySet()) {
+			for (Element baseElement : elements.get(stereotype)) {
+				if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null)
+					model = applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null)
+					model = applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null)
+					model = applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+			}
+		}
+
+		return model;
+
+	}
+
 	@Override
 	public Model applyDeleteComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) throws Exception {
@@ -300,7 +230,7 @@ public class ModelAdapter implements IModelAdapter {
 
 			//Deleting relationships (as instance specification of instance specification links) 
 			// referencing the insertion point
-			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant)){
+			for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant, usingVariantModel)){
 				//Add link instance specification
 				log.debug("Deleting detected link instance specification in base model: " + linkInstance.getName());
 				deleteInstanceSpecificationInModel (linkInstance, jointpointBaseModelElement, inBaseModel);
@@ -337,62 +267,6 @@ public class ModelAdapter implements IModelAdapter {
 		}
 
 		return inBaseModel;
-	}
-	
-	private void deleteInstanceSpecificationInModel(InstanceSpecification linkInstance, Element jointpointBaseModelElement, Model inBaseModel) {
-		// Delete instances referenced by slots of the link
-		for (Slot slot : linkInstance.getSlots()) {
-			ValueSpecification valueSpecification = slot.getValues().get(0);
-			if (valueSpecification != null){
-				if (valueSpecification instanceof InstanceValue){
-					InstanceSpecification instance = ((InstanceValue)valueSpecification).getInstance();
-					if (instance != null && areSameElements (instance, (NamedElement) jointpointBaseModelElement)){
-						log.debug("Removing instance: " + instance.getQualifiedName() + 
-							" from base model since it is referenced in slot " + slot.getDefiningFeature().getName());
-						instance.destroy();
-					}
-				}
-			}
-		}
-		
-		//Delete link
-		linkInstance.destroy();
-	}
-
-	private boolean areSameElements(NamedElement e1, NamedElement e2) {
-		boolean result = true;
-		result = result && (e1.getClass().getSimpleName().equals(e1.getClass().getSimpleName()));
-		result = result && (e1.getName().equals(e2.getName()));
-		return result;
-	}
-
-	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecificationImpl instanceBase) {
-		for (Slot slotInInstanceBase: instanceBase.getSlots()){
-			//Slot exists in both instances AND
-			//Slot in both instances refers to the same value
-			if (slotsHasSameDefiningFeature(slotInInstanceVariant, slotInInstanceBase) && 
-				slotsHasSameValue(slotInInstanceVariant, slotInInstanceBase)){
-				destroySlotInstance(slotInInstanceBase);
-				slotInInstanceBase.destroy();
-				
-			}	
-		}
-	}
-
-	private void destroySlotInstance(Slot slot) {
-		InstanceValue iv = (InstanceValue)slot.getValues().get(0);
-		InstanceSpecification instance = iv.getInstance();
-		if (instance!=null) instance.destroy();
-	}
-
-	private boolean slotsHasSameValue(Slot slot1, Slot slot2) {
-		InstanceValue iv1 = (InstanceValue) slot1.getValues().get(0);
-		InstanceValue iv2 = (InstanceValue) slot2.getValues().get(0);
-		return iv1.getInstance().getName().equals(iv2.getInstance().getName());
-	}
-
-	private boolean slotsHasSameDefiningFeature(Slot slot1, Slot slot2) {
-		return slot1.getDefiningFeature().getName().equals(slot2.getDefiningFeature().getName());
 	}
 
 	// FIXME: Error when applied to Atos UC (FIXED in new version included in class)
@@ -479,13 +353,6 @@ public class ModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
-			Element jointpointVariantModelElement) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) {
 
 		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
@@ -514,6 +381,25 @@ public class ModelAdapter implements IModelAdapter {
 		return inBaseModel;
 	}
 
+	@Override
+	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
+			Element jointpointVariantModelElement) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Model applyUpdateCompositionDirective(Model inBaseModel, HashMap<Stereotype, List<Element>> elements,
+			String newValue) {
+		Model model = null;
+		for (Stereotype stereotype : elements.keySet()) {
+			for (Element element : elements.get(stereotype)) {
+				Slot s = (Slot) element;
+				model = applyModifyValueComposition(inBaseModel, s, newValue);
+			}
+		}
+		return model;
+	}
+
 	/**
 	 * Given a pair of instances, retrieves the Relationship ref object of the
 	 * relationship
@@ -536,6 +422,34 @@ public class ModelAdapter implements IModelAdapter {
 		return rel;
 	}
 
+	public void stereotypeElement(Element e, Stereotype role) throws Exception {
+		mt.tagModel(e, role.getProfile(), role);
+		log.debug(e.getAppliedStereotypes());
+	}
+
+	private void addElementInPackage(PackageableElement element, org.eclipse.uml2.uml.Package pack) {
+		pack.getPackagedElements().add (element);
+	}
+
+	private void addInstanceSpecificationInModel(InstanceSpecification linkInstance, Model model) {
+		//Create InstanceSpecification copy:
+		//Create Slots, Add them to the model
+		//Add instance to the model
+		InstanceSpecification newLinkInstance = UMLFactory.eINSTANCE.createInstanceSpecification();
+		newLinkInstance.setName(linkInstance.getName());
+		newLinkInstance.setSpecification(linkInstance.getSpecification());
+		newLinkInstance.getClassifiers().addAll(linkInstance.getClassifiers());
+		
+		//Get the package in base model where linkInstance should be placed
+		org.eclipse.uml2.uml.Package pack  = getPackageInModel (linkInstance.getNearestPackage(), model);
+		if (pack != null){
+			addElementInPackage (newLinkInstance, pack);
+			for (Slot slot : linkInstance.getSlots()) {
+				addSlotInInstanceSpecification(slot, newLinkInstance, model);
+			}
+		}
+	}
+	
 	/**
 	 * Adds a slot to e1 with value reference to e2 on relationship r
 	 * 
@@ -554,6 +468,194 @@ public class ModelAdapter implements IModelAdapter {
 		value.setInstance(e2);
 		// relSlot.setDefiningFeature((StructuralFeature)
 		// e2.eGet(e2.eClass().getEStructuralFeature("classifier")));
+	}
+
+	private void addSlotInInstanceSpecification(Slot slot, InstanceSpecification instanceSpecification, Model model) {
+		ValueSpecification vs = slot.getValues().get(0);
+		// Creates the new slot referencing new object
+		Slot newSlot = instanceSpecification.createSlot();
+		newSlot.setDefiningFeature(slot.getDefiningFeature()); 
+		newSlot.createValue(vs.getName(), vs.getType(), vs.eClass());
+		newSlot.setOwningInstance(instanceSpecification);
+		
+		// DefiningFeature should be added to base model if it does not exit therein
+		StructuralFeature sf = slot.getDefiningFeature();
+		if (!modelContainsElement(sf, model)){
+			org.eclipse.uml2.uml.Package pack  = getPackageInModel (sf.getNearestPackage(), model);
+			if (pack != null){
+				log.debug("Adding instance: " + sf.getName() + " in base model in package " + pack.getQualifiedName());
+				addElementInPackage ((PackageableElement) sf, pack);
+			}
+		}
+
+		InstanceValue instanceValue = (InstanceValue) newSlot.getValues().get(0);
+		InstanceValue newInstanceValue = (InstanceValue) slot.getValues().get(0);
+		// Adds the instance to the model in the proper package
+		InstanceSpecification newInstance = newInstanceValue.getInstance();
+		// Copy variant instance only if it does not exist in base model.
+		// If it does not exist it should placed in the package defined in variant model
+		org.eclipse.uml2.uml.Package pack  = getPackageInModel (newInstance.getNearestPackage(), model);
+		if (!modelContainsElement (newInstance, model) && pack != null){
+			log.debug("Adding instance: " + newInstance.getName() + " in base model in package " + pack.getQualifiedName());
+			addElementInPackage (newInstance, pack);
+		}
+		// Creates the reference between base object and referenced object in
+		// base model
+		instanceValue.setInstance(newInstance);
+	}
+
+	private boolean areSameElements(NamedElement e1, NamedElement e2) {
+		boolean result = true;
+		result = result && (e1.getClass().getSimpleName().equals(e1.getClass().getSimpleName()));
+		result = result && (e1.getName().equals(e2.getName()));
+		return result;
+	}
+
+	private boolean checkSameRelationship(Relationship r1, Relationship r2) {
+		for (int i = 0; i < r1.getRelatedElements().size(); ++i) {
+			NamedElement e1 = (NamedElement) r1.getRelatedElements().get(i);
+			boolean found = false;
+			for (int j = 0; j < r2.getRelatedElements().size(); ++j) {
+				NamedElement e2 = (NamedElement) r2.getRelatedElements().get(j);
+				if (e1.getName().equals(e2.getName())) {
+					found = true;
+					break;
+				}
+			}
+			if (!found)
+				return false;
+		}
+		return true;
+	}
+
+	private void deleteInstanceSpecificationInModel(InstanceSpecification linkInstance, Element jointpointBaseModelElement, Model inBaseModel) {
+		//Get linkInstance equivalent in base model
+		InstanceSpecification linkInstanceInBaseModel = (InstanceSpecification) getEquivalentElementInModel (linkInstance, inBaseModel);
+		if(linkInstanceInBaseModel == null) return;
+		
+		// Delete instances referenced by slots of the link
+		for (Slot slot : linkInstanceInBaseModel.getSlots()) {
+			ValueSpecification valueSpecification = slot.getValues().get(0);
+			if (valueSpecification != null){
+				if (valueSpecification instanceof InstanceValue){
+					InstanceSpecification instance = ((InstanceValue)valueSpecification).getInstance();
+					//Do not remove the jointpoint basemodel element
+//					if (instance != null && areSameElements (instance, (NamedElement) jointpointBaseModelElement)){
+					if (instance != null && !(instance == jointpointBaseModelElement)){
+						log.debug("Removing instance: " + instance.getQualifiedName() + 
+							" from base model since it is referenced in slot " + slot.getDefiningFeature().getName());
+						instance.destroy();
+					}
+				}
+			}
+		}
+		
+		//Delete link
+		linkInstanceInBaseModel.destroy();
+	}
+
+	private PackageableElement getEquivalentElementInModel(PackageableElement element, Model model) {
+		PackageableElement equivalentElement = null;
+		org.eclipse.uml2.uml.Package pack = getPackageInModel(element.getNearestPackage(), model);
+		if (pack!=null){
+			equivalentElement = pack.getPackagedElement(element.getName());
+		}
+		return equivalentElement;
+	}
+
+	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecificationImpl instanceBase) {
+		for (Slot slotInInstanceBase: instanceBase.getSlots()){
+			//Slot exists in both instances AND
+			//Slot in both instances refers to the same value
+			if (slotsHasSameDefiningFeature(slotInInstanceVariant, slotInInstanceBase) && 
+				slotsHasSameValue(slotInInstanceVariant, slotInInstanceBase)){
+				destroySlotInstance(slotInInstanceBase);
+				slotInInstanceBase.destroy();
+				
+			}	
+		}
+	}
+
+	private void destroySlotInstance(Slot slot) {
+		InstanceValue iv = (InstanceValue)slot.getValues().get(0);
+		InstanceSpecification instance = iv.getInstance();
+		if (instance!=null) instance.destroy();
+	}
+
+	private Element findElementByStereotype(Model model, Stereotype stereotype) {
+		EList<Element> list = model.allOwnedElements();
+		for (Element e : list) {
+			if (e.isStereotypeApplied(stereotype)) {
+				return e;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieves the list of all the instances of the specified class
+	 * 
+	 * @param c
+	 * @return
+	 */
+	private List<NamedElement> getInstances(ClassImpl c, Model model) {
+		List<NamedElement> instances = new ArrayList<>();
+		TreeIterator<EObject> tree = model.eAllContents();
+		while (tree.hasNext()) {
+			EObject a = tree.next();
+			if (a.eClass().getEStructuralFeature("classifier") != null) {
+				EObjectResolvingEList eList = (EObjectResolvingEList) a
+						.eGet(a.eClass().getEStructuralFeature("classifier"));
+				if (eList != null && eList.size() > 0) {
+					Classifier classifier = (Classifier) eList.get(0);
+					if (classifier.getName().equals(c.getName()))
+						instances.add((NamedElement) a);
+				}
+			}
+		}
+		return instances;
+	}
+
+	private org.eclipse.uml2.uml.Package getPackageInModel(org.eclipse.uml2.uml.Package pack, Model model) {
+		// Find in model the corresponding package (same package nested route, excepting for model name)
+		String packageQName = pack.getQualifiedName();
+		packageQName = packageQName.substring(packageQName.indexOf("::") + 2, packageQName.length());
+		List<String> tokens = Arrays.asList(packageQName.split ("\\::")); //Immutable list
+		List<String> packages = new ArrayList<>(tokens); //Mutable list
+		if (packages.size() == 0){
+			return null;
+		}
+		return getPackageInPackage (packages, model);
+	}
+
+	private org.eclipse.uml2.uml.Package getPackageInPackage(List<String> packages, org.eclipse.uml2.uml.Package outerPackage) {
+		if (packages.size() == 0){
+			return outerPackage;
+		}
+		String packageName = packages.get(0);
+		org.eclipse.uml2.uml.Package innerPackage = (org.eclipse.uml2.uml.Package) outerPackage.getPackagedElement(packageName);
+		packages.remove(packageName);
+		
+		return getPackageInPackage (packages, innerPackage);
+	}
+
+	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecificationImpl instanceVariant, Model model) {
+		Set<InstanceSpecification> instances = null;
+	
+		try {
+			InstanceOfInstanceSpecificationLinkMatcher matcher = 
+					(InstanceOfInstanceSpecificationLinkMatcher) modelQuery.queryMatcher(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
+			instances = matcher.getAllValuesOflink(instanceVariant);
+			//Filtering out instances that do not belong to target model
+			for (InstanceSpecification instance: instances){
+				if (!modelContainsElement(instance, model)){
+					instances.remove(instance);
+				}
+			}
+		} catch (ViatraQueryException e) {
+			e.printStackTrace();
+		}
+		return instances;
 	}
 
 	/**
@@ -584,47 +686,6 @@ public class ModelAdapter implements IModelAdapter {
 	}
 
 	/**
-	 * Retrieves the list of all the instances of the specified class
-	 * 
-	 * @param c
-	 * @return
-	 */
-	private List<NamedElement> getInstances(ClassImpl c, Model model) {
-		List<NamedElement> instances = new ArrayList<>();
-		TreeIterator<EObject> tree = model.eAllContents();
-		while (tree.hasNext()) {
-			EObject a = tree.next();
-			if (a.eClass().getEStructuralFeature("classifier") != null) {
-				EObjectResolvingEList eList = (EObjectResolvingEList) a
-						.eGet(a.eClass().getEStructuralFeature("classifier"));
-				if (eList != null && eList.size() > 0) {
-					Classifier classifier = (Classifier) eList.get(0);
-					if (classifier.getName().equals(c.getName()))
-						instances.add((NamedElement) a);
-				}
-			}
-		}
-		return instances;
-	}
-
-	private boolean checkSameRelationship(Relationship r1, Relationship r2) {
-		for (int i = 0; i < r1.getRelatedElements().size(); ++i) {
-			NamedElement e1 = (NamedElement) r1.getRelatedElements().get(i);
-			boolean found = false;
-			for (int j = 0; j < r2.getRelatedElements().size(); ++j) {
-				NamedElement e2 = (NamedElement) r2.getRelatedElements().get(j);
-				if (e1.getName().equals(e2.getName())) {
-					found = true;
-					break;
-				}
-			}
-			if (!found)
-				return false;
-		}
-		return true;
-	}
-
-	/**
 	 * 
 	 * @param deleteClass
 	 * @param usingVariantModel
@@ -645,14 +706,14 @@ public class ModelAdapter implements IModelAdapter {
 		return false;
 	}
 
-	private Element findElementByStereotype(Model model, Stereotype stereotype) {
-		EList<Element> list = model.allOwnedElements();
-		for (Element e : list) {
-			if (e.isStereotypeApplied(stereotype)) {
-				return e;
-			}
-		}
-		return null;
+	private boolean slotsHasSameDefiningFeature(Slot slot1, Slot slot2) {
+		return slot1.getDefiningFeature().getName().equals(slot2.getDefiningFeature().getName());
+	}
+
+	private boolean slotsHasSameValue(Slot slot1, Slot slot2) {
+		InstanceValue iv1 = (InstanceValue) slot1.getValues().get(0);
+		InstanceValue iv2 = (InstanceValue) slot2.getValues().get(0);
+		return iv1.getInstance().getName().equals(iv2.getInstance().getName());
 	}
 
 }

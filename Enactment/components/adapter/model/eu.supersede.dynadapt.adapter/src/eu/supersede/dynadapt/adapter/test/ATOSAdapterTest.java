@@ -47,23 +47,6 @@ public class ATOSAdapterTest {
 	
 	IFeatureConfigLAO fcLAO = null;
 	
-	@Before
-	public void setUp() throws Exception {
-		new StandaloneSetup().setPlatformUri("../../../../../Scenarios/Atos/");
-		modelsLocation = new HashMap<String, String>();
-		modelsLocation.put("aspects", "adaptability_models/");
-		modelsLocation.put("variants", "models/variants/");
-		modelsLocation.put("base", "models/base/");
-		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "src/eu/supersede/dynadapt/usecases/atos/patterns/");
-		modelsLocation.put("features", "features/models/");
-		
-		url = new URL(localPath);
-		mm = new ModelManager(baseModelPath);
-		mr = new ModelRepository(repository,url, mm);
-		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
-	}
-	
 	@Test
 	public void adapt() {
 		try {
@@ -84,6 +67,23 @@ public class ATOSAdapterTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Before
+	public void setUp() throws Exception {
+		new StandaloneSetup().setPlatformUri("../../../../../Scenarios/Atos/");
+		modelsLocation = new HashMap<String, String>();
+		modelsLocation.put("aspects", "adaptability_models/");
+		modelsLocation.put("variants", "models/variants/");
+		modelsLocation.put("base", "models/base/");
+		modelsLocation.put("profiles", "models/profiles/");
+		modelsLocation.put("patterns", "src/eu/supersede/dynadapt/usecases/atos/patterns/");
+		modelsLocation.put("features", "features/models/");
+		
+		url = new URL(localPath);
+		mm = new ModelManager(baseModelPath);
+		mr = new ModelRepository(repository,url, mm);
+		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 	}
 	
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {
