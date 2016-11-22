@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="AtosUCFeatureModel" version="1.0.0">
+  <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModel" lower="1" upper="1">
+    <feature id="smart_platform" name="SmartPlatform" lower="0" upper="1">
+      <feature id="behaviour" name="Behaviour" lower="1" upper="1">
+        <feature id="concurrency" name="Concurrency" lower="0" upper="1">
+          <attribute id="a_1342994313" name="number_users" type="integer"/>
+          <attribute id="duration" name="duration" type="double"/>
+        </feature>
+      </feature>
+      <feature id="infrastructure" name="Infrastructure" lower="1" upper="1">
+        <feature id="broadcast_center" name="Broadcast Center" lower="1" upper="1"/>
+        <feature id="data_center" name="Data Center" lower="1" upper="1">
+          <group lower="1" upper="-1">
+            <feature id="physical_environment" name="Physical Environment" lower="1" upper="1"/>
+            <feature id="vm" name="VM" lower="0" upper="-1">
+              <attribute id="number_vms" name="number_vms" type="integer"/>
+              <group lower="1" upper="1">
+                <feature id="sga" name="SGA" lower="0" upper="1">
+                  <feature id="sga_configuration" name="SGA_Configuration" lower="1" upper="1"/>
+                </feature>
+                <feature id="cms" name="CMS" lower="0" upper="1">
+                  <feature id="cms_configuration" name="CMS_Configuration" lower="1" upper="1"/>
+                </feature>
+              </group>
+            </feature>
+          </group>
+        </feature>
+        <feature id="lb" name="LB" lower="0" upper="-1">
+          <attribute id="lb_number_instances" name="number_instances" type="integer"/>
+          <feature id="lb_configuration" name="LB_Configuration" lower="1" upper="1">
+            <attribute id="lb_vmconfiguration" name="VMConfiguration" type="string"/>
+          </feature>
+        </feature>
+        <feature id="hsk" name="HSK" lower="0" upper="-1">
+          <attribute id="hsk_number_instances" name="number_instances" type="integer"/>
+          <feature id="hsk_configuration" name="HSK_Configuration" lower="1" upper="1">
+            <attribute id="hsk_vmconfiguration" name="VMConfiguration" type="string"/>
+          </feature>
+        </feature>
+        <feature id="cdn" name="CDN" lower="1" upper="2">
+          <attribute id="current" name="current" type="string"/>
+        </feature>
+        <feature id="player" name="Player" lower="1" upper="-1">
+          <feature id="player_configuration" name="Player_Configuration" lower="1" upper="1">
+            <attribute id="cdn" name="cdn" type="string"/>
+          </feature>
+        </feature>
+        <feature id="vm_configuration" name="VM_Configuration" lower="0" upper="-1">
+          <attribute id="name" name="name" type="string"/>
+          <attribute id="number_cores" name="number_cores" type="integer"/>
+          <attribute id="memory" name="memory" type="integer"/>
+          <attribute id="storage" name="storage" type="integer"/>
+          <attribute id="bandwidth" name="bandwidth" type="integer"/>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+  <constraint value="hsk_configuration implies vm_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="concurrency implies hsk" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="concurrency implies lb" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb_configuration implies vm_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="hsk equals lb" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+</fm:featureModel>

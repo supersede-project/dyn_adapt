@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtext Reference for YAFMT FM
+Bundle-SymbolicName: eu.supersede.dynadapt.lang.yafmt
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: cz.zcu.yafmt.ui.editors.fm;bundle-version="0.3.0",
+ cz.zcu.yafmt.model,
+ org.eclipse.xtext.xbase,
+ org.eclipse.xtext;bundle-version="2.9.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Supersede Project
+Export-Package: eu.supersede.dynadapt.lang.yafmt

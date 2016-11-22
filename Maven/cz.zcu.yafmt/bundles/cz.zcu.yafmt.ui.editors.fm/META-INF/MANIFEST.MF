@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Feature Model Editor
+Bundle-SymbolicName: cz.zcu.yafmt.ui.editors.fm;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Activator: cz.zcu.yafmt.ui.editors.fm.FeatureModelEditorPlugin
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0",
+ org.eclipse.core.resources;bundle-version="3.8.0",
+ org.eclipse.ui.ide;bundle-version="3.8.0",
+ org.eclipse.emf.edit.ui;bundle-version="2.8.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.8.1",
+ org.eclipse.gef;bundle-version="3.9.0",
+ cz.zcu.yafmt.clang;bundle-version="0.3.0",
+ cz.zcu.yafmt.model;bundle-version="0.3.0",
+ cz.zcu.yafmt.model.edit;bundle-version="0.3.0",
+ cz.zcu.yafmt.model.validation;bundle-version="0.3.0",
+ cz.zcu.yafmt.ui;bundle-version="0.3.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

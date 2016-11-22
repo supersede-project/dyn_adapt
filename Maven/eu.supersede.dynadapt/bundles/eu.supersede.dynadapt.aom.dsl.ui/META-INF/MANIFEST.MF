@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.supersede.dynadapt.aom.dsl.ui
+Bundle-Vendor: Supersede Project
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: eu.supersede.dynadapt.aom.dsl,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.ui,
+ org.eclipse.compare,
+ org.eclipse.xtext.builder,
+ org.eclipse.xtend.lib;resolution:=optional,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.common.types.ui;bundle-version="2.9.1"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: eu.supersede.dynadapt.dsl.ui.internal,
+ eu.supersede.dynadapt.dsl.ui.contentassist,
+ eu.supersede.dynadapt.dsl.ui.quickfix,
+ eu.supersede.dynadapt.dsl.ui.contentassist.antlr,
+ eu.supersede.dynadapt.dsl.ui.contentassist.antlr.internal
+Bundle-Activator: eu.supersede.dynadapt.dsl.ui.internal.AspectActivator

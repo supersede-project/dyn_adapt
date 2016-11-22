@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtext Utils for Supersede DSL
+Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl.parser;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Supersede Project
+Export-Package: eu.supersede.dynadapt.aom.dsl.parser,
+ eu.supersede.dynadapt.aom.dsl.parser.actions,
+ eu.supersede.dynadapt.atos.queries,
+ eu.supersede.dynadapt.atos.queries.util
+Require-Bundle: org.eclipse.emf.mwe.utils;bundle-version="1.3.20",
+ org.eclipse.xtext;bundle-version="2.9.1",
+ org.eclipse.xtext.generator;bundle-version="2.9.1",
+ org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.xtext.xbase;bundle-version="2.9.1",
+ org.eclipse.viatra.query.runtime;bundle-version="1.2.1",
+ org.eclipse.core.resources,
+ org.eclipse.viatra.query.patternlanguage,
+ eu.supersede.dynadapt.aom.dsl;bundle-version="1.0.0",
+ eu.supersede.dynadapt.lang.uml;bundle-version="1.0.0",
+ eu.supersede.dynadapt.lang.uml.ui;bundle-version="1.0.0",
+ eu.supersede.dynadapt.lang.yafmt,
+ eu.supersede.dynadapt.lang.yafmt.ui;bundle-version="1.0.0",
+ eu.supersede.dynadapt.aom.dsl.resources,
+ eu.supersede.dynadapt.aom.dsl.util,
+ org.eclipse.uml2.uml;bundle-version="5.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: cz.zcu.yafmt.model.fm,
+ eu.supersede.dynadapt.lang.uml,
+ eu.supersede.dynadapt.model,
+ org.eclipse.viatra.query.patternlanguage.patternLanguage

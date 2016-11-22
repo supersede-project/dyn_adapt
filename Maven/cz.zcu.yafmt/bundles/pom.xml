@@ -1,0 +1,27 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cz.zcu.yafmt</groupId>
+    <artifactId>cz.zcu.yafmt.bundles</artifactId>
+    <version>0.3.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>cz.zcu.yafmt</groupId>
+        <artifactId>cz.zcu.yafmt.root</artifactId>
+        <version>0.3.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+	<module>cz.zcu.yafmt.model</module>
+	<module>cz.zcu.yafmt.model.edit</module>
+	<module>cz.zcu.yafmt.clang</module>
+	<module>cz.zcu.yafmt.clang.bcl</module>
+	<module>cz.zcu.yafmt.clang.bcl.ui</module>
+	<module>cz.zcu.yafmt.model.validation</module>
+	<module>cz.zcu.yafmt.ui</module>
+	<module>cz.zcu.yafmt.ui.editors.fc</module>
+	<module>cz.zcu.yafmt.ui.editors.fm</module>
+	<module>cz.zcu.yafmt.ui.views.fm</module>
+	<module>cz.zcu.yafmt.model.editor</module>	
+    </modules>
+</project>
