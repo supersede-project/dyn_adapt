@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2016 FBK
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Fitsum Kifetew (FBK) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
 /**
  * 
  */
@@ -13,11 +32,11 @@ import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
 
 /**
  * @author fitsum
- *
+ * This class is adapted from jMetal.
  */
 public class Ranking {
 	/**
-	 * The <code>SolutionSet</code> to rank
+	 * The population to rank
 	 */
 	private List<Chromosome> solutionSet_;
 
@@ -32,7 +51,7 @@ public class Ranking {
 	private static final Comparator dominance_ = new DominanceComparator();
 
 	/**
-	 * stores a <code>Comparator</code> for Overal Constraint Violation
+	 * stores a <code>Comparator</code> for Overall Constraint Violation
 	 * Comparator checking
 	 */
 	private static final OverallConstraintViolationComparator constraint_ = new OverallConstraintViolationComparator();
@@ -41,7 +60,7 @@ public class Ranking {
 	 * Constructor.
 	 * 
 	 * @param solutionSet
-	 *            The <code>SolutionSet</code> to be ranked.
+	 *            The population of <code>Chromosome</code> to be ranked.
 	 */
 	public Ranking(List<Chromosome> solutionSet) {
 		solutionSet_ = solutionSet;
@@ -61,25 +80,6 @@ public class Ranking {
 		// Initialize the fronts
 		for (int i = 0; i < front.length; i++)
 			front[i] = new LinkedList<Integer>();
-
-		/*
-		 * //-> Fast non dominated sorting algorithm for (int p = 0; p <
-		 * solutionSet_.size(); p++) { // Initialice the list of individuals
-		 * that i dominate and the number // of individuals that dominate me
-		 * iDominate[p] = new LinkedList<Integer>(); dominateMe[p] = 0; // For
-		 * all q individuals , calculate if p dominates q or vice versa for (int
-		 * q = 0; q < solutionSet_.size(); q++) { flagDominate
-		 * =constraint_.compare(solutionSet.get(p),solutionSet.get(q)); if
-		 * (flagDominate == 0) { flagDominate
-		 * =dominance_.compare(solutionSet.get(p),solutionSet.get(q)); }
-		 * 
-		 * if (flagDominate == -1) { iDominate[p].add(new Integer(q)); } else if
-		 * (flagDominate == 1) { dominateMe[p]++; } }
-		 * 
-		 * // If nobody dominates p, p belongs to the first front if
-		 * (dominateMe[p] == 0) { front[0].add(new Integer(p));
-		 * solutionSet.get(p).setRank(0); } }
-		 */
 
 		// -> Fast non dominated sorting algorithm
 		// Contribution of Guillaume Jacquenot
@@ -150,12 +150,11 @@ public class Ranking {
 	} // Ranking
 
 	/**
-	 * Returns a <code>SolutionSet</code> containing the solutions of a given
-	 * rank.
+	 * Returns a population containing the solutions of a given rank.
 	 * 
 	 * @param rank
 	 *            The rank
-	 * @return Object representing the <code>SolutionSet</code>.
+	 * @return Object representing the population of <code>Chromosome</code>s.
 	 */
 	public List<Chromosome> getSubfront(int rank) {
 		return ranking_.get(rank);

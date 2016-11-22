@@ -2,12 +2,18 @@ package eu.supersede.dynadapt.usecases.atos.patterns;
 
 import eu.supersede.dynadapt.usecases.atos.patterns.ArtifactManifestationsMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSConfigurationInstancesMatcher;
+import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLinkMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstancesMatcher;
+import eu.supersede.dynadapt.usecases.atos.patterns.InstanceOfInstanceSpecificationLinkMatcher;
+import eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationLinkMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.NodeArtifactsMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.ArtifactManifestationsQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.CMSConfigurationInstancesQuerySpecification;
+import eu.supersede.dynadapt.usecases.atos.patterns.util.CMSInstanceToConfigurationLinkQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.CMSInstancesQuerySpecification;
+import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
+import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceSpecificationLinkQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.NodeArtifactsQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -27,6 +33,9 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * <li>instanceSpecificationsAsManifestationsOfNodeArtifacts</li>
  * <li>CMSInstances</li>
  * <li>CMSConfigurationInstances</li>
+ * <li>InstanceSpecificationLink</li>
+ * <li>InstanceOfInstanceSpecificationLink</li>
+ * <li>CMSInstanceToConfigurationLink</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -56,6 +65,9 @@ public final class Atos_query_patterns extends BaseGeneratedPatternGroup {
     querySpecifications.add(InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification.instance());
     querySpecifications.add(CMSInstancesQuerySpecification.instance());
     querySpecifications.add(CMSConfigurationInstancesQuerySpecification.instance());
+    querySpecifications.add(InstanceSpecificationLinkQuerySpecification.instance());
+    querySpecifications.add(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
+    querySpecifications.add(CMSInstanceToConfigurationLinkQuerySpecification.instance());
   }
   
   public NodeArtifactsQuerySpecification getNodeArtifacts() throws ViatraQueryException {
@@ -96,5 +108,29 @@ public final class Atos_query_patterns extends BaseGeneratedPatternGroup {
   
   public CMSConfigurationInstancesMatcher getCMSConfigurationInstances(final ViatraQueryEngine engine) throws ViatraQueryException {
     return CMSConfigurationInstancesMatcher.on(engine);
+  }
+  
+  public InstanceSpecificationLinkQuerySpecification getInstanceSpecificationLink() throws ViatraQueryException {
+    return InstanceSpecificationLinkQuerySpecification.instance();
+  }
+  
+  public InstanceSpecificationLinkMatcher getInstanceSpecificationLink(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return InstanceSpecificationLinkMatcher.on(engine);
+  }
+  
+  public InstanceOfInstanceSpecificationLinkQuerySpecification getInstanceOfInstanceSpecificationLink() throws ViatraQueryException {
+    return InstanceOfInstanceSpecificationLinkQuerySpecification.instance();
+  }
+  
+  public InstanceOfInstanceSpecificationLinkMatcher getInstanceOfInstanceSpecificationLink(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return InstanceOfInstanceSpecificationLinkMatcher.on(engine);
+  }
+  
+  public CMSInstanceToConfigurationLinkQuerySpecification getCMSInstanceToConfigurationLink() throws ViatraQueryException {
+    return CMSInstanceToConfigurationLinkQuerySpecification.instance();
+  }
+  
+  public CMSInstanceToConfigurationLinkMatcher getCMSInstanceToConfigurationLink(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return CMSInstanceToConfigurationLinkMatcher.on(engine);
   }
 }

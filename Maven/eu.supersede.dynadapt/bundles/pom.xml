@@ -12,14 +12,24 @@
     </parent>
 
     <modules>
+	<module>eu.supersede.dynadapt.adapter</module>
         <module>eu.supersede.dynadapt.aom.dsl</module>
 	<module>eu.supersede.dynadapt.aom.dsl.extensionpoint </module>
+	<module>eu.supersede.dynadapt.aom.dsl.parser</module>
 	<module>eu.supersede.dynadapt.aom.dsl.resources</module>
 	<module>eu.supersede.dynadapt.aom.dsl.ui</module>
 	<module>eu.supersede.dynadapt.aom.dsl.util </module>
+	<module>eu.supersede.dynadapt.compositionhook</module>
+	<module>eu.supersede.dynadapt.dm.feature.builder</module>
+	<module>eu.supersede.dynadapt.dm.feature.serializer</module>
+	<module>eu.supersede.dynadapt.enactor</module>
+	<module>eu.supersede.dynadapt.featuremodel</module>
 	<module>eu.supersede.dynadapt.lang.uml</module>
 	<module>eu.supersede.dynadapt.lang.uml.ui</module>
 	<module>eu.supersede.dynadapt.lang.yafmt</module>
 	<module>eu.supersede.dynadapt.lang.yafmt.ui</module>
+	<module>eu.supersede.dynadapt.model</module>
+	<module>eu.supersede.dynadapt.modeladapter</module>
+	<module>eu.supersede.dynadapt.modelrepository</module>
     </modules>
 </project>

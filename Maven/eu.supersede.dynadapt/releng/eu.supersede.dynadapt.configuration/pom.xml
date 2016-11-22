@@ -11,6 +11,8 @@
   <neon-repo.url>http://download.eclipse.org/releases/neon</neon-repo.url>
   <mars-repo.url>http://download.eclipse.org/releases/mars</mars-repo.url>
   <viatra-repo.url>http://download.eclipse.org/viatra/updates/release</viatra-repo.url>
+  <xtext-repo.url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</xtext-repo.url>
+  <p2local.url>http://localhost:8080/site</p2local.url>
   <xtext.version>2.9.1</xtext.version>
  </properties>
 
@@ -25,11 +27,21 @@
    <url>${viatra-repo.url}</url>
    <layout>p2</layout>
   </repository>
-
+  <repository>
+   <id>xtext</id>
+   <url>${xtext-repo.url}</url>
+   <layout>p2</layout>
+  </repository>
+<!--  <repository>
+   <id>p2local</id>
+   <url>${p2local.url}</url>
+   <layout>p2</layout>
+  </repository> -->
  </repositories>
 
  <build>
   <plugins>
+
    <plugin>
     <groupId>org.eclipse.tycho</groupId>
     <artifactId>tycho-maven-plugin</artifactId>
@@ -71,6 +83,7 @@
      </environments>
     </configuration>
    </plugin>
+
    <plugin>
       <groupId>org.eclipse.xtend</groupId>
       <artifactId>xtend-maven-plugin</artifactId>
@@ -89,33 +102,8 @@
   	<outputDirectory>xtend-gen</outputDirectory>
       </configuration>
     </plugin>
-  </plugins>
 
-<!--
- <pluginManagement>
-  <plugins>
-    <plugin>
-      <groupId>org.eclipse.xtend</groupId>
-      <artifactId>xtend-maven-plugin</artifactId>
-      <version>${xtext.version}</version>
-      <executions>
-  <execution>
-    <goals>
-      <goal>compile</goal>
-      <goal>xtend-install-debug-info</goal>
-      <goal>testCompile</goal>
-      <goal>xtend-test-install-debug-info</goal>
-    </goals>
-  </execution>
-      </executions>
-      <configuration>
-  	<outputDirectory>xtend-gen</outputDirectory>
-      </configuration>
-    </plugin>
   </plugins>
- </pluginManagement>
--->
-
  </build>
 
 </project>

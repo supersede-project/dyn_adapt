@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="MonitoringSystem" version="1.0.0">
+  <rootFeature id="monitoringsystem" name="MonitoringSystem" lower="1" upper="1">
+    <feature id="Social_Networks" name="Social_Networks" lower="0" upper="1">
+      <feature id="Twitter" name="Twitter" lower="1" upper="1">
+        <feature id="KeywordsExpression" name="KeywordExpression" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="KeywordsExpression1" name="KeywordsExpression1" lower="0" upper="1"/>
+            <feature id="KeywordsExpression2" name="KeywordsExpression2" lower="0" upper="1"/>
+          </group>
+        </feature>
+        <feature id="timeSlot_twitter" name="timeSlot" lower="1" upper="1">
+          <attribute id="a_944977732" name="timeSlot" type="integer"/>
+        </feature>
+      </feature>
+    </feature>
+    <feature id="M2" name="Market_Places" lower="0" upper="1">
+      <feature id="f_1055104605" name="GooglePlay" lower="0" upper="1">
+        <feature id="timeSlot_GooglePlay" name="timeSlot" lower="1" upper="1">
+          <attribute id="a_1591649839" name="timeSlot" type="integer"/>
+        </feature>
+        <feature id="Tool_GooglePlay" name="Tool" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="GooglePlay_API_GooglePlay" name="GooglePlay_API" lower="0" upper="1"/>
+            <feature id="AppTweak_GooglePlay" name="AppTweak" lower="0" upper="1"/>
+          </group>
+        </feature>
+      </feature>
+      <feature id="f_286909579" name="AppStore" lower="0" upper="1">
+        <feature id="timeSlot_AppStore" name="timeSlot" lower="1" upper="1">
+          <attribute id="a_1187834524" name="timeSlot" type="integer"/>
+        </feature>
+        <feature id="Tool_AppStore" name="Tool" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="iTunes_RSS_AppStore" name="iTunes_RSS" lower="0" upper="1"/>
+            <feature id="AppTweak_AppStore" name="AppTweak" lower="0" upper="1"/>
+          </group>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+</fm:featureModel>
