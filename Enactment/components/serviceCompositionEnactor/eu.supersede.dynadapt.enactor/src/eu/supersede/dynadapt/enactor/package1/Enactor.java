@@ -15,31 +15,43 @@ import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.internal.impl.ModelImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import ptolemy.kernel.util.IllegalActionException;
+import ptolemy.kernel.util.NameDuplicationException;
+import ptolemy.kernel.util.Workspace;
+
 @SuppressWarnings("restriction")
 public class Enactor implements IEnactor{
 
 	public static void main(String[] args) {
 			
 		Enactor main_class=new Enactor();
-		System.out.print(main_class.getEnactmentCode());
+		main_class.getEnactmentCode();
         
 	}
 
 	@Override
-	public ArrayList<String> getEnactmentCode() {
+	public String getEnactmentCode() {
 		
 		// TODO Auto-generated method stub
-		// getting a UML resource (activity diagram from which the enactment code is generated)
+		/** getting a UML resource (activity diagram from which the enactment code is generated)
+		 * 
+		 */
 		ResourceSet set = new ResourceSetImpl();
 		set.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 		set.getResourceFactoryRegistry().getExtensionToFactoryMap()
 		   .put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
 		   .put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		Resource res = set.getResource(URI.createFileURI("D:/mars_workspace/test/S1.uml"), true);
+		//Resource res1 = set.getResource(URI.createFileURI("D:/mars_workspace/test/S1.uml"), true);
+		Resource res2 = set.getResource(URI.createFileURI("D:/mars_workspace/test/S2.uml"), true);
 		
-
-		//Load the model (this is also working but the approach above is used)
+		ArrayList<Resource> res_list = new ArrayList<Resource>();
+		//res_list.add(res1);
+		res_list.add(res2);
+		
+		/**Load the model (this is also working but the approach above is used)
+		 * 
+		 */
 //		URI modelUri = URI.createFileURI("D:/mars_workspace/test/model.uml");
 //		ResourceSet modelSet = new ResourceSetImpl();
 //		modelSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
@@ -50,7 +62,9 @@ public class Enactor implements IEnactor{
 
 		
 				
-		// Load the profile 
+		/** Load the profile
+		 *  
+		 */
 //		URI profileUri = URI.createFileURI("D:/mars_workspace/Supersede-Profile/model.profile.uml");
 //		ResourceSet profileSet = new ResourceSetImpl();
 //		profileSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
@@ -62,14 +76,32 @@ public class Enactor implements IEnactor{
 //		Stereotype Stereotype1 = (Stereotype)profile.getPackagedElements().get(0);
 //		Stereotype Stereotype2 = (Stereotype)profile.getPackagedElements().get(1);
 
+		PtolemyGenerator ptolemyModel = null;
+		try {
+                    ptolemyModel = new PtolemyGenerator(new Workspace());
+		} catch (IllegalActionException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+		} catch (NameDuplicationException e) {
+		    // TODO Auto-generated catch block
+                    e.printStackTrace();
+		}
 		
-		
-		ModelImpl root=(ModelImpl)res.getContents().get(0);
-		ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
-		List <ActivityNode> activity_nodes=activity.getNodes();
-		Adaptation.analyze(activity, activity_nodes);
+		CURLGenerator CURLcode = new CURLGenerator();
+		for(int i=0;i<res_list.size();i++)
+		{
+			Resource res=res_list.get(i);
+			ModelImpl root=(ModelImpl)res.getContents().get(0);
+			ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
+			List <ActivityNode> activity_nodes=activity.getNodes();
+			//CURLcode.analyze(activity, activity_nodes);
+			//CURLcode.inject();
+			ptolemyModel.analyze(activity, activity_nodes);
+			ptolemyModel.inject();
+		}
 						
-		return Adaptation.get_adaptation_string();
+		return "";
+		
 				
 	}
 

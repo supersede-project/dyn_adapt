@@ -43,8 +43,10 @@ import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
-import eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLinkMatcher;
-import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
+import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificationLinkMatcher;
+import eu.supersede.dynadapt.modeladapter.queries.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
+//import eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLinkMatcher;
+//import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
 class ComposableInstanceSpecification extends InstanceSpecificationImpl implements Composable{
 	private final static Logger log = LogManager.getLogger(ComposableInstanceSpecification.class);

@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Adapter
+Bundle-Name: Model Adapter
 Bundle-SymbolicName: eu.supersede.dynadapt.modeladapter;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: eu.supersede.dynadapt.modeladapter.Activator
 Export-Package: eu.supersede.dynadapt.modeladapter,
  eu.supersede.dynadapt.modeladapter.queries,
  eu.supersede.dynadapt.modeladapter.queries.util
@@ -20,4 +19,3 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.apache.log4j;version="1.2.15",
  org.junit;version="4.12.0"
-Bundle-ActivationPolicy: lazy
