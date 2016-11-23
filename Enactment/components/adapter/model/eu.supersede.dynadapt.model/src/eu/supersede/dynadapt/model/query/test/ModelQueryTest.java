@@ -43,6 +43,8 @@ import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
+
+
 import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkProcessor;
 import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
