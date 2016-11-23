@@ -22,17 +22,13 @@ package eu.supersede.dynadapt.model.query.test;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.junit.After;
 import org.junit.Assert;
@@ -43,9 +39,6 @@ import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
-
-
-import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkProcessor;
 import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
 
