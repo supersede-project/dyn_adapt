@@ -4,7 +4,11 @@ import java.time.LocalDateTime;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Reader;
+import java.nio.file.Files;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -14,7 +18,14 @@ import spark.Response;
 import java.util.*;
 import java.util.concurrent.*;
 
+import org.apache.commons.io.FileUtils;
 import org.json.*;
+import ptolemy.moml.MoMLSimpleApplication;
+import srdjan.supersede.extension.ReadXML;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 
 public class AdaptationService {
 	
@@ -49,8 +60,13 @@ public class AdaptationService {
 			String url = Util.getServiceURL(req);
 			if(adaptations.containsKey(url))
 			{
-				String newResponse = processSteps(url,req);
-				res.body(newResponse);
+			        //Tudor's version with steps
+				//String newResponse = processSteps(url,req);
+				//res.body(newResponse);
+			    
+			        //Srdjan's version with ptolemy .xml file
+			        String newResponse =processSteps_ptolemy(url,req);
+			        res.body(newResponse);
 			}
 			else
 			{
@@ -65,8 +81,13 @@ public class AdaptationService {
 			String url = Util.getServiceURL(req);
 			if(adaptations.containsKey(url))
 			{
-				String newResponse = processSteps(url,req);
-				res.body(newResponse);
+			        //Tudor's version with steps
+			        //String newResponse = processSteps(url,req);
+				//res.body(newResponse);
+			    
+			        //Srdjan's version with ptolemy .xml file
+			        String newResponse = processSteps_ptolemy(url,req);
+                                res.body(newResponse);
 			}
 			else
 			{
@@ -79,9 +100,18 @@ public class AdaptationService {
 
 		post("/adapt/*", (req, res) -> {
 			String url = Util.getServiceURL(req);
-			
+			 
 			ScriptEngine engine = manager.getEngineByName("JavaScript");
-			adaptations.put(url, req.body());
+			
+			//decoding the string (the content of the ptolemy xml-file)
+			String decodedString=null;
+			try {
+			    decodedString = URLDecoder.decode(req.body(), "UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+			    // TODO Auto-generated catch block
+			    e1.printStackTrace();
+			}
+			adaptations.put(url, decodedString);
 			
 			File file = new File("./ramda.js");
 			Reader reader = new FileReader(file);
@@ -121,6 +151,57 @@ public class AdaptationService {
 
 	}
 
+	//service adaptation using ptolemy workflow software (.xml files that represents the adaptation model are saved as adaptations and then executed in ptolemy)
+	public static String processSteps_ptolemy(String url, Request req) throws Exception
+        {
+	    File file=null;  
+	    String reqRes=null;
+	    synchronized(url)
+            {
+	        String adaptation = adaptations.get(url);
+	        
+	        //creating a contemporary File from an XML String representing the adaptation
+	        try {
+	            file = new File("test1.txt");
+	            FileWriter fileWriter = new FileWriter(file);
+	            fileWriter.write(adaptation);
+	            fileWriter.flush();
+	            fileWriter.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	          
+	        //geting the name of the Recorder actor from the executed xml file in order to query it for the output results
+                String ptolemyRecorder=ReadXML.getRecorderName(file);
+                
+                MoMLSimpleApplication runPtolemy=null;
+                try {
+                    //running an xml file in ptolemy
+                    runPtolemy=new MoMLSimpleApplication(adaptation,ptolemyRecorder);
+                } catch (Throwable e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+                //getting the final result from running the file
+                if(runPtolemy!=null)
+                {
+                    reqRes=runPtolemy.getFinalResult();
+                }
+               
+            }
+	    
+	    //deleting a contemporary file
+	    if(file != null) 
+	    {  
+	        file.delete();
+	    }
+	    
+	    return reqRes;
+        }
+	
+	
+	//service adaptation using "steps" keyword in the cURL command (made by Tudor)
 	public static String processSteps(String url, Request req) throws Exception
 	{
 		String reqRes = req.body();

@@ -53,5 +53,6 @@
 	<classpathentry kind="lib" path="lib/mongo-json/mongo-java-driver-2.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/mongo-json/org.apache.commons.io.jar"/>
 	<classpathentry kind="lib" path="lib/spark-debug-tools-0.5.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ptII_SVN"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
