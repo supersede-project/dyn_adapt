@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><plugin>
-  <extension id="eu.supersede.dynadapt.model.query.test.Atos_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.model.query.test.Atos_queries" id="eu.supersede.dynadapt.model.query.test.Atos_queries"/>
-  </extension>
-</plugin>
