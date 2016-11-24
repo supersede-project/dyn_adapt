@@ -12,10 +12,10 @@
     </parent>
 
     <modules>
-        <module>cz.zcu.yafmt.clang.bcl.feature</module>
-        <module>cz.zcu.yafmt.ui.editors.fc.feature</module>
-        <module>cz.zcu.yafmt.ui.editors.fm.feature</module>
-        <module>cz.zcu.yafmt.ui.views.fm.feature</module>
+        <module>../../../YAFMT/cz.zcu.yafmt.clang.bcl.feature</module>
+        <module>../../../YAFMT/cz.zcu.yafmt.ui.editors.fc.feature</module>
+        <module>../../../YAFMT/cz.zcu.yafmt.ui.editors.fm.feature</module>
+        <module>../../../YAFMT/cz.zcu.yafmt.ui.views.fm.feature</module>
     </modules>
 </project>
 

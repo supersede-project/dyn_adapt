@@ -12,16 +12,16 @@
     </parent>
 
     <modules>
-	<module>cz.zcu.yafmt.model</module>
-	<module>cz.zcu.yafmt.model.edit</module>
-	<module>cz.zcu.yafmt.clang</module>
-	<module>cz.zcu.yafmt.clang.bcl</module>
-	<module>cz.zcu.yafmt.clang.bcl.ui</module>
-	<module>cz.zcu.yafmt.model.validation</module>
-	<module>cz.zcu.yafmt.ui</module>
-	<module>cz.zcu.yafmt.ui.editors.fc</module>
-	<module>cz.zcu.yafmt.ui.editors.fm</module>
-	<module>cz.zcu.yafmt.ui.views.fm</module>
-	<module>cz.zcu.yafmt.model.editor</module>	
+	<module>../../../YAFMT/cz.zcu.yafmt.model</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.model.edit</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.clang</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.clang.bcl</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.clang.bcl.ui</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.model.validation</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.ui</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.ui.editors.fc</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.ui.editors.fm</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.ui.views.fm</module>
+	<module>../../../YAFMT/cz.zcu.yafmt.model.editor</module>	
     </modules>
 </project>
