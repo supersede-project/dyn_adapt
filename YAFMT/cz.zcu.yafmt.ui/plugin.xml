@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="cz.zcu.yafmt.ui.ModelMarker"
+         name="Model Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+      <attribute
+            name="cz.zcu.yafmt.ui.ModelMarker.ObjectsURI">
+      </attribute>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="cz.zcu.yafmt.ui.perspectives.FeatureModelingPerspectiveFactory"
+            icon="icons/fm-perspective.png"
+            id="cz.zcu.yafmt.ui.perspectives.FeatureModelingPerspective"
+            name="Feature Modeling">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard
+            type="new"
+            wizardId="org.eclipse.ui.wizards.new.project">
+         <enablement>
+            <with
+                  variable="activeWorkbenchWindow.activePerspective">
+               <equals
+                     value="cz.zcu.yafmt.ui.perspectives.FeatureModelingPerspective">
+               </equals>
+            </with>
+         </enablement>
+      </commonWizard>
+      <commonWizard
+            type="new"
+            wizardId="cz.zcu.yafmt.ui.editors.fm.wizards.NewFeatureModelWizard">
+         <enablement>
+            <with
+                  variable="activeWorkbenchWindow.activePerspective">
+               <equals
+                     value="cz.zcu.yafmt.ui.perspectives.FeatureModelingPerspective">
+               </equals>
+            </with></enablement>
+      </commonWizard>
+      <commonWizard
+            type="new"
+            wizardId="cz.zcu.yafmt.ui.editors.fc.wizards.NewFeatureConfigurationWizard">
+         <enablement>
+            <with
+                  variable="activeWorkbenchWindow.activePerspective">
+               <equals
+                     value="cz.zcu.yafmt.ui.perspectives.FeatureModelingPerspective">
+               </equals>
+            </with>
+         </enablement>
+      </commonWizard>
+   </extension>
+
+</plugin>

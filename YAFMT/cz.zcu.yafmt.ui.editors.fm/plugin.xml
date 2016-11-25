@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="cz.zcu.yafmt.ui.editors.fm.FeatureModelEditor"
+            contributorClass="cz.zcu.yafmt.ui.editors.fm.FeatureModelEditorActionBarContributor"
+            extensions="yafm"
+            icon="icons/fm-file.png"
+            id="cz.zcu.yafmt.ui.editors.fm.FeatureModelEditor"
+            name="Feature Model Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="cz.zcu.yafmt.ui.wizards"
+            name="YAFMT">
+      </category>
+      <wizard
+            category="cz.zcu.yafmt.ui.wizards"
+            class="cz.zcu.yafmt.ui.editors.fm.wizards.NewFeatureModelWizard"
+            icon="icons/fm-file-new.png"
+            id="cz.zcu.yafmt.ui.editors.fm.wizards.NewFeatureModelWizard"
+            name="New Feature Model">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="cz.zcu.yafmt.ui.editors.fm.actions.SetFeatureCardinalityAction.Optional"
+            name="Make Feature Optional">
+      </command>
+      <command
+            id="cz.zcu.yafmt.ui.editors.fm.actions.SetFeatureCardinalityAction.Mandatory"
+            name="Make Feature Mandatory">
+      </command>
+      <command
+            id="cz.zcu.yafmt.ui.editors.fm.actions.GroupFeaturesAction.OR"
+            name="Make OR Group">
+      </command>
+      <command
+            id="cz.zcu.yafmt.ui.editors.fm.actions.GroupFeaturesAction.XOR"
+            name="Make XOR Group">
+      </command>
+      <command
+            id="cz.zcu.yafmt.ui.editors.fm.actions.UngroupFeaturesAction"
+            name="Ungroup Features">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fm.actions.SetFeatureCardinalityAction.Optional"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+O">
+      </key>
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fm.actions.SetFeatureCardinalityAction.Mandatory"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+M">
+      </key>
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fm.actions.GroupFeaturesAction.OR"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+G">
+      </key>
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fm.actions.GroupFeaturesAction.XOR"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+X">
+      </key>
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fm.actions.UngroupFeaturesAction"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+U">
+      </key>
+   </extension>
+
+</plugin>

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Boolean Constraint Language
+Bundle-Version: 0.3.0.qualifier
+Bundle-SymbolicName: cz.zcu.yafmt.clang.bcl;singleton:=true
+Require-Bundle: org.antlr.runtime;bundle-version="3.2.0",
+ org.apache.commons.logging;bundle-version="1.0.4",
+ org.eclipse.emf.common;bundle-version="2.8.0",
+ org.eclipse.emf.ecore;bundle-version="2.8.3",
+ org.eclipse.emf.mwe2.launch;bundle-version="2.4.0";resolution:=optional,
+ org.eclipse.xtext;bundle-version="2.4.1";visibility:=reexport,
+ org.eclipse.xtext.generator;bundle-version="2.4.1";resolution:=optional,
+ org.eclipse.xtext.util;bundle-version="2.4.1",
+ cz.zcu.yafmt.clang;bundle-version="0.3.0",
+ cz.zcu.yafmt.model;bundle-version="0.3.0"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: cz.zcu.yafmt.clang.bcl;uses:="org.eclipse.xtext,org.eclipse.xtext.service,com.google.inject",
+ cz.zcu.yafmt.clang.bcl.model,
+ cz.zcu.yafmt.clang.bcl.model.impl,
+ cz.zcu.yafmt.clang.bcl.model.util,
+ cz.zcu.yafmt.clang.bcl.parser.antlr,
+ cz.zcu.yafmt.clang.bcl.parser.antlr.internal,
+ cz.zcu.yafmt.clang.bcl.serializer,
+ cz.zcu.yafmt.clang.bcl.services;uses:="org.eclipse.xtext,org.eclipse.xtext.common.services,org.eclipse.xtext.service"

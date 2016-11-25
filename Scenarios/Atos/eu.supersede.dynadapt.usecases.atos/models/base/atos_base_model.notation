@@ -1714,13 +1714,17 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_BlBx8SNQEeaAV7iIHwGF1A" y="5"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_BlBx8iNQEeaAV7iIHwGF1A" type="7001">
+        <children xmi:type="notation:Shape" xmi:id="_yZPmgKtSEeaRNLzEGZd_uA" type="3030">
+          <element xmi:type="uml:Slot" href="atos_base_model.uml#_NBB9MCM6EeaAV7iIHwGF1A"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_yZPmgatSEeaRNLzEGZd_uA"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_BlBx8yNQEeaAV7iIHwGF1A"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_BlBx9CNQEeaAV7iIHwGF1A"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_BlBx9SNQEeaAV7iIHwGF1A"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlBx9iNQEeaAV7iIHwGF1A"/>
       </children>
       <element xmi:type="uml:InstanceSpecification" href="atos_base_model.uml#_IIwmsCM6EeaAV7iIHwGF1A"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlBK4SNQEeaAV7iIHwGF1A" x="40" y="167" width="149" height="53"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlBK4SNQEeaAV7iIHwGF1A" x="-171" y="167" width="357" height="53"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_bfcuYIS9EeaUVtHvx6A39w" type="2001">
       <children xmi:type="notation:DecorationNode" xmi:id="_bfdVcIS9EeaUVtHvx6A39w" type="5002"/>

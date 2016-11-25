@@ -1,0 +1,34 @@
+// ===================================================================
+//  Boolean Constraint Language Grammar
+// ===================================================================
+
+grammar cz.zcu.yafmt.clang.bcl.BooleanConstraintLanguage 
+   with org.eclipse.xtext.common.Terminals
+
+generate model "http://zcu.cz/yafmt/clang/bcl"
+
+Expression:
+    ContextualExpression;	
+
+ContextualExpression returns Expression:
+    'forall' {ForAllContextualExpression} contextId=ID ':' expression=Equation |
+    'exists' {ExistsContextualExpression} contextId=ID ':' expression=Equation |
+    Equation;
+
+Equation returns Expression:
+    Implication ({Equation.leftPart=current} 'equals' rightPart=Implication)*;
+
+Implication returns Expression:
+    Disjunction ({Implication.leftPart=current} 'implies' rightPart=Disjunction)*;
+    
+Disjunction returns Expression:
+    Conjunction ({Disjunction.leftPart=current} 'or' rightPart=Conjunction)*;
+	
+Conjunction returns Expression:
+    Negation ({Conjunction.leftPart=current} 'and' rightPart=Negation)*;
+
+Negation returns Expression:
+    PrimaryExpression | 'not' {Negation} expression=PrimaryExpression;
+	
+PrimaryExpression returns Expression:
+    {PrimaryExpression} featureId=ID | '(' Expression ')';

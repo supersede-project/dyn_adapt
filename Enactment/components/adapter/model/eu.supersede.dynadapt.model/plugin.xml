@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin>
-  <extension id="Atos_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:Atos_queries" id="Atos_queries">
-      <query-specification fqn="nodes"/>
-      <query-specification fqn="nodeArtifacts"/>
-      <query-specification fqn="artifactManifestations"/>
-      <query-specification fqn="instanceSpecificationsAsManifestationsOfNodeArtifacts"/>
-      <query-specification fqn="services"/>
-      <query-specification fqn="serviceInstances"/>
-      <query-specification fqn="configurableServiceInstances"/>
-      <query-specification fqn="serviceConfigurations"/>
-      <query-specification fqn="CMSConfigurationInstances"/>
-      <query-specification fqn="maxThreadValuesInCMSConfigurations"/>
-    </group>
+  <extension id="eu.supersede.dynadapt.model.query.test.Atos_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.model.query.test.Atos_queries" id="eu.supersede.dynadapt.model.query.test.Atos_queries"/>
   </extension>
 </plugin>

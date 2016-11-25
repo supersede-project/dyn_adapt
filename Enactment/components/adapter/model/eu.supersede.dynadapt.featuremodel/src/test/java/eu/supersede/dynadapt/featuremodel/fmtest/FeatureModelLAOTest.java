@@ -22,6 +22,7 @@
 
 package eu.supersede.dynadapt.featuremodel.fmtest;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
@@ -54,7 +55,7 @@ public class FeatureModelLAOTest {
 	}
 	
 	@Test
-	public void testValidFeatureModelSUPERSEDE(){
+	public void testValidFeatureModelSUPERSEDE() throws IOException{
 		FeatureModelSUPERSEDE fm = fmLAO.getFeatureModelSUPERSEDE(featureModelPath);
 		
 //		System.out.println("Model name: " + fm.getName());

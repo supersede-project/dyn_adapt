@@ -1,35 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
   <uml:Model xmi:id="_9pq40IS5EeaUVtHvx6A39w" name="Atos_UC_CMS_Default_Variant">
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_hDLkEIS6EeaUVtHvx6A39w" name="CMS Instance" visibility="public">
-      <classifier xmi:type="uml:Component" href="../base/atos_base_model.uml#_NSuZ4CMpEeaAV7iIHwGF1A"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_wZgN0IS6EeaUVtHvx6A39w" name="CMS Default Configuration">
-      <classifier xmi:type="uml:Class" href="../base/atos_base_model.uml#_bPtx0CMsEeaAV7iIHwGF1A"/>
-      <slot xmi:type="uml:Slot" xmi:id="_EArPcITAEeaUVtHvx6A39w">
-        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_m_l5UCMsEeaAV7iIHwGF1A"/>
-        <value xmi:type="uml:LiteralString" xmi:id="_EArPcYTAEeaUVtHvx6A39w" name="Default_CMS_URL" value="http://www.atos.smart.eu/cms"/>
-      </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_EAsdkITAEeaUVtHvx6A39w">
-        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_tLQXECM8EeaAV7iIHwGF1A"/>
-        <value xmi:type="uml:LiteralInteger" xmi:id="_EAsdkYTAEeaUVtHvx6A39w" value="2"/>
-      </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_EAtEoITAEeaUVtHvx6A39w">
-        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_6mb_EIS-EeaUVtHvx6A39w"/>
-        <value xmi:type="uml:LiteralReal" xmi:id="_EAtEoYTAEeaUVtHvx6A39w" value="8.0"/>
-      </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_EAtEooTAEeaUVtHvx6A39w">
-        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_AfCKIIS_EeaUVtHvx6A39w"/>
-        <value xmi:type="uml:LiteralReal" xmi:id="_EAtEo4TAEeaUVtHvx6A39w" value="500.0"/>
-      </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_EAtrsITAEeaUVtHvx6A39w">
-        <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_DNKkUIS_EeaUVtHvx6A39w"/>
-        <value xmi:type="uml:LiteralReal" xmi:id="_EAtrsYTAEeaUVtHvx6A39w" value="1.0"/>
-      </slot>
-    </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_yj0T0IS7EeaUVtHvx6A39w" name="InstanceSpecificationLink_DefaultConfiguration_CMS2Configuration">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_y-oAgIS7EeaUVtHvx6A39w" source="InstanceEnd" references="_wZgN0IS6EeaUVtHvx6A39w _hDLkEIS6EeaUVtHvx6A39w"/>
-      <classifier xmi:type="uml:Association" href="../base/atos_base_model.uml#_f3XSYCMsEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_kqyYsKziEeaek94zjDYFcw" name="Instances">
+      <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_hDLkEIS6EeaUVtHvx6A39w" name="CMS Instance" visibility="public">
+        <classifier xmi:type="uml:Component" href="../base/atos_base_model.uml#_NSuZ4CMpEeaAV7iIHwGF1A"/>
+        <slot xmi:type="uml:Slot" xmi:id="_iLsEsKtQEeaRNLzEGZd_uA">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+          <value xmi:type="uml:InstanceValue" xmi:id="_EnP58KtREeaRNLzEGZd_uA" name="default cms configuration instance" instance="_wZgN0IS6EeaUVtHvx6A39w"/>
+        </slot>
+      </packagedElement>
+      <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_wZgN0IS6EeaUVtHvx6A39w" name="CMS Default Configuration">
+        <classifier xmi:type="uml:Class" href="../base/atos_base_model.uml#_bPtx0CMsEeaAV7iIHwGF1A"/>
+        <slot xmi:type="uml:Slot" xmi:id="_EArPcITAEeaUVtHvx6A39w">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_m_l5UCMsEeaAV7iIHwGF1A"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_EArPcYTAEeaUVtHvx6A39w" name="Default_CMS_URL" value="http://www.atos.smart.eu/cms"/>
+        </slot>
+        <slot xmi:type="uml:Slot" xmi:id="_EAsdkITAEeaUVtHvx6A39w">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_tLQXECM8EeaAV7iIHwGF1A"/>
+          <value xmi:type="uml:LiteralInteger" xmi:id="_EAsdkYTAEeaUVtHvx6A39w" value="2"/>
+        </slot>
+        <slot xmi:type="uml:Slot" xmi:id="_EAtEoITAEeaUVtHvx6A39w">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_6mb_EIS-EeaUVtHvx6A39w"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_EAtEoYTAEeaUVtHvx6A39w" value="8.0"/>
+        </slot>
+        <slot xmi:type="uml:Slot" xmi:id="_EAtEooTAEeaUVtHvx6A39w">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_AfCKIIS_EeaUVtHvx6A39w"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_EAtEo4TAEeaUVtHvx6A39w" value="500.0"/>
+        </slot>
+        <slot xmi:type="uml:Slot" xmi:id="_EAtrsITAEeaUVtHvx6A39w">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_DNKkUIS_EeaUVtHvx6A39w"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_EAtrsYTAEeaUVtHvx6A39w" value="1.0"/>
+        </slot>
+      </packagedElement>
+      <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_yj0T0IS7EeaUVtHvx6A39w" name="InstanceSpecificationLink_CMS_Instance_to_Default_Configuration_Instance">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_y-oAgIS7EeaUVtHvx6A39w" source="InstanceEnd" references="_wZgN0IS6EeaUVtHvx6A39w _hDLkEIS6EeaUVtHvx6A39w"/>
+        <classifier xmi:type="uml:Association" href="../base/atos_base_model.uml#_f3XSYCMsEeaAV7iIHwGF1A"/>
+        <slot xmi:type="uml:Slot" xmi:id="_AdZBQKtUEeaRNLzEGZd_uA">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3hDYCMsEeaAV7iIHwGF1A"/>
+          <value xmi:type="uml:InstanceValue" xmi:id="_JpEtsKtUEeaRNLzEGZd_uA" name="cms1" instance="_hDLkEIS6EeaUVtHvx6A39w"/>
+        </slot>
+        <slot xmi:type="uml:Slot" xmi:id="_BC-akKtUEeaRNLzEGZd_uA">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+          <value xmi:type="uml:InstanceValue" xmi:id="_OZa3QKtUEeaRNLzEGZd_uA" name="default conf" instance="_wZgN0IS6EeaUVtHvx6A39w"/>
+        </slot>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_6AQJ8JazEea74PIkp03MHQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6AQxAJazEea74PIkp03MHQ" source="PapyrusVersion">

@@ -20,6 +20,18 @@
 package eu.supersede.dynadapt.model.test;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -75,5 +87,33 @@ public class ModelManagerTest {
 		Assert.assertNotNull(patternModel);
 		Assert.assertNotNull(featureModel);
 		Assert.assertNotNull(featureConfiguration);
+	}
+	
+	@Test
+	public void loadModelFromURLTest () throws IOException {
+		//Load and download model from url
+		String surl = "https://raw.githubusercontent.com/supersede-project/dyn_adapt/master/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml";
+		URL url = new URL (surl);
+		InputStream in = url.openStream();
+		Assert.assertNotNull(in);
+		String userdir = System.getProperty("user.dir");
+		Path path = FileSystems.getDefault().getPath(userdir);
+		Path temp = Files.createTempDirectory(path, "");
+		Path file = Paths.get(temp.toString(), "model.uml");
+		Files.copy(in, file, StandardCopyOption.REPLACE_EXISTING);
+		in.close();
+		
+		//Reading resource form model
+		URI uri = URI.createFileURI(file.toString());
+		Model model = modelManager.loadUMLModel(uri.toFileString());
+		Assert.assertNotNull(model);
+	}
+	
+	@Test
+	public void loadModelFromURL2Test () throws IOException {
+		//Load and download model from url
+		String surl = "https://raw.githubusercontent.com/supersede-project/dyn_adapt/master/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml";
+		Model model = modelManager.loadUMLModel(surl);
+		Assert.assertNotNull(model);
 	}
 }

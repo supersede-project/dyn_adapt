@@ -1,0 +1,35 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.supersede.dynadapt</groupId>
+    <artifactId>eu.supersede.dynadapt.bundles</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>eu.supersede.dynadapt</groupId>
+        <artifactId>eu.supersede.dynadapt.root</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.adapter</module>
+        <module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.aom.dsl</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.aom.dsl.extensionpoint </module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.aom.dsl.parser</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.aom.dsl.resources</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.aom.dsl.ui</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.aom.dsl.util </module>
+	<!--<module>eu.supersede.dynadapt.compositionhook</module>-->
+	<module>../../../DM/components/eu.supersede.dynadapt.dm.feature.builder</module>
+	<module>../../../DM/components/eu.supersede.dynadapt.dm.feature.serializer</module>
+	<!--<module>../../../Enactment/components/serviceCompositionEnactor/eu.supersede.dynadapt.enactor</module>-->
+	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.featuremodel</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.lang.uml</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.lang.uml.ui</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.lang.yafmt</module>
+	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.lang.yafmt.ui</module>
+	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.model</module>
+	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.modeladapter</module>
+	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository</module>
+    </modules>
+</project>

@@ -21,14 +21,20 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
+import java.util.List;
+
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fc.Selection;
+import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
+import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigSUPERSEDE;
 
 public interface IAdapter {
 
-	public Model adapt(FeatureModel variability, Aspect adaptationModel, Model baseModel) throws Exception;
-	
+	public Model adapt(List<Selection> selections, Model baseModel) throws Exception;
+	Model adapt(FeatureModel variability, FeatureConfiguration featureConfig, Aspect adaptationModel, Model baseModel) throws Exception;
 }

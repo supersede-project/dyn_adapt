@@ -12,6 +12,5 @@
 			<attribute name="FROM_GRADLE_MODEL" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/mockito-core-2.1.0-RC.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

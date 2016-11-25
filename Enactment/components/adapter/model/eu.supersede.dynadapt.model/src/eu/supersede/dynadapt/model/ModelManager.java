@@ -22,106 +22,78 @@ package eu.supersede.dynadapt.model;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Map;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.resource.UMLResource;
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
+import org.junit.Assert;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceSet;
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 
 public class ModelManager implements IModelManager {
-//	private static ResourceSet resourceSet = new ResourceSetImpl();
-	SupersedeDSLResourceSet resourceSet = new SupersedeDSLResourceSet();
+	private final static Logger log = LogManager.getLogger(ModelManager.class);
+	private SupersedeDSLResourceSet resourceSet = new SupersedeDSLResourceSet();
 	private Resource targetModelResource = null;
 	private URI targetModelURI = null;
+	private Path temp = null;
 	
-//	/**
-//	 * Static registration of common EMF metamodels for Ecore, UML2
-//	 * Registration of UML extension
-//	 */
-//	static {
-//		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-//		resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
-//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION,
-//				UMLResource.Factory.INSTANCE);
-//		UMLResourcesUtil.init(resourceSet);
-//		Map<URI,URI> uriMap = resourceSet.getURIConverter().getURIMap();
-////		final URI uri2 = URI.createURI("jar:file:/home/yosu/Projects/Supersede/Eclipses/eclipse-mars-modeling/plugins/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
-//		final URI uri2 = URI.createURI("jar:file:./lib/org.eclipse.uml2.uml.resources_5.1.0.v20160201-0816.jar!/");
-//		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri2.appendSegment("libraries").appendSegment(""));
-//		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri2.appendSegment("metamodels").appendSegment(""));
-//		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri2.appendSegment("profiles").appendSegment(""));
-//	}
-	
-//	/* (non-Javadoc)
-//	 * @see eu.supersede.dynadapt.model.IModelManager#registerPackage(org.eclipse.emf.ecore.EPackage)
-//	 */
-//	public void registerPackage (EPackage ePackage){
-//		resourceSet.getPackageRegistry().put (ePackage.getNsURI(), ePackage);
-//	}
-	
-	/* (non-Javadoc)
-	 * @see eu.supersede.dynadapt.model.IModelManager#loadResource(java.lang.String)
-	 */
-	@Override
-	public Resource loadResource(String targetModelPath) {
-		return resourceSet.loadModel(URI.createURI(targetModelPath));
-//		return resourceSet.getResource(URI.createURI(targetModelPath), true);
+	public ModelManager () throws IOException {
+		//Create Temporary directory to store models downloaded from ModelRepository
+		temp = createTemporaryDirectory();
+		
+		//Shutdown hook to clean up temporary folder
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+		    public void run() {
+		        try {
+		        	
+					Files.walkFileTree(temp, new SimpleFileVisitor<Path>() { 
+			            @Override
+			            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+			                throws IOException
+			            {
+			            	log.debug("deleting temporary file: " + file);
+			                Files.delete(file);
+			                return FileVisitResult.CONTINUE;
+			            }
+			        }); 
+					log.debug("deleting temporary directory: " + temp);
+					Files.deleteIfExists(temp);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    }
+		});
 	}
 
-	/* (non-Javadoc)
-	 * @see eu.supersede.dynadapt.model.IModelManager#loadProfile(java.lang.String)
-	 */
-	@Override
-	public Profile loadProfile(String profilePath) {
-
-//		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
-		Resource resource = resourceSet.loadModel(URI.createURI(profilePath));
-		return (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PROFILE);
-	}
-	
-	
-	@Override
-	public Model loadUMLModel(String modelPath) {
-		return resourceSet.loadModel(URI.createURI(modelPath), Model.class);
-	}
-	
-	@Override
-	public PatternModel loadPatternModel(String patternPath) {
-		return resourceSet.loadModel(URI.createURI(patternPath), PatternModel.class);
-	}
-	
-	@Override
-	public FeatureModel loadFeatureModel(String fmPath) {
-		return resourceSet.loadModel(URI.createURI(fmPath), FeatureModel.class);
-	}
-	
-	@Override
-	public FeatureConfiguration loadFeatureConfiguration(String fcPath) {
-		return resourceSet.loadModel(URI.createURI(fcPath), FeatureConfiguration.class);
-	}
-	
-	
 	/**
 	 * Creates an instance of ModelManager, associated to a target UML base model defined by its path
 	 * @param targetModelPath path of the associated target UML base model
 	 * @throws Exception
 	 */
 	public ModelManager (String targetModelPath) throws Exception{
+		this();
+		
 		this.targetModelURI = URI.createURI(targetModelPath);
 		targetModelResource = loadResource(targetModelPath);
 		if (targetModelResource == null){
@@ -129,7 +101,9 @@ public class ModelManager implements IModelManager {
 		}
 	}
 	
-	public ModelManager () {
+	
+	public ResourceSet getResourceSet(){
+		return (ResourceSet) resourceSet.getResourceSet();
 	}
 	
 	/* (non-Javadoc)
@@ -140,12 +114,88 @@ public class ModelManager implements IModelManager {
 		return targetModelResource;
 	}
 	
-	/**
-	 * returns the URI locator of associated UML target base model
-	 * @return
+	public Aspect loadAspectModel(String path) {
+		return resourceSet.loadAspectModel(path);
+	}
+	
+	public Aspect loadAspectModel(URI uri) {
+		return resourceSet.loadAspectModel(uri);
+	}
+	
+	
+	@Override
+	public FeatureConfiguration loadFeatureConfiguration(String fcPath) {
+		if (fcPath.startsWith("http")){
+			return resourceSet.loadModel(downloadModel(fcPath), FeatureConfiguration.class);
+		}
+		return resourceSet.loadModel(URI.createURI(fcPath), FeatureConfiguration.class);
+	}
+	
+	@Override
+	public FeatureModel loadFeatureModel(String fmPath) {
+		if (fmPath.startsWith("http")){
+			return resourceSet.loadModel(downloadModel(fmPath), FeatureModel.class);
+		}
+		return resourceSet.loadModel(URI.createURI(fmPath), FeatureModel.class);
+	}
+	
+	@Override
+	public <T extends EObject> T loadModel(URI uri, Class<T> clazz) { 
+		Resource resource = null;
+		try {
+//			resource = resourceSet.getResource(uri, true);
+			resource = resourceSet.loadModel(uri);
+			if(resource == null)
+				return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+			
+		if(resource == null || resource.getContents().isEmpty())
+			return null;
+	
+		EObject root = resource.getContents().get(0);
+		try {
+			return clazz.cast(root);
+		} catch(ClassCastException e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public PatternModel loadPatternModel(String patternPath) {
+		if (patternPath.startsWith("http")){
+			return resourceSet.loadModel(downloadModel(patternPath), PatternModel.class);
+		}
+		return resourceSet.loadModel(URI.createURI(patternPath), PatternModel.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#loadProfile(java.lang.String)
 	 */
-	private URI getTargetModelURI(){
-		return targetModelURI;
+	@Override
+	public Profile loadProfile(String profilePath) {
+		Resource resource = resourceSet.loadModel(URI.createURI(profilePath));
+		return (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PROFILE);
+	}
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#loadResource(java.lang.String)
+	 */
+	@Override
+	public Resource loadResource(String targetModelPath) {
+		return resourceSet.loadModel(URI.createURI(targetModelPath));
+//		return resourceSet.getResource(URI.createURI(targetModelPath), true);
+	}
+	
+	
+	@Override
+	public Model loadUMLModel(String modelPath) {
+		if (modelPath.startsWith("http")){
+			return resourceSet.loadModel(downloadModel(modelPath), Model.class);
+		}
+		return resourceSet.loadModel(URI.createURI(modelPath), Model.class);
 	}
 	
 	/* (non-Javadoc)
@@ -175,22 +225,25 @@ public class ModelManager implements IModelManager {
 		}
 		throw new NullPointerException("modelResource is null");
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel(java.lang.String)
-	 */
-	@Override
-	public URI saveTargetModel (String suffixe) throws IOException{
-		return saveModel(getTargetModel(), getTargetModelURI(), suffixe);
-	}
-	
+
 	/* (non-Javadoc)
 	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel()
 	 */
 	@Override
 	public URI saveTargetModel () throws IOException{
 		return saveModel(getTargetModel(), getTargetModelURI(), null);
+	}
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#loadModel(org.eclipse.emf.common.util.URI, java.lang.Class)
+	 */
+
+	/* (non-Javadoc)
+	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel(java.lang.String)
+	 */
+	@Override
+	public URI saveTargetModel (String suffixe) throws IOException{
+		return saveModel(getTargetModel(), getTargetModelURI(), suffixe);
 	}
 
 	/**
@@ -223,31 +276,37 @@ public class ModelManager implements IModelManager {
 		return outputFile;
 	}
 	
-	/* (non-Javadoc)
-	 * @see eu.supersede.dynadapt.model.IModelManager#loadModel(org.eclipse.emf.common.util.URI, java.lang.Class)
-	 */
-
-	@Override
-	public <T extends EObject> T loadModel(URI uri, Class<T> clazz) { 
-		Resource resource = null;
-		try {
-//			resource = resourceSet.getResource(uri, true);
-			resource = resourceSet.loadModel(uri);
-			if(resource == null)
-				return null;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-			
-		if(resource == null || resource.getContents().isEmpty())
-			return null;
-	
-		EObject root = resource.getContents().get(0);
-		try {
-			return clazz.cast(root);
-		} catch(ClassCastException e) {
-			return null;
-		}
+	private Path createTemporaryDirectory() throws IOException{
+		String userdir = System.getProperty("user.dir");
+		Path path = FileSystems.getDefault().getPath(userdir);
+		Path temp = Files.createTempDirectory(path, "");
+		Assert.assertNotNull("There was a problem creating a temporary directory", temp);
+		return temp;
 	}
+	
+	private URI downloadModel (String surl){
+		URI uri = null;
+		try {
+			URL url = new URL (surl);
+			InputStream in = url.openStream();
+			Assert.assertNotNull(in);
+			Path file = Paths.get(temp.toString(), url.getFile().substring(url.getFile().lastIndexOf("/") + 1));
+			Files.copy(in, file, StandardCopyOption.REPLACE_EXISTING);
+			in.close();
+			
+			uri = URI.createFileURI(file.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return uri;
+	}
+	
+	/**
+	 * returns the URI locator of associated UML target base model
+	 * @return
+	 */
+	private URI getTargetModelURI(){
+		return targetModelURI;
+	}
+
 }

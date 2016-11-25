@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="cz.zcu.yafmt.clang" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="cz.zcu.yafmt.clang" id="cz.zcu.yafmt.clang" name="YAFMT Constraint Language"/>
+      </appinfo>
+      <documentation>
+         This extension poit allows to add a new constraint language for the YAFMT plugin.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="language" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="language">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="shortName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":cz.zcu.yafmt.clang.IConstraintLanguage"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.2.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;p&gt;&lt;pre&gt;&lt;extension point=&quot;cz.zcu.yafmt.clang&quot;&gt;
+  &lt;language id=&quot;com.example.myclang&quot; 
+            name=&quot;My Constraint Language&quot;
+            shortName=&quot;MyCL&quot;
+            class=&quot;com.example.myclang.MyConstraintLanguage.java&quot;/&gt;
+&lt;/extension&gt;&lt;/pre&gt;&lt;/p&gt;
+
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         Plug-ins that want to extend this extension point must implement the &lt;samp&gt;cz.zcu.yafmt.clang.IConstraintLanguage&lt;/samp&gt; interface or extend the &lt;samp&gt;cz.zcu.yafmt.clang.ConstraintLanguage&lt;/samp&gt; abstract class.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         See &lt;code&gt;cz.zcu.yafmt.clang.sample&lt;/code&gt; package in the &lt;code&gt;cz.zcu.yafmt.clang&lt;/code&gt; plugin for the implementation of the sample constraint language.
+      </documentation>
+   </annotation>
+
+
+</schema>

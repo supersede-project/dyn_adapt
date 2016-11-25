@@ -95,73 +95,73 @@ public class ModelAdapterTest {
 		//applyAddInstanceComposition();
 		//applyDeleteInstanceComposition();
 		//applyAddClassComposition();
-		applyDeleteClassComposition();
+//		applyDeleteClassComposition();
 		//applyModifyValueComposition();
 	}
 	
-	private void applyAddInstanceComposition() {
-						
-		Model umlResult = null;
-		try {
-			umlResult = modelAdapter.applyAddComposition(
-					umlBaseModel, 
-					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
-					umlDefaultModel, 
-					umlDefaultModel.getOwnedElements().get(0));
-			save(umlResult, URI.createURI(umlModelPath));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	private void applyAddInstanceComposition() {
+//						
+//		Model umlResult = null;
+//		try {
+//			umlResult = modelAdapter.applyAddComposition(
+//					umlBaseModel, 
+//					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
+//					umlDefaultModel, 
+//					umlDefaultModel.getOwnedElements().get(0));
+//			save(umlResult, URI.createURI(umlModelPath));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
-	private void applyDeleteInstanceComposition() {
-						
-		Model umlResult = null;
-		try {
-			umlResult = modelAdapter.applyDeleteComposition(
-					umlBaseModel, 
-					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
-					umlDefaultModel, 
-					umlDefaultModel.getOwnedElements().get(0));
-			save(umlResult, URI.createURI(monitoringBasePath));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	private void applyDeleteInstanceComposition() {
+//						
+//		Model umlResult = null;
+//		try {
+//			umlResult = modelAdapter.applyDeleteComposition(
+//					umlBaseModel, 
+//					umlBaseModel.getPackagedElement("Instances").getOwnedElements().get(14), 
+//					umlDefaultModel, 
+//					umlDefaultModel.getOwnedElements().get(0));
+//			save(umlResult, URI.createURI(monitoringBasePath));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
-	private void applyAddClassComposition() {
-		
-		Model umlResult = null;
-		try {
-			umlResult = modelAdapter.applyAddComposition(
-					monitoringBaseModel, 
-					monitoringBaseModel.getOwnedElements().get(6), 
-					monitoringVariantModel,
-					monitoringVariantModel.getOwnedElements().get(1));
-			save(umlResult, URI.createURI(monitoringBasePath));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	private void applyAddClassComposition() {
+//		
+//		Model umlResult = null;
+//		try {
+//			umlResult = modelAdapter.applyAddComposition(
+//					monitoringBaseModel, 
+//					monitoringBaseModel.getOwnedElements().get(6), 
+//					monitoringVariantModel,
+//					monitoringVariantModel.getOwnedElements().get(1));
+//			save(umlResult, URI.createURI(monitoringBasePath));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
-	private void applyDeleteClassComposition() {
-						
-		Model umlResult = null;
-		try {
-			umlResult = modelAdapter.applyDeleteComposition(
-					monitoringBaseModel, 
-					monitoringBaseModel.getOwnedElements().get(6), 
-					monitoringVariantModel, 
-					monitoringVariantModel.getOwnedElements().get(1));
-			save(umlResult, URI.createURI(monitoringBasePath));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	private void applyDeleteClassComposition() {
+//						
+//		Model umlResult = null;
+//		try {
+//			umlResult = modelAdapter.applyDeleteComposition(
+//					monitoringBaseModel, 
+//					monitoringBaseModel.getOwnedElements().get(6), 
+//					monitoringVariantModel, 
+//					monitoringVariantModel.getOwnedElements().get(1));
+//			save(umlResult, URI.createURI(monitoringBasePath));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
 	@SuppressWarnings("restriction")
 	private void applyModifyValueComposition() {

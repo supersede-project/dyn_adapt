@@ -22,6 +22,8 @@
 
 package eu.supersede.dynadapt.featuremodel.fc;
 
+import java.io.IOException;
+
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
@@ -30,7 +32,7 @@ import eu.supersede.dynadapt.model.ModelManager;
 public class FeatureConfigDAO implements IFeatureConfigDAO {
 
 	@Override
-	public FeatureConfiguration loadFeatureConfig(String featureConfigPath) {
+	public FeatureConfiguration loadFeatureConfig(String featureConfigPath) throws IOException {
 		new StandaloneSetup().setPlatformUri("../");
 		return (new ModelManager()).loadFeatureConfiguration(featureConfigPath);
 	}

@@ -15,24 +15,28 @@
  *
  * Contributors:
  * 	Quim Motger (UPC) - main development
+ *  Yosu Gorroñogoitia (Atos)
  * 	
  * Initially developed in the context of SUPERSEDE EU project
  * www.supersede.eu
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
@@ -47,6 +51,7 @@ import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class Adapter implements IAdapter {
+	private final static Logger log = LogManager.getLogger(Adapter.class);
 	
 	ModelRepository mr;
 	AdaptationParser parser;
@@ -55,37 +60,39 @@ public class Adapter implements IAdapter {
 	ModelAdapter ma;
 	
 	Map<String, String> modelsLocation;
+			
+	//FIXME: Currently two ResourceSets are managed, one by ModelManager, another one by AdaptationParser
+	//FIXME: Manage a single ResourceSet
 	
-	String repository = "platform:/resource/eu.supersede.monitor.reconfiguration.models/models/";
-	
-	public Adapter(ModelRepository mr, ModelManager mm) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation) throws Exception {
 		this.mr = mr;
-		this.parser = new AdaptationParser();
+		this.parser = new AdaptationParser(mm);
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
-		modelsLocation = new HashMap<String, String>();
-		modelsLocation.put("aspects", "adaptability_models/");
-		modelsLocation.put("variants", "uml_models/variants/");
-		modelsLocation.put("base", "uml_models/base/");
-		modelsLocation.put("profiles", "uml_models/profiles/");
-		modelsLocation.put("patterns", "patterns/");
-		modelsLocation.put("features", "features/models/");
+		this.modelsLocation = modelsLocation;
+		log.debug("Adapter set up");
 	}
-
+	
 	@Override
-	public Model adapt(FeatureModel variability, Aspect adaptationModel, Model baseModel) throws Exception {
+	public Model adapt(FeatureModel variability, FeatureConfiguration featureConfig, Aspect adaptationModel, Model baseModel) throws Exception {
 		
-		List<Feature> features = listFeatures(variability.getRoot(), adaptationModel.getFeature().getId());
-		
+		List<Feature> features = new ArrayList<>();
+		features.add(adaptationModel.getFeature());
 		Model model = null;
 		
 		for (Feature f : features) {
-			System.out.println("Feature ID: " + f.getId());
+			
+			List<String> enabledFeatureIds = new ArrayList<>();
+			for (Selection selection : featureConfig.getSelectionsById(f.getId())) {
+				if (selection.isEnabled()) enabledFeatureIds.add(selection.getFeature().getId());
+			}
+			
+			log.debug("Feature ID: " + f.getId());
 			List<Aspect> aspects = mr.getAspectModels(f.getId(), modelsLocation);
-			System.out.println("Adaptations for feature: " + aspects.size());
+			log.debug("Adaptations for feature: " + aspects.size());
 			for (Aspect a : aspects) {
-				System.out.println("	Aspect name: " + a.getName());
+				log.debug("\tAspect name: " + a.getName());
 				Stereotype role = null;
 				List<Pointcut> pointcuts = a.getPointcuts();
 				
@@ -94,27 +101,80 @@ public class Adapter implements IAdapter {
 				for (Pointcut p : pointcuts) {
 					role = p.getRole();
 					elements.put(role, new ArrayList<>());
-					System.out.println("		Role: " + role.getName());
+					log.debug("		Role: " + role.getName());
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern()); 
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
-						System.out.println("			Element: " + e);
+						log.debug("\t\tElement: " + e);
 						elements.get(role).add(e);
 					}
 				}
 				Model variant = a.getAdvice();
-				
-				//Select composition
-				Composition c = a.getCompositions().get(0);
-				
-				ActionOptionType actionOptionType = c.getAction();
-				if (actionOptionType instanceof UpdateValueImpl) {
-					String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
-					model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
-				} else {
-					model = ma.applyCompositionDirective(a.getCompositions().get(0), baseModel, elements, c.getAdvice(), variant);
+				for (Composition c : a.getCompositions()) {
+					boolean enabled = c.getFeature_enabled();
+					if (enabled && enabledFeatureIds.contains(f.getId())
+							|| !enabled && !enabledFeatureIds.contains(f.getId())) {
+						ActionOptionType actionOptionType = c.getAction();
+						if (actionOptionType instanceof UpdateValueImpl) {
+							String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
+							model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
+						} else {
+							model = ma.applyCompositionDirective(a.getCompositions().get(0).getAction(), baseModel, elements, c.getAdvice(), variant);
+						}
+					}
 				}
+			}
+		}
+			
+		return model;
+		
+	}
 
+	@Override
+	public Model adapt(List<Selection> selections, Model baseModel) throws Exception {
+		
+		Model model = null;
+		
+		for (Selection selection : selections) {
+			Feature feature = selection.getFeature();
+			boolean featureEnabled = selection.isEnabled();
+						
+			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled?" Enabled":" Disabled"));
+			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
+			log.debug("Adaptations for feature: " + aspects.size());
+			
+			for (Aspect aspect : aspects) {
+				log.debug("\tAspect name: " + aspect.getName());
+				Stereotype role = null;
+				List<Pointcut> pointcuts = aspect.getPointcuts();
+				
+				HashMap<Stereotype, List<Element>> matchingElements = new HashMap<>();
+				
+				for (Pointcut p : pointcuts) {
+					role = p.getRole();
+					matchingElements.put(role, new ArrayList<>());
+					log.debug("\t\tRole: " + role.getName());
+					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern()); 
+					for (IPatternMatch i : matches) {
+						Element e = (Element) i.get(0);
+						log.debug("\t\t\tMatching Element: " + e);
+						matchingElements.get(role).add(e);
+					}
+				}
+				Model variant = aspect.getAdvice();
+				
+				for (Composition c : aspect.getCompositions()) {
+					boolean compositionEnabled = c.getFeature_enabled();
+					if (featureEnabled == compositionEnabled){
+						ActionOptionType actionOptionType = c.getAction();
+						if (actionOptionType instanceof UpdateValueImpl) {
+							String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
+							model = ma.applyUpdateCompositionDirective(baseModel, matchingElements, value);
+						} else {
+							model = ma.applyCompositionDirective(c.getAction(), baseModel, matchingElements, c.getAdvice(), variant);
+						}
+					}
+				}
 			}
 		}
 			
@@ -124,6 +184,7 @@ public class Adapter implements IAdapter {
 
 	private List<Feature> listFeatures(Feature root, String featureId) {
 		List<Feature> features = new ArrayList<>();
+		log.debug(root.getId());
 		if (root.getId().equals(featureId)) features.add(root);
 		if (root.getFeatures().size() > 0) 
 			for (Feature f : root.getFeatures()) features.addAll(listFeatures(f, featureId));

@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.aom.dsl.parser.actions;
 
+import java.io.IOException;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
@@ -37,15 +39,17 @@ import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 //import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceSet;
 //import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceUtil;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
+import eu.supersede.dynadapt.model.ModelManager;
 
 public class ParseAdaptationModelDelegate implements IObjectActionDelegate{
 	private IFile selectedFile;
 	private IWorkbenchWindow window;
 	private IAdaptationParser parser;
+	private ModelManager modelManager;
 	
-	public ParseAdaptationModelDelegate() {
-		// TODO Auto-generated constructor stub
-		parser = new AdaptationParser();
+	public ParseAdaptationModelDelegate() throws IOException {
+		modelManager = new ModelManager();
+		parser = new AdaptationParser(modelManager);
 	}
 
 	@Override

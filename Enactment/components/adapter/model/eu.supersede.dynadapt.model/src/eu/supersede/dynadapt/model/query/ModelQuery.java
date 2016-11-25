@@ -35,11 +35,13 @@ import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
+import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
 import eu.supersede.dynadapt.model.IModelManager;
+import eu.supersede.dynadapt.model.ModelManager;
 
 /**
  * Code taken from Viatra IncQuery API User Documentation:
@@ -64,6 +66,11 @@ public class ModelQuery implements IModelQuery {
 		this.modelManager = modelManager;
 		createQueryEngine();
 	}
+	
+	public ModelQuery(IModelManager modelManager, Resource targetResource) throws ViatraQueryException {
+		this.modelManager = modelManager;
+		createQueryEngine(targetResource);
+	}
 
 	/**
 	 * Resets the targetModel by loading a new one referenced by path.
@@ -71,17 +78,47 @@ public class ModelQuery implements IModelQuery {
 	 * @param targetModelPath
 	 * @throws ViatraQueryException
 	 */
-	public void resetTargetModelPath(IModelManager modelManager) throws ViatraQueryException {
+	public void resetTargetModelPath(ModelManager modelManager) throws ViatraQueryException {
 		this.modelManager = modelManager;
 		createQueryEngine();
 	}
 
+//	private void createQueryEngine() throws ViatraQueryException {
+//		createQueryEngine(modelManager.getTargetModel());
+//	}
+	
 	private void createQueryEngine() throws ViatraQueryException {
 		if (engine != null) {
 			engine.dispose();
 		}
 
-		EMFScope queryScope = new EMFScope(modelManager.getTargetModel());
+		EMFScope queryScope = new EMFScope(modelManager.getResourceSet());
+		try {
+			// create an *unmanaged* engine to ensure that no one else is
+			// going
+			// to use our engine
+			engine = AdvancedViatraQueryEngine.createUnmanagedEngine(queryScope);
+
+			// Initializing Xtext-based resource parser
+			// Do not use if VIATRA Query tooling is loaded!
+			if (!patternLanguageInitialize) {
+				new EMFPatternLanguageStandaloneSetup().createInjectorAndDoEMFRegistration();
+				patternLanguageInitialize = true;
+			}
+		} catch (ViatraQueryException ex) {
+			if (engine != null) {
+				engine.dispose();
+			}
+			throw ex;
+		}
+	}
+	
+	private void createQueryEngine(Resource targetResource) throws ViatraQueryException {
+		if (engine != null) {
+			engine.dispose();
+		}
+
+		EMFScope queryScope = new EMFScope(targetResource);
 		try {
 			// create an *unmanaged* engine to ensure that no one else is
 			// going
@@ -183,6 +220,11 @@ public class ModelQuery implements IModelQuery {
 		// complete traversal (as the base indexes will be kept)
 
 		return matches;
+	}
+	
+	@Override
+	public ViatraQueryMatcher queryMatcher(IQuerySpecification querySpecification) throws ViatraQueryException{
+		return engine.getMatcher(querySpecification);
 	}
 	
 	/**

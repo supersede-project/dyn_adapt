@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Feature Model Validation
+Bundle-SymbolicName: cz.zcu.yafmt.model.validation;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Activator: cz.zcu.yafmt.model.validation.FeatureModelValidationPlugin$Implementation
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0",
+ cz.zcu.yafmt.clang;bundle-version="0.3.0",
+ cz.zcu.yafmt.model;bundle-version="0.3.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: cz.zcu.yafmt.model.validation,
+ cz.zcu.yafmt.model.validation.fc,
+ cz.zcu.yafmt.model.validation.fm
