@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <!-- doc/books/systems/index.html.in $Id: index.html.in 68136 2014-01-16 17:52:33Z cxh $ 
+	 This gets copied to the website.
+	 scp index.html.in moog:/export/home/pt0/ptweb/books/Systems/models/doc/books/systems/discreteevents/index.html
+      -->
+    <title>Chapter 7: Discrete-Event Models</title>
+  </head>
+  <!--#include virtual="/ssi/toppremenu.htm" -->
+  <!--#include virtual="toc.htm" -->
+  <!--#include virtual="/ssi/toppostmenu.htm" -->
+  <!-- Do not include a body open tag here, the ssi does it -->
+  <h1>Chapter 7: Discrete-Event Models</h1>
+  Executable models in chapter 7:
+  <ul>
+    <li> Figure 7.1: <a href="DEExample/index.html">DEExample</a>.</li>
+    <li> Figure 7.3: <a href="ModelTimeVsRealTime/index.html">ModelTimeVsRealTime</a>.</li>
+    <li> Figure 7.4: <a href="InterarrivalTimes/index.html">InterarrivalTimes</a>.</li>
+    <li> Figure 7.5: <a href="InterarrivalTimes3/index.html">InterarrivalTimes3</a>.</li>
+    <li> Figure 7.6: <a href="InterarrivalTimes2/index.html">InterarrivalTimes2</a>.</li>
+    <li> Figure 7.7: <a href="MM1Queue/index.html">MM1Queue</a>.</li>
+    <li> Figure 7.8: <a href="OpenQueuingNetwork/index.html">OpenQueuingNetwork</a>.</li>
+    <li> Figure 7.9: <a href="Priorities/index.html">Priorities</a>.</li>
+    <li> Figure 7.10: <a href="Feedback/index.html">Feedback</a>.</li>
+    <li> Figure 7.11: <a href="Iteration/index.html">Iteration</a>.</li>
+    <li> Figure 7.13: <a href="InteractiveShell/index.html">InteractiveShell</a>.</li>
+    <li> Figure 7.15: <a href="ThreadedComposite/index.html">ThreadedComposite</a>.</li>
+    <li> Figure 7.18: <a href="Zeno/index.html">Zeno</a>.</li>
+    <li> Figure 7.19: <a href="FSMSource/index.html">FSMSource</a>.</li>
+    <li> Figure 7.20: <a href="FSMSource2/index.html">FSMSource2</a>.</li>
+    <li> Figure 7.21: <a href="Wireless/index.html">Wireless</a>.</li>
+    <li> Figure 7.22: <a href="FixedPointLimitationEx/index.html">FixedPointLimitationEx</a>.</li>
+    <li> Figure 7.23: <a href="SDFWithinDE/index.html">SDFWithinDE</a>.</li>
+  </ul>
+
+  <!--#include virtual="/ssi/bottom.htm" -->
+  <!-- Do not include a body or html close tag here, the ssi does it -->

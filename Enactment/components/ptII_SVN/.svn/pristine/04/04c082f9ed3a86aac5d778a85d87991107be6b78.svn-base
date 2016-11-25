@@ -1,0 +1,258 @@
+<!-- $Id$ -->
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <title>Code Generation</title>
+    <link href="../../doc/default.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <html>
+      <h1>Code Generation</h1>
+      This code generator is patterned after the Ptolemy Classic 
+      code generator where actors have template files consisting
+      of code blocks.  The code blocks are stitched together to create
+      the resulting file.
+
+      <ul>
+	<li><a href="#Simple Demo">Simple Demo</a>
+	<li><a href="#Java Command Line Demo">Java Command Line Demo</a>
+	<li><a href="#Package Overview">Package Overview</a>
+        <li><a href="#Hints">Hints about working with the tree</a>
+        <li><a href="#AddActor">How to add an actor</a>
+        <li><a href="#Targets">Supporting different targets</a>
+      </ul>
+      <p><i>See <a href="../configs/doc/completeDemos.htm#cg">Code Generation section of the Complete Demos page</a> for more demos.</i></p>
+
+      <h2><a name="Simple Demo">Simple Demo</a></h2>
+      <ol>
+	<li>Generate HTML code that describes a model.
+	  <br/>If you are viewing this page from within vergil, 
+	  open <a href="adapter/generic/html/demo/HierarchicalModel/HierarchicalModel.xml"><code>$PTII/ptolemy/cg/adapter/generic/html/demo/HierarchicalModel/HierarchicalModel.xml</code></a>
+	  <br/>If you are viewing this page from a browser, start vergil with:
+	  <code>$PTII/bin/vergil /Users/cxh/ptII/ptolemy/cg/adapter/generic/html/demo/HierarchicalModel/HierarchicalModel.xml</code></li> 
+	<li> Click on the HTMLCodeGenerator icon.</li>
+	<li> A dialog box will appear, click on "Generate"</li>
+	<li> An HTML description of the model will be generated and displayed.</li>
+      </ol>
+
+      <h2><a name="Java Command Line Demo">Java Command Line Demo</a></h2>
+      To generate Java code for a simple model, run:
+      <pre>
+	$PTII/bin/ptcg -language java $PTII/ptolemy/cg/kernel/generic/program/procedural/java/test/auto/Display.xml 
+      </pre>
+      or
+      <pre>
+	java -classpath $PTII ptolemy.cg.kernel.generic.GenericCodeGenerator -language java $PTII/ptolemy/cg/kernel/generic/program/procedural/java/test/auto/Display.xml
+      </pre>
+
+      <h2><a name="Package Overview">Package overview</a></h2>
+      The cg facility uses an adapter pattern where classes in a regular
+      Ptolemy II model have corresponding classes in the cg facility.
+
+      <p>The cg subpackages are structured so that language specific code
+	is separate from generic code.</p>   
+
+      <p>The main entry point is
+	$PTII/ptolemy/cg/kernel/generic/GenericCodeGenerator.java.
+	This file is invoked by <code>$PTII/bin/ptcg</code>.  To get the complete list
+	of options, run <code>$PTII/bin/ptcg -help</code>.</p>
+
+      <p>To invoke the cg code generator from the GUI, drag in
+	a code generator attribute from More Libraries -&gt;
+	CodeGenerators -&gt;CGCodegen.</p>
+
+      <p>The ptolemy/cg directory has these subdirectories:</p>
+      <dl>
+	<dt> ptolemy/cg/adapter</dt>
+	<dd> Language specific adapters classes that correspond with
+	  regular Ptolemy II classes.
+	  <dl> 
+	    <dt> ptolemy/cg/adapter/generic/program/procedural/</dt>
+	    <dd> The classes for the procedural languages (C and Java)
+              <dl>
+		<dt> ptolemy/cg/adapter/generic/program/procedural/adapters</dt>
+		<dd> The adapter definitions that are shared between the procedural languages.  For example, the Display adapter is at ptolemy/cg/adapter/generic/program/procedural/adapters/ptolemy/actor/lib/gui/Display.java</dd>
+		<dt> ptolemy/cg/adapter/generic/program/procedural/adapters/c</dt>
+		<dd> The adapters for actors that generate C.  In general, the Java class extends the shared adapter
+		  and contains only a constructor.  There is an optional <code>.c</code> file that contains
+		  C-specific blocks of code used in code generation.
+		  For example, we have ptolemy/cg/adapter/generic/program/procedural/c/adapters/ptolemy/actor/lib/gui/Display.java
+		  and ptolemy/cg/adapter/generic/program/procedural/c/adapters/ptolemy/actor/lib/gui/Display.c
+		</dd>
+		<dd> The adapters for actors that generate Java.  The layout is similar to the C version, except the
+		  <code>.j</code> file contains the Java template blocks.  The file is named .j so that it does not get compiled.
+		</dd>
+              </dl>
+	  </dl>
+	</dd>
+	<dt> ptolemy/cg/gui</dt>
+	<dd>Graphical User Interface (gui) code.  If a model has a
+	  ptolemy.cg.gui.CodeGeneratorGUIFactory attribute in it, then
+	  double clicking on that attribute brings up the code generator gui.
+	</dd>
+	<dt> ptolemy/cg/kernel</dt>
+	<dd>Non-language specific code generation classes and language-specific
+	  type information.</dd>
+	<dt>ptolemy/cg/lib</dt>
+	<dd>Modular code generation work and syntactic code generation
+	  work</dd>
+      </dl>
+
+      <h2><a name="Hints">Hints about working with the tree</a></h2>
+
+      Because the tree is so deep, you may find it easier to use a few tools to quickly search files from the command line.
+
+      <h3>Search for files</h3>
+      To find all the files named <code>Display</code> use:
+      <pre>
+	cd $PTII/ptolemy/cg
+	find . -name "Display"
+      </pre>
+
+      <h3>Search all the files for a string</h3>
+      <pre>
+	find . -type f | xargs grep MyString
+      </pre>
+
+      <h2><a name="AddActor">How to add an actor</a></h2>
+
+      <p>Adding code generation support for an actor is fairly complex, but
+	follows a pattern.</p>
+
+      <ol>
+
+	<li>First, check to see that there is no already a code generation
+	  version of the actor.  It could be that there is one for a different
+	  language.  Also, look for code generation versions of the actors that
+	  are similar to the actor in question.</li>
+
+	<li>Read the style guide
+	  at <a href="../../doc/coding/style.htm">$PTII/doc/coding/style.htm</a>.
+	  In particular, pay attention to the parts about makefiles.</li>
+
+	<li>The ptolemy/cg directory contains subdirectories that mimic the
+	  Ptolemy II tree.  So, if we are adding a code generation version of
+	  an actor in ptolemy/actor/lib, then we will be working in similar
+	  subdirectories in ptolemy/cg.</li>
+
+	<li>The code generation system reads blocks of code from a template
+	  file and does substitution.  Most of the work occurs in a file that
+	  is shared between the procedural languages (C and Java).  The directory is
+	  <code>$PTII/ptolemy/cg/adapter/generic/program/procedural/adapters/ptolemy/actor/lib/</code>
+
+	<li>The C or Java specific code is in
+	  <br/><code>$PTII/ptolemy/cg/adapter/generic/program/procedural/<b>c</b>/adapters/ptolemy/actor/lib/</code>
+	  or
+	  <br/><code>$PTII/ptolemy/cg/adapter/generic/program/procedural/<b>java</b>/adapters/ptolemy/actor/lib/</code>
+	  <br/>These directories contain corresponding <code>.c</code> or <code>.j</code> files that define the blocks
+	  used in the generated code.
+	  <br/>These directories also contain a <code>test/auto/</code> directory that contains the test models.
+	</li>
+
+      </ol>
+
+      <h3>Code Blocks</h3>
+        <p>The C or Java-specific template files have sections th at
+          are used to generate the output.  Each execution phase (preinitialize,
+          initialize, fire, wrapup etc.) have blocks.  For
+          example,
+          <code>$PTII/ptolemy/cg/adapter/generic/program/procedural/c/adapters/ptolemy/actor/lib/Const.c</code>
+          has:</p>
+
+      <pre>
+      /***fireBlock***/
+      $put(output, $val(($cgType(output)) value));
+      /**/
+      </pre>
+      <p>This defines a block that puts the value of the value parameter on the output port.  The type will be that of the output port.</p>
+      
+      <p>The default block names are defined in <code>ptolemy/cg/kernel/generic/program/ProgramCodeGeneratorAdapter.java</code>.  The default blocks appear in the .c template file as follows:
+      <ul>
+        <li><code>/*** preinitBlock ***/</code></li>
+        <li><code>/*** initBlock ***/</code></li>
+        <li><code>/*** fireBlock ***/</code></li>
+        <li><code>/*** postfireBlock ***/</code></li>
+        <li><code>/*** wrapupBlock ***/</code></li>
+      </ul>
+
+      <p>To see what blocks have been used, try</p>
+      <pre>
+      cd $PTII/ptolemy/cg
+      find . -name "*.c" | xargs grep -h '/\*\*\*' | sort | uniq -c | sort -nr | head -30
+      </pre>
+
+      <p>For code that is to be shared, define a block with <code>shared</code> in the name, for example
+        <code>ptolemy/cg/adapter/generic/program/procedural/c/adapters/ptolemy/actor/lib/Expression.c</code>
+        defines <code>min</code> and <code>max</code>:</p>
+        <pre>
+/*** sharedBlock ***/
+/* max and min may be used by the Expression actor. */
+#ifndef max
+#define max(a,b) ((a)&gt;(b)?(a):(b))
+#endif
+#ifndef min
+#define min(a,b) ((a)&lt;(b)?(a):(b))
+#endif
+/**/
+        </pre>                        
+        <p>The shared block is a good place define functions that need only appear once.</p>
+
+        <p>The shared code appears in <code>~/ptII/cg/commons/_ptTypes.c</code>.</p>
+
+      <h2><a name="Targets">Supporting different targets</a></h2>
+
+      <p>A target is typically an architecture-specific platform.  For
+	example, the <code>arduino</code> target generates C-code meant to run
+	on the Arduino platform. </p>
+
+      <p>To generate code for a target, use the <code>-generatorPackageList</code> command line argument to 
+	<code>$PTII/bin/cg</code>.  The value of the <code>-generatorPackageList</code> parameter i
+	a semicolon or * separated list of Java packages to be searched for adapters.  For example:</p>
+      <pre>
+	  $PTII/bin/ptcg -generatorPackageList generic.program.procedural.c.arduino ptolemy/cg/adapter/generic/program/procedural/c/arduino/adapters/ptolemy/actor/lib/gui/test/auto/Display.xml
+      </pre>
+
+      <h3>Adding a new target</h3>
+
+      <h4>Creating the adapter directory</h4>
+      <p>Adapters for C are in <code>$PTII/ptolemy/cg/adapter/generic/program/procedural/c/</code>, so create
+        your C target adapter there.  Other languages are in <code>$PTII/ptolemy/cg/adapter/generic/program/procedural/</code>.</p>
+      <pre>
+        mkdir $PTII/ptolemy/cg/adapter/generic/program/procedural/c/duktape
+      </pre>
+      <p>Then create some actor stubs.  It is probably easiest to copy an existing target and remove the .class files and .jar files
+      <pre>
+        cd $PTII/ptolemy/cg/adapter/generic/program/procedural/c/duktape
+        (cd ../arduino; tar -cf - .) | tar -xvf -
+        find . -name "*.class" -exec rm {} \;
+        find . -name "*.jar" -exec rm {} \;
+      </pre>
+
+      <p>It is easiest to use a script to change from <code>arduino</code to <code>duktape</code>.  Create <code>/tmp/rename</code> and make it executable.  Below is a simple rename script. </p>
+      <pre>
+#!/bin/sh
+for file in $@
+do
+        sed 's/arduino/duktape/g' $file &amp; /tmp/rename.tmp
+        diff $file /tmp/rename.tmp
+        cp /tmp/rename.tmp $file 
+done
+      </pre>        
+      <p>Then run the script</p>
+      <pre>
+          chmod a+x /tmp/rename
+          find . -type f | xargs /tmp/rename
+      </pre>
+        
+      <h4>Updating the files</h4>
+      Update the <code>README.htm</code>.
+
+      <h4>Run make, then ptcg</h4>
+      <p>Try running <code>make</code> and then generate code.</p>
+      <pre>
+        make
+       $PTII/bin/ptcg -generatorPackageList generic.program.procedural.c.duktape $PTII/ptolemy/cg/adapter/generic/program/procedural/c/duktape/adapters/ptolemy/actor/lib/gui/test/auto/Display.xml
+      </pre>
+      
+  </body>
+</html>

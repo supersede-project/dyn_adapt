@@ -1,0 +1,73 @@
+#!/bin/sh
+# $Id: exportModelX11 66133 2013-04-25 21:59:22Z cxh $
+# Start up a X11 virtual frame buffer, export a model to a web page and stop the X11 virtual frame buffer.
+# 
+# This script is meant to be run from a cronjob.
+# Xvfb is a headless frame buffer, which means that a physical graphical display is not required.
+# This script requires Xvfb, which is most commonly found under Linux.
+# This script *might* work under Mac OS X if Xvfb is installed.
+# This script is not likely to work under Windows. 
+
+# Usage:
+#   cd $PTII/ptolemy/domains/sdf/demo/MaximumEntropySpectrum
+#   $PTII/ptolemy/vergil/basic/export/exportModelX11 MaximumEntropySpectrum.xml
+# The directory MaximumEntropySpectrum will contain the html files.
+
+usage="$0: Usage exportModelX11 [-ptweb] [-xvfb] model.mxl"
+if [ $# -gt 3 ]; then
+    echo $usage
+    exit 2
+fi
+
+# Process args
+ptweb=no
+xvfb=no
+while [ $# -gt 1 ]
+do
+    case $1 in
+	-ptweb) ptweb=yes;;
+	-xvfb) xvfb=yes;;
+	-*) echo "Unrecognized argument $1"
+	   echo $usage
+	   exit 4;;
+    esac
+    shift
+done
+model=$1
+
+if [ $ptweb == "yes" ]; then
+    # ptolemy/vergil/basic/export/html/ExportHTMLAction.java reads these properties
+    # Unfortunately, the CHESS website handles .js files specially, so we use the .js files 
+    # from http://ptolemy.org instead.
+    javaDefines="-Dptolemy.ptII.exportHTML.linkToJNLP=true -Dptolemy.ptII.exportHTML.usePtWebsite=true"
+fi
+
+modelDirectory=`dirname $model`
+cd $modelDirectory
+
+modelBasename=`basename $model .xml`
+
+if [ $xvfb == "yes" ]; then
+    echo "Killing Xvfb"
+    pkill Xvfb
+    pkill -9 Xvfb
+    rm -f /tmp/.X3-lock
+
+    echo "Starting Xvfb"
+    Xvfb :3 -screen 0 1024x768x24 &
+    export DISPLAY=localhost:3.0
+fi
+
+echo "Loading $model, running it and exporting"
+
+"${PTII}/bin/ptinvoke" $javaDefines ptolemy.vergil.basic.export.ExportModel htm -copyJavaScriptFiles -openComposites -run -force $model
+
+ls -l $modelBasename
+if [ $xvfb == "yes" ]; then
+    echo "Killing Xvfb"
+    pkill Xvfb
+    pkill -9 Xvfb
+    rm -f /tmp/.X3-lock
+fi
+
+exit 0

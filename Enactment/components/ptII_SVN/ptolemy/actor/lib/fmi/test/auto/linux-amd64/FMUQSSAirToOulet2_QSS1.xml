@@ -1,0 +1,177 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE entity PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="FMUQSSAirToOulet2_QSS1" class="ptolemy.actor.TypedCompositeActor">
+    <property name="_createdBy" class="ptolemy.kernel.attributes.VersionAttribute" value="11.0.devel">
+    </property>
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={0, 52, 1920, 1176}, maximized=false}">
+    </property>
+    <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1706, 1059]">
+    </property>
+    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0710200097183211">
+    </property>
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{783.7685872395829, 476.9017161051431}">
+    </property>
+    <property name="Annotation2" class="ptolemy.vergil.kernel.attributes.TextAttribute">
+        <property name="textColor" class="ptolemy.actor.gui.ColorAttribute" value="{0.4,0.4,0.4,1.0}">
+        </property>
+        <property name="text" class="ptolemy.kernel.util.StringAttribute" value="Author:Thierry S. Nouidui">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{120.0, -15.0}">
+        </property>
+    </property>
+    <property name="Annotation3" class="ptolemy.vergil.kernel.attributes.TextAttribute">
+        <property name="text" class="ptolemy.kernel.util.StringAttribute" value="This model is used to test time and state events. &#10;This model has 8 time events (1.25, 3.75, 6.25, &#10;8.75, 11.25, 13.75, 16.25, 18.75) &#10;and 7 state events (0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5), &#10;and 7.85 when simulated for 20 seconds.&#10;&#10;The Modelica model is AirToOutlet2Total.mo&#10;&#10;&#10;">
+        </property>
+        <property name="_location" class="ptolemy.vergil.basic.RelativeLocation" value="{-5.0, 255.0}">
+        </property>
+    </property>
+    <property name="QSSDirector" class="ptolemy.domains.qss.kernel.QSSDirector">
+        <property name="startTime" class="ptolemy.data.expr.Parameter" value="0">
+        </property>
+        <property name="stopTime" class="ptolemy.data.expr.Parameter" value="20">
+        </property>
+        <property name="relativeQuantum" class="ptolemy.data.expr.Parameter" value="1.0E-2">
+        </property>
+        <property name="QSSSolver" class="ptolemy.data.expr.StringParameter" value="QSS1">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{55.0, 15.0}">
+        </property>
+    </property>
+    <entity name="Test" class="ptolemy.actor.lib.Test">
+        <property name="correctValues" class="ptolemy.data.expr.Parameter" value="{1.0, 1.01, 1.0201, 1.030301, 1.04060401, 1.05101005, 1.0615201504, 1.072135352, 1.0828567056, 1.0936852726, 1.1046221254, 1.1156683466, 1.12682503, 1.1380932802, 1.149474213, 1.1609689552, 1.1725786448, 1.1843044312, 1.1961474756, 1.2081089504, 1.22019004, 1.2323919404, 1.2447158598, 1.2571630184, 1.2697346486, 1.282431995, 1.295256315, 1.3082088782, 1.321290967, 1.3345038766, 1.3478489154, 1.3613274046, 1.3749406786, 1.3886900854, 1.4025769862, 1.416602756, 1.4307687836, 1.4450764714, 1.4595272362, 1.4741225086, 1.4888637336, 1.503752371, 1.5187898948, 1.5339777938, 1.5493175718, 1.5648107476, 1.580458855, 1.5962634436, 1.612226078, 1.6283483388, 1.6446318222, 1.6610781404, 1.6776889218, 1.694465811, 1.7114104692, 1.7285245738, 1.7458098196, 1.7632679178, 1.780900597, 1.798709603, 1.816696699, 1.834863666, 1.8532123026, 1.8717444256, 1.8904618698, 1.9093664884, 1.9284601532, 1.9477447548, 1.9672222024, 1.9868944244, 2.0067633686, 2.0268310022, 2.0470993122, 2.0675703054, 2.0882460084, 2.1091284684, 2.130219753, 2.1515219506, 2.1730371702, 2.194767542, 2.2167152174, 2.2388823696, 2.2612711932, 2.2838839052, 2.3067227442, 2.3297899716, 2.3530878714, 2.3766187502, 2.4003849378, 2.4243887872, 2.448632675, 2.4731190018, 2.4978501918, 2.5228286938, 2.5480569808, 2.5735375506, 2.5992729262, 2.6252656554, 2.651518312, 2.6780334952, 2.7048138302, 2.7318619686, 2.7591805882, 2.786772394, 2.814640118, 2.8427865192, 2.8712143844, 2.8999265282, 2.9289257934, 2.9582150514, 2.987797202, 3.017675174, 3.0478519258, 3.078330445, 3.1091137494, 3.1402048868, 3.1716069356, 3.203323005, 3.235356235, 3.2677097974, 3.3003868954, 3.3333907644, 3.366724672, 3.4003919188, 3.434395838, 3.4687397964, 3.5, 3.535, 3.57035, 3.6060535, 3.642114035, 3.6785351754, 3.7153205272, 3.7524737324, 3.7899984698, 3.8278984544, 3.866177439, 3.9048392134, 3.9438876056, 3.9833264816, 4.0231597464, 4.0633913438, 4.1040252572, 4.1450655098, 4.1865161648, 4.2283813264, 4.2706651396, 4.313371791, 4.356505509, 4.400070564, 4.4440712696, 4.4885119822, 4.533397102, 4.578731073, 4.6245183838, 4.6707635676, 4.7174712032, 4.7646459152, 4.8122923744, 4.8604152982, 4.9090194512, 4.9581096458, 5.0076907422, 5.0577676496, 5.108345326, 5.1594287792, 5.211023067, 5.2631332976, 5.3157646306, 5.368922277, 5.4226114998, 5.4768376148, 5.531605991, 5.586922051, 5.6427912716, 5.6992191844, 5.7562113762, 5.81377349, 5.871911225, 5.9306303372, 5.9899366406, 6.049836007, 6.110334367, 6.1714377106, 6.2331520878, 6.2954836086, 6.3584384446, 6.422022829, 6.4862430572, 6.5511054878, 6.6166165426, 6.682782708, 6.749610535, 6.8171066404, 6.8852777068, 6.9541304838, 7.0236717886, 7.0939085064, 7.1648475914, 7.2364960674, 7.308861028, 7.3819496382, 7.4557691346, 7.530326826, 7.6056300942, 7.6816863952, 7.7585032592, 7.8360882918, 7.9144491748, 7.9935936666, 8.0735296032, 8.1542648992, 8.2358075482, 8.3181656236, 8.4013472798, 8.4853607526, 8.549836007, 8.635334367, 8.7216877106, 8.8089045878, 8.8969936336, 8.98596357, 9.0758232058, 9.1665814378, 9.2582472522, 9.3508297248, 9.444338022, 9.5387814022, 9.6341692162, 9.7305109084, 9.8278160174, 9.9260941776, 10.0253551194, 10.1256086706, 10.2268647574, 10.329133405, 10.432424739, 10.5367489864, 10.6421164762, 10.748537641, 10.8560230174, 10.9645832476, 11.07422908, 11.1849713708, 11.2968210846, 11.4097892954, 11.5238871884, 11.6391260602, 11.7555173208, 11.873072494, 11.991803219, 12.1117212512, 12.2328384638, 12.3551668484, 12.4787185168, 12.603505702, 12.729540759, 12.8568361666, 12.9854045282, 13.1152585734, 13.2464111592, 13.3788752708, 13.5126640236, 13.57422908, 13.7099713708, 13.8470710846, 13.9855417954, 14.1253972134, 14.2666511856, 14.4093176974, 14.5534108744, 14.6989449832, 14.845934433, 14.9943937774, 15.1443377152, 15.2957810924, 15.4487389034, 15.6032262924, 15.7592585554, 15.916851141, 16.0760196524, 16.236779849, 16.3991476474, 16.5631391238, 16.728770515, 16.8960582202, 17.0650188024, 17.2356689904, 17.4080256804, 17.5821059372, 17.7579269966, 17.9355062666, 18.1148613292, 18.2960099424, 18.4789700418, 18.5760196524, 18.761779849, 18.9493976474, 19.1388916238, 19.33028054, 19.5235833454, 19.7188191788, 19.9160073706, 20.1151674444, 20.3163191188, 20.51948231, 20.7246771332, 20.9319239046, 21.1412431436, 21.352655575, 21.5661821308, 21.7818439522, 21.9996623918, 22.2196590158, 22.441855606, 22.666274162, 22.8929369036, 23.1218662726, 23.3530849354, 23.5866157848, 23.6412431436, 23.877655575, 24.1164321308, 24.3575964522, 24.6011724168, 24.847184141, 25.0956559824, 25.3466125422, 25.6000786676, 25.8560794542, 26.1146402488, 26.3757866512, 26.6395445178, 26.905939963, 27.1749993626, 27.4467493562, 27.7212168498, 27.9984290182, 28.2784133084, 28.5611974414, 28.6146402488, 28.9007866512, 29.1897945178, 29.481692463, 29.7765093876, 30.0742744814, 30.3750172262, 30.6787673984, 30.9855550724, 31.2954106232, 31.6083647294, 31.9244483766, 32.2436928604, 32.566129789, 32.8917910868, 33.2207089976, 33.5529160876, 33.7954106232, 34.1333647294, 34.4746983766, 34.8194453604, 35.167639814, 35.5193162122, 35.8745093744, 36.2332544682, 36.5955870128, 36.961542883, 37.3311583118, 37.704469895, 38.081514594, 38.46232974, 38.7332544682, 39.1205870128, 39.511792883, 39.9069108118, 40.30597992, 40.7090397192, 41.0}">
+        </property>
+        <property name="tolerance" class="ptolemy.data.expr.Parameter" value="1.005909055360001E-8">
+        </property>
+        <property name="trainingMode" class="ptolemy.actor.parameters.SharedParameter" value="false">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{615.0, 20.0}">
+        </property>
+    </entity>
+    <entity name="Test2" class="ptolemy.actor.lib.Test">
+        <property name="correctValues" class="ptolemy.data.expr.Parameter" value="{0.2, 0.0, 0.2, 0.0, 0.2, 0.0, 0.2, 0.0, 0.2, 0.0, 0.2, 0.0, 0.2, 0.0, 0.2, 0.0, 0.2}">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{615.0, 150.0}">
+        </property>
+    </entity>
+    <entity name="Test3" class="ptolemy.actor.lib.Test">
+        <property name="correctValues" class="ptolemy.data.expr.Parameter" value="{297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086, 293.15, 297.7817099375086}">
+        </property>
+        <property name="tolerance" class="ptolemy.data.expr.Parameter" value="2.931500000000003E-7">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{615.0, 220.0}">
+        </property>
+    </entity>
+    <entity name="TimedPlotter" class="ptolemy.actor.lib.gui.TimedPlotter">
+        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={465, 610, 500, 349}, maximized=false}">
+        </property>
+        <property name="_plotSize" class="ptolemy.actor.gui.SizeAttribute" value="[500, 300]">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{605.0, 85.0}">
+        </property>
+        <configure>
+<?plotml <!DOCTYPE plot PUBLIC "-//UC Berkeley//DTD PlotML 1//EN"
+"http://ptolemy.eecs.berkeley.edu/xml/dtd/PlotML_1.dtd">
+<plot>
+<title>TimedPlotter</title>
+<xLabel></xLabel>
+<yLabel></yLabel>
+<xRange min="0.0" max="20.0"/>
+<yRange min="1.0" max="41.00000000000002"/>
+<default connected="no"/>
+</plot>?>
+        </configure>
+    </entity>
+    <entity name="Buildings_0Fluid_0FMI_0Conversion_0Validation_0AirToOutlet" class="ptolemy.actor.lib.fmi.FMUQSS">
+        <property name="fmuFile" class="ptolemy.data.expr.FileParameter" value="Buildings_0Fluid_0FMI_0Conversion_0Validation_0AirToOutlet2.fmu">
+        </property>
+        <property name="modelExchange" class="ptolemy.data.expr.Parameter" value="true">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[265.0, 110.0]">
+        </property>
+        <property name="h_k" class="ptolemy.data.expr.Parameter" value="50000.0">
+        </property>
+        <property name="Xi_1__k" class="ptolemy.data.expr.Parameter" value="0.01">
+        </property>
+        <property name="m_flow_amplitude" class="ptolemy.data.expr.Parameter" value="0.2">
+        </property>
+        <property name="m_flow_width" class="ptolemy.data.expr.Parameter" value="50.0">
+        </property>
+        <property name="m_flow_period" class="ptolemy.data.expr.Parameter" value="2.5">
+        </property>
+        <property name="m_flow_nperiod" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <property name="m_flow_offset" class="ptolemy.data.expr.Parameter" value="0.0">
+        </property>
+        <property name="m_flow_startTime" class="ptolemy.data.expr.Parameter" value="0.0">
+        </property>
+        <port name="x" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+        <port name="outlet_m_flow" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <display name="outlet.m_flow"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+        <port name="outlet_forward_T" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <display name="outlet.forward.T"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+        <port name="outlet_forward_X_w" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <display name="outlet.forward.X_w"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+    </entity>
+    <relation name="relation" class="ptolemy.actor.TypedIORelation">
+        <vertex name="vertex1" value="{540.0, 20.0}">
+        </vertex>
+        <property name="_layoutHint" class="ptolemy.vergil.actor.LayoutHint" value="{ { head={id=&quot;Test.input&quot;,x=615.0,y=20.0}, tail={id=&quot;relation.vertex1&quot;,x=540.0,y=20.0}, points={} },{ head={id=&quot;TimedPlotter.input&quot;,x=605.0,y=85.0,index=3}, tail={id=&quot;relation.vertex1&quot;,x=540.0,y=20.0}, points={540.0,75.0} },{ head={id=&quot;StateEvents_StateEvent2.x1&quot;,x=340.0,y=30.0}, tail={id=&quot;relation.vertex1&quot;,x=540.0,y=20.0}, points={} } }">
+        </property>
+    </relation>
+    <relation name="relation3" class="ptolemy.actor.TypedIORelation">
+        <vertex name="vertex1" value="{540.0, 220.0}">
+        </vertex>
+        <property name="_layoutHint" class="ptolemy.vergil.actor.LayoutHint" value="{ { head={id=&quot;Test3.input&quot;,x=615.0,y=220.0}, tail={id=&quot;relation3.vertex1&quot;,x=540.0,y=220.0}, points={} },{ head={id=&quot;TimedPlotter.input&quot;,x=605.0,y=85.0,index=3}, tail={id=&quot;relation3.vertex1&quot;,x=540.0,y=220.0}, points={540.0,85.0} },{ head={id=&quot;StateEvents_StateEvent2.x3&quot;,x=340.0,y=30.0}, tail={id=&quot;relation3.vertex1&quot;,x=540.0,y=220.0}, points={490.0,40.0,490.0,220.0} } }">
+        </property>
+    </relation>
+    <relation name="relation2" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <link port="Test.input" relation="relation"/>
+    <link port="Test2.input" relation="relation2"/>
+    <link port="Test3.input" relation="relation3"/>
+    <link port="TimedPlotter.input" relation="relation"/>
+    <link port="Buildings_0Fluid_0FMI_0Conversion_0Validation_0AirToOutlet.x" relation="relation"/>
+    <link port="Buildings_0Fluid_0FMI_0Conversion_0Validation_0AirToOutlet.outlet_m_flow" relation="relation2"/>
+    <link port="Buildings_0Fluid_0FMI_0Conversion_0Validation_0AirToOutlet.outlet_forward_T" relation="relation3"/>
+</entity>

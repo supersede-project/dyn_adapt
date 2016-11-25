@@ -1,0 +1,41 @@
+<!-- $Id: debug.htm 71480 2015-01-28 22:39:44Z cxh $ -->
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <title>A Simple Ptolemy II Debugging Session Inside Eclipse</title>
+    <link href="../../../doc/default.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1></h1>
+    <h2><a name="simpleDebug">A Simple Ptolemy II Debugging Session Inside Eclipse</a></h2>
+
+    <ol>
+      <li> Locate ptolemy/vergil/VergilApplication in the Explorer and
+	double click. Place a breakpoint on the first line of main()
+	by using <code>Run</code> | <code>Add/Remove Breakpoint</code>
+      </li>
+
+      <li> Tell Eclipse which class to run with <code>Run</code>
+	| <code>Debug As</code>.  On the Main tab, select the Ptolemy II package
+	and enter ptolemy.vergil.VergilApplication as Main class.
+      </li>
+
+      <li> Press the Run button and make sure Vergil starts up.</li>
+      <li> To debug, quit Vergil, and set a breakpoint:
+        <ol>
+          <li>Use the Package Explorer to browse to ptolemy.domains.continuous.kernel.ContinuousDirector</li>
+          <li>Find the fire() method.</li>
+          <li>Right click in the left margin next to the first line of the fire() method and select Toggle Breakpoint.</li>
+        </ol>
+      </li>
+
+      <li>Then <code>Run</code> | <code>Debug</code>, and
+	as above. In Vergil, open the Lorenz Continuo demo from the Quick Tour: Tour | complete list of all demos | Continuous | Lorenze and then run the demo.
+      </li>
+
+      <li>The model will run until the fire() method and the the Java debugger view will appear.</li>
+    </ol>
+
+    <p>See also <a href="../eclipseNotes.htm" target="main">Eclipse Notes</a></p>
+  </body>
+</html>

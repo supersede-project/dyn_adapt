@@ -1,0 +1,143 @@
+<!-- $Id: setupClasspath.htm 73406 2015-09-11 16:00:38Z cxh $ -->
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <title>Windows: Setup up the Eclipse ptII .classpath for Ptolemy II</title>
+    <link href="../../../doc/default.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1>Set up the Eclipse ptII project .classpath for Ptolemy II</h1>
+
+    Once you have downloaded the Ptolemy II source files, Eclipse uses
+    the <code>.classpath</code> file to set paths and exclude files.
+
+    <br/>There are two choices:
+    <ol>
+
+      <li> In the Ptolemy II source tree,
+	copy <code>.classpath.default</code> to <code>.classpath</code>.
+	This choice is the simpler choice, but might exclude optional
+	third party packages.
+        <br/>
+        If you are working with accessors, then only choose this option if you have already checked out accessors repo, see:
+        <a href="noEclipseSVN.htm">Eclipse is unaware of the version control aspects of the Ptolemy II project, use the shell version of Subversion to update the tree.</a>.
+      </li>
+      <li> Run <code>./configure</code>.  This choice is more complex, but this choice will include
+	optional third party software that is already installed on your
+	machine.
+
+                <br/>If you checked out the ptII svn repo using read/write
+        access and you have an EECS LDAP account on
+        repo.eecs.berkeley.edu, then running <code>./configure</code>
+        or reloading an accessor will check out the accessors repo for
+        you.
+
+        <br/>If you checked out the ptII svn repo using
+        read/write access and you have an external account name (an
+        account that is an email address) on repo.eecs.berkeley.edu,
+        then you must check out the accessors repo before running
+        configure.
+      </li>
+    </ol>
+
+    <ol>
+      <li>
+	Choose <b>one</b> of the options below
+	<h4>A. Copy .classpath to .classpath.default</h4>
+	<ul>
+	  <ol>
+	    <li>In the Windows file browser, find the Ptolemy II source distribution,
+	      <br/>If you installed from the installer, the Ptolemy source distribution will be at  <code>c:\Ptolemy\ptII8.1.devel</code>.
+	      <br/>If you downloaded Ptolemy II via Subversion, then the Ptolemy II source distribution will be at 
+	      <dl>
+		<dt>Windows 7:</dt>
+		<dd><code>/Users/<i>yourlogin</i>/workspace/ptII</code></dd>
+		<dt>Older versions of Windows:</dt>
+		<dd><code>c:/Documents and Settings/<i>yourlogin</i>/Documents/workspace/ptII</code></dd>
+	      </dl>
+	    <li>Right click on <code>.classpath</code> and select delete.</li>
+	    <li>Right click on <code>.classpath.default</code>, select copy.</li>
+	    <li>Right click on the background of the file browswer window and select paste and paste a copy of the file.
+	      <br/>You may need to change the file browser view from "List" to "Small Icons" so that it is possible to paste
+	      into the background.</li>
+	    <li>Right click on the copy, select rename and rename the file
+	      to <code>.classpath.default</code>.
+
+	      <br/>Windows 7 users:  If you get a message "You must type a file name",
+	      then rename the file to <code>.classpath.</code> with a
+	      trailing dot.  The "operating system" will delete the trailing dot.
+
+	      <br/>Windows XP users:  Open the <code>.classpath.default</code> file with an
+	      editor such as Wordpad, Notepad or any other editor and then save the file as
+	      <code>.classpath</code>.  Or, use a DOS prompt.
+
+	      </li>
+
+	  </ol>
+	  <p><b>Most users will choose the above option because running configure requires installing Cygwin.</b></p>
+	</ul>
+
+	<p><b>OR</b></p>
+	<h4><a name="#runConfigure">B. Run ./configure</a></h4> 
+
+	Ptolemy II includes a number of packages that rely on software that
+	you may or may not have installed, such as MATLAB, the rxtx
+	package (for serial port connections), Java
+	Advanced Imaging (JAI), the Java Media Framework (JMF), and Java
+	3D.  If you wish to use or extend these features, you will need to
+	perform a few extra steps.  These steps require execution of a
+	script called <code>configure</code> in the Ptolemy II home
+	directory.
+
+	<p>The procedure below will modify the <code>.classpath</code> file
+	  that is provided in the version control repository to customize it
+	  for the software that you have installed.</p>
+
+	<ol>
+	  <li>Unfortunately Windows does not ship with Unix shell commands
+	like <code>make</code>.  The workaround is to install Cygwin,
+	see <a href="http://ptolemy.eecs.berkeley.edu/ptolemyII/ptIIlatest/cygwin.htm#in_browser" target="_top"><code>http://ptolemy.eecs.berkeley.edu/ptolemyII/ptIIlatest/cygwin.htm</code></a></li>
+	  <li> Start up the Cygwin Bash shell: <code>Start</code> | <code>Run</code> | <code>Cygwin</code>
+	  <li> Change to the directory where the Ptolemy II source code was
+	    installed.  For example:
+	    <pre>
+	      cd c:/Ptolemy/ptII8.1.devel
+            </pre>
+	    Note that if there are <b>spaces</b> in the path name to the directory
+	    where your Ptolemy installation is located, then you should use
+	    double quotes around the path:
+	    <pre>
+	      cd "c:/Documents and Settings/<i>yourLogin</i>/workspace/ptII"
+	  </pre></li>
+	  <li> Set <code>$PTII</code> to the location of the Ptolemy II source tree:
+	    <pre>
+	      export PTII=c:/Ptolemy/ptII8.1.devel
+	    </pre>
+	    Again, if there are spaces in the path, use double quotes:
+            <code> export PTII="c:/Documents and Settings/<i>yourLogin</i>/workspace/ptII"</code> 
+	  <li>  Run:
+	    <pre>
+	      ./configure
+	    </pre>  
+	    This will create <code>$PTII/.classpath</code>
+	</ol>
+
+      </li>
+      <li>Choose <b>one</b> of the choices above.
+      </li>
+
+      <li>Once you have configured <code>.classpath</code>, go back to Eclipse and
+	do <code>File</code> | <code>Refresh</code> so that Eclipse gets the updated
+	<code>.classpath</code> file.
+      </li>
+
+      <li> Build Ptolemy II by doing <code>Project</code> | <code>Build All</code>.
+	<br/> Note that you <i>may</i> want to select 
+	<code>Project</code> | <code>Build Automatically.</code>.
+      </li>
+
+      <li> Go on to <a href="runPtolemyII.htm" target="main">Running Ptolemy II</a>.
+      </li>
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE plot PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="TimedSinks" class="ptolemy.moml.EntityLibrary">
+  <configure>
+    <?moml
+      <group>
+<doc>Sinks that are time based. </doc>
+<entity name="TimedDisplay" class="ptolemy.actor.lib.gui.TimedDisplay"/>
+
+<entity name="TimedMonitorValue" class="ptolemy.actor.lib.gui.TimedMonitorValue">
+<doc>Monitor and display values</doc>
+   <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="20"/>
+   <property name="_icon" class="ptolemy.vergil.icon.UpdatedValueIcon">
+      <property name="attributeName" value="value"/>
+      <property name="displayWidth" value="displayWidth"/>
+   </property>
+   </entity>
+   
+<entity name="TimedPlotter" class="ptolemy.actor.lib.gui.TimedPlotter"/>
+<entity name="TimedScope" class="ptolemy.actor.lib.gui.TimedScope"/>
+      </group>
+    ?>
+  </configure>
+</entity>

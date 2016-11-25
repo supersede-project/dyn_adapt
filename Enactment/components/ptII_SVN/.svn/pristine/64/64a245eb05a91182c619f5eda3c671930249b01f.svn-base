@@ -1,0 +1,225 @@
+#!/bin/sh
+# $Id$
+# A script that deploys a composite accessor to a remote machine.
+#
+# The steps are:
+# 1. Create a directory on the remote machine
+# 2. Use npm to install @terraswarm/accessors, forever and any other
+# modules on the remote machine
+# 3. Create a small script to run the composite accessor on the remote machine
+# 4. Copy the accessor to the remote machine
+# 5. Invoke the accessor on the remote machine using npm forever
+
+usage="$0: Usage: $0 remoteuser@remotehost compositeAccessor.js [-timeout timeoutInMs] [-modules \"module1[,module2...]\"] [npmInstall] [runForever] [stopForeverAccessors]"
+
+# npmInstall - If present, then install the modules.  If not present,
+# then assume that ~/cg/node_modules is set. If not present and
+# ~/cg/node_modules/@terraswarm/accessors does not exist, then nothing
+# will work.
+
+# runForever - If present, then use npm forever.
+
+# stopForeverAccessors - If present, then use npm forever to stop
+# accessor(s) with the same name as the model.
+
+if [ $# -lt 2 ]; then
+    echo $usage
+    exit 3
+fi
+
+userHost=$1
+
+accessor=$2
+
+
+modules=""
+npmInstall=""
+runForever=""
+stopForeverAccessors=""
+timeout=15000
+
+
+shift;shift
+while [ $# -gt 0 ]
+do
+    key=$1
+    case $key in
+        -list|--list)
+            list=yes
+            ;;
+        -modules|--modules)
+            if [ $# -lt 2 ]; then
+                echo "$0: Usage $key must be followed by one or more modules to be installed using npm"
+                echo $usage
+                exit 4
+            fi
+            modules=$2
+            shift
+            ;;
+        -timeout|--timeout)
+            if [ $# -lt 2 ]; then
+                echo "$0: Usage $key must be followed by a timeout in ms."
+                echo $usage
+                exit 4
+            fi
+            timeout=$2
+            shift
+            ;;
+        npmInstall)
+            npmInstall=npmInstall
+            ;;
+        runForever)
+            runForever=runForever
+            ;;
+        stopForeverAccessors)
+            stopForeverAccessors=stopForeverAccessors
+            ;;
+        *) "echo $0: argument $key is not understood?"
+           exit 4;
+            ;;
+    esac
+    shift
+done
+
+if [ $timeout = "15000" ]; then
+    echo "$0: Note that the timeout defaults to $timeout"
+fi
+
+# Convert the comma separated list of modules to be installed to a space separated list.
+modules=`echo $modules | sed 's/,/ /g'`
+
+if [ ! -f "$accessor" ]; then
+    echo "$0: $accessor could not be found?"
+    exit 4
+fi
+
+# Place the demos in a cg/ directory in the remote user's home
+# directory.  Unfortunately, we can't use ~/cg or $HOME/cg because
+# they would be expanded locally.
+cg=cg
+
+# The name of the composite accessor file, which typically ends in .js.
+accessorShortName="`basename $accessor`"
+
+# The name of the composite accessor file without the .js.
+accessorDirectory="`basename $accessor .js`"
+
+# The directory in which we are to create files and run the accessor.
+runDirectory=$cg/$accessorDirectory
+
+node_modules=$cg/node_modules
+echo "### accessorInvokeSSH: Creating $node_modules and $runDirectory on $userHost"
+ssh $userHost mkdir -p $node_modules $runDirectory
+
+if [ ! -z "$npmInstall" ]; then
+    # This assumes that npm is installed.
+    echo "### accessorInvokeSSH: Running npm install @terraswarm/accessors forever $modules"
+    echo "### accessorInvokeSSH:   Ignore messages like: 'npm WARN enoent ENOENT: no such file or directory, open $runDirectory/package.json'"
+    ssh $userHost "cd $cg; npm install @terraswarm/accessors forever $modules"
+fi
+
+echo "### accessorInvokeSSH: Creating $runDirectory/invoke.js"
+echo "require('@terraswarm/accessors');invoke(process.argv);" | ssh $userHost "cat > $runDirectory/invoke.js"
+
+echo "### accessorInvokeSSH: Copying the accessor to $runDirectory"
+scp $accessor $userHost:$runDirectory/
+
+echo "### accessorInvokeSSH: Creating the runit.sh command in $runDirectory"
+runit=/tmp/runit.$$
+cat >>$runit <<EOF 
+#! /bin/sh
+
+# This script runs $accessorShortName using npm forever
+
+usage="runit.sh [runForever|stopForeverAccessors]"
+
+# This script was created by
+# \$PTII/ptolemy/cg/kernel/generic/accessor/accessorInvokeSSH
+
+while [ \$# -gt 0 ]
+do
+    key=\$1
+    case $key in
+        runForever)
+            runForever=runForever
+            ;;
+        stopForeverAccessors)
+            stopForeverAccessors=stopForeverAccessors
+            ;;
+        *) "echo $0: argument \$key is not understood?"
+           echo \$usage
+           exit 4;
+            ;;    
+    esac
+    shift;
+done
+
+# Remove the logs so that we don't see info from previous runs.
+rm -f $runDirectory/forever.log $runDirectory/out.log $runDirectory/err.log
+
+# Only attempt to stop the forever accessors if this script was
+# invoked with stopForeverAccessors or npmForever.  If the script was
+# invoked without stopForeverAccessors or npmForever, then we are not
+# using forever and we should not try to stop.
+
+if [ ! -z "\$stopForeverAccessors" -o ! -z "\$npmForever" ]; then
+
+    echo "Using npm forever to stop $accessorShortName"
+
+    \$HOME/node_modules/forever/bin/forever stop $accessorShortName
+
+fi
+
+if [ ! -z "\$stopForeverAccessors" ]; then
+
+    echo "$0: invoked with stopForeverAccessors, not running."
+
+elif [ ! -z "\$runForever" ]; then
+
+    echo "Using npm forever to start $accessorShortName"
+
+    \$HOME/$node_modules/forever/bin/forever start \
+        --uid $accessorShortName \
+        --append \
+        -l \$HOME/$runDirectory/forever.log \
+        -o \$HOME/$runDirectory/out.log \
+        -e \$HOME/$runDirectory/err.log \
+        \$HOME/$runDirectory/invoke.js \
+            -timeout $timeout \
+             \$HOME/$runDirectory/$accessorShortName
+else 
+    echo "Running $accessorShortName *once* for $timeout ms."
+    node \
+        \$HOME/$runDirectory/invoke.js \
+            -timeout $timeout \
+             \$HOME/$runDirectory/$accessorShortName
+fi
+
+# Only list the processes if stopForeverAccesors or npmForever were
+# used as arguments.
+if [ ! -z "\$stopForeverAccessors" -o ! -z "\$npmForever" ]; then
+    echo "Here are the npm forever processes:"
+    if [ ! -z "\$stopForeverAccessors" ]; then
+        echo "(There should be no forever processes running)"
+    fi
+    \$HOME/$node_modules/forever/bin/forever list
+fi
+
+EOF
+
+scp $runit $userHost:$runDirectory/runit.sh
+ssh $userHost chmod a+x $runDirectory/runit.sh
+
+echo "### accessorInvokeSSH: Invoking $runDirectory/runit.sh $runForever $stopForeverAccessors on $userHost"
+# Run in $runDirectory so that we can be sure to get cg/node_modules
+ssh $userHost "cd $runDirectory; ./runit.sh $runForever $stopForeverAccessors"
+
+echo "### accessorInvokeSSH: ssh $runDirectory/runit.sh returned."
+
+if [ ! -z "$runForever" ]; then
+    echo "### accessorInvokeSSH: Here are the forever logs"
+    ssh $userHost tail -f $runDirectory/forever.log $runDirectory/out.log $runDirectory/err.log
+fi    
+
+#rm $runit
+#ssh $userHost rm -rf $runDirectory
