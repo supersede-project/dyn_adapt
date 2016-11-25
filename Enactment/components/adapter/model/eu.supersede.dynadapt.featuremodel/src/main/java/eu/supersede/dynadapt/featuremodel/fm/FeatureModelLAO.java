@@ -23,6 +23,7 @@
 
 package eu.supersede.dynadapt.featuremodel.fm;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -51,10 +52,11 @@ public class FeatureModelLAO implements IFeatureModelLAO {
 	 * Path
 	 * 
 	 * @param FeatureModel
+	 * @throws IOException 
 	 */
 
 	@Override
-	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath) {
+	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath) throws IOException {
 		FeatureModel fm = fmDAO.loadFeatureModel(featureModelPath);
 	
 		List<FeatureSUPERSEDE> featuresSUPERSEDE = new ArrayList<FeatureSUPERSEDE>();

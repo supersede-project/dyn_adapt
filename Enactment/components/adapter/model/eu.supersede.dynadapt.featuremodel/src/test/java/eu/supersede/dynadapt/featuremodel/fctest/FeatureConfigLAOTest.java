@@ -22,6 +22,7 @@
 
 package eu.supersede.dynadapt.featuremodel.fctest;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
@@ -56,7 +57,7 @@ public class FeatureConfigLAOTest {
 	}
 
 	@Test
-	public void testValidFeatureConfigSUPERSEDE() {
+	public void testValidFeatureConfigSUPERSEDE() throws IOException {
 		FeatureConfigSUPERSEDE fc = fcLAO.getFeatureConfigSUPERSEDE(featureConfigPath, featureModelPath);
 
 //		System.out.println("Model name: " + fc.getName());

@@ -22,6 +22,8 @@
 
 package eu.supersede.dynadapt.featuremodel.fmtest;
 
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +48,7 @@ public class FeatureModelDAOTest {
 	}
 	
 	@Test
-	public void testValidFeatureModelDAOLoad(){
+	public void testValidFeatureModelDAOLoad() throws IOException{
 		FeatureModel fm = modelDAO.loadFeatureModel(featureModelPath); 
 	}
 }

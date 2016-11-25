@@ -22,9 +22,11 @@
 
 package eu.supersede.dynadapt.featuremodel.fc;
 
+import java.io.IOException;
+
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 
 public interface IFeatureConfigDAO {
 
-	public FeatureConfiguration loadFeatureConfig(String featureConfigPath);
+	public FeatureConfiguration loadFeatureConfig(String featureConfigPath) throws IOException;
 }
