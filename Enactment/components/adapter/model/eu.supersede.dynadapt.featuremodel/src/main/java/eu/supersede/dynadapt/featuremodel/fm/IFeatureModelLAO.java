@@ -23,13 +23,15 @@
 
 package eu.supersede.dynadapt.featuremodel.fm;
 
+import java.io.IOException;
+
 import eu.supersede.dynadapt.featuremodel.feature.FeatureSUPERSEDE;
 
 public interface IFeatureModelLAO {
 
 	//public void creatFeatureModelSUPERSEDE(FeatureModelSUPERSEDE featureModelSUPERSEDE);
 	
-	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath);
+	public FeatureModelSUPERSEDE getFeatureModelSUPERSEDE(String featureModelPath) throws IOException;
 	
 	public FeatureSUPERSEDE getFeatureSUPERSEDEByName(FeatureModelSUPERSEDE m, String name);
 }

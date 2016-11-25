@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.aom.dsl.parser.actions;
 
+import java.io.IOException;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
@@ -45,7 +47,7 @@ public class ParseAdaptationModelDelegate implements IObjectActionDelegate{
 	private IAdaptationParser parser;
 	private ModelManager modelManager;
 	
-	public ParseAdaptationModelDelegate() {
+	public ParseAdaptationModelDelegate() throws IOException {
 		modelManager = new ModelManager();
 		parser = new AdaptationParser(modelManager);
 	}

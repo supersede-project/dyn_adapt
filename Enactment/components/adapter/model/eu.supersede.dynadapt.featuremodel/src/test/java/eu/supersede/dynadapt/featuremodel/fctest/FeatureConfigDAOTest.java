@@ -22,6 +22,7 @@
 
 package eu.supersede.dynadapt.featuremodel.fctest;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 import org.junit.After;
@@ -51,7 +52,7 @@ public class FeatureConfigDAOTest {
 	}
 
 	@Test
-	public void testValidFeatureModelDAOLoad() {
+	public void testValidFeatureModelDAOLoad() throws IOException {
 		FeatureConfiguration fc = configDAO.loadFeatureConfig(featureConfigPath);
 	}
 

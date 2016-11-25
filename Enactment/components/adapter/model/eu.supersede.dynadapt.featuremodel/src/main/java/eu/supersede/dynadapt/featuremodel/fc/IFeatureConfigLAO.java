@@ -22,9 +22,11 @@
 
 package eu.supersede.dynadapt.featuremodel.fc;
 
+import java.io.IOException;
+
 public interface IFeatureConfigLAO {
 
 	//public void creatFeatureConfigSUPERSEDE(FeatureConfigSUPERSEDE featureConfigSUPERSEDE);
 	
-	public FeatureConfigSUPERSEDE getFeatureConfigSUPERSEDE(String featureConfigPath, String featureModelPath);
+	public FeatureConfigSUPERSEDE getFeatureConfigSUPERSEDE(String featureConfigPath, String featureModelPath) throws IOException;
 }

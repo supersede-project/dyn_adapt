@@ -22,6 +22,7 @@
 
 package eu.supersede.dynadapt.featuremodel.fc;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -49,9 +50,10 @@ public class FeatureConfigLAO implements IFeatureConfigLAO {
 	 * 
 	 * @param featureConfigPath,
 	 *            featureModelString
+	 * @throws IOException 
 	 */
 	@Override
-	public FeatureConfigSUPERSEDE getFeatureConfigSUPERSEDE(String featureConfigPath, String featureModelPath) {
+	public FeatureConfigSUPERSEDE getFeatureConfigSUPERSEDE(String featureConfigPath, String featureModelPath) throws IOException {
 		FeatureConfiguration fcSUPERSEDE = fcDAO.loadFeatureConfig(featureConfigPath);
 		
 		/*Load the correspoding featureModelSUPERSEDE using its LAO*/

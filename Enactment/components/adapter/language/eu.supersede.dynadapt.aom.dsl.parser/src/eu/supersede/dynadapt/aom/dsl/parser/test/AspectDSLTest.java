@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.aom.dsl.parser.test;
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -51,7 +53,7 @@ public class AspectDSLTest {
 	private ModelManager modelManager;
 	
 	@Before
-	public void setup(){
+	public void setup() throws IOException{
 		modelManager = new ModelManager();
 		parser = new AdaptationParser(modelManager);
 	}
