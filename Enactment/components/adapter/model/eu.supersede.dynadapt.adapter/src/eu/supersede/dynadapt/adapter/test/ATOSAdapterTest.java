@@ -22,6 +22,8 @@ import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.adapter.Adapter;
+import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
@@ -46,6 +48,21 @@ public class ATOSAdapterTest {
 	URL url = null;
 	
 	IFeatureConfigLAO fcLAO = null;
+	
+	@Test
+	public void testAtosUCAdaptation() {
+		try {
+			adapter = new Adapter(mr, mm, modelsLocation);
+			//FIXME adaptationDecisionActionIds and featureConfigurationId are ignored. Use correct ones
+			//once Model Repository is available as service.
+			adapter.enactAdaptationDecisionActions(
+					SupersedeSystem.ATOS.toString(), null, null);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	public void adapt() {
