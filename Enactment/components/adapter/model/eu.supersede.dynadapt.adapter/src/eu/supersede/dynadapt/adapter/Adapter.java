@@ -105,7 +105,7 @@ public class Adapter implements IAdapter {
 
 			log.debug("Feature ID: " + f.getId());
 			List<Aspect> aspects = mr.getAspectModels(f.getId(), modelsLocation);
-			log.debug("Adaptations for feature: " + aspects.size());
+			log.debug("Found " + aspects.size() + " adaptations for feature: " + f.getId());
 			for (Aspect a : aspects) {
 				log.debug("\tAspect name: " + a.getName());
 				Stereotype role = null;
@@ -158,7 +158,7 @@ public class Adapter implements IAdapter {
 
 			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled ? " Enabled" : " Disabled"));
 			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
-			log.debug("Adaptations for feature: " + aspects.size());
+			log.debug("Found " + aspects.size() + " adaptations for feature: " + feature.getId());
 
 			for (Aspect aspect : aspects) {
 				log.debug("\tAspect name: " + aspect.getName());
@@ -235,6 +235,7 @@ public class Adapter implements IAdapter {
 					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
 
 			//FIXME featureConfigurationId not used to retrieve the feature configuration
+			//This implementation gets the latest configuration
 			//URI fcUri = URI.createURI (featureConfigurationId);
 			
 			FeatureConfiguration originalFeatureConfig = mrr.getConfigurationForSystem(system,
@@ -249,9 +250,15 @@ public class Adapter implements IAdapter {
 
 			List<Selection> changedSelections = diffFeatureConfigurations(originalFeatureConfig, newFeatureConfig);
 
-			// TODO Filter out changedSelections not included in
-			// adaptationDecisionActionIds
-			
+			// Filter out changedSelections not included in adaptationDecisionActionIds
+			List<Selection> droppedSelections = new ArrayList<>();
+			for (Selection s: changedSelections){
+				if (!adaptationDecisionActionIds.contains(s.getId())){
+					log.debug("Selection " + s.getId() + " not required for enactment. Dropped from list of changed selections");
+					droppedSelections.add (s);
+				}
+			}
+			changedSelections.removeAll(droppedSelections);
 
 			Model model = adapt(changedSelections, baseModel);
 

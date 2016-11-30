@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.adapter.test;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,15 +38,18 @@ public class ATOSAdapterTest {
 //	String originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
 //	String newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
 //	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
-//	//TODO: avoid using local paths
+
+	//FIXME: Don't use local paths
 //	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/";
+	
+	//FIXME Don't use platform:/ URIs
 	
 	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_base_model.uml";
 	String repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 	String originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
 	String newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
-	//TODO: avoid using local paths
+	//FIXME: Don't use local paths
 	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/";
 
 	
@@ -63,10 +67,12 @@ public class ATOSAdapterTest {
 	public void testAtosUCAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation);
-			//FIXME adaptationDecisionActionIds and featureConfigurationId are ignored. Use correct ones
+			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
+			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
+			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
-					SupersedeSystem.ATOS.toString(), null, null);
+					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
