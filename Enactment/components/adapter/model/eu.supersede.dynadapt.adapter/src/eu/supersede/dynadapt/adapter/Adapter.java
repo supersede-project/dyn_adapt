@@ -251,6 +251,7 @@ public class Adapter implements IAdapter {
 
 			// TODO Filter out changedSelections not included in
 			// adaptationDecisionActionIds
+			
 
 			Model model = adapt(changedSelections, baseModel);
 

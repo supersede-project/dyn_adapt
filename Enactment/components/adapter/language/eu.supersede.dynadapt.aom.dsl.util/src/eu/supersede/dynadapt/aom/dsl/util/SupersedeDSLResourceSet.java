@@ -373,6 +373,7 @@ public class SupersedeDSLResourceSet {
 		try {
 			resource = getResourceSet().getResource(uri, true);
 		} catch(Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 		if(resource != null)

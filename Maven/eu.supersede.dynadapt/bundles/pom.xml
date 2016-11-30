@@ -22,7 +22,7 @@
 	<!--<module>eu.supersede.dynadapt.compositionhook</module>-->
 	<module>../../../DM/components/eu.supersede.dynadapt.dm.feature.builder</module>
 	<module>../../../DM/components/eu.supersede.dynadapt.dm.feature.serializer</module>
-	<!--<module>../../../Enactment/components/serviceCompositionEnactor/eu.supersede.dynadapt.enactor</module>-->
+	<module>../../../Enactment/components/serviceCompositionEnactor/eu.supersede.dynadapt.enactor</module>
 	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.featuremodel</module>
 	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.lang.uml</module>
 	<module>../../../Enactment/components/adapter/language/eu.supersede.dynadapt.lang.uml.ui</module>

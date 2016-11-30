@@ -33,12 +33,6 @@ public class ModelRepositoryResolver {
 
 // TODO Store models locally within Adapter execution. Resolve them
 class ModelRepositoryMapping{
-	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml";
-	String repository = "platform:/resource/eu.supersede.dynadapt.usecases.atos/";
-	String originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
-	String newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
-	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
-	
 	public static URI getModelURI (SupersedeSystem system, RepositoryMetadata type) throws EnactmentException{
 		switch (system) {
 		case ATOS:
@@ -53,12 +47,21 @@ class ModelRepositoryMapping{
 	static{
 		Map<ResourceTimestamp, String> atosBaseModel = new HashMap<>();
 		Map<ResourceTimestamp, String> atosFeatureConfiguration = new HashMap<>();
+		
+//		atosBaseModel.put(ResourceTimestamp.CURRENT, 
+//				"platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml");
+//		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, 
+//				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
+//		atosFeatureConfiguration.put(ResourceTimestamp.NEWEST,
+//				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
+
+		
 		atosBaseModel.put(ResourceTimestamp.CURRENT, 
-				"platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml");
+				"platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_base_model.uml");
 		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, 
-				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
+				"platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
 		atosFeatureConfiguration.put(ResourceTimestamp.NEWEST,
-				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
+				"platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 		atosMapping.put(ResourceType.BASE, atosBaseModel);
 		atosMapping.put(ResourceType.FEATURE_CONFIGURATION, atosFeatureConfiguration);
 	}
