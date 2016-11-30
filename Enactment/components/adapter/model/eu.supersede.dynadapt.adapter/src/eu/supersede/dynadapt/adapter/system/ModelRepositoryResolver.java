@@ -57,11 +57,11 @@ class ModelRepositoryMapping{
 
 		
 		atosBaseModel.put(ResourceTimestamp.CURRENT, 
-				"platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_base_model.uml");
+				"./repository/models/base/atos_base_model.uml");
 		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, 
-				"platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
+				"./repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
 		atosFeatureConfiguration.put(ResourceTimestamp.NEWEST,
-				"platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
+				"./repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 		atosMapping.put(ResourceType.BASE, atosBaseModel);
 		atosMapping.put(ResourceType.FEATURE_CONFIGURATION, atosFeatureConfiguration);
 	}

@@ -53,9 +53,10 @@ public class ModelManagerTest {
 //	String modelPath = "./models/atos_base_model.uml";
 //	String patternModelPath = "./models/atos_queries.vql";
 	
-	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.model/models/atos_base_model.uml";
+//	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.model/models/atos_base_model.uml";
+	String umlModelPath = "./models/atos_base_model.uml";
 	String profilePath = "platform:/resource/eu.supersede.dynadapt.model/models/adm.profile.uml";
-	String patternModelPath = "platform:/resource/eu.supersede.dynadapt.model/models/atos_queries.vql";
+	String patternModelPath = "platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql";
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.model/models/AtosUCFeatureModel.yafm";
 	String featureConfigurationPath = "platform:/resource/eu.supersede.dynadapt.model/models/AtosDefaultFeatureConfiguration.yafc";
 	

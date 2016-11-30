@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
+import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 
 public class ModelRepository {
@@ -64,11 +65,13 @@ public class ModelRepository {
 
 		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
 
-		IAdaptationParser ap = loadModels(modelsLocation);
+//		IAdaptationParser ap = loadModels(modelsLocation);
+		loadModels(modelsLocation);
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
-				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+//				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+				Aspect a = getAspectModel(repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					aspects.add(a);
 				}
@@ -93,12 +96,14 @@ public class ModelRepository {
 
 		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
 
-		IAdaptationParser ap = loadModels(modelsLocation);
+//		IAdaptationParser ap = loadModels(modelsLocation);
+		loadModels(modelsLocation);
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
 				String aspectModelPath = repository + modelsLocation.get("aspects") + aspectsFiles[i].getName();
-				Aspect a = getAspectModel(ap, aspectModelPath);
+//				Aspect a = getAspectModel(ap, aspectModelPath);
+				Aspect a = getAspectModel(aspectModelPath);
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					uris.add(URI.createURI(aspectModelPath));
 				}
@@ -107,35 +112,42 @@ public class ModelRepository {
 		return uris;
 	}
 
-	private IAdaptationParser loadModels(Map<String, String> modelsLocation) {
-		IAdaptationParser parser = new AdaptationParser(modelManager);
+	private IModelManager loadModels(Map<String, String> modelsLocation) {
+//		IAdaptationParser parser = new AdaptationParser(modelManager);
 
 		File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
 		for (int i = 0; i < variants.length; i++) {
-			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
+//			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
+			modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants[i].getName());
 		}
 
 		File[] profiles = getFiles(modelsLocation.get("profiles"), "uml");
 		for (int i = 0; i < profiles.length; i++) {
-			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
+//			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
+			modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles[i].getName());
 		}
 
 		File[] patterns = getFiles(modelsLocation.get("patterns"), "vql");
 		for (int i = 0; i < patterns.length; i++) {
-			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
+//			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
+			modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns[i].getName());
 		}
 
 
 		File[] features = getFiles(modelsLocation.get("features"), "yafm");
 		for (int i = 0; i < features.length; i++) {
-			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
+//			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
+			modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features[i].getName());
 		}
 
-		return parser;
+		//return parser;
+		return modelManager;
 	}
 	
-	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
-		return parser.parseAdaptationModel(aspectModelPath);
+//	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
+	private Aspect getAspectModel(String aspectModelPath) {
+//		return parser.parseAdaptationModel(aspectModelPath); //Do not use: this approach gives problems with relative paths
+		return modelManager.loadAspectModel(aspectModelPath);
 	}
 	
 	private File[] getFiles(String folderPath, String extension) {

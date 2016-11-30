@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,6 +34,7 @@ import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class ATOSAdapterTest {
+	private final static Logger log = LogManager.getLogger(ATOSAdapterTest.class);
 	
 //	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml";
 //	String repository = "platform:/resource/eu.supersede.dynadapt.usecases.atos/";
@@ -41,8 +44,6 @@ public class ATOSAdapterTest {
 
 	//FIXME: Don't use local paths
 //	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/";
-	
-	//FIXME Don't use platform:/ URIs
 	
 	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_base_model.uml";
 	String repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
@@ -95,7 +96,9 @@ public class ATOSAdapterTest {
 			System.out.println("Saving model");
 			
 			if (model != null){
-				save(model, URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml"));
+				URI uri = URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml");
+				log.debug("Saving updated model in " + uri);
+				save(model, uri);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

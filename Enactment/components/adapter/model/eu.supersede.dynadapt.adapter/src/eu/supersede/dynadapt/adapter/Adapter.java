@@ -264,11 +264,9 @@ public class Adapter implements IAdapter {
 
 			System.out.println("Saving model");
 
-			String repository = "platform:/resource/eu.supersede.dynadapt.usecases.atos/";
-
-			if (model != null) {
-				save(model, org.eclipse.emf.common.util.URI
-						.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml"));
+			if (model != null){
+				URI uri = mm.saveModelInTemporaryFolder(model, "_adapted.uml");
+				log.debug("Saved updated model in " + uri);
 			}
 
 		} catch (Exception e) {
@@ -278,7 +276,7 @@ public class Adapter implements IAdapter {
 
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig,
 			FeatureConfiguration newFeatureConfig) {
-		FeatureModel fm = originalFeatureConfig.getFeatureModel();
+		FeatureModel fm = originalFeatureConfig.getFeatureModelCopy();
 		Feature root = fm.getRoot();
 
 		return diffFeatureConfigurationsInFeature(root, originalFeatureConfig, newFeatureConfig);
