@@ -52,7 +52,8 @@ public class ATOSAdapterTest {
 	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
 	//FIXME: Don't use local paths
 	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/";
-
+	String repositoryRelativePath = "./repository";
+	String platformRelativePath = "../";
 	
 	Map<String, String> modelsLocation;
 
@@ -108,7 +109,7 @@ public class ATOSAdapterTest {
 	@Before
 	public void setUp() throws Exception {
 //		new StandaloneSetup().setPlatformUri("../../../../../Scenarios/Atos/");
-		new StandaloneSetup().setPlatformUri("../");
+		new StandaloneSetup().setPlatformUri(platformRelativePath);
 		modelsLocation = new HashMap<String, String>();
 		modelsLocation.put("aspects", "adaptability_models/");
 		modelsLocation.put("variants", "models/variants/");
@@ -118,9 +119,11 @@ public class ATOSAdapterTest {
 		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
 		modelsLocation.put("features", "features/models/");
 		
-		url = new URL(localPath);
+//		url = new URL(localPath);
 		mm = new ModelManager(baseModelPath);
-		mr = new ModelRepository(repository,url, mm);
+		mr = new ModelRepository(repository,repositoryRelativePath, mm);
+//		mr = new ModelRepository(repository,url, mm);
+
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 	}
 	

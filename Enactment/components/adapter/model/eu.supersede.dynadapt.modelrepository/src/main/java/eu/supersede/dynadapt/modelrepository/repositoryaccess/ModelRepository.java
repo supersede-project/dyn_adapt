@@ -27,6 +27,8 @@ import java.io.FilenameFilter;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +47,16 @@ public class ModelRepository {
 	private URL url;
 	private ModelManager modelManager;
 
-	public ModelRepository(String repository, URL url, ModelManager modelManager) {
+	public ModelRepository(String repository, String repositoryRelativePath, ModelManager modelManager) throws MalformedURLException {
+		super();
+		this.repository = repository;
+		String userdir = System.getProperty("user.dir");
+		Path path = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		this.url = new URL (path.toUri().toURL().toString()); //URL regenerated from textual representation, otherwise it does not work.
+		this.modelManager = modelManager;
+	}
+	
+	public ModelRepository(String repository, URL url, ModelManager modelManager) throws MalformedURLException {
 		super();
 		this.repository = repository;
 		this.url = url;
