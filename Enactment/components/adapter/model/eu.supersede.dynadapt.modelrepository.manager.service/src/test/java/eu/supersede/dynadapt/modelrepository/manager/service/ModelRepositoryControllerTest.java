@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.modelrepository.service;
+package eu.supersede.dynadapt.modelrepository.manager.service;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.JsonObject;
+
+import eu.supersede.dynadapt.modelrepository.manager.service.Application;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.modelrepository.service;
+package eu.supersede.dynadapt.modelrepository.manager.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
