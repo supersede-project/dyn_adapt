@@ -1,1 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><plugin/>
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns" id="eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns"/>
+  </extension>
+</plugin>

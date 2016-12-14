@@ -1,9 +1,13 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test.util;
 
 import com.google.common.collect.Sets;
 import eu.supersede.dynadapt.model.query.test.NodesMatch;
 import eu.supersede.dynadapt.model.query.test.NodesMatcher;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -13,12 +17,15 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -54,6 +61,11 @@ public final class NodesQuerySpecification extends BaseGeneratedEMFQuerySpecific
   }
   
   @Override
+  public NodesMatcher instantiate() throws ViatraQueryException {
+    return NodesMatcher.create();
+  }
+  
+  @Override
   public NodesMatch newEmptyMatch() {
     return NodesMatch.newEmptyMatch();
   }
@@ -85,12 +97,18 @@ public final class NodesQuerySpecification extends BaseGeneratedEMFQuerySpecific
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static NodesQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pNode = new PParameter("node", "org.eclipse.uml2.uml.Node", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pName = new PParameter("name", "java.lang.String", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pNode, parameter_pName);
     
     @Override
     public String getFullyQualifiedName() {
@@ -104,14 +122,12 @@ public final class NodesQuerySpecification extends BaseGeneratedEMFQuerySpecific
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("node", "org.eclipse.uml2.uml.Node", null),
-      			 new PParameter("name", "java.lang.String", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -119,8 +135,8 @@ public final class NodesQuerySpecification extends BaseGeneratedEMFQuerySpecific
       		PVariable var_node = body.getOrCreateVariableByName("node");
       		PVariable var_name = body.getOrCreateVariableByName("name");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_node, "node"),
-      		   new ExportedParameter(body, var_name, "name")
+      		   new ExportedParameter(body, var_node, parameter_pNode),
+      		   new ExportedParameter(body, var_name, parameter_pName)
       		));
       		// 	Node.name (node, name)
       		new TypeConstraint(body, new FlatTuple(var_node), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Node")));

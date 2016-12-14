@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.modeladapter/src/eu/supersede/dynadapt/modeladapter/queries/model_adapter.vql
+ */
 package eu.supersede.dynadapt.modeladapter.queries;
 
 import eu.supersede.dynadapt.modeladapter.queries.InstanceSpecificationLinkMatch;
@@ -51,10 +54,21 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
     // check if matcher already exists
     InstanceSpecificationLinkMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new InstanceSpecificationLinkMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (InstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static InstanceSpecificationLinkMatcher create() throws ViatraQueryException {
+    return new InstanceSpecificationLinkMatcher();
   }
   
   private final static int POSITION_LINK = 0;
@@ -69,8 +83,8 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private InstanceSpecificationLinkMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private InstanceSpecificationLinkMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

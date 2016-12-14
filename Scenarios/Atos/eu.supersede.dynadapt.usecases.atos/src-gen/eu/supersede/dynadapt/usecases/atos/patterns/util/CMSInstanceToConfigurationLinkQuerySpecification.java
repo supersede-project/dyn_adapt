@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns.util;
 
 import com.google.common.collect.Sets;
@@ -5,6 +8,7 @@ import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLi
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLinkMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceSpecificationLinkQuerySpecification;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +18,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
@@ -24,6 +30,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Expressio
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -59,6 +66,11 @@ public final class CMSInstanceToConfigurationLinkQuerySpecification extends Base
   }
   
   @Override
+  public CMSInstanceToConfigurationLinkMatcher instantiate() throws ViatraQueryException {
+    return CMSInstanceToConfigurationLinkMatcher.create();
+  }
+  
+  @Override
   public CMSInstanceToConfigurationLinkMatch newEmptyMatch() {
     return CMSInstanceToConfigurationLinkMatch.newEmptyMatch();
   }
@@ -90,12 +102,18 @@ public final class CMSInstanceToConfigurationLinkQuerySpecification extends Base
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static CMSInstanceToConfigurationLinkQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pLink = new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pInstance = new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pLink, parameter_pInstance);
     
     @Override
     public String getFullyQualifiedName() {
@@ -109,14 +127,12 @@ public final class CMSInstanceToConfigurationLinkQuerySpecification extends Base
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", null),
-      			 new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -127,8 +143,8 @@ public final class CMSInstanceToConfigurationLinkQuerySpecification extends Base
       		PVariable var_value = body.getOrCreateVariableByName("value");
       		PVariable var_name = body.getOrCreateVariableByName("name");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_link, "link"),
-      		   new ExportedParameter(body, var_instance, "instance")
+      		   new ExportedParameter(body, var_link, parameter_pLink),
+      		   new ExportedParameter(body, var_instance, parameter_pInstance)
       		));
       		// 	find InstanceSpecificationLink(link)
       		new PositivePatternCall(body, new FlatTuple(var_link), InstanceSpecificationLinkQuerySpecification.instance().getInternalQueryRepresentation());
@@ -154,24 +170,22 @@ public final class CMSInstanceToConfigurationLinkQuerySpecification extends Base
       		new Equality(body, var__virtual_3_, var_name);
       		// 	check (		name.equals("CMS Instance")	)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
-      		                            
-      		                            @Override
-      		                            public String getShortDescription() {
-      		                                return "Expression evaluation from pattern CMSInstanceToConfigurationLink";
-      		                            }
       		
-      		                            @Override
-      		                            public Iterable<String> getInputParameterNames() {
-      		                                return Arrays.asList("name");
-      		                            }
+      		    @Override
+      		    public String getShortDescription() {
+      		        return "Expression evaluation from pattern CMSInstanceToConfigurationLink";
+      		    }
+      		    
+      		    @Override
+      		    public Iterable<String> getInputParameterNames() {
+      		        return Arrays.asList("name");}
       		
-      		                            @Override
-      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
-      		                                    java.lang.String name = (java.lang.String) provider.getValue("name");
-      		                                    return evaluateExpression_1_1(name);
-      		                                }
-      		
-      		                        },  null); 
+      		    @Override
+      		    public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		        String name = (String) provider.getValue("name");
+      		        return evaluateExpression_1_1(name);
+      		    }
+      		},  null); 
       		bodies.add(body);
       	}
       	// to silence compiler error

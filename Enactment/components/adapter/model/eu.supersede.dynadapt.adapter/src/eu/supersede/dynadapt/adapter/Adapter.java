@@ -87,7 +87,6 @@ public class Adapter implements IAdapter {
 		log.debug("Adapter set up");
 	}
 
-	@Override
 	public Model adapt(FeatureModel variability, FeatureConfiguration featureConfig, Aspect adaptationModel,
 			Model baseModel) throws Exception {
 
@@ -147,7 +146,6 @@ public class Adapter implements IAdapter {
 
 	}
 
-	@Override
 	public Model adapt(List<Selection> selections, Model baseModel) throws Exception {
 
 		Model model = null;

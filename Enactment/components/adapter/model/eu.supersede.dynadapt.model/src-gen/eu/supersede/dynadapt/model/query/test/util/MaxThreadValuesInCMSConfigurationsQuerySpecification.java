@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test.util;
 
 import com.google.common.collect.Sets;
@@ -5,6 +8,7 @@ import eu.supersede.dynadapt.model.query.test.MaxThreadValuesInCMSConfigurations
 import eu.supersede.dynadapt.model.query.test.MaxThreadValuesInCMSConfigurationsMatcher;
 import eu.supersede.dynadapt.model.query.test.util.CMSConfigurationInstancesQuerySpecification;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +18,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
@@ -24,6 +30,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Expressio
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -59,6 +66,11 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
   }
   
   @Override
+  public MaxThreadValuesInCMSConfigurationsMatcher instantiate() throws ViatraQueryException {
+    return MaxThreadValuesInCMSConfigurationsMatcher.create();
+  }
+  
+  @Override
   public MaxThreadValuesInCMSConfigurationsMatch newEmptyMatch() {
     return MaxThreadValuesInCMSConfigurationsMatch.newEmptyMatch();
   }
@@ -90,12 +102,20 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static MaxThreadValuesInCMSConfigurationsQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pConfiguration = new PParameter("configuration", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pName = new PParameter("name", "java.lang.String", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pValue = new PParameter("value", "java.lang.Integer", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pConfiguration, parameter_pName, parameter_pValue);
     
     @Override
     public String getFullyQualifiedName() {
@@ -109,15 +129,12 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("configuration", "org.eclipse.uml2.uml.InstanceSpecification", null),
-      			 new PParameter("name", "java.lang.String", null),
-      			 new PParameter("value", "java.lang.Integer", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -129,9 +146,9 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
       		PVariable var_feature = body.getOrCreateVariableByName("feature");
       		PVariable var_integer = body.getOrCreateVariableByName("integer");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_configuration, "configuration"),
-      		   new ExportedParameter(body, var_name, "name"),
-      		   new ExportedParameter(body, var_value, "value")
+      		   new ExportedParameter(body, var_configuration, parameter_pConfiguration),
+      		   new ExportedParameter(body, var_name, parameter_pName),
+      		   new ExportedParameter(body, var_value, parameter_pValue)
       		));
       		// 	find CMSConfigurationInstances(configuration)
       		new PositivePatternCall(body, new FlatTuple(var_configuration), CMSConfigurationInstancesQuerySpecification.instance().getInternalQueryRepresentation());
@@ -162,24 +179,22 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
       		new Equality(body, var__virtual_4_, var_value);
       		// 	check (		name.equals("max_threads")	)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
-      		                            
-      		                            @Override
-      		                            public String getShortDescription() {
-      		                                return "Expression evaluation from pattern maxThreadValuesInCMSConfigurations";
-      		                            }
       		
-      		                            @Override
-      		                            public Iterable<String> getInputParameterNames() {
-      		                                return Arrays.asList("name");
-      		                            }
+      		    @Override
+      		    public String getShortDescription() {
+      		        return "Expression evaluation from pattern maxThreadValuesInCMSConfigurations";
+      		    }
+      		    
+      		    @Override
+      		    public Iterable<String> getInputParameterNames() {
+      		        return Arrays.asList("name");}
       		
-      		                            @Override
-      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
-      		                                    java.lang.String name = (java.lang.String) provider.getValue("name");
-      		                                    return evaluateExpression_1_1(name);
-      		                                }
-      		
-      		                        },  null); 
+      		    @Override
+      		    public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		        String name = (String) provider.getValue("name");
+      		        return evaluateExpression_1_1(name);
+      		    }
+      		},  null); 
       		bodies.add(body);
       	}
       	// to silence compiler error

@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test;
 
 import eu.supersede.dynadapt.model.query.test.ServiceConfigurationsMatch;
@@ -58,10 +61,21 @@ public class ServiceConfigurationsMatcher extends BaseMatcher<ServiceConfigurati
     // check if matcher already exists
     ServiceConfigurationsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new ServiceConfigurationsMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (ServiceConfigurationsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static ServiceConfigurationsMatcher create() throws ViatraQueryException {
+    return new ServiceConfigurationsMatcher();
   }
   
   private final static int POSITION_SERVICE = 0;
@@ -78,8 +92,8 @@ public class ServiceConfigurationsMatcher extends BaseMatcher<ServiceConfigurati
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private ServiceConfigurationsMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private ServiceConfigurationsMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

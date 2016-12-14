@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns;
 
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSConfigurationInstancesMatch;
@@ -59,10 +62,21 @@ public class CMSConfigurationInstancesMatcher extends BaseMatcher<CMSConfigurati
     // check if matcher already exists
     CMSConfigurationInstancesMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new CMSConfigurationInstancesMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (CMSConfigurationInstancesMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static CMSConfigurationInstancesMatcher create() throws ViatraQueryException {
+    return new CMSConfigurationInstancesMatcher();
   }
   
   private final static int POSITION_CONFIGURATION = 0;
@@ -77,8 +91,8 @@ public class CMSConfigurationInstancesMatcher extends BaseMatcher<CMSConfigurati
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private CMSConfigurationInstancesMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private CMSConfigurationInstancesMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

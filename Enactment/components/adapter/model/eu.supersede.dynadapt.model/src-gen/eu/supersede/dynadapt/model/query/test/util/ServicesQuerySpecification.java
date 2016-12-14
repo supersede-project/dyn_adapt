@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test.util;
 
 import com.google.common.collect.Sets;
@@ -5,17 +8,21 @@ import eu.supersede.dynadapt.model.query.test.ServicesMatch;
 import eu.supersede.dynadapt.model.query.test.ServicesMatcher;
 import eu.supersede.dynadapt.model.query.test.util.NodeArtifactsQuerySpecification;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -51,6 +58,11 @@ public final class ServicesQuerySpecification extends BaseGeneratedEMFQuerySpeci
   }
   
   @Override
+  public ServicesMatcher instantiate() throws ViatraQueryException {
+    return ServicesMatcher.create();
+  }
+  
+  @Override
   public ServicesMatch newEmptyMatch() {
     return ServicesMatch.newEmptyMatch();
   }
@@ -82,12 +94,16 @@ public final class ServicesQuerySpecification extends BaseGeneratedEMFQuerySpeci
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static ServicesQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pService = new PParameter("service", "org.eclipse.uml2.uml.Artifact", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pService);
     
     @Override
     public String getFullyQualifiedName() {
@@ -101,13 +117,12 @@ public final class ServicesQuerySpecification extends BaseGeneratedEMFQuerySpeci
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("service", "org.eclipse.uml2.uml.Artifact", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -115,7 +130,7 @@ public final class ServicesQuerySpecification extends BaseGeneratedEMFQuerySpeci
       		PVariable var_service = body.getOrCreateVariableByName("service");
       		PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_service, "service")
+      		   new ExportedParameter(body, var_service, parameter_pService)
       		));
       		// 	find nodeArtifacts(_, service)
       		new PositivePatternCall(body, new FlatTuple(var___0_, var_service), NodeArtifactsQuerySpecification.instance().getInternalQueryRepresentation());

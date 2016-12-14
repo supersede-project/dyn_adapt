@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns.util;
 
 import com.google.common.collect.Sets;
@@ -5,6 +8,7 @@ import eu.supersede.dynadapt.usecases.atos.patterns.ArtifactManifestationsMatch;
 import eu.supersede.dynadapt.usecases.atos.patterns.ArtifactManifestationsMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.NodeArtifactsQuerySpecification;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +18,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
@@ -21,6 +27,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedP
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -56,6 +63,11 @@ public final class ArtifactManifestationsQuerySpecification extends BaseGenerate
   }
   
   @Override
+  public ArtifactManifestationsMatcher instantiate() throws ViatraQueryException {
+    return ArtifactManifestationsMatcher.create();
+  }
+  
+  @Override
   public ArtifactManifestationsMatch newEmptyMatch() {
     return ArtifactManifestationsMatch.newEmptyMatch();
   }
@@ -87,12 +99,18 @@ public final class ArtifactManifestationsQuerySpecification extends BaseGenerate
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static ArtifactManifestationsQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pArtifact = new PParameter("artifact", "org.eclipse.uml2.uml.Artifact", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pManifestationTarget = new PParameter("manifestationTarget", "org.eclipse.uml2.uml.NamedElement", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pArtifact, parameter_pManifestationTarget);
     
     @Override
     public String getFullyQualifiedName() {
@@ -106,14 +124,12 @@ public final class ArtifactManifestationsQuerySpecification extends BaseGenerate
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("artifact", "org.eclipse.uml2.uml.Artifact", null),
-      			 new PParameter("manifestationTarget", "org.eclipse.uml2.uml.NamedElement", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -123,8 +139,8 @@ public final class ArtifactManifestationsQuerySpecification extends BaseGenerate
       		PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
       		PVariable var_manifestation = body.getOrCreateVariableByName("manifestation");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_artifact, "artifact"),
-      		   new ExportedParameter(body, var_manifestationTarget, "manifestationTarget")
+      		   new ExportedParameter(body, var_artifact, parameter_pArtifact),
+      		   new ExportedParameter(body, var_manifestationTarget, parameter_pManifestationTarget)
       		));
       		// 	find nodeArtifacts(_, artifact)
       		new PositivePatternCall(body, new FlatTuple(var___0_, var_artifact), NodeArtifactsQuerySpecification.instance().getInternalQueryRepresentation());
