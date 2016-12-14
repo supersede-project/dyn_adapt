@@ -161,7 +161,7 @@ public class ModelRepository {
 		return modelManager.loadAspectModel(aspectModelPath);
 	}
 	
-	private File[] getFiles(String folderPath, String extension) {
+	private File[] getFiles(String folderPath, final String extension) {
 		/*
 		 * Models in class path
 		 */
