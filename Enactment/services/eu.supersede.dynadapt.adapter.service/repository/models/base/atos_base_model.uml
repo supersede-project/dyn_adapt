@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_N2kjQCMoEeaAV7iIHwGF1A" name="Atos_UC_Base_Model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_jd6a8CMvEeaAV7iIHwGF1A" name="Components">
+    <packagedElement xmi:type="uml:Component" xmi:id="_RiDhECMpEeaAV7iIHwGF1A" name="SGA">
+      <ownedAttribute xmi:id="_PL7mIyNIEeaAV7iIHwGF1A" name="conf" type="_liLE0CNHEeaAV7iIHwGF1A" association="_PL7mICNIEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_NSuZ4CMpEeaAV7iIHwGF1A" name="CMS"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_bPtx0CMsEeaAV7iIHwGF1A" name="CMS_Configuration">
+      <ownedAttribute xmi:id="_m_l5UCMsEeaAV7iIHwGF1A" name="url">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_G4ehACMuEeaAV7iIHwGF1A" name="Default CMS_Configuration" value="http://www.atos.smart.eu/cms"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_tLQXECM8EeaAV7iIHwGF1A" name="number_cores">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_6mb_EIS-EeaUVtHvx6A39w" name="memory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_AfCKIIS_EeaUVtHvx6A39w" name="storage" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_DNKkUIS_EeaUVtHvx6A39w" name="bandwidth" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_jBpNUCM9EeaAV7iIHwGF1A" name="Player">
+      <ownedAttribute xmi:id="_n9-RgiNKEeaAV7iIHwGF1A" name="conf" type="_uBGY8CNHEeaAV7iIHwGF1A" association="_n99qcCNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_dxtkwCM9EeaAV7iIHwGF1A" name="CDN"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_BTiXICNBEeaAV7iIHwGF1A" name="HandShake">
+      <ownedAttribute xmi:id="_smSLUiNIEeaAV7iIHwGF1A" name="conf" type="_oMVlACNHEeaAV7iIHwGF1A" association="_smRkQCNIEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_DdcC4CNBEeaAV7iIHwGF1A" name="Load Balancer">
+      <ownedAttribute xmi:id="_gx4TsiNJEeaAV7iIHwGF1A" name="conf" type="_rYoh4CNHEeaAV7iIHwGF1A" association="_gx3FkCNJEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_R___UCM_EeaAV7iIHwGF1A" name="BroadCast Center Physical">
+      <ownedAttribute xmi:id="_7dKOEiNKEeaAV7iIHwGF1A" name="conf" type="_zwYP8CNHEeaAV7iIHwGF1A" association="_7dIY4CNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_2LvjUCNAEeaAV7iIHwGF1A" name="Data Center Physical">
+      <ownedAttribute xmi:id="_3v-KoiNKEeaAV7iIHwGF1A" name="conf" type="_xqF44CNHEeaAV7iIHwGF1A" association="_3v9jkCNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_6fi60CNAEeaAV7iIHwGF1A" name="Data Center VM">
+      <ownedAttribute xmi:id="_0CXQciNKEeaAV7iIHwGF1A" name="conf" type="_vuH7cCNHEeaAV7iIHwGF1A" association="_0CWpYCNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xqF44CNHEeaAV7iIHwGF1A" name="DC Phys Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vuH7cCNHEeaAV7iIHwGF1A" name="DC VM Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oMVlACNHEeaAV7iIHwGF1A" name="HandShake Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rYoh4CNHEeaAV7iIHwGF1A" name="Load Balancer Configuration"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_uBGY8CNHEeaAV7iIHwGF1A" name="Player Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_liLE0CNHEeaAV7iIHwGF1A" name="SGA Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zwYP8CNHEeaAV7iIHwGF1A" name="BC Phys Configuration"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_IVQaUCMpEeaAV7iIHwGF1A" name="Video Encoder"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_JraU8CMpEeaAV7iIHwGF1A" name="Encoding Manager"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_WAWRUCMpEeaAV7iIHwGF1A" name="SPR"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_wY9acCNCEeaAV7iIHwGF1A" name="DSS"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_QPY_UCMpEeaAV7iIHwGF1A" name="CRE"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_TRQ04CMpEeaAV7iIHwGF1A" name="MIP"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ovmOoCM9EeaAV7iIHwGF1A" name="Instances">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_UdT0cCMtEeaAV7iIHwGF1A" name="CMS Default Configuration" classifier="_bPtx0CMsEeaAV7iIHwGF1A">
+      <slot xmi:id="_fV_3cCM8EeaAV7iIHwGF1A" definingFeature="_m_l5UCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:LiteralString" xmi:id="_mBmMwCM8EeaAV7iIHwGF1A" name="Default_CMS_URL" value="http://www.atos.smart.eu/cms"/>
+      </slot>
+      <slot xmi:id="_2t_RkCM8EeaAV7iIHwGF1A" definingFeature="_tLQXECM8EeaAV7iIHwGF1A">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_5FxBQCM8EeaAV7iIHwGF1A" value="2"/>
+      </slot>
+      <slot xmi:id="_QYf9MIS_EeaUVtHvx6A39w" definingFeature="_6mb_EIS-EeaUVtHvx6A39w">
+        <value xmi:type="uml:LiteralReal" xmi:id="_WqJhcIS_EeaUVtHvx6A39w" value="8.0"/>
+      </slot>
+      <slot xmi:id="_XPRAsIS_EeaUVtHvx6A39w" definingFeature="_AfCKIIS_EeaUVtHvx6A39w">
+        <value xmi:type="uml:LiteralReal" xmi:id="_aMg08IS_EeaUVtHvx6A39w" value="500.0"/>
+      </slot>
+      <slot xmi:id="_bfzBwIS_EeaUVtHvx6A39w" definingFeature="_DNKkUIS_EeaUVtHvx6A39w">
+        <value xmi:type="uml:LiteralReal" xmi:id="_fFBcAIS_EeaUVtHvx6A39w" value="1.0"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_XAcEQCNIEeaAV7iIHwGF1A" name="ia_sga" classifier="_PL7mICNIEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_XUwucCNIEeaAV7iIHwGF1A" source="InstanceEnd" references="_EJvEACNIEeaAV7iIHwGF1A _Ao5agCNIEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_XUxVgiNIEeaAV7iIHwGF1A" definingFeature="_PL8NMCNIEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_XUxVgyNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_RiDhECMpEeaAV7iIHwGF1A" instance="_Ao5agCNIEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_EJvEACNIEeaAV7iIHwGF1A" name="SGA Default Configuration Instance" classifier="_liLE0CNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_2P5J4CNIEeaAV7iIHwGF1A" name="HSK Default Conf Instance" classifier="_oMVlACNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_-kHC0CNIEeaAV7iIHwGF1A" name="HSK Instance Conf" classifier="_smRkQCNIEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="__BwoICNIEeaAV7iIHwGF1A" source="InstanceEnd" references="_2P5J4CNIEeaAV7iIHwGF1A _zYh7MCNIEeaAV7iIHwGF1A"/>
+      <slot xmi:id="__BxPMSNIEeaAV7iIHwGF1A" definingFeature="_smSLUyNIEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="__BxPMiNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_BTiXICNBEeaAV7iIHwGF1A" instance="_zYh7MCNIEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_nS37gCNJEeaAV7iIHwGF1A" name="LB Default Configuration Instance " classifier="_rYoh4CNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_vb5RECNJEeaAV7iIHwGF1A" name="LB Instance Configuration" classifier="_gx3FkCNJEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_vxTgYCNJEeaAV7iIHwGF1A" source="InstanceEnd" references="_nS37gCNJEeaAV7iIHwGF1A _lH7t8CNJEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_vxUHcSNJEeaAV7iIHwGF1A" definingFeature="_gx46wCNJEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_vxUHciNJEeaAV7iIHwGF1A" name="InstanceValue1" type="_DdcC4CNBEeaAV7iIHwGF1A" instance="_lH7t8CNJEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_6Lm8ECNJEeaAV7iIHwGF1A" name="Player Default Configuration Instance" classifier="_uBGY8CNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_aBuZECNKEeaAV7iIHwGF1A" name="Player Configuration link" classifier="_n99qcCNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_aUkckCNKEeaAV7iIHwGF1A" source="InstanceEnd" references="_3J-XECNJEeaAV7iIHwGF1A _6Lm8ECNJEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_UJ_7QCNLEeaAV7iIHwGF1A" name="DC Phys Default Conf  Instance" classifier="_xqF44CNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_0WhtICNLEeaAV7iIHwGF1A" name="DC Phys Instance Conf link" classifier="_3v9jkCNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_0qfyACNLEeaAV7iIHwGF1A" source="InstanceEnd" references="_UJ_7QCNLEeaAV7iIHwGF1A _IURDYCNLEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_0qfyAyNLEeaAV7iIHwGF1A" definingFeature="_3v-xsCNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_0qfyBCNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_2LvjUCNAEeaAV7iIHwGF1A" instance="_IURDYCNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_kmlpgCNLEeaAV7iIHwGF1A" name="DC VM Default Conf Instance" classifier="_vuH7cCNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_5UNvICNLEeaAV7iIHwGF1A" name="DC VM Instance Conf link" classifier="_0CWpYCNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_5mnGsCNLEeaAV7iIHwGF1A" source="InstanceEnd" references="_kmlpgCNLEeaAV7iIHwGF1A _huroQCNLEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_5mntwSNLEeaAV7iIHwGF1A" definingFeature="_0CXQcyNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_5mntwiNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_6fi60CNAEeaAV7iIHwGF1A" instance="_huroQCNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_EfIk4CNLEeaAV7iIHwGF1A" name="BC Phys Default Conf Instance" classifier="_zwYP8CNHEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_tSykoCNLEeaAV7iIHwGF1A" name="BC Phys Instance Configuration link" classifier="_7dIY4CNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_tm_TACNLEeaAV7iIHwGF1A" source="InstanceEnd" references="_EfIk4CNLEeaAV7iIHwGF1A _BwvsACNLEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_tm_6EiNLEeaAV7iIHwGF1A" definingFeature="_7dK1ICNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_tm_6EyNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_R___UCM_EeaAV7iIHwGF1A" instance="_BwvsACNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IIwmsCM6EeaAV7iIHwGF1A" name="CMS Instance" classifier="_NSuZ4CMpEeaAV7iIHwGF1A">
+      <slot xmi:id="_NBB9MCM6EeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_NBB9MSM6EeaAV7iIHwGF1A" name="default cms configuration instance" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_huroQCNLEeaAV7iIHwGF1A" name="DC VM Instance" classifier="_6fi60CNAEeaAV7iIHwGF1A">
+      <slot xmi:id="_5mnGsSNLEeaAV7iIHwGF1A" definingFeature="_0CXQciNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_5mntwCNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_vuH7cCNHEeaAV7iIHwGF1A" instance="_kmlpgCNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ao5agCNIEeaAV7iIHwGF1A" name="SGA Instance" classifier="_RiDhECMpEeaAV7iIHwGF1A">
+      <slot xmi:id="_XUxVgCNIEeaAV7iIHwGF1A" definingFeature="_PL7mIyNIEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_XUxVgSNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_liLE0CNHEeaAV7iIHwGF1A" instance="_EJvEACNIEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_3J-XECNJEeaAV7iIHwGF1A" name="Player Instance" classifier="_jBpNUCM9EeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_BwvsACNLEeaAV7iIHwGF1A" name="BC Phys Instance" classifier="_R___UCM_EeaAV7iIHwGF1A">
+      <slot xmi:id="_tm_6ECNLEeaAV7iIHwGF1A" definingFeature="_7dKOEiNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_tm_6ESNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_zwYP8CNHEeaAV7iIHwGF1A" instance="_EfIk4CNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IURDYCNLEeaAV7iIHwGF1A" name="DC Phys Instance" classifier="_2LvjUCNAEeaAV7iIHwGF1A">
+      <slot xmi:id="_0qfyASNLEeaAV7iIHwGF1A" definingFeature="_3v-KoiNKEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_0qfyAiNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_xqF44CNHEeaAV7iIHwGF1A" instance="_UJ_7QCNLEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_lH7t8CNJEeaAV7iIHwGF1A" name="LB Instance" classifier="_DdcC4CNBEeaAV7iIHwGF1A">
+      <slot xmi:id="_vxTgYSNJEeaAV7iIHwGF1A" definingFeature="_gx4TsiNJEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_vxUHcCNJEeaAV7iIHwGF1A" name="InstanceValue1" type="_rYoh4CNHEeaAV7iIHwGF1A" instance="_nS37gCNJEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zYh7MCNIEeaAV7iIHwGF1A" name="HSK Instance" classifier="_BTiXICNBEeaAV7iIHwGF1A">
+      <slot xmi:id="__BwoISNIEeaAV7iIHwGF1A" definingFeature="_smSLUiNIEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="__BxPMCNIEeaAV7iIHwGF1A" name="InstanceValue1" type="_oMVlACNHEeaAV7iIHwGF1A" instance="_2P5J4CNIEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_6yTGQIS9EeaUVtHvx6A39w" name="InstanceSpecificationLink_CMS_Instance_to_Default_Configuration_Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_7Hi9gIS9EeaUVtHvx6A39w" source="InstanceEnd" references="_UdT0cCMtEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
+      <slot xmi:id="_7HjkkIS9EeaUVtHvx6A39w" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_7HjkkYS9EeaUVtHvx6A39w" name="cms1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
+      </slot>
+      <slot xmi:id="_KUDZ0KtTEeaRNLzEGZd_uA" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_gs-joKtTEeaRNLzEGZd_uA" name="default conf" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
+      </slot>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_QYcAECNJEeaAV7iIHwGF1A" name="nodes">
+    <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_a7hzECNDEeaAV7iIHwGF1A" name="DC Physical Env">
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_gpcYICNDEeaAV7iIHwGF1A" name="SPR Service" fileName="">
+        <manifestation xmi:id="_mIZ7MCNDEeaAV7iIHwGF1A" client="_gpcYICNDEeaAV7iIHwGF1A" supplier="_WAWRUCMpEeaAV7iIHwGF1A" utilizedElement="_WAWRUCMpEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_mplxICNNEeaAV7iIHwGF1A" name="Load Balancer Node">
+      <ownedAttribute xmi:id="_GzuWUCNOEeaAV7iIHwGF1A" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_GztvQCNOEeaAV7iIHwGF1A"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_qBfhECNNEeaAV7iIHwGF1A" name="LB Service" fileName="">
+        <manifestation xmi:id="_M4xzkCNPEeaAV7iIHwGF1A" client="_qBfhECNNEeaAV7iIHwGF1A" supplier="_lH7t8CNJEeaAV7iIHwGF1A" utilizedElement="_lH7t8CNJEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_oVG3wCNNEeaAV7iIHwGF1A" name="HandShake Node">
+      <ownedAttribute xmi:id="_HfR0wSNOEeaAV7iIHwGF1A" name="data center" type="_nnGQICMqEeaAV7iIHwGF1A" association="_HfRNsCNOEeaAV7iIHwGF1A"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_rs6hECNNEeaAV7iIHwGF1A" name="HSK Service" fileName="">
+        <manifestation xmi:id="_N8rgkCNPEeaAV7iIHwGF1A" client="_rs6hECNNEeaAV7iIHwGF1A" supplier="_zYh7MCNIEeaAV7iIHwGF1A" utilizedElement="_zYh7MCNIEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_gtEvMCMoEeaAV7iIHwGF1A" name="BroadCast Center">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_u7P7wCNBEeaAV7iIHwGF1A" name="BC Physical Env">
+        <ownedAttribute xmi:id="_ukYXEiNFEeaAV7iIHwGF1A" name="dc physical env" type="_a7hzECNDEeaAV7iIHwGF1A" association="_ukXwACNFEeaAV7iIHwGF1A"/>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_FX8LQCNCEeaAV7iIHwGF1A" name="EM Service" fileName="">
+          <manifestation xmi:id="_rZ0m8CNCEeaAV7iIHwGF1A" client="_FX8LQCNCEeaAV7iIHwGF1A" supplier="_JraU8CMpEeaAV7iIHwGF1A" utilizedElement="_JraU8CMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_fLVQ0CNCEeaAV7iIHwGF1A" name="VE Service" fileName="">
+          <manifestation xmi:id="_pPgEcCNCEeaAV7iIHwGF1A" client="_fLVQ0CNCEeaAV7iIHwGF1A" supplier="_IVQaUCMpEeaAV7iIHwGF1A" utilizedElement="_IVQaUCMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_lDhyECMoEeaAV7iIHwGF1A" name="Data Center">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_nnGQICMqEeaAV7iIHwGF1A" name="DC Virtualized Env">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_s_hGUCMqEeaAV7iIHwGF1A" name="CMS Service" fileName="">
+          <manifestation xmi:id="_VcE24CM6EeaAV7iIHwGF1A" client="_s_hGUCMqEeaAV7iIHwGF1A" supplier="_IIwmsCM6EeaAV7iIHwGF1A" utilizedElement="_IIwmsCM6EeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_HJZZQCMrEeaAV7iIHwGF1A" name="DSS Service" fileName="">
+          <manifestation xmi:id="_k2vCgCNEEeaAV7iIHwGF1A" client="_HJZZQCMrEeaAV7iIHwGF1A" supplier="_wY9acCNCEeaAV7iIHwGF1A" utilizedElement="_wY9acCNCEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_nMbukCNEEeaAV7iIHwGF1A" name="CRE Service" fileName="">
+          <manifestation xmi:id="_4S8jkCNEEeaAV7iIHwGF1A" client="_nMbukCNEEeaAV7iIHwGF1A" supplier="_QPY_UCMpEeaAV7iIHwGF1A" utilizedElement="_QPY_UCMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_5UaAkCNEEeaAV7iIHwGF1A" name="SGA Service" fileName="">
+          <manifestation xmi:id="_AlH1ICNFEeaAV7iIHwGF1A" client="_5UaAkCNEEeaAV7iIHwGF1A" supplier="_Ao5agCNIEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CkTeoCNFEeaAV7iIHwGF1A" name="MIP Service" fileName="">
+          <manifestation xmi:id="_HoQgsCNFEeaAV7iIHwGF1A" client="_CkTeoCNFEeaAV7iIHwGF1A" supplier="_TRQ04CMpEeaAV7iIHwGF1A" utilizedElement="_TRQ04CMpEeaAV7iIHwGF1A"/>
+        </nestedClassifier>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_xY8JYCNFEeaAV7iIHwGF1A" name="CDN">
+      <ownedAttribute xmi:id="_JhTQgyNGEeaAV7iIHwGF1A" name="dc virtualized env" type="_mplxICNNEeaAV7iIHwGF1A" association="_JhTQgCNGEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_axdwwCNGEeaAV7iIHwGF1A" name="Player Device">
+      <ownedAttribute xmi:id="_GdTUAiNGEeaAV7iIHwGF1A" name="cdn" type="_xY8JYCNFEeaAV7iIHwGF1A" association="_GdSs8CNGEeaAV7iIHwGF1A"/>
+      <ownedAttribute xmi:id="_00rkICY9EeaPTdlPuA_7kA" name="dc virtualized env" type="_nnGQICMqEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
+      <ownedAttribute xmi:id="_7a5qMSY9EeaPTdlPuA_7kA" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_baxzgCNGEeaAV7iIHwGF1A" name="Player App" fileName="">
+        <manifestation xmi:id="_tjwyICNGEeaAV7iIHwGF1A" client="_baxzgCNGEeaAV7iIHwGF1A" supplier="_3J-XECNJEeaAV7iIHwGF1A"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_X9ee0CNJEeaAV7iIHwGF1A" name="relationships">
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_HxIawCNDEeaAV7iIHwGF1A" client="_u7P7wCNBEeaAV7iIHwGF1A" supplier="_R___UCM_EeaAV7iIHwGF1A" utilizedElement="_R___UCM_EeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_QrwW8CNEEeaAV7iIHwGF1A" client="_u7P7wCNBEeaAV7iIHwGF1A" supplier="_BwvsACNLEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_RVxv4CM6EeaAV7iIHwGF1A" client="_IIwmsCM6EeaAV7iIHwGF1A" supplier="_NSuZ4CMpEeaAV7iIHwGF1A" utilizedElement="_NSuZ4CMpEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_AkwToCNDEeaAV7iIHwGF1A" client="_a7hzECNDEeaAV7iIHwGF1A" supplier="_2LvjUCNAEeaAV7iIHwGF1A" utilizedElement="_2LvjUCNAEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_p8PZMCNDEeaAV7iIHwGF1A" client="_a7hzECNDEeaAV7iIHwGF1A" supplier="_IURDYCNLEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_hB--gCNEEeaAV7iIHwGF1A" client="_nnGQICMqEeaAV7iIHwGF1A" supplier="_huroQCNLEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GdSs8CNGEeaAV7iIHwGF1A" memberEnd="_GdTUAiNGEeaAV7iIHwGF1A _GdTUAyNGEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_GdTUACNGEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_GdTUASNGEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_GdTUAyNGEeaAV7iIHwGF1A" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_GdSs8CNGEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_f3XSYCMsEeaAV7iIHwGF1A" name="CMS2Configuration" memberEnd="_f3gcUCMsEeaAV7iIHwGF1A _f3hDYCMsEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_f3fOMCMsEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_f3fOMSMsEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_f3hDYCMsEeaAV7iIHwGF1A" name="cms" type="_NSuZ4CMpEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
+      <ownedEnd xmi:id="_f3gcUCMsEeaAV7iIHwGF1A" name="conf" type="_bPtx0CMsEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_smRkQCNIEeaAV7iIHwGF1A" memberEnd="_smSLUiNIEeaAV7iIHwGF1A _smSLUyNIEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_smSLUCNIEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_smSLUSNIEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_smSLUyNIEeaAV7iIHwGF1A" name="handshake" type="_BTiXICNBEeaAV7iIHwGF1A" association="_smRkQCNIEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_PL7mICNIEeaAV7iIHwGF1A" memberEnd="_PL7mIyNIEeaAV7iIHwGF1A _PL8NMCNIEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_PL7mISNIEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_PL7mIiNIEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_PL8NMCNIEeaAV7iIHwGF1A" name="sga" type="_RiDhECMpEeaAV7iIHwGF1A" association="_PL7mICNIEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_ukXwACNFEeaAV7iIHwGF1A" memberEnd="_ukYXEiNFEeaAV7iIHwGF1A _ukY-ICNFEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_ukYXECNFEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_ukYXESNFEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_ukY-ICNFEeaAV7iIHwGF1A" name="bc physical env" type="_u7P7wCNBEeaAV7iIHwGF1A" association="_ukXwACNFEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_JhTQgCNGEeaAV7iIHwGF1A" memberEnd="_JhTQgyNGEeaAV7iIHwGF1A _JhT3kCNGEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_JhTQgSNGEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_JhTQgiNGEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_JhT3kCNGEeaAV7iIHwGF1A" name="player" type="_xY8JYCNFEeaAV7iIHwGF1A" association="_JhTQgCNGEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_gx3FkCNJEeaAV7iIHwGF1A" memberEnd="_gx4TsiNJEeaAV7iIHwGF1A _gx46wCNJEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_gx4TsCNJEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_gx4TsSNJEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_gx46wCNJEeaAV7iIHwGF1A" name="load balancer" type="_DdcC4CNBEeaAV7iIHwGF1A" association="_gx3FkCNJEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_n99qcCNKEeaAV7iIHwGF1A" memberEnd="_n9-RgiNKEeaAV7iIHwGF1A _n9-RgyNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_n9-RgCNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_n9-RgSNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_n9-RgyNKEeaAV7iIHwGF1A" name="player" type="_jBpNUCM9EeaAV7iIHwGF1A" association="_n99qcCNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_7dIY4CNKEeaAV7iIHwGF1A" memberEnd="_7dKOEiNKEeaAV7iIHwGF1A _7dK1ICNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_7dKOECNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_7dKOESNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_7dK1ICNKEeaAV7iIHwGF1A" name="broadcast center physical" type="_R___UCM_EeaAV7iIHwGF1A" association="_7dIY4CNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_3v9jkCNKEeaAV7iIHwGF1A" memberEnd="_3v-KoiNKEeaAV7iIHwGF1A _3v-xsCNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_3v-KoCNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_3v-KoSNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_3v-xsCNKEeaAV7iIHwGF1A" name="data center physical" type="_2LvjUCNAEeaAV7iIHwGF1A" association="_3v9jkCNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_0CWpYCNKEeaAV7iIHwGF1A" memberEnd="_0CXQciNKEeaAV7iIHwGF1A _0CXQcyNKEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_0CXQcCNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_0CXQcSNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_0CXQcyNKEeaAV7iIHwGF1A" name="data center vm" type="_6fi60CNAEeaAV7iIHwGF1A" association="_0CWpYCNKEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_HfRNsCNOEeaAV7iIHwGF1A" memberEnd="_HfR0wSNOEeaAV7iIHwGF1A _HfR0wiNOEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_HfRNsSNOEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_HfR0wCNOEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_HfR0wiNOEeaAV7iIHwGF1A" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_HfRNsCNOEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GztvQCNOEeaAV7iIHwGF1A" memberEnd="_GzuWUCNOEeaAV7iIHwGF1A _GzuWUSNOEeaAV7iIHwGF1A">
+      <eAnnotations xmi:id="_GztvQSNOEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
+        <details xmi:id="_GztvQiNOEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_GzuWUSNOEeaAV7iIHwGF1A" name="load balancer" type="_mplxICNNEeaAV7iIHwGF1A" association="_GztvQCNOEeaAV7iIHwGF1A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_00n5wCY9EeaPTdlPuA_7kA" memberEnd="_00rkICY9EeaPTdlPuA_7kA _00rkISY9EeaPTdlPuA_7kA">
+      <eAnnotations xmi:id="_00qWACY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
+        <details xmi:id="_00qWASY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_00rkISY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_7a5DICY9EeaPTdlPuA_7kA" memberEnd="_7a5qMSY9EeaPTdlPuA_7kA _7a5qMiY9EeaPTdlPuA_7kA">
+      <eAnnotations xmi:id="_7a5DISY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
+        <details xmi:id="_7a5qMCY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_7a5qMiY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
+    </packagedElement>
+  </packagedElement>
+  <profileApplication xmi:id="_C5spMCMsEeaAV7iIHwGF1A">
+    <eAnnotations xmi:id="_C5t3UCMsEeaAV7iIHwGF1A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>

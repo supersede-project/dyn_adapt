@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="442 383 45 45">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="1455 15 261 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root"/>
+  </mapping>
+  <mapping value="1516 135 138 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="417 255 99 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="407 375 118 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="57 495 262 85">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="334 495 262 85">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="611 495 262 85">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.0/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="1952 255 127 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="1576 375 158 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1083 495 158 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="925 615 225 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1165 615 233 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="1580 495 146 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="1428 615 213 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1656 615 221 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="2066 495 159 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="1907 615 234 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.2/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="2156 615 226 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.2/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="2721 375 90 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="2469 495 122 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="2441 615 178 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="2434 834 190 151">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="2699 495 133 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="2676 615 178 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="2669 834 190 173">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="2943 495 114 30">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.2"/>
+  </mapping>
+  <mapping value="2911 615 178 129">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0"/>
+  </mapping>
+  <mapping value="2904 834 190 173">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0/@features.0"/>
+  </mapping>
+  <mapping/>
+  <mapping value="1137 503 45 45">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="1628 503 45 45">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@groups.0"/>
+  </mapping>
+  <mapping value="2121 503 45 45">
+    <key href="AtosUCFeatureModel_Concurrency.yafm#//@root/@features.0/@features.1/@features.0/@features.2/@groups.0"/>
+  </mapping>
+</layout:LayoutData>

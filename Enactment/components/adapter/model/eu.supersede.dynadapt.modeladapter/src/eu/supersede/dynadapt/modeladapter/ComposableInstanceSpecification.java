@@ -198,6 +198,9 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 	
 	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecificationImpl instanceBase) {
 		for (Slot slotInInstanceBase: instanceBase.getSlots()){
+			if (slotInInstanceBase.getDefiningFeature() == null){ //FIXME Investigate when this happens
+				continue;
+			}
 			//Slot exists in both instances AND
 			//Slot in both instances refers to the same value
 			if (ModelAdapterUtilities.slotsHasSameDefiningFeature(slotInInstanceVariant, slotInInstanceBase) && 
