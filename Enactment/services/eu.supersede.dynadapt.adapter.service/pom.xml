@@ -6,13 +6,42 @@
   <artifactId>eu.supersede.dynadapt.adapter.service</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
+  
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.2.RELEASE</version>
+  </parent>
 
   <name>Adapter Service</name>
   <url>http://www.supersede.eu</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
   </properties>
+  
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+  
+  <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+  </repositories>
+  <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+  </pluginRepositories>
 
   <dependencies>
     <dependency>
@@ -270,5 +299,22 @@
         <artifactId>cz.zcu.yafmt.model</artifactId>
         <version>0.3.0-SNAPSHOT</version>
      </dependency>
+     <!-- Spring Framework/Boot -->
+     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+     </dependency>
+     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+     </dependency>
+     <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <scope>test</scope>
+     </dependency>
   </dependencies>
+  
+  
 </project>

@@ -3,9 +3,14 @@ package eu.supersede.dynadapt.adapter.service;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
@@ -14,7 +19,9 @@ import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
-public class AdapterService {	
+@RestController
+@RequestMapping(value="/enactment")
+public class AdapterService implements IAdapter{	
 	String baseModelPath;
 	String repository;
 	String originalFeatureConfigPath;
@@ -31,20 +38,22 @@ public class AdapterService {
 
 	URL url = null;
 	
+	public AdapterService() throws Exception{
+		setUp();
+	}
+	
 	public static void main (String[] args) throws Exception{
 		AdapterService instance = new AdapterService();
-		instance.setUp();
 		instance.testAtosUCAdaptation();
 	}
 
 	private void testAtosUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
 			String featureConfigurationId = null;
-			adapter.enactAdaptationDecisionActions(
+			enactAdaptationDecisionActions(
 					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
@@ -58,6 +67,7 @@ public class AdapterService {
 		setupPlatform();		
 		mm = new ModelManager(baseModelPath);
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
+		adapter = new Adapter(mr, mm, modelsLocation);
 	}
 
 	private void setupPlatform() {
@@ -77,5 +87,19 @@ public class AdapterService {
 		modelsLocation.put("profiles", "models/profiles/");
 		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
 		modelsLocation.put("features", "features/models/");
+	}
+
+	@Override
+	@RequestMapping(value="/adaptationDecisionAction/{adaptationDecisionActionId}/{featureConfigurationId}/{systemId}", method=RequestMethod.POST)
+	public void enactAdaptationDecisionAction(@PathVariable String systemId, @PathVariable String adaptationDecisionActionId,
+			@PathVariable String featureConfigurationId) throws EnactmentException {
+		adapter.enactAdaptationDecisionAction(systemId, adaptationDecisionActionId, featureConfigurationId);
+	}
+
+	@Override
+	@RequestMapping(value="/adaptationDecisionActions/{adaptationDecisionActionIds}/{featureConfigurationId}/{systemId}", method=RequestMethod.POST)
+	public void enactAdaptationDecisionActions(@PathVariable String systemId, @PathVariable List<String> adaptationDecisionActionIds,
+			@PathVariable String featureConfigurationId) throws EnactmentException {
+		adapter.enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
 	}
 }
