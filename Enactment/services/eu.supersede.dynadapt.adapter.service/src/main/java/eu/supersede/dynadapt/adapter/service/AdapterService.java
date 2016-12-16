@@ -42,10 +42,10 @@ public class AdapterService implements IAdapter{
 		setUp();
 	}
 	
-	public static void main (String[] args) throws Exception{
-		AdapterService instance = new AdapterService();
-		instance.testAtosUCAdaptation();
-	}
+//	public static void main (String[] args) throws Exception{
+//		AdapterService instance = new AdapterService();
+//		instance.testAtosUCAdaptation();
+//	}
 
 	private void testAtosUCAdaptation() {
 		try {
