@@ -103,6 +103,22 @@
       </configuration>
     </plugin>
 
+    <plugin>
+       <groupId>org.eclipse.tycho</groupId>
+       <artifactId>tycho-packaging-plugin</artifactId>
+       <version>0.26.0</version>
+       <configuration>
+    	  <additionalFileSets>
+ 	    <fileSet>
+                <directory>${project.build.directory}/classes/</directory>
+  		<includes>
+   		   <include>**/*</include>
+                </includes>
+             </fileSet>     
+          </additionalFileSets>
+       </configuration>
+    </plugin>
+
   </plugins>
  </build>
 

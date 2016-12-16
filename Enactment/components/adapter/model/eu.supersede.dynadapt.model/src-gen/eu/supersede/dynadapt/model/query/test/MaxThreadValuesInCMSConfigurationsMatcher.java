@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test;
 
 import eu.supersede.dynadapt.model.query.test.MaxThreadValuesInCMSConfigurationsMatch;
@@ -58,10 +61,21 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
     // check if matcher already exists
     MaxThreadValuesInCMSConfigurationsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new MaxThreadValuesInCMSConfigurationsMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (MaxThreadValuesInCMSConfigurationsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static MaxThreadValuesInCMSConfigurationsMatcher create() throws ViatraQueryException {
+    return new MaxThreadValuesInCMSConfigurationsMatcher();
   }
   
   private final static int POSITION_CONFIGURATION = 0;
@@ -80,8 +94,8 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private MaxThreadValuesInCMSConfigurationsMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private MaxThreadValuesInCMSConfigurationsMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

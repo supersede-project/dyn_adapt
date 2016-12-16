@@ -1,9 +1,13 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.modeladapter/src/eu/supersede/dynadapt/modeladapter/queries/model_adapter.vql
+ */
 package eu.supersede.dynadapt.modeladapter.queries.util;
 
 import com.google.common.collect.Sets;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceSpecificationLinkMatch;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceSpecificationLinkMatcher;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -13,12 +17,15 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -54,6 +61,11 @@ public final class InstanceSpecificationLinkQuerySpecification extends BaseGener
   }
   
   @Override
+  public InstanceSpecificationLinkMatcher instantiate() throws ViatraQueryException {
+    return InstanceSpecificationLinkMatcher.create();
+  }
+  
+  @Override
   public InstanceSpecificationLinkMatch newEmptyMatch() {
     return InstanceSpecificationLinkMatch.newEmptyMatch();
   }
@@ -85,12 +97,16 @@ public final class InstanceSpecificationLinkQuerySpecification extends BaseGener
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static InstanceSpecificationLinkQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pLink = new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pLink);
     
     @Override
     public String getFullyQualifiedName() {
@@ -104,13 +120,12 @@ public final class InstanceSpecificationLinkQuerySpecification extends BaseGener
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -118,7 +133,7 @@ public final class InstanceSpecificationLinkQuerySpecification extends BaseGener
       		PVariable var_link = body.getOrCreateVariableByName("link");
       		PVariable var_classifier = body.getOrCreateVariableByName("classifier");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_link, "link")
+      		   new ExportedParameter(body, var_link, parameter_pLink)
       		));
       		// 	InstanceSpecification.classifier (link, classifier)
       		new TypeConstraint(body, new FlatTuple(var_link), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));

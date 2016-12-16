@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.modeladapter/src/eu/supersede/dynadapt/modeladapter/queries/model_adapter.vql
+ */
 package eu.supersede.dynadapt.modeladapter.queries.util;
 
 import com.google.common.collect.Sets;
@@ -5,6 +8,7 @@ import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificatio
 import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificationLinkMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.util.InstanceSpecificationLinkQuerySpecification;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +18,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
@@ -21,6 +27,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedP
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -56,6 +63,11 @@ public final class InstanceOfInstanceSpecificationLinkQuerySpecification extends
   }
   
   @Override
+  public InstanceOfInstanceSpecificationLinkMatcher instantiate() throws ViatraQueryException {
+    return InstanceOfInstanceSpecificationLinkMatcher.create();
+  }
+  
+  @Override
   public InstanceOfInstanceSpecificationLinkMatch newEmptyMatch() {
     return InstanceOfInstanceSpecificationLinkMatch.newEmptyMatch();
   }
@@ -87,12 +99,18 @@ public final class InstanceOfInstanceSpecificationLinkQuerySpecification extends
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static InstanceOfInstanceSpecificationLinkQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pLink = new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pInstance = new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pLink, parameter_pInstance);
     
     @Override
     public String getFullyQualifiedName() {
@@ -106,14 +124,12 @@ public final class InstanceOfInstanceSpecificationLinkQuerySpecification extends
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", null),
-      			 new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -123,8 +139,8 @@ public final class InstanceOfInstanceSpecificationLinkQuerySpecification extends
       		PVariable var_slot = body.getOrCreateVariableByName("slot");
       		PVariable var_value = body.getOrCreateVariableByName("value");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_link, "link"),
-      		   new ExportedParameter(body, var_instance, "instance")
+      		   new ExportedParameter(body, var_link, parameter_pLink),
+      		   new ExportedParameter(body, var_instance, parameter_pInstance)
       		));
       		// 	find InstanceSpecificationLink(link)
       		new PositivePatternCall(body, new FlatTuple(var_link), InstanceSpecificationLinkQuerySpecification.instance().getInternalQueryRepresentation());

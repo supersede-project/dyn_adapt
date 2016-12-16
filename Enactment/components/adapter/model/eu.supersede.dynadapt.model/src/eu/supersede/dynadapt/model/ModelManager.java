@@ -35,10 +35,15 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -114,12 +119,16 @@ public class ModelManager implements IModelManager {
 		return targetModelResource;
 	}
 	
-	public Aspect loadAspectModel(String path) {
-		return resourceSet.loadAspectModel(path);
+	@Override
+	public Aspect loadAspectModel(String aspectPath) {
+//		return resourceSet.loadAspectModel(aspectPath); //Do not use: this approach gives problems with relative paths
+		return resourceSet.loadModel(URI.createURI(aspectPath), Aspect.class);
 	}
 	
+	@Override
 	public Aspect loadAspectModel(URI uri) {
-		return resourceSet.loadAspectModel(uri);
+//		return resourceSet.loadAspectModel(uri); //Do not use: this approach gives problems with relative paths
+		return resourceSet.loadModel(uri, Aspect.class);
 	}
 	
 	
@@ -307,6 +316,26 @@ public class ModelManager implements IModelManager {
 	 */
 	private URI getTargetModelURI(){
 		return targetModelURI;
+	}
+
+	@Override
+	public URI saveModelInTemporaryFolder(Model model, String suffixe) throws IOException {
+		URI uri = createTemporaryURI (model.getName() + suffixe);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(model);
+		try {
+			resource.save(null); // no save options needed
+		} catch (IOException ioe) {
+			throw ioe;
+		}
+		
+		return uri;
+	}
+	
+	private URI createTemporaryURI (String surl){
+		Path file = Paths.get(temp.toString(), surl);
+		return URI.createURI(file.toString());
 	}
 
 }

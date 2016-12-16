@@ -70,8 +70,11 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 		// referencing the insertion point
 		for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant, usingVariantModel)){
 			//Add link instance specification
-			log.debug("Adding detected link instance specification in variant model: " + linkInstance.getName());
-			addInstanceSpecificationInModel (linkInstance, inBaseModel);
+			//FIXME avoid adding duplicated instances
+			if (!ModelAdapterUtilities.modelContainsElement(linkInstance, inBaseModel)){
+				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getName());
+				addInstanceSpecificationInModel (linkInstance, inBaseModel);
+			}
 		}
 	}
 	
@@ -195,6 +198,9 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 	
 	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecificationImpl instanceBase) {
 		for (Slot slotInInstanceBase: instanceBase.getSlots()){
+			if (slotInInstanceBase.getDefiningFeature() == null){ //FIXME Investigate when this happens
+				continue;
+			}
 			//Slot exists in both instances AND
 			//Slot in both instances refers to the same value
 			if (ModelAdapterUtilities.slotsHasSameDefiningFeature(slotInInstanceVariant, slotInInstanceBase) && 

@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test;
 
 import eu.supersede.dynadapt.model.query.test.NodesMatch;
@@ -50,10 +53,21 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
     // check if matcher already exists
     NodesMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new NodesMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (NodesMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static NodesMatcher create() throws ViatraQueryException {
+    return new NodesMatcher();
   }
   
   private final static int POSITION_NODE = 0;
@@ -70,8 +84,8 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private NodesMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private NodesMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.model/src/eu/supersede/dynadapt/model/query/test/atos_queries.vql
+ */
 package eu.supersede.dynadapt.model.query.test;
 
 import eu.supersede.dynadapt.model.query.test.util.CMSConfigurationInstancesQuerySpecification;
