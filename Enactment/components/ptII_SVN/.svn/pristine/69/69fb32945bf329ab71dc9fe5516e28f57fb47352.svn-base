@@ -1,0 +1,56 @@
+#!/bin/sh
+# $Id$
+# Fix up common problems in a CVS repository
+# 1. Binary files are not properly -kb
+
+# Generate a list of files
+find . -type f | grep -v /CVS/ | sort > /tmp/fixcvs.files
+
+# Generate a list of all the files that are listed in
+#  ~/.subversion/config that are not text files.
+# That is, all the files that are not native line endings
+egrep -v "(`egrep -v "^#" $HOME/.subversion/config  | grep 'svn:eol-style=native'  | sed 's@^\([^= ]*\).*$@\1@' | sed 's@\*.@\\\\.@' | awk '{if (NR > 1) { printf("|")};printf("%s", $1)}'`)$" /tmp/fixcvs.files | sort > /tmp/fixcvs.nonative
+
+# Generate a list of all files that are mime-types
+egrep "(`egrep -v "^#" $HOME/.subversion/config  | grep 'svn:mime-type'  | sed 's@^\([^= ]*\).*$@\1@' | sed 's@\*.@\\\\.@' | awk '{if (NR > 1) { printf("|")};printf("%s", $1)}'`)$" /tmp/fixcvs.files | sort > /tmp/fixcvs.mime
+
+echo "The extensions of the files below are not listed in ~/.subversion/config:"
+comm -23 /tmp/fixcvs.nonative /tmp/fixcvs.mime
+
+echo "Checking for binary files that are not -kb"
+
+finalResult=0
+rm -f fixme.kb.files
+
+# Handle files with spaces in their names
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+binaries=`cat /tmp/fixcvs.nonative`
+for binary in $binaries
+do
+	#echo -n "."
+	#echo -n $binary
+	cvs status "$binary" | egrep -e "-kb$" > /dev/null
+	status=$?
+	if [ $status -ne 0 ]; then
+	    file $binary | egrep " text" > /dev/null
+	    status=$?
+	    if [ $status -eq 1 -o $status -eq 2 ]; then
+		if [ $binary != "./fixme.kb.files" ]; then
+		    echo "`pwd`/$binary is not -kb?"
+		    echo $binary >> fixme.kb.files
+		    finalResult=1
+                fi
+	    fi
+        fi
+done
+IFS=$SAVEIFS
+
+if [ $finalResult -ne 0 ]; then
+    echo "$0: The list of files to be converted to -kb is in `pwd`/fixme.kb.files"
+fi
+
+exit $finalResult
+
+
+

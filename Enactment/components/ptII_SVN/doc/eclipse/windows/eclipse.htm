@@ -1,0 +1,61 @@
+<!-- $Id: eclipse.htm 67651 2013-10-08 05:31:12Z cxh $ -->
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <title>Windows: Installing Eclipse</title>
+    <link href="../../../doc/default.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1>Windows: Installing Eclipse</h1>
+
+    Download the latest version of Eclipse from
+    <a href="http://www.eclipse.org/downloads/#in_browser" target="_top">http://www.eclipse.org</a>.
+    <br/>In October, 2013, we chose
+    <b>Eclipse for RCP and RAP Developers</b>, which is 236Mb.
+    The <b>Eclipse for RCP and RAP Developers</b> version includes the
+    plug-in development environment (PDE), which is needed by the backtrack
+    facility, which is an optional part of Ptolemy II that allows models to
+    restore their old state.  If the version of Eclipse that you install
+    does not have the PDE, then there will be build errors, which can be fixed by
+    excluding <code>ptolemy/backtrack/</code> from the build.
+
+    <p>Eclipse is available as both 32-bit and 64-bit binaries.  Deciding
+      which one to download can be complex, see <a href="32bitVs64bit.htm">32-bit or 64-bit</a>.
+
+    <br/>After determining whether to download the 32-bit or 64-bit version
+    of Eclipse, download the file and unzip the download file into an
+    appropriate place, such as <code>C:\Program Files</code>, which will
+    create <code>C:\Program Files\eclipse\eclipse.exe</code>.
+
+    <br/>If <code>eclipse\eclipse.exe</code> is not created, then it could
+    be that the security policy on your machine is preventing the creation
+    of <code>.exe</code> files.  If this is the case, then try right
+    clicking on the zip file, select "Properties" and then at the bottom,
+    hit "Unblock" and then "Apply". Or try running
+    <code>unzip</code> from the command line.</p>
+
+    <ul>
+      <li>Finish the installation by double clicking on  <code>eclipse/eclipse.exe</code></li>
+      <li>Go to <a href="preferences.htm" target="main">Setting the Eclipse Preferences</a>.</li>
+    </ul>
+
+    <h3>Windows Eclipse Troubleshooting hints</h3>
+    <ul>
+      <li>
+	If Eclipse fails to start with the message "Windows cannot access the specified device, path or file. You may not have the appropriate permisions to access the item", then it may be necessary to make 
+	<code>eclipse.exe</code> and a dll executable:
+	<pre>
+	  chmod a+x eclipse.exe
+	</pre>
+      </li>
+      <li>If you get the message "The Eclipse executable launcher was unable to locate its companion shared library", then run the following command
+	in the <code>eclipse</code> directory.
+	<pre>
+	  find . -name *.dll -exec chmod a+x {} \;
+	</pre>
+	<br/>After the first run, normal start-up will occur whenever it is started.
+      </li>
+    </ul>
+
+  </body>
+</html>

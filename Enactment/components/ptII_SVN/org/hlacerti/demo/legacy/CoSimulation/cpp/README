@@ -1,0 +1,18 @@
+--  Author: Gilles Lasnier <gilles.lasnier@isae.fr>
+
+--  $Id: README 72228 2015-05-06 01:54:17Z David.COME@supaero.isae.fr $
+--  $Author: David.COME@supaero.isae.fr $
+--  $Date: 2015-05-06 03:54:17 +0200 (Wed, 06 May 2015) $
+
+##########################################################
+##
+##       PRODUCER CONSUMER
+##
+##########################################################
+
+Subject:
+ This example is a simple producer/consumer implemented
+ in HLA/CERTI (C++) using HLA time management services.
+
+Installation:
+ See the INSTALL file.

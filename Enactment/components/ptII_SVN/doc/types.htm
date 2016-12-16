@@ -1,0 +1,52 @@
+<!-- $Id: types.htm 70198 2014-09-25 18:47:42Z cxh $ -->
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<title>Ptolemy II Domains</title>
+<link href="default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Ptolemy II Type System</h1>
+<p>
+
+Ptolemy II has a sophisticated type system that supports extensive
+polymorphism. The basis for the type system is a complete partial order
+(CPO) representing the relationships between types. The ordering
+relationship is one of lossless convertibility. I.e., type <i>a</i> is
+less than type <i>b</i> if an instance of type <i>a</i> can be
+converted losslessly to an instance of type <i>b</i>. For example, type
+<i>IntToken</i> is less than type <i>DoubleToken</i> which is less than
+<i>ComplexToken</i>. However, <i>BooleanToken</i> is incomparable to
+all of these (it is neither less than nor greater than them). A lesser
+type is <i>more specific</i> than a greater type, or a greater type is
+<i>more general</i>. Type constraints in an actor are specified as
+inequalities with respect to this CPO. Thus, for example, an actor may
+declare that its output type is at least the type of one of its
+parameters. The type resolution mechanism finds the least types (the
+most specific types) in the CPO that satisfy all the constraints.
+
+<p>Backward type inference addresses the problem of inferring type specifications for dynamic data in Ptolemy II by leveraging its existing type inference mechanism. Ptolemy II is statically typed and therefore requires all ports to resolve to a type prior execution. When an actor mediates access to untyped data, or data is subject to unexpected changes, there is no way to reliably infer the type of its output from the actor itself. Manual annotations are tedious and make models more brittle than necessary. The basic idea is to let type constraints imposed by downstream actors determine the type of the otherwise underdetermined output ports of actors that mediate access to untyped resources. This is achieved using additional type constraints between and within actors. Backward inferred types serve the goal of achieving maximally permissive composition, as they are specific enough not to limit composability and general enough not to impose unnecessary constraints on the data. This solution has been implemented in Ptolemy II and the goal of this poster is to familiarize users with its function.</p>
+
+<p>To enable backward type inference, set the enableBackwardTypeInference parameter to true at the top level of the model.</p>
+
+<script src="demoLink.js"></script>
+<script>
+document.write("<h2>Demonstrations</h2>\n<ul>\n");
+demoLink("<li>", "ptolemy/domains/sdf/demo/Type/Type/", "Type Resolution");
+demoLink("<li>", "ptolemy/data/type/demo/Objects/Objects/", "Object Tokens");
+demoLink("<li>", "ptolemy/data/type/demo/Router/Router/", "Record Types");
+demoLink("<li>", "ptolemy/data/unit/demo/StaticUnits/StaticUnits/", "StaticUnits");
+demoLink("<li>", "ptolemy/data/unit/demo/Units/Units/", "Units");
+document.write("</ul>");
+</script>
+
+<h2>References</h2>
+<ol>
+<li>Edward A. Lee, Marten Lohstroh, and Yuhong Xiong, "<a href="http://ptolemy.eecs.berkeley.edu/books/Systems/chapters/TheTypeSystem.pdf#in_browser" target="_top">The Type System</a>,"
+  a chapter from<br/>
+	  Claudius Ptolemaeus, Editor, "<a href="http://ptolemy.eecs.berkeley.edu/books/Systems/index.htm#in_browser" target="_top">System Design, Modeling, and Simulation Using Ptolemy II</a>", Ptolemy.org, 2014. (included in the release as <a href="books/systems/PtolemyII_DigitalV1_02.pdf#in_browser" target="_top"><code>$PTII/doc/books/systems/PtolemyII_DigitalV1_02.pdf</code></a>)
+<li>Marten Lohstroh, "<a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-19.pdf#in_browser" target="_top">Maximally Permissive Composition of Actors in Ptolemy II</a>," Masters Thesis, EECS Department, University of California, Berkeley, Technical Report No. UCB/EECS-2013-19, March 20, 2013.</li>
+</ol>
+
+</body>
+</html>

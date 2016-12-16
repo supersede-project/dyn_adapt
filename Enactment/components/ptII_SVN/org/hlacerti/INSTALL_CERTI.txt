@@ -1,0 +1,107 @@
+-- Author: Gilles Lasnier (gilles.lasnier@isae.fr)
+-- @version: $Id: INSTALL_CERTI.txt 74767 2016-05-02 16:58:14Z cxh $
+
+Install certi (an open source RTI following the hla standard) latest version.  As of 10/17/15, that was version 3.5.1.
+Download the gzipped tar file from:
+http://download.savannah.gnu.org/releases/certi/
+
+Here a receipe for installing certi:
+   mkdir $HOME/pthla
+   cd $HOME/pthla
+   tar xvfz CERTI-3.5.1-Source.tar.gz # (or double click to expand)
+   mv CERTI-3.5.1-Source certi # (or create a symbolic link: ln -s CERTI-3.5.1-Source certi)
+   mkdir $HOME/pthla/certi-tools
+   cd $HOME/pthla/certi
+   mkdir $HOME/pthla/certi/build-certi
+   cd $HOME/pthla/certi/build-certi
+   cmake -DCMAKE_INSTALL_PREFIX=$HOME/pthla/certi-tools  ../
+   make
+   make install
+
+CERTI has been compiled and installed in the ’$HOME/pthla/certi-tools’ folder. CERTI provides a script to set the environment (global variables, binaries, etc) to allow the correct launch of RTIG process, RTIA process and federates. To set the CERTI environment properly in a terminal run the command:
+
+Put the following line in your ~/.bash_profile file:
+
+   source $HOME/pthla/certi-tools/share/scripts/myCERTI_env.sh
+
+To test the installation:
+
+1. open 3 terminals (make sure you open new terminals or source ~/.bash_profile in already open terminals)
+2. go to the first terminal and execute the command "rtig"
+3. go to second terminal and call a billard federate "1" (-n name)
+      billard -n1 -fTest -FTest.fed -t10
+   DO NOT HIT ENTER YET.
+4. go to the third terminal and call a billard federate "2" (-n name)
+      billard -n2 -fTest -FTest.fed -t10
+   DO NOT HIT ENTER YET.
+5. go back to second terminal (of step 3) and press "ENTER"
+
+The billard demo that has been run is in $HOME/pthla/certi/test/Billard/.
+
+
+To run the Ptolemy demos, see $PTII/org/hlacerti/demo
+
+See $PTII/org/hlacerti/demo/Billard/README.txt
+
+
+################################### FIXME: Old instructions below
+
+Installation and deployment of CERTI
+
+Requirements: we assume that you have a
+- recent C++ compiler 
+- the CMake tool
+- Bison, the GNU version of yacc.
+###################################
+1) Installation process (summary):
+
+	1.	Get the last CERTI cvs source using the command: 
+	
+	      cvs -z3 -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/certi co certi
+	      
+	      Note: 2014-12-20, the CVS head was broken,
+	      see https://savannah.nongnu.org/bugs/?40977
+	      
+	      Instead, try:
+	      wget http://download.savannah.gnu.org/releases/certi/CERTI-3.4.3-Source.tar.gz
+              tar -zxf CERTI-3.4.3-Source.tar.gz 
+
+	2.	Go to the CERTI cvs folder downloaded
+	           cd CERTI-3.4.3-Source
+	3.	Create the folder 'build_certi' and go to this folder
+	           mkdir build_certi
+		   cd build_certi
+   	4.	Run cmake:
+	           cmake -DCMAKE_INSTALL_PREFIX=<path_for_scripts_and_binaries> -DCERTI_USE_NULL_PRIME_MESSAGE_PROTOCOL=ON ../
+                For example:
+                   cmake -DCMAKE_INSTALL_PREFIX=/usr/local/certi-3.4.3 -DCERTI_USE_NULL_PRIME_MESSAGE_PROTOCOL=ON ../
+		All  files required to build CERTI are stored in the 'build_certi' folder.
+	5.	Run:
+                   make
+	6.	Asr root, run
+                   make install
+
+Note: In your current terminal, you'll see  information about the (correct) build 
+of CERTI and where are stored the different environment scripts used to set the 
+CERTI environment.
+
+#############
+2) Deployment
+
+For the deployment of an HLA Federation in C++, you need to launch one terminal for running the 'rtig' binary, and one terminal per federate if you have displayed information. To excute the 'rtig' or a federate do this procedure :
+
+	1.	Open a new terminal
+	2.	Source the CERTI environment script. This script is stored in the 
+	    CMAKE_INSTALL_PREFIX set during the installation process 
+	    (see previous subsection).
+	3.	'source <path_for_scripts_and_binaries>/share/scripts/myCERTI.sh'
+	4.	Run 'rtig' or the federate required, for example './<fed-binary>'
+
+####################
+3) Debug information
+
+Environment variables used to display traces (e.g. messages) from CERTI :
+
+- 'export RTIG_MSG=D' in RTIG (for messages exchanged between RTIA <--> RTIG)
+
+- 'export RTIA_MSG=D' in a Federate's terminal (for messages exchanges between Federate <--> RTIA)

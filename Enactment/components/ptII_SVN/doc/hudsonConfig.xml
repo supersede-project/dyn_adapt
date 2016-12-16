@@ -1,0 +1,551 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <project-properties class="java.util.concurrent.ConcurrentHashMap">
+    <entry>
+      <string>hudson-plugins-cobertura-CoberturaPublisher</string>
+      <external-property>
+        <originalValue class="hudson.plugins.cobertura.CoberturaPublisher">
+          <coberturaReportFile>reports/coveragereport/coverage.xml</coberturaReportFile>
+          <onlyStable>false</onlyStable>
+          <failUnhealthy>false</failUnhealthy>
+          <failUnstable>false</failUnstable>
+          <autoUpdateHealth>false</autoUpdateHealth>
+          <autoUpdateStability>false</autoUpdateStability>
+          <healthyTarget>
+            <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>7000000</int>
+              </entry>
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>8000000</int>
+              </entry>
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>8000000</int>
+              </entry>
+            </targets>
+          </healthyTarget>
+          <unhealthyTarget>
+            <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>0</int>
+              </entry>
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>0</int>
+              </entry>
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>0</int>
+              </entry>
+            </targets>
+          </unhealthyTarget>
+          <failingTarget>
+            <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>0</int>
+              </entry>
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>0</int>
+              </entry>
+              <entry>
+                <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
+                <int>0</int>
+              </entry>
+            </targets>
+          </failingTarget>
+          <sourceEncoding>ASCII</sourceEncoding>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-plugins-disk_usage-DiskUsageProperty</string>
+      <base-property>
+        <originalValue class="hudson.plugins.disk_usage.DiskUsageProperty"/>
+        <propertyOverridden>false</propertyOverridden>
+      </base-property>
+    </entry>
+    <entry>
+      <string>logRotator</string>
+      <log-rotator-property>
+        <originalValue class="hudson.tasks.LogRotator">
+          <daysToKeep>-1</daysToKeep>
+          <numToKeep>35</numToKeep>
+          <artifactDaysToKeep>-1</artifactDaysToKeep>
+          <artifactNumToKeep>-1</artifactNumToKeep>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </log-rotator-property>
+    </entry>
+    <entry>
+      <string>hudson-plugins-setenv-SetEnvBuildWrapper</string>
+      <external-property>
+        <originalValue class="hudson.plugins.setenv.SetEnvBuildWrapper">
+          <localVarText>ANT_HOME=/usr/local/apache-ant
+ANT_OPTS=-Xmx1024m
+BCVTB_HOME=${WORKSPACE}/lbnl
+CERTI_HOST=localhost
+CERTI_HOME=/usr/local/certi
+CERTI_FED=/usr/local/certi/share/federations
+PTII=${WORKSPACE}
+PTIIDIR=/home/hudson/jobs/ptII/workspace
+LD_LIBRARY_PATH=/usr/local/matlab/recent/sys/os/glnxa64:${CERTI_HOME}/lib:${PTIIDIR}/lbnl/lib/util:${PTIIDIR}/lib:/usr/local/matlab/recent/bin/glnxa64:${PTIIDIR}/vendors/misc/dbxml-2.5.16/install/lib:/usr/local/lib
+CLASSPATH=/usr/java/JMF-2.1.1e/lib/jmf.jar:/usr/java/jai-1_1_3/lib/jai_codec.jar:/usr/java/jai-1_1_3/lib/jai_core.jar:/usr/java/jai-1_1_3/lib/mlibwrapper_jai.jar:.
+DISPLAY=localhost:6.0
+OPENMODELICAHOME=/usr/local/openmodelica
+PATH=/usr/local/bin:${CERTI_HOME}/share/scripts:${CERTI_HOME}/bin:${OPENMODELICAHOME}/bin:${PATH}:${WORKSPACE}/vendors/misc/dbxml-2.5.16/install/bin:/usr/local/sbin:/usr/local/bin
+TOSROOT=${WORKSPACE}/vendors/ptinyos/tinyos-1.x
+TOSDIR=${WORKSPACE}/vendors/ptinyos/tinyos-1.x/tos
+PTINYOS_MOMLROOT=${WORKSPACE}/vendors/ptinyos/moml</localVarText>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>htmlpublisher-HtmlPublisher</string>
+      <external-property>
+        <originalValue class="htmlpublisher.HtmlPublisher">
+          <reportTargets>
+            <htmlpublisher.HtmlPublisherTarget>
+              <reportName>Doccheck</reportName>
+              <reportDir>reports/doccheck</reportDir>
+              <reportFiles>index.html</reportFiles>
+              <keepAll>false</keepAll>
+              <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+            </htmlpublisher.HtmlPublisherTarget>
+            <htmlpublisher.HtmlPublisherTarget>
+              <reportName>Ojdcheck</reportName>
+              <reportDir>reports/ojdcheck</reportDir>
+              <reportFiles>index.html</reportFiles>
+              <keepAll>false</keepAll>
+              <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+            </htmlpublisher.HtmlPublisherTarget>
+          </reportTargets>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-tasks-junit-JUnitResultArchiver</string>
+      <external-property>
+        <originalValue class="hudson.tasks.junit.JUnitResultArchiver">
+          <testResults>reports/junit/*.xml</testResults>
+          <keepLongStdio>false</keepLongStdio>
+          <testDataPublishers/>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-tasks-JavadocArchiver</string>
+      <external-property>
+        <originalValue class="hudson.tasks.JavadocArchiver">
+          <javadocDir>doc/codeDoc</javadocDir>
+          <keepAll>false</keepAll>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-plugins-warnings-WarningsPublisher</string>
+      <external-property>
+        <originalValue class="hudson.plugins.warnings.WarningsPublisher">
+          <healthy></healthy>
+          <unHealthy></unHealthy>
+          <thresholdLimit>low</thresholdLimit>
+          <pluginName>[WARNINGS] </pluginName>
+          <defaultEncoding></defaultEncoding>
+          <canRunOnFailed>false</canRunOnFailed>
+          <useStableBuildAsReference>false</useStableBuildAsReference>
+          <useDeltaValues>false</useDeltaValues>
+          <thresholds>
+            <unstableTotalAll></unstableTotalAll>
+            <unstableTotalHigh></unstableTotalHigh>
+            <unstableTotalNormal></unstableTotalNormal>
+            <unstableTotalLow></unstableTotalLow>
+            <failedTotalAll></failedTotalAll>
+            <failedTotalHigh></failedTotalHigh>
+            <failedTotalNormal></failedTotalNormal>
+            <failedTotalLow></failedTotalLow>
+          </thresholds>
+          <shouldDetectModules>false</shouldDetectModules>
+          <dontComputeNew>true</dontComputeNew>
+          <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+          <parserConfigurations/>
+          <consoleParsers>
+            <hudson.plugins.warnings.ConsoleParser>
+              <parserName>Maven</parserName>
+            </hudson.plugins.warnings.ConsoleParser>
+            <hudson.plugins.warnings.ConsoleParser>
+              <parserName>Java Compiler (javac)</parserName>
+            </hudson.plugins.warnings.ConsoleParser>
+          </consoleParsers>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-plugins-emailext-ExtendedEmailPublisher</string>
+      <external-property>
+        <originalValue class="hudson.plugins.emailext.ExtendedEmailPublisher">
+          <recipientList>ptexternal-devel@chess.eecs.berkeley.edu</recipientList>
+          <configuredTriggers>
+            <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>true</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
+            <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>true</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+            <hudson.plugins.emailext.plugins.trigger.StillFailingTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>true</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.StillFailingTrigger>
+            <hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>true</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
+            <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>true</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
+            <hudson.plugins.emailext.plugins.trigger.StillUnstableTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>true</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.StillUnstableTrigger>
+            <hudson.plugins.emailext.plugins.trigger.PreBuildTrigger>
+              <email>
+                <recipientList></recipientList>
+                <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+                <body>$PROJECT_DEFAULT_CONTENT</body>
+                <sendToDevelopers>false</sendToDevelopers>
+                <includeCulprits>false</includeCulprits>
+                <sendToRecipientList>false</sendToRecipientList>
+              </email>
+            </hudson.plugins.emailext.plugins.trigger.PreBuildTrigger>
+          </configuredTriggers>
+          <contentType>text/html</contentType>
+          <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+          <defaultContent>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS
+
+&lt;p&gt;Check console output at &lt;a href=&quot;$BUILD_URL&quot;&gt;$BUILD_URL&lt;/a&gt; to view the results.&lt;/p&gt;
+
+&lt;p&gt;Or &lt;a href=&quot;http://sisyphus.eecs.berkeley.edu:8079/hudson/job/ptII/${BUILD_NUMBER}&quot;&gt;http://sisyphus.eecs.berkeley.edu:8079/hudson/job/ptII/${BUILD_NUMBER}&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://sisyphus.eecs.berkeley.edu:8079/hudson/job/ptII/lastCompletedBuild/testReport/&quot;&gt;Test Report&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Changes&lt;/h2&gt;
+&lt;pre&gt;
+${CHANGES}
+&lt;/pre&gt;
+
+&lt;h2&gt;Failed Tests&lt;/h2&gt;
+&lt;pre&gt;
+${FAILED_TESTS}
+&lt;/pre&gt;
+
+
+</defaultContent>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-tasks-BuildTrigger</string>
+      <external-property>
+        <originalValue class="hudson.tasks.BuildTrigger">
+          <childProjects>ptII10</childProjects>
+          <threshold>
+            <name>SUCCESS</name>
+            <ordinal>0</ordinal>
+            <color>GREEN</color>
+          </threshold>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>false</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>builders</string>
+      <describable-list-property>
+        <originalValue class="hudson.util.DescribableList">
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh -x
+export PTII=$WORKSPACE
+rm -rf /var/lib/hudson/jobs/ptII/workspace/.maven/repo 
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=PDFRenderer -DartifactId=PDFRenderer -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/PDFRenderer.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=caltrop -DartifactId=ptCal -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/ptCal.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=chic -DartifactId=chic -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/chic.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=dbxml -DartifactId=db -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/vendors/oracle/db.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=dbxml -DartifactId=dbxml -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/vendors/oracle/dbxml.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=iText -DartifactId=iText -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/vendors/misc/itext/iText.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=jacl -DartifactId=jacl -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/ptjacl.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=javajoystick -DartifactId=joystick -Dversion=0.7 -Dpackaging=jar -Dfile=$PTII/vendors/misc/joystick/Joystick.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=jna -DartifactId=jna -Dversion=4.0.0-variadic -Dpackaging=jar -Dfile=$PTII/lib/jna.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=junitparams -DartifactId=junitparams -Dversion=0.3.0 -Dpackaging=jar -Dfile=$PTII/lib/JUnitParams-0.3.0.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=g4ltl -DartifactId=g4ltl -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/g4ltl.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=jxta -DartifactId=jxta -Dversion=1.0 -Dpackaging=jar -Dfile=$PTII/vendors/sun/jxta/jxta.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=jxta -DartifactId=jxtasecurity -Dversion=1.0 -Dpackaging=jar -Dfile=$PTII/vendors/sun/jxta/jxtasecurity.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=kieler -DartifactId=kieler -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/kieler.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=mapss -DartifactId=mapss -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/mapss.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=org.eclipse.jetty -DartifactId=jetty-server -Dversion=8.1.5-v20120716 -Dpackaging=jar -Dfile=$PTII/lib/jetty-all-8.1.5-v20120716.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=soot -DartifactId=sootclasses -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/sootclasses.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=javax.servlet -DartifactId=servlet-api -Dversion=3.0.1 -Dpackaging=jar -Dfile=$PTII/lib/javax.servlet-api-3.0.1.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=guava -DartifactId=guava -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/guava.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=smack -DartifactId=smack -Dversion=3.0.4 -Dpackaging=jar -Dfile=$PTII/lib/smack.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=smackx -DartifactId=smackx -Dversion=3.0.4 -Dpackaging=jar -Dfile=$PTII/lib/smackx.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=protobuf -DartifactId=protobuf -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/protobuf-java-2.4.1.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=g4ltl -DartifactId=g4ltl -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/g4ltl.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=socketio -DartifactId=socketio -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/socketio.jar
+mvn -Dmaven.repo.local=/var/lib/hudson/jobs/ptII/workspace/.maven/repo install:install-file -DgroupId=oscP5 -DartifactId=oscP5 -Dversion=ptII -Dpackaging=jar -Dfile=$PTII/lib/oscP5.jar
+</command>
+          </hudson.tasks.Shell>
+          <maven-builder>
+            <config>
+              <installationId>(Bundled)</installationId>
+              <goals>compile</goals>
+              <privateRepository>false</privateRepository>
+              <privateTmpdir>false</privateTmpdir>
+              <pomFile>pom.xml</pomFile>
+              <properties>
+                <entries>
+                  <entry name="maven.repo.local" value="/var/lib/hudson/jobs/ptII/workspace/.maven/repo"/>
+                </entries>
+              </properties>
+              <errors>false</errors>
+              <verbosity>NORMAL</verbosity>
+              <offline>false</offline>
+              <snapshotUpdateMode>NORMAL</snapshotUpdateMode>
+              <recursive>true</recursive>
+              <checksumMode>NORMAL</checksumMode>
+              <failMode>NORMAL</failMode>
+              <makeMode>NONE</makeMode>
+              <settingsId>NONE</settingsId>
+              <globalSettingsId>NONE</globalSettingsId>
+              <toolChainsId>NONE</toolChainsId>
+            </config>
+          </maven-builder>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh -x
+export PTII=$WORKSPACE
+pwd
+echo &quot;LD_LIBRARY_PATH: $LD_LIBRARY_PATH&quot;
+echo &quot;PATH: $PATH&quot;
+./configure
+Xvfb :6 -screen 0 1024x768x24 &amp;
+echo &quot;DISPLAY is $DISPLAY, which is set above with the other env variables&quot;
+cp /var/lib/hudson/jobs/ptII/config.xml /var/lib/hudson/jobs/ptII/workspace/doc/hudsonConfig.xml
+svn commit -m &quot;Update from hudson build&quot; /var/lib/hudson/jobs/ptII/workspace/doc/hudsonConfig.xml</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh -x
+# Ant does not compile lbnl C files yet
+export PTII=$WORKSPACE
+(cd $PTII/lbnl; make)</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Ant>
+            <targets>clean build</targets>
+            <antName>ant1.8.2</antName>
+            <properties>DISPLAY=localhost:6.0</properties>
+          </hudson.tasks.Ant>
+          <hudson.tasks.Ant>
+            <targets>javadoc</targets>
+            <antName>ant1.8.2</antName>
+          </hudson.tasks.Ant>
+          <hudson.tasks.Ant>
+            <targets>jars</targets>
+            <antName>ant1.8.2</antName>
+          </hudson.tasks.Ant>
+          <hudson.tasks.Ant>
+            <targets>test.cobertura</targets>
+            <antName>ant1.8.2</antName>
+            <antOpts>-Dptolemy.ptII.doNotExit=true</antOpts>
+          </hudson.tasks.Ant>
+          <hudson.tasks.Ant>
+            <targets>reports</targets>
+            <antName>ant1.8.2</antName>
+          </hudson.tasks.Ant>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh -x
+$WORKSPACE/adm/bin/killXServer</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Ant>
+            <targets>test.installers</targets>
+            <antName>ant1.8.2</antName>
+          </hudson.tasks.Ant>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </describable-list-property>
+    </entry>
+    <entry>
+      <string>jdk</string>
+      <string-property>
+        <originalValue class="string">jvmJava</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </string-property>
+    </entry>
+    <entry>
+      <string>scm</string>
+      <scm-property>
+        <originalValue class="hudson.scm.SubversionSCM">
+          <locations>
+            <hudson.scm.SubversionSCM_-ModuleLocation>
+              <remote>https://repo.eecs.berkeley.edu/svn/projects/eal/ptII/trunk</remote>
+              <local>.</local>
+              <depthOption>infinity</depthOption>
+              <ignoreExternalsOption>false</ignoreExternalsOption>
+            </hudson.scm.SubversionSCM_-ModuleLocation>
+          </locations>
+          <excludedRegions></excludedRegions>
+          <includedRegions></includedRegions>
+          <excludedUsers></excludedUsers>
+          <excludedRevprop></excludedRevprop>
+          <excludedCommitMessages></excludedCommitMessages>
+          <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </scm-property>
+    </entry>
+    <entry>
+      <string>hudson-plugins-findbugs-FindBugsPublisher</string>
+      <external-property>
+        <originalValue class="hudson.plugins.findbugs.FindBugsPublisher">
+          <healthy></healthy>
+          <unHealthy></unHealthy>
+          <thresholdLimit>low</thresholdLimit>
+          <pluginName>[FINDBUGS] </pluginName>
+          <defaultEncoding></defaultEncoding>
+          <canRunOnFailed>false</canRunOnFailed>
+          <useStableBuildAsReference>false</useStableBuildAsReference>
+          <useDeltaValues>false</useDeltaValues>
+          <thresholds>
+            <unstableTotalAll></unstableTotalAll>
+            <unstableTotalHigh></unstableTotalHigh>
+            <unstableTotalNormal></unstableTotalNormal>
+            <unstableTotalLow></unstableTotalLow>
+            <failedTotalAll></failedTotalAll>
+            <failedTotalHigh></failedTotalHigh>
+            <failedTotalNormal></failedTotalNormal>
+            <failedTotalLow></failedTotalLow>
+          </thresholds>
+          <shouldDetectModules>false</shouldDetectModules>
+          <dontComputeNew>true</dontComputeNew>
+          <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+          <pattern>reports/ptII-findbugs.xml</pattern>
+          <isRankActivated>false</isRankActivated>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>hudson-triggers-TimerTrigger</string>
+      <trigger-property>
+        <originalValue class="hudson.triggers.TimerTrigger">
+          <spec>15 20 * * *</spec>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </trigger-property>
+    </entry>
+  </project-properties>
+  <keepDependencies>false</keepDependencies>
+  <createdBy>cxh</createdBy>
+  <creationTime>1340923181338</creationTime>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Run.Delete:eal</permission>
+      <permission>hudson.model.Run.Delete:cxh</permission>
+      <permission>hudson.model.Run.Delete:cxbrooks</permission>
+      <permission>hudson.model.Run.Delete:marten</permission>
+      <permission>hudson.model.Item.Delete:eal</permission>
+      <permission>hudson.model.Item.Delete:cxh</permission>
+      <permission>hudson.model.Item.Delete:cxbrooks</permission>
+      <permission>hudson.model.Item.Delete:marten</permission>
+      <permission>hudson.model.Item.Workspace:eal</permission>
+      <permission>hudson.model.Item.Workspace:cxh</permission>
+      <permission>hudson.model.Item.Workspace:cxbrooks</permission>
+      <permission>hudson.model.Item.Workspace:marten</permission>
+      <permission>hudson.model.Run.Update:eal</permission>
+      <permission>hudson.model.Run.Update:cxh</permission>
+      <permission>hudson.model.Run.Update:cxbrooks</permission>
+      <permission>hudson.model.Run.Update:marten</permission>
+      <permission>hudson.model.Item.Build:eal</permission>
+      <permission>hudson.model.Item.Build:cxh</permission>
+      <permission>hudson.model.Item.Build:cxbrooks</permission>
+      <permission>hudson.model.Item.Build:marten</permission>
+      <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Read:eal</permission>
+      <permission>hudson.model.Item.Read:cxh</permission>
+      <permission>hudson.model.Item.Read:cxbrooks</permission>
+      <permission>hudson.model.Item.Read:marten</permission>
+      <permission>hudson.model.Item.Configure:eal</permission>
+      <permission>hudson.model.Item.Configure:cxh</permission>
+      <permission>hudson.model.Item.Configure:cxbrooks</permission>
+      <permission>hudson.model.Item.Configure:marten</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+  </properties>
+  <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet">
+    <string>org-hudsonci-plugins-snapshotmonitor-WatchedDependenciesProperty</string>
+    <string>hudson-plugins-disk_usage-DiskUsageProperty</string>
+  </cascading-job-properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+</project>

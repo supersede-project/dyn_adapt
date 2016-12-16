@@ -1,0 +1,29 @@
+<!-- $Id: package.html 64666 2012-09-17 16:53:54Z cds $ -->
+<html>
+<head>
+<title>ptolemy.vergil.basic.layout</title>
+</head>
+<body>
+Classes used to place entities and relations and to route connections in Vergil.
+Graph layout support using
+<a href="http://www.informatik.uni-kiel.de/rtsys/kieler/#in_browser">KIELER</a>, from the University of Kiel.
+For more detailed information,
+see the layout help file,
+accessible by clicking the <i>Help</i> button in the layout configuration dialog (see below).
+
+<h4>Graph &rarr; Automatic Layout [Ctrl/Cmd-T]</h4>
+<p>Automatic placement of nodes and routing of edges.
+</p>
+<p>This option uses a new feature of explicitly routing edges by specifying bend points in layoutHints attributes at relations. The additional routing information will be deleted automatically when
+nodes are moved manually afterwards to allow manual editing. Therefore manual editing always only uses the standard Manhattan router.
+</p>
+
+<h4>Graph &rarr; Configure Layout...</h4>
+<p>The layout configuration dialog allows customizing the layout algorithm's results.
+</p>
+
+<p>
+   @since Ptolemy II 8.0
+   @author Miro Spoenemann (University of Kiel), Hauke Fuhrmann (University of Kiel), Christoph Daniel Schulze (University of Kiel)
+</body>
+</html>

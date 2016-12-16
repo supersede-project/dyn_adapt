@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+          "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+  <head>
+    <link href="../default.css" rel="stylesheet" type="text/css">
+    <title>Ptolemy Project Coding Style</title>
+  </head>
+
+  <h1 align="center">Ptolemy Project Coding Style </h1>
+
+  <p>Collaborative software projects benefit when participants read
+  code created by other participants. The objective of a coding style
+  is to reduce the fatigue induced by unimportant formatting
+  differences and differences in naming conventions. Although
+  individual programmers will undoubtedly have preferences and habits
+  that differ from the recommendations here, the benefits that flow
+  from following these recommendations far outweigh the
+  inconveniences. Published papers in journals are subject to similar
+  stylistic and layout constraints, so such constraints are not new to
+  the academic community.  This document describes the coding style
+  used in Ptolemy II, a package with 550K lines of Java and 160
+  contributing programmers that has been under development since
+  1996.</p>
+
+  <p>The Ptolemy Coding Style document is available in PDF
+  format <a href="style.pdf#in_browser" target="_top">locally</a> or
+  via <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-164.html#in_broswer" target="_top">the UC Berkeley EECS Department Technical Report web site</a>.</p>
+
+  <h2>Plain text format</h2>
+  <p><code>
+      C. Brooks and E. A. Lee, "Ptolemy Coding Style," EECS Department, University of California, Berkeley, Tech. Rep. UCB/EECS-2014-164, Sep. 2014.
+    </code>
+  </p>
+  <h2>BibTeX entry</h2>
+  <p>
+    <code>
+      <br/>@techreport{Brooks:EECS-2014-164,
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Author = {Brooks, Christopher and Lee, Edward A.},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Title = {Ptolemy Coding Style},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Institution = {EECS Department, University of California, Berkeley},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Year = {2014},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Month = {Sep},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;URL = {http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-164.html},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Number = {UCB/EECS-2014-164},
+      <br/>&nbsp;&nbsp;&nbsp;&nbsp;Abstract = {Collaborative software projects benefit when participants read code created by other participants. The objective of a coding style is to reduce the fatigue induced by unimportant formatting differences and differences in naming conventions. Although individual programmers will undoubtedly have preferences and habits that differ from the recommendations here, the benefits that flow from following these recommendations far outweigh the inconveniences. Published papers in journals are subject to similar stylistic and layout constraints, so such constraints are not new to the academic community.  This document describes the coding style used in Ptolemy II, a package with 550K lines of Java and 160 contributing programmers that has been under development since 1996.}
+      <br/>}
+    </code>
+  </p>
+
+  <h2>EndNote entry</h2>
+  <p><code>
+      <br/>%0 Report
+      <br/>%A Brooks, Christopher
+      <br/>%A Lee, Edward A.
+      <br/>%T Ptolemy Coding Style
+      <br/>%I EECS Department, University of California, Berkeley
+      <br/>%D 2014
+      <br/>%8 September 5
+      <br/>%@ UCB/EECS-2014-164
+      <br/>%U http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-164.html
+      <br/>%F Brooks:EECS-2014-164
+    </code>
+  </p>
+
+</body>
+</html>

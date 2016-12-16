@@ -1,0 +1,62 @@
+<!-- $Id: main.htm 69118 2014-05-04 18:06:44Z cxh $ -->
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<title>Ptolemy II Continuous Domain</title>
+<link href="../../../../doc/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Continuous</h1>
+
+<p>The Continuous Time Model of Computation defines a semantics used
+for continuous-time simulations. Continuous Time models consist of
+Actors that have continuous time signals as their inputs and outputs,
+and may have a state that changes over time advancement. These actors
+are connected by relations denoting particular signals. At a sequence
+of time increments, the values of all signals are determined using a
+continuous time solving algorithm. If a given precision cannot be
+accomplished, finer time increments are used adaptively.</p>
+
+<p>The domain models systems with continuous dynamics, including for
+example analog circuits and mechanical systems, but also cleanly
+supports discrete events, modal behaviors, and signals that mix
+continuous-time behaviors with discrete events. Models for continuous
+dynamics are equivalent to linear or nonlinear integral equations. A
+sophisticated numerical solver for these equations is integrated with
+the director. The clean semantics of the Continuous domain enables its
+integration in hierarchical heterogeneous models that use the
+Synchronous/Reactive (SR) and Discrete Event (DE) domains. Arbitrary
+hierarchical mixtures of these domains are supported, although if SR
+is at the top level, then the period parameter of the director must be
+used so that time advances. Domain interactions are documented in Lee
+and Zheng, 2007.</p>
+
+
+<p>The clean semantics of the Continuous domain enables its integration
+in hierarchical heterogeneous models that use the Synchronous/Reactive (SR)
+and Discrete Event (DE) domains. Arbitrary hierarchical mixtures of these
+domains are supported, although if SR is at the top level, then the
+<i>period</i> parameter of the director must be used so that time advances.
+Domain interactions are documented in Goderis et al.</p>
+
+<h2>References</h2>
+<ol>
+<li>Janette Cardoso, Edward A. Lee, Jie Liu and Haiyang Zheng, "<a href="http://ptolemy.eecs.berkeley.edu/books/Systems/chapters/ContinuousTimeModels.pdf#in_browser" target="_top">Continuous-Time Models</a>,"
+  a chapter from<br/>
+	  Claudius Ptolemaeus, Editor, "<a href="http://ptolemy.eecs.berkeley.edu/books/Systems/index.htm#in_browser" target="_top">System Design, Modeling, and Simulation Using Ptolemy II</a>", Ptolemy.org, 2014. (included in the release as <a href="../../../../doc/books/systems/PtolemyII_DigitalV1_02.pdf#in_browser" target="_top"><code>$PTII/doc/books/systems/PtolemyII_DigitalV1_02.pdf</code></a>)
+  <br/>The models provided in this chapter are also <a href="http://ptolemy.eecs.berkeley.edu/books/Systems/models/doc/books/systems/continuous/index.html#in_browser" target="_top">available online<a>.</li> 
+
+In <a href="http://ptolemy.org/systems" target="_top">System Design, Modeling, and Simulation using Ptolemy II</a>. Ptolemy.org 2014.</li>
+
+<li> A. Goderis, C. Brooks, I. Altintas, E. A. Lee, and C. Goble, "<a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2007/EECS-2007-139.html#in_browser" target="_top">Heterogeneous Composition of Models of Computation</a>," EECS Department, University of California, Berkeley, Tech. Rep. UCB/EECS-2007-139, Nov. 2007.
+
+<li> Edward A. Lee, Haiyang Zheng, "<a href="http://ptolemy.eecs.berkeley.edu/publications/papers/07/unifying/index.htm#in_browser" target="_top">Leveraging Synchronous Language Principles for Heterogeneous Modeling and Design of Embedded Systems</a>," EMSOFT,  September 30 - October 2, 2007, Salzburg, Austria.
+
+<li> Haiyang Zheng, "<a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2007/EECS-2007-68.html#in_browser" target="_top">Operational Semantics of Hybrid Systems</a>," Ph.D. Dissertation, EECS Department, University of California, Berkeley, Technical Report No. UCB/EECS-2007-68, May 18, 2007.
+
+<li> Edward A. Lee and Haiyang Zheng, "<a href="http://ptolemy.eecs.berkeley.edu/publications/papers/05/OperationalSemantics" target="_top">Operational Semantics of Hybrid Systems</a>," Invited paper in <i>Proceedings of Hybrid Systems:  Computation and Control</i> (HSCC) LNCS 3414, Zurich, Switzerland, March 9-11, 2005, pp.25-53.
+</ol>
+
+
+</body>
+</html>

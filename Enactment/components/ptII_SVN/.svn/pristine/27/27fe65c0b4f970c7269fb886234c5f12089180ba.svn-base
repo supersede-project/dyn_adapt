@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE plot PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="TimedSources" class="ptolemy.moml.EntityLibrary">
+  <configure>
+    <?moml
+      <group>
+<doc>Sources that depend on time.</doc>
+
+<entity name="CurrentDate" class="ptolemy.actor.lib.CurrentDate">
+<doc>Output the current date.</doc>
+</entity>
+
+<entity name="CurrentTime" class="ptolemy.actor.lib.CurrentTime">
+<doc>Output the current time.</doc>
+</entity>
+
+<entity name="CurrentMicrostep" class="ptolemy.actor.lib.CurrentMicrostep">
+<doc>Output the current microstep.</doc>
+</entity>
+
+<entity name="DiscreteClock" class="ptolemy.actor.lib.DiscreteClock">
+<doc>Create periodic timed events.</doc>
+</entity>
+
+<entity name="PoissonClock" class="ptolemy.actor.lib.PoissonClock">
+</entity>
+
+<!-- Obsolete -->
+<!-- entity name="TopLevelCurrentTime" class="ptolemy.actor.lib.TopLevelCurrentTime"/ -->
+
+<entity name="TriggeredSinewave" class="ptolemy.actor.lib.TriggeredSinewave"/>
+
+      </group>
+    ?>
+  </configure>
+</entity>
+
+

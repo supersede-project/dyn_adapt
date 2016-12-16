@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE plot PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="StateSpaceModel" class="ptolemy.moml.EntityLibrary">
+  <configure>
+    <?moml
+      <group>
+  <doc>State Space Model Actors</doc>  
+  <entity name="GaussianMeasurementModel" class="org.ptolemy.ssm.GaussianMeasurementModel">
+  </entity> 
+  <entity name="Map" class="org.ptolemy.ssm.Map">
+  </entity> 
+  <entity name="ParticleFilter" class="org.ptolemy.ssm.ParticleFilter">
+  </entity> 
+  <entity name="Predictor" class="org.ptolemy.ssm.Predictor">
+  </entity> 
+  <entity name="StateSpaceModel" class="org.ptolemy.ssm.StateSpaceModel">
+  </entity> 
+  <entity name="StateSpaceSimulator" class="org.ptolemy.ssm.StateSpaceSimulator">
+  </entity> 
+      </group>
+    ?>
+  </configure>
+</entity>
+
+

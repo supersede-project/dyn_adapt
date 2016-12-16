@@ -1,0 +1,149 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE entity PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="FMUQSSStateEvent5_QSS1" class="ptolemy.actor.TypedCompositeActor">
+    <property name="_createdBy" class="ptolemy.kernel.attributes.VersionAttribute" value="11.0.devel">
+    </property>
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={0, 24, 1920, 1176}, maximized=false}">
+    </property>
+    <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1706, 1059]">
+    </property>
+    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0710200097183211">
+    </property>
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{783.7685872395822, 476.9017161051428}">
+    </property>
+    <property name="Annotation2" class="ptolemy.vergil.kernel.attributes.TextAttribute">
+        <property name="textColor" class="ptolemy.actor.gui.ColorAttribute" value="{0.4,0.4,0.4,1.0}">
+        </property>
+        <property name="text" class="ptolemy.kernel.util.StringAttribute" value="Author:Thierry S. Nouidui">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{120.0, -15.0}">
+        </property>
+    </property>
+    <property name="Annotation3" class="ptolemy.vergil.kernel.attributes.TextAttribute">
+        <property name="text" class="ptolemy.kernel.util.StringAttribute" value="package StateEvents&#10;  model StateEvent5&#10;    // This model has two state events&#10;    //  at t=1s  and at t = 1.75s &#10;    // when simulated from 0 to 10s.&#10;    Real x1(start=1);&#10;    Real x2(start=-2.5);&#10;    Real x3(start=4);&#10;    Real y;&#10;    Real y1;&#10;  equation &#10;    der(x1) = -1;&#10;    der(x2) = 1;&#10;    der(x3) = -2;&#10;    if ((x1 &gt; x2)) then&#10;      y = 1;&#10;    else&#10;      y = -1;&#10;    end if;&#10;&#10;    if (time &gt;1) then&#10;      y1 = 10;&#10;    else&#10;      y1 = 3;&#10;    end if;&#10;&#10;    annotation (uses(Modelica(version=&quot;3.2.1&quot;)));&#10;  end StateEvent5;&#10;end StateEvents;&#10;">
+        </property>
+        <property name="_location" class="ptolemy.vergil.basic.RelativeLocation" value="{-5.0, 255.0}">
+        </property>
+    </property>
+    <property name="QSSDirector" class="ptolemy.domains.qss.kernel.QSSDirector">
+        <property name="startTime" class="ptolemy.data.expr.Parameter" value="0">
+        </property>
+        <property name="stopTime" class="ptolemy.data.expr.Parameter" value="10">
+        </property>
+        <property name="relativeQuantum" class="ptolemy.data.expr.Parameter" value="0.1">
+        </property>
+        <property name="QSSSolver" class="ptolemy.data.expr.StringParameter" value="QSS1">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[55.0, 15.0]">
+        </property>
+    </property>
+    <entity name="Test" class="ptolemy.actor.lib.Test">
+        <property name="correctValues" class="ptolemy.data.expr.Parameter" value="{1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 2.775557561562891E-17, -7.499999999997225E-5, -0.100075, -0.200075, -0.300075, -0.400075, -0.500075, -0.600075, -0.700075, -0.7500389722, -0.8500389722, -0.9500389722, -1.0500389722, -1.1550428694, -1.2705471563, -1.3976018719, -1.5373620591, -1.691098265, -1.8602080915, -2.0462289007, -2.2508517908, -2.4759369699, -2.7235306669, -2.9958837336, -3.295472107, -3.6250193177, -3.9875212495, -4.3862733744, -4.8249007118, -5.307390783, -5.8381298613, -6.4219428474, -7.0641371321, -7.7705508453, -8.5476059298, -9.0}">
+        </property>
+        <property name="trainingMode" class="ptolemy.actor.parameters.SharedParameter" value="false">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{610.0, 20.0}">
+        </property>
+    </entity>
+    <entity name="Test2" class="ptolemy.actor.lib.Test">
+        <property name="correctValues" class="ptolemy.data.expr.Parameter" value="{-2.5, -2.25, -2.025, -1.8225, -1.64025, -1.499925, -1.3499325, -1.21493925, -1.093445325, -0.9841007925, -0.8841007925, -0.7841007925, -0.7499610278, -0.6499610278, -0.5499610278, -0.4499610278, -0.3499610278, -0.2499610278, -0.1499610278, -0.0499610278, 0.0500389722, 0.1500389722, 0.2500389722, 0.3500389722, 0.4500389722, 0.5500389722, 0.6500389722, 0.7500389722, 0.8500389722, 0.9500389722, 1.0500389722, 1.1550428694, 1.2705471563, 1.3976018719, 1.5373620591, 1.691098265, 1.8602080915, 2.0462289006, 2.2508517907, 2.4759369698, 2.7235306668, 2.9958837335, 3.2954721069, 3.6250193176, 3.9875212494, 4.3862733743, 4.8249007117, 5.3073907829, 5.8381298612, 6.4219428473, 7.064137132, 7.5}">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{610.0, 150.0}">
+        </property>
+    </entity>
+    <entity name="Test3" class="ptolemy.actor.lib.Test">
+        <property name="correctValues" class="ptolemy.data.expr.Parameter" value="{4.0, 3.6, 3.24, 2.916, 2.6244, 2.36196, 2.125764, 1.99985, 1.799865, 1.6198785, 1.45789065, 1.312101585, 1.1808914266, 1.062802284, 0.9565220556, 0.8565220556, 0.7565220556, 0.6565220556, 0.5565220556, 0.4999220556, 0.3999220556, 0.2999220556, 0.1999220556, 0.0999220556, -7.794440000061242E-5, -0.1000779444, -0.2000779444, -0.3000779444, -0.4000779444, -0.5000779444, -0.6000779444, -0.7000779444, -0.8000779444, -0.9000779444, -1.0000779444, -1.1000857388, -1.2100943126, -1.3311037438, -1.4642141182, -1.61063553, -1.771699083, -1.9488689912, -2.1437558904, -2.3581314794, -2.5939446274, -2.8533390902, -3.1386729992, -3.4525402992, -3.7977943292, -4.1775737622, -4.5953311384, -5.0548642522, -5.5603506774, -6.1163857452, -6.7280243198, -7.4008267518, -8.140909427, -8.9550003696, -9.8505004066, -10.8355504472, -11.919105492, -13.1110160412, -14.4221176454, -15.86432941, -16.0}">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{610.0, 220.0}">
+        </property>
+    </entity>
+    <entity name="TimedPlotter" class="ptolemy.actor.lib.gui.TimedPlotter">
+        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={558, 598, 500, 349}, maximized=false}">
+        </property>
+        <property name="_plotSize" class="ptolemy.actor.gui.SizeAttribute" value="[500, 300]">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{600.0, 85.0}">
+        </property>
+        <configure>
+<?plotml <!DOCTYPE plot PUBLIC "-//UC Berkeley//DTD PlotML 1//EN"
+"http://ptolemy.eecs.berkeley.edu/xml/dtd/PlotML_1.dtd">
+<plot>
+<title>TimedPlotter</title>
+<xLabel></xLabel>
+<yLabel></yLabel>
+<xRange min="0.0" max="10.0"/>
+<yRange min="-16.0" max="7.500000000000001"/>
+<default connected="no"/>
+</plot>?>
+        </configure>
+    </entity>
+    <entity name="StateEvents_StateEvent" class="ptolemy.actor.lib.fmi.FMUQSS">
+        <property name="fmuFile" class="ptolemy.data.expr.FileParameter" value="StateEvents_StateEvent5.fmu">
+        </property>
+        <property name="modelExchange" class="ptolemy.data.expr.Parameter" value="true">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{340.0, 30.0}">
+        </property>
+        <port name="x1" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+        <port name="x2" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+        <port name="x3" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+                <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
+                </property>
+            </property>
+        </port>
+    </entity>
+    <relation name="relation" class="ptolemy.actor.TypedIORelation">
+        <vertex name="vertex1" value="{530.0, 20.0}">
+        </vertex>
+        <property name="_layoutHint" class="ptolemy.vergil.actor.LayoutHint" value="{ { head={id=&quot;TimedPlotter.input&quot;,x=600.0,y=85.0,index=3}, tail={id=&quot;relation.vertex1&quot;,x=530.0,y=20.0}, points={530.0,75.0} },{ head={id=&quot;Test.input&quot;,x=610.0,y=20.0}, tail={id=&quot;relation.vertex1&quot;,x=530.0,y=20.0}, points={} },{ head={id=&quot;StateEvents_StateEvent.x1&quot;,x=340.0,y=30.0}, tail={id=&quot;relation.vertex1&quot;,x=530.0,y=20.0}, points={} } }">
+        </property>
+    </relation>
+    <relation name="relation2" class="ptolemy.actor.TypedIORelation">
+        <vertex name="vertex1" value="{545.0, 80.0}">
+        </vertex>
+        <property name="_layoutHint" class="ptolemy.vergil.actor.LayoutHint" value="{ { head={id=&quot;StateEvents_StateEvent.x2&quot;,x=340.0,y=30.0}, tail={id=&quot;relation2.vertex1&quot;,x=545.0,y=80.0}, points={500.0,30.0,500.0,80.0} },{ head={id=&quot;Test2.input&quot;,x=610.0,y=150.0}, tail={id=&quot;relation2.vertex1&quot;,x=545.0,y=80.0}, points={545.0,150.0} },{ head={id=&quot;TimedPlotter.input&quot;,x=600.0,y=85.0,index=3}, tail={id=&quot;relation2.vertex1&quot;,x=545.0,y=80.0}, points={} } }">
+        </property>
+    </relation>
+    <relation name="relation3" class="ptolemy.actor.TypedIORelation">
+        <vertex name="vertex1" value="{530.0, 220.0}">
+        </vertex>
+        <property name="_layoutHint" class="ptolemy.vergil.actor.LayoutHint" value="{ { head={id=&quot;StateEvents_StateEvent.x3&quot;,x=340.0,y=30.0}, tail={id=&quot;relation3.vertex1&quot;,x=530.0,y=220.0}, points={485.0,40.0,485.0,220.0} },{ head={id=&quot;Test3.input&quot;,x=610.0,y=220.0}, tail={id=&quot;relation3.vertex1&quot;,x=530.0,y=220.0}, points={} },{ head={id=&quot;TimedPlotter.input&quot;,x=600.0,y=85.0,index=3}, tail={id=&quot;relation3.vertex1&quot;,x=530.0,y=220.0}, points={530.0,85.0} } }">
+        </property>
+    </relation>
+    <link port="Test.input" relation="relation"/>
+    <link port="Test2.input" relation="relation2"/>
+    <link port="Test3.input" relation="relation3"/>
+    <link port="TimedPlotter.input" relation="relation"/>
+    <link port="TimedPlotter.input" relation="relation2"/>
+    <link port="TimedPlotter.input" relation="relation3"/>
+    <link port="StateEvents_StateEvent.x1" relation="relation"/>
+    <link port="StateEvents_StateEvent.x2" relation="relation2"/>
+    <link port="StateEvents_StateEvent.x3" relation="relation3"/>
+</entity>
