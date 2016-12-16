@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -35,6 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
@@ -65,13 +67,13 @@ import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 public class Adapter implements IAdapter {
 	private final static Logger log = LogManager.getLogger(Adapter.class);
 
-	ModelRepository mr;
-	AdaptationParser parser;
-	ModelManager mm;
-	ModelQuery mq;
-	ModelAdapter ma;
+	private ModelRepository mr;
+	private AdaptationParser parser;
+	private ModelManager mm;
+	private ModelQuery mq;
+	private ModelAdapter ma;
 
-	Map<String, String> modelsLocation;
+	private Map<String, String> modelsLocation;
 
 	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
 	// another one by AdaptationParser
@@ -149,6 +151,8 @@ public class Adapter implements IAdapter {
 	public Model adapt(List<Selection> selections, Model baseModel) throws Exception {
 
 		Model model = null;
+		//Clone base model
+//		Model clonnedModel = (Model) EcoreUtil.copy( baseModel );
 
 		for (Selection selection : selections) {
 			Feature feature = selection.getFeature();
@@ -213,8 +217,9 @@ public class Adapter implements IAdapter {
 	@Override
 	public void enactAdaptationDecisionAction(String systemId, String adaptationDecisionActionId,
 			String featureConfigurationId) throws EnactmentException {
-		// TODO Auto-generated method stub
-
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		adaptationDecisionActionIds.add (adaptationDecisionActionId);
+		enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
 	}
 
 	@Override
@@ -260,10 +265,8 @@ public class Adapter implements IAdapter {
 
 			Model model = adapt(changedSelections, baseModel);
 
-			System.out.println("Saving model");
-
 			if (model != null){
-				URI uri = mm.saveModelInTemporaryFolder(model, "_adapted.uml");
+				URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
 

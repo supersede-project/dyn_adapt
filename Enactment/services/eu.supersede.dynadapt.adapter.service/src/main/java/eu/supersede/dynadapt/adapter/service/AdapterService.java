@@ -55,6 +55,8 @@ public class AdapterService implements IAdapter{
 			String featureConfigurationId = null;
 			enactAdaptationDecisionActions(
 					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+			enactAdaptationDecisionAction(
+					SupersedeSystem.ATOS.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

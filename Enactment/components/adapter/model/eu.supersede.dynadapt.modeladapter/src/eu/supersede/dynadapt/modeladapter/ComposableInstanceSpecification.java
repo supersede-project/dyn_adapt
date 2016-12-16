@@ -183,7 +183,9 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 					InstanceSpecification instance = ((InstanceValue)valueSpecification).getInstance();
 					//Do not remove the jointpoint basemodel element
 //					if (instance != null && areSameElements (instance, (NamedElement) jointpointBaseModelElement)){
-					if (instance != null && !(instance == jointpointBaseModelElement)){
+					//FIXME Since base model is cloned, and not stored in ResourceSet, object found in RS is not identical object to the one found
+					//in cloned based model, but both has same qualified name
+					if (instance != null && !(instance.getQualifiedName().equals(((InstanceSpecification)jointpointBaseModelElement).getQualifiedName()))){
 						log.debug("Removing instance: " + instance.getQualifiedName() + 
 							" from base model since it is referenced in slot " + slot.getDefiningFeature().getName());
 						instance.destroy();
