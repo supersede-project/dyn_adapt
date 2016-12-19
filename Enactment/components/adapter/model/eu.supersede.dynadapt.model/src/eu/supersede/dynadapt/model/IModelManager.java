@@ -58,7 +58,8 @@ public interface IModelManager {
 	 * Returns the associated UML base target model
 	 * @return the associated UML base target model
 	 */
-	Resource getTargetModel();
+	Model getTargetModel();
+	Resource getTargetModelAsResource();
 
 	/**
 	 * @throws IOException 
