@@ -72,6 +72,7 @@ public class Adapter implements IAdapter {
 	private ModelManager mm;
 	private ModelQuery mq;
 	private ModelAdapter ma;
+	private ModelRepositoryResolver mrr;
 
 	private Map<String, String> modelsLocation;
 
@@ -79,13 +80,14 @@ public class Adapter implements IAdapter {
 	// another one by AdaptationParser
 	// FIXME: Manage a single ResourceSet
 
-	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath) throws Exception {
 		this.mr = mr;
 		this.parser = new AdaptationParser(mm);
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
+		this.mrr = new ModelRepositoryResolver(mm, repositoryRelativePath);
 		log.debug("Adapter set up");
 	}
 
@@ -237,7 +239,7 @@ public class Adapter implements IAdapter {
 			// feature configuration from Model Repository
 			// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
 			// to simulate their retrieval given a systemId
-			ModelRepositoryResolver mrr = new ModelRepositoryResolver(mm);
+			
 
 			//FIXME Base model was already loaded by Model Manager during initialization
 			//In order to avoid loading it twice, get it from Model Manager

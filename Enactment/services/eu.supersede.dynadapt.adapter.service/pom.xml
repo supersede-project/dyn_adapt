@@ -5,7 +5,7 @@
   <groupId>eu.supersede.dynadapt</groupId>
   <artifactId>eu.supersede.dynadapt.adapter.service</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   
   <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,6 +19,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <start-class>eu.supersede.dynadapt.adapter.service.AdapterApplication</start-class>
   </properties>
   
   <build>
@@ -301,9 +302,14 @@
      </dependency>
      <!-- Spring Framework/Boot -->
      <dependency>
+         <groupId>org.springframework.boot</groupId> 
+         <artifactId>spring-boot-starter-web</artifactId> 
+     </dependency> 
+     <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-     </dependency>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <scope>provided</scope>
+    </dependency>
      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
