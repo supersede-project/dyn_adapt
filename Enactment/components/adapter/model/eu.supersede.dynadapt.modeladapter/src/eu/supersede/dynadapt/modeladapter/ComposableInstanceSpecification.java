@@ -63,7 +63,7 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 		InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
 		//Adding new slots in variant model to insertion point (e.g. Jointpoint) in base model
 		for (Slot slot : instanceVariant.getSlots()) {
-			log.debug("Adding slot: " + slot.getDefiningFeature().getName() + " in instance " + instanceBase.getName());
+			log.debug("Adding slot: " + slot.getDefiningFeature().getName() + " in instance " + instanceBase.getQualifiedName());
 			addSlotInInstanceSpecification(slot, instanceBase, inBaseModel);
 		}
 		//Adding new relationships (as instance specification of instance specification links) 
@@ -72,7 +72,7 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 			//Add link instance specification
 			//FIXME avoid adding duplicated instances
 			if (!ModelAdapterUtilities.modelContainsElement(linkInstance, inBaseModel)){
-				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getName());
+				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getQualifiedName());
 				addInstanceSpecificationInModel (linkInstance, inBaseModel);
 			}
 		}
@@ -93,7 +93,7 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 		// referencing the insertion point
 		for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant, usingVariantModel)){
 			//Add link instance specification
-			log.debug("Deleting detected link instance specification in base model: " + linkInstance.getName());
+			log.debug("Deleting detected link instance specification in base model: " + linkInstance.getQualifiedName());
 			deleteInstanceSpecificationInModel (linkInstance, jointpointBaseModelElement, inBaseModel);
 		}
 	}
@@ -183,9 +183,11 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 					InstanceSpecification instance = ((InstanceValue)valueSpecification).getInstance();
 					//Do not remove the jointpoint basemodel element
 //					if (instance != null && areSameElements (instance, (NamedElement) jointpointBaseModelElement)){
-					if (instance != null && !(instance == jointpointBaseModelElement)){
+					//FIXME Since base model is cloned, and not stored in ResourceSet, object found in RS is not identical object to the one found
+					//in cloned based model, but both has same qualified name
+					if (instance != null && !(instance.getQualifiedName().equals(((InstanceSpecification)jointpointBaseModelElement).getQualifiedName()))){
 						log.debug("Removing instance: " + instance.getQualifiedName() + 
-							" from base model since it is referenced in slot " + slot.getDefiningFeature().getName());
+							" from base model since it is referenced in slot " + slot.getDefiningFeature().getQualifiedName());
 						instance.destroy();
 					}
 				}
@@ -205,6 +207,7 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 			//Slot in both instances refers to the same value
 			if (ModelAdapterUtilities.slotsHasSameDefiningFeature(slotInInstanceVariant, slotInInstanceBase) && 
 				ModelAdapterUtilities.slotsHasSameValue(slotInInstanceVariant, slotInInstanceBase)){
+				log.debug("Deleting slot : " + slotInInstanceBase.getDefiningFeature().getQualifiedName() + " in instance " + instanceBase.getQualifiedName());
 				destroySlotInstance(slotInInstanceBase);
 				slotInInstanceBase.destroy();
 			}	
@@ -214,7 +217,10 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 	private void destroySlotInstance(Slot slot) {
 		InstanceValue iv = (InstanceValue)slot.getValues().get(0);
 		InstanceSpecification instance = iv.getInstance();
-		if (instance!=null) instance.destroy();
+		if (instance!=null) {
+			log.debug("Deleting instance value : " + instance.getQualifiedName() + " referenced by slot " + slot.getDefiningFeature().getQualifiedName());
+			instance.destroy();
+		}
 	}
 
 	@Override

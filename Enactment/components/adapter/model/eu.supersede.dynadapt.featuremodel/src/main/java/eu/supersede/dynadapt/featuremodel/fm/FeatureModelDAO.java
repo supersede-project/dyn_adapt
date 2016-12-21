@@ -39,7 +39,7 @@ public class FeatureModelDAO implements IFeatureModelDAO {
 	@Override
 	public FeatureModel loadFeatureModel(String featureModelPath) throws IOException {
 		new StandaloneSetup().setPlatformUri("../");
-		return (new ModelManager()).loadFeatureModel(featureModelPath);
+		return (new ModelManager(false)).loadFeatureModel(featureModelPath);
 	}
 
 }

@@ -53,13 +53,15 @@ public class ATOSAdapterTest {
 	@Test
 	public void testAtosUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
 					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+			adapter.enactAdaptationDecisionAction(
+					SupersedeSystem.ATOS.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -70,7 +72,7 @@ public class ATOSAdapterTest {
 	@Test
 	public void adapt() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			Model baseModel = mm.loadUMLModel(baseModelPath);
 			
 			FeatureConfiguration originalFeatureConfig = mm.loadFeatureConfiguration(originalFeatureConfigPath);
@@ -94,7 +96,7 @@ public class ATOSAdapterTest {
 	@Before
 	public void setUp() throws Exception {
 		setupPlatform();		
-		mm = new ModelManager(baseModelPath);
+		mm = new ModelManager(baseModelPath); //Base Model loaded here
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
 	}
 

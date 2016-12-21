@@ -54,7 +54,7 @@ public class AspectDSLTest {
 	
 	@Before
 	public void setup() throws IOException{
-		modelManager = new ModelManager();
+		modelManager = new ModelManager(false);
 		parser = new AdaptationParser(modelManager);
 	}
 

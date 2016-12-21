@@ -29,7 +29,8 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.11.2",
  eu.supersede.dynadapt.aom.dsl.resources,
  eu.supersede.dynadapt.aom.dsl.util,
  eu.supersede.dynadapt.lang.uml,
- cz.zcu.yafmt.model
+ cz.zcu.yafmt.model,
+ com.google.guava
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: cz.zcu.yafmt.model.fm,
  eu.supersede.dynadapt.dsl.aspect,

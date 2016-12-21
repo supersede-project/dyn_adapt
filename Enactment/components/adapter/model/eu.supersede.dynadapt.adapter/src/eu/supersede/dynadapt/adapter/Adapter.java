@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -35,6 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
@@ -65,25 +67,27 @@ import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 public class Adapter implements IAdapter {
 	private final static Logger log = LogManager.getLogger(Adapter.class);
 
-	ModelRepository mr;
-	AdaptationParser parser;
-	ModelManager mm;
-	ModelQuery mq;
-	ModelAdapter ma;
+	private ModelRepository mr;
+	private AdaptationParser parser;
+	private ModelManager mm;
+	private ModelQuery mq;
+	private ModelAdapter ma;
+	private ModelRepositoryResolver mrr;
 
-	Map<String, String> modelsLocation;
+	private Map<String, String> modelsLocation;
 
 	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
 	// another one by AdaptationParser
 	// FIXME: Manage a single ResourceSet
 
-	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath) throws Exception {
 		this.mr = mr;
 		this.parser = new AdaptationParser(mm);
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
+		this.mrr = new ModelRepositoryResolver(mm, repositoryRelativePath);
 		log.debug("Adapter set up");
 	}
 
@@ -149,6 +153,12 @@ public class Adapter implements IAdapter {
 	public Model adapt(List<Selection> selections, Model baseModel) throws Exception {
 
 		Model model = null;
+		//Clone base model
+		Model clonnedModel = (Model) EcoreUtil.copy( baseModel );
+		//Create a model manager targeting cloned model
+		ModelManager clonedModelManager = new ModelManager(clonnedModel, mm.getTargetModelAsResource().getURI());
+		//Create modelQuery targeting cloned Model
+		this.mq = new ModelQuery(clonedModelManager);
 
 		for (Selection selection : selections) {
 			Feature feature = selection.getFeature();
@@ -169,6 +179,7 @@ public class Adapter implements IAdapter {
 					role = p.getRole();
 					matchingElements.put(role, new ArrayList<>());
 					log.debug("\t\tRole: " + role.getName());
+					//FIXME matching elements (elements stereotyped with jointpoint must be found in cloned model, not in baseModel
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
@@ -185,9 +196,9 @@ public class Adapter implements IAdapter {
 						if (actionOptionType instanceof UpdateValueImpl) {
 							String value = actionOptionType
 									.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
-							model = ma.applyUpdateCompositionDirective(baseModel, matchingElements, value);
+							model = ma.applyUpdateCompositionDirective(clonnedModel, matchingElements, value);
 						} else {
-							model = ma.applyCompositionDirective(c.getAction(), baseModel, matchingElements,
+							model = ma.applyCompositionDirective(c.getAction(), clonnedModel, matchingElements,
 									c.getAdvice(), variant);
 						}
 					}
@@ -213,8 +224,9 @@ public class Adapter implements IAdapter {
 	@Override
 	public void enactAdaptationDecisionAction(String systemId, String adaptationDecisionActionId,
 			String featureConfigurationId) throws EnactmentException {
-		// TODO Auto-generated method stub
-
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		adaptationDecisionActionIds.add (adaptationDecisionActionId);
+		enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
 	}
 
 	@Override
@@ -227,10 +239,13 @@ public class Adapter implements IAdapter {
 			// feature configuration from Model Repository
 			// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
 			// to simulate their retrieval given a systemId
-			ModelRepositoryResolver mrr = new ModelRepositoryResolver(mm);
+			
 
-			Model baseModel = mrr.getModelForSystem(system,
-					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+			//FIXME Base model was already loaded by Model Manager during initialization
+			//In order to avoid loading it twice, get it from Model Manager
+//			Model baseModel = mrr.getModelForSystem(system,
+//					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+			Model baseModel = mm.getTargetModel();
 
 			//FIXME featureConfigurationId not used to retrieve the feature configuration
 			//This implementation gets the latest configuration
@@ -260,10 +275,8 @@ public class Adapter implements IAdapter {
 
 			Model model = adapt(changedSelections, baseModel);
 
-			System.out.println("Saving model");
-
 			if (model != null){
-				URI uri = mm.saveModelInTemporaryFolder(model, "_adapted.uml");
+				URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
 
