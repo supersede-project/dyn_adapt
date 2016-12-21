@@ -2,8 +2,12 @@ package eu.supersede.dynadapt.modelrepository.manager;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import eu.supersede.dynadapt.modelrepository.model.IModel;
 
 public class ManagerTest {
 	
@@ -16,13 +20,18 @@ public class ManagerTest {
 	public void initManager() {
 		Manager manager = new Manager();
 		assertNotNull(manager);
-		assertNotNull(manager.getConnection());
 	}
 	
 	@Test
-	public void testDBConnection() {
+	public void listAllModels() {
 		Manager manager = new Manager();
-		//TODO test connection
+		try {
+			List<IModel> models = manager.listAllModels("AdaptabilityModel");
+			System.out.println("Number of adaptability models: " + models.size());
+			for (IModel model : models) System.out.println("\tModel id: " + model.getValue("id"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -1,25 +1,20 @@
 package eu.supersede.dynadapt.modelrepository.manager;
 
-import java.sql.Connection;
+import java.util.List;
 
-import eu.supersede.dynadapt.modelrepository.manager.database.DatabaseConnection;
+import eu.supersede.dynadapt.modelrepository.manager.database.DatabaseController;
+import eu.supersede.dynadapt.modelrepository.model.IModel;
 
 public class Manager {
 	
-	private Connection con;
+	DatabaseController dbController;
 
 	public Manager() {
-		
-		try {
-			this.con = DatabaseConnection.init();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		dbController = new DatabaseController();
 	}
 	
-	public Connection getConnection() {
-		return con;
+	public List<IModel> listAllModels(String type) throws Exception {
+		return dbController.getAllModels(type);
 	}
 	
 }
