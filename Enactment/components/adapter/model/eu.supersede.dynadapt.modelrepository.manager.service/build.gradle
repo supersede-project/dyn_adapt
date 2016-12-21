@@ -23,7 +23,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 
 war {
-    baseName = 'mr-manager-service'
+    baseName = 'modelrepositorymanager'
     version =  '0.1.0'
 }
 
@@ -34,6 +34,7 @@ jar {
 
 repositories {
     mavenCentral()
+    mavenLocal()
     jcenter()
     maven { url "http://repo.spring.io/libs-snapshot" }
 }
@@ -47,4 +48,6 @@ dependencies {
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
 	compile group: 'com.google.code.gson', name: 'gson', version: '2.6.2'
+	
+	compile group : 'eu.supersede.dynadapt.modelrepository.manager', name: 'eu.supersede.dynadapt.modelrepository.manager', version: '0.0.1-SNAPSHOT'
 }
