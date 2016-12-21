@@ -66,9 +66,9 @@ public class ModelRepositoryControllerTest {
     
     @Test
     public void listModels() throws Exception {
-    	mockMvc.perform(get("/models/AdaptabilityModels"))
+    	mockMvc.perform(get("/models/AdaptabilityModel"))
     			.andExpect(status().isOk())
-    			.andExpect(jsonPath("$.status", is("GET")));
+    			.andExpect(jsonPath("$.response", is("1")));
     }
     
     /*@Test

@@ -1,5 +1,8 @@
 package eu.supersede.dynadapt.modelrepository.manager.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +15,7 @@ import com.google.gson.JsonObject;
 
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
 import eu.supersede.dynadapt.modelrepository.manager.service.utils.Utils;
+import eu.supersede.dynadapt.modelrepository.model.IModel;
 
 @RestController
 @RequestMapping("/models")
@@ -22,12 +26,13 @@ public class ModelManagerController {
 	@RequestMapping(value="/{modelType}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	public String listModels(@PathVariable String modelType) {
+		List<IModel> models = new ArrayList<>();
 		try {
-			manager.listAllModels(modelType);
+			models = manager.listAllModels(modelType);
 		} catch (Exception e) {
-			return Utils.response("There is no model type with this name");
+			return Utils.error("There is no model type with this name");
 		}
-		return Utils.response("GET");
+		return Utils.response(String.valueOf(models.size()));
 	}
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
