@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.manager.database;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.JsonObject;
 
@@ -16,17 +17,17 @@ public interface IDatabaseController {
 	/**
 	 * Create new model instance for a given type
 	 */
-	public IModel createModel(String type, JsonObject params) throws Exception;
+	public IModel createModel(String type, Map<String,String> propertySet) throws Exception;
 	
 	/**
 	 * Get attribute values for a given model id and type
 	 */
-	public JsonObject getValues(String type, String id) throws Exception;
+	public IModel getModel(String type, String id) throws Exception;
 	
 	/**
 	 * Updates a model instance
 	 */
-	public IModel updateModel(String type, String id, JsonObject params) throws Exception;
+	public IModel updateModel(String type, String id, Map<String,String> propertySet) throws Exception;
 	
 	/**
 	 * Deletes a model instance

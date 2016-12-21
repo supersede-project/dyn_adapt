@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.JsonObject;
 
@@ -50,26 +52,96 @@ public class DatabaseController implements IDatabaseController {
 		return modelList;
 	}
 
-	public IModel createModel(String type, JsonObject params) {
-		// TODO Auto-generated method stub
-		return null;
+	public IModel createModel(String type, Map<String,String> propertySet) throws Exception {
+		
+		IModel model;
+		
+		try {
+			Class classObject = Class.forName(packageRoute + type);
+			model = (IModel) classObject.newInstance();
+			
+			String keys = "";
+			String values = "";
+			for (String key: propertySet.keySet()) {
+				model.setValue(key, propertySet.get(key));
+				keys += key + ",";
+				values += "\"" + propertySet.get(key) + "\",";
+			}
+			keys = keys.substring(0, keys.length()-1);
+			values = values.substring(0, values.length()-1);
+			Statement stm = con.createStatement();
+			String sql = "INSERT INTO " + type
+					+ " (" + keys + ")"
+					+ " VALUES "
+					+ " (" + values + ")";
+			stm.executeUpdate(sql);
+			ResultSet rs = stm.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			model.setValue("id", String.valueOf(id));
+			
+		} catch (ClassNotFoundException e) {
+			throw new Exception();
+		}
+		return model;
 	}
 
-	public JsonObject getValues(String type, String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public IModel getModel(String type, String id) throws Exception {
+		
+		try {
+			
+			Map<String,String> properties = new HashMap<>();
+			Class classObject = Class.forName(packageRoute + type);
+			IModel model = (IModel) classObject.newInstance();
+			
+			Statement stm = con.createStatement();
+			ResultSet rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			
+			if (!rs.next()) throw new Exception("There is no " + type + " with this id");
+			
+			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
+				model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
+			}
+			
+			return model;
+			
+		} catch (ClassNotFoundException e) {
+			throw new Exception();
+		}
 	}
 
-	public IModel updateModel(String type, String id, JsonObject params) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void deleteModel(String type, String id) {
-		// TODO Auto-generated method stub
+	public IModel updateModel(String type, String id, Map<String,String> propertySet) throws Exception {
+		
+		IModel model = getModel(type, id);
+		if (model == null) throw new Exception("There is no " + type + " with this id");
+		
+		String newValues = "";
+		for (String key: propertySet.keySet()) {
+			model.setValue(key, propertySet.get(key));
+			newValues += key + "=\"" + propertySet.get(key) + "\",";
+		}
+		newValues = newValues.substring(0,newValues.length() - 1);
+		
+		Statement updateStm = con.createStatement();
+		String sql = "UPDATE " + type
+				+ " SET " + newValues
+				+ " WHERE id = " + id;
+		updateStm.executeUpdate(sql);
+		
+		return model;
 		
 	}
-	
-	
+
+	public void deleteModel(String type, String id) throws Exception {
+		
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+		if (!rs.next()) throw new Exception("There is no " + type + " for this id");
+			
+		Statement deleteStm = con.createStatement();
+		deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+			
+	}
 	
 }
