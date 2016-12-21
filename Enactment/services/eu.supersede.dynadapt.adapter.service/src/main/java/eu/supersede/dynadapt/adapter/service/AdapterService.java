@@ -79,8 +79,10 @@ public class AdapterService implements IAdapter{
 		modelsLocation.put("features", "features/models/");
 	}
 
+	//FIXME: POST API with no content in request body or request param seems not to be working when dispatched by WSO2 ESB
+	//Therefore this method is not exposed as REST API. This is not a problem because is subsumed by enactAdaptationDecisionActions
 	@Override
-	@RequestMapping(value="/adaptationDecisionAction/{adaptationDecisionActionId}/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
+	//@RequestMapping(value="/adaptationDecisionAction/{adaptationDecisionActionId}/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionAction(@PathVariable String systemId, @PathVariable String adaptationDecisionActionId,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
 		adapter.enactAdaptationDecisionAction(systemId, adaptationDecisionActionId, featureConfigurationId);
