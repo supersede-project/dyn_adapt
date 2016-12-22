@@ -11,3 +11,7 @@ cd ../../ && mvn clean install
 echo -e "\nBuilding Supersede dynamic adaptation adapter...\n"
 cd ../../Enactment/services/eu.supersede.dynadapt.adapter.service/ && mvn eclipse:eclipse && mvn clean package
 
+echo -e "\nBuilding Supersede dynamic adaptation optimizer...\n"
+cd ../../../DM/components/eu.supersede.dynadapt.dm.optimizer/ && mvn clean && mvn package
+
+
