@@ -39,6 +39,10 @@ repositories {
     maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
+springBoot {
+    mainClass = "eu.supersede.dynadapt.modelrepository.manager.service.Application"
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

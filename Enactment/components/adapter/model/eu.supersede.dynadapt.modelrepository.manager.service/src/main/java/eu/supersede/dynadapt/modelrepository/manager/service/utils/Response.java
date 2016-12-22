@@ -2,7 +2,7 @@ package eu.supersede.dynadapt.modelrepository.manager.service.utils;
 
 import com.google.gson.JsonObject;
 
-public class Utils {
+public class Response {
 
 	public static String error(String error) {
 		JsonObject json = new JsonObject();
@@ -10,10 +10,10 @@ public class Utils {
 		return json.toString();
 	}
 	
-	public static String response(String method) {
+	public static String response(String status) {
 		JsonObject json = new JsonObject();
-		json.addProperty("response", method);
+		json.addProperty("status", status);
 		return json.toString();
 	}
-	
+		
 }

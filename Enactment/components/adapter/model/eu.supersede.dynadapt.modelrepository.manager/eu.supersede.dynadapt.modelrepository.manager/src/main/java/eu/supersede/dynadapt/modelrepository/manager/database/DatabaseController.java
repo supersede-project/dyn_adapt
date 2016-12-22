@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.manager.database;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -19,96 +20,79 @@ public class DatabaseController implements IDatabaseController {
 	
 	private Connection con;
 
-	public DatabaseController() {
-		try {
-			con = DatabaseConnection.init();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public DatabaseController() throws Exception {
+		DatabaseConnection dbConn = new DatabaseConnection();
+		con = dbConn.init();
 	}
 
 	public List<IModel> getAllModels(String type) throws Exception {
 		
 		List<IModel> modelList = new ArrayList<IModel>();
 		
-		try {
-			Class classObject = Class.forName(packageRoute + type);
-			
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT * FROM " + type);
-			ResultSetMetaData rsmd = rs.getMetaData();
-			
-			while (rs.next()) {
-				IModel model = (IModel) classObject.newInstance();
-				for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-					model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
-				}
-				modelList.add(model);
+		Class classObject = Class.forName(packageRoute + type);
+		
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery("SELECT * FROM " + type);
+		ResultSetMetaData rsmd = rs.getMetaData();
+		
+		while (rs.next()) {
+			IModel model = (IModel) classObject.newInstance();
+			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
+				model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
 			}
-			
-		} catch (ClassNotFoundException e) {
-			throw new Exception();
+			modelList.add(model);
 		}
+			
 		return modelList;
 	}
 
-	public IModel createModel(String type, Map<String,String> propertySet) throws Exception {
+	public IModel createModel(String type, IModel model) throws Exception {
 		
-		IModel model;
+		String keys = "";
+		String values = "";
 		
-		try {
-			Class classObject = Class.forName(packageRoute + type);
-			model = (IModel) classObject.newInstance();
-			
-			String keys = "";
-			String values = "";
-			for (String key: propertySet.keySet()) {
-				model.setValue(key, propertySet.get(key));
-				keys += key + ",";
-				values += "\"" + propertySet.get(key) + "\",";
+		for (Field f : model.getClass().getDeclaredFields()) {
+			f.setAccessible(true);
+			if (!f.getName().equals("id")) {
+				keys += f.getName() + ",";
+				values += "\"" + f.get(model) + "\",";
 			}
-			keys = keys.substring(0, keys.length()-1);
-			values = values.substring(0, values.length()-1);
-			Statement stm = con.createStatement();
-			String sql = "INSERT INTO " + type
-					+ " (" + keys + ")"
-					+ " VALUES "
-					+ " (" + values + ")";
-			stm.executeUpdate(sql);
-			ResultSet rs = stm.getGeneratedKeys();
-			rs.next();
-			int id = rs.getInt(1);
-			model.setValue("id", String.valueOf(id));
-			
-		} catch (ClassNotFoundException e) {
-			throw new Exception();
 		}
+		
+		keys = keys.substring(0, keys.length()-1);
+		values = values.substring(0, values.length()-1);
+		Statement stm = con.createStatement();
+		String sql = "INSERT INTO " + type
+				+ " (" + keys + ")"
+				+ " VALUES "
+				+ " (" + values + ")";
+		stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+		ResultSet rs = stm.getGeneratedKeys();
+		rs.next();
+		int id = rs.getInt(1);
+		model.setValue("id", String.valueOf(id));
+			
 		return model;
 	}
 
 	public IModel getModel(String type, String id) throws Exception {
 		
-		try {
-			
-			Map<String,String> properties = new HashMap<>();
-			Class classObject = Class.forName(packageRoute + type);
-			IModel model = (IModel) classObject.newInstance();
-			
-			Statement stm = con.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-			ResultSetMetaData rsmd = rs.getMetaData();
-			
-			if (!rs.next()) throw new Exception("There is no " + type + " with this id");
-			
-			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-				model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
-			}
-			
-			return model;
-			
-		} catch (ClassNotFoundException e) {
-			throw new Exception();
+		Map<String,String> properties = new HashMap<>();
+		Class classObject = Class.forName(packageRoute + type);
+		IModel model = (IModel) classObject.newInstance();
+		
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+		ResultSetMetaData rsmd = rs.getMetaData();
+		
+		if (!rs.next()) throw new Exception("There is no " + type + " with this id");
+		
+		for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
+			model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
 		}
+		
+		return model;
+
 	}
 
 	public IModel updateModel(String type, String id, Map<String,String> propertySet) throws Exception {

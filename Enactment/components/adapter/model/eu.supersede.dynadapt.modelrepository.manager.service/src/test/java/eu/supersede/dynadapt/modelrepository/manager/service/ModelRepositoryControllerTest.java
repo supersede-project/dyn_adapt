@@ -67,40 +67,36 @@ public class ModelRepositoryControllerTest {
     @Test
     public void listModels() throws Exception {
     	mockMvc.perform(get("/models/AdaptabilityModel"))
-    			.andExpect(status().isOk())
-    			.andExpect(jsonPath("$.response", is("1")));
+    			.andExpect(status().isOk());
     }
     
-    /*@Test
+    @Test
     public void getModel() throws Exception {
-    	mockMvc.perform(get("/models/AdaptabilityModel/model/1"))
-    			.andExpect(status().isOk())
-    			.andExpect(jsonPath("$.status", is("GET")));
-    }*/
+    	mockMvc.perform(get("/models/AdaptabilityModel/1"))
+    			.andExpect(status().isOk());
+    }
     
     /*@Test
     public void createModel() throws Exception {
     	mockMvc.perform(post("/models/AdaptabilityModel")
     			.content(new JsonObject().toString())
     			.contentType(contentType))
-    			.andExpect(status().isCreated())
-    			.andExpect(jsonPath("$.status", is("POST")));
-    }
+    			.andExpect(status().isCreated());
+    }*/
     
-    @Test
+    /*@Test
     public void updateModel() throws Exception {
     	mockMvc.perform(put("/models/AdaptabilityModel/1")
     			.content(new JsonObject().toString())
     			.contentType(contentType))
-    			.andExpect(status().isOk())
-    			.andExpect(jsonPath("$.status", is("PUT")));
-    }
+    			.andExpect(status().isOk());
+    }*/
     
-    @Test
+    /*@Test
     public void deleteModel() throws Exception {
     	mockMvc.perform(delete("/models/AdaptabilityModel/1"))
     			.andExpect(status().isOk())
-    			.andExpect(jsonPath("$.status", is("DELETE")));
+    			.andExpect(jsonPath("$.error", is("DELETE")));
     }*/
 
 }

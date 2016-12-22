@@ -17,7 +17,7 @@ public interface IDatabaseController {
 	/**
 	 * Create new model instance for a given type
 	 */
-	public IModel createModel(String type, Map<String,String> propertySet) throws Exception;
+	public IModel createModel(String type, IModel model) throws Exception;
 	
 	/**
 	 * Get attribute values for a given model id and type
