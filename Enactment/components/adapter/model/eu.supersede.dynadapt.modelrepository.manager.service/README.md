@@ -1,17 +1,13 @@
 #Model Repository service
 This project is a service interface for the Model Repository project. It has been developed using the Spring Boot framework.
+###Installation
+- Clone the repository
+- Proceed with installation steps of the ```modelrepository.manager``` project
+- Execute war deploying:
+```bash
+gradle build
+```
+- War file deployed in ```build/libs/modelrepositorymanager-0.1.0.war```
+
 ###API
-####Get model by id
-[GET] /models/{id}
-####Create model
-[POST] /models
-####Update model
-[PUT] /models/{id}
-####Delete model
-[DELETE] /models/{id}
-###How to test
-There is a runnable test in ``src/test/java/eu.supersede.dynadapt.modelrepository.service/ModelRepositoryControllerTest.java`` which can be executed as a jUnit test.
-###How to run
-To run the service in your localhost, execute from command line ```./gradlew bootRun```
-###How to deploy
-To generate a .war file, execute from command line ```./gradlew war```. The generated file is placed under ```build/libs``` folder.
+Api documentationn: http://docs.modelrepositorymanager.apiary.io/
