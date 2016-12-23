@@ -9,7 +9,7 @@
 [/template]
 
 [comment Post action removes last comma placed after last quality attribute serialized by attributeJSON template/]
-[template public featureModel(aFeatureModel : FeatureModel) post (substitute('},\n}', '}\n}').trim())]
+[template public featureModel(aFeatureModel : FeatureModel) post (substitute('},\n}', '}').trim())]
 {
 [if (not aFeatureModel.root.oclIsUndefined())]
 [let rootFeature : Feature = aFeatureModel.root]
@@ -21,7 +21,9 @@
 
 [template public feature (aFeature : Feature) post (trim())]
 [for (anAttribute : Attribute | aFeature.attributes)]
+[if (anAttribute.qualityAttribute)]
 [attributeJSON(aFeature.id ,anAttribute)/]
+[/if]
 [/for]
 [if (aFeature.hasANDGroup())]
 [for (anChildFeature : Feature | aFeature.features)]

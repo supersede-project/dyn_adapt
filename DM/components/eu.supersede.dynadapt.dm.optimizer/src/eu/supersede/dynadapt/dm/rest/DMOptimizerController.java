@@ -36,6 +36,27 @@ public class DMOptimizerController {
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		return fc;
 	}
+	
+	public FeatureConfiguration optimize2 (@RequestParam(value="modelURI", defaultValue="") String modelURI, 
+			@RequestParam(value="currentConfig", defaultValue="") String currentConfig, 
+			@RequestParam(value="qualityAttributePath", defaultValue="") String qualityAttributePath,
+			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
+			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
+			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) {
+//		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
+		//TODO Serialize input FC to grammar and QualityAttribute JSON. Pass grammar and quality attributes URIs
+		System.out.println(modelURI);
+		String optimalConfig = null;
+		if (!multiObjective){
+			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
+		}else{
+			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
+		}
+		System.out.println(optimalConfig);
+		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
+		//TODO Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
+		return fc;
+	}
 
 	private String doMOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, String alertThresholdValue) {
 		if (!modelURI.isEmpty())
