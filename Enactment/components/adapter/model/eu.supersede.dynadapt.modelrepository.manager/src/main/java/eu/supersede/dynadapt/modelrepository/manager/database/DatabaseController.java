@@ -28,7 +28,7 @@ public class DatabaseController implements IDatabaseController {
 		con = dbConn.init();
 	}
 
-	/*public List<IModel> getAllModels(String type) throws Exception {
+	public List<IModel> getAllModels(String type) throws Exception {
 		
 		List<IModel> modelList = new ArrayList<IModel>();
 		
@@ -41,13 +41,13 @@ public class DatabaseController implements IDatabaseController {
 		while (rs.next()) {
 			IModel model = (IModel) classObject.newInstance();
 			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-				model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
+				if (!rsmd.getColumnName(i).equals("filePath")) model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
 			}
 			modelList.add(model);
 		}
 			
 		return modelList;
-	}*/
+	}
 
 	public IModel createModel(String type, IModel model) throws Exception {
 		

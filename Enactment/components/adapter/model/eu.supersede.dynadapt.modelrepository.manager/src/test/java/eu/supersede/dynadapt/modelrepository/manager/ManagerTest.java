@@ -32,7 +32,7 @@ public class ManagerTest {
 		}
 	}
 	
-	/*@Test
+	@Test
 	public void listAdaptabilityModels() {
 		try {
 			List<IModel> models = manager.listAllModels("AdaptabilityModel");
@@ -41,7 +41,7 @@ public class ManagerTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	@Test
 	public void createAdaptabilityModel() {
