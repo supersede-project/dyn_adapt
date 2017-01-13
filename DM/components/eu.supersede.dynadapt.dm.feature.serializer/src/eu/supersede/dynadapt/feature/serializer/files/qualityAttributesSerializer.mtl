@@ -60,7 +60,8 @@ NOTE: This template is not used anymore, since attribute serialization is prefix
 	"max":[anAttribute.maxRangeValue/],
 	"weight":[anAttribute.weight/],
 	"minimize":[anAttribute.minimize/],
-	"aggregator":"[anAttribute.objectiveFunctionAggregator/]"
+	"aggregator":"[anAttribute.objectiveFunctionAggregator/]",
+	"alert":[anAttribute.alert/]
 },
 [/template]
 
