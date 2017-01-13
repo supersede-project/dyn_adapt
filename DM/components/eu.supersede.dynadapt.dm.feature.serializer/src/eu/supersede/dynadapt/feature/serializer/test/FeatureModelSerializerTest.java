@@ -50,9 +50,17 @@ public class FeatureModelSerializerTest {
 	}
 	
 	@Test
-	public void FMSerializerTest () throws IOException{		
+	public void FMSerializerAtosTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
 		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
+		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
+		FMSerializer.serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
+	}
+	
+	@Test
+	public void FMSerializerFGTest () throws IOException{		
+		// NOTE: Edit this absolute paths before testing
+		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
 		FMSerializer.serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
 	}
