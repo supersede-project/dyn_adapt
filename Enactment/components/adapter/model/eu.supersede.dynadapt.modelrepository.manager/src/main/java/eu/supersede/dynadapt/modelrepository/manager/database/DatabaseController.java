@@ -19,9 +19,12 @@ public class DatabaseController implements IDatabaseController {
 	private final String packageRoute = "eu.supersede.dynadapt.modelrepository.model.";
 	
 	private Connection con;
+	
+	private ContentFileManager contentFileManager;
 
 	public DatabaseController() throws Exception {
 		DatabaseConnection dbConn = new DatabaseConnection();
+		contentFileManager = new ContentFileManager();
 		con = dbConn.init();
 	}
 
@@ -53,12 +56,12 @@ public class DatabaseController implements IDatabaseController {
 		
 		for (Field f : model.getClass().getDeclaredFields()) {
 			f.setAccessible(true);
-			if (!f.getName().equals("id")) {
+			if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
 				keys += f.getName() + ",";
 				values += "\"" + f.get(model) + "\",";
 			}
 		}
-		
+				
 		keys = keys.substring(0, keys.length()-1);
 		values = values.substring(0, values.length()-1);
 		Statement stm = con.createStatement();
@@ -71,6 +74,13 @@ public class DatabaseController implements IDatabaseController {
 		rs.next();
 		int id = rs.getInt(1);
 		model.setValue("id", String.valueOf(id));
+		
+		String path = contentFileManager.saveModel(model);
+		model.setValue("filePath", path);
+		
+		stm = con.createStatement();
+		sql = "UPDATE " + type + " SET filePath=\"" + path + "\" WHERE id = " + id;
+		stm.executeUpdate(sql);
 			
 		return model;
 	}
@@ -90,6 +100,7 @@ public class DatabaseController implements IDatabaseController {
 		for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
 			model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
 		}
+		model.setValue("modelContent", contentFileManager.loadModel(model.getValue("filePath")));
 		
 		return model;
 
@@ -102,10 +113,14 @@ public class DatabaseController implements IDatabaseController {
 		
 		String newValues = "";
 		for (String key: propertySet.keySet()) {
-			model.setValue(key, propertySet.get(key));
-			newValues += key + "=\"" + propertySet.get(key) + "\",";
+			if (!key.equals("modelContent")) {
+				model.setValue(key, propertySet.get(key));
+				newValues += key + "=\"" + propertySet.get(key) + "\",";
+			}
 		}
+		String path = contentFileManager.saveModel(model);
 		newValues = newValues.substring(0,newValues.length() - 1);
+		if (!path.equals(model.getValue("filePath"))) newValues += ",filePath=\"" + path + "\"";
 		
 		Statement updateStm = con.createStatement();
 		String sql = "UPDATE " + type
@@ -118,13 +133,16 @@ public class DatabaseController implements IDatabaseController {
 	}
 
 	public void deleteModel(String type, String id) throws Exception {
-		
+
+		IModel model = getModel(type,id);
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
 		if (!rs.next()) throw new Exception("There is no " + type + " for this id");
 			
 		Statement deleteStm = con.createStatement();
 		deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+		
+		contentFileManager.deleteModel(model.getValue("filePath"));
 			
 	}
 	

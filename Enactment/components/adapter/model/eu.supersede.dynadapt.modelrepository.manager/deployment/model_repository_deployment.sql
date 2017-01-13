@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `PatternModel`;
 CREATE TABLE `AdaptabilityModel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -25,7 +25,7 @@ CREATE TABLE `AdaptabilityModel` (
 CREATE TABLE `BaseModel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -38,7 +38,7 @@ CREATE TABLE `BaseModel` (
 CREATE TABLE `VariantModel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -50,7 +50,7 @@ CREATE TABLE `VariantModel` (
 CREATE TABLE `ProfileModel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -62,7 +62,7 @@ CREATE TABLE `ProfileModel` (
 CREATE TABLE `FeatureModel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -74,7 +74,7 @@ CREATE TABLE `FeatureModel` (
 CREATE TABLE `FeatureConfiguration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -87,7 +87,7 @@ CREATE TABLE `FeatureConfiguration` (
 CREATE TABLE `PatternModel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
   `authorId` varchar(255) NOT NULL,
   `creationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

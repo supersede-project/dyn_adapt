@@ -15,9 +15,9 @@ public class Manager {
 		dbController = new DatabaseController();
 	}
 	
-	public List<IModel> listAllModels(String type) throws Exception {
+	/*public List<IModel> listAllModels(String type) throws Exception {
 		return dbController.getAllModels(type);
-	}
+	}*/
 	
 	public List<IModel> createModels(String type, List<IModel> modelList) throws Exception {
 		List<IModel> models = new ArrayList<>();

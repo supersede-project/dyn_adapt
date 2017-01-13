@@ -4,13 +4,14 @@ public class AdaptabilityModel extends IModel {
 	
 	private String id;
 	private String name;
-	private String url;
+	private String filePath;
 	private String authorId;
 	private String creationDate;
 	private String lastModificationDate;
 	private String fileExtension;
 	private String systemId;
 	private String featureId;
+	private String modelContent;
 	
 	public String getId() {
 		return id;
@@ -24,11 +25,11 @@ public class AdaptabilityModel extends IModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getUrl() {
-		return url;
+	public String getFilePath() {
+		return filePath;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 	public String getAuthorId() {
 		return authorId;
@@ -65,6 +66,12 @@ public class AdaptabilityModel extends IModel {
 	}
 	public void setFeatureId(String featureId) {
 		this.featureId = featureId;
+	}
+	public String getModelContent() {
+		return modelContent;
+	}
+	public void setModelContent(String modelContent) {
+		this.modelContent = modelContent;
 	}
 
 }
