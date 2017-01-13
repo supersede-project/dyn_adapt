@@ -12,7 +12,7 @@ public interface IDatabaseController {
 	/**
 	 * List models for a given type
 	 */
-	public List<IModel> getAllModels(String type) throws Exception;
+	//public List<IModel> getAllModels(String type) throws Exception;
 	
 	/**
 	 * Create new model instance for a given type

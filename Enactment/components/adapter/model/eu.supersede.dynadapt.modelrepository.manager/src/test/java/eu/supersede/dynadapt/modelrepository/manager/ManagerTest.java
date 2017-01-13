@@ -26,7 +26,7 @@ public class ManagerTest {
 	public void setUp() {
 		
 		try {
-			manager = new Manager();
+			manager = new Manager("../repository");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,7 +50,6 @@ public class ManagerTest {
 			IModel newModel = manager.createModel("AdaptabilityModel", model);
 			String id = newModel.getValue("id");
 			assertEquals(newModel.getValue("name"),"AdaptModelA");
-			assertEquals(newModel.getValue("filePath"),"../repository/AdaptabilityModel/MonitoringReconfiguration/" + id + ".uml");
 			assertEquals(newModel.getValue("authorId"),"SUPERSEDE");
 			assertEquals(newModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(newModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
@@ -73,7 +72,6 @@ public class ManagerTest {
 			String ids = "";
 			for (IModel model : models) {
 				assertEquals(model.getValue("name"),"AdaptModelA");
-				assertEquals(model.getValue("filePath"),"../repository/AdaptabilityModel/MonitoringReconfiguration/" + model.getValue("id") + ".uml");
 				assertEquals(model.getValue("authorId"),"SUPERSEDE");
 				assertEquals(model.getValue("creationDate"),"2016-09-30 01:25:37.0");
 				assertEquals(model.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
@@ -95,7 +93,6 @@ public class ManagerTest {
 			IModel newModel = manager.createModel("AdaptabilityModel", model);
 			IModel getModel = manager.getModel("AdaptabilityModel", newModel.getValue("id"));
 			assertEquals(getModel.getValue("name"),"AdaptModelA");
-			assertEquals(getModel.getValue("filePath"),"../repository/AdaptabilityModel/MonitoringReconfiguration/" + getModel.getValue("id") + ".uml");
 			assertEquals(getModel.getValue("authorId"),"SUPERSEDE");
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
@@ -129,11 +126,13 @@ public class ManagerTest {
 	public void createAndUpdateModel() {
 		Map<String,String> propertySet = new HashMap<>();
 		propertySet.put("name", "AdaptModelB");
+		propertySet.put("modelContent", "NewContent");
 		IModel model = generateAdaptabilityModelData();
 		try {
 			IModel createModel = manager.createModel("AdaptabilityModel", model);
 			IModel updateModel = manager.updateModel("AdaptabilityModel", createModel.getValue("id"), propertySet);
 			assertEquals(updateModel.getValue("name"), "AdaptModelB");
+			assertEquals(updateModel.getValue("modelContent"), "NewContent");
 			System.out.println("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
 			manager.deleteModel("AdaptabilityModel", updateModel.getValue("id"));
 		} catch (Exception e) {

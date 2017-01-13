@@ -1,14 +1,11 @@
 package eu.supersede.dynadapt.modelrepository.manager.service;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
 
 import org.springframework.http.HttpStatus;
@@ -40,13 +37,13 @@ public class ModelManagerController {
 	
 	public ModelManagerController() {
 		try {
-			manager = new Manager();
+			manager = new Manager("../repository");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	@RequestMapping(value="/{modelType}", method = RequestMethod.GET)
+	/*@RequestMapping(value="/{modelType}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	public String listModels(@PathVariable String modelType) {
 		List<IModel> models = new ArrayList<>();
@@ -65,7 +62,7 @@ public class ModelManagerController {
 			return Response.error(e.getMessage());
 		}
 		return response;
-	}
+	}*/
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)

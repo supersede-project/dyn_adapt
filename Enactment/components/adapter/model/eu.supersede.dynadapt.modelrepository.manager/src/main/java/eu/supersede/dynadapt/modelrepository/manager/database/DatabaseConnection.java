@@ -20,6 +20,7 @@ public class DatabaseConnection {
 		
 		Properties prop = new Properties();
 		InputStream input = getClass().getResourceAsStream("config.properties");
+		if (input == null) System.out.println("UPS");
 		prop.load(input);
 		
 		String host = prop.getProperty("dbhost");

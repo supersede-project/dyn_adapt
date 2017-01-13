@@ -4,7 +4,6 @@ public class FeatureConfiguration extends IModel {
 	
 	private String id;
 	private String name;
-	private String filePath;
 	private String authorId;
 	private String creationDate;
 	private String lastModificationDate;
@@ -24,12 +23,6 @@ public class FeatureConfiguration extends IModel {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getFilePath() {
-		return filePath;
-	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
 	}
 	public String getAuthorId() {
 		return authorId;

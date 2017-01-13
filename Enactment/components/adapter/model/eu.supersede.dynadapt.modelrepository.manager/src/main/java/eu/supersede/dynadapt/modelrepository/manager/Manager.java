@@ -11,8 +11,8 @@ public class Manager {
 	
 	DatabaseController dbController;
 
-	public Manager() throws Exception {
-		dbController = new DatabaseController();
+	public Manager(String modelStoragePath) throws Exception {
+		dbController = new DatabaseController(modelStoragePath);
 	}
 	
 	/*public List<IModel> listAllModels(String type) throws Exception {

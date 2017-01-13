@@ -16,14 +16,14 @@ public class ContentFileManagerTest {
 	
 	@Before
 	public void setUp() {
-		contentFileManager = new ContentFileManager();
+		contentFileManager = new ContentFileManager("../repository");
 	}
 	
 	@Test
 	public void saveFile() {
 		IModel model = generateAdaptabilityModelData();
 		try {
-			contentFileManager.saveModel(model);
+			contentFileManager.saveModelContent(model);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -33,8 +33,8 @@ public class ContentFileManagerTest {
 	public void loadFile() {
 		IModel model = generateAdaptabilityModelData();
 		try {
-			String path = contentFileManager.saveModel(model);
-			String content = contentFileManager.loadModel(path);
+			String path = contentFileManager.saveModelContent(model);
+			String content = contentFileManager.loadModelContent(model);
 			assertEquals(content, model.getValue("modelContent"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,9 +45,9 @@ public class ContentFileManagerTest {
 	public void deleteFile() {
 		IModel model = generateAdaptabilityModelData();
 		try {
-			String path = contentFileManager.saveModel(model);
-			contentFileManager.deleteModel(path);
-			String content = contentFileManager.loadModel(path);
+			String path = contentFileManager.saveModelContent(model);
+			contentFileManager.deleteModelContent(model);
+			String content = contentFileManager.loadModelContent(model);
 			assertEquals(null, content);
 		} catch (Exception e) {
 			e.printStackTrace();
