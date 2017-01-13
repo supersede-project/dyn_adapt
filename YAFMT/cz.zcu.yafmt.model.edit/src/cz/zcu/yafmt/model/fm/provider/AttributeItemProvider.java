@@ -74,6 +74,7 @@ public class AttributeItemProvider
 			addWeightPropertyDescriptor(object);
 			addMinimizePropertyDescriptor(object);
 			addObjectiveFunctionAggregatorPropertyDescriptor(object);
+			addAlertPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -299,6 +300,28 @@ public class AttributeItemProvider
 	}
 
 				/**
+	 * This adds a property descriptor for the Alert feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAlertPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Attribute_alert_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_alert_feature", "_UI_Attribute_type"),
+				 FeatureModelPackage.Literals.ATTRIBUTE__ALERT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+				/**
 	 * This adds a property descriptor for the Quality Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -411,6 +434,7 @@ public class AttributeItemProvider
 			case FeatureModelPackage.ATTRIBUTE__WEIGHT:
 			case FeatureModelPackage.ATTRIBUTE__MINIMIZE:
 			case FeatureModelPackage.ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR:
+			case FeatureModelPackage.ATTRIBUTE__ALERT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

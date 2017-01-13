@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link cz.zcu.yafmt.model.fm.impl.AttributeImpl#getWeight <em>Weight</em>}</li>
  *   <li>{@link cz.zcu.yafmt.model.fm.impl.AttributeImpl#isMinimize <em>Minimize</em>}</li>
  *   <li>{@link cz.zcu.yafmt.model.fm.impl.AttributeImpl#getObjectiveFunctionAggregator <em>Objective Function Aggregator</em>}</li>
+ *   <li>{@link cz.zcu.yafmt.model.fm.impl.AttributeImpl#isAlert <em>Alert</em>}</li>
  * </ul>
  *
  * @generated
@@ -304,6 +305,26 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 	 * @ordered
 	 */
 	protected ObjectiveFunctionType objectiveFunctionAggregator = OBJECTIVE_FUNCTION_AGGREGATOR_EDEFAULT;
+
+				/**
+	 * The default value of the '{@link #isAlert() <em>Alert</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAlert()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ALERT_EDEFAULT = false;
+
+				/**
+	 * The cached value of the '{@link #isAlert() <em>Alert</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAlert()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean alert = ALERT_EDEFAULT;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -580,6 +601,27 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isAlert() {
+		return alert;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAlert(boolean newAlert) {
+		boolean oldAlert = alert;
+		alert = newAlert;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureModelPackage.ATTRIBUTE__ALERT, oldAlert, alert));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isQualityAttribute() {
 		return qualityAttribute;
 	}
@@ -718,6 +760,8 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 				return isMinimize();
 			case FeatureModelPackage.ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR:
 				return getObjectiveFunctionAggregator();
+			case FeatureModelPackage.ATTRIBUTE__ALERT:
+				return isAlert();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -771,6 +815,9 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 				return;
 			case FeatureModelPackage.ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR:
 				setObjectiveFunctionAggregator((ObjectiveFunctionType)newValue);
+				return;
+			case FeatureModelPackage.ATTRIBUTE__ALERT:
+				setAlert((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -826,6 +873,9 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 			case FeatureModelPackage.ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR:
 				setObjectiveFunctionAggregator(OBJECTIVE_FUNCTION_AGGREGATOR_EDEFAULT);
 				return;
+			case FeatureModelPackage.ATTRIBUTE__ALERT:
+				setAlert(ALERT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -866,6 +916,8 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 				return minimize != MINIMIZE_EDEFAULT;
 			case FeatureModelPackage.ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR:
 				return objectiveFunctionAggregator != OBJECTIVE_FUNCTION_AGGREGATOR_EDEFAULT;
+			case FeatureModelPackage.ATTRIBUTE__ALERT:
+				return alert != ALERT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -906,6 +958,8 @@ public class AttributeImpl extends EObjectImpl implements Attribute {
 		result.append(minimize);
 		result.append(", objectiveFunctionAggregator: ");
 		result.append(objectiveFunctionAggregator);
+		result.append(", alert: ");
+		result.append(alert);
 		result.append(')');
 		return result.toString();
 	}

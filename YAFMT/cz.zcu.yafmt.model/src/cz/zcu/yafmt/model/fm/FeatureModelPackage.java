@@ -547,13 +547,22 @@ public interface FeatureModelPackage extends EPackage {
 	int ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR = 13;
 
 				/**
+	 * The feature id for the '<em><b>Alert</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__ALERT = 14;
+
+				/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int ATTRIBUTE_FEATURE_COUNT = 14;
+    int ATTRIBUTE_FEATURE_COUNT = 15;
 
     /**
 	 * The meta object id for the '{@link cz.zcu.yafmt.model.fm.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -1166,6 +1175,17 @@ public interface FeatureModelPackage extends EPackage {
 	EAttribute getAttribute_ObjectiveFunctionAggregator();
 
 				/**
+	 * Returns the meta object for the attribute '{@link cz.zcu.yafmt.model.fm.Attribute#isAlert <em>Alert</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alert</em>'.
+	 * @see cz.zcu.yafmt.model.fm.Attribute#isAlert()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Alert();
+
+				/**
 	 * Returns the meta object for the attribute '{@link cz.zcu.yafmt.model.fm.Attribute#isQualityAttribute <em>Quality Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1696,6 +1716,14 @@ public interface FeatureModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR = eINSTANCE.getAttribute_ObjectiveFunctionAggregator();
+
+								/**
+		 * The meta object literal for the '<em><b>Alert</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__ALERT = eINSTANCE.getAttribute_Alert();
 
 								/**
 		 * The meta object literal for the '<em><b>Quality Attribute</b></em>' attribute feature.
