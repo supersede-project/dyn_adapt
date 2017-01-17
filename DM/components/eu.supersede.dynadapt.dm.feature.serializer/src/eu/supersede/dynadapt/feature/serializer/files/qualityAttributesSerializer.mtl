@@ -3,7 +3,7 @@
 
 
 [template public serializeQualityAttributes(aFeatureModel : FeatureModel)]
-[file (aFeatureModel.name.concat('.quality'), false, 'UTF-8')]
+[file (aFeatureModel.name.concat('.json'), false, 'UTF-8')]
 [featureModel(aFeatureModel)/]
 [/file]
 [/template]

@@ -2,7 +2,7 @@
 [module fmGrammarSerializer('http://zcu.cz/yafmt/model/fm')]
 
 [template public serializeFMGrammar(aFeatureModel : FeatureModel)]
-[file (aFeatureModel.name.concat('.grammar'), false, 'UTF-8')]
+[file (aFeatureModel.name.concat('.bnf'), false, 'UTF-8')]
 [if (not aFeatureModel.root.oclIsUndefined())]
 	[let rootFeature : Feature = aFeatureModel.root]
 [feature(rootFeature, false)/]

@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.dm.rest;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,39 +14,53 @@ import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
+import eu.supersede.dynadapt.feature.serializer.FMSerializer;
 
 @RestController
 public class DMOptimizerController {
 	
-	@RequestMapping("/optimize")
-	public FeatureConfiguration optimize (@RequestParam(value="modelURI", defaultValue="") String modelURI, 
-			@RequestParam(value="currentConfig", defaultValue="") String currentConfig, 
-			@RequestParam(value="qualityAttributePath", defaultValue="") String qualityAttributePath,
-			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
-			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
-			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) {
-//		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
-		System.out.println(modelURI);
-		String optimalConfig = null;
-		if (!multiObjective){
-			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
-		}else{
-			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
-		}
-		System.out.println(optimalConfig);
-		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
-		return fc;
-	}
+//	@RequestMapping("/optimize")
+//	public FeatureConfiguration optimize (@RequestParam(value="modelURI", defaultValue="") String modelURI, 
+//			@RequestParam(value="currentConfig", defaultValue="") String currentConfig, 
+//			@RequestParam(value="qualityAttributePath", defaultValue="") String qualityAttributePath,
+//			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
+//			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
+//			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) {
+////		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
+//		System.out.println(modelURI);
+//		String optimalConfig = null;
+//		if (!multiObjective){
+//			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
+//		}else{
+//			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
+//		}
+//		System.out.println(optimalConfig);
+//		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
+//		return fc;
+//	}
 	
-	public FeatureConfiguration optimize2 (@RequestParam(value="modelURI", defaultValue="") String modelURI, 
+	@RequestMapping("/optimize")
+	public FeatureConfiguration optimize (@RequestParam(value="featureModelURI", defaultValue="") String fmURI, 
 			@RequestParam(value="currentConfig", defaultValue="") String currentConfig, 
 			@RequestParam(value="qualityAttributePath", defaultValue="") String qualityAttributePath,
 			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
 			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
-			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) {
+			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) throws IOException {
 //		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
 		//TODO Serialize input FC to grammar and QualityAttribute JSON. Pass grammar and quality attributes URIs
-		System.out.println(modelURI);
+		//modelURI points at generated grammar from Input FM
+		//currentConfig is a column (newline separated list of) enabled features in current configuration
+		//qualityAttributePath is 
+		System.out.println(fmURI);
+		
+		//TODO Generate grammar and attribute_metadata.json from fmURI
+		//TODO Inject  attribute_metadata.json in Parameters.ATTRIBUTE_Metadata
+		String fmFolder = getFolder (fmURI);
+		FMSerializer.serializeFMToArtifactsInFolder(fmURI, fmFolder);
+		
+		String modelURI = fmURI.replace("yafm", "bnf");
+		Parameters.ATTRIBUTE_METADATA = fmURI.replace("yafm", "json");
+		
 		String optimalConfig = null;
 		if (!multiObjective){
 			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, alertAttribute, alertThresholdValue);
@@ -56,6 +71,10 @@ public class DMOptimizerController {
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		//TODO Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
 		return fc;
+	}
+	
+	String getFolder (String urlString){
+		return urlString.substring(0, urlString.lastIndexOf('/'));
 	}
 
 	private String doMOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, String alertThresholdValue) {
