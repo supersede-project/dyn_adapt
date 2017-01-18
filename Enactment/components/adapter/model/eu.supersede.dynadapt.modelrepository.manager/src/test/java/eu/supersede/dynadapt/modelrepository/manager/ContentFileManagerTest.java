@@ -2,6 +2,9 @@ package eu.supersede.dynadapt.modelrepository.manager;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,6 +55,25 @@ public class ContentFileManagerTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@After
+	public void deleteDirectories() {
+		deleteDir(new File("../repository"));
+	}
+	
+	private boolean deleteDir(File dir) {
+	    if (dir.isDirectory()) {
+	        String[] children = dir.list();
+	        for (int i = 0; i < children.length; i++) {
+	            boolean success = deleteDir(new File(dir, children[i]));
+	            if (!success) {
+	                return false;
+	            }
+	        }
+	    }
+
+	    return dir.delete(); // The directory is empty now and can be deleted.
 	}
 	
 	private IModel generateAdaptabilityModelData() {
