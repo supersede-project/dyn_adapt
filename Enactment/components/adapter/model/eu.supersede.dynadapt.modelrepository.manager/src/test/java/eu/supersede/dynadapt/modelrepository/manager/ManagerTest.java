@@ -57,6 +57,7 @@ public class ManagerTest {
 			assertEquals(newModel.getValue("systemId"),"MonitoringReconfiguration");
 			assertEquals(newModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created successfully (id = " + id + ")");
+			manager.deleteModel("AdaptabilityModel", id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,6 +82,9 @@ public class ManagerTest {
 				ids += model.getValue("id") + "/";
 			}
 			System.out.println("Models created successfully (id list = " + ids + ")");
+			for (IModel model : models) {
+				manager.deleteModel("AdaptabilityModel", model.getValue("id"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
