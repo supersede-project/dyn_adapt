@@ -16,6 +16,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
 version = '0.0.2-SNAPSHOT'
 group = 'eu.supersede'
@@ -30,10 +31,14 @@ sourceSets {
 }
 
 jar {
-    baseName = 'dm-optimizer-rest-service'
+    baseName = 'dm-optimizer'
     version =  '0.1.0'
 }
 
+war {
+    baseName = 'dm-optimizer-rest-service'
+    version = '0.1.0'
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
