@@ -168,17 +168,17 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.acceleo.engine</artifactId>
-        <version>3.6.5.201608301456</version>
+        <version>3.6.6.201610060831</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.acceleo.common</artifactId>
-        <version>3.6.5.201608301456</version>
+        <version>3.6.6.201610060831</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.acceleo.model</artifactId>
-        <version>3.6.5.201608301456</version>
+        <version>3.6.6.201610060831</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -208,12 +208,12 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.core.resources</artifactId>
-        <version>3.11.0.v20160503-1608</version>
+        <version>3.11.1.v20161107-2032</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.osgi</artifactId>
-        <version>3.11.1.v20160708-1632</version>
+        <version>3.11.2.v20161107-1947</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
