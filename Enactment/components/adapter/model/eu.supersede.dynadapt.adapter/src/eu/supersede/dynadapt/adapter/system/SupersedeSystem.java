@@ -4,11 +4,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public enum SupersedeSystem {
-	ATOS ("http://www.supersede.eu/atos"), 
-	SIEMENS ("http://www.supersede.eu/siemens"), 
-	SENERCON ("http://www.supersede.eu/senercon"), 
-	MONITORING ("http://www.supersede.eu/monitoring"), 
-	FEEDBACK_GATHERING ("http://www.supersede.eu/feedback_gathering");
+	ATOS ("atos"), 
+	SIEMENS ("siemens"), 
+	SENERCON ("senercon"), 
+	MONITORING ("monitoring"), 
+	FEEDBACK_GATHERING ("feedback_gathering");
 	
 	private URI uri;
 	
@@ -26,15 +26,15 @@ public enum SupersedeSystem {
 	
 	public static SupersedeSystem getByURI (String suri){
 		switch (suri){
-		case "http://www.supersede.eu/atos":
+		case "atos":
 			return ATOS;
-		case "http://www.supersede.eu/siemens":
+		case "siemens":
 			return SIEMENS;
-		case "http://www.supersede.eu/senercon":
+		case "senercon":
 			return SENERCON;
-		case "http://www.supersede.eu/monitoring": 
+		case "monitoring": 
 			return MONITORING;
-		case "http://www.supersede.eu/feedback_gathering":
+		case "feedback_gathering":
 			return FEEDBACK_GATHERING;
 		default:
 			return null;

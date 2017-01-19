@@ -72,6 +72,7 @@ public class Adapter implements IAdapter {
 	private ModelManager mm;
 	private ModelQuery mq;
 	private ModelAdapter ma;
+	private ModelRepositoryResolver mrr;
 
 	private Map<String, String> modelsLocation;
 
@@ -79,13 +80,14 @@ public class Adapter implements IAdapter {
 	// another one by AdaptationParser
 	// FIXME: Manage a single ResourceSet
 
-	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath) throws Exception {
 		this.mr = mr;
 		this.parser = new AdaptationParser(mm);
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
+		this.mrr = new ModelRepositoryResolver(mm, repositoryRelativePath);
 		log.debug("Adapter set up");
 	}
 
@@ -152,7 +154,11 @@ public class Adapter implements IAdapter {
 
 		Model model = null;
 		//Clone base model
-//		Model clonnedModel = (Model) EcoreUtil.copy( baseModel );
+		Model clonnedModel = (Model) EcoreUtil.copy( baseModel );
+		//Create a model manager targeting cloned model
+		ModelManager clonedModelManager = new ModelManager(clonnedModel, mm.getTargetModelAsResource().getURI());
+		//Create modelQuery targeting cloned Model
+		this.mq = new ModelQuery(clonedModelManager);
 
 		for (Selection selection : selections) {
 			Feature feature = selection.getFeature();
@@ -173,6 +179,7 @@ public class Adapter implements IAdapter {
 					role = p.getRole();
 					matchingElements.put(role, new ArrayList<>());
 					log.debug("\t\tRole: " + role.getName());
+					//FIXME matching elements (elements stereotyped with jointpoint must be found in cloned model, not in baseModel
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
@@ -189,9 +196,9 @@ public class Adapter implements IAdapter {
 						if (actionOptionType instanceof UpdateValueImpl) {
 							String value = actionOptionType
 									.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
-							model = ma.applyUpdateCompositionDirective(baseModel, matchingElements, value);
+							model = ma.applyUpdateCompositionDirective(clonnedModel, matchingElements, value);
 						} else {
-							model = ma.applyCompositionDirective(c.getAction(), baseModel, matchingElements,
+							model = ma.applyCompositionDirective(c.getAction(), clonnedModel, matchingElements,
 									c.getAdvice(), variant);
 						}
 					}
@@ -232,10 +239,13 @@ public class Adapter implements IAdapter {
 			// feature configuration from Model Repository
 			// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
 			// to simulate their retrieval given a systemId
-			ModelRepositoryResolver mrr = new ModelRepositoryResolver(mm);
+			
 
-			Model baseModel = mrr.getModelForSystem(system,
-					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+			//FIXME Base model was already loaded by Model Manager during initialization
+			//In order to avoid loading it twice, get it from Model Manager
+//			Model baseModel = mrr.getModelForSystem(system,
+//					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+			Model baseModel = mm.getTargetModel();
 
 			//FIXME featureConfigurationId not used to retrieve the feature configuration
 			//This implementation gets the latest configuration

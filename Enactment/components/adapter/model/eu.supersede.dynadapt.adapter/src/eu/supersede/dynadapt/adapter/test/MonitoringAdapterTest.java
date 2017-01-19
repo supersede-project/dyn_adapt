@@ -67,7 +67,7 @@ public class MonitoringAdapterTest {
 	@Test
 	public void adapt() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation);
+			adapter = new Adapter(mr, mm, modelsLocation, localPath);
 			Model baseModel = mm.loadUMLModel(baseModelPath); //FIXME Already loaded during ModelManager instantiation
 			
 			FeatureModel featureModel = mm.loadFeatureModel(featureModelPath);

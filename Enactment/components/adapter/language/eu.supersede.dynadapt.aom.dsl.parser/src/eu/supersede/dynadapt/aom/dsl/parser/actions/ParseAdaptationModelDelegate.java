@@ -48,7 +48,7 @@ public class ParseAdaptationModelDelegate implements IObjectActionDelegate{
 	private ModelManager modelManager;
 	
 	public ParseAdaptationModelDelegate() throws IOException {
-		modelManager = new ModelManager();
+		modelManager = new ModelManager(false);
 		parser = new AdaptationParser(modelManager);
 	}
 

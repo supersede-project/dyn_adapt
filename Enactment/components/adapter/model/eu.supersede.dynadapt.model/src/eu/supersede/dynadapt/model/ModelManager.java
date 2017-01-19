@@ -114,32 +114,34 @@ public class ModelManager implements IModelManager {
 		return Optional.fromNullable(model);
 	}
 	
-	public ModelManager () throws IOException {
+	public ModelManager (boolean createTemporaryFolder) throws IOException {
 		//Create Temporary directory to store models downloaded from ModelRepository
-		temp = createTemporaryDirectory();
+		if (createTemporaryFolder)
+			temp = createTemporaryDirectory();
 		
 		//Shutdown hook to clean up temporary folder
-//		Runtime.getRuntime().addShutdownHook(new Thread() {
-//		    public void run() {
-//		        try {
-//		        	
-//					Files.walkFileTree(temp, new SimpleFileVisitor<Path>() { 
-//			            @Override
-//			            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-//			                throws IOException
-//			            {
-//			            	log.debug("deleting temporary file: " + file);
-//			                Files.delete(file);
-//			                return FileVisitResult.CONTINUE;
-//			            }
-//			        }); 
-//					log.debug("deleting temporary directory: " + temp);
-//					Files.deleteIfExists(temp);
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//		    }
-//		});
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+		    public void run() {
+		        try {
+		        	if (temp != null){
+						Files.walkFileTree(temp, new SimpleFileVisitor<Path>() { 
+				            @Override
+				            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+				                throws IOException
+				            {
+				            	log.debug("deleting temporary file: " + file);
+				                Files.delete(file);
+				                return FileVisitResult.CONTINUE;
+				            }
+				        }); 
+						log.debug("deleting temporary directory: " + temp);
+						Files.deleteIfExists(temp);
+		        	}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    }
+		});
 		
 		initCache();
 	}
@@ -150,13 +152,21 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager (String targetModelPath) throws Exception{
-		this();
+		this(true);
 		
 		this.targetModelURI = URI.createURI(targetModelPath);
 		targetModelResource = loadResource(targetModelPath);
 		if (targetModelResource == null){
 			throw new Exception("Target Model initialization. Target Model " + targetModelPath +" could not be loaded");
 		}
+	}
+	
+	//Create a ModelManager from an existing model
+	public ModelManager (Model targetModel, URI targetModelURI) throws Exception{
+		this(false);
+		this.targetModelURI = targetModelURI;
+		targetModelResource = this.resourceSet.getResourceSet().createResource(this.targetModelURI);
+		targetModelResource.getContents().add (targetModel);
 	}
 	
 	
@@ -168,7 +178,12 @@ public class ModelManager implements IModelManager {
 	 * @see eu.supersede.dynadapt.model.IModelManager#getTargetModel()
 	 */
 	@Override
-	public Resource getTargetModel (){
+	public Model getTargetModel (){
+		return Model.class.cast(targetModelResource.getContents().get(0));
+	}
+	
+	@Override
+	public Resource getTargetModelAsResource(){
 		return targetModelResource;
 	}
 	
@@ -212,7 +227,6 @@ public class ModelManager implements IModelManager {
 	public <T extends EObject> T loadModel(URI uri, Class<T> clazz) { 
 		Resource resource = null;
 		try {
-//			resource = resourceSet.getResource(uri, true);
 			resource = resourceSet.loadModel(uri);
 			if(resource == null)
 				return null;
@@ -292,6 +306,9 @@ public class ModelManager implements IModelManager {
 
 	@Override
 	public URI saveModelInTemporaryFolder(Model model, String suffixe) throws IOException {
+		if (temp == null){
+			temp = createTemporaryDirectory();
+		}
 		URI uri = createTemporaryURI (model.getName() + suffixe);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
@@ -314,7 +331,7 @@ public class ModelManager implements IModelManager {
 	 */
 	@Override
 	public URI saveTargetModel () throws IOException{
-		return saveModel(getTargetModel(), getTargetModelURI(), null);
+		return saveModel(getTargetModelAsResource(), getTargetModelURI(), null);
 	}
 
 	/* (non-Javadoc)
@@ -322,7 +339,7 @@ public class ModelManager implements IModelManager {
 	 */
 	@Override
 	public URI saveTargetModel (String suffixe) throws IOException{
-		return saveModel(getTargetModel(), getTargetModelURI(), suffixe);
+		return saveModel(getTargetModelAsResource(), getTargetModelURI(), suffixe);
 	}
 	
 	/**

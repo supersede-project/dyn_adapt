@@ -13,11 +13,12 @@ import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
 
 public class ModelRepositoryResolver {
+	static String repositoryRelativePath;
+	private ModelManager mm = null;
 	
-	ModelManager mm = null;
-	
-	public ModelRepositoryResolver (ModelManager mm){
+	public ModelRepositoryResolver (ModelManager mm, String repositoryRelativePath){
 		this.mm = mm;
+		ModelRepositoryResolver.repositoryRelativePath = repositoryRelativePath;
 	}
 
 	public Model getModelForSystem (SupersedeSystem system, RepositoryMetadata metadata) throws EnactmentException{
@@ -56,12 +57,12 @@ class ModelRepositoryMapping{
 //				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 
 		
-		atosBaseModel.put(ResourceTimestamp.CURRENT, 
-				"./repository/models/base/atos_base_model.uml");
-		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, 
-				"./repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
-		atosFeatureConfiguration.put(ResourceTimestamp.NEWEST,
-				"./repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
+		atosBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/atos_base_model.uml");
+		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
+		atosFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 		atosMapping.put(ResourceType.BASE, atosBaseModel);
 		atosMapping.put(ResourceType.FEATURE_CONFIGURATION, atosFeatureConfiguration);
 	}
