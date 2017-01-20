@@ -3,10 +3,13 @@ package eu.supersede.dynadapt.adapter.test;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -22,47 +25,68 @@ import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.adapter.Adapter;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
-import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
+import eu.supersede.dynadapt.adapter.IAdapter;
+import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class ATOSAdapterTest {
+	private final static Logger log = LogManager.getLogger(ATOSAdapterTest.class);
 	
-	String baseModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml";
-	String repository = "platform:/resource/eu.supersede.dynadapt.usecases.atos/";
-	String originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
-	String newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
-	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
-	//TODO: avoid using local paths
-	String localPath = "file:/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/";
+	String baseModelPath;
+	String repository;
+	String originalFeatureConfigPath;
+	String newFeatureConfigPath;
+	String featureModelPath;
+	String repositoryRelativePath;
+	String platformRelativePath;
+	
 	Map<String, String> modelsLocation;
 
 	ModelRepository mr = null;
 	ModelManager mm = null;
-	Adapter adapter = null;
+	IAdapter adapter = null;
 
 	URL url = null;
 	
-	IFeatureConfigLAO fcLAO = null;
+	@Test
+	public void testAtosUCAdaptation() {
+		try {
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			//FIXME featureConfigurationId is ignored. Use correct one
+			//once Model Repository is available as service.
+			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
+			String featureConfigurationId = null;
+			adapter.enactAdaptationDecisionActions(
+					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+			adapter.enactAdaptationDecisionAction(
+					SupersedeSystem.ATOS.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	public void adapt() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			Model baseModel = mm.loadUMLModel(baseModelPath);
 			
 			FeatureConfiguration originalFeatureConfig = mm.loadFeatureConfiguration(originalFeatureConfigPath);
 			FeatureConfiguration newFeatureConfig = mm.loadFeatureConfiguration(newFeatureConfigPath);
 			List<Selection> changedSelections = diffFeatureConfigurations (originalFeatureConfig, newFeatureConfig);
 
-			Model model = adapter.adapt(changedSelections, baseModel);
+			Model model = ((Adapter)adapter).adapt(changedSelections, baseModel);
 			
 			System.out.println("Saving model");
 			
 			if (model != null){
-				save(model, URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml"));
+				URI uri = URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml");
+				log.debug("Saving updated model in " + uri);
+				save(model, uri);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,19 +95,28 @@ public class ATOSAdapterTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		new StandaloneSetup().setPlatformUri("../../../../../Scenarios/Atos/");
+		setupPlatform();		
+		mm = new ModelManager(baseModelPath); //Base Model loaded here
+		mr = new ModelRepository(repository,repositoryRelativePath, mm);
+	}
+
+	private void setupPlatform() {
+		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_base_model.uml";
+		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
+		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
+		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
+		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
+		repositoryRelativePath = "./repository";
+		platformRelativePath = "../";
+
+		new StandaloneSetup().setPlatformUri(platformRelativePath);
 		modelsLocation = new HashMap<String, String>();
 		modelsLocation.put("aspects", "adaptability_models/");
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "src/eu/supersede/dynadapt/usecases/atos/patterns/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
 		modelsLocation.put("features", "features/models/");
-		
-		url = new URL(localPath);
-		mm = new ModelManager(baseModelPath);
-		mr = new ModelRepository(repository,url, mm);
-		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 	}
 	
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {

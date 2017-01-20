@@ -4,4 +4,18 @@
       <action class="eu.supersede.dynadapt.aom.dsl.parser.actions.ParseAdaptationModelDelegate" id="eu.supersede.dynadapt.aom.dsl.util.actions.ParseAdaptationModel" label="Parse Model" menubarPath="additions"/>
     </objectContribution>
   </extension>
+  <extension id="eu.supersede.dynadapt.atos.queries.Atos_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.atos.queries.Atos_queries" id="eu.supersede.dynadapt.atos.queries.Atos_queries">
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.nodes"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.nodeArtifacts"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.artifactManifestations"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.instanceSpecificationsAsManifestationsOfNodeArtifacts"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.services"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.serviceInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.configurableServiceInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.serviceConfigurations"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.CMSConfigurationInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.atos.queries.maxThreadValuesInCMSConfigurations"/>
+    </group>
+  </extension>
 </plugin>

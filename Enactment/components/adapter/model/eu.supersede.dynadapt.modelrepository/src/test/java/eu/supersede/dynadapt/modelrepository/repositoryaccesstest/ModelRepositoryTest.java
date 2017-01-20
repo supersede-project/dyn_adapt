@@ -65,7 +65,7 @@ public class ModelRepositoryTest {
 
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 		url = getClass().getResource("/");
-		mm = new ModelManager();
+		mm = new ModelManager(false);
 		mr = new ModelRepository(repository, url, mm);
 	}
 

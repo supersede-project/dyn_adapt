@@ -128,8 +128,8 @@ public class SupersedeDSLResourceUtil {
 		if(uri.isPlatformPlugin() || uri.isPlatform())
 			return URI.createPlatformResourceURI(uri.toPlatformString(true), true);
 		String newUriString = uriString;
-		if(!uriString.startsWith("/"))
-			newUriString = "/" + newUriString;
+//		if(!uriString.startsWith("/"))
+//			newUriString = "/" + newUriString;
 		return URI.createPlatformResourceURI(newUriString, true);
 	}
 	

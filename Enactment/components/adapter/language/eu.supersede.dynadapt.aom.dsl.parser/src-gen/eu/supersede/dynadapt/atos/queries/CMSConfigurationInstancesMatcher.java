@@ -1,22 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A, Universitat Politécnica de Catalunya (UPC)
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 /**
  * Generated from platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_queries.vql
  */
@@ -81,10 +62,21 @@ public class CMSConfigurationInstancesMatcher extends BaseMatcher<CMSConfigurati
     // check if matcher already exists
     CMSConfigurationInstancesMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new CMSConfigurationInstancesMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (CMSConfigurationInstancesMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static CMSConfigurationInstancesMatcher create() throws ViatraQueryException {
+    return new CMSConfigurationInstancesMatcher();
   }
   
   private final static int POSITION_CONFIGURATION = 0;
@@ -99,8 +91,8 @@ public class CMSConfigurationInstancesMatcher extends BaseMatcher<CMSConfigurati
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private CMSConfigurationInstancesMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private CMSConfigurationInstancesMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

@@ -32,6 +32,7 @@ import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 
 public interface IModelManager {
 
@@ -57,7 +58,8 @@ public interface IModelManager {
 	 * Returns the associated UML base target model
 	 * @return the associated UML base target model
 	 */
-	Resource getTargetModel();
+	Model getTargetModel();
+	Resource getTargetModelAsResource();
 
 	/**
 	 * @throws IOException 
@@ -103,10 +105,13 @@ public interface IModelManager {
 
 	<T extends EObject> T loadModel(URI uri, Class<T> clazz);
 	
-	public Model loadUMLModel(String modelPath);
-	public PatternModel loadPatternModel(String patternPath);
-	public FeatureModel loadFeatureModel(String fmPath);
-	public FeatureConfiguration loadFeatureConfiguration(String fcPath);
-	public ResourceSet getResourceSet();
+	Model loadUMLModel(String modelPath);
+	PatternModel loadPatternModel(String patternPath);
+	FeatureModel loadFeatureModel(String fmPath);
+	FeatureConfiguration loadFeatureConfiguration(String fcPath);
+	ResourceSet getResourceSet();
+	Aspect loadAspectModel(String path);
+	Aspect loadAspectModel(URI uri);
 
+	URI saveModelInTemporaryFolder(Model model, String suffixe) throws IOException;
 }

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="442 383 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="1923 383 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0"/>
+  </mapping>
+  <mapping value="1520 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="2321 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.1/@groups.0"/>
+  </mapping>
+  <mapping value="2988 383 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.3/@groups.0"/>
+  </mapping>
+  <mapping value="3484 383 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.4/@groups.0"/>
+  </mapping>
+  <mapping value="3994 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="4485 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@groups.0"/>
+  </mapping>
+  <mapping value="4978 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.2/@groups.0"/>
+  </mapping>
+  <mapping value="5483 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.3/@groups.0"/>
+  </mapping>
+  <mapping value="6082 842 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="7113 842 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.2/@groups.0"/>
+  </mapping>
+  <mapping value="7973 722 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="8618 722 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.3/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="9259 503 45 45">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.5/@groups.0"/>
+  </mapping>
+  <mapping value="4637 15 177 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root"/>
+  </mapping>
+  <mapping value="4656 135 138 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="1845 255 99 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="407 375 118 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="57 495 262 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="334 495 262 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="611 495 262 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="968 375 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="903 495 218 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1900 375 91 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="1481 495 126 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1158 615 247 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1420 615 247 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="1682 615 247 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="2284 495 122 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="1959 615 247 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="2221 615 247 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="2483 615 247 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.2/@groups.0/@features.1/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="2952 375 121 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.3"/>
+  </mapping>
+  <mapping value="2768 495 240 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.3/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="3023 495 232 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.3/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="3449 375 118 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.4"/>
+  </mapping>
+  <mapping value="3285 495 219 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.4/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="3519 495 211 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.0/@features.4/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="6520 255 127 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="4686 375 158 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="3940 495 158 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="3782 615 233 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="4030 615 225 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="4437 495 146 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="4285 615 221 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="4521 615 213 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="4923 495 159 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="4764 615 234 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.2/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="5013 615 226 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.2/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="5428 495 160 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.3"/>
+  </mapping>
+  <mapping value="5269 615 235 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.3/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="5519 615 227 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.0/@features.3/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="7542 375 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="6565 495 115 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="6533 615 178 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="6061 834 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="5805 954 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="6010 954 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="6215 954 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="6576 834 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="6435 954 178 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="6628 954 178 107">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="7092 834 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="6836 954 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.2/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="7041 954 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.2/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="7246 954 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.2/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="7497 495 150 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="7482 615 178 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="7953 495 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.2"/>
+  </mapping>
+  <mapping value="7909 615 178 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0"/>
+  </mapping>
+  <mapping value="7697 834 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="7902 834 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="8107 834 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.2/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="8598 495 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.3"/>
+  </mapping>
+  <mapping value="8554 615 178 129">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.3/@features.0"/>
+  </mapping>
+  <mapping value="8342 834 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.3/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="8547 834 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.3/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="8752 834 190 85">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.3/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="9024 495 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.4"/>
+  </mapping>
+  <mapping value="8980 615 176 63">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.4/@features.0"/>
+  </mapping>
+  <mapping value="9239 495 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.5"/>
+  </mapping>
+  <mapping value="9186 615 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.5/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="9291 615 90 30">
+    <key href="AtosUCFeatureModel_B.yafm#//@root/@features.0/@features.1/@features.1/@features.5/@groups.0/@features.1"/>
+  </mapping>
+</layout:LayoutData>

@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.modeladapter/src/eu/supersede/dynadapt/modeladapter/queries/model_adapter.vql
+ */
 package eu.supersede.dynadapt.modeladapter.queries;
 
 import eu.supersede.dynadapt.modeladapter.queries.util.InstanceOfInstanceSpecificationLinkQuerySpecification;

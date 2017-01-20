@@ -34,7 +34,7 @@ public class FeatureConfigDAO implements IFeatureConfigDAO {
 	@Override
 	public FeatureConfiguration loadFeatureConfig(String featureConfigPath) throws IOException {
 		new StandaloneSetup().setPlatformUri("../");
-		return (new ModelManager()).loadFeatureConfiguration(featureConfigPath);
+		return (new ModelManager(false)).loadFeatureConfiguration(featureConfigPath);
 	}
 
 }

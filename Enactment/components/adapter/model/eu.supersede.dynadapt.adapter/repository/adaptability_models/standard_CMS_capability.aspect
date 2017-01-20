@@ -1,0 +1,22 @@
+aspect standard_cms_capability{
+	feature AtosUCFeatureModel.AtosUCFeatureModel_CMS_Capacity.Smart_Platform.Infrastructure.VM_Configurations.CMS_Configuration.CMS_Standard_Configuration,
+	advice Atos_UC_CMS_Default_Variant,
+	pointcuts {
+		pointcut CMSInstance{
+			pattern eu.supersede.dynadapt.usecases.atos.patterns.CMSInstances,
+			role ADM.Joinpoint
+		}
+	},
+	compositions {
+		composition EnableStandardConfiguration {
+			feature_enabled true, 
+			adviceRole ADM.Joinpoint,
+			action add
+		},
+		composition DisableStandardConfiguration {
+			feature_enabled false, 
+			adviceRole ADM.Joinpoint,
+			action delete
+		}
+	}
+}
