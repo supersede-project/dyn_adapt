@@ -140,7 +140,7 @@ public class ManagerTest {
 			assertEquals(updateModel.getValue("name"), "AdaptModelB");
 			assertEquals(updateModel.getValue("modelContent"), "NewContent");
 			System.out.println("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
-			manager.deleteModel("AdaptabilityModel", updateModel.getValue("id"));
+			manager.deleteModel("BaseModel", updateModel.getValue("id"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -159,7 +159,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("fileExtension"),".uml");
 			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
-			//manager.deleteModel("AdaptabilityModel", getModel.getValue("id"));
+			manager.deleteModel("BaseModel", getModel.getValue("id"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
