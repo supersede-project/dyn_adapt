@@ -17,7 +17,7 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.dynadapt.feature.serializer;
+package eu.supersede.dynadapt.serializer;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,15 @@ public class FMSerializer {
 	public static void serializeFMToArtifactsInFolder (String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
 		URI modelURI = URI.createFileURI(absoluteFMModelPath);
 		File targetFolder = new File (absoluteTargetFolderPath);
-		Main generator = new Main(modelURI, targetFolder, arguments);
+		eu.supersede.dynadapt.feature.serializer.Main generator = new eu.supersede.dynadapt.feature.serializer.Main(modelURI, targetFolder, arguments);
+		
+		generator.doGenerate(new BasicMonitor());
+	}
+	
+	public static void serializeFCToArtifactsInFolder (String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
+		URI modelURI = URI.createFileURI(absoluteFMModelPath);
+		File targetFolder = new File (absoluteTargetFolderPath);
+		eu.supersede.dynadapt.configuration.serializer.Main generator = new eu.supersede.dynadapt.configuration.serializer.Main(modelURI, targetFolder, arguments);
 		
 		generator.doGenerate(new BasicMonitor());
 	}

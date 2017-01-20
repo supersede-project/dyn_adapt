@@ -29,8 +29,8 @@ import org.eclipse.emf.common.util.URI;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.supersede.dynadapt.feature.serializer.FMSerializer;
 import eu.supersede.dynadapt.feature.serializer.Main;
+import eu.supersede.dynadapt.serializer.FMSerializer;
 
 public class FeatureModelSerializerTest {
 	private URI modelURI;
@@ -63,5 +63,13 @@ public class FeatureModelSerializerTest {
 		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
 		FMSerializer.serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
+	}
+	
+	@Test
+	public void FCSerializerFGTest () throws IOException{		
+		// NOTE: Edit this absolute paths before testing
+		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fc/FeedbackGatheringConfigCurrent.yafc";
+		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
+		FMSerializer.serializeFCToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
 	}
 }
