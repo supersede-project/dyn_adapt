@@ -1,0 +1,16 @@
+aspect timeslottwitter {
+	feature MonitoringSystem.MonitoringSystem.Social_Networks.Twitter.timeSlot,
+	pointcuts{	
+		pointcut Twitter{
+			pattern patterns.timeSlot,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition updateTimeSlot{
+			feature_enabled true,
+			jointpointRole ADM.Joinpoint,
+			action update value '500'
+		}
+	}
+}

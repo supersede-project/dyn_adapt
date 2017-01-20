@@ -1,8 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.manager.database;
 
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,7 +19,9 @@ public class DatabaseConnection {
 		
 		Properties prop = new Properties();
 		InputStream input = getClass().getResourceAsStream("config.properties");
-		if (input == null) System.out.println("UPS");
+		if (input == null) {
+			throw new FileNotFoundException("The properties file was not found");
+		}
 		prop.load(input);
 		
 		String host = prop.getProperty("dbhost");
