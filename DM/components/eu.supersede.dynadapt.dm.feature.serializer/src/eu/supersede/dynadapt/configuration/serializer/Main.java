@@ -354,12 +354,6 @@ public class Main extends AbstractAcceleoGenerator {
     @Override
     public void registerPackages(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(cz.zcu.yafmt.model.fc.FeatureConfigurationPackage.class)) {
-            resourceSet.getPackageRegistry().put(cz.zcu.yafmt.model.fc.FeatureConfigurationPackage.eINSTANCE.getNsURI(), cz.zcu.yafmt.model.fc.FeatureConfigurationPackage.eINSTANCE);
-        }
-        if (!isInWorkspace(cz.zcu.yafmt.model.fm.FeatureModelPackage.class)) {
-            resourceSet.getPackageRegistry().put(cz.zcu.yafmt.model.fm.FeatureModelPackage.eINSTANCE.getNsURI(), cz.zcu.yafmt.model.fm.FeatureModelPackage.eINSTANCE);
-        }
         
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"
