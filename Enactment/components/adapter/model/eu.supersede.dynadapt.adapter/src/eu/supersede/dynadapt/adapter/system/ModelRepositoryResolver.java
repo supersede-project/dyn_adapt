@@ -38,6 +38,9 @@ class ModelRepositoryMapping{
 		switch (system) {
 		case ATOS:
 			return  URI.createURI (atosMapping.get(type.getType()).get(type.getTimestamp()));
+		case MONITORING:
+			if (monitoringMapping.get(type.getType()) == null) System.out.println(type.getType());
+			return 	URI.createURI(monitoringMapping.get(type.getType()).get(type.getTimestamp()));
 		default:
 			//FIXME Other systems not supported
 			throw new EnactmentException("System not supported " + system.getURI());
@@ -65,5 +68,20 @@ class ModelRepositoryMapping{
 				"/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 		atosMapping.put(ResourceType.BASE, atosBaseModel);
 		atosMapping.put(ResourceType.FEATURE_CONFIGURATION, atosFeatureConfiguration);
+	}
+	
+	private static Map<ResourceType, Map<ResourceTimestamp, String>> monitoringMapping = new HashMap<>();
+	static{
+		Map<ResourceTimestamp, String> monitoringBaseModel = new HashMap<>();
+		Map<ResourceTimestamp, String> monitoringFeatureConfiguration = new HashMap<>();
+		
+		monitoringBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/MonitoringSystemBaseModel.uml");
+		monitoringFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/MonitoringSystemConfigDefault.yafc");
+		monitoringFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/MonitoringSystemConfigHighTimeslot.yafc");
+		monitoringMapping.put(ResourceType.BASE, monitoringBaseModel);
+		monitoringMapping.put(ResourceType.FEATURE_CONFIGURATION, monitoringFeatureConfiguration);
 	}
 }

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_X9w7AOJtEearSJF924JUNA" name="Atos_UC_Base_Model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_X9w7AeJtEearSJF924JUNA" name="Components">
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7AuJtEearSJF924JUNA" name="SGA">
+      <ownedAttribute xmi:id="_X9w7A-JtEearSJF924JUNA" name="conf" type="_X9w7HuJtEearSJF924JUNA" association="_X9w7quJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7BOJtEearSJF924JUNA" name="CMS"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7BeJtEearSJF924JUNA" name="CMS_Configuration">
+      <ownedAttribute xmi:id="_X9w7BuJtEearSJF924JUNA" name="url">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_X9w7B-JtEearSJF924JUNA" name="Default CMS_Configuration" value="http://www.atos.smart.eu/cms"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_X9w7COJtEearSJF924JUNA" name="number_cores">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_X9w7CeJtEearSJF924JUNA" name="memory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_X9w7CuJtEearSJF924JUNA" name="storage" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_X9w7C-JtEearSJF924JUNA" name="bandwidth" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7DOJtEearSJF924JUNA" name="Player">
+      <ownedAttribute xmi:id="_X9w7DeJtEearSJF924JUNA" name="conf" type="_X9w7HeJtEearSJF924JUNA" association="_X9w7uuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7DuJtEearSJF924JUNA" name="CDN"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7D-JtEearSJF924JUNA" name="HandShake">
+      <ownedAttribute xmi:id="_X9w7EOJtEearSJF924JUNA" name="conf" type="_X9w7G-JtEearSJF924JUNA" association="_X9w7puJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7EeJtEearSJF924JUNA" name="Load Balancer">
+      <ownedAttribute xmi:id="_X9w7EuJtEearSJF924JUNA" name="conf" type="_X9w7HOJtEearSJF924JUNA" association="_X9w7tuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7E-JtEearSJF924JUNA" name="BroadCast Center Physical">
+      <ownedAttribute xmi:id="_X9w7FOJtEearSJF924JUNA" name="conf" type="_X9w7H-JtEearSJF924JUNA" association="_X9w7vuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7FeJtEearSJF924JUNA" name="Data Center Physical">
+      <ownedAttribute xmi:id="_X9w7FuJtEearSJF924JUNA" name="conf" type="_X9w7GeJtEearSJF924JUNA" association="_X9w7wuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7F-JtEearSJF924JUNA" name="Data Center VM">
+      <ownedAttribute xmi:id="_X9w7GOJtEearSJF924JUNA" name="conf" type="_X9w7GuJtEearSJF924JUNA" association="_X9w7xuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7GeJtEearSJF924JUNA" name="DC Phys Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7GuJtEearSJF924JUNA" name="DC VM Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7G-JtEearSJF924JUNA" name="HandShake Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7HOJtEearSJF924JUNA" name="Load Balancer Configuration"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7HeJtEearSJF924JUNA" name="Player Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7HuJtEearSJF924JUNA" name="SGA Configuration"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X9w7H-JtEearSJF924JUNA" name="BC Phys Configuration"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7IOJtEearSJF924JUNA" name="Video Encoder"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7IeJtEearSJF924JUNA" name="Encoding Manager"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7IuJtEearSJF924JUNA" name="SPR"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7I-JtEearSJF924JUNA" name="DSS"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7JOJtEearSJF924JUNA" name="CRE"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_X9w7JeJtEearSJF924JUNA" name="MIP"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_X9w7JuJtEearSJF924JUNA" name="Instances">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7MuJtEearSJF924JUNA" name="ia_sga" classifier="_X9w7quJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7M-JtEearSJF924JUNA" source="InstanceEnd" references="_X9w7NuJtEearSJF924JUNA _X9w7WeJtEearSJF924JUNA"/>
+      <slot xmi:id="_X9w7NOJtEearSJF924JUNA" definingFeature="_X9w7reJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7NeJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7AuJtEearSJF924JUNA" instance="_X9w7WeJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7NuJtEearSJF924JUNA" name="SGA Default Configuration Instance" classifier="_X9w7HuJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7N-JtEearSJF924JUNA" name="HSK Default Conf Instance" classifier="_X9w7G-JtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7OOJtEearSJF924JUNA" name="HSK Instance Conf" classifier="_X9w7puJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7OeJtEearSJF924JUNA" source="InstanceEnd" references="_X9w7N-JtEearSJF924JUNA _X9w7ZuJtEearSJF924JUNA"/>
+      <slot xmi:id="_X9w7OuJtEearSJF924JUNA" definingFeature="_X9w7qeJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7O-JtEearSJF924JUNA" name="InstanceValue1" type="_X9w7D-JtEearSJF924JUNA" instance="_X9w7ZuJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7POJtEearSJF924JUNA" name="LB Default Configuration Instance " classifier="_X9w7HOJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7PeJtEearSJF924JUNA" name="LB Instance Configuration" classifier="_X9w7tuJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7PuJtEearSJF924JUNA" source="InstanceEnd" references="_X9w7POJtEearSJF924JUNA _X9w7Y-JtEearSJF924JUNA"/>
+      <slot xmi:id="_X9w7P-JtEearSJF924JUNA" definingFeature="_X9w7ueJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7QOJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7EeJtEearSJF924JUNA" instance="_X9w7Y-JtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7QeJtEearSJF924JUNA" name="Player Default Configuration Instance" classifier="_X9w7HeJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7QuJtEearSJF924JUNA" name="Player Configuration link" classifier="_X9w7uuJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7Q-JtEearSJF924JUNA" source="InstanceEnd" references="_X9w7XOJtEearSJF924JUNA _X9w7QeJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7ROJtEearSJF924JUNA" name="DC Phys Default Conf  Instance" classifier="_X9w7GeJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7ReJtEearSJF924JUNA" name="DC Phys Instance Conf link" classifier="_X9w7wuJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7RuJtEearSJF924JUNA" source="InstanceEnd" references="_X9w7ROJtEearSJF924JUNA _X9w7YOJtEearSJF924JUNA"/>
+      <slot xmi:id="_X9w7R-JtEearSJF924JUNA" definingFeature="_X9w7xeJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7SOJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7FeJtEearSJF924JUNA" instance="_X9w7YOJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7SeJtEearSJF924JUNA" name="DC VM Default Conf Instance" classifier="_X9w7GuJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7SuJtEearSJF924JUNA" name="DC VM Instance Conf link" classifier="_X9w7xuJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7S-JtEearSJF924JUNA" source="InstanceEnd" references="_X9w7SeJtEearSJF924JUNA _X9w7VuJtEearSJF924JUNA"/>
+      <slot xmi:id="_X9w7TOJtEearSJF924JUNA" definingFeature="_X9w7yeJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7TeJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7F-JtEearSJF924JUNA" instance="_X9w7VuJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7TuJtEearSJF924JUNA" name="BC Phys Default Conf Instance" classifier="_X9w7H-JtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7T-JtEearSJF924JUNA" name="BC Phys Instance Configuration link" classifier="_X9w7vuJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7UOJtEearSJF924JUNA" source="InstanceEnd" references="_X9w7TuJtEearSJF924JUNA _X9w7XeJtEearSJF924JUNA"/>
+      <slot xmi:id="_X9w7UeJtEearSJF924JUNA" definingFeature="_X9w7weJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7UuJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7E-JtEearSJF924JUNA" instance="_X9w7XeJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7U-JtEearSJF924JUNA" name="CMS Instance" classifier="_X9w7BOJtEearSJF924JUNA">
+      <slot xmi:id="_ZYVbkOJtEearSJF924JUNA">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_ZYVbkeJtEearSJF924JUNA" name="overloaded cms configuration instance" instance="_2x3PUITAEeaUVtHvx6A39w"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7VuJtEearSJF924JUNA" name="DC VM Instance" classifier="_X9w7F-JtEearSJF924JUNA">
+      <slot xmi:id="_X9w7V-JtEearSJF924JUNA" definingFeature="_X9w7GOJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7WOJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7GuJtEearSJF924JUNA" instance="_X9w7SeJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7WeJtEearSJF924JUNA" name="SGA Instance" classifier="_X9w7AuJtEearSJF924JUNA">
+      <slot xmi:id="_X9w7WuJtEearSJF924JUNA" definingFeature="_X9w7A-JtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7W-JtEearSJF924JUNA" name="InstanceValue1" type="_X9w7HuJtEearSJF924JUNA" instance="_X9w7NuJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7XOJtEearSJF924JUNA" name="Player Instance" classifier="_X9w7DOJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7XeJtEearSJF924JUNA" name="BC Phys Instance" classifier="_X9w7E-JtEearSJF924JUNA">
+      <slot xmi:id="_X9w7XuJtEearSJF924JUNA" definingFeature="_X9w7FOJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7X-JtEearSJF924JUNA" name="InstanceValue1" type="_X9w7H-JtEearSJF924JUNA" instance="_X9w7TuJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7YOJtEearSJF924JUNA" name="DC Phys Instance" classifier="_X9w7FeJtEearSJF924JUNA">
+      <slot xmi:id="_X9w7YeJtEearSJF924JUNA" definingFeature="_X9w7FuJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7YuJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7GeJtEearSJF924JUNA" instance="_X9w7ROJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7Y-JtEearSJF924JUNA" name="LB Instance" classifier="_X9w7EeJtEearSJF924JUNA">
+      <slot xmi:id="_X9w7ZOJtEearSJF924JUNA" definingFeature="_X9w7EuJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7ZeJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7HOJtEearSJF924JUNA" instance="_X9w7POJtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9w7ZuJtEearSJF924JUNA" name="HSK Instance" classifier="_X9w7D-JtEearSJF924JUNA">
+      <slot xmi:id="_X9w7Z-JtEearSJF924JUNA" definingFeature="_X9w7EOJtEearSJF924JUNA">
+        <value xmi:type="uml:InstanceValue" xmi:id="_X9w7aOJtEearSJF924JUNA" name="InstanceValue1" type="_X9w7G-JtEearSJF924JUNA" instance="_X9w7N-JtEearSJF924JUNA"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_2x3PUITAEeaUVtHvx6A39w" name="CMS Overloaded Configuration">
+      <classifier xmi:type="uml:Class" href="atos_base_model.uml#_bPtx0CMsEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_2x3PUYTAEeaUVtHvx6A39w">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_tLQXECM8EeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:LiteralInteger" xmi:id="_2x3PUoTAEeaUVtHvx6A39w" value="5"/>
+      </slot>
+      <slot xmi:id="_2x3PU4TAEeaUVtHvx6A39w">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_m_l5UCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:LiteralString" xmi:id="_2x3PVITAEeaUVtHvx6A39w" value="http://www.atos.smart.eu/cms"/>
+      </slot>
+      <slot xmi:id="_2x3PVYTAEeaUVtHvx6A39w">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_6mb_EIS-EeaUVtHvx6A39w"/>
+        <value xmi:type="uml:LiteralReal" xmi:id="_2x3PVoTAEeaUVtHvx6A39w" value="16.0"/>
+      </slot>
+      <slot xmi:id="_2x3PV4TAEeaUVtHvx6A39w">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_AfCKIIS_EeaUVtHvx6A39w"/>
+        <value xmi:type="uml:LiteralReal" xmi:id="_2x3PWITAEeaUVtHvx6A39w" value="1000.0"/>
+      </slot>
+      <slot xmi:id="_2x3PWYTAEeaUVtHvx6A39w">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_DNKkUIS_EeaUVtHvx6A39w"/>
+        <value xmi:type="uml:LiteralReal" xmi:id="_2x3PWoTAEeaUVtHvx6A39w" value="2.0"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ZhTKUOJtEearSJF924JUNA" name="InstanceSpecificationLink_OverloadedConfiguration_CMS2Configuration">
+      <classifier xmi:type="uml:Association" href="atos_base_model.uml#_f3XSYCMsEeaAV7iIHwGF1A"/>
+      <slot xmi:id="_ZhTKUeJtEearSJF924JUNA">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_f3hDYCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_ZhTKUuJtEearSJF924JUNA" name="cms1">
+          <instance href="../variants/atos_cms_overloaded_variant.uml#_xaKK0ITAEeaUVtHvx6A39w"/>
+        </value>
+      </slot>
+      <slot xmi:id="_ZhTxYOJtEearSJF924JUNA">
+        <definingFeature xmi:type="uml:Property" href="atos_base_model.uml#_f3gcUCMsEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_ZhTxYeJtEearSJF924JUNA" name="overloaded conf" instance="_2x3PUITAEeaUVtHvx6A39w"/>
+      </slot>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_X9w7b-JtEearSJF924JUNA" name="nodes">
+    <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_X9w7cOJtEearSJF924JUNA" name="DC Physical Env">
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7ceJtEearSJF924JUNA" name="SPR Service" fileName="">
+        <manifestation xmi:id="_X9w7cuJtEearSJF924JUNA" client="_X9w7ceJtEearSJF924JUNA" supplier="_X9w7IuJtEearSJF924JUNA" utilizedElement="_X9w7IuJtEearSJF924JUNA"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_X9w7c-JtEearSJF924JUNA" name="Load Balancer Node">
+      <ownedAttribute xmi:id="_X9w7dOJtEearSJF924JUNA" name="handshake" type="_X9w7d-JtEearSJF924JUNA" association="_X9w7zuJtEearSJF924JUNA"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7deJtEearSJF924JUNA" name="LB Service" fileName="">
+        <manifestation xmi:id="_X9w7duJtEearSJF924JUNA" client="_X9w7deJtEearSJF924JUNA" supplier="_X9w7Y-JtEearSJF924JUNA" utilizedElement="_X9w7Y-JtEearSJF924JUNA"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_X9w7d-JtEearSJF924JUNA" name="HandShake Node">
+      <ownedAttribute xmi:id="_X9w7eOJtEearSJF924JUNA" name="data center" type="_X9w7g-JtEearSJF924JUNA" association="_X9w7yuJtEearSJF924JUNA"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7eeJtEearSJF924JUNA" name="HSK Service" fileName="">
+        <manifestation xmi:id="_X9w7euJtEearSJF924JUNA" client="_X9w7eeJtEearSJF924JUNA" supplier="_X9w7ZuJtEearSJF924JUNA" utilizedElement="_X9w7ZuJtEearSJF924JUNA"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_X9w7e-JtEearSJF924JUNA" name="BroadCast Center">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_X9w7fOJtEearSJF924JUNA" name="BC Physical Env">
+        <ownedAttribute xmi:id="_X9w7feJtEearSJF924JUNA" name="dc physical env" type="_X9w7cOJtEearSJF924JUNA" association="_X9w7ruJtEearSJF924JUNA"/>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7fuJtEearSJF924JUNA" name="EM Service" fileName="">
+          <manifestation xmi:id="_X9w7f-JtEearSJF924JUNA" client="_X9w7fuJtEearSJF924JUNA" supplier="_X9w7IeJtEearSJF924JUNA" utilizedElement="_X9w7IeJtEearSJF924JUNA"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7gOJtEearSJF924JUNA" name="VE Service" fileName="">
+          <manifestation xmi:id="_X9w7geJtEearSJF924JUNA" client="_X9w7gOJtEearSJF924JUNA" supplier="_X9w7IOJtEearSJF924JUNA" utilizedElement="_X9w7IOJtEearSJF924JUNA"/>
+        </nestedClassifier>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_X9w7guJtEearSJF924JUNA" name="Data Center">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_X9w7g-JtEearSJF924JUNA" name="DC Virtualized Env">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7hOJtEearSJF924JUNA" name="CMS Service" fileName="">
+          <manifestation xmi:id="_X9w7heJtEearSJF924JUNA" client="_X9w7hOJtEearSJF924JUNA" supplier="_X9w7U-JtEearSJF924JUNA" utilizedElement="_X9w7U-JtEearSJF924JUNA"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7huJtEearSJF924JUNA" name="DSS Service" fileName="">
+          <manifestation xmi:id="_X9w7h-JtEearSJF924JUNA" client="_X9w7huJtEearSJF924JUNA" supplier="_X9w7I-JtEearSJF924JUNA" utilizedElement="_X9w7I-JtEearSJF924JUNA"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7iOJtEearSJF924JUNA" name="CRE Service" fileName="">
+          <manifestation xmi:id="_X9w7ieJtEearSJF924JUNA" client="_X9w7iOJtEearSJF924JUNA" supplier="_X9w7JOJtEearSJF924JUNA" utilizedElement="_X9w7JOJtEearSJF924JUNA"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7iuJtEearSJF924JUNA" name="SGA Service" fileName="">
+          <manifestation xmi:id="_X9w7i-JtEearSJF924JUNA" client="_X9w7iuJtEearSJF924JUNA" supplier="_X9w7WeJtEearSJF924JUNA"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7jOJtEearSJF924JUNA" name="MIP Service" fileName="">
+          <manifestation xmi:id="_X9w7jeJtEearSJF924JUNA" client="_X9w7jOJtEearSJF924JUNA" supplier="_X9w7JeJtEearSJF924JUNA" utilizedElement="_X9w7JeJtEearSJF924JUNA"/>
+        </nestedClassifier>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_X9w7juJtEearSJF924JUNA" name="CDN">
+      <ownedAttribute xmi:id="_X9w7j-JtEearSJF924JUNA" name="dc virtualized env" type="_X9w7c-JtEearSJF924JUNA" association="_X9w7suJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_X9w7kOJtEearSJF924JUNA" name="Player Device">
+      <ownedAttribute xmi:id="_X9w7keJtEearSJF924JUNA" name="cdn" type="_X9w7juJtEearSJF924JUNA" association="_X9w7neJtEearSJF924JUNA"/>
+      <ownedAttribute xmi:id="_X9w7kuJtEearSJF924JUNA" name="dc virtualized env" type="_X9w7g-JtEearSJF924JUNA" association="_X9w70uJtEearSJF924JUNA"/>
+      <ownedAttribute xmi:id="_X9w7k-JtEearSJF924JUNA" name="handshake" type="_X9w7d-JtEearSJF924JUNA" association="_X9w71uJtEearSJF924JUNA"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_X9w7lOJtEearSJF924JUNA" name="Player App" fileName="">
+        <manifestation xmi:id="_X9w7leJtEearSJF924JUNA" client="_X9w7lOJtEearSJF924JUNA" supplier="_X9w7XOJtEearSJF924JUNA"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_X9w7luJtEearSJF924JUNA" name="relationships">
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_X9w7l-JtEearSJF924JUNA" client="_X9w7fOJtEearSJF924JUNA" supplier="_X9w7E-JtEearSJF924JUNA" utilizedElement="_X9w7E-JtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_X9w7mOJtEearSJF924JUNA" client="_X9w7fOJtEearSJF924JUNA" supplier="_X9w7XeJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_X9w7meJtEearSJF924JUNA" client="_X9w7U-JtEearSJF924JUNA" supplier="_X9w7BOJtEearSJF924JUNA" utilizedElement="_X9w7BOJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_X9w7muJtEearSJF924JUNA" client="_X9w7cOJtEearSJF924JUNA" supplier="_X9w7FeJtEearSJF924JUNA" utilizedElement="_X9w7FeJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_X9w7m-JtEearSJF924JUNA" client="_X9w7cOJtEearSJF924JUNA" supplier="_X9w7YOJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_X9w7nOJtEearSJF924JUNA" client="_X9w7g-JtEearSJF924JUNA" supplier="_X9w7VuJtEearSJF924JUNA"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w7neJtEearSJF924JUNA" memberEnd="_X9w7keJtEearSJF924JUNA _X9w7oOJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7nuJtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7n-JtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7oOJtEearSJF924JUNA" name="player" type="_X9w7kOJtEearSJF924JUNA" association="_X9w7neJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7oeJtEearSJF924JUNA" name="CMS2Configuration" memberEnd="_X9w7peJtEearSJF924JUNA _X9w7pOJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7ouJtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7o-JtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7pOJtEearSJF924JUNA" name="cms" type="_X9w7BOJtEearSJF924JUNA" association="_X9w7oeJtEearSJF924JUNA"/>
+      <ownedEnd xmi:id="_X9w7peJtEearSJF924JUNA" name="conf" type="_X9w7BeJtEearSJF924JUNA" association="_X9w7oeJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7puJtEearSJF924JUNA" memberEnd="_X9w7EOJtEearSJF924JUNA _X9w7qeJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7p-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7qOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7qeJtEearSJF924JUNA" name="handshake" type="_X9w7D-JtEearSJF924JUNA" association="_X9w7puJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7quJtEearSJF924JUNA" memberEnd="_X9w7A-JtEearSJF924JUNA _X9w7reJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7q-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7rOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7reJtEearSJF924JUNA" name="sga" type="_X9w7AuJtEearSJF924JUNA" association="_X9w7quJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w7ruJtEearSJF924JUNA" memberEnd="_X9w7feJtEearSJF924JUNA _X9w7seJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7r-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7sOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7seJtEearSJF924JUNA" name="bc physical env" type="_X9w7fOJtEearSJF924JUNA" association="_X9w7ruJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w7suJtEearSJF924JUNA" memberEnd="_X9w7j-JtEearSJF924JUNA _X9w7teJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7s-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7tOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7teJtEearSJF924JUNA" name="player" type="_X9w7juJtEearSJF924JUNA" association="_X9w7suJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7tuJtEearSJF924JUNA" memberEnd="_X9w7EuJtEearSJF924JUNA _X9w7ueJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7t-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7uOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7ueJtEearSJF924JUNA" name="load balancer" type="_X9w7EeJtEearSJF924JUNA" association="_X9w7tuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7uuJtEearSJF924JUNA" memberEnd="_X9w7DeJtEearSJF924JUNA _X9w7veJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7u-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7vOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7veJtEearSJF924JUNA" name="player" type="_X9w7DOJtEearSJF924JUNA" association="_X9w7uuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7vuJtEearSJF924JUNA" memberEnd="_X9w7FOJtEearSJF924JUNA _X9w7weJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7v-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7wOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7weJtEearSJF924JUNA" name="broadcast center physical" type="_X9w7E-JtEearSJF924JUNA" association="_X9w7vuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7wuJtEearSJF924JUNA" memberEnd="_X9w7FuJtEearSJF924JUNA _X9w7xeJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7w-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7xOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7xeJtEearSJF924JUNA" name="data center physical" type="_X9w7FeJtEearSJF924JUNA" association="_X9w7wuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X9w7xuJtEearSJF924JUNA" memberEnd="_X9w7GOJtEearSJF924JUNA _X9w7yeJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7x-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7yOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7yeJtEearSJF924JUNA" name="data center vm" type="_X9w7F-JtEearSJF924JUNA" association="_X9w7xuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w7yuJtEearSJF924JUNA" memberEnd="_X9w7eOJtEearSJF924JUNA _X9w7zeJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7y-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w7zOJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w7zeJtEearSJF924JUNA" name="handshake" type="_X9w7d-JtEearSJF924JUNA" association="_X9w7yuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w7zuJtEearSJF924JUNA" memberEnd="_X9w7dOJtEearSJF924JUNA _X9w70eJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w7z-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w70OJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w70eJtEearSJF924JUNA" name="load balancer" type="_X9w7c-JtEearSJF924JUNA" association="_X9w7zuJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w70uJtEearSJF924JUNA" memberEnd="_X9w7kuJtEearSJF924JUNA _X9w71eJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w70-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w71OJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w71eJtEearSJF924JUNA" name="player" type="_X9w7kOJtEearSJF924JUNA" association="_X9w70uJtEearSJF924JUNA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_X9w71uJtEearSJF924JUNA" memberEnd="_X9w7k-JtEearSJF924JUNA _X9w72eJtEearSJF924JUNA">
+      <eAnnotations xmi:id="_X9w71-JtEearSJF924JUNA" source="org.eclipse.papyrus">
+        <details xmi:id="_X9w72OJtEearSJF924JUNA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_X9w72eJtEearSJF924JUNA" name="player" type="_X9w7kOJtEearSJF924JUNA" association="_X9w71uJtEearSJF924JUNA"/>
+    </packagedElement>
+  </packagedElement>
+  <profileApplication xmi:id="_X9w72uJtEearSJF924JUNA">
+    <eAnnotations xmi:id="_X9w72-JtEearSJF924JUNA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>

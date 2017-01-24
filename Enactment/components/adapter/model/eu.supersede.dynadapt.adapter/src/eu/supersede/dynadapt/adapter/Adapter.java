@@ -281,6 +281,7 @@ public class Adapter implements IAdapter {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new EnactmentException(e);
 		}
 	}
@@ -330,8 +331,31 @@ public class Adapter implements IAdapter {
 				selections.add(s1);
 			}
 		}
+		
+		/**
+		 * Monitoring UC testing
+		 */
+		for (Selection s1 : originalSelections) {
+			if (selectionIsModified(s1, newSelections)) {
+				selections.add(s1);
+			}
+		}
 
 		return selections;
+	}
+
+	private boolean selectionIsModified(Selection s1, List<Selection> list) {
+		boolean result = false;
+		
+		for (Selection s : list) {
+			if (s.getId().equals(s1.getId()) && s.getValues().size() > 0) {
+				if ( !s.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value"))
+						.equals( s1.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value")))) result = true;
+				break;
+			}
+		}
+		
+		return result;
 	}
 
 	private boolean selectionExistsInList(Selection s1, List<Selection> list) {
