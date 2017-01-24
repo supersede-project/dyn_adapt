@@ -20,10 +20,34 @@
 [file (aFeature.name.concat('.properties'), false, 'UTF-8')]
 [for (anAttribute : Attribute | aFeatureConfiguration.featureModelCopy.root.attributes)]
 [if (anAttribute.qualityAttribute)]
-[anAttribute.name/]=[aFeature.attributeValue(anAttribute.name, aFeatureConfiguration)/]
+[anAttribute.name/]=[aFeature.attributeValue(anAttribute.name, aFeatureConfiguration)/][comment Selection value not available. Get default value from feature model /][if (not valueHasBeenAlreadySerialized(aFeature.name.concat('.').concat(anAttribute.name), '1'))][aFeature.defaultAttributeValue(anAttribute.name, aFeatureConfiguration)/][/if]
 [/if]
 [/for]
 [/file]
+[/template]
+
+[template public defaultAttributeValue(aFeature : Feature, attributeName: String, aFeatureConfiguration : FeatureConfiguration) post(trim())]
+[let rootFeature : Feature = aFeatureConfiguration.featureModelCopy.root]
+[rootFeature.featureForId(aFeature.id, attributeName)/]
+[/let]
+[/template]
+
+[template public featureForId(aFeature:Feature, featureId : String, attributeName : String) post(trim())]
+[if (aFeature.id = featureId)]
+[aFeature.defaultAttributeValue (attributeName)/]
+[else]
+[for (aChildFeature : Feature | aFeature.childFeatures())]
+[aChildFeature.featureForId(featureId, attributeName)/]
+[/for]		
+[/if]
+[/template]
+
+[template public defaultAttributeValue(aFeature:Feature, attributeName : String) post(trim())]
+[for (anAttribute : Attribute | aFeature.attributes)]
+[if (anAttribute.name = attributeName)]
+[anAttribute.defaultValue /]
+[/if]
+[/for]
 [/template]
 
 [template public attributeValue(aFeature : Feature, attributeName: String, aFeatureConfiguration : FeatureConfiguration) post(trim())]
@@ -33,7 +57,9 @@
 [/template]
 
 [template public featureForId(aSelection:Selection, featureId : String, attributeName : String) post(trim())]
-[if (aSelection.id = featureId)][aSelection.attributeValue (attributeName)/][else]
+[if (aSelection.id = featureId)]
+[aSelection.attributeValue (attributeName)/]
+[else]
 [for (aChildSelection : Selection | aSelection.selections)]
 [aChildSelection.featureForId(featureId, attributeName)/]
 [/for]		
@@ -43,10 +69,22 @@
 [template public attributeValue(aSelection:Selection, attributeName : String) post(trim())]
 [for (anAttributeValue : AttributeValue | aSelection.values)]
 [if (anAttributeValue.name = attributeName)]
+[if (not valueHasBeenAlreadySerialized(anAttributeValue.attribute.feature.name.concat('.').concat(anAttributeValue.attribute.name), '2'))]
 [anAttributeValue.oclAsType(DoubleValue).value /]
 [/if]
+[/if]
 [/for]
+
 [/template]
+
+[comment NOTE: position argument is not used, but required, since, otherwise, method is not invoke in different places with same arguments.
+Therefore, position argument is required to make calls different in different positions /]
+
+[query public valueHasBeenAlreadySerialized(id: String, position:String) : Boolean = 
+    invoke(
+		'eu.supersede.dynadapt.feature.serializer.helpers.AttributeSerializationHelper', 
+		'attributeValueHasBeenSerialized(java.lang.String, java.lang.String)', Sequence{id, position})
+  /]
 
 [query public hasChildren(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) or not (aFeature.groups->isEmpty()) /]
 [query public hasANDGroup(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) /]

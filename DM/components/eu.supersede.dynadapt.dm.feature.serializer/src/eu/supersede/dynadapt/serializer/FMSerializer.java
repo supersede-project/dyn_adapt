@@ -26,9 +26,21 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import cz.zcu.yafmt.model.fc.impl.FeatureConfigurationImpl;
+import cz.zcu.yafmt.model.fm.Attribute;
+import cz.zcu.yafmt.model.fm.Feature;
+import cz.zcu.yafmt.model.fm.FeatureModel;
+import cz.zcu.yafmt.model.fm.util.FeatureModelUtil;
 
 public class FMSerializer {
 	private static List<String> arguments = new ArrayList<String>();
+	private static ResourceSet resultSet = new ResourceSetImpl();
 	
 	/**
 	 * Serializes an input feature model, as YAFMT FM instance, 
@@ -45,11 +57,56 @@ public class FMSerializer {
 		generator.doGenerate(new BasicMonitor());
 	}
 	
-	public static void serializeFCToArtifactsInFolder (String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
-		URI modelURI = URI.createFileURI(absoluteFMModelPath);
+	public static void serializeFCToArtifactsInFolder (String absoluteFCModelPath, String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
+		URI fcURI = URI.createFileURI(absoluteFCModelPath);
 		File targetFolder = new File (absoluteTargetFolderPath);
-		eu.supersede.dynadapt.configuration.serializer.Main generator = new eu.supersede.dynadapt.configuration.serializer.Main(modelURI, targetFolder, arguments);
+		eu.supersede.dynadapt.configuration.serializer.Main generator = new eu.supersede.dynadapt.configuration.serializer.Main(fcURI, targetFolder, arguments);
+		
+		//TODO: Inject in feature configuration model the default values for quality attributes in associated feature model attributes
+		FeatureConfigurationImpl fc = (FeatureConfigurationImpl)generator.getModel();
+		//Loading FM
+		URI fmURI = URI.createFileURI(absoluteFMModelPath);
+		FeatureModel fm = loadModel (fmURI, FeatureModel.class);
+		
+		//Injecting the entire fc into the fm
+		fc.setFeatureModel(fm);
+		fc.setFeatureModelCopy(fm);
 		
 		generator.doGenerate(new BasicMonitor());
+	}
+
+	private static Resource loadModel(URI uri) {
+		Resource resource;
+		try {
+			resource = resultSet.getResource(uri, true);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		if(resource != null)
+			EcoreUtil.resolveAll(resultSet);
+		return resource;
+	}
+	
+	private static <T extends EObject> T loadModel(URI uri, Class<T> clazz) {
+		Resource resource = null;
+		try {
+			resource = loadModel(uri);
+			if(resource == null)
+				return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+			
+		if(resource == null || resource.getContents().isEmpty())
+			return null;
+	
+		EObject root = resource.getContents().get(0);
+		try {
+			return clazz.cast(root);
+		} catch(ClassCastException e) {
+			return null;
+		}
 	}
 }
