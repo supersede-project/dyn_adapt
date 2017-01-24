@@ -14,4 +14,6 @@ cd ../../Enactment/services/eu.supersede.dynadapt.adapter.service/ && mvn eclips
 echo -e "\nBuilding Supersede dynamic adaptation optimizer...\n"
 cd ../../../DM/components/eu.supersede.dynadapt.dm.optimizer/ && mvn clean && mvn package
 
-
+echo -e "\nBuilding Supersede dynamic adaptation model repository...\n"
+cd ../../../Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository.manager && mvn clean install
+cd ../eu.supersede.dynadapt.modelrepository.manager.service && gradle build
