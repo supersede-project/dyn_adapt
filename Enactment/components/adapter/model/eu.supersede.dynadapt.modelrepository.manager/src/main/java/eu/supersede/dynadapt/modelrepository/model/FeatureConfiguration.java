@@ -1,12 +1,14 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
+import java.sql.Timestamp;
+
 public class FeatureConfiguration extends IModel {
 	
 	private String id;
 	private String name;
 	private String authorId;
-	private String creationDate;
-	private String lastModificationDate;
+	private Timestamp creationDate;
+	private Timestamp lastModificationDate;
 	private String fileExtension;
 	private String systemId;
 	private String status;
@@ -30,16 +32,16 @@ public class FeatureConfiguration extends IModel {
 	public void setAuthorId(String authorId) {
 		this.authorId = authorId;
 	}
-	public String getCreationDate() {
+	public Timestamp getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(String creationDate) {
+	public void setCreationTimestamp(Timestamp creationDate) {
 		this.creationDate = creationDate;
 	}
-	public String getLastModificationDate() {
+	public Timestamp getLastModificationDate() {
 		return lastModificationDate;
 	}
-	public void setLastModificationDate(String lastModificationDate) {
+	public void setLastModificationDate(Timestamp lastModificationDate) {
 		this.lastModificationDate = lastModificationDate;
 	}
 	public String getFileExtension() {

@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 public abstract class IModel {
 
-	public void setValue(String property, String value) throws Exception {
+	public void setValue(String property, Object value) throws Exception {
 		
 		Field f;
 		try {
@@ -17,7 +17,7 @@ public abstract class IModel {
 
 	}
 
-	public String getValue(String property) throws Exception {
+	public Object getValue(String property) throws Exception {
 		
 		Field f;
 		try {
@@ -26,7 +26,7 @@ public abstract class IModel {
 			throw new Exception("This type of model does not have a " + property + " field");
 		} 
 		f.setAccessible(true);
-		return (String) f.get(this);
+		return f.get(this).toString();
 		
 	}
 }

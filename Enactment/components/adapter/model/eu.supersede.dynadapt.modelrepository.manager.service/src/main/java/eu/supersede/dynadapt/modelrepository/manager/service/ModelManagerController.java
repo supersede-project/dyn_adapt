@@ -2,6 +2,7 @@ package eu.supersede.dynadapt.modelrepository.manager.service;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -24,7 +24,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
-import eu.supersede.dynadapt.modelrepository.manager.service.utils.Response;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
 
 @RestController
@@ -73,17 +72,19 @@ public class ModelManagerController {
 		try {
 			classObject = Class.forName(packageRoute + modelType);
 		} catch (ClassNotFoundException e) {
-			return Response.error("There is no model type with this name");
+			throw new ResourceNotFoundException();
 		}
 		JsonArray array = jsonObject.get("modelInstances").getAsJsonArray();
 		List<IModel> models = new ArrayList<>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		mapper.setDateFormat(format);
 		for (int i = 0; i < array.size(); ++i) {
 			JsonObject jsonModel = array.get(i).getAsJsonObject();
 			try {
 				IModel model = (IModel) mapper.readValue(jsonModel.toString(), classObject);
 				models.add(model);
 			} catch (IOException e) {
-				return Response.error(e.getMessage());
+				throw new UnprocessableEntityException();
 			}
 		}
 		try {
@@ -92,7 +93,7 @@ public class ModelManagerController {
 			mapper.writeValue(writer, models);
 			return writer.toString();
 		} catch (Exception e) {
-			return Response.error(e.getMessage());
+			throw new UnprocessableEntityException();
 		}
 		
 	}
@@ -105,15 +106,17 @@ public class ModelManagerController {
 		try {
 			model = manager.getModel(modelType, modelId);
 		} catch (Exception e) {
-			return Response.error("There is no model with this id for this type");
+			throw new ResourceNotFoundException();
 		}
 		try {
 			ObjectMapper mapper = new ObjectMapper();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+			mapper.setDateFormat(format);
 			StringWriter writer = new StringWriter();
 			mapper.writeValue(writer, model);
 			response = writer.toString();
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new UnprocessableEntityException();
 		}
 		return response;
 	}
@@ -130,23 +133,34 @@ public class ModelManagerController {
 		try {
 			IModel model = manager.updateModel(modelType, modelId, propertySet);
 			ObjectMapper mapper = new ObjectMapper();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+			mapper.setDateFormat(format);
 			StringWriter writer = new StringWriter();
 			mapper.writeValue(writer, model);
 			return writer.toString();
 		} catch (Exception e) {
-			return Response.error(e.getMessage());
+			throw new UnprocessableEntityException();
 		}
 	}
 	
 	@RequestMapping(value="/{modelType}/{modelId}", method = RequestMethod.DELETE)
-	@ResponseStatus(value = HttpStatus.OK)
-	public String deleteModel(@PathVariable String modelType, @PathVariable String modelId) {
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) {
 		try {
 			manager.deleteModel(modelType, modelId);
 		} catch (Exception e) {
-			return Response.error(e.getMessage());
+			throw new ResourceNotFoundException();
 		}
-		return Response.response("Model " + modelId + " has been deleted");
+	}
+	
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public class ResourceNotFoundException extends RuntimeException {
+	    
+	}
+	
+	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+	public class UnprocessableEntityException extends RuntimeException {
+	    
 	}
 
 }
