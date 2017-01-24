@@ -112,6 +112,7 @@ public class ModelAdapter implements IModelAdapter {
 					UMLPackage.eINSTANCE.getLiteralReal());
 			value.setValue(Double.valueOf(newValue));
 		}
+		log.debug("Updated property value of " + feat.getName() + " with " + newValue);
 
 		return inBaseModel;
 	}
