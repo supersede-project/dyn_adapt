@@ -60,7 +60,7 @@ public class ContentFileManager implements IContentFileManager {
 		String path = storagePath 
 				+ "/" + model.getClass().getSimpleName()
 				+ "/" + model.getValue("systemId");
-		String fileName = model.getValue("id") + model.getValue("fileExtension");
+		String fileName = model.getValue("id") + model.getValue("fileExtension").toString();
 		return path + "/" + fileName;
 	}
 	

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,13 @@ public class DatabaseController implements IDatabaseController {
 		while (rs.next()) {
 			IModel model = (IModel) classObject.newInstance();
 			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-				if (!rsmd.getColumnName(i).equals("filePath")) model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
+				String name = rsmd.getColumnName(i);
+				if (!name.equals("filePath")) {
+					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
+						model.setValue(name, rs.getTimestamp(name));
+					}
+					else model.setValue(name, rs.getString(name));
+				}
 			}
 			modelList.add(model);
 		}
@@ -97,7 +104,13 @@ public class DatabaseController implements IDatabaseController {
 		if (!rs.next()) throw new Exception("There is no " + type + " with this id");
 		
 		for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-			if (!rsmd.getColumnName(i).equals("filePath")) model.setValue(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
+			if (!rsmd.getColumnName(i).equals("filePath")) {
+				String name = rsmd.getColumnName(i);
+				if (name.equals("creationDate") || name.equals("lastModificationDate")) {
+					model.setValue(name, rs.getTimestamp(name));
+				}
+				else model.setValue(name, rs.getString(name));
+			}
 		}
 		String content = contentFileManager.loadModelContent(model);
 		model.setValue("modelContent", content);
