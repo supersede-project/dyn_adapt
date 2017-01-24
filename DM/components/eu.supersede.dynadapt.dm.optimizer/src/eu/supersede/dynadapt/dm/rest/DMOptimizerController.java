@@ -1,6 +1,9 @@
 package eu.supersede.dynadapt.dm.rest;
 
-import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +15,8 @@ import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dynadapt.dm.optimizer.gp.algorithm.SteadyStateGP;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
-import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
-import eu.supersede.dynadapt.feature.serializer.FMSerializer;
+import eu.supersede.dynadapt.serializer.FMSerializer;
 
 @RestController
 public class DMOptimizerController {
@@ -40,26 +42,40 @@ public class DMOptimizerController {
 //	}
 	
 	@RequestMapping("/optimize")
-	public FeatureConfiguration optimize (@RequestParam(value="featureModelURI", defaultValue="") String fmURI, 
-			@RequestParam(value="currentConfig", defaultValue="") String currentConfig, 
-			@RequestParam(value="qualityAttributePath", defaultValue="") String qualityAttributePath,
+	public FeatureConfiguration optimize (
+			@RequestParam(value="featureModelURI", defaultValue="") String fmURI, 
+			@RequestParam(value="featureConfigurationURI", defaultValue="") String fcURI,
 			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
 			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
-			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) throws IOException {
+			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) throws Exception {
 //		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
-		//TODO Serialize input FC to grammar and QualityAttribute JSON. Pass grammar and quality attributes URIs
+		//Serialize input FC to grammar and QualityAttribute JSON. Pass grammar and quality attributes URIs
 		//modelURI points at generated grammar from Input FM
 		//currentConfig is a column (newline separated list of) enabled features in current configuration
 		//qualityAttributePath is 
 		System.out.println(fmURI);
 		
-		//TODO Generate grammar and attribute_metadata.json from fmURI
-		//TODO Inject  attribute_metadata.json in Parameters.ATTRIBUTE_Metadata
-		String fmFolder = getFolder (fmURI);
-		FMSerializer.serializeFMToArtifactsInFolder(fmURI, fmFolder);
+		//Generate grammar and attribute_metadata.json from fmURI
+		//Inject  attribute_metadata.json in Parameters.ATTRIBUTE_Metadata
+		//Generate feature.properties file for each FM quality attributes. Attribute values are taken from:
+		// input FC->selection (feature)->attributeValue->value, if feature is selected in FC, otherwise
+		// from FM->feature->attribute->defaultValue
+		// Generate current configuration from input FC
+		//String fmFolder = getFolder (fmURI);
+		//Map qualityAttributePath to temporary folder where serialized files are placed.
+		
+		//Creating temporary folder for serialized models
+		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
+		Path temporaryFolder = Files.createTempDirectory(path, "");
+		String temp = temporaryFolder.toString();
+		
+		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
+		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
 		String modelURI = fmURI.replace("yafm", "bnf");
 		Parameters.ATTRIBUTE_METADATA = fmURI.replace("yafm", "json");
+		String qualityAttributePath = temp;
+		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
 		String optimalConfig = null;
 		if (!multiObjective){
@@ -73,6 +89,11 @@ public class DMOptimizerController {
 		return fc;
 	}
 	
+	private String getFileNameOfPath(String path) {
+		// Return the file name in path
+		return path.substring(path.lastIndexOf('/'));
+	}
+
 	String getFolder (String urlString){
 		return urlString.substring(0, urlString.lastIndexOf('/'));
 	}
