@@ -10,7 +10,8 @@
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <mars-repo.url>http://download.eclipse.org/releases/mars</mars-repo.url>
   <neon-repo.url>http://download.eclipse.org/releases/neon</neon-repo.url>
-  <yafmt-repo.url>https://dl.dropboxusercontent.com/u/13167516/yafmt/</yafmt-repo.url>
+  <!--<yafmt-repo.url>https://dl.dropboxusercontent.com/u/13167516/yafmt/</yafmt-repo.url>-->
+  <yafmt-repo.url>file:///home/yosu/Projects/Supersede/Git/dyn_adapt/YAFMT/cz.zcu.yafmt.update/</yafmt-repo.url>
  </properties>
 
  <repositories>

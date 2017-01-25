@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2016 Obeo.
+ * Copyright (c) 2008, 2012 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package eu.supersede.dynadapt.feature.serializer;
+package eu.supersede.dynadapt.configuration.serializer;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import cz.zcu.yafmt.model.fc.util.FeatureConfigurationUtil;
 import cz.zcu.yafmt.model.fm.util.FeatureModelUtil;
 
 /**
@@ -37,24 +38,25 @@ public class Main extends AbstractAcceleoGenerator {
 	 * Static registration of FeatureModel meta-model
 	 */
 	static{
+		FeatureConfigurationUtil.hookPackageRegistry();
+		FeatureConfigurationUtil.hookResourceFactoryRegistry();
 		FeatureModelUtil.hookPackageRegistry();
 		FeatureModelUtil.hookResourceFactoryRegistry();
 	}
-	
 	
     /**
      * The name of the module.
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/eu/supersede/dynadapt/feature/serializer/main";
+    public static final String MODULE_FILE_NAME = "/eu/supersede/dynadapt/configuration/serializer/main";
     
     /**
      * The name of the templates that are to be generated.
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "mainFeatureModel" };
+    public static final String[] TEMPLATE_NAMES = { "mainFeatureConfiguration" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
