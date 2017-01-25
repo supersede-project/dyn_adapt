@@ -70,6 +70,12 @@ public class FeatureonfigurationBuilderTest {
 	}
 	
 	@Test
+	public void getFeatureByNameTest(){
+		Feature feature = FeatureModelUtility.getFeatureByName(fm, "ShareWithAll");
+		Assert.assertNotNull(feature);
+	}
+	
+	@Test
 	public void getParentFeatureTest(){
 		Feature feature = FeatureModelUtility.getFeatureById(fm, "sharewithallhelpdesk");
 		Assert.assertNotNull(feature);

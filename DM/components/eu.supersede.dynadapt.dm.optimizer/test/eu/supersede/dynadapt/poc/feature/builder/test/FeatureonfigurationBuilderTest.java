@@ -43,7 +43,8 @@ public class FeatureonfigurationBuilderTest {
 	
 	@Before
 	public void setup(){
-		String fmPath = "./features/FeedbackGathering.yafm";
+//		String fmPath = "./features/FeedbackGathering.yafm";
+		String fmPath = "./input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
 		
 		
 		fcb = new FeatureConfigurationBuilder();
@@ -53,8 +54,13 @@ public class FeatureonfigurationBuilderTest {
 	
 	@Test
 	public void buildFeatureConfigurationTest() throws IOException{
+//		List<String> selectedFeatureIds = 
+//				Arrays.asList("rating", "selectcategory", "sharewithallhelpdesk", "popup", "android");
+		
 		List<String> selectedFeatureIds = 
-				Arrays.asList("rating", "selectcategory", "sharewithallhelpdesk", "popup", "android");
+				Arrays.asList("annotation", "selectcategory", "sharewithall", "link", "confirmationmessage");
+		
+		
 		String fcPath = "./features/FeedbackGatheringConf.yafc";
 		
 		FeatureConfiguration fc = 
