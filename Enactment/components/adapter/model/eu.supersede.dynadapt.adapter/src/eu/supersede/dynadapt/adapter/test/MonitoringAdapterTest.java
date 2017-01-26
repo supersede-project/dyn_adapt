@@ -77,24 +77,6 @@ public class MonitoringAdapterTest {
 		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/monitoring/patterns/");
 		modelsLocation.put("features", "features/models/");
 	}
-
-	/*@Before
-	public void setUp() throws Exception {
-		new StandaloneSetup().setPlatformUri("../");
-		modelsLocation = new HashMap<String, String>();
-		modelsLocation.put("aspects", "adaptability_models/");
-		modelsLocation.put("variants", "uml_models/variants/");
-		modelsLocation.put("base", "uml_models/base/");
-		modelsLocation.put("profiles", "uml_models/profiles/");
-		modelsLocation.put("patterns", "patterns/");
-		modelsLocation.put("features", "features/models/");
-		
-		url = new URL(localPath);
-		mm = new ModelManager(baseModelPath);
-		mr = new ModelRepository(repository,url, mm);
-		
-		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
-	}*/
 	
 	@Test
 	public void testMonitoringUCAdaptation() {
@@ -112,25 +94,6 @@ public class MonitoringAdapterTest {
 			e.printStackTrace();
 		}
 	}
-	
-	/*@Test
-	public void adapt() {
-		try {
-			adapter = new Adapter(mr, mm, modelsLocation, localPath);
-			Model baseModel = mm.loadUMLModel(baseModelPath); //FIXME Already loaded during ModelManager instantiation
-			
-			FeatureModel featureModel = mm.loadFeatureModel(featureModelPath);
-			List<Aspect> a = mr.getAspectModels("timeSlot_twitter", modelsLocation);
-			FeatureConfiguration featureConfig = mm.loadFeatureConfiguration(featureConfigPath);
-
-			Model model = adapter.adapt(featureModel, featureConfig, a.get(0), baseModel);
-			
-			System.out.println("Saving model");
-			save(model, URI.createURI(repository + modelsLocation.get("base") + "MonitoringSystemAdaptedBaseModel.uml"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
 	
 	protected void save(Model model, URI uri) {
 

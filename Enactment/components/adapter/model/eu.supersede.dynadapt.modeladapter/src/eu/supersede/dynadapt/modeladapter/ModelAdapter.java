@@ -91,25 +91,18 @@ public class ModelAdapter implements IModelAdapter {
 	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) {
 
 		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
-		for (Element e : jointpointBaseModelSlot.allOwnedElements()) {
-			e.destroy();
-		}
 
 		if (feat.getType().getName().equals("Integer")) {
-			LiteralInteger value = (LiteralInteger) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralInteger());
+			LiteralInteger value = ((LiteralInteger) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(Integer.valueOf(newValue));
 		} else if (feat.getType().getName().equals("Boolean")) {
-			LiteralBoolean value = (LiteralBoolean) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralBoolean());
+			LiteralBoolean value = ((LiteralBoolean) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(Boolean.valueOf(newValue));
 		} else if (feat.getType().getName().equals("String")) {
-			LiteralString value = (LiteralString) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralString());
+			LiteralString value = ((LiteralString) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(newValue);
 		} else if (feat.getType().getName().equals("Real")) {
-			LiteralReal value = (LiteralReal) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralReal());
+			LiteralReal value = ((LiteralReal) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(Double.valueOf(newValue));
 		}
 		log.debug("Updated property value of " + feat.getName() + " with " + newValue);

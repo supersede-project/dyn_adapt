@@ -22,7 +22,9 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -178,12 +180,12 @@ public class Adapter implements IAdapter {
 				for (Pointcut p : pointcuts) {
 					role = p.getRole();
 					matchingElements.put(role, new ArrayList<>());
-					log.debug("\t\tRole: " + role.getName());
+					log.debug("\tRole: " + role.getName());
 					//FIXME matching elements (elements stereotyped with jointpoint must be found in cloned model, not in baseModel
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
-						log.debug("\t\t\tMatching Element: " + e);
+						log.debug("\tMatching Element: " + e);
 						matchingElements.get(role).add(e);
 					}
 				}
@@ -276,7 +278,10 @@ public class Adapter implements IAdapter {
 			Model model = adapt(changedSelections, baseModel);
 
 			if (model != null){
-				URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
+				//URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
+				//log.debug("Saved updated model in " + uri);
+				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + "Adapted.uml");
+				mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
 
