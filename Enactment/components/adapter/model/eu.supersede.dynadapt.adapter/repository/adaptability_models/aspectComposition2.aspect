@@ -1,0 +1,17 @@
+aspect sc2 {
+	feature FeatureModel.Service_management.Service_Compositions.SC2,
+	advice Siemens_Variant_SC2,
+	pointcuts{	
+		pointcut GMDService{
+			pattern patterns.GetMeteorologicalDataServices,//create this pattern
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition replaceGMDServiceBySC2{
+			feature_enabled true,
+			jointpointRole ADM.Joinpoint,
+			action replace
+		}
+	}
+}

@@ -39,8 +39,9 @@ class ModelRepositoryMapping{
 		case ATOS:
 			return  URI.createURI (atosMapping.get(type.getType()).get(type.getTimestamp()));
 		case MONITORING:
-			if (monitoringMapping.get(type.getType()) == null) System.out.println(type.getType());
 			return 	URI.createURI(monitoringMapping.get(type.getType()).get(type.getTimestamp()));
+		case SIEMENS:
+			return URI.createURI(siemensMapping.get(type.getType()).get(type.getTimestamp()));
 		default:
 			//FIXME Other systems not supported
 			throw new EnactmentException("System not supported " + system.getURI());
@@ -83,5 +84,20 @@ class ModelRepositoryMapping{
 				"/features/configurations/MonitoringSystemConfigHighTimeslot.yafc");
 		monitoringMapping.put(ResourceType.BASE, monitoringBaseModel);
 		monitoringMapping.put(ResourceType.FEATURE_CONFIGURATION, monitoringFeatureConfiguration);
+	}
+	
+	private static Map<ResourceType, Map<ResourceTimestamp, String>> siemensMapping = new HashMap<>();
+	static{
+		Map<ResourceTimestamp, String> siemensBaseModel = new HashMap<>();
+		Map<ResourceTimestamp, String> siemensFeatureConfiguration = new HashMap<>();
+		
+		siemensBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/BaseModel-S1.uml");
+		siemensFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/FeatureConfiguration-S1.yafc");
+		siemensFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/FeatureConfiguration-S1.yafc");
+		siemensMapping.put(ResourceType.BASE, siemensBaseModel);
+		siemensMapping.put(ResourceType.FEATURE_CONFIGURATION, siemensFeatureConfiguration);
 	}
 }

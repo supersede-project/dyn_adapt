@@ -280,7 +280,7 @@ public class Adapter implements IAdapter {
 			if (model != null){
 				//URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
 				//log.debug("Saved updated model in " + uri);
-				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + "Adapted.uml");
+				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
 				mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
@@ -290,7 +290,7 @@ public class Adapter implements IAdapter {
 			throw new EnactmentException(e);
 		}
 	}
-
+	
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig,
 			FeatureConfiguration newFeatureConfig) {
 		FeatureModel fm = originalFeatureConfig.getFeatureModelCopy();

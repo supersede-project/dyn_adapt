@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-WrlYGhVEeaUmbAUinmY7w" name="Siemens_Variant_SC2">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_-XF1EGhVEeaUmbAUinmY7w" name="GetMeteorologicalData (requirements: availability: above 95%, format: F1, quality of data: provided)" node="_MIUwUGhWEeaUmbAUinmY7w _OPWuQGhWEeaUmbAUinmY7w _etPOQGhcEeaUmbAUinmY7w _sE5L4GhcEeaUmbAUinmY7w">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_qhgEIGqZEea9j5eeGnhsGg" target="_etPOQGhcEeaUmbAUinmY7w" source="_MIUwUGhWEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rHBMAGqZEea9j5eeGnhsGg" target="_sE5L4GhcEeaUmbAUinmY7w" source="_etPOQGhcEeaUmbAUinmY7w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rrDtMGqZEea9j5eeGnhsGg" target="_OPWuQGhWEeaUmbAUinmY7w" source="_sE5L4GhcEeaUmbAUinmY7w"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_MIUwUGhWEeaUmbAUinmY7w" outgoing="_qhgEIGqZEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_OPWuQGhWEeaUmbAUinmY7w" incoming="_rrDtMGqZEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_etPOQGhcEeaUmbAUinmY7w" name="ServiceS2" incoming="_qhgEIGqZEea9j5eeGnhsGg" outgoing="_rHBMAGqZEea9j5eeGnhsGg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_sE5L4GhcEeaUmbAUinmY7w" name="ServiceS5" incoming="_rHBMAGqZEea9j5eeGnhsGg" outgoing="_rrDtMGqZEea9j5eeGnhsGg"/>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_eztYoOPtEea5QpBMs7g-qA" name="MonitoringSystemBaseModel">
+  <packagedElement xmi:type="uml:Class" xmi:id="_eztYoePtEea5QpBMs7g-qA" name="AMonitorConfiguration" visibility="private" isAbstract="true">
+    <ownedAttribute xmi:id="_eztYouPtEea5QpBMs7g-qA" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYo-PtEea5QpBMs7g-qA" name="toolName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYpOPtEea5QpBMs7g-qA" name="state">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYpePtEea5QpBMs7g-qA" name="timeSlot">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYpuPtEea5QpBMs7g-qA" name="kafkaEndpoint">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYp-PtEea5QpBMs7g-qA" name="kafkaTopic">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <qualifier xmi:id="_eztYqOPtEea5QpBMs7g-qA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eztYqePtEea5QpBMs7g-qA" name="MonitoringSystemConfiguration">
+    <ownedAttribute xmi:id="_eztYquPtEea5QpBMs7g-qA" name="timeStamp">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYq-PtEea5QpBMs7g-qA" name="configSender">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztYrOPtEea5QpBMs7g-qA" name="monConfigProfiles" type="_eztYoePtEea5QpBMs7g-qA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eztYrePtEea5QpBMs7g-qA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eztYruPtEea5QpBMs7g-qA" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eztYr-PtEea5QpBMs7g-qA" name="" visibility="public"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_eztYsOPtEea5QpBMs7g-qA" name="OlympicGamesTwitterMonitor" classifier="_eztY1ePtEea5QpBMs7g-qA">
+    <slot xmi:id="_eztYsePtEea5QpBMs7g-qA" definingFeature="_eztYo-PtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYsuPtEea5QpBMs7g-qA" name="toolName" value="TwitterAPI"/>
+    </slot>
+    <slot xmi:id="_eztYs-PtEea5QpBMs7g-qA" definingFeature="_eztYpOPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYtOPtEea5QpBMs7g-qA" name="state" value="active"/>
+    </slot>
+    <slot xmi:id="_eztYtePtEea5QpBMs7g-qA" definingFeature="_eztYpePtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_eztYtuPtEea5QpBMs7g-qA" name="timeSlot" value="500"/>
+    </slot>
+    <slot xmi:id="_eztYt-PtEea5QpBMs7g-qA" definingFeature="_eztYpuPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYuOPtEea5QpBMs7g-qA" name="kakfaEndpoint" value="http://localhost:9092"/>
+    </slot>
+    <slot xmi:id="_eztYuePtEea5QpBMs7g-qA" definingFeature="_eztYp-PtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYuuPtEea5QpBMs7g-qA" name="kafkaTopic" value="olympicGamesTwitterMonitoring"/>
+    </slot>
+    <slot xmi:id="_eztYu-PtEea5QpBMs7g-qA" definingFeature="_eztY1-PtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYvOPtEea5QpBMs7g-qA" name="keywordExpression" value="keyword1 AND keyword2"/>
+    </slot>
+    <slot xmi:id="_eztYvePtEea5QpBMs7g-qA" definingFeature="_eztYouPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYvuPtEea5QpBMs7g-qA" name="id" value="2"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_eztYv-PtEea5QpBMs7g-qA" visibility="public" memberEnd="_eztYw-PtEea5QpBMs7g-qA _eztYwuPtEea5QpBMs7g-qA">
+    <eAnnotations xmi:id="_eztYwOPtEea5QpBMs7g-qA" source="org.eclipse.papyrus">
+      <details xmi:id="_eztYwePtEea5QpBMs7g-qA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_eztYwuPtEea5QpBMs7g-qA" name="monitoringsystem" type="_eztYqePtEea5QpBMs7g-qA" association="_eztYv-PtEea5QpBMs7g-qA"/>
+    <ownedEnd xmi:id="_eztYw-PtEea5QpBMs7g-qA" name="monitor" type="_eztYoePtEea5QpBMs7g-qA" aggregation="composite" association="_eztYv-PtEea5QpBMs7g-qA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eztYxOPtEea5QpBMs7g-qA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eztYxePtEea5QpBMs7g-qA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_eztYxuPtEea5QpBMs7g-qA" name="OlympicGamesMarketPlacesMonitor" classifier="_ezt_s-PtEea5QpBMs7g-qA">
+    <slot xmi:id="_eztYx-PtEea5QpBMs7g-qA" definingFeature="_eztYo-PtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYyOPtEea5QpBMs7g-qA" name="toolName" value="GooglePlayAPI"/>
+    </slot>
+    <slot xmi:id="_eztYyePtEea5QpBMs7g-qA" definingFeature="_ezt_tePtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYyuPtEea5QpBMs7g-qA" name="packageName" value="olympicGamesPlayer"/>
+    </slot>
+    <slot xmi:id="_eztYy-PtEea5QpBMs7g-qA" definingFeature="_eztYpePtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_eztYzOPtEea5QpBMs7g-qA" name="timeSlot" value="800"/>
+    </slot>
+    <slot xmi:id="_eztYzePtEea5QpBMs7g-qA" definingFeature="_eztYpuPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztYzuPtEea5QpBMs7g-qA" name="KafkaEndpoint" value="http://localhost:9092"/>
+    </slot>
+    <slot xmi:id="_eztYz-PtEea5QpBMs7g-qA" definingFeature="_eztYp-PtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztY0OPtEea5QpBMs7g-qA" name="kafkaTopic" value="marketPlacesMonitoring"/>
+    </slot>
+    <slot xmi:id="_eztY0ePtEea5QpBMs7g-qA" definingFeature="_eztYpOPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztY0uPtEea5QpBMs7g-qA" name="state" value="active"/>
+    </slot>
+    <slot xmi:id="_eztY0-PtEea5QpBMs7g-qA" definingFeature="_eztYouPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_eztY1OPtEea5QpBMs7g-qA" name="id" value="3"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eztY1ePtEea5QpBMs7g-qA" name="SocialNetworks">
+    <generalization xmi:id="_eztY1uPtEea5QpBMs7g-qA" general="_eztYoePtEea5QpBMs7g-qA"/>
+    <ownedAttribute xmi:id="_eztY1-PtEea5QpBMs7g-qA" name="keywordExpression">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <qualifier xmi:id="_eztY2OPtEea5QpBMs7g-qA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eztY2ePtEea5QpBMs7g-qA" name="accounts">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ezt_sOPtEea5QpBMs7g-qA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ezt_sePtEea5QpBMs7g-qA" value="*"/>
+      <qualifier xmi:id="_ezt_suPtEea5QpBMs7g-qA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ezt_s-PtEea5QpBMs7g-qA" name="MarketPlaces">
+    <generalization xmi:id="_ezt_tOPtEea5QpBMs7g-qA" general="_eztYoePtEea5QpBMs7g-qA"/>
+    <ownedAttribute xmi:id="_ezt_tePtEea5QpBMs7g-qA" name="packageName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_ezt_tuPtEea5QpBMs7g-qA" client="_eztYsOPtEea5QpBMs7g-qA" supplier="_eztY1ePtEea5QpBMs7g-qA"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ezt_t-PtEea5QpBMs7g-qA" name="MonitoringSystemConfiguration">
+    <slot xmi:id="_ezt_uOPtEea5QpBMs7g-qA" definingFeature="_eztYquPtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_ezt_uePtEea5QpBMs7g-qA" name="timeStamp" value="Sat June 08 02:16:57 2016"/>
+    </slot>
+    <slot xmi:id="_ezt_uuPtEea5QpBMs7g-qA" definingFeature="_eztYq-PtEea5QpBMs7g-qA">
+      <value xmi:type="uml:LiteralString" xmi:id="_ezt_u-PtEea5QpBMs7g-qA" name="configSender" value="WP4"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_ezt_vOPtEea5QpBMs7g-qA" client="_eztYxuPtEea5QpBMs7g-qA" supplier="_ezt_s-PtEea5QpBMs7g-qA"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_ezt_vePtEea5QpBMs7g-qA" client="_ezt_t-PtEea5QpBMs7g-qA" supplier="_eztYqePtEea5QpBMs7g-qA"/>
+</uml:Model>

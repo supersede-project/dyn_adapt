@@ -38,5 +38,5 @@ pattern twitterTimeSlot(slot) {
 	Slot.definingFeature.name(slot, name);
 	Slot.owningInstance.classifier.name(slot, instanceName);
 	check(name.equals("timeSlot"));
-	check(instanceName.equals("SocialNetworksMonitorConfiguration"));
+	check(instanceName.equals("SocialNetworks"));
 }
