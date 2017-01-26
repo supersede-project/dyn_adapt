@@ -104,6 +104,7 @@ public interface IModelManager {
 	 */
 
 	<T extends EObject> T loadModel(URI uri, Class<T> clazz);
+	<T extends EObject> T loadModel(String path, Class<T> clazz);
 	
 	Model loadUMLModel(String modelPath);
 	PatternModel loadPatternModel(String patternPath);

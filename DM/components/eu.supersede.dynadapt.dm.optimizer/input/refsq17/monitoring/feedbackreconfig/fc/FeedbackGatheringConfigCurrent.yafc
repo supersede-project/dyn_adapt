@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringConfigCurrent" version="1.0.0">
+  <featureModel href="../fm/FeedbackGatheringConfig.yafm#/"/>
+  <featureModelCopy name="FeedbackGatheringConfig" version="1.0.0">
+    <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+      <attribute id="a_772978206" name="memory_consumption" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="0.5" minimize="true" objectiveFunctionAggregator="sum"/>
+      <attribute id="a_1543580528" name="response_time" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="0.25" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+      <attribute id="a_687735495" name="availability" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="1" weight="0.5" objectiveFunctionAggregator="product"/>
+      <feature id="feedbackissue" name="FeedbackIssue" lower="1" upper="1">
+        <attribute id="language" name="language" type="string"/>
+        <feature id="mechanism" name="Mechanism" lower="1" upper="4">
+          <feature id="audio" name="Audio" lower="0" upper="1">
+            <attribute id="a_1692518866" name="order" type="integer"/>
+            <attribute id="a_1827679124" name="title" type="string"/>
+            <attribute id="a_1525523262" name="maxTime" type="integer" description=""/>
+            <attribute id="a_3561686" name="memory_consumption" type="double"/>
+            <attribute id="a_1146828058" name="response_time" type="double"/>
+            <attribute id="a_965772941" name="availability" type="double"/>
+          </feature>
+          <feature id="rating" name="Rating" lower="0" upper="1">
+            <attribute id="a_689581445" name="order" type="integer"/>
+            <attribute id="a_139048492" name="title" type="string"/>
+            <attribute id="a_683258672" name="ratingIcon" type="string"/>
+            <attribute id="a_343221669" name="maxRating" type="integer"/>
+            <attribute id="a_412486530" name="memory_consumption" type="double"/>
+            <attribute id="a_1998410169" name="response_time" type="double"/>
+            <attribute id="a_498242695" name="availability" type="double"/>
+          </feature>
+          <feature id="textfeedback" name="TextFeedback" lower="0" upper="1">
+            <attribute id="position" name="order" type="integer"/>
+            <attribute id="title" name="title" type="string"/>
+            <attribute id="lenght" name="maxLenght" type="integer"/>
+            <attribute id="a_2124229747" name="hint" type="string"/>
+            <attribute id="a_1296725815" name="label" type="string"/>
+            <attribute id="a_1550213967" name="memory_consumption" type="double"/>
+            <attribute id="a_1365699517" name="response_time" type="double"/>
+            <attribute id="a_762846977" name="availability" type="double"/>
+          </feature>
+          <feature id="screenshot" name="ScreenShot" lower="0" upper="1">
+            <attribute id="a_1025825262" name="order" type="integer"/>
+            <attribute id="a_591881697" name="title" type="string"/>
+            <feature id="annotation" name="Annotation" lower="0" upper="1">
+              <attribute id="a_1770338036" name="memory_consumption" type="double"/>
+              <attribute id="a_1665001657" name="response_time" type="double"/>
+              <attribute id="a_1616531660" name="availability" type="double"/>
+            </feature>
+            <feature id="basicselectionshapes" name="BasicShapes" lower="0" upper="1">
+              <attribute id="a_1274514082" name="memory_consumption" type="double"/>
+              <attribute id="a_2111891100" name="response_time" type="double"/>
+              <attribute id="a_605996034" name="availability" type="double"/>
+            </feature>
+            <feature id="selectioncolor" name="SelectionColor" lower="0" upper="1">
+              <attribute id="a_1262976118" name="memory_consumption" type="double"/>
+              <attribute id="a_1210518721" name="response_time" type="double"/>
+              <attribute id="a_1902117436" name="availability" type="double"/>
+            </feature>
+            <feature id="f_947289622" name="FreeHandDrawing" lower="0" upper="1">
+              <attribute id="a_1114171432" name="memory_consumption" type="double"/>
+              <attribute id="a_35223723" name="response_time" type="double"/>
+              <attribute id="a_1341479978" name="availability" type="double"/>
+            </feature>
+            <feature id="f_79118959" name="BasicEditionOption" lower="0" upper="1">
+              <attribute id="a_781987429" name="memory_consumption" type="double"/>
+              <attribute id="a_1595023634" name="response_time" type="double"/>
+              <attribute id="a_1176561647" name="availability" type="double"/>
+            </feature>
+          </feature>
+        </feature>
+        <feature id="category" name="Category" lower="0" upper="1">
+          <feature id="selectcategory" name="SelectCategory" lower="1" upper="1">
+            <attribute id="a_1525796116" name="memory_consumption" type="double"/>
+            <attribute id="a_58856002" name="response_time" type="double"/>
+            <attribute id="a_1682003131" name="availability" type="double"/>
+          </feature>
+          <feature id="newcategory" name="NewCategory" lower="0" upper="1">
+            <attribute id="a_2110053624" name="memory_consumption" type="double" defaultValue="1" minRangeValue=""/>
+            <attribute id="a_2031813461" name="response_time" type="double"/>
+            <attribute id="a_746986387" name="availability" type="double"/>
+          </feature>
+        </feature>
+        <feature id="attachment" name="Attachment" lower="0" upper="1">
+          <attribute id="a_1505354263" name="memory_consumption" type="double"/>
+          <attribute id="a_2066290460" name="response_time" type="double"/>
+          <attribute id="a_1618280374" name="availability" type="double"/>
+        </feature>
+        <feature id="receiver" name="Receiver" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="sharewithworkteam" name="ShareWithWorkTeam" lower="0" upper="1">
+              <attribute id="a_214115063" name="memory_consumption" type="boolean"/>
+              <attribute id="a_1240837862" name="response_time" type="double"/>
+              <attribute id="a_1249286102" name="availability" type="double"/>
+            </feature>
+            <feature id="sharewithallhelpdesk" name="ShareWithAll" lower="0" upper="1">
+              <attribute id="anonymous" name="anonymous" type="boolean"/>
+              <attribute id="a_1621392807" name="memory_consumption" type="double"/>
+              <attribute id="a_268591772" name="response_time" type="double"/>
+              <attribute id="a_129264424" name="availability" type="double"/>
+            </feature>
+          </group>
+        </feature>
+        <feature id="presentation" name="Presentation" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="link" name="Link" lower="0" upper="1">
+              <attribute id="a_1151083693" name="memory_consumption" type="double"/>
+              <attribute id="a_43795374" name="response_time" type="double"/>
+              <attribute id="a_533625932" name="availability" type="double"/>
+            </feature>
+            <feature id="popup" name="Pop-Up" lower="0" upper="1">
+              <attribute id="a_1319262445" name="memory_consumption" type="double"/>
+              <attribute id="a_1222220719" name="response_time" type="double"/>
+              <attribute id="a_26129687" name="availability" type="double"/>
+            </feature>
+          </group>
+        </feature>
+        <feature id="confirmationmessage" name="ConfirmationMessage" lower="0" upper="1">
+          <attribute id="content" name="content" type="string"/>
+          <attribute id="title" name="title" type="string"/>
+          <attribute id="a_2067341110" name="memory_consumption" type="double"/>
+          <attribute id="a_2129518116" name="response_time" type="double"/>
+          <attribute id="a_123193138" name="availability" type="double"/>
+        </feature>
+      </feature>
+      <feature id="device" name="Device" lower="0" upper="1">
+        <group lower="1" upper="-1">
+          <feature id="android" name="Android" lower="0" upper="1">
+            <attribute id="a_1952052379" name="memory_consumption" type="double"/>
+            <attribute id="a_1276859260" name="response_time" type="double"/>
+            <attribute id="a_919692588" name="availability" type="double"/>
+          </feature>
+          <feature id="webclient" name="Web-client" lower="0" upper="1">
+            <attribute id="a_1834380259" name="memory_consumption" type="double"/>
+            <attribute id="a_1986632302" name="response_time" type="double"/>
+            <attribute id="a_920518751" name="availability" type="double"/>
+          </feature>
+          <feature id="ios" name="iOS" lower="0" upper="1">
+            <attribute id="a_989893068" name="memory_consumption" type="double"/>
+            <attribute id="a_245035808" name="response_time" type="double"/>
+            <attribute id="a_1094736788" name="availability" type="double"/>
+          </feature>
+        </group>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="feedbackconfiguration">
+    <attributeValue xsi:type="fc:double" id="a_772978206" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_1543580528" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_687735495" value="0.0"/>
+    <selection id="feedbackissue">
+      <attributeValue xsi:type="fc:string" id="language" value=""/>
+      <selection id="mechanism">
+        <selection id="textfeedback">
+          <attributeValue xsi:type="fc:integer" id="position" value="0"/>
+          <attributeValue xsi:type="fc:string" id="title" value=""/>
+          <attributeValue xsi:type="fc:integer" id="lenght" value="0"/>
+          <attributeValue xsi:type="fc:string" id="a_2124229747" value=""/>
+          <attributeValue xsi:type="fc:string" id="a_1296725815" value=""/>
+          <attributeValue xsi:type="fc:double" id="a_1550213967" value="50.0"/>
+          <attributeValue xsi:type="fc:double" id="a_1365699517" value="15.0"/>
+          <attributeValue xsi:type="fc:double" id="a_762846977" value="0.9"/>
+        </selection>
+        <selection id="screenshot">
+          <attributeValue xsi:type="fc:integer" id="a_1025825262" value="0"/>
+          <attributeValue xsi:type="fc:string" id="a_591881697" value=""/>
+          <selection id="selectioncolor">
+            <attributeValue xsi:type="fc:double" id="a_1262976118" value="40.0"/>
+            <attributeValue xsi:type="fc:double" id="a_1210518721" value="5.0"/>
+            <attributeValue xsi:type="fc:double" id="a_1902117436" value="0.6"/>
+          </selection>
+          <selection id="f_79118959">
+            <attributeValue xsi:type="fc:double" id="a_781987429" value="80.0"/>
+            <attributeValue xsi:type="fc:double" id="a_1595023634" value="20.0"/>
+            <attributeValue xsi:type="fc:double" id="a_1176561647" value="0.9"/>
+          </selection>
+        </selection>
+      </selection>
+      <selection id="category">
+        <selection id="selectcategory">
+          <attributeValue xsi:type="fc:double" id="a_1525796116" value="5.0"/>
+          <attributeValue xsi:type="fc:double" id="a_58856002" value="3.0"/>
+          <attributeValue xsi:type="fc:double" id="a_1682003131" value="0.9"/>
+        </selection>
+      </selection>
+      <selection id="attachment">
+        <attributeValue xsi:type="fc:double" id="a_1505354263" value="15.0"/>
+        <attributeValue xsi:type="fc:double" id="a_2066290460" value="10.0"/>
+        <attributeValue xsi:type="fc:double" id="a_1618280374" value="0.9"/>
+      </selection>
+      <selection id="receiver">
+        <selection id="sharewithallhelpdesk">
+          <attributeValue xsi:type="fc:boolean" id="anonymous" value="false"/>
+          <attributeValue xsi:type="fc:double" id="a_1621392807" value="20.0"/>
+          <attributeValue xsi:type="fc:double" id="a_268591772" value="7.0"/>
+          <attributeValue xsi:type="fc:double" id="a_129264424" value="0.9"/>
+        </selection>
+      </selection>
+      <selection id="presentation">
+        <selection id="link">
+          <attributeValue xsi:type="fc:double" id="a_1151083693" value="1.0"/>
+          <attributeValue xsi:type="fc:double" id="a_43795374" value="2.0"/>
+          <attributeValue xsi:type="fc:double" id="a_533625932" value="0.75"/>
+        </selection>
+      </selection>
+      <selection id="confirmationmessage">
+        <attributeValue xsi:type="fc:string" id="content" value=""/>
+        <attributeValue xsi:type="fc:string" id="title" value=""/>
+        <attributeValue xsi:type="fc:double" id="a_2067341110" value="10.0"/>
+        <attributeValue xsi:type="fc:double" id="a_2129518116" value="10.0"/>
+        <attributeValue xsi:type="fc:double" id="a_123193138" value="0.6"/>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

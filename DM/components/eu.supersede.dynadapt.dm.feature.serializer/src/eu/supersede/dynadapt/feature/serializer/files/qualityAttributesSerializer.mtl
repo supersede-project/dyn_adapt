@@ -3,7 +3,7 @@
 
 
 [template public serializeQualityAttributes(aFeatureModel : FeatureModel)]
-[file (aFeatureModel.name.concat('.quality'), false, 'UTF-8')]
+[file (aFeatureModel.name.concat('.json'), false, 'UTF-8')]
 [featureModel(aFeatureModel)/]
 [/file]
 [/template]
@@ -21,7 +21,9 @@
 
 [template public feature (aFeature : Feature) post (trim())]
 [for (anAttribute : Attribute | aFeature.attributes)]
+[if (anAttribute.qualityAttribute)]
 [attributeJSON(aFeature.id ,anAttribute)/]
+[/if]
 [/for]
 [if (aFeature.hasANDGroup())]
 [for (anChildFeature : Feature | aFeature.features)]
@@ -58,7 +60,8 @@ NOTE: This template is not used anymore, since attribute serialization is prefix
 	"max":[anAttribute.maxRangeValue/],
 	"weight":[anAttribute.weight/],
 	"minimize":[anAttribute.minimize/],
-	"aggregator":"[anAttribute.objectiveFunctionAggregator/]"
+	"aggregator":"[anAttribute.objectiveFunctionAggregator/]",
+	"alert":[anAttribute.alert/]
 },
 [/template]
 

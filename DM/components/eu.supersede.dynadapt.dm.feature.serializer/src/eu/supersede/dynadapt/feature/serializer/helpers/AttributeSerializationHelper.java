@@ -24,11 +24,20 @@ import java.util.List;
 
 public class AttributeSerializationHelper {
 	public static List<String> serializedAttributes = new ArrayList<>();
+	public static List<String> serializedAttributeValues = new ArrayList<>();
 
 	public boolean attributeHasBeenSerialized(String attributeName) {
 		boolean alreadySerialized = serializedAttributes.contains(attributeName);
 		if (!alreadySerialized){
 			serializedAttributes.add(attributeName);
+		}
+		return alreadySerialized;
+	}
+	
+	public boolean attributeValueHasBeenSerialized(String attributeId, String position) {
+		boolean alreadySerialized = serializedAttributeValues.contains(attributeId);
+		if (!alreadySerialized){
+			serializedAttributeValues.add(attributeId);
 		}
 		return alreadySerialized;
 	}

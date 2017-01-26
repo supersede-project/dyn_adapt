@@ -7,12 +7,12 @@
 <stringAttribute key="org.eclipse.acceleo.ide.ui.MODEL_PATH" value="/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm"/>
 <stringAttribute key="org.eclipse.acceleo.ide.ui.TARGET_PATH" value="/eu.supersede.dynadapt.dm.feature.serializer/serialization"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/eu.supersede.dynadapt.dm.feature.serializer/src/eu/supersede/dynadapt/feature/serializer/Main.java"/>
+<listEntry value="/eu.supersede.dynadapt.dm.feature.serializer/src/eu/supersede/dynadapt/feature/serializer/Main_old.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="eu.supersede.dynadapt.feature.serializer.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="eu.supersede.dynadapt.feature.serializer.Main_old"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Atos/eu.supersede.dynadapt.usecases.atos/features/models/AtosUCFeatureModel_CMS_Capacity.yafm&quot; &quot;/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization&quot;"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="eu.supersede.dynadapt.dm.feature.serializer"/>
 </launchConfiguration>

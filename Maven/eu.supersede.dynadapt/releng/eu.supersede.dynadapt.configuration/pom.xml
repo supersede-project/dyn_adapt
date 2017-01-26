@@ -120,6 +120,13 @@
    		   <include>**/*</include>
                 </includes>
              </fileSet>     
+	     <!--Acceleo emtl files -->
+	     <fileSet>
+                <directory>${project.basedir}/bin/</directory>
+  		<includes>
+   		   <include>**/*.emtl</include>
+                </includes>
+             </fileSet>
           </additionalFileSets>
        </configuration>
     </plugin>

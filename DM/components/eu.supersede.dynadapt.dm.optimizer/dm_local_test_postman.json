@@ -1,0 +1,34 @@
+{
+        "id": "73aa72f7-b70b-c547-ef8f-fd34683426f7",
+        "name": "dm-optimizer-local",
+        "description": "",
+        "order": [
+                "35fbca24-a3e7-e5b1-aae4-8ea7aba6e8a8"
+        ],
+        "folders": [],
+        "timestamp": 1482394493966,
+        "owner": "",
+        "public": false,
+        "requests": [
+                {
+                        "folder": null,
+                        "id": "35fbca24-a3e7-e5b1-aae4-8ea7aba6e8a8",
+                        "name": "http://localhost:8080/optimize?modelURI=/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/grammar/FeedbackGatheringConfig.bnf&currentConfig=/home/yosu/Projects/Supersede/Git/dyn_adapt/",
+                        "dataMode": "params",
+                        "data": null,
+                        "rawModeData": null,
+                        "descriptionFormat": "html",
+                        "description": "Testing of DM Optimizer service using local files (grammar/model,current configuration,attribute values)",
+                        "headers": "",
+                        "method": "GET",
+                        "pathVariables": {},
+                        "url": "http://localhost:8080/optimize?modelURI=/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/grammar/FeedbackGatheringConfig.bnf&currentConfig=/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/current.conf&qualityAttributePath=/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/attribute_values&alertAttribute=response_time&alertThresholdValue=10&multiObjective=false",
+                        "preRequestScript": null,
+                        "tests": null,
+                        "currentHelper": "normal",
+                        "helperAttributes": "{}",
+                        "responses": [],
+                        "collectionId": "73aa72f7-b70b-c547-ef8f-fd34683426f7"
+                }
+        ]
+}
