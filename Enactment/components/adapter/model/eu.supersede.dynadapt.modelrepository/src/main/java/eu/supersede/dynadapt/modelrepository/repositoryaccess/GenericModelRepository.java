@@ -58,6 +58,8 @@ public abstract class GenericModelRepository {
 		modelManager.saveModel(model.eResource(), URI.createFileURI(path.toString()), null);
 		
 		String modelContent = readModelAsString (path);
+		//For XML-based models, replacing " by '
+		modelContent = modelContent.replace("\"","'");
 		
 		((S)metadata.getModelInstances().get(0)).setValue("modelContent",modelContent);
 		S[] result = (S[]) proxy.createModelInstances(type, metadata);
@@ -76,7 +78,12 @@ public abstract class GenericModelRepository {
 		Assert.assertNotNull("Retrieved null model", result);
 		
 		Path path = Paths.get(temp.toString(), UUID.randomUUID() + type.getExtension());
-		saveModelFromString(result.getValue ("modelContent"), path);
+		
+		//For XML-based models, replacing ' by "
+		String modelContent = result.getValue ("modelContent");
+		modelContent = modelContent.replace("'","\"");
+		
+		saveModelFromString(modelContent, path);
 		
 		//Use ModelManager to retrieve the model
 		return modelManager.loadModel(path.toString(), modelClass);
@@ -93,11 +100,12 @@ public abstract class GenericModelRepository {
 		Path path = Paths.get(temp.toString(), UUID.randomUUID() + type.getExtension());
 		modelManager.saveModel(model.eResource(), URI.createFileURI(path.toString()), null);
 		String modelContent = readModelAsString (path);
+		//For XML-based models, replacing " by '
+		modelContent = modelContent.replace("\"","'");
 		
 		metadata.getValues().put ("modelContent", modelContent);
 		
-		AdaptabilityModel result = 
-				(AdaptabilityModel) proxy.updateModelInstance(type, metadata, id);
+		proxy.updateModelInstance(type, metadata, id);
 	}
 
 	protected void deleteModel(String id, ModelType type) throws Exception {

@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.eclipse.uml2.uml.Model;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -41,6 +42,7 @@ import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.BaseModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -129,14 +131,37 @@ public class ModelRepositoryTest {
 		Assert.assertNotNull(am);
 		
 		//Update created model
-		ModelUpdateMetadata mum = createModelupdateMetadata();
+		ModelUpdateMetadata mum = createAdaptatibityModelupdateMetadata();
 		mr.updateAspectModel(am, mum, id);
 		
 		//Delete created model
 		mr.deleteAspectModel(id);
 	}
 	
-	private ModelUpdateMetadata createModelupdateMetadata() {
+	@Test
+	public void testCreateGetUpdateAndDeleteBaseModel() throws Exception {
+		//Create model
+		ModelMetadata metadata = createBaseModelMetadata();
+		Model baseModel = 
+			mm.loadUMLModel(
+				"platform:/resource/eu.supersede.dynadapt.modelrepository/models/uml_models/base/MonitoringSystemBaseModel.uml");
+		String id = mr.storeBaseModel(baseModel, metadata);
+		Assert.assertNotNull(id);
+		Assert.assertTrue(!id.isEmpty());
+		
+		//Read created model
+		Model model = mr.getBaseModel(id);
+		Assert.assertNotNull(model);
+		
+		//Update created model
+		ModelUpdateMetadata mum = createBaseModelupdateMetadata();
+		mr.updateBaseModel(model, mum, id);
+		
+		//Delete created model
+		mr.deleteBaseModel(id);
+	}
+	
+	private ModelUpdateMetadata createAdaptatibityModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
 		mum.setTimeStamp("2016-10-20T20:10:30:201");
@@ -144,6 +169,19 @@ public class ModelRepositoryTest {
 		Map<String, String> values = new HashMap<>();
 		values.put("authorId", "yosu");
 		values.put("featureId", "GooglePlay_API");
+		mum.setValues(values);
+		
+		return mum;
+	}
+	
+	private ModelUpdateMetadata createBaseModelupdateMetadata() {
+		ModelUpdateMetadata mum = new ModelUpdateMetadata();
+		mum.setSender("Adapter");
+		mum.setTimeStamp("2016-10-20T20:10:30:201");
+		
+		Map<String, String> values = new HashMap<>();
+		values.put("authorId", "burak");
+		values.put("status", "adapted");
 		mum.setValues(values);
 		
 		return mum;
@@ -176,4 +214,30 @@ public class ModelRepositoryTest {
 		return modelInstances;
 	}
 
+	private ModelMetadata createBaseModelMetadata() throws IOException {
+		ModelMetadata metadata = new ModelMetadata();
+		
+		metadata.setSender("Adapter");
+		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		List<IModel> modelInstances = createBaseModelMetadataInstances();
+		metadata.setModelInstances(modelInstances);
+		
+		return metadata;
+	}
+	
+	private List<IModel> createBaseModelMetadataInstances() throws IOException {
+		List<IModel> modelInstances = new ArrayList<>();
+		BaseModel am = new BaseModel();
+		modelInstances.add(am);
+		
+		am.setName("ATOS Base Model");
+		am.setAuthorId("yosu");
+		am.setCreationDate("2016-10-13 12:54:21.0");
+		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setFileExtension(ModelType.BaseModel.getExtension());
+		am.setSystemId(ModelSystem.Atos.getId());
+		am.setStatus("not adapted");
+		
+		return modelInstances;
+	}
 }
