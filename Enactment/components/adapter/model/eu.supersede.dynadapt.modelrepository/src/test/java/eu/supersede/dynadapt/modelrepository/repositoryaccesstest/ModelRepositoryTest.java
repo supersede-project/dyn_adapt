@@ -21,24 +21,36 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 
 public class ModelRepositoryTest {
 
 	String repository = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/";
+	String repositoryRelativePath = "repository";
 
 	Map<String, String> modelsLocation;
 
@@ -66,7 +78,8 @@ public class ModelRepositoryTest {
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 		url = getClass().getResource("/");
 		mm = new ModelManager(false);
-		mr = new ModelRepository(repository, url, mm);
+//		mr = new ModelRepository(repository, url, mm);
+		mr = new ModelRepository(repository, repositoryRelativePath, mm);
 	}
 
 	@After
@@ -99,5 +112,68 @@ public class ModelRepositoryTest {
 	//
 	// List<Aspect> a = mr.getAspectModels(featureId, modelsLocation);
 	// }
+	
+	@Test
+	public void testCreateGetUpdateAndDeleteAdaptationModel() throws Exception {
+		//Create model
+		ModelMetadata metadata = createAdatabilityModelMetadata();
+		Aspect aspectModel = 
+			mm.loadAspectModel(
+				"platform:/resource/eu.supersede.dynadapt.modelrepository/models/adaptability_models/googleplay_api_googleplay_tool.aspect");
+		String id = mr.storeAspectModel(aspectModel, metadata);
+		Assert.assertNotNull(id);
+		Assert.assertTrue(!id.isEmpty());
+		
+		//Read created model
+		Aspect am = mr.getAspectModel(id);
+		Assert.assertNotNull(am);
+		
+		//Update created model
+		ModelUpdateMetadata mum = createModelupdateMetadata();
+		mr.updateAspectModel(am, mum, id);
+		
+		//Delete created model
+		mr.deleteAspectModel(id);
+	}
+	
+	private ModelUpdateMetadata createModelupdateMetadata() {
+		ModelUpdateMetadata mum = new ModelUpdateMetadata();
+		mum.setSender("Adapter");
+		mum.setTimeStamp("2016-10-20T20:10:30:201");
+		
+		Map<String, String> values = new HashMap<>();
+		values.put("authorId", "yosu");
+		values.put("featureId", "GooglePlay_API");
+		mum.setValues(values);
+		
+		return mum;
+	}
+
+	private ModelMetadata createAdatabilityModelMetadata() throws IOException {
+		ModelMetadata metadata = new ModelMetadata();
+		
+		metadata.setSender("Adapter");
+		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		List<IModel> modelInstances = createAdaptabilityModelMetadataInstances();
+		metadata.setModelInstances(modelInstances);
+		
+		return metadata;
+	}
+
+	private List<IModel> createAdaptabilityModelMetadataInstances() throws IOException {
+		List<IModel> modelInstances = new ArrayList<>();
+		AdaptabilityModel am = new AdaptabilityModel();
+		modelInstances.add(am);
+		
+		am.setName("googleplay_api_googleplay_tool");
+		am.setAuthorId("zavala");
+		am.setCreationDate("2016-10-13 12:54:21.0");
+		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
+		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
+		am.setFeatureId("GooglePlay");
+		
+		return modelInstances;
+	}
 
 }
