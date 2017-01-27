@@ -29,7 +29,7 @@ public class Alert {
 	}
 
 
-	public List<ActionOnFeature> getActionFeatures() {
+	public List<ActionOnFeature> getActionFeatureFeaturess() {
 		return actionFeatures;
 	}
 
