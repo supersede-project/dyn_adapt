@@ -13,13 +13,14 @@ apply plugin: 'maven-publish'
 apply plugin: "java"
 
 version = '1.0.0-SNAPSHOT'
+group = "eu.supersede.dynadapt.dm"
 
 allprojects {
     apply plugin: "com.jfrog.artifactory"
 }
 
 jar {
-    baseName = "eu.supersede.dynadapt.dm.integration"
+    baseName = "integration"
 }
 
 // Artifactory configuration to publish built jars
