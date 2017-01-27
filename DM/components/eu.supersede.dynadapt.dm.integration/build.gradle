@@ -1,53 +1,60 @@
-apply plugin: "java"
-apply plugin: "eclipse"
-apply plugin: "idea"
-apply plugin: "maven"
-
-version = "0.0.2-SNAPSHOT"
-group = "eu.supersede"
-
-jar {
-    baseName = "supersede-dm-integration"
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 buildscript {
-    repositories {
-        mavenCentral()
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0"
+  }
+}
+
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven-publish'
+apply plugin: "java"
+
+version = '1.0.0-SNAPSHOT'
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+
+jar {
+    baseName = "eu.supersede.dynadapt.dm.integration"
+}
+
+// Artifactory configuration to publish built jars
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    String repo = version.endsWith('SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
+    publish {
+        repository {
+            repoKey = repo
+	    	username = "${artifactory_user}"
+	    	password = "${artifactory_password}"
+            maven = true
+        }
+		defaults {
+	   	    publications ('mavenJava')
+		}
     }
-    dependencies {
-        classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
+    resolve {
+        repository {
+            repoKey = 'libs-snapshot'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
     }
 }
 
-repositories {
-    mavenCentral()
-    maven {url "http://supersede.es.atos.net:10080/artifactory/libs-snapshot-local/"}
-    maven {url "http://supersede.es.atos.net:10080/artifactory/ext-release-local/"}
+artifactoryPublish {
+  dependsOn jar
 }
 
-configurations {
-    providedRuntime
-}
-
-dependencies {
-    compile("com.google.code.gson:gson:2.3.1");
-    compile("commons-io:commons-io:2.1")
-    compile("org.apache.httpcomponents:httpclient:4.3.6")
-    compile("org.apache.commons:commons-csv:1.0")
-
-    compile("eu.supersede.if:eu.supersede.if.api:0.3.0-SNAPSHOT")
-}
-
-eclipse {
-    classpath {
-        containers.remove("org.eclipse.jdt.launching.JRE_CONTAINER")
-        containers "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = "3.3"
 }
