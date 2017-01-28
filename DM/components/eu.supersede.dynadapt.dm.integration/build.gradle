@@ -1,27 +1,35 @@
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven-publish'
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "maven"
+
+version = '0.0.1-SNAPSHOT'
+group = "eu.supersede.dynadapt.dm"
+
+jar {
+    baseName = "integration"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 buildscript {
   repositories {
     jcenter()
   }
   dependencies {
+  	classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
+    //classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
     classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0"
   }
 }
-
-apply plugin: "com.jfrog.artifactory"
-apply plugin: 'maven-publish'
-apply plugin: "java"
-
-version = '1.0.0-SNAPSHOT'
-group = "eu.supersede.dynadapt.dm"
 
 allprojects {
     apply plugin: "com.jfrog.artifactory"
 }
 
-jar {
-    baseName = "integration"
-}
 
 // Artifactory configuration to publish built jars
 artifactory {
