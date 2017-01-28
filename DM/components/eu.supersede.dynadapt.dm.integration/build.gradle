@@ -20,6 +20,7 @@ buildscript {
     jcenter()
   }
   dependencies {
+  	
   	classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
     //classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
     classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0"
@@ -28,6 +29,14 @@ buildscript {
 
 allprojects {
     apply plugin: "com.jfrog.artifactory"
+}
+
+dependencies {
+    compile("com.google.code.gson:gson:2.3.1");
+
+    compile("eu.supersede.if:eu.supersede.if.api:0.3.0-SNAPSHOT")
+	//compile("eu.supersede.dynadapt.dm:eu.supersede.dynadapt.dm.integration:0.0.1-SNAPSHOT")
+	compile files ('./lib/geronimo-jms_1.1_spec-1.1.0.wso2v1.jar')
 }
 
 
