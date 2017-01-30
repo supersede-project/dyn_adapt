@@ -53,6 +53,12 @@ buildscript {
   }
 }
 
+repositories {
+    mavenCentral()
+    add buildscript.repositories.getByName ("maven-supersede-snapshot")
+    add buildscript.repositories.getByName ("maven-supersede-release")   
+}
+
 allprojects {
     apply plugin: "com.jfrog.artifactory"
 }

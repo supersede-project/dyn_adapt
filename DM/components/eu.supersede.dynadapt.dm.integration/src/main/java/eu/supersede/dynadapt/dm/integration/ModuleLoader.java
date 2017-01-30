@@ -41,7 +41,7 @@ public class ModuleLoader {
 			public void run() {
 				TopicSubscriber subscriber = null;
 				try {
-					subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC);
+					subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC);
 					subscriber.openTopicConnection();
 					TextMessageListener messageListener = new TextMessageListener();
 					subscriber.createTopicSubscriptionAndKeepListening (messageListener);
