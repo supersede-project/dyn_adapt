@@ -36,15 +36,14 @@ import eu.supersede.dynadapt.poc.feature.builder.FeatureModelUtility;
 import eu.supersede.dynadapt.poc.feature.builder.IFeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 
-public class FeatureonfigurationBuilderTest {
+public class FeatureConfigurationBuilderTest {
 	FeatureModel fm;
 	ModelManager mm;
 	IFeatureConfigurationBuilder fcb;
 	
 	@Before
 	public void setup(){
-//		String fmPath = "./features/FeedbackGathering.yafm";
-		String fmPath = "./input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
+		String fmPath = "./features/FeedbackGathering.yafm";
 		
 		
 		fcb = new FeatureConfigurationBuilder();
@@ -54,13 +53,8 @@ public class FeatureonfigurationBuilderTest {
 	
 	@Test
 	public void buildFeatureConfigurationTest() throws IOException{
-//		List<String> selectedFeatureIds = 
-//				Arrays.asList("rating", "selectcategory", "sharewithallhelpdesk", "popup", "android");
-		
 		List<String> selectedFeatureIds = 
-				Arrays.asList("annotation", "selectcategory", "sharewithall", "link", "confirmationmessage");
-		
-		
+				Arrays.asList("rating", "selectcategory", "sharewithallhelpdesk", "popup", "android");
 		String fcPath = "./features/FeedbackGatheringConf.yafc";
 		
 		FeatureConfiguration fc = 
@@ -72,6 +66,12 @@ public class FeatureonfigurationBuilderTest {
 	@Test
 	public void getFeatureByIdTest(){
 		Feature feature = FeatureModelUtility.getFeatureById(fm, "sharewithallhelpdesk");
+		Assert.assertNotNull(feature);
+	}
+	
+	@Test
+	public void getFeatureByNameTest(){
+		Feature feature = FeatureModelUtility.getFeatureByName(fm, "ShareWithAll");
 		Assert.assertNotNull(feature);
 	}
 	
