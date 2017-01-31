@@ -36,7 +36,7 @@ import eu.supersede.dynadapt.poc.feature.builder.FeatureModelUtility;
 import eu.supersede.dynadapt.poc.feature.builder.IFeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 
-public class FeatureonfigurationBuilderTest {
+public class FeatureConfigurationBuilderTest {
 	FeatureModel fm;
 	ModelManager mm;
 	IFeatureConfigurationBuilder fcb;
