@@ -36,7 +36,7 @@ import eu.supersede.dynadapt.poc.feature.builder.FeatureModelUtility;
 import eu.supersede.dynadapt.poc.feature.builder.IFeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 
-public class FeatureonfigurationBuilderTest {
+public class FeatureConfigurationBuilderForDMOptimizerTest {
 	FeatureModel fm;
 	ModelManager mm;
 	IFeatureConfigurationBuilder fcb;
@@ -58,9 +58,7 @@ public class FeatureonfigurationBuilderTest {
 //				Arrays.asList("rating", "selectcategory", "sharewithallhelpdesk", "popup", "android");
 		
 		List<String> selectedFeatureIds = 
-				Arrays.asList("annotation", "selectcategory", "sharewithall", "link", "confirmationmessage");
-		
-		
+				Arrays.asList("rating", "selectcategory", "sharewithallhelpdesk", "popup", "android");
 		String fcPath = "./features/FeedbackGatheringConf.yafc";
 		
 		FeatureConfiguration fc = 
