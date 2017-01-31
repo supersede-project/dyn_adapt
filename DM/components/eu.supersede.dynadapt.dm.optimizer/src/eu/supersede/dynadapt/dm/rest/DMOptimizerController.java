@@ -81,8 +81,8 @@ public class DMOptimizerController {
 		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
 		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
-		String modelURI = fmURI.replace("yafm", "bnf");
-		Parameters.ATTRIBUTE_METADATA = fmURI.replace("yafm", "json");
+		String modelURI = temp + getFileNameOfPath(fmURI).replace("yafm", "bnf");
+		Parameters.ATTRIBUTE_METADATA = temp + getFileNameOfPath(fmURI).replace("yafm", "json");
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
