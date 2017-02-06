@@ -26,6 +26,13 @@ Require-Bundle: org.eclipse.emf.common;bundle-version="2.11.1",
  org.eclipse.viatra.query.runtime;bundle-version="1.2.1",
  org.apache.log4j;bundle-version="1.2.15",
  com.google.guava;bundle-version="15.0.0",
- eu.supersede.dynadapt.featuremodel
+ eu.supersede.dynadapt.featuremodel,
+ org.springframework.web;bundle-version="4.3.0",
+ org.springframework.core;bundle-version="4.3.0",
+ org.slf4j.api;bundle-version="1.7.2",
+ com.fasterxml.jackson.core.jackson-databind;bundle-version="2.5.0",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="2.5.0",
+ org.springframework.beans;bundle-version="4.3.0",
+ com.fasterxml.jackson.core.jackson-annotations;bundle-version="2.5.0"
 Import-Package: eu.supersede.dynadapt.featuremodel.fc,
  eu.supersede.dynadapt.model

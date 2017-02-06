@@ -1,8 +1,0 @@
-<FindBugsFilter>
-    <Match classregex="diva.*"/>
-    <Match classregex="lbnl.*"/>
-    <Match classregex="org.ptolemy.*"/>
-    <Match classregex="ptdb.*"/>
-    <Match classregex="ptolemy.*"/>
-    <Match classregex="ptserver.*"/>
-</FindBugsFilter>

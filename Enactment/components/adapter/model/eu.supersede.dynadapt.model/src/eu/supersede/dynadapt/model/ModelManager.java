@@ -224,6 +224,14 @@ public class ModelManager implements IModelManager {
 	}
 	
 	@Override
+	public <T extends EObject> T loadModel(String path, Class<T> clazz){
+		if (path.startsWith("http")){
+			return resourceSet.loadModel(downloadModel(path), clazz);
+		}
+		return resourceSet.loadModel(URI.createURI(path), clazz);
+	}
+	
+	@Override
 	public <T extends EObject> T loadModel(URI uri, Class<T> clazz) { 
 		Resource resource = null;
 		try {

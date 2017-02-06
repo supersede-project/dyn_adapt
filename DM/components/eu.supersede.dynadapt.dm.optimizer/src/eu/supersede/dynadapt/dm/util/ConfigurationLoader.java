@@ -81,6 +81,8 @@ public class ConfigurationLoader {
 			Map<String, Object> map = jsonObject.toMap();
 			for (Entry<String, Object> entry : map.entrySet()){
 				String attributeName = entry.getKey();
+				// trim away the namespace prefix from the attribute name
+				attributeName = attributeName.substring(attributeName.lastIndexOf(".")+1);
 				
 				Map<Object, Object> valueMap = (Map<Object, Object>)entry.getValue();
 

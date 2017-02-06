@@ -50,6 +50,7 @@ public class Parameters {
 	public static int NUM_CONSTRAINTS = 1;
 
 	public static double CONSTRAINT_THRESHOLD = 10;
+	public static String ALERT_ATTRIBUTE = "memory_consumption";
 	
 	public void loadFromFile(String parametersFile){
 		

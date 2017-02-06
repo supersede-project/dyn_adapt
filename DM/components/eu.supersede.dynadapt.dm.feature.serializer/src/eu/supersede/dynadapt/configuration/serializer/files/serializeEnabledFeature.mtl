@@ -1,0 +1,21 @@
+[comment encoding = UTF-8 /]
+[module serializeEnabledFeature('zcu.cz/yafmt/model/fc')]
+
+
+[template public fcEnabledFeaturesSerializer(aFeatureConfiguration : FeatureConfiguration)]
+[file (aFeatureConfiguration.name.concat('.conf'), false, 'UTF-8')]
+[serializeSelectedFeature(aFeatureConfiguration.root)/]
+[/file]
+[/template]
+
+[template public serializeSelectedFeature(aSelection : Selection)post(trim())]
+[for (aSelectionChild : Selection | aSelection.selections)]
+[if (aSelectionChild.isLeaveSelection())]
+[aSelectionChild.feature.name/]
+[else]
+[serializeSelectedFeature(aSelectionChild)/]
+[/if]
+[/for]
+[/template]
+
+[query public isLeaveSelection(aSelection : Selection) : Boolean = aSelection.selections->isEmpty() /]

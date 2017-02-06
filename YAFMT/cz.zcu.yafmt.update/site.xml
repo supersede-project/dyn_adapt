@@ -15,16 +15,16 @@
    <feature url="features/org.eclipse.xtext.ui_2.4.1.v201304180855.jar" id="org.eclipse.xtext.ui" version="2.4.1.v201304180855">
       <category name="dependencies"/>
    </feature>
-   <feature url="features/cz.zcu.yafmt.clang.bcl.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.clang.bcl.feature" version="0.3.0.201609230958">
+   <feature url="features/cz.zcu.yafmt.clang.bcl.feature_0.3.0.201701131252.jar" id="cz.zcu.yafmt.clang.bcl.feature" version="0.3.0.201701131252">
       <category name="yafmt"/>
    </feature>
-   <feature url="features/cz.zcu.yafmt.ui.editors.fc.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.ui.editors.fc.feature" version="0.3.0.201609230958">
+   <feature url="features/cz.zcu.yafmt.ui.editors.fc.feature_0.3.0.201701131252.jar" id="cz.zcu.yafmt.ui.editors.fc.feature" version="0.3.0.201701131252">
       <category name="yafmt"/>
    </feature>
-   <feature url="features/cz.zcu.yafmt.ui.editors.fm.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.ui.editors.fm.feature" version="0.3.0.201609230958">
+   <feature url="features/cz.zcu.yafmt.ui.editors.fm.feature_0.3.0.201701131252.jar" id="cz.zcu.yafmt.ui.editors.fm.feature" version="0.3.0.201701131252">
       <category name="yafmt"/>
    </feature>
-   <feature url="features/cz.zcu.yafmt.ui.views.fm.feature_0.3.0.201609230958.jar" id="cz.zcu.yafmt.ui.views.fm.feature" version="0.3.0.201609230958">
+   <feature url="features/cz.zcu.yafmt.ui.views.fm.feature_0.3.0.201701131252.jar" id="cz.zcu.yafmt.ui.views.fm.feature" version="0.3.0.201701131252">
       <category name="yafmt"/>
    </feature>
    <category-def name="yafmt" label="YAFMT">

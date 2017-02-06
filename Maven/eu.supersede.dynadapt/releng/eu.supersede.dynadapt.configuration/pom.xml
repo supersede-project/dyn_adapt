@@ -12,14 +12,20 @@
   <mars-repo.url>http://download.eclipse.org/releases/mars</mars-repo.url>
   <viatra-repo.url>http://download.eclipse.org/viatra/updates/release</viatra-repo.url>
   <xtext-repo.url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</xtext-repo.url>
-  <p2local.url>http://localhost:8080/site</p2local.url>
+  <sts-repo.url>http://dist.springsource.com/release/TOOLS/update/e4.6/</sts-repo.url>
+  <!--<p2local.url>http://localhost:8080/site</p2local.url>-->
   <xtext.version>2.9.1</xtext.version>
  </properties>
 
  <repositories>
-  <repository>
+  <!--<repository>
    <id>mars</id>
    <url>${mars-repo.url}</url>
+   <layout>p2</layout>
+  </repository>-->
+  <repository>
+   <id>neon</id>
+   <url>${neon-repo.url}</url>
    <layout>p2</layout>
   </repository>
   <repository>
@@ -32,11 +38,16 @@
    <url>${xtext-repo.url}</url>
    <layout>p2</layout>
   </repository>
-<!--  <repository>
+  <!--<repository>
    <id>p2local</id>
    <url>${p2local.url}</url>
    <layout>p2</layout>
-  </repository> -->
+  </repository>-->
+  <repository>
+   <id>STS</id>
+   <url>${sts-repo.url}</url>
+   <layout>p2</layout>
+  </repository>
  </repositories>
 
  <build>
@@ -115,6 +126,13 @@
    		   <include>**/*</include>
                 </includes>
              </fileSet>     
+	     <!--Acceleo emtl files -->
+	     <fileSet>
+                <directory>${project.basedir}/bin/</directory>
+  		<includes>
+   		   <include>**/*.emtl</include>
+                </includes>
+             </fileSet>
           </additionalFileSets>
        </configuration>
     </plugin>

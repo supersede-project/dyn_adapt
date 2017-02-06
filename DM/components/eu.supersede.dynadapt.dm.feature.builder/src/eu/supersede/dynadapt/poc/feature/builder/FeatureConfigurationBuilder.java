@@ -65,6 +65,9 @@ public class FeatureConfigurationBuilder implements IFeatureConfigurationBuilder
 	private void setDefaultSelectionValues(Selection selection, Feature feature) {
 		for (AttributeValue value: selection.getValues()){
 			Attribute attribute = getAttributeByIdInFeature (value.getId(), feature);
+			String defaultValue = attribute.getDefaultValue();
+			if (defaultValue == null || defaultValue.isEmpty())
+				continue;
 			if (value instanceof BooleanValue){
 				((BooleanValue)value).setValue(Boolean.valueOf(attribute.getDefaultValue()));
 			}else if (value instanceof IntegerValue){
