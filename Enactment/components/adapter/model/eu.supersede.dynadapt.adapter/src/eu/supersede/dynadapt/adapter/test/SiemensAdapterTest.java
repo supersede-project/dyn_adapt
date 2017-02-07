@@ -84,10 +84,9 @@ public class SiemensAdapterTest {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
-			String adaptationDecisionActionId = "f_2400930721";
 			String featureConfigurationId = null;
-			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.SIEMENS.toString(), adaptationDecisionActionId, featureConfigurationId);
+			adapter.enactAdaptationDecisionActionsFC(
+					SupersedeSystem.SIEMENS.toString(), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

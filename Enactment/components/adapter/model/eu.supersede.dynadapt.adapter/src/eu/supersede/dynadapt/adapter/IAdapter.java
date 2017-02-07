@@ -29,4 +29,5 @@ import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 public interface IAdapter {
 	void enactAdaptationDecisionAction (String systemId, String adaptationDecisionActionId, String featureConfigurationId) throws EnactmentException;
 	void enactAdaptationDecisionActions (String systemId, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws EnactmentException;
+	void enactAdaptationDecisionActionsFC (String systemId, String featureConfigurationId) throws EnactmentException;
 }

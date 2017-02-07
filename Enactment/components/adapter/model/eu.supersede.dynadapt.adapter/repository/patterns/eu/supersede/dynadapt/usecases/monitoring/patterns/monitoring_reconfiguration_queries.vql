@@ -40,3 +40,8 @@ pattern twitterTimeSlot(slot) {
 	check(name.equals("timeSlot"));
 	check(instanceName.equals("SocialNetworks"));
 }
+
+pattern GetMeteorologicalDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("GetMteorologicalData"));
+}

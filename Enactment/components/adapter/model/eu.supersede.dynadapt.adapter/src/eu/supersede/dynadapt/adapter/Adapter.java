@@ -222,6 +222,37 @@ public class Adapter implements IAdapter {
 				features.addAll(listFeatures(f, featureId));
 		return features;
 	}
+	
+	@Override
+	public void enactAdaptationDecisionActionsFC(String systemId, 
+			String featureConfigurationId) throws EnactmentException {
+		SupersedeSystem system = SupersedeSystem.getByURI(systemId);
+		
+		try {
+		
+			Model baseModel = mm.getTargetModel();
+			
+			FeatureConfiguration featureConfig = mrr.getConfigurationForSystem(system,
+					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT));
+			
+			List<Selection> changedSelections = getSelections(featureConfig);
+	
+			Model model = adapt(changedSelections, baseModel);
+	
+			if (model != null){
+				//URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
+				//log.debug("Saved updated model in " + uri);
+				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
+				mm.saveModel(model.eResource(), uri, ".uml");
+				log.debug("Saved updated model in " + uri);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+		
+	};
 
 	@Override
 	public void enactAdaptationDecisionAction(String systemId, String adaptationDecisionActionId,
@@ -374,6 +405,31 @@ public class Adapter implements IAdapter {
 		}
 
 		return result;
+	}
+	
+	private List<Selection> getSelections(FeatureConfiguration featureConfig) {
+		FeatureModel fm = featureConfig.getFeatureModelCopy();
+		Feature root = fm.getRoot();
+
+		return selectionsInFeature(root, featureConfig);
+	}
+
+	private List<Selection> selectionsInFeature(Feature feature,
+			FeatureConfiguration featureConfig) {
+		List<Selection> selections = new ArrayList<>();
+		selections.addAll(featureConfig.getSelectionsById(feature.getId()));
+
+		for (Feature child : feature.getFeatures()) {
+			selections.addAll(selectionsInFeature(child, featureConfig));
+		}
+
+		for (Group group : feature.getGroups()) {
+			for (Feature childInGroup : group.getFeatures()) {
+				selections.addAll(
+						selectionsInFeature(childInGroup, featureConfig));
+			}
+		}
+		return selections;
 	}
 
 	protected void save(Model model, org.eclipse.emf.common.util.URI uri) {
