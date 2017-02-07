@@ -10,7 +10,7 @@ aspect sc2 {
 	compositions{
 		composition replaceGMDServiceBySC2{
 			feature_enabled true,
-			jointpointRole ADM.Joinpoint,
+			adviceRole ADM.Joinpoint,
 			action replace
 		}
 	}

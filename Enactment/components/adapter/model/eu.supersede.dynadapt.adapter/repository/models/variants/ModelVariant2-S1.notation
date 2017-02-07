@@ -63,7 +63,7 @@
     <element xmi:type="uml:Activity" href="ModelVariant2-S1.uml#_-XF1EGhVEeaUmbAUinmY7w"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-XI4cmhVEeaUmbAUinmY7w" width="448" height="230"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_-XI4c2hVEeaUmbAUinmY7w" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_-XI4c2hVEeaUmbAUinmY7w" name="diagram_compatibility_version" stringValue="1.1.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_-XI4dGhVEeaUmbAUinmY7w"/>
   <styles xmi:type="style:PapyrusViewStyle" xmi:id="_-XI4dWhVEeaUmbAUinmY7w">
     <owner xmi:type="uml:Model" href="ModelVariant2-S1.uml#_-WrlYGhVEeaUmbAUinmY7w"/>

@@ -88,7 +88,7 @@ public class ModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) {
+	public Model applyUpdateComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) {
 
 		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
 
@@ -116,15 +116,10 @@ public class ModelAdapter implements IModelAdapter {
 		for (Stereotype stereotype : elements.keySet()) {
 			for (Element element : elements.get(stereotype)) {
 				Slot s = (Slot) element;
-				model = applyModifyValueComposition(inBaseModel, s, newValue);
+				model = applyUpdateComposition(inBaseModel, s, newValue);
 			}
 		}
 		return model;
-	}
-
-	private void stereotypeElement(Element e, Stereotype role) throws Exception {
-		mt.tagModel(e, role.getProfile(), role);
-		log.debug(e.getAppliedStereotypes());
 	}
 }
 

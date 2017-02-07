@@ -24,29 +24,26 @@
 package eu.supersede.dynadapt.modeladapter;
 
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.internal.impl.OpaqueActionImpl;
 
-import eu.supersede.dynadapt.model.query.IModelQuery;
-
-class ComposableFactory {
-	private final static String INSTANCE = "InstanceSpecificationImpl";
-	private final static String CLASS = "ClassImpl";
-	private final static String OPAQUE_ACTION = "OpaqueActionImpl";
+class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 	
-	public static Composable create(Element element, IModelQuery modelQuery) {
-		Composable composable = null;
-		String type = element.getClass().getSimpleName();
-		switch (type){
-		case INSTANCE:
-			composable = new ComposableInstanceSpecification(modelQuery);
-			break;
-		case CLASS:
-			composable = new ComposableClass();
-			break;
-		case OPAQUE_ACTION:
-			composable = new ComposableOpaqueAction();
-			break;
-		}
-		return composable;
+	@Override
+	public void applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
+			Element jointpointVariantModelElement) {
+		//TODO 
 	}
 	
+	@Override
+	public void applyDeleteComposition(Model inBaseModel, Element jointpointBaseModelElement,
+			Model usingVariantModel, Element jointpointVariantModelElement) {
+		//TODO
+	}
+
+	@Override
+	public void applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
+			Element jointpointVariantModelElement) {
+		// TODO Auto-generated method stub
+	}
 }
