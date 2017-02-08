@@ -31,6 +31,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -40,6 +42,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 
 class ModelAdapterUtilities{
@@ -154,6 +157,27 @@ class ModelAdapterUtilities{
 			}
 		}
 		return null;
+	}
+	
+	public static List<ActivityEdge> setOutgoingEdges(ActivityImpl activity, List<ActivityEdge> outgoingEdges, ActivityNode originAction) {
+		List<ActivityEdge> edges = new ArrayList<>();
+		for (int i = 0; i < outgoingEdges.size(); ++i) {
+			//log.debug("\tNew edge from " + originAction.getName());
+			ActivityEdge edge = (ActivityEdge) activity.createEdge(outgoingEdges.get(i).getName(), outgoingEdges.get(i).eClass());
+			edges.add(edge);
+			edge.setSource(originAction);
+			originAction.getOutgoings().add(edge);
+		}
+		return edges;
+	}
+
+	public static void setIncomingEdges(List<ActivityEdge> incomingEdges, ActivityNode originAction) {
+		for (int i = 0; i < incomingEdges.size(); ++i) {
+			//log.debug("\tNew edge to " + originAction.getName());
+			ActivityEdge edge = incomingEdges.get(i);
+			edge.setTarget(originAction);
+			originAction.getIncomings().add(edge);
+		}
 	}
 	
 }
