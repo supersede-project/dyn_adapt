@@ -71,7 +71,7 @@ public class ModelAdapter implements IModelAdapter {
 			return null;
 		}
 		
-		Composable composable = ComposableFactory.create (variantElement, modelQuery);
+		Composable composable = ComposableFactory.create (variantElement, modelQuery, elements);
 
 		for (Stereotype stereotype : elements.keySet()) {
 			for (Element baseElement : elements.get(stereotype)) {

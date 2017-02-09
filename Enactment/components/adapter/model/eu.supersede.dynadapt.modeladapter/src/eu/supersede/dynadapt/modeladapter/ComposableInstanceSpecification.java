@@ -23,6 +23,7 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +36,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -48,12 +50,11 @@ import eu.supersede.dynadapt.modeladapter.queries.util.InstanceOfInstanceSpecifi
 //import eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLinkMatcher;
 //import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
-class ComposableInstanceSpecification extends InstanceSpecificationImpl implements Composable{
+class ComposableInstanceSpecification extends ComposableImpl implements Composable{
 	private final static Logger log = LogManager.getLogger(ComposableInstanceSpecification.class);
-	private IModelQuery modelQuery;
 	
-	public ComposableInstanceSpecification (IModelQuery modelQuery){
-		this.modelQuery = modelQuery;
+	public ComposableInstanceSpecification (IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints){
+		super (modelQuery, baseJointpoints);
 	}
 	
 	@Override
