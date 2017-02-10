@@ -59,7 +59,6 @@ class ComposableClass  extends ComposableImpl implements Composable{
 
 	@Override
 	/**
-	 TODO
 	* Add to classBase all properties in classVariant (but not already existing in classVariant)
 	* Add to classBase all operations in classVariant (but not already existing in classVariant)
 	* In variant model (recursively):
@@ -92,7 +91,7 @@ class ComposableClass  extends ComposableImpl implements Composable{
 		Model model = toElement.getModel();
 		
 		for (Relationship r:fromElement.getRelationships()) {
-			//FIXME filter out associations management here. They will managed as properties for corresponding type
+			//Filter out associations management here. They will managed as properties for corresponding type
 			if (!(r instanceof GeneralizationImpl)){
 				continue;
 			}

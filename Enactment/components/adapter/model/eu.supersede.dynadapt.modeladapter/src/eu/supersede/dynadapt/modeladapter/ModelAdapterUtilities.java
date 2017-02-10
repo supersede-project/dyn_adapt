@@ -187,6 +187,10 @@ class ModelAdapterUtilities{
 		}
 		return null;
 	}
+	
+	public static boolean elementHasRole(Element element, Stereotype stereotype) {
+		return element.isStereotypeApplied(stereotype);
+	}
 
 	public static boolean elementMatchesInModel(Model model, NamedElement element) {
 		return getEquivalentElementInModel (element, model) != null;
@@ -199,8 +203,6 @@ class ModelAdapterUtilities{
 	public static <T extends Element> T createElement(T element, PackageableElement inContainer, HashMap<Stereotype, List<Element>> baseJointpoints) {
 		if (element instanceof Class){
 			return (T) createClass ((Class) element, (Package)inContainer, baseJointpoints);
-		}else if (element instanceof Generalization){
-			return (T) createGeneralization ((Generalization) element, inContainer, baseJointpoints);
 		}else if (element instanceof Association){
 			return (T) createAssociation ((Association) element, (Class)inContainer, baseJointpoints);
 		}else if (element instanceof Operation){
@@ -210,8 +212,8 @@ class ModelAdapterUtilities{
 		}else if (element instanceof Package){
 			return (T) createPackage ((Package) element, (Model)inContainer, baseJointpoints);
 		}else{
-				log.error ("UML Type : " + element.getClass().toString() + " not supported for clonning");
-				return null;
+			log.error ("UML Type : " + element.getClass().toString() + " not supported for clonning");
+			return null;
 		}
 	}
 
@@ -228,37 +230,40 @@ class ModelAdapterUtilities{
 	}
 
 	private static Property createProperty(Property property, Class inClass, HashMap<Stereotype, List<Element>> baseJointpoints) {
-		//TODO: Resolve type if refers to Jointpoint role: from base model JP role element resolves advice type
-		//TODO: Resolve type pointing to base model.
-		//TODO Resolve types pointing to the base model
-		//TODO Resolve type in case of advice jointpoint role type
+		//Resolve type if refers to Jointpoint role: from base model JP role element resolves advice type
+		//Resolve type pointing to base model.
+		//Resolve types pointing to the base model
+		//Resolve type in case of advice jointpoint role type
 		
 		Type type = (Type) resolveElementInModel (property.getType(), inClass.getModel(), baseJointpoints);
-		Property newProperty = inClass.createOwnedAttribute(property.getName(), type); 
-				
-		//FIXME Manage association properties
+		
+		//Non-association property
 		Association association = property.getAssociation();
-		if (association!=null){
+		Property newProperty = null;
+		if (association==null){
+			newProperty = inClass.createOwnedAttribute(property.getName(), type); 
+		}else{
+			//Manage association properties
 			Association newAssociation = createAssociation(association, inClass, baseJointpoints);
-			newProperty.setAssociation(newAssociation);
+			newProperty = inClass.getAttributes().get(inClass.getAttributes().size()-1);
 		}
 		return newProperty;
 	}
 
 	private static Operation createOperation(Operation operation, Class inClass, HashMap<Stereotype, List<Element>> baseJointpoints) {
-		//TODO: Resolve type (for parameter and return type) if refers to Jointpoint role: from base model JP role element resolves advice type
-		//TODO: Resolve type (for parameter and return type) pointing to base model.
+		//Resolve type (for parameter and return type) if refers to Jointpoint role: from base model JP role element resolves advice type
+		//Resolve type (for parameter and return type) pointing to base model.
 		EList <String> parameterNames = new BasicEList<>();
 		EList<Type> parameterTypes = new BasicEList<>();
 		for (Parameter parameter: operation.getOwnedParameters()){
 			parameterNames.add (parameter.getName());
-			//TODO Resolve types pointing to the base model
-			//TODO Resolve type in case of advice jointpoint role type
-			parameterTypes.add (parameter.getType());
+			//Resolve types pointing to the base model
+			//Resolve type in case of advice jointpoint role type
+			parameterTypes.add ((Type) resolveElementInModel(parameter.getType(), inClass.getModel(), baseJointpoints));
 		}
 		Type returnType = null;
 		if (operation.getReturnResult() != null)
-			returnType = operation.getReturnResult().getType();
+			returnType = (Type) resolveElementInModel(operation.getReturnResult().getType(), inClass.getModel(), baseJointpoints);
 		return inClass.createOwnedOperation(operation.getName(), parameterNames, parameterTypes, returnType);
 	}
 
@@ -279,11 +284,6 @@ class ModelAdapterUtilities{
 		return newAssociation;
 	}
 
-	private static Generalization createGeneralization(Generalization generalization, PackageableElement inContainer, HashMap<Stereotype, List<Element>> baseJointpoints) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private static Class createClass(Class clazz, Package inContainer, HashMap<Stereotype, List<Element>> baseJointpoints) {
 		Class newClass = inContainer.createOwnedClass(clazz.getName(), clazz.isAbstract());
 	
@@ -296,20 +296,18 @@ class ModelAdapterUtilities{
 			createOperation(operation, newClass, baseJointpoints);
 		}
 		
-		//TODO Generalization
-		
 		return newClass;
 	}
 
 	public static Element resolveElementInModel(Element type, PackageableElement inContainer, HashMap<Stereotype, List<Element>> baseJointpoints) {
-		// TODO Resolve type in model.
+		// Resolve type in model.
 		// If type stereotype with Jointpoint role, resolve it in model by role
 		// If type does not exist in model, create type and add it to model
 		Element resolvedElement = getEquivalentElementInModel((PackageableElement) type, inContainer.getModel());
 		if (resolvedElement == null){
 			//Resolve type the Jointpoint role
-			//FIXME current resolution is based on stereotyped applications by jointpoint role
-			//but in base model jointpoint are determine by patterns
+			//Current resolution is based on stereotyped applications by jointpoint role
+			//but in base model jointpoint are determine by patterns, which are passed in baseJointpoints
 			for (Stereotype stereotype: baseJointpoints.keySet()){
 				if (type.isStereotypeApplied(stereotype)){
 					resolvedElement = baseJointpoints.get (stereotype).get(0); //FIXME Investigate possible multiple role assignments
@@ -326,11 +324,6 @@ class ModelAdapterUtilities{
 			
 			//Create type
 			resolvedElement = createElement(type, pack, baseJointpoints);
-			
-//			//Add clone type to container
-//			if (container != null){
-//				container.getPackagedElements().add(resolvedType);
-//			}
 		}
 		
 		return resolvedElement;
