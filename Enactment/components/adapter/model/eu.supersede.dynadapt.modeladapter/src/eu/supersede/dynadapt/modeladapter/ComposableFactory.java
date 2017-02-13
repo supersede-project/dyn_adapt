@@ -23,7 +23,11 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
 
@@ -32,15 +36,15 @@ class ComposableFactory {
 	private final static String CLASS = "ClassImpl";
 	private final static String OPAQUE_ACTION = "OpaqueActionImpl";
 	
-	public static Composable create(Element element, IModelQuery modelQuery) {
+	public static Composable create(Element element, IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints) {
 		Composable composable = null;
 		String type = element.getClass().getSimpleName();
 		switch (type){
 		case INSTANCE:
-			composable = new ComposableInstanceSpecification(modelQuery);
+			composable = new ComposableInstanceSpecification(modelQuery, baseJointpoints);
 			break;
 		case CLASS:
-			composable = new ComposableClass();
+			composable = new ComposableClass(modelQuery, baseJointpoints);
 			break;
 		case OPAQUE_ACTION:
 			composable = new ComposableOpaqueAction();

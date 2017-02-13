@@ -127,6 +127,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FeatureModel.ecore#//Attribute/weight"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FeatureModel.ecore#//Attribute/minimize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FeatureModel.ecore#//Attribute/objectiveFunctionAggregator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FeatureModel.ecore#//Attribute/alert"/>
     </genClasses>
     <genClasses ecoreClass="FeatureModel.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FeatureModel.ecore#//Constraint/value"/>

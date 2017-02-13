@@ -71,16 +71,19 @@ public class ModelAdapter implements IModelAdapter {
 			return null;
 		}
 		
-		Composable composable = ComposableFactory.create (variantElement, modelQuery);
+		Composable composable = ComposableFactory.create (variantElement, modelQuery, elements);
 
 		for (Stereotype stereotype : elements.keySet()) {
 			for (Element baseElement : elements.get(stereotype)) {
-				if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null)
-					composable.applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null)
-					composable.applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null)
-					composable.applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				//Apply composition only if baseElement and variantElement share the same jointpoint role
+				if (ModelAdapterUtilities.elementHasRole (variantElement, stereotype)){
+					if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null)
+						composable.applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+					else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null)
+						composable.applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+					else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null)
+						composable.applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				}
 			}
 		}
 

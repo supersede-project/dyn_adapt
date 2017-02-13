@@ -36,6 +36,16 @@ public class FeatureModelUtility {
 	}
 	
 	/**
+	 * Gets (Looks for) the feature identified by name in the feature model
+	 * @param fm feature model where to look for
+	 * @param name name of the feature to find
+	 * @return Found feature
+	 */
+	public static Feature getFeatureByName (FeatureModel fm, String name){
+		return getFeatureByName(fm.getRoot(), name);
+	}
+	
+	/**
 	 * Gets the parent feature of a given one
 	 * @param feature the child feature of searched parent feature
 	 * @return the parent feature
@@ -71,6 +81,36 @@ public class FeatureModelUtility {
 				for (Group group: feature.getGroups()){
 					for (Feature child:  group.getFeatures()){
 						if ((result = getFeatureById(child, id)) != null){
+							break;
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Searches for a feature, identified by name, within the feature tree defined by the given root feature
+	 * @param feature the root feature defining the tree where to find for
+	 * @param nane name of the feature to find.
+	 * @return found feature
+	 */
+	private static Feature getFeatureByName(Feature feature, String name) {
+		Feature result = null;
+		if (feature.getName().equals(name)){
+			result = feature;
+		}else{
+			if (feature.getGroups().isEmpty()){ //AND group
+				for (Feature child: feature.getFeatures()){
+					if ((result = getFeatureByName(child, name)) != null){
+						break;
+					}
+				}
+			}else{
+				for (Group group: feature.getGroups()){
+					for (Feature child:  group.getFeatures()){
+						if ((result = getFeatureByName(child, name)) != null){
 							break;
 						}
 					}

@@ -2,7 +2,7 @@
 [module fmGrammarSerializer('http://zcu.cz/yafmt/model/fm')]
 
 [template public serializeFMGrammar(aFeatureModel : FeatureModel)]
-[file (aFeatureModel.name.concat('.grammar'), false, 'UTF-8')]
+[file (aFeatureModel.name.concat('.bnf'), false, 'UTF-8')]
 [if (not aFeatureModel.root.oclIsUndefined())]
 	[let rootFeature : Feature = aFeatureModel.root]
 [feature(rootFeature, false)/]
@@ -31,8 +31,10 @@
 	| <[aFeature.name/]>
 <[aFeature.name/]>::= "[aFeature.name/]"[elseif (belongsToXORGroup)]
 <[aFeature.name/]>::= "[aFeature.name/]"[else]
-<[aFeature.name/][groupType(aFeature)/]>::= <[aFeature.name/]>
+[if (not (aFeature.mandatory and not aFeature.hasChildren()))]
+	<[aFeature.name/][groupType(aFeature)/]>::= <[aFeature.name/]>
 	|
+[/if]
 <[aFeature.name/]>::= "[aFeature.name/]"[/if]
 [/template]
 
@@ -66,3 +68,5 @@
 [query public hasORGroup(aFeature : Feature) : Boolean = not (aFeature.groups->isEmpty()) and aFeature.groups->first()._or /]
 [query public hasXORGroup(aFeature : Feature) : Boolean = not (aFeature.groups->isEmpty()) and aFeature.groups->first()._xor /]
 [query public hasMultipleMultiplicity(aFeature : Feature) : Boolean = aFeature.upper > 1 /]
+[query public hasChildren(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) or not (aFeature.groups->isEmpty()) /]
+

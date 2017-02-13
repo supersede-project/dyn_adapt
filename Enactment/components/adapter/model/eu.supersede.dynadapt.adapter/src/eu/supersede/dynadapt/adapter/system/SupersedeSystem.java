@@ -8,7 +8,8 @@ public enum SupersedeSystem {
 	SIEMENS ("siemens"), 
 	SENERCON ("senercon"), 
 	MONITORING ("monitoring"), 
-	FEEDBACK_GATHERING ("feedback_gathering");
+	FEEDBACK_GATHERING ("feedback_gathering"),
+	HEALTH ("health");
 	
 	private URI uri;
 	
@@ -36,6 +37,8 @@ public enum SupersedeSystem {
 			return MONITORING;
 		case "feedback_gathering":
 			return FEEDBACK_GATHERING;
+		case "health":
+			return HEALTH;
 		default:
 			return null;
 		}

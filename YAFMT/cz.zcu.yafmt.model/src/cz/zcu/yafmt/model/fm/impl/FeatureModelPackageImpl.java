@@ -585,6 +585,15 @@ public class FeatureModelPackageImpl extends EPackageImpl implements FeatureMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAttribute_Alert() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(14);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getAttribute_QualityAttribute() {
 		return (EAttribute)attributeEClass.getEStructuralFeatures().get(6);
 	}
@@ -761,6 +770,7 @@ public class FeatureModelPackageImpl extends EPackageImpl implements FeatureMode
 		createEAttribute(attributeEClass, ATTRIBUTE__WEIGHT);
 		createEAttribute(attributeEClass, ATTRIBUTE__MINIMIZE);
 		createEAttribute(attributeEClass, ATTRIBUTE__OBJECTIVE_FUNCTION_AGGREGATOR);
+		createEAttribute(attributeEClass, ATTRIBUTE__ALERT);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEAttribute(constraintEClass, CONSTRAINT__VALUE);
@@ -865,6 +875,7 @@ public class FeatureModelPackageImpl extends EPackageImpl implements FeatureMode
 		initEAttribute(getAttribute_Weight(), ecorePackage.getEDoubleObject(), "weight", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Minimize(), ecorePackage.getEBoolean(), "minimize", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_ObjectiveFunctionAggregator(), this.getObjectiveFunctionType(), "objectiveFunctionAggregator", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Alert(), ecorePackage.getEBoolean(), "alert", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstraint_Value(), ecorePackage.getEString(), "value", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

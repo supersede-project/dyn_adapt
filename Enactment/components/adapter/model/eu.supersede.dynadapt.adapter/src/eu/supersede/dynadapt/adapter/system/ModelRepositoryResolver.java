@@ -42,6 +42,8 @@ class ModelRepositoryMapping{
 			return 	URI.createURI(monitoringMapping.get(type.getType()).get(type.getTimestamp()));
 		case SIEMENS:
 			return URI.createURI(siemensMapping.get(type.getType()).get(type.getTimestamp()));
+		case HEALTH:
+			return URI.createURI (healthMapping.get(type.getType()).get(type.getTimestamp()));
 		default:
 			//FIXME Other systems not supported
 			throw new EnactmentException("System not supported " + system.getURI());
@@ -49,18 +51,12 @@ class ModelRepositoryMapping{
 	}
 	
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> atosMapping = new HashMap<>();
+	private static Map<ResourceType, Map<ResourceTimestamp, String>> healthMapping = new HashMap<>();
+	
 	static{
+		//ATOS USE CASE
 		Map<ResourceTimestamp, String> atosBaseModel = new HashMap<>();
 		Map<ResourceTimestamp, String> atosFeatureConfiguration = new HashMap<>();
-		
-//		atosBaseModel.put(ResourceTimestamp.CURRENT, 
-//				"platform:/resource/eu.supersede.dynadapt.usecases.atos/models/base/atos_base_model.uml");
-//		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, 
-//				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosNormalCMSCapacityConfiguration.yafc");
-//		atosFeatureConfiguration.put(ResourceTimestamp.NEWEST,
-//				"platform:/resource/eu.supersede.dynadapt.usecases.atos/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
-
-		
 		atosBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
 				"/models/base/atos_base_model.uml");
 		atosFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
@@ -69,6 +65,18 @@ class ModelRepositoryMapping{
 				"/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 		atosMapping.put(ResourceType.BASE, atosBaseModel);
 		atosMapping.put(ResourceType.FEATURE_CONFIGURATION, atosFeatureConfiguration);
+		
+		//HEALTH USE CASE
+		Map<ResourceTimestamp, String> healthBaseModel = new HashMap<>();
+		Map<ResourceTimestamp, String> healthFeatureConfiguration = new HashMap<>();
+		healthBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/health_watcher.uml");
+		healthFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/HealthNotAuthenticatedFeatureConfiguration.yafc");
+		healthFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc");
+		healthMapping.put(ResourceType.BASE, healthBaseModel);
+		healthMapping.put(ResourceType.FEATURE_CONFIGURATION, healthFeatureConfiguration);
 	}
 	
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> monitoringMapping = new HashMap<>();
