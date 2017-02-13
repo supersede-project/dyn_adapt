@@ -119,8 +119,6 @@ class ComposableClass  extends ComposableImpl implements Composable{
 		Package pack = ModelAdapterUtilities.getPackageInModelMatchingElement (model, elementToAdd);
 		//Add elementToAdd in container
 		PackageableElement addedElement = ModelAdapterUtilities.createElement (elementToAdd, pack, baseJointpoints);
-//		if (addedElement != null)
-//			ModelAdapterUtilities.addElementInPackage(addedElement, pack);
 		
 		// Add elements connected to classVariant through relationships: generalizations (include relationships themselves)
 		addGeneralizations (addedElement, elementToAdd);
@@ -143,8 +141,6 @@ class ComposableClass  extends ComposableImpl implements Composable{
 			if (ModelAdapterUtilities.elementMatchesInList (operation, toClass.getOperations()))
 				continue;
 			Operation clonedOperation = ModelAdapterUtilities.createElement (operation, toClass, baseJointpoints);
-//			if (clonedOperation != null)
-//				toClass.getOperations().add(clonedOperation);
 		}
 	}
 
@@ -154,8 +150,6 @@ class ComposableClass  extends ComposableImpl implements Composable{
 			if (ModelAdapterUtilities.elementMatchesInList (property, toClass.getAttributes()))
 				continue;
 			Property clonedProperty = ModelAdapterUtilities.createElement (property, toClass, baseJointpoints);
-//			if (clonedProperty != null)
-//				toClass.getAttributes().add(clonedProperty);
 		}
 	}
 

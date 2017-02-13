@@ -55,6 +55,7 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl;
 import org.eclipse.uml2.uml.Package;
@@ -211,10 +212,35 @@ class ModelAdapterUtilities{
 			return (T) createProperty ((Property) element, (Class)inContainer, baseJointpoints);
 		}else if (element instanceof Package){
 			return (T) createPackage ((Package) element, (Model)inContainer, baseJointpoints);
+		}else if (element instanceof Slot){
+			return (T) createSlot ((Slot) element, (InstanceSpecification)inContainer, baseJointpoints);
+		}else if (element instanceof InstanceSpecification){
+			return (T) createInstanceSpecification ((InstanceSpecification) element, (Package)inContainer, baseJointpoints);
 		}else{
 			log.error ("UML Type : " + element.getClass().toString() + " not supported for clonning");
 			return null;
 		}
+	}
+
+	private static InstanceSpecification createInstanceSpecification(InstanceSpecification instance, Package inContainer,
+			HashMap<Stereotype, List<Element>> baseJointpoints) {
+		InstanceSpecification newInstance = UMLFactory.eINSTANCE.createInstanceSpecification();
+		newInstance.setName(instance.getName());
+		newInstance.setSpecification(instance.getSpecification());
+		newInstance.getClassifiers().addAll(instance.getClassifiers());
+		ModelAdapterUtilities.addElementInPackage (newInstance, inContainer);
+		return newInstance;
+	}
+
+	private static Slot createSlot(Slot slot, InstanceSpecification inInstanceSpecification,
+			HashMap<Stereotype, List<Element>> baseJointpoints) {
+		// Creates the new slot referencing new object
+		ValueSpecification vs = slot.getValues().get(0);
+		Slot newSlot = inInstanceSpecification.createSlot();
+		newSlot.setDefiningFeature(slot.getDefiningFeature()); 
+		newSlot.createValue(vs.getName(), vs.getType(), vs.eClass());
+		newSlot.setOwningInstance(inInstanceSpecification);
+		return newSlot;
 	}
 
 	private static Package createPackage(Package pack, Model model, HashMap<Stereotype, List<Element>> baseJointpoints) {
