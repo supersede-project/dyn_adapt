@@ -309,10 +309,9 @@ public class Adapter implements IAdapter {
 			Model model = adapt(changedSelections, baseModel);
 
 			if (model != null){
-				//URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
-				//log.debug("Saved updated model in " + uri);
-				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
-				mm.saveModel(model.eResource(), uri, ".uml");
+				URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
+				//URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
+				//mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
 
