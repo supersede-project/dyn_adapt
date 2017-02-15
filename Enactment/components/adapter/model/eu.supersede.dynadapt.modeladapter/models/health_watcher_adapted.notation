@@ -1400,5 +1400,30 @@
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_w0mfkNmXEeaqn4PsJwbRFQ" id="(0.0,0.34375)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_w0mfkdmXEeaqn4PsJwbRFQ" id="(0.5025125628140703,1.0)"/>
     </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Jn7asPOAEeaVN-Wgl4wvBw" type="Association_Edge" source="_bHMNYNmWEeaqn4PsJwbRFQ" target="_iV9EsNmXEeaqn4PsJwbRFQ">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jn-eAPOAEeaVN-Wgl4wvBw" type="Association_StereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jn-eAfOAEeaVN-Wgl4wvBw" y="-20"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jn_FEPOAEeaVN-Wgl4wvBw" type="Association_NameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jn_FEfOAEeaVN-Wgl4wvBw" y="20"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jn_FEvOAEeaVN-Wgl4wvBw" type="Association_TargetRoleLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jn_FE_OAEeaVN-Wgl4wvBw" x="-51" y="-7"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jn_FFPOAEeaVN-Wgl4wvBw" type="Association_SourceRoleLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jn_FFfOAEeaVN-Wgl4wvBw" x="48" y="-14"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jn_FFvOAEeaVN-Wgl4wvBw" type="Association_SourceMultiplicityLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jn_FF_OAEeaVN-Wgl4wvBw" x="-50" y="-17"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jn_FGPOAEeaVN-Wgl4wvBw" type="Association_TargetMultiplicityLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jn_FGfOAEeaVN-Wgl4wvBw" x="47" y="-29"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Jn7asfOAEeaVN-Wgl4wvBw"/>
+      <element xmi:type="uml:Association" href="health_watcher_adapted.uml#_Jlhm8POAEeaVN-Wgl4wvBw"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Jn7asvOAEeaVN-Wgl4wvBw" points="[300, 414, -643984, -643984]$[296, -14, -643984, -643984]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Jq7rYPOAEeaVN-Wgl4wvBw" id="(0.572463768115942,0.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Jq8ScPOAEeaVN-Wgl4wvBw" id="(0.8409090909090909,1.0)"/>
+    </edges>
   </notation:Diagram>
 </xmi:XMI>

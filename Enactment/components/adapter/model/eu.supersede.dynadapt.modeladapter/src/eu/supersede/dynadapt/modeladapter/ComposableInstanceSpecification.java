@@ -153,7 +153,7 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 			//Filtering out instances that do not belong to target model
 			for (InstanceSpecification instance: instances){
 				if (!ModelAdapterUtilities.modelContainsElement(instance, model)){
-					instances.remove(instance);
+					instances.remove(instance); //FIXME instances are unmutable so this won't work
 				}
 			}
 		} catch (ViatraQueryException e) {

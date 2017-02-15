@@ -29,7 +29,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern InstanceSpecificationLink (link) {
+ * pattern InstanceSpecificationLink (link : InstanceSpecification) {
  * 	InstanceSpecification.classifier (link, classifier);
  * 	Association (classifier);
  * }
@@ -60,11 +60,9 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   }
   
   /**
-   * Initializes the pattern matcher within an existing VIATRA Query engine.
-   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-   * The match set will be incrementally refreshed upon updates.
-   * @param engine the existing VIATRA Query engine in which this matcher will be created.
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
   public static InstanceSpecificationLinkMatcher create() throws ViatraQueryException {
