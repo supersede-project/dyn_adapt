@@ -2,6 +2,7 @@ mvn install:install-file -DgroupId=org.eclipse.emf.ecore.xmi -DartifactId=org-ec
 
 mvn install:install-file -DgroupId=org.eclipse.uml2 -DartifactId=org-eclipse-uml2-uml -Dversion=5.2.2.v20161114-0827 -Dfile=../../required-JARS/org.eclipse.uml2.uml_5.2.2.v20161114-0827.jar -Dpackaging=jar
 
+
 mvn install:install-file -DgroupId=ptsupport -DartifactId=ptsupport -Dversion=11.0 -Dfile=../../required-JARS/ptsupport.jar -Dpackaging=jar
 
 mvn install:install-file -DgroupId=org.eclipse.emf.gwt.common -DartifactId=gwt-common -Dversion=2.9.0 -Dfile=../../required-JARS/org.eclipse.emf.gwt.common-2.9.0.jar -Dpackaging=jar
@@ -33,5 +34,4 @@ mvn install:install-file -DgroupId=ptolemy.de -DartifactId=ptolemy-de -Dversion=
 mvn install:install-file -DgroupId=ptolemy.json -DartifactId=ptolemy-json -Dversion=11.0 -Dfile=../../required-JARS/json.jar -Dpackaging=jar
 
 mvn install:install-file -DgroupId=ptolemy.org.json -DartifactId=ptolemy-org-json -Dversion=11.0 -Dfile=../../required-JARS/org-json.jar -Dpackaging=jar
-
 
