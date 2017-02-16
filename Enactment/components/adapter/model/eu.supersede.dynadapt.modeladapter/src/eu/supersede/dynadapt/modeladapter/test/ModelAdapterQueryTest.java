@@ -22,8 +22,11 @@
 
 package eu.supersede.dynadapt.modeladapter.test;
 
+import java.util.Set;
+
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Type;
@@ -83,6 +86,15 @@ public class ModelAdapterQueryTest {
 		boolean result = ModelAdapterUtilities.elementIsReferencedInModel(type, umlBaseAdaptedModel);
 		System.out.println ("Element " + type.getName() + " is " + (result?" referenced":" not referenced"));
 	}
+	
+//	@Test
+//	public void testGetReferencingInstanceSpecificationLinks() {
+//		Model testModel = modelManager.loadUMLModel("platform:/resource/eu.supersede.dynadapt.adapter/repository/models/variants/atos_cms_overloaded_variant.uml");
+//		modelManager.loadUMLModel("platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_base_model.uml");
+//		InstanceSpecification instance = (InstanceSpecification)getElementByNameInModel ("CMS Instance", testModel);
+//		Set<InstanceSpecification> instances = ModelAdapterUtilities.getReferencingInstanceSpecificationLinks(instance, testModel);
+//		System.out.println ("Found + " + instances.size() + " instances");
+//	}
 
 	private PackageableElement getElementByNameInModel(String name, Model model) {
 		PackageableElement found = null;

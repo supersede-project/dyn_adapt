@@ -40,7 +40,7 @@ class ComposableFactory {
 		String type = element.getClass().getSimpleName();
 		switch (type){
 		case INSTANCE:
-			composable = new ComposableInstanceSpecification(modelQuery, baseJointpoints);
+ 			composable = new ComposableInstanceSpecification(modelQuery, baseJointpoints);
 			break;
 		case CLASS:
 			composable = new ComposableClass(modelQuery, baseJointpoints);

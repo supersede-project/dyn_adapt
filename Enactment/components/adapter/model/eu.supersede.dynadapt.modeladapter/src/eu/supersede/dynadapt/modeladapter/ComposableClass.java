@@ -43,14 +43,17 @@ import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.internal.impl.AssociationImpl;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.ElementImpl;
 import org.eclipse.uml2.uml.internal.impl.GeneralizationImpl;
+import org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
+import eu.supersede.dynadapt.model.query.ModelQuery;
 
 import org.eclipse.uml2.uml.Package;
 
@@ -216,16 +219,22 @@ class ComposableClass extends ComposableImpl implements Composable {
 		for (Property property : classVariant.getAttributes()) {
 			Property baseProperty = (Property) ModelAdapterUtilities.resolvePropertyInClass(property, classBase, baseJointpoints);
 			Type associationType = null;
-			if (baseProperty.getAssociation() != null) {
+			Association association = baseProperty.getAssociation();
+			if (association != null) {
 				if (baseProperty.getAssociation().getMemberEnds()!=null && 
 					baseProperty.getAssociation().getMemberEnds().get(0)!=null){
 					associationType = baseProperty.getAssociation().getMemberEnds().get(0).getType();
 					
 				}
 			}
+			//Destroy property
 			baseProperty.destroy();
 			if (associationType!=null){
 				removeType(associationType, classBase.getModel(), usingVariantModel);
+			}
+			if (association!=null){
+				//Destroy property association (they are not removed when the class is destroyed)
+				association.destroy();
 			}
 		}
 
@@ -235,9 +244,9 @@ class ComposableClass extends ComposableImpl implements Composable {
 		// * Type T = pi.type
 		// * If type T exists in advicemodel and it is not a base jointpoint
 		// * For all elements in basemodel, if type T is not referenced by any
-		// of them (as generalization general, property type or operation
-		// parameter type)
-		// * Remove type (see REMOVE TYPE)
+		//   of them (as generalization general, property type or operation
+		//   parameter type)
+		//   * Remove type (see REMOVE TYPE)
 		for (Operation operation : classVariant.getOperations()) {
 			Operation baseOperation = (Operation) ModelAdapterUtilities.resolveOperationInClass(operation, classBase, baseJointpoints);
 			
@@ -285,115 +294,99 @@ class ComposableClass extends ComposableImpl implements Composable {
 			removeType(baseType, model, variantModel);
 		}
 	}
-	
-	
 
-	// FiXME: destroy method remove all crossreferences to the type,
-	// but not the referenced type, so it requires a more complex subrutine
+	// Destroy method remove all cross-references to the type,
+	// but not the referencing types, so it founds references to type that appears in the variant model and removes them
 	private void removeType(Type type, Model inModel, Model variantModel) {
 		// * Remove TYPE from basemodel
+		List<Association> associationsToRemove = ModelAdapterUtilities.getAssociationsOfClass((Class)type);
 		if (type != null && !baseJointpoints.containsValue(type)) {
 			if (!ModelAdapterUtilities.elementIsReferencedInModel((Class)type, inModel)) {
-				removeReferencesOfType(type);
-				type.destroy(); //FIXME Traverse through properties, operations and generalizations before removing the type.
+				//Traverse through properties, operations and generalizations before removing the type.
+				List<Type> references = findReferencesOfType((Class)type, inModel, variantModel);
+				
+				//Destroy type
+				type.destroy(); 
+				
+				//Destroy associations of type
+				for (Association assoc: associationsToRemove){
+					assoc.destroy();
+				}
+				
+				//Remove references of type
+				for (Type typeToRemove: references){
+					if (!(typeToRemove instanceof PrimitiveTypeImpl)){ //FIXME Consider only Classifiers (Class) for removal
+						removeType(typeToRemove, inModel, variantModel);
+					}
+				}
 			}
 		}
 	}
+	
+	private List<Type> findReferencesOfType(Class type, Model baseModel, Model variantModel) {
+		
+		List<Type> references = new ArrayList<>();
 		// * For all properties Pi in TYPE:
 		// * If (property Pi is an association)
 		// * Type T = association.type
 		// * If type T exists in advicemodel
-		// * For all elements in basemodel, if type T is not referenced by any
-		// of them (as generalization general, property type or operation
-		// parameter type)
-		// * Remove type (see REMOVE TYPE)
+		
+		for (Property property : type.getAttributes()) {
+//			Property baseProperty = (Property) ModelAdapterUtilities.resolvePropertyInClass(property, classBase, baseJointpoints);
+			Type associationType = null;
+			if (property.getAssociation() != null) {
+				if (property.getAssociation().getMemberEnds()!=null && 
+					property.getAssociation().getMemberEnds().get(0)!=null){
+					associationType = property.getAssociation().getMemberEnds().get(0).getType();
+				}
+			}
+			
+			if (associationType!= null && 
+				ModelAdapterUtilities.getEquivalentElementInModel(associationType, variantModel) != null){
+				references.add(associationType);
+			}
+		}
+		
 		// * For all operations Oi in TYPE:
 		// * For all parameters Pi in Oi, including return object
 		// * Type T = pi.type
 		// * If type T exists in advicemodel
-		// * For all elements in basemodel, if type T is not referenced by any
-		// of them (as generalization general, property type or operation
-		// parameter type)
-		// * Remove type (see REMOVE TYPE)
+		
+		for (Operation operation : type.getOperations()) {
+			for (Parameter parameter : operation.getOwnedParameters()) {
+				Type parameterType = parameter.getType();
+				if (parameterType!= null && 
+					ModelAdapterUtilities.getEquivalentElementInModel(parameterType, variantModel) != null){
+					references.add(parameterType);
+				}
+			}
+			
+			if (operation.getReturnResult() != null) {
+				Type parameterType = operation.getReturnResult().getType();
+				if (parameterType!= null && 
+					ModelAdapterUtilities.getEquivalentElementInModel(parameterType, variantModel) != null){
+					references.add(parameterType);
+				}
+			}
+		}
+		
 		// * For all generalizations Gi defined in TYPE
 		// * If type = Gi.general exists in advicemodel
 		// * Remove type (see REMOVE TYPE)
 		// * For any type in advicemodel, such as type.generalization.general =
 		// TYPE
 		// * If type exists in advicemodel
-		// * Remove type (see REMOVE TYPE)
-	
-	private void removeReferencesOfType(Type type) {
-		// TODO Auto-generated method stub
+		for (Generalization generalization : type.getGeneralizations()) {
+			Type superClass = generalization.getGeneral();
+			if (superClass!= null && 
+				ModelAdapterUtilities.getEquivalentElementInModel(superClass, variantModel) != null){
+				references.add(superClass);
+			}
+		}
+		
+		return references;
 		
 	}
-
-	// @Override
-	// public void applyDeleteComposition(Model inBaseModel, Element
-	// jointpointBaseModelElement,
-	// Model usingVariantModel, Element jointpointVariantModelElement) {
-	// ClassImpl classBase = (ClassImpl) jointpointBaseModelElement;
-	// ClassImpl classVariant = (ClassImpl) jointpointVariantModelElement;
-	// // For each relationship of the class in the variant
-	// for (Relationship r1:classVariant.getRelationships()) {
-	// // For each relationship of the class in the base model
-	// for (Relationship r2:classBase.getRelationships()) {
-	// // Check which relationships are present in the variant
-	// if (ModelAdapterUtilities.checkSameRelationship(r1, r2)) {
-	// // Retrieve the related object
-	// ClassImpl deleteClass = null;
-	// if (!r2.getRelatedElements().get(0).equals(classBase)) {
-	// deleteClass = (ClassImpl) r2.getRelatedElements().get(0);
-	// } else
-	// deleteClass = (ClassImpl) r2.getRelatedElements().get(1);
-	// // Delete it if present in variant
-	// if (ModelAdapterUtilities.modelContainsElement(deleteClass,
-	// usingVariantModel))
-	// deleteClass.destroy();
-	// break;
-	// }
-	// }
-	// }
-	// // Delete all instances of the class in the variant
-	// List<NamedElement> baseInstances =
-	// ModelAdapterUtilities.getInstances(classVariant, inBaseModel);
-	// for (NamedElement e : baseInstances) {
-	// if (ModelAdapterUtilities.modelContainsElement(e, usingVariantModel))
-	// e.destroy();
-	// }
-	// }
-
-	// /**
-	// * Checks if the object a is an instance specification of the relationship
-	// r
-	// * with parent instance baseInst
-	// *
-	// * @param a
-	// * @param r
-	// * @param baseInst
-	// * @return
-	// */
-	// private boolean isAssociationInstance(EObject a, Relationship r,
-	// InstanceSpecification baseInst) {
-	// if (a.eClass().getName().equalsIgnoreCase("InstanceSpecification")) {
-	// EObject aa = (EObject) ((EObjectResolvingEList<?>)
-	// a.eGet(a.eClass().getEStructuralFeature("classifier")))
-	// .get(0);
-	// if (aa.eGet(aa.eClass().getEStructuralFeature("name")) != null
-	// && (aa.eGet(aa.eClass().getEStructuralFeature("name"))
-	// .equals(r.eGet(r.eClass().getEStructuralFeature("name"))))) {
-	// InstanceSpecification instance = (InstanceSpecification) a;
-	// for (Slot s : instance.getSlots()) {
-	// if (((InstanceValue)
-	// s.getValues().get(0)).getInstance().getName().equals(baseInst.getName()))
-	// {
-	// return true;
-	// }
-	// }
-	// }
-	// }
-	// return false;
-	// }
 
 	@Override
 	public void applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
