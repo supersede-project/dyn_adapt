@@ -23,16 +23,13 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.activation.UnsupportedDataTypeException;
-import javax.lang.model.type.PrimitiveType;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -41,10 +38,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Model;
@@ -56,16 +54,17 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
+import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 import org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
-import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modeladapter.queries.GetReferenceToTypeMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificationLinkMatcher;
@@ -167,15 +166,15 @@ public class ModelAdapterUtilities {
 
 		PackageableElement equivalentElement = null;
 		Package pack = null;
-		if (element instanceof Model) // Equivalent element for a model it the
-										// model itself
+		// Equivalent element for a model it the model itself
+		if (element instanceof Model){ 
 			return model;
-		if (element.getNearestPackage() instanceof Model) { // element in root
-															// container, that
-															// is the model
+		}
+		// element in root container, that is the model
+		if (element.getNearestPackage() instanceof Model) { 
 			pack = model;
 		} else {
-			getPackageInModel(element.getNearestPackage(), model);
+			pack = getPackageInModel(element.getNearestPackage(), model);
 		}
 		if (pack != null) {
 			equivalentElement = pack.getPackagedElement(((NamedElement) element).getName());
@@ -209,7 +208,28 @@ public class ModelAdapterUtilities {
 		}
 		return null;
 	}
+	
+	public static List<ActivityEdge> setOutgoingEdges(ActivityImpl activity, List<ActivityEdge> outgoingEdges, ActivityNode originAction) {
+		List<ActivityEdge> edges = new ArrayList<>();
+		for (int i = 0; i < outgoingEdges.size(); ++i) {
+			//log.debug("\tNew edge from " + originAction.getName());
+			ActivityEdge edge = (ActivityEdge) activity.createEdge(outgoingEdges.get(i).getName(), outgoingEdges.get(i).eClass());
+			edges.add(edge);
+			edge.setSource(originAction);
+			originAction.getOutgoings().add(edge);
+		}
+		return edges;
+	}
 
+	public static void setIncomingEdges(List<ActivityEdge> incomingEdges, ActivityNode originAction) {
+		for (int i = 0; i < incomingEdges.size(); ++i) {
+			//log.debug("\tNew edge to " + originAction.getName());
+			ActivityEdge edge = incomingEdges.get(i);
+			edge.setTarget(originAction);
+			originAction.getIncomings().add(edge);
+		}
+	}
+		
 	public static boolean elementHasRole(Element element, Stereotype stereotype) {
 		return element.isStereotypeApplied(stereotype);
 	}
@@ -365,12 +385,8 @@ public class ModelAdapterUtilities {
 			// passed in baseJointpoints
 			for (Stereotype stereotype : baseJointpoints.keySet()) {
 				if (type.isStereotypeApplied(stereotype)) {
-					resolvedElement = baseJointpoints.get(stereotype).get(0); // FIXME
-																				// Investigate
-																				// possible
-																				// multiple
-																				// role
-																				// assignments
+					// FIXME Investigate possible multiple role assignments
+					resolvedElement = baseJointpoints.get(stereotype).get(0); 
 					break;
 				}
 			}
@@ -522,25 +538,6 @@ public class ModelAdapterUtilities {
 		return result;
 	}
 
-//	public static boolean elementIsReferencedInModel(Class type, Model model, IModelQuery modelQuery) {
-//		// Use Model Query to find subclasses
-//		Set<Element> result = new HashSet<>();
-//		try {
-//			GetReferenceToTypeMatcher matcher = (GetReferenceToTypeMatcher) modelQuery
-//					.queryMatcher(GetReferenceToTypeQuerySpecification.instance());
-//			Set<Element> references = matcher.getAllValuesOfelement(type);
-//			// Filtering out instances that do not belong to target model
-//			for (Element reference : references) {
-//				if (ModelAdapterUtilities.modelContainsElement((NamedElement) reference, model)) {
-//					result.add(reference);
-//				}
-//			}
-//		} catch (ViatraQueryException e) {
-//			e.printStackTrace();
-//		}
-//		return !result.isEmpty();
-//	}
-
 	public static boolean elementIsReferencedInModel(Class type, Model model) {
 		// Use Model Query to find subclasses
 		Set<Element> result = new HashSet<>();
@@ -561,5 +558,37 @@ public class ModelAdapterUtilities {
 			e.printStackTrace();
 		}
 		return !result.isEmpty();
+	}
+	
+//	public static Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecification instance, Model model) {
+//		Set<InstanceSpecification> instances = null;
+//	
+//		try {
+//			IModelManager modelManager = new ModelManager(false);
+//			modelManager.getResourceSet().getResources().add(model.eResource());
+//			ModelQuery modelQuery = new ModelQuery(modelManager, model.eResource());
+//			InstanceOfInstanceSpecificationLinkMatcher matcher = 
+//					(InstanceOfInstanceSpecificationLinkMatcher) modelQuery.queryMatcher(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
+//			instances = matcher.getAllValuesOfinstance(instance);
+//			//Filtering out instances that do not belong to target model
+//			for (InstanceSpecification instanceSpecification: instances){
+//				if (!ModelAdapterUtilities.modelContainsElement(instanceSpecification, model)){
+//					instances.remove(instanceSpecification); //FIXME instances are unmutable so this won't work
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return instances;
+//	}
+
+	public static List<Association> getAssociationsOfClass(Class clazz) {
+		List<Association> associations = new ArrayList<>();
+		for (Property property : clazz.getAttributes()) {
+			if (property.getAssociation() != null) {
+				associations.add (property.getAssociation());
+			}
+		}
+		return associations;
 	}
 }

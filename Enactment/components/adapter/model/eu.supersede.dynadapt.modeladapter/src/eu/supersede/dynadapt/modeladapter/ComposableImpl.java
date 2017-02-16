@@ -9,7 +9,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import eu.supersede.dynadapt.model.query.IModelQuery;
 
 public class ComposableImpl {
-	protected IModelQuery modelQuery; //FIXME: Remove need of model query. Create one targeting concrete model on demand. @see ModelAdapterUtilities
+	protected IModelQuery modelQuery;
 	protected HashMap<Stereotype, List<Element>> baseJointpoints;
 	
 	public ComposableImpl (IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints){

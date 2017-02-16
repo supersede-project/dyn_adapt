@@ -26,3 +26,4 @@ public class ModelRepositoryResolver {
 		return mm.loadFeatureConfiguration(uri.toString());
 	}
 }
+

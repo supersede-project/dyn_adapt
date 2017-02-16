@@ -34,8 +34,8 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
-public class MonitoringAdapterTest {
-	private final static Logger log = LogManager.getLogger(MonitoringAdapterTest.class);
+public class SiemensAdapterTest {
+	private final static Logger log = LogManager.getLogger(SiemensAdapterTest.class);
 
 	String baseModelPath;
 	String repository;
@@ -62,9 +62,9 @@ public class MonitoringAdapterTest {
 	}
 
 	private void setupPlatform() {
-		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/MonitoringSystemBaseModel.uml";
+		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/BaseModel-S1.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/MonitoringSystem.yafm";
+		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/FeatureModel-S1c.yafm";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 
@@ -79,15 +79,14 @@ public class MonitoringAdapterTest {
 	}
 	
 	@Test
-	public void testMonitoringUCAdaptation() {
+	public void testSiemensUCAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
-			String adaptationDecisionActionId = "timeSlot_twitter";
 			String featureConfigurationId = null;
-			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.MONITORING.toString(), adaptationDecisionActionId, featureConfigurationId);
+			adapter.enactAdaptationDecisionActionsFC(
+					SupersedeSystem.SIEMENS.toString(), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

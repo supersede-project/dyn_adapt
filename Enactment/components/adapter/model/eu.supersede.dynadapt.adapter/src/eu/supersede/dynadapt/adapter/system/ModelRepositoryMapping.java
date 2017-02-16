@@ -17,6 +17,10 @@ public class ModelRepositoryMapping{
 			return  URI.createURI (atosMapping.get(type.getType()).get(type.getTimestamp()));
 		case HEALTH:
 			return URI.createURI (healthMapping.get(type.getType()).get(type.getTimestamp()));
+		case MONITORING:
+			return 	URI.createURI(monitoringMapping.get(type.getType()).get(type.getTimestamp()));
+		case SIEMENS:
+			return URI.createURI(siemensMapping.get(type.getType()).get(type.getTimestamp()));
 		default:
 			//FIXME Other systems not supported
 			throw new EnactmentException("System not supported " + system.getURI());
@@ -25,6 +29,8 @@ public class ModelRepositoryMapping{
 	
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> atosMapping = new HashMap<>();
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> healthMapping = new HashMap<>();
+	private static Map<ResourceType, Map<ResourceTimestamp, String>> monitoringMapping = new HashMap<>();
+	private static Map<ResourceType, Map<ResourceTimestamp, String>> siemensMapping = new HashMap<>();
 	
 	static{
 		//ATOS USE CASE
@@ -50,6 +56,32 @@ public class ModelRepositoryMapping{
 				"/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc");
 		healthMapping.put(ResourceType.BASE, healthBaseModel);
 		healthMapping.put(ResourceType.FEATURE_CONFIGURATION, healthFeatureConfiguration);
+		
+		//MONITORUING USE CASE
+		Map<ResourceTimestamp, String> monitoringBaseModel = new HashMap<>();
+		Map<ResourceTimestamp, String> monitoringFeatureConfiguration = new HashMap<>();
+		
+		monitoringBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/MonitoringSystemBaseModel.uml");
+		monitoringFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/MonitoringSystemConfigDefault.yafc");
+		monitoringFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/MonitoringSystemConfigHighTimeslot.yafc");
+		monitoringMapping.put(ResourceType.BASE, monitoringBaseModel);
+		monitoringMapping.put(ResourceType.FEATURE_CONFIGURATION, monitoringFeatureConfiguration);
+		
+		//SIEMENS USE CASE
+		Map<ResourceTimestamp, String> siemensBaseModel = new HashMap<>();
+		Map<ResourceTimestamp, String> siemensFeatureConfiguration = new HashMap<>();
+		
+		siemensBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/BaseModel-S1.uml");
+		siemensFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/FeatureConfiguration-S1.yafc");
+		siemensFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/FeatureConfiguration-S1.yafc");
+		siemensMapping.put(ResourceType.BASE, siemensBaseModel);
+		siemensMapping.put(ResourceType.FEATURE_CONFIGURATION, siemensFeatureConfiguration);
 	}
 	
 	public static void setModelURI (SupersedeSystem system, RepositoryMetadata type, String relativeModelPath) throws EnactmentException{
