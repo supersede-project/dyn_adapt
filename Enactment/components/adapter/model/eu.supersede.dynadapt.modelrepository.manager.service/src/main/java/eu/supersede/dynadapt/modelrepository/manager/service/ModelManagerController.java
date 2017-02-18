@@ -25,6 +25,7 @@ import com.google.gson.JsonParser;
 
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.ModelType;
 
 @RestController
 @RequestMapping("/models")
@@ -88,7 +89,7 @@ public class ModelManagerController {
 			}
 		}
 		try {
-			manager.createModels(modelType, models);
+			manager.createModels(ModelType.valueOf(modelType), models);
 			StringWriter writer = new StringWriter();
 			mapper.writeValue(writer, models);
 			return writer.toString();
@@ -104,7 +105,7 @@ public class ModelManagerController {
 		String response = "";
 		IModel model;
 		try {
-			model = manager.getModel(modelType, modelId);
+			model = manager.getModel(ModelType.valueOf(modelType), modelId);
 		} catch (Exception e) {
 			throw new ResourceNotFoundException();
 		}
@@ -131,7 +132,7 @@ public class ModelManagerController {
 			propertySet.put(entry.getKey(), entry.getValue().getAsString());
 		}
 		try {
-			IModel model = manager.updateModel(modelType, modelId, propertySet);
+			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, propertySet);
 			ObjectMapper mapper = new ObjectMapper();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 			mapper.setDateFormat(format);
@@ -147,7 +148,7 @@ public class ModelManagerController {
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) {
 		try {
-			manager.deleteModel(modelType, modelId);
+			manager.deleteModel(ModelType.valueOf(modelType), modelId);
 		} catch (Exception e) {
 			throw new ResourceNotFoundException();
 		}

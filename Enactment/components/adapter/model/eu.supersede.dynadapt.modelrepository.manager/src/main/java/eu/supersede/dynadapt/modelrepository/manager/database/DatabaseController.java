@@ -14,6 +14,7 @@ import java.util.Map;
 import com.google.gson.JsonObject;
 
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.ModelType;
 
 public class DatabaseController implements IDatabaseController {
 	
@@ -29,7 +30,7 @@ public class DatabaseController implements IDatabaseController {
 		con = dbConn.init();
 	}
 
-	public List<IModel> getAllModels(String type) throws Exception {
+	public List<IModel> getAllModels(ModelType type) throws Exception {
 		
 		List<IModel> modelList = new ArrayList<IModel>();
 		
@@ -56,7 +57,7 @@ public class DatabaseController implements IDatabaseController {
 		return modelList;
 	}
 
-	public IModel createModel(String type, IModel model) throws Exception {
+	public IModel createModel(ModelType type, IModel model) throws Exception {
 		
 		String keys = "";
 		String values = "";
@@ -91,7 +92,7 @@ public class DatabaseController implements IDatabaseController {
 		return model;
 	}
 
-	public IModel getModel(String type, String id) throws Exception {
+	public IModel getModel(ModelType type, String id) throws Exception {
 		
 		Map<String,String> properties = new HashMap<>();
 		Class classObject = Class.forName(packageRoute + type);
@@ -119,7 +120,7 @@ public class DatabaseController implements IDatabaseController {
 
 	}
 
-	public IModel updateModel(String type, String id, Map<String,String> propertySet) throws Exception {
+	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception {
 		
 		IModel model = getModel(type, id);
 		if (model == null) throw new Exception("There is no " + type + " with this id");
@@ -145,7 +146,7 @@ public class DatabaseController implements IDatabaseController {
 		
 	}
 
-	public void deleteModel(String type, String id) throws Exception {
+	public void deleteModel(ModelType type, String id) throws Exception {
 
 		IModel model = getModel(type,id);
 		Statement stm = con.createStatement();

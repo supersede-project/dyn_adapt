@@ -20,6 +20,7 @@ import org.junit.Test;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.ModelType;
 
 public class ManagerTest {
 	
@@ -38,7 +39,7 @@ public class ManagerTest {
 	@Test
 	public void listAdaptabilityModels() {
 		try {
-			List<IModel> models = manager.listAllModels("AdaptabilityModel");
+			List<IModel> models = manager.listAllModels(ModelType.AdaptabilityModel);
 			System.out.println("Number of AdaptabilityModels: " + models.size());
 			for (IModel model : models) System.out.println("\tModel id: " + model.getValue("id"));
 		} catch (Exception e) {
@@ -50,7 +51,7 @@ public class ManagerTest {
 	public void createAdaptabilityModel() {
 		try {
 			IModel model = generateAdaptabilityModelData();
-			IModel newModel = manager.createModel("AdaptabilityModel", model);
+			IModel newModel = manager.createModel(ModelType.AdaptabilityModel, model);
 			String id = newModel.getValue("id").toString();
 			assertEquals(newModel.getValue("name"),"AdaptModelA");
 			assertEquals(newModel.getValue("authorId"),"SUPERSEDE");
@@ -60,7 +61,7 @@ public class ManagerTest {
 			assertEquals(newModel.getValue("systemId"),"MonitoringReconfiguration");
 			assertEquals(newModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created successfully (id = " + id + ")");
-			manager.deleteModel("AdaptabilityModel", id);
+			manager.deleteModel(ModelType.AdaptabilityModel, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,7 +73,7 @@ public class ManagerTest {
 			List<IModel> propertySetList = new ArrayList<>();
 			propertySetList.add(generateAdaptabilityModelData());
 			propertySetList.add(generateAdaptabilityModelData());
-			List<IModel> models = manager.createModels("AdaptabilityModel", propertySetList);
+			List<IModel> models = manager.createModels(ModelType.AdaptabilityModel, propertySetList);
 			String ids = "";
 			for (IModel model : models) {
 				assertEquals(model.getValue("name"),"AdaptModelA");
@@ -86,7 +87,7 @@ public class ManagerTest {
 			}
 			System.out.println("Models created successfully (id list = " + ids + ")");
 			for (IModel model : models) {
-				manager.deleteModel("AdaptabilityModel", model.getValue("id").toString());
+				manager.deleteModel(ModelType.AdaptabilityModel, model.getValue("id").toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,8 +98,8 @@ public class ManagerTest {
 	public void createAndGetAdaptabilityModel() {
 		try {
 			IModel model = generateAdaptabilityModelData();
-			IModel newModel = manager.createModel("AdaptabilityModel", model);
-			IModel getModel = manager.getModel("AdaptabilityModel", newModel.getValue("id").toString());
+			IModel newModel = manager.createModel(ModelType.AdaptabilityModel, model);
+			IModel getModel = manager.getModel(ModelType.AdaptabilityModel, newModel.getValue("id").toString());
 			assertEquals(getModel.getValue("name"),"AdaptModelA");
 			assertEquals(getModel.getValue("authorId"),"SUPERSEDE");
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
@@ -107,7 +108,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
 			assertEquals(getModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
-			manager.deleteModel("AdaptabilityModel", getModel.getValue("id").toString());
+			manager.deleteModel(ModelType.AdaptabilityModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,10 +118,10 @@ public class ManagerTest {
 	public void createAndDeleteModel() {
 		try {
 			IModel model = generateAdaptabilityModelData();
-			IModel newModel = manager.createModel("AdaptabilityModel", model);
-			manager.deleteModel("AdaptabilityModel", newModel.getValue("id").toString());
+			IModel newModel = manager.createModel(ModelType.AdaptabilityModel, model);
+			manager.deleteModel(ModelType.AdaptabilityModel, newModel.getValue("id").toString());
 			try {
-				manager.getModel("AdaptabilityModel", newModel.getValue("id").toString());
+				manager.getModel(ModelType.AdaptabilityModel, newModel.getValue("id").toString());
 			} catch (Exception e) {
 				System.out.println("Model created and deleted successfully (id = " + newModel.getValue("id") + ")");
 			}
@@ -136,12 +137,12 @@ public class ManagerTest {
 			propertySet.put("name", "AdaptModelB");
 			propertySet.put("modelContent", "NewContent");
 			IModel model = generateAdaptabilityModelData();
-			IModel createModel = manager.createModel("AdaptabilityModel", model);
-			IModel updateModel = manager.updateModel("AdaptabilityModel", createModel.getValue("id").toString(), propertySet);
+			IModel createModel = manager.createModel(ModelType.AdaptabilityModel, model);
+			IModel updateModel = manager.updateModel(ModelType.AdaptabilityModel, createModel.getValue("id").toString(), propertySet);
 			assertEquals(updateModel.getValue("name"), "AdaptModelB");
 			assertEquals(updateModel.getValue("modelContent"), "NewContent");
 			System.out.println("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
-			manager.deleteModel("AdaptabilityModel", updateModel.getValue("id").toString());
+			manager.deleteModel(ModelType.AdaptabilityModel, updateModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -151,8 +152,8 @@ public class ManagerTest {
 	public void createAndGetBaseModel() {
 		try {
 			IModel model = generateBaseModelData();
-			IModel newModel = manager.createModel("BaseModel", model);
-			IModel getModel = manager.getModel("BaseModel", newModel.getValue("id").toString());
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
+			IModel getModel = manager.getModel(ModelType.BaseModel, newModel.getValue("id").toString());
 			assertEquals(getModel.getValue("name"),"BaseModelA");
 			assertEquals(getModel.getValue("authorId"),"SUPERSEDE");
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
@@ -160,7 +161,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("fileExtension"),".uml");
 			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
-			manager.deleteModel("BaseModel", getModel.getValue("id").toString());
+			manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
