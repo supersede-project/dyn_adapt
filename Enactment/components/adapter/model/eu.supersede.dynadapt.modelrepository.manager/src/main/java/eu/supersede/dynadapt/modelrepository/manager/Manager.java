@@ -7,8 +7,8 @@ import java.util.Map;
 import eu.supersede.dynadapt.modelrepository.manager.database.DatabaseController;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
-import eu.supersede.dynadapt.modelrepository.manager.enums.SystemId;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class Manager implements IManager {
 	
@@ -43,12 +43,12 @@ public class Manager implements IManager {
 	}
 	
 	@Override
-	public List<IModel> getModels(ModelType type, SystemId systemId) throws Exception {
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
 		return dbController.getModels(type, systemId);
 	}
 
 	@Override
-	public List<IModel> getModels(ModelType type,  SystemId systemId, Status status) throws Exception {
+	public List<IModel> getModels(ModelType type,  ModelSystem systemId, Status status) throws Exception {
 		return dbController.getModels(type, systemId, status);
 	}
 	

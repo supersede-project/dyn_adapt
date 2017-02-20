@@ -19,10 +19,10 @@ import org.junit.Test;
 
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
-import eu.supersede.dynadapt.modelrepository.manager.enums.SystemId;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ManagerTest {
 	
@@ -60,7 +60,7 @@ public class ManagerTest {
 			assertEquals(newModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(newModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(newModel.getValue("fileExtension"),".aspect");
-			assertEquals(newModel.getValue("systemId"),"MONITORING");
+			assertEquals(newModel.getValue("systemId"),"MonitoringReconfiguration");
 			assertEquals(newModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created successfully (id = " + id + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, id);
@@ -83,7 +83,7 @@ public class ManagerTest {
 				assertEquals(model.getValue("creationDate"),"2016-09-30 01:25:37.0");
 				assertEquals(model.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 				assertEquals(model.getValue("fileExtension"),".aspect");
-				assertEquals(model.getValue("systemId"),"MONITORING");
+				assertEquals(model.getValue("systemId"),"MonitoringReconfiguration");
 				assertEquals(model.getValue("featureId"),"Feat1");
 				ids += model.getValue("id") + "/";
 			}
@@ -107,7 +107,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("fileExtension"),".aspect");
-			assertEquals(getModel.getValue("systemId"),"MONITORING");
+			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
 			assertEquals(getModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, getModel.getValue("id").toString());
@@ -161,7 +161,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("fileExtension"),".uml");
-			assertEquals(getModel.getValue("systemId"),"MONITORING");
+			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
@@ -174,9 +174,9 @@ public class ManagerTest {
 		try {
 			IModel model = generateBaseModelData();
 			manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, SystemId.MONITORING);
+			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration);
 			for (IModel m : models) {
-				assertEquals(SystemId.MONITORING.toString(), m.getValue("systemId"));
+				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,9 +188,9 @@ public class ManagerTest {
 		try {
 			IModel model = generateBaseModelData();
 			manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, SystemId.MONITORING, Status.Enacted);
+			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, Status.Enacted);
 			for (IModel m : models) {
-				assertEquals(SystemId.MONITORING.toString(), m.getValue("systemId"));
+				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 				assertEquals(Status.Enacted.toString(), m.getValue("status"));
 			}
 		} catch (Exception e) {
@@ -205,7 +205,7 @@ public class ManagerTest {
 		model.setCreationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setLastModificationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setFileExtension(".aspect");
-		model.setSystemId("MONITORING");
+		model.setSystemId("MonitoringReconfiguration");
 		model.setFeatureId("Feat1");
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
@@ -222,7 +222,7 @@ public class ManagerTest {
 		model.setCreationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setLastModificationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setFileExtension(".uml");
-		model.setSystemId("MONITORING");
+		model.setSystemId("MonitoringReconfiguration");
 		model.setStatus("Enacted");
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);

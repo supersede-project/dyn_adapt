@@ -15,8 +15,8 @@ import com.google.gson.JsonObject;
 
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
-import eu.supersede.dynadapt.modelrepository.manager.enums.SystemId;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class DatabaseController implements IDatabaseController {
 	
@@ -99,12 +99,12 @@ public class DatabaseController implements IDatabaseController {
 		return getModels(query, type);
 	}
 	
-	public List<IModel> getModels(ModelType type, SystemId systemId) throws Exception {
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
 		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "'";
 		return getModels(query, type);
 	}
 	
-	public List<IModel> getModels(ModelType type, SystemId systemId, Status status) throws Exception {
+	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception {
 		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "' AND status = '" + status + "'";
 		return getModels(query, type);
 	}

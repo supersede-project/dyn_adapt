@@ -5,8 +5,8 @@ import java.util.Map;
 
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
-import eu.supersede.dynadapt.modelrepository.manager.enums.SystemId;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public interface IManager {
 		
@@ -17,10 +17,10 @@ public interface IManager {
 	public IModel createModel(ModelType type, IModel model) throws Exception;
 	
 	public IModel getModel(ModelType type, String id) throws Exception;
-	//FIXME change SystemId enum to IF
-	public List<IModel> getModels(ModelType type, SystemId systemId) throws Exception;
-	//FIXME change SystemId enum to IF
-	public List<IModel> getModels(ModelType type, SystemId systemId, Status status) throws Exception;
+
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
+
+	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
 		
 	public void deleteModel(ModelType type, String id) throws Exception;
 	

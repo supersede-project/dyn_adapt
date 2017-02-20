@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +25,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
+import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
+import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
-import eu.supersede.dynadapt.modelrepository.model.ModelType;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 @RequestMapping("/models")
@@ -43,15 +46,20 @@ public class ModelManagerController {
 		}
 	}
 
-	/*@RequestMapping(value="/{modelType}", method = RequestMethod.GET)
+	@RequestMapping(value="/{modelType}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public String listModels(@PathVariable String modelType) {
+	public String listModels(@PathVariable String modelType,
+							@RequestParam(value = "systemId", required = false) String systemId,
+				            @RequestParam(value = "status", required = false) String status) {
+		
 		List<IModel> models = new ArrayList<>();
 		String response = "";
 		try {
-			models = manager.listAllModels(modelType);
+			if (systemId == null && status == null) models = manager.listAllModels(ModelType.valueOf(modelType));
+			else if (status == null) models = manager.getModels(ModelType.valueOf(modelType), ModelSystem.valueOf(systemId));
+			else models = manager.getModels(ModelType.valueOf(modelType), ModelSystem.valueOf(systemId), Status.valueOf(status));
 		} catch (Exception e) {
-			return Response.error(e.getMessage());
+			throw new ResourceNotFoundException();
 		}
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -59,10 +67,10 @@ public class ModelManagerController {
 			mapper.writeValue(writer, models);
 			response = writer.toString();
 		} catch (Exception e) {
-			return Response.error(e.getMessage());
+			throw new UnprocessableEntityException();
 		}
 		return response;
-	}*/
+	}
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
