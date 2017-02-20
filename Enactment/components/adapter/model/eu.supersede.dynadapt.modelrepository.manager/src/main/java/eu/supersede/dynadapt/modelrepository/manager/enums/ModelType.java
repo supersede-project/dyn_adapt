@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.modelrepository.model;
+package eu.supersede.dynadapt.modelrepository.manager.enums;
 
 public enum ModelType {
 	

@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.google.gson.JsonObject;
 
+import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
-import eu.supersede.dynadapt.modelrepository.model.ModelType;
 
 public interface IDatabaseController {
 	

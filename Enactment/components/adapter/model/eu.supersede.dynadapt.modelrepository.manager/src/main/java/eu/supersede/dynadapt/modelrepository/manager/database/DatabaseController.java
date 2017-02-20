@@ -13,8 +13,10 @@ import java.util.Map;
 
 import com.google.gson.JsonObject;
 
+import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
+import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
+import eu.supersede.dynadapt.modelrepository.manager.enums.SystemId;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
-import eu.supersede.dynadapt.modelrepository.model.ModelType;
 
 public class DatabaseController implements IDatabaseController {
 	
@@ -28,33 +30,6 @@ public class DatabaseController implements IDatabaseController {
 		DatabaseConnection dbConn = new DatabaseConnection();
 		contentFileManager = new ContentFileManager(modelStoragePath);
 		con = dbConn.init();
-	}
-
-	public List<IModel> getAllModels(ModelType type) throws Exception {
-		
-		List<IModel> modelList = new ArrayList<IModel>();
-		
-		Class classObject = Class.forName(packageRoute + type);
-		
-		Statement stm = con.createStatement();
-		ResultSet rs = stm.executeQuery("SELECT * FROM " + type);
-		ResultSetMetaData rsmd = rs.getMetaData();
-		
-		while (rs.next()) {
-			IModel model = (IModel) classObject.newInstance();
-			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-				String name = rsmd.getColumnName(i);
-				if (!name.equals("filePath")) {
-					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
-						model.setValue(name, rs.getTimestamp(name));
-					}
-					else model.setValue(name, rs.getString(name));
-				}
-			}
-			modelList.add(model);
-		}
-			
-		return modelList;
 	}
 
 	public IModel createModel(ModelType type, IModel model) throws Exception {
@@ -117,7 +92,21 @@ public class DatabaseController implements IDatabaseController {
 		model.setValue("modelContent", content);
 		
 		return model;
-
+	}
+	
+	public List<IModel> getAllModels(ModelType type) throws Exception {
+		String query = "SELECT * FROM " + type;
+		return getModels(query, type);
+	}
+	
+	public List<IModel> getModels(ModelType type, SystemId systemId) throws Exception {
+		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "'";
+		return getModels(query, type);
+	}
+	
+	public List<IModel> getModels(ModelType type, SystemId systemId, Status status) throws Exception {
+		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "' AND status = '" + status + "'";
+		return getModels(query, type);
 	}
 
 	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception {
@@ -158,6 +147,34 @@ public class DatabaseController implements IDatabaseController {
 		
 		contentFileManager.deleteModelContent(model);
 			
+	}
+	
+	private List<IModel> getModels(String query, ModelType type) throws Exception {
+		
+		List<IModel> modelList = new ArrayList<IModel>();
+		
+		Class classObject = Class.forName(packageRoute + type);
+		
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(query);
+		ResultSetMetaData rsmd = rs.getMetaData();
+		
+		while (rs.next()) {
+			IModel model = (IModel) classObject.newInstance();
+			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
+				String name = rsmd.getColumnName(i);
+				if (!name.equals("filePath")) {
+					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
+						model.setValue(name, rs.getTimestamp(name));
+					}
+					else model.setValue(name, rs.getString(name));
+				}
+			}
+			modelList.add(model);
+		}
+			
+		return modelList;
+		
 	}
 	
 }
