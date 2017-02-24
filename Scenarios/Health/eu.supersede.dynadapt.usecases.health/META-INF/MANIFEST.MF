@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.supersede.dynadapt.usecases.health
+Bundle-SymbolicName: eu.supersede.dynadapt.usecases.health;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Export-Package: eu.supersede.dynadapt.usecases.health,
+ eu.supersede.dynadapt.usecases.health.util
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.viatra.query.runtime,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.uml2.uml;bundle-version="5.2.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.apache.log4j

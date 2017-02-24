@@ -7,7 +7,6 @@ import com.google.common.collect.Sets;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceSpecificationLinkMatch;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceSpecificationLinkMatcher;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
@@ -17,8 +16,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
-import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
@@ -104,7 +103,7 @@ public final class InstanceSpecificationLinkQuerySpecification extends BaseGener
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static InstanceSpecificationLinkQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_pLink = new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    private final PParameter parameter_pLink = new PParameter("link", "org.eclipse.uml2.uml.InstanceSpecification", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_pLink);
     
@@ -125,13 +124,14 @@ public final class InstanceSpecificationLinkQuerySpecification extends BaseGener
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
-      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
       		PBody body = new PBody(this);
       		PVariable var_link = body.getOrCreateVariableByName("link");
       		PVariable var_classifier = body.getOrCreateVariableByName("classifier");
+      		new TypeConstraint(body, new FlatTuple(var_link), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_link, parameter_pLink)
       		));

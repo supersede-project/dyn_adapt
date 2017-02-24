@@ -22,7 +22,9 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -178,12 +180,12 @@ public class Adapter implements IAdapter {
 				for (Pointcut p : pointcuts) {
 					role = p.getRole();
 					matchingElements.put(role, new ArrayList<>());
-					log.debug("\t\tRole: " + role.getName());
+					log.debug("\tRole: " + role.getName());
 					//FIXME matching elements (elements stereotyped with jointpoint must be found in cloned model, not in baseModel
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
-						log.debug("\t\t\tMatching Element: " + e);
+						log.debug("\tMatching Element: " + e);
 						matchingElements.get(role).add(e);
 					}
 				}
@@ -220,6 +222,37 @@ public class Adapter implements IAdapter {
 				features.addAll(listFeatures(f, featureId));
 		return features;
 	}
+	
+	@Override
+	public void enactAdaptationDecisionActionsFC(String systemId, 
+			String featureConfigurationId) throws EnactmentException {
+		SupersedeSystem system = SupersedeSystem.getByURI(systemId);
+		
+		try {
+		
+			Model baseModel = mm.getTargetModel();
+			
+			FeatureConfiguration featureConfig = mrr.getConfigurationForSystem(system,
+					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT));
+			
+			List<Selection> changedSelections = getSelections(featureConfig);
+	
+			Model model = adapt(changedSelections, baseModel);
+	
+			if (model != null){
+				//URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
+				//log.debug("Saved updated model in " + uri);
+				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
+				mm.saveModel(model.eResource(), uri, ".uml");
+				log.debug("Saved updated model in " + uri);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+		
+	};
 
 	@Override
 	public void enactAdaptationDecisionAction(String systemId, String adaptationDecisionActionId,
@@ -277,14 +310,17 @@ public class Adapter implements IAdapter {
 
 			if (model != null){
 				URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
+				//URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
+				//mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new EnactmentException(e);
 		}
 	}
-
+	
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig,
 			FeatureConfiguration newFeatureConfig) {
 		FeatureModel fm = originalFeatureConfig.getFeatureModelCopy();
@@ -330,8 +366,31 @@ public class Adapter implements IAdapter {
 				selections.add(s1);
 			}
 		}
+		
+		/**
+		 * Monitoring UC testing
+		 */
+		for (Selection s1 : originalSelections) {
+			if (selectionIsModified(s1, newSelections)) {
+				selections.add(s1);
+			}
+		}
 
 		return selections;
+	}
+
+	private boolean selectionIsModified(Selection s1, List<Selection> list) {
+		boolean result = false;
+		
+		for (Selection s : list) {
+			if (s.getId().equals(s1.getId()) && s.getValues().size() > 0) {
+				if ( !s.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value"))
+						.equals( s1.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value")))) result = true;
+				break;
+			}
+		}
+		
+		return result;
 	}
 
 	private boolean selectionExistsInList(Selection s1, List<Selection> list) {
@@ -345,6 +404,31 @@ public class Adapter implements IAdapter {
 		}
 
 		return result;
+	}
+	
+	private List<Selection> getSelections(FeatureConfiguration featureConfig) {
+		FeatureModel fm = featureConfig.getFeatureModelCopy();
+		Feature root = fm.getRoot();
+
+		return selectionsInFeature(root, featureConfig);
+	}
+
+	private List<Selection> selectionsInFeature(Feature feature,
+			FeatureConfiguration featureConfig) {
+		List<Selection> selections = new ArrayList<>();
+		selections.addAll(featureConfig.getSelectionsById(feature.getId()));
+
+		for (Feature child : feature.getFeatures()) {
+			selections.addAll(selectionsInFeature(child, featureConfig));
+		}
+
+		for (Group group : feature.getGroups()) {
+			for (Feature childInGroup : group.getFeatures()) {
+				selections.addAll(
+						selectionsInFeature(childInGroup, featureConfig));
+			}
+		}
+		return selections;
 	}
 
 	protected void save(Model model, org.eclipse.emf.common.util.URI uri) {
