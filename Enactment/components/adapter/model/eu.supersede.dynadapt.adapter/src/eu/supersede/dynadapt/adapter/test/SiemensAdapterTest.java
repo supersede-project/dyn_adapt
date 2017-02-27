@@ -79,7 +79,7 @@ public class SiemensAdapterTest {
 	}
 	
 	@Test
-	public void testMonitoringUCAdaptation() {
+	public void testSiemensUCAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one

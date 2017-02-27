@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TV_F0O1pEea5rIGQHVudAg" name="SiemensBaseModel">
-  <packagedElement xmi:type="uml:Activity" xmi:id="_TV_s4O1pEea5rIGQHVudAg" name="SmartDataAnalyser" isReentrant="true" node="_TV_s6e1pEea5rIGQHVudAg _TV_s6u1pEea5rIGQHVudAg _TV_s6-1pEea5rIGQHVudAg _TV_s7O1pEea5rIGQHVudAg _TV_s7e1pEea5rIGQHVudAg _TV_s7u1pEea5rIGQHVudAg _TV_s7-1pEea5rIGQHVudAg">
-    <ownedBehavior xmi:type="uml:Activity" xmi:id="_TV_s4e1pEea5rIGQHVudAg" name="Get Meteorological Data"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s4u1pEea5rIGQHVudAg" target="_TV_s6u1pEea5rIGQHVudAg" source="_TV_s6e1pEea5rIGQHVudAg"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s4-1pEea5rIGQHVudAg" target="_TV_s6-1pEea5rIGQHVudAg" source="_TV_s6u1pEea5rIGQHVudAg"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s5O1pEea5rIGQHVudAg" target="_TV_s7O1pEea5rIGQHVudAg" source="_TV_s6-1pEea5rIGQHVudAg"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s5e1pEea5rIGQHVudAg" target="_TV_s7e1pEea5rIGQHVudAg" source="_TV_s7O1pEea5rIGQHVudAg"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s5u1pEea5rIGQHVudAg" target="_TV_s7u1pEea5rIGQHVudAg" source="_TV_s7e1pEea5rIGQHVudAg"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s5-1pEea5rIGQHVudAg" target="_TV_s7-1pEea5rIGQHVudAg" source="_TV_s6u1pEea5rIGQHVudAg"/>
-    <edge xmi:type="uml:ControlFlow" xmi:id="_TV_s6O1pEea5rIGQHVudAg" target="_TV_s7O1pEea5rIGQHVudAg" source="_TV_s7-1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:InitialNode" xmi:id="_TV_s6e1pEea5rIGQHVudAg" outgoing="_TV_s4u1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:ForkNode" xmi:id="_TV_s6u1pEea5rIGQHVudAg" incoming="_TV_s4u1pEea5rIGQHVudAg" outgoing="_TV_s4-1pEea5rIGQHVudAg _TV_s5-1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_TV_s6-1pEea5rIGQHVudAg" name="GetSmartMeterData" incoming="_TV_s4-1pEea5rIGQHVudAg" outgoing="_TV_s5O1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:JoinNode" xmi:id="_TV_s7O1pEea5rIGQHVudAg" incoming="_TV_s5O1pEea5rIGQHVudAg _TV_s6O1pEea5rIGQHVudAg" outgoing="_TV_s5e1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_TV_s7e1pEea5rIGQHVudAg" name="CorrelationAnalysis" incoming="_TV_s5e1pEea5rIGQHVudAg" outgoing="_TV_s5u1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:ActivityFinalNode" xmi:id="_TV_s7u1pEea5rIGQHVudAg" incoming="_TV_s5u1pEea5rIGQHVudAg"/>
-    <node xmi:type="uml:CallBehaviorAction" xmi:id="_TV_s7-1pEea5rIGQHVudAg" name="GetMteorologicalData" incoming="_TV_s5-1pEea5rIGQHVudAg" outgoing="_TV_s6O1pEea5rIGQHVudAg" behavior="_TV_s4e1pEea5rIGQHVudAg"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ZV74sPRREeaGQLaiR2IQDg" name="SiemensBaseModel">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_ZV74sfRREeaGQLaiR2IQDg" name="SmartDataAnalyser" isReentrant="true" node="_ZV74uvRREeaGQLaiR2IQDg _ZV74u_RREeaGQLaiR2IQDg _ZV74vPRREeaGQLaiR2IQDg _ZV74vfRREeaGQLaiR2IQDg _ZV74vvRREeaGQLaiR2IQDg _ZV74v_RREeaGQLaiR2IQDg _dobBkPRREeaGQLaiR2IQDg _doeE4PRREeaGQLaiR2IQDg">
+    <ownedBehavior xmi:type="uml:Activity" xmi:id="_ZV74svRREeaGQLaiR2IQDg" name="Get Meteorological Data"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74s_RREeaGQLaiR2IQDg" target="_ZV74u_RREeaGQLaiR2IQDg" source="_ZV74uvRREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74tPRREeaGQLaiR2IQDg" target="_ZV74vPRREeaGQLaiR2IQDg" source="_ZV74u_RREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74tfRREeaGQLaiR2IQDg" target="_ZV74vfRREeaGQLaiR2IQDg" source="_ZV74vPRREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74tvRREeaGQLaiR2IQDg" target="_ZV74vvRREeaGQLaiR2IQDg" source="_ZV74vfRREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74t_RREeaGQLaiR2IQDg" target="_ZV74v_RREeaGQLaiR2IQDg" source="_ZV74vvRREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74uPRREeaGQLaiR2IQDg" target="_dobBkPRREeaGQLaiR2IQDg" source="_ZV74u_RREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZV74ufRREeaGQLaiR2IQDg" target="_ZV74vfRREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_dodd0PRREeaGQLaiR2IQDg" target="_doeE4PRREeaGQLaiR2IQDg" source="_dobBkPRREeaGQLaiR2IQDg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_doer8PRREeaGQLaiR2IQDg" target="_ZV74vfRREeaGQLaiR2IQDg" source="_doeE4PRREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_ZV74uvRREeaGQLaiR2IQDg" outgoing="_ZV74s_RREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:ForkNode" xmi:id="_ZV74u_RREeaGQLaiR2IQDg" incoming="_ZV74s_RREeaGQLaiR2IQDg" outgoing="_ZV74tPRREeaGQLaiR2IQDg _ZV74uPRREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_ZV74vPRREeaGQLaiR2IQDg" name="GetSmartMeterData" incoming="_ZV74tPRREeaGQLaiR2IQDg" outgoing="_ZV74tfRREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:JoinNode" xmi:id="_ZV74vfRREeaGQLaiR2IQDg" incoming="_ZV74tfRREeaGQLaiR2IQDg _ZV74ufRREeaGQLaiR2IQDg _doer8PRREeaGQLaiR2IQDg" outgoing="_ZV74tvRREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_ZV74vvRREeaGQLaiR2IQDg" name="CorrelationAnalysis" incoming="_ZV74tvRREeaGQLaiR2IQDg" outgoing="_ZV74t_RREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_ZV74v_RREeaGQLaiR2IQDg" incoming="_ZV74t_RREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_dobBkPRREeaGQLaiR2IQDg" name="ServiceS2" incoming="_ZV74uPRREeaGQLaiR2IQDg" outgoing="_dodd0PRREeaGQLaiR2IQDg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_doeE4PRREeaGQLaiR2IQDg" name="ServiceS5" incoming="_dodd0PRREeaGQLaiR2IQDg" outgoing="_doer8PRREeaGQLaiR2IQDg"/>
   </packagedElement>
-  <profileApplication xmi:id="_TV_s8O1pEea5rIGQHVudAg">
-    <eAnnotations xmi:id="_TV_s8e1pEea5rIGQHVudAg" source="PapyrusVersion">
-      <details xmi:id="_TV_s8u1pEea5rIGQHVudAg" key="Version" value="0.1.1"/>
-      <details xmi:id="_TV_s8-1pEea5rIGQHVudAg" key="Comment" value=""/>
-      <details xmi:id="_TV_s9O1pEea5rIGQHVudAg" key="Copyright" value=""/>
-      <details xmi:id="_TV_s9e1pEea5rIGQHVudAg" key="Date" value="2016-07-19"/>
-      <details xmi:id="_TV_s9u1pEea5rIGQHVudAg" key="Author" value=""/>
+  <profileApplication xmi:id="_ZV74wfRREeaGQLaiR2IQDg">
+    <eAnnotations xmi:id="_ZV74wvRREeaGQLaiR2IQDg" source="PapyrusVersion">
+      <details xmi:id="_ZV74w_RREeaGQLaiR2IQDg" key="Version" value="0.1.1"/>
+      <details xmi:id="_ZV74xPRREeaGQLaiR2IQDg" key="Comment" value=""/>
+      <details xmi:id="_ZV74xfRREeaGQLaiR2IQDg" key="Copyright" value=""/>
+      <details xmi:id="_ZV74xvRREeaGQLaiR2IQDg" key="Date" value="2016-07-19"/>
+      <details xmi:id="_ZV74x_RREeaGQLaiR2IQDg" key="Author" value=""/>
     </eAnnotations>
-    <eAnnotations xmi:id="_TV_s9-1pEea5rIGQHVudAg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <eAnnotations xmi:id="_ZV74yPRREeaGQLaiR2IQDg" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
     </eAnnotations>
     <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
   </profileApplication>
-  <profileApplication xmi:id="_TV_s-O1pEea5rIGQHVudAg">
-    <eAnnotations xmi:id="_TV_s-e1pEea5rIGQHVudAg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+  <profileApplication xmi:id="_ZV74yfRREeaGQLaiR2IQDg">
+    <eAnnotations xmi:id="_ZV74yvRREeaGQLaiR2IQDg" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
     </eAnnotations>
     <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>

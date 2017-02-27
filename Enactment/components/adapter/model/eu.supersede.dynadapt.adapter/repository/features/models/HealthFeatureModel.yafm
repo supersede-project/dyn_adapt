@@ -3,7 +3,7 @@
   <rootFeature id="healthfeaturemodel" name="HealthFeatureModel" lower="1" upper="1">
     <feature id="healthwatcher" name="HealthWatcher" lower="1" upper="1">
       <group lower="1" upper="1">
-        <feature id="not_authenticated" name="Not Authenticated" lower="0" upper="1"/>
+        <feature id="notauthenticated" name="NotAuthenticated" lower="0" upper="1"/>
         <feature id="authenticated" name="Authenticated" lower="0" upper="1"/>
       </group>
     </feature>

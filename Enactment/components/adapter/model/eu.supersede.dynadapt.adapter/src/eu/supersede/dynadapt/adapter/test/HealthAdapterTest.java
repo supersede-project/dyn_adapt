@@ -27,7 +27,12 @@ import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.system.ModelRepositoryMapping;
+import eu.supersede.dynadapt.adapter.system.ModelRepositoryResolver;
+import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
 import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
+import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
+import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
@@ -36,9 +41,9 @@ public class HealthAdapterTest {
 	
 	String baseModelPath;
 	String repository;
-	String originalFeatureConfigPath;
-	String newFeatureConfigPath;
-	String featureModelPath;
+//	String originalFeatureConfigPath;
+//	String newFeatureConfigPath;
+//	String featureModelPath;
 	String repositoryRelativePath;
 	String platformRelativePath;
 	
@@ -51,13 +56,50 @@ public class HealthAdapterTest {
 	URL url = null;
 	
 	@Test
-	public void testHealthUCAdaptation() {
+	public void testAuthenticatedHealthUCAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
 			String featureConfigurationId = null;
+			adapter.enactAdaptationDecisionAction(
+					SupersedeSystem.HEALTH.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testNotAuthenticatedHealthUCAdaptation() {
+		try {
+			//Setting input models for the test (overlapping default test models)
+			baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/adapted/HealthWatcher_authenticated.uml";
+			mm = new ModelManager(baseModelPath); //Base Model loaded here
+			mr = new ModelRepository(repository,repositoryRelativePath, mm);
+			
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			
+			//Current runtime base model
+			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT);
+			ModelRepositoryMapping.setModelURI(SupersedeSystem.HEALTH, metadata, "/models/adapted/HealthWatcher_authenticated.uml");
+			
+			//Current runtime FC
+			metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT);
+			ModelRepositoryMapping.setModelURI(SupersedeSystem.HEALTH, metadata, "/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc");
+			
+			//Computed optimal FC
+			metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
+			ModelRepositoryMapping.setModelURI(SupersedeSystem.HEALTH, metadata, "/features/configurations/HealthNotAuthenticatedFeatureConfiguration.yafc");
+			
+			//FIXME featureConfigurationId is ignored. Use correct one
+			//once Model Repository is available as service.
+			String[] adaptationDecisionActionIds = new String[]{"notauthenticated"};
+			String featureConfigurationId = null;
+			
+			//FIXME Select correctly the current and newest FC
 			adapter.enactAdaptationDecisionAction(
 					SupersedeSystem.HEALTH.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -77,9 +119,9 @@ public class HealthAdapterTest {
 	private void setupPlatform() {
 		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/health_watcher.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HealthŃotAuthenticatedFeatureConfiguration.yafc";
-		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc";
-		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/HealthFeatureModel.yafm";
+//		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HealthŃotAuthenticatedFeatureConfiguration.yafc";
+//		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc";
+//		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/HealthFeatureModel.yafm";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 

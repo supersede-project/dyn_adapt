@@ -24,6 +24,7 @@
 package eu.supersede.dynadapt.modeladapter;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
@@ -72,6 +74,7 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 		for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant, usingVariantModel)){
 			//Add link instance specification
 			//FIXME avoid adding duplicated instances
+			
 			if (!ModelAdapterUtilities.modelContainsElement(linkInstance, inBaseModel)){
 				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getQualifiedName());
 				addInstanceSpecificationInModel (linkInstance, inBaseModel);
@@ -143,23 +146,23 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 		}
 	}
 	
+	//FIXME This method does not work when modelQuery is created targetting target model.
 	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecificationImpl instanceVariant, Model model) {
-		Set<InstanceSpecification> instances = null;
-	
+		Set<InstanceSpecification> result = new HashSet<>();
 		try {
 			InstanceOfInstanceSpecificationLinkMatcher matcher = 
 					(InstanceOfInstanceSpecificationLinkMatcher) modelQuery.queryMatcher(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
-			instances = matcher.getAllValuesOflink(instanceVariant);
+			Set<InstanceSpecification> instances = matcher.getAllValuesOflink(instanceVariant);
 			//Filtering out instances that do not belong to target model
 			for (InstanceSpecification instance: instances){
-				if (!ModelAdapterUtilities.modelContainsElement(instance, model)){
-					instances.remove(instance);
+				if (ModelAdapterUtilities.modelContainsElement(instance, model)){
+					result.add(instance); 
 				}
 			}
 		} catch (ViatraQueryException e) {
 			e.printStackTrace();
 		}
-		return instances;
+		return result;
 	}
 	
 	private void deleteInstanceSpecificationInModel(InstanceSpecification linkInstance, Element jointpointBaseModelElement, Model inBaseModel) {

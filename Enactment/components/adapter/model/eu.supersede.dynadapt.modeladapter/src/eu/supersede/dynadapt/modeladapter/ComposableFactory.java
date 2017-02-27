@@ -35,13 +35,13 @@ class ComposableFactory {
 	private final static String INSTANCE = "InstanceSpecificationImpl";
 	private final static String CLASS = "ClassImpl";
 	private final static String OPAQUE_ACTION = "OpaqueActionImpl";
-	
+
 	public static Composable create(Element element, IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints) {
 		Composable composable = null;
 		String type = element.getClass().getSimpleName();
 		switch (type){
 		case INSTANCE:
-			composable = new ComposableInstanceSpecification(modelQuery, baseJointpoints);
+ 			composable = new ComposableInstanceSpecification(modelQuery, baseJointpoints);
 			break;
 		case CLASS:
 			composable = new ComposableClass(modelQuery, baseJointpoints);
