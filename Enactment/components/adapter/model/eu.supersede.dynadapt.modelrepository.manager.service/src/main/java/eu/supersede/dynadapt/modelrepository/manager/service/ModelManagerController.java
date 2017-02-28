@@ -57,6 +57,7 @@ public class ModelManagerController {
 		try {
 			if (systemId == null && status == null) models = manager.listAllModels(ModelType.valueOf(modelType));
 			else if (status == null) models = manager.getModels(ModelType.valueOf(modelType), ModelSystem.valueOf(systemId));
+			else if (systemId == null) models = manager.getModels(ModelType.valueOf(modelType), Status.valueOf(status));
 			else models = manager.getModels(ModelType.valueOf(modelType), ModelSystem.valueOf(systemId), Status.valueOf(status));
 		} catch (IllegalArgumentException e) {
 			throw new UnprocessableEntityException();
