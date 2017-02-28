@@ -21,6 +21,8 @@ public interface IManager {
 	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
 
 	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
+	
+	public List<IModel> getModels(ModelType type, Status status) throws Exception;
 		
 	public void deleteModel(ModelType type, String id) throws Exception;
 	

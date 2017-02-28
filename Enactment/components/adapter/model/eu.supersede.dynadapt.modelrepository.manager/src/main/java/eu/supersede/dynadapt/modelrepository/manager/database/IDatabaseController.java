@@ -3,17 +3,17 @@ package eu.supersede.dynadapt.modelrepository.manager.database;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.JsonObject;
-
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
+import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public interface IDatabaseController {
 	
 	/**
 	 * List models for a given type
 	 */
-	//public List<IModel> getAllModels(String type) throws Exception;
+	public List<IModel> getAllModels(ModelType type) throws Exception;
 	
 	/**
 	 * Create new model instance for a given type
@@ -34,5 +34,11 @@ public interface IDatabaseController {
 	 * Deletes a model instance
 	 */
 	public void deleteModel(ModelType type, String id) throws Exception;
+	
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
+
+	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
+
+	public List<IModel> getModels(ModelType type, Status status) throws Exception;
 	
 }

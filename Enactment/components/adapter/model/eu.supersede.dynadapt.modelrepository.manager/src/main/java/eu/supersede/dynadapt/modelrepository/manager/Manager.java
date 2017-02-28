@@ -46,6 +46,11 @@ public class Manager implements IManager {
 	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
 		return dbController.getModels(type, systemId);
 	}
+	
+	@Override
+	public List<IModel> getModels(ModelType type, Status status) throws Exception {
+		return dbController.getModels(type, status);
+	}
 
 	@Override
 	public List<IModel> getModels(ModelType type,  ModelSystem systemId, Status status) throws Exception {

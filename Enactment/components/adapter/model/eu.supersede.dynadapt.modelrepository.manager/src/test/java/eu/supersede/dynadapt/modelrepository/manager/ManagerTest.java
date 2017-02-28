@@ -3,12 +3,10 @@ package eu.supersede.dynadapt.modelrepository.manager;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +58,7 @@ public class ManagerTest {
 			assertEquals(newModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(newModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(newModel.getValue("fileExtension"),".aspect");
-			assertEquals(newModel.getValue("systemId"),"MonitoringReconfiguration");
+			assertEquals(newModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 			assertEquals(newModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created successfully (id = " + id + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, id);
@@ -83,7 +81,7 @@ public class ManagerTest {
 				assertEquals(model.getValue("creationDate"),"2016-09-30 01:25:37.0");
 				assertEquals(model.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 				assertEquals(model.getValue("fileExtension"),".aspect");
-				assertEquals(model.getValue("systemId"),"MonitoringReconfiguration");
+				assertEquals(model.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 				assertEquals(model.getValue("featureId"),"Feat1");
 				ids += model.getValue("id") + "/";
 			}
@@ -107,7 +105,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("fileExtension"),".aspect");
-			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
+			assertEquals(getModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 			assertEquals(getModel.getValue("featureId"),"Feat1");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, getModel.getValue("id").toString());
@@ -161,7 +159,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("fileExtension"),".uml");
-			assertEquals(getModel.getValue("systemId"),"MonitoringReconfiguration");
+			assertEquals(getModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
@@ -205,7 +203,7 @@ public class ManagerTest {
 		model.setCreationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setLastModificationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setFileExtension(".aspect");
-		model.setSystemId("MonitoringReconfiguration");
+		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setFeatureId("Feat1");
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
@@ -222,8 +220,8 @@ public class ManagerTest {
 		model.setCreationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setLastModificationDate(Timestamp.valueOf("2016-09-30 01:25:37.0"));
 		model.setFileExtension(".uml");
-		model.setSystemId("MonitoringReconfiguration");
-		model.setStatus("Enacted");
+		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
+		model.setStatus(Status.Enacted.toString());
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);
 		String content = "";
