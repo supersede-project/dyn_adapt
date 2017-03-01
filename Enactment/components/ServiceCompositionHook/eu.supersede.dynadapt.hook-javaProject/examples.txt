@@ -1,0 +1,98 @@
+EXAMPLE 1 
+---------
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var res=[]; var f = function(x){res.push(R.pick(['context_url'], x));}; R.forEach(f, jsonResponse); newRequest = JSON.stringify({schema: 'Architectural Qualities', project: 'Repository', $or: res}); \"},{ type: 'RESTPOST', content: 'https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&limit=200&fields=pattern_name'},{ type: \"EXPRESSION\", content: \" for(i=0;i^<jsonNewResponse.length;i++){ jsonNewResponse[i]['quality_name'] = jsonNewResponse[i]['pattern_name']; delete jsonNewResponse[i]['pattern_name'];}; processedResponse = JSON.stringify(R.uniq(jsonNewResponse)); \"}]}"
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/relay/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items" -XPOST -d"{\"$text\": { \"$search\": \"Performance\"}}"
+
+
+EXAMPLE 2 (ISD Catalog)
+-----------------------
+
+Original call:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&project=ISDCatalog" -XPOST -d"{\"schema\": \"ISD Catalog Entry\", \"project\": \"ISDCatalog\"}"
+
+Relay call:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/relay/nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&project=ISDCatalog" -XPOST -d"{\"schema\": \"ISD Catalog Entry\", \"project\": \"ISDCatalog\"}"
+
+Adaptation call:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&project=ISDCatalog" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var schema = {'context_title': 'Entry title', 'context_url': 'Entry URL', 'ups': 'Endorsements', 'context_type' : 'Entry type', 'nfr_name' : 'Relevant roles', 'tactic_name' : 'Development phase', 'pattern_name' : 'Entry name', 'domain' : 'Author tags'}; var keys = Object.keys(schema); for(i=0;i^<jsonResponse.length;i++){ for(j=0;j^<keys.length;j++){ var new_key = schema[keys[j]]; jsonResponse[i][new_key] = jsonResponse[i][keys[j]]; print(jsonResponse[i][keys[j]]); delete jsonResponse[i][keys[j]];};}; processedResponse = JSON.stringify(jsonResponse); \"}]}"
+
+History call:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/history"
+
+
+
+EXAMPLE 3 (Amelie Integration)
+------------------------------
+
+Adaptation call:
+
+V1:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var res=[]; var f = function(x){res.push(R.pick(['context_url'], x));}; R.forEach(f, jsonResponse); newRequest = JSON.stringify({$and: [{$or: [{schema: 'Architectural Qualities'}, {schema: 'Design Patterns'}]},{$or: res}]}); \"},{ type: 'RESTPOST', content: 'https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&limit=200&fields=pattern_name,context_url,schema,project'},{ type: \"EXPRESSION\", content: \" for(i=0;i^<jsonNewResponse.length;i++){jsonNewResponse[i]['Title'] = jsonNewResponse[i]['pattern_name']; delete jsonNewResponse[i]['pattern_name']; for(j=0;j^<jsonResponse.length;j++){ if(jsonResponse[j]['context_url'] == jsonNewResponse[i]['context_url']){ jsonNewResponse[i]['Content'] = jsonResponse[j]['content']; break; };}; delete jsonNewResponse[i]['context_url']; jsonNewResponse[i]['Concept'] = jsonNewResponse[i]['schema']; var schema_index = {'Architectural Qualities': '4', 'Design Patterns': '0'}; jsonNewResponse[i]['URL'] = 'https://workspace.cee.siemens.com/content/00000102/saFiddle/index.html?s=' + schema_index[jsonNewResponse[i]['schema']] + '^&p=' +jsonNewResponse[i]['project']+ '^&fi=' + jsonNewResponse[i]['Title']; delete jsonNewResponse[i]['project']; delete jsonNewResponse[i]['schema']; }; processedResponse = JSON.stringify(R.uniq(jsonNewResponse)); \"}]}"
+
+V2:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items&user=ssapi&passwd=123456" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var res=[]; var f = function(x){res.push(R.pick(['context_url'], x));}; R.forEach(f, jsonResponse); newRequest = JSON.stringify({$and: [{$or: [{schema: 'Architectural Qualities'}, {schema: 'Design Patterns'}]},{$or: res}]}); \"},{ type: 'RESTPOST', content: 'https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&limit=200&fields=pattern_name,context_url,schema,project'},{ type: \"EXPRESSION\", content: \" for(i=0;i^<jsonNewResponse.length;i++){jsonNewResponse[i]['Title'] = jsonNewResponse[i]['pattern_name']; delete jsonNewResponse[i]['pattern_name']; for(j=0;j^<jsonResponse.length;j++){ if(jsonResponse[j]['context_url'] == jsonNewResponse[i]['context_url']){ jsonNewResponse[i]['Content'] = jsonResponse[j]['content'].replace(/(^<([^^^>]+)^>)/ig, '').substring(0,300); break; };}; delete jsonNewResponse[i]['context_url']; jsonNewResponse[i]['Concept'] = jsonNewResponse[i]['schema']; var schema_index = {'Architectural Qualities': '4', 'Design Patterns': '0'}; jsonNewResponse[i]['URL'] = 'https://workspace.cee.siemens.com/content/00000102/saFiddle/index.html?s=' + schema_index[jsonNewResponse[i]['schema']] + '^&p=' +jsonNewResponse[i]['project']+ '^&fi=' + jsonNewResponse[i]['Title']; delete jsonNewResponse[i]['project']; delete jsonNewResponse[i]['schema']; }; var arr = []; for(i=0;i^<jsonNewResponse.length;i++){ if(jsonNewResponse[i]['Title'] != null ^&^& jsonNewResponse[i]['Content'] != null ^&^& jsonNewResponse[i]['Concept'] != null) {arr.push(jsonNewResponse[i]);}} processedResponse = JSON.stringify(R.uniq(arr)); \"}]}"
+
+Original call:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items&user=search&passwd=123456" -XPOST -d"{\"$text\": { \"$search\": \"Performance\"}}"
+
+
+V3:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var res=[]; var f = function(x){res.push(R.pick(['context_url'], x));}; R.forEach(f, jsonResponse); newRequest = JSON.stringify({$and: [{$or: [{schema: 'Architectural Qualities'}, {schema: 'Design Patterns'},{schema: 'ISD Catalog Entry'}]},{$or: res}]}); \"},{ type: 'RESTPOST', content: 'https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&limit=200&fields=pattern_name,context_url,schema,project'},{ type: \"EXPRESSION\", content: \" for(i=0;i^<jsonNewResponse.length;i++){jsonNewResponse[i]['Title'] = jsonNewResponse[i]['pattern_name']; delete jsonNewResponse[i]['pattern_name']; for(j=0;j^<jsonResponse.length;j++){ if(jsonResponse[j]['context_url'] == jsonNewResponse[i]['context_url']){ jsonNewResponse[i]['Content'] = jsonResponse[j]['content'].replace(/(^<([^^^>]+)^>)/ig, '').substring(0,300); break; };}; delete jsonNewResponse[i]['context_url']; jsonNewResponse[i]['Concept'] = jsonNewResponse[i]['schema']; var schema_index = {'Architectural Qualities': '4', 'Design Patterns': '0', 'ISD Catalog Entry': '14'}; jsonNewResponse[i]['URL'] = 'https://workspace.cee.siemens.com/content/00000102/saFiddle/index.html?s=' + schema_index[jsonNewResponse[i]['schema']] + '^&p=' +jsonNewResponse[i]['project']+ '^&fi=' + jsonNewResponse[i]['Title']; delete jsonNewResponse[i]['project']; delete jsonNewResponse[i]['schema']; }; var arr = []; for(i=0;i^<jsonNewResponse.length;i++){ if(jsonNewResponse[i]['Title'] != null ^&^& jsonNewResponse[i]['Content'] != null ^&^& jsonNewResponse[i]['Concept'] != null) {arr.push(jsonNewResponse[i]);}} processedResponse = JSON.stringify(R.uniq(arr)); \"}]}"
+
+V4 (just search):
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items&version=V4&user=ssapi&passwd=123456" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var res=[]; var f = function(x){res.push(R.pick(['context_url'], x));}; R.forEach(f, jsonResponse); newRequest = JSON.stringify({$and: [{$or: [{schema: 'Architectural Qualities'}, {schema: 'Design Patterns'},{schema: 'ISD Catalog Entry'}]},{$or: res}]}); \"},{ type: 'RESTPOST', content: 'https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&limit=200&fields=pattern_name,context_url,schema,project'},{ type: \"EXPRESSION\", content: \" for(i=0;i^<jsonNewResponse.length;i++){jsonNewResponse[i]['Title'] = jsonNewResponse[i]['pattern_name']; delete jsonNewResponse[i]['pattern_name']; for(j=0;j^<jsonResponse.length;j++){ if(jsonResponse[j]['context_url'] == jsonNewResponse[i]['context_url']){ jsonNewResponse[i]['HTMLContent'] = jsonResponse[j]['content']; jsonNewResponse[i]['Content'] = jsonResponse[j]['content'].replace(/(^<([^^^>]+)^>)/ig, '').substring(0,300); break; };}; delete jsonNewResponse[i]['context_url']; jsonNewResponse[i]['Concept'] = jsonNewResponse[i]['schema']; var schema_index = {'Architectural Qualities': '4', 'Design Patterns': '0', 'ISD Catalog Entry': '14'}; jsonNewResponse[i]['URL'] = 'https://workspace.cee.siemens.com/content/00000102/saFiddle/index.html?s=' + schema_index[jsonNewResponse[i]['schema']] + '^&p=' +jsonNewResponse[i]['project']+ '^&fi=' + jsonNewResponse[i]['Title']; delete jsonNewResponse[i]['project']; delete jsonNewResponse[i]['schema']; }; var arr = []; for(i=0;i^<jsonNewResponse.length;i++){ if(jsonNewResponse[i]['Title'] != null ^&^& jsonNewResponse[i]['Content'] != null ^&^& jsonNewResponse[i]['Concept'] != null) {arr.push(jsonNewResponse[i]);}} processedResponse = JSON.stringify(R.uniq(arr)); \"}]}"
+
+Relay call:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/relay/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items" -XPOST -d"{\"$text\": { \"$search\": \"Performance\"}}"
+
+With authentication:
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/relay/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items&user=defaultUser&passwd=mongomongo" -XPOST -d"{\"$text\": { \"$search\": \"Performance\"}}"
+
+
+
+
+curl -k -i -H "Content-Type: application/json" "https://nike.erd.siemens.at/mongo/database?user=defaultUser&mongomongo=123456"
+
+db.createUser(
+    {
+      user: "ssapi",
+      pwd: "123456",
+      roles: [
+         { role: "readWrite", db: "facets" }
+      ]
+    }
+)
+
+
+
+
+TESTS FOR THE LOCALHOSTS:
+
+curl -k -i -H "Content-Type: application/json" "http://localhost:4567/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items&version=V4&user=ssapi&passwd=123456" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var res=[]; var f = function(x){res.push(R.pick(['context_url'], x));}; R.forEach(f, jsonResponse); newRequest = JSON.stringify({$and: [{$or: [{schema: 'Architectural Qualities'}, {schema: 'Design Patterns'},{schema: 'ISD Catalog Entry'}]},{$or: res}]}); \"},{ type: 'RESTPOST', content: 'https://nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&limit=200&fields=pattern_name,context_url,schema,project'},{ type: \"EXPRESSION\", content: \" for(i=0;i^<jsonNewResponse.length;i++){jsonNewResponse[i]['Title'] = jsonNewResponse[i]['pattern_name']; delete jsonNewResponse[i]['pattern_name']; for(j=0;j^<jsonResponse.length;j++){ if(jsonResponse[j]['context_url'] == jsonNewResponse[i]['context_url']){ jsonNewResponse[i]['HTMLContent'] = jsonResponse[j]['content']; jsonNewResponse[i]['Content'] = jsonResponse[j]['content'].replace(/(^<([^^^>]+)^>)/ig, '').substring(0,300); break; };}; delete jsonNewResponse[i]['context_url']; jsonNewResponse[i]['Concept'] = jsonNewResponse[i]['schema']; var schema_index = {'Architectural Qualities': '4', 'Design Patterns': '0', 'ISD Catalog Entry': '14'}; jsonNewResponse[i]['URL'] = 'https://workspace.cee.siemens.com/content/00000102/saFiddle/index.html?s=' + schema_index[jsonNewResponse[i]['schema']] + '^&p=' +jsonNewResponse[i]['project']+ '^&fi=' + jsonNewResponse[i]['Title']; delete jsonNewResponse[i]['project']; delete jsonNewResponse[i]['schema']; }; var arr = []; for(i=0;i^<jsonNewResponse.length;i++){ if(jsonNewResponse[i]['Title'] != null ^&^& jsonNewResponse[i]['Content'] != null ^&^& jsonNewResponse[i]['Concept'] != null) {arr.push(jsonNewResponse[i]);}} processedResponse = JSON.stringify(R.uniq(arr)); \"}]}"
+
+
+curl -k -i -H "Content-Type: application/json" "http://localhost:4567/relay/nike.erd.siemens.at/mongo/query?dbname=facets&colname=context_items" -XPOST -d"{\"$text\": { \"$search\": \"Performance\"}}"
+
+
+
+Relay call:
+
+curl -k -i -H "Content-Type: application/json" "http://localhost:4567/relay/nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&project=ISDCatalog" -XPOST -d"{\"schema\": \"ISD Catalog Entry\", \"project\": \"ISDCatalog\"}"
+
+Adaptation call:
+
+curl -k -i -H "Content-Type: application/json" "http://localhost:4567/adapt/nike.erd.siemens.at/mongo/query?dbname=facets&colname=nfr_facets&project=ISDCatalog" -XPOST -d"{steps: [{ type: \"EXPRESSION\", content: \"var schema = {'context_title': 'Entry title', 'context_url': 'Entry URL', 'ups': 'Endorsements', 'context_type' : 'Entry type', 'nfr_name' : 'Relevant roles', 'tactic_name' : 'Development phase', 'pattern_name' : 'Entry name', 'domain' : 'Author tags'}; var keys = Object.keys(schema); for(i=0;i^<jsonResponse.length;i++){ for(j=0;j^<keys.length;j++){ var new_key = schema[keys[j]]; jsonResponse[i][new_key] = jsonResponse[i][keys[j]]; print(jsonResponse[i][keys[j]]); delete jsonResponse[i][keys[j]];};}; processedResponse = JSON.stringify(jsonResponse); \"}]}"
+
