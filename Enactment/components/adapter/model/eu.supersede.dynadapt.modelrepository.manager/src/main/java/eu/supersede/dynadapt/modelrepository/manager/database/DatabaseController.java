@@ -215,8 +215,6 @@ public class DatabaseController implements IDatabaseController {
 					else model.setValue(name, rs.getString(name));
 				} 
 			}
-			String content = contentFileManager.loadModelContent(model);
-			model.setValue("modelContent", content);
 			modelList.add(model);
 		}
 			

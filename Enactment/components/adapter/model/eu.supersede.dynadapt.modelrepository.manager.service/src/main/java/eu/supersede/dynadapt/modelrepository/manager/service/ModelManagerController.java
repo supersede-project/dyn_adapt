@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -66,6 +67,7 @@ public class ModelManagerController {
 		}
 		try {
 			ObjectMapper mapper = new ObjectMapper();
+			mapper.setSerializationInclusion(Include.NON_NULL);
 			StringWriter writer = new StringWriter();
 			mapper.writeValue(writer, models);
 			response = writer.toString();
