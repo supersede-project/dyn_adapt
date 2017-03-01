@@ -213,8 +213,10 @@ public class DatabaseController implements IDatabaseController {
 						model.setValue(name, rs.getTimestamp(name));
 					}
 					else model.setValue(name, rs.getString(name));
-				}
+				} 
 			}
+			String content = contentFileManager.loadModelContent(model);
+			model.setValue("modelContent", content);
 			modelList.add(model);
 		}
 			
