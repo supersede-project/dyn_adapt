@@ -68,6 +68,8 @@ public class ModelManagerController {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.setSerializationInclusion(Include.NON_NULL);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+			mapper.setDateFormat(format);
 			StringWriter writer = new StringWriter();
 			mapper.writeValue(writer, models);
 			response = writer.toString();
