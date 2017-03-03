@@ -42,8 +42,10 @@ import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.Status;
 
 public class ModelRepository extends GenericModelRepository implements IModelRepository{
 
@@ -353,5 +355,47 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	@Override
 	public void deleteAspectModel(String id) throws Exception {
 		deleteModel(id, ModelType.AdaptabilityModel);
+	}
+
+	//Query Methods
+	
+	@Override
+	public Model getLastEnactedBaseModelForSystem(ModelSystem system) throws Exception {
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, Status.Enacted, Model.class);
+	}
+	
+	@Override
+	public Model getLastBaseModelForSystem(ModelSystem system) throws Exception {
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, null, Model.class);
+	}
+
+	@Override
+	public FeatureConfiguration getLastEnactedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Enacted, FeatureConfiguration.class);
+	}
+
+	@Override
+	public FeatureConfiguration getLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.ComputedByDM, FeatureConfiguration.class);
+	}
+
+	@Override
+	public List<Aspect> getAspectModelsForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.AdaptabilityModel, system, null, Aspect.class);
+	}
+
+	@Override
+	public List<Model> getVariantModelsForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.VariantModel, system, null, Model.class);
+	}
+
+	@Override
+	public List<Model> getProfilesForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.ProfileModel, system, null, Model.class);
+	}
+
+	@Override
+	public List<PatternModel> getPatternModelsForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.PatternModel, system, null, PatternModel.class);
 	}
 }

@@ -1,5 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
+import java.util.List;
+
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
@@ -7,6 +9,7 @@ import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 
 /*
@@ -76,4 +79,15 @@ public interface IModelRepository {
 	void updateAspectModel(Aspect model, ModelUpdateMetadata metadata, String id) throws Exception;
 
 	void deleteAspectModel(String id) throws Exception;
+	
+	//Query Operations
+	Model getLastEnactedBaseModelForSystem (ModelSystem system) throws Exception;
+	Model getLastBaseModelForSystem(ModelSystem system) throws Exception;
+	FeatureConfiguration getLastEnactedFeatureConfigurationForSystem (ModelSystem system) throws Exception; 
+	FeatureConfiguration getLastComputedFeatureConfigurationForSystem (ModelSystem system) throws Exception; 
+	List<Aspect> getAspectModelsForSystem (ModelSystem system) throws Exception; 
+	List<Model> getVariantModelsForSystem (ModelSystem system) throws Exception;
+	List<Model> getProfilesForSystem (ModelSystem system) throws Exception;
+	List<PatternModel> getPatternModelsForSystem (ModelSystem system) throws Exception;
+	
 }
