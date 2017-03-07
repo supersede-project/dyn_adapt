@@ -47,7 +47,7 @@ public class FeatureModelSerializerTest {
 	}
 	
 	@Test
-	public void FCSerializerFGTest () throws IOException{		
+	public void FCSerializerTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
 		String absoluteFCModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fc/FeedbackGatheringConfigCurrent.yafc";

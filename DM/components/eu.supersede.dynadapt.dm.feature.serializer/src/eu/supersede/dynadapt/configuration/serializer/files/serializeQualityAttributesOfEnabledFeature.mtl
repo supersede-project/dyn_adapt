@@ -17,10 +17,10 @@
 [/template]
 
 [template public serializeQualityAttributes(aFeature : Feature, aFeatureConfiguration : FeatureConfiguration) post(trim())]
-[file (aFeature.name.concat('.properties'), false, 'UTF-8')]
+[file (aFeature.id.concat('.properties'), false, 'UTF-8')]
 [for (anAttribute : Attribute | aFeatureConfiguration.featureModelCopy.root.attributes)]
 [if (anAttribute.qualityAttribute)]
-[anAttribute.name/]=[aFeature.attributeValue(anAttribute.name, aFeatureConfiguration)/][comment Selection value not available. Get default value from feature model /][if (not valueHasBeenAlreadySerialized(aFeature.name.concat('.').concat(anAttribute.name), '1'))][aFeature.defaultAttributeValue(anAttribute.name, aFeatureConfiguration)/][/if]
+[anAttribute.id/]=[aFeature.attributeValue(anAttribute.name, aFeatureConfiguration)/][comment Selection value not available. Get default value from feature model /][if (not valueHasBeenAlreadySerialized(aFeature.name.concat('.').concat(anAttribute.name), '1'))][aFeature.defaultAttributeValue(anAttribute.name, aFeatureConfiguration)/][/if]
 [/if]
 [/for]
 [/file]
