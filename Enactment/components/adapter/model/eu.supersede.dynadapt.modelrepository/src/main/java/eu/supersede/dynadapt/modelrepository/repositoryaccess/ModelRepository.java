@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
@@ -41,6 +42,7 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
@@ -215,6 +217,10 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 	//IModelRepository implementation
 	//These methods support specialized (by Model Type) CRUD operations on the Model Repository Manager
+	@Override
+	public <T extends EObject, S extends IModel> String storeModel(T model, ModelType type, ModelMetadata metadata) throws Exception{
+		return super.storeModel(model, type, metadata);
+	}
 	
 	@Override
 	public String storeBaseModel(Model model, ModelMetadata metadata) throws Exception {
@@ -397,5 +403,10 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	@Override
 	public List<PatternModel> getPatternModelsForSystem(ModelSystem system) throws Exception{
 		return getModelsOfTypeForSystemWithStatus (ModelType.PatternModel, system, null, PatternModel.class);
+	}
+
+	@Override
+	public void cleanUpRepository() {
+		super.cleanUpRepository();
 	}
 }

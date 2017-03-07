@@ -150,6 +150,51 @@ public abstract class GenericModelRepository {
 		proxy.deleteModelInstance(type, id);
 	}
 	
+	//Clean-up all repository models
+	protected void cleanUpRepository() {
+		List<IModel> models;
+		try {
+			models = proxy.getModelInstances(ModelType.AdaptabilityModel, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.AdaptabilityModel, (String)model.getValue("id"));
+			}
+			
+			models = proxy.getModelInstances(ModelType.BaseModel, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.BaseModel, (String)model.getValue("id"));
+			}
+			
+			models = proxy.getModelInstances(ModelType.FeatureConfiguration, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.FeatureConfiguration, (String)model.getValue("id"));
+			}
+			
+			models = proxy.getModelInstances(ModelType.FeatureModel, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.FeatureModel, (String)model.getValue("id"));
+			}
+			
+			models = proxy.getModelInstances(ModelType.PatternModel, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.PatternModel, (String)model.getValue("id"));
+			}
+			
+			models = proxy.getModelInstances(ModelType.ProfileModel, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.ProfileModel, (String)model.getValue("id"));
+			}
+			
+			models = proxy.getModelInstances(ModelType.VariantModel, null, null);
+			for (IModel model: models){
+				proxy.deleteModelInstance(ModelType.VariantModel, (String)model.getValue("id"));
+			}
+					
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void saveModelFromString (String model, Path path) throws IOException{
 		Files.write(path, model.getBytes());
 	}
@@ -187,4 +232,6 @@ public abstract class GenericModelRepository {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

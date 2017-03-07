@@ -23,7 +23,6 @@ package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -40,22 +39,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
-import org.junit.After;
+import org.eclipse.uml2.uml.Profile;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
+import eu.supersede.integration.api.adaptation.types.FeatureConfiguration;
+import eu.supersede.integration.api.adaptation.types.FeatureModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.PatternModel;
+import eu.supersede.integration.api.adaptation.types.ProfileModel;
+import eu.supersede.integration.api.adaptation.types.VariantModel;
 
 public class PopulateModelRepositoryTest {
 
@@ -85,11 +92,14 @@ public class PopulateModelRepositoryTest {
 		url = getClass().getResource("/");
 		mm = new ModelManager(false);
 		mr = new ModelRepository(repository, repositoryRelativePath, mm);
+		
+		//Clean-up repository
+		cleanUpRepository();
 	}
 
-	@After
-	public void cleanUp() {
-
+	private void cleanUpRepository() {
+		//Remove all repository models
+		mr.cleanUpRepository();
 	}
 
 	
@@ -97,47 +107,65 @@ public class PopulateModelRepositoryTest {
 	public void testPopulateRepository() throws Exception {
 		populateRepository();
 	}
-
+	
 	private void populateRepository() throws Exception {
 		//Read repository folder structure
 		String userdir = System.getProperty("user.dir");
 		Path path = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 		
-		populateBaseModels(path, "models/base", "uml");
-		//TODO populateProfileModels (path);
-		//TODO populateVariantModels (path);
-		//TODO populateFeatureModels (path);
-		//TODO populateFeatureConfigurations (path);
-		//TODO populatePatternModels (path);
-		//TODO populateAdaptabilityModels (path);
+		populateModels(path, "models/base", "uml", Model.class, ModelType.BaseModel, BaseModel.class);
+		populateModels(path, "models/profiles", "uml", Profile.class, ModelType.ProfileModel, ProfileModel.class);
+		populateModels(path, "models/variants", "uml", Model.class, ModelType.VariantModel, VariantModel.class);
+		populateModels(path, "features/models", "yafm", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		populateModels(path, "features/configurations", "yafc", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		populateModels(path, "adaptability_models", "aspect", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		populateModels(path, "patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+		
 	}
 
-	private void populateBaseModels(Path path, String repositorySubFolder, String extension) throws IOException, Exception {
-		//Store Base Models. Read all models in folder, for each
+//	private void populateBaseModels(Path path, String repositorySubFolder, String extension) throws IOException, Exception {
+//		//Store Base Models. Read all models in folder, for each
+//		Path baseModelsFolder = Paths.get(path.toString(), repositorySubFolder);
+//		Map<Path, BasicFileAttributes> models = getFiles (baseModelsFolder, extension);
+//		for (Path file: models.keySet()){
+//			//Load Model
+//			Model model = mm.loadModel(file.toString(), Model.class);
+//			
+//			//Create metadata
+//			ModelMetadata metadata = createModelMetadata(new BaseModel(), file, models.get(file));
+//			
+//			//Store model in repository
+//			mr.storeBaseModel(model, metadata);
+//		}
+//	}
+	
+	private <T extends EObject, S extends IModel> void populateModels(
+			Path path, String repositorySubFolder, String fileExtension, Class<T> modelClass, ModelType modelType, Class<S> instanceMetadataType) throws IOException, Exception {
 		Path baseModelsFolder = Paths.get(path.toString(), repositorySubFolder);
-		Map<Path, BasicFileAttributes> models = getFiles (baseModelsFolder, extension);
+		Map<Path, BasicFileAttributes> models = getFiles (baseModelsFolder, fileExtension);
 		for (Path file: models.keySet()){
 			//Load Model
-			Model model = mm.loadModel(file.toString(), Model.class);
+			T model = mm.loadModel(file.toString(), modelClass);
 			
 			//Create metadata
-			ModelMetadata metadata = createModelMetadata(new BaseModel(), file, models.get(file));
+			S instanceMetadata = instanceMetadataType.newInstance();
+			ModelMetadata metadata = createModelMetadata(instanceMetadata, file, models.get(file), fileExtension);
 			
 			//Store model in repository
-			mr.storeBaseModel(model, metadata);
+			mr.storeModel(model, modelType, metadata);
 		}
 	}
 	
-	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, Path file, BasicFileAttributes attributes) throws Exception {
+	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, Path file, BasicFileAttributes attributes, String fileExtension) throws Exception {
 		ModelMetadata metadata = new ModelMetadata();
 		metadata.setSender("ModelRepositoryInitialization");
 		metadata.setTimeStamp(Calendar.getInstance().getTime());
-		metadata.setModelInstances(createBaseModelMetadataInstances(instanceMetadata, file, attributes));
+		metadata.setModelInstances(createBaseModelMetadataInstances(instanceMetadata, file, attributes, fileExtension));
 		
 		return metadata;
 	}
 	
-	private <T extends IModel> List<IModel> createBaseModelMetadataInstances(T metadata, Path file, BasicFileAttributes attributes) throws Exception {
+	private <T extends IModel> List<IModel> createBaseModelMetadataInstances(T metadata, Path file, BasicFileAttributes attributes, String fileExtension) throws Exception {
 		List<IModel> modelInstances = new ArrayList<>();
 		modelInstances.add(metadata);
 
@@ -151,7 +179,12 @@ public class PopulateModelRepositoryTest {
 		metadata.setValue ("lastModificationDate", lastModificationCalendar.getTime());
 		metadata.setValue ("fileExtension", ModelType.BaseModel.getExtension());
 		metadata.setValue ("systemId", getModelSystemForModel(file));
-		metadata.setValue ("status", "");
+		metadata.setValue ("fileExtension", "." + fileExtension);
+		try {
+			metadata.setValue ("status", "");
+		} catch (Exception e) {
+			//Ignored
+		}
 		
 		return modelInstances;
 	}
