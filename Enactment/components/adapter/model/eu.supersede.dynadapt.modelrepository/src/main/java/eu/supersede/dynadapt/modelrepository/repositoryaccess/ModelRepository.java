@@ -35,6 +35,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
@@ -263,18 +264,18 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	}
 
 	@Override
-	public String storeProfileModel(Model model, ModelMetadata metadata) throws Exception {
-		return storeModel(model, ModelType.ProfileModel, metadata);
+	public String storeProfileModel(Profile profile, ModelMetadata metadata) throws Exception {
+		return storeModel(profile, ModelType.ProfileModel, metadata);
 	}
 
 	@Override
-	public Model getProfileModel(String id) throws Exception {
-		return getModel(id, ModelType.ProfileModel, Model.class);
+	public Profile getProfileModel(String id) throws Exception {
+		return getModel(id, ModelType.ProfileModel, Profile.class);
 	}
 
 	@Override
-	public void updateProfileModel(Model model, ModelUpdateMetadata metadata, String id) throws Exception {
-		updateModel(model, metadata, id, ModelType.ProfileModel);
+	public void updateProfileModel(Profile profile, ModelUpdateMetadata metadata, String id) throws Exception {
+		updateModel(profile, metadata, id, ModelType.ProfileModel);
 	}
 
 	@Override
@@ -396,8 +397,8 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	}
 
 	@Override
-	public List<Model> getProfilesForSystem(ModelSystem system) throws Exception{
-		return getModelsOfTypeForSystemWithStatus (ModelType.ProfileModel, system, null, Model.class);
+	public List<Profile> getProfilesForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.ProfileModel, system, null, Profile.class);
 	}
 
 	@Override

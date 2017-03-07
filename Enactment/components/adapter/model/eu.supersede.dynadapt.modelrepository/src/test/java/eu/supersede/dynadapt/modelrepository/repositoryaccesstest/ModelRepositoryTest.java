@@ -31,11 +31,14 @@ import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
@@ -173,6 +176,46 @@ public class ModelRepositoryTest {
 		Model baseModel = mr.getLastBaseModelForSystem (ModelSystem.Atos);
 		Assert.assertNotNull(baseModel);
 	}
+	
+	@Test
+	public void testGetLastEnactedFeatureConfigurationForSystem() throws Exception {
+		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {
+		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetAspectModelsForSystem() throws Exception {
+		List<Aspect> models = mr.getAspectModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(models);
+		Assert.assertTrue(!models.isEmpty());
+	}
+	
+	@Test
+	public void testGetVariantModelsForSystem() throws Exception {
+		List<Model> models = mr.getVariantModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(models);
+		Assert.assertTrue(!models.isEmpty());
+	} 
+	
+	@Test
+	public void testGetProfilesForSystem() throws Exception {
+		List<Profile> profiles = mr.getProfilesForSystem (ModelSystem.Health);
+		Assert.assertNotNull(profiles);
+		Assert.assertTrue(!profiles.isEmpty());
+	} 
+	
+	@Test
+	public void testGetPatternModelsForSystem() throws Exception {
+		List<PatternModel> patterns = mr.getPatternModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(patterns);
+		Assert.assertTrue(!patterns.isEmpty());
+	} 
 	
 	private ModelUpdateMetadata createAdaptatibityModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();

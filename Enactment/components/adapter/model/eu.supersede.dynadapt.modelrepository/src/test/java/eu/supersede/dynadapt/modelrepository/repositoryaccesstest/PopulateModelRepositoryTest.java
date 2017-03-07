@@ -196,7 +196,7 @@ public class PopulateModelRepositoryTest {
 	private String getModelSystemForModel(Path file) {
 		// Use heuristic knowledge of file name to set the model system
 		if (getFileName(file).toLowerCase().contains("adm")){
-			return "supersede";
+			return ModelSystem.Supersede.getId();
 		}else if (getFileName(file).toLowerCase().contains("atos") ||
 				  getFileName(file).toLowerCase().contains("cms")){
 			return ModelSystem.Atos.getId();
@@ -207,7 +207,7 @@ public class PopulateModelRepositoryTest {
 			return ModelSystem.Siemens.getId();
 		}else if (getFileName(file).toLowerCase().contains("health") ||
 			      getFileName(file).toLowerCase().contains("authentication")){
-			return "health";
+			return ModelSystem.Health.getId();
 		}else if (getFileName(file).toLowerCase().contains("monitoring") ||
 			 	  getFileName(file).toLowerCase().contains("twitter")){
 			return ModelSystem.MonitoringReconfiguration.getId();
@@ -219,7 +219,7 @@ public class PopulateModelRepositoryTest {
 	private String getAuthorForModel(Path file) {
 		// Use heuristic knowledge of file name to set the owner
 		if (getFileName(file).toLowerCase().contains("adm")){
-			return "supersede";
+			return "Supersede";
 		}else if (getFileName(file).toLowerCase().contains("atos") ||
 				  getFileName(file).toLowerCase().contains("cms")){
 			return "Yosu";

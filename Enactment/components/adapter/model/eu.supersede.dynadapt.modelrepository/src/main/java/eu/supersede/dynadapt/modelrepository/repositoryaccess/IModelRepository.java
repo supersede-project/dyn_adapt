@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 import java.util.List;
 
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
@@ -36,11 +37,11 @@ public interface IModelRepository {
 	void deleteVariantModel(String id) throws Exception;
 
 	// UML Profile Models
-	String storeProfileModel(Model model, ModelMetadata metadata) throws Exception;
+	String storeProfileModel(Profile profile, ModelMetadata metadata) throws Exception;
 
-	Model getProfileModel(String id) throws Exception;
+	Profile getProfileModel(String id) throws Exception;
 
-	void updateProfileModel(Model model, ModelUpdateMetadata metadata, String id) throws Exception;
+	void updateProfileModel(Profile profile, ModelUpdateMetadata metadata, String id) throws Exception;
 
 	void deleteProfileModel(String id) throws Exception;
 
@@ -87,7 +88,7 @@ public interface IModelRepository {
 	FeatureConfiguration getLastComputedFeatureConfigurationForSystem (ModelSystem system) throws Exception; 
 	List<Aspect> getAspectModelsForSystem (ModelSystem system) throws Exception; 
 	List<Model> getVariantModelsForSystem (ModelSystem system) throws Exception;
-	List<Model> getProfilesForSystem (ModelSystem system) throws Exception;
+	List<Profile> getProfilesForSystem (ModelSystem system) throws Exception;
 	List<PatternModel> getPatternModelsForSystem (ModelSystem system) throws Exception;
 	
 	//Repository clean-up
