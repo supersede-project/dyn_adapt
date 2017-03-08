@@ -172,7 +172,9 @@ public class ManagerTest {
 		try {
 			IModel model = generateBaseModelData();
 			manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration);
+			HashMap<String,String> params = new HashMap<>();
+			params.put("systemId", ModelSystem.MonitoringReconfiguration.toString());
+			List<IModel> models = manager.getModels(ModelType.BaseModel, params);
 			for (IModel m : models) {
 				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 			}
@@ -186,7 +188,10 @@ public class ManagerTest {
 		try {
 			IModel model = generateBaseModelData();
 			manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, Status.Enacted);
+			HashMap<String,String> params = new HashMap<>();
+			params.put("systemId", ModelSystem.MonitoringReconfiguration.toString());
+			params.put("status", Status.Enacted.toString());
+			List<IModel> models = manager.getModels(ModelType.BaseModel, params);
 			for (IModel m : models) {
 				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 				assertEquals(Status.Enacted.toString(), m.getValue("status"));
