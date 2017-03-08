@@ -20,7 +20,7 @@
 [file (aFeature.id.concat('.properties'), false, 'UTF-8')]
 [for (anAttribute : Attribute | aFeatureConfiguration.featureModelCopy.root.attributes)]
 [if (anAttribute.qualityAttribute)]
-[anAttribute.id/]=[aFeature.attributeValue(anAttribute.name, aFeatureConfiguration)/][comment Selection value not available. Get default value from feature model /][if (not valueHasBeenAlreadySerialized(aFeature.name.concat('.').concat(anAttribute.name), '1'))][aFeature.defaultAttributeValue(anAttribute.name, aFeatureConfiguration)/][/if]
+[anAttribute.name/]=[aFeature.attributeValue(anAttribute.name, aFeatureConfiguration)/][comment Selection value not available. Get default value from feature model /][if (not valueHasBeenAlreadySerialized(aFeature.name.concat('.').concat(anAttribute.name), '1'))][aFeature.defaultAttributeValue(anAttribute.name, aFeatureConfiguration)/][/if]
 [/if]
 [/for]
 [/file]
