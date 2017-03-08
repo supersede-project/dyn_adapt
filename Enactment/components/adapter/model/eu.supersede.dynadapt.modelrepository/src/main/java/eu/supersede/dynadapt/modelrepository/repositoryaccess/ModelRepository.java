@@ -33,7 +33,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
@@ -41,9 +43,12 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.Status;
 
 public class ModelRepository extends GenericModelRepository implements IModelRepository{
 
@@ -213,6 +218,10 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 	//IModelRepository implementation
 	//These methods support specialized (by Model Type) CRUD operations on the Model Repository Manager
+	@Override
+	public <T extends EObject, S extends IModel> String storeModel(T model, ModelType type, ModelMetadata metadata) throws Exception{
+		return super.storeModel(model, type, metadata);
+	}
 	
 	@Override
 	public String storeBaseModel(Model model, ModelMetadata metadata) throws Exception {
@@ -255,18 +264,18 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	}
 
 	@Override
-	public String storeProfileModel(Model model, ModelMetadata metadata) throws Exception {
-		return storeModel(model, ModelType.ProfileModel, metadata);
+	public String storeProfileModel(Profile profile, ModelMetadata metadata) throws Exception {
+		return storeModel(profile, ModelType.ProfileModel, metadata);
 	}
 
 	@Override
-	public Model getProfileModel(String id) throws Exception {
-		return getModel(id, ModelType.ProfileModel, Model.class);
+	public Profile getProfileModel(String id) throws Exception {
+		return getModel(id, ModelType.ProfileModel, Profile.class);
 	}
 
 	@Override
-	public void updateProfileModel(Model model, ModelUpdateMetadata metadata, String id) throws Exception {
-		updateModel(model, metadata, id, ModelType.ProfileModel);
+	public void updateProfileModel(Profile profile, ModelUpdateMetadata metadata, String id) throws Exception {
+		updateModel(profile, metadata, id, ModelType.ProfileModel);
 	}
 
 	@Override
@@ -353,5 +362,52 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	@Override
 	public void deleteAspectModel(String id) throws Exception {
 		deleteModel(id, ModelType.AdaptabilityModel);
+	}
+
+	//Query Methods
+	
+	@Override
+	public Model getLastEnactedBaseModelForSystem(ModelSystem system) throws Exception {
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, Status.Enacted, Model.class);
+	}
+	
+	@Override
+	public Model getLastBaseModelForSystem(ModelSystem system) throws Exception {
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, null, Model.class);
+	}
+
+	@Override
+	public FeatureConfiguration getLastEnactedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Enacted, FeatureConfiguration.class);
+	}
+
+	@Override
+	public FeatureConfiguration getLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.ComputedByDM, FeatureConfiguration.class);
+	}
+
+	@Override
+	public List<Aspect> getAspectModelsForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.AdaptabilityModel, system, null, Aspect.class);
+	}
+
+	@Override
+	public List<Model> getVariantModelsForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.VariantModel, system, null, Model.class);
+	}
+
+	@Override
+	public List<Profile> getProfilesForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.ProfileModel, system, null, Profile.class);
+	}
+
+	@Override
+	public List<PatternModel> getPatternModelsForSystem(ModelSystem system) throws Exception{
+		return getModelsOfTypeForSystemWithStatus (ModelType.PatternModel, system, null, PatternModel.class);
+	}
+
+	@Override
+	public void cleanUpRepository() {
+		super.cleanUpRepository();
 	}
 }

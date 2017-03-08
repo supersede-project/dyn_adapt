@@ -24,3 +24,13 @@
 /.AreThereReferenceToTypeQuerySpecification.java._trace
 /.GetReferenceToTypeProcessor.java._trace
 /.GetReferenceToTypeQuerySpecification.java._trace
+/GetReferenceToTypeProcessor.java
+/GetReferenceToTypeQuerySpecification.java
+/ParametersWithTypeProcessor.java
+/ParametersWithTypeQuerySpecification.java
+/PropertiesWithTypeProcessor.java
+/PropertiesWithTypeQuerySpecification.java
+/ReferencesToTypeProcessor.java
+/ReferencesToTypeQuerySpecification.java
+/SubClassOfProcessor.java
+/SubClassOfQuerySpecification.java
