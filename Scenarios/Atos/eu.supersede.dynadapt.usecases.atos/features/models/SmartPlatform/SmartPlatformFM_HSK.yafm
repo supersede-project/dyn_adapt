@@ -41,15 +41,17 @@
             <attribute id="a_351682435" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" defaultValue="1"/>
             <attribute id="a_1601343105" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
             <attribute id="a_751696459" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10"/>
-            <feature id="lowloadconfigurationinvm3" name="LowLoadConfigurationInVM3" lower="0" upper="1">
-              <attribute id="a_1070019319" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" objectiveFunctionAggregator="min"/>
-            </feature>
-            <feature id="mediumloadconfigurationinvm3" name="MediumLoadConfigurationInVM3" lower="0" upper="1">
-              <attribute id="a_317719779" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" objectiveFunctionAggregator="min"/>
-            </feature>
-            <feature id="highloadconfigurationinvm3" name="HighLoadConfigurationInVM3" lower="0" upper="1">
-              <attribute id="a_738787865" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="30" minRangeValue="30" maxRangeValue="40" weight="1.0" objectiveFunctionAggregator="min"/>
-            </feature>
+            <group lower="1" upper="1">
+              <feature id="lowloadconfigurationinvm3" name="LowLoadConfigurationInVM3" lower="0" upper="1">
+                <attribute id="a_1070019319" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" objectiveFunctionAggregator="min"/>
+              </feature>
+              <feature id="mediumloadconfigurationinvm3" name="MediumLoadConfigurationInVM3" lower="0" upper="1">
+                <attribute id="a_317719779" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" objectiveFunctionAggregator="min"/>
+              </feature>
+              <feature id="highloadconfigurationinvm3" name="HighLoadConfigurationInVM3" lower="0" upper="1">
+                <attribute id="a_738787865" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="30" minRangeValue="30" maxRangeValue="40" weight="1.0" objectiveFunctionAggregator="min"/>
+              </feature>
+            </group>
           </feature>
         </feature>
         <feature id="vm2_a" name="VM2_A" lower="0" upper="1">
@@ -61,27 +63,29 @@
             </group>
           </feature>
           <feature id="vm2_a_configuration" name="VM2_A Configuration" lower="1" upper="1">
-            <feature id="lowloadconfigurationinvm2_a" name="LowLoadConfigurationInVM2_A" lower="0" upper="1">
-              <attribute id="a_100299600" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_2097492018" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" qualityAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_1782820732" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-              <attribute id="a_1581965707" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
-              <attribute id="a_1863976004" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="min"/>
-            </feature>
-            <feature id="mediumloadconfigurationinvm2_a" name="MediumLoadConfigurationInVM2_A" lower="0" upper="1">
-              <attribute id="a_300656348" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_1558743766" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" qualityAttribute="true" defaultValue="3" minRangeValue="1" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_1664397167" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-              <attribute id="a_1611730961" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
-              <attribute id="a_1357486360" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20" minRangeValue="20" maxRangeValue="40" weight="1.0" objectiveFunctionAggregator="min"/>
-            </feature>
-            <feature id="highloadconfigurationinvm2_a" name="HighLoadConfigurationInVM2_A" lower="0" upper="1">
-              <attribute id="a_56020701" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_192569596" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" qualityAttribute="true" defaultValue="4" minRangeValue="1" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_1963815222" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-              <attribute id="a_555057018" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
-              <attribute id="a_486046333" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="40" minRangeValue="40" maxRangeValue="80" weight="1.0" objectiveFunctionAggregator="min"/>
-            </feature>
+            <group lower="1" upper="1">
+              <feature id="lowloadconfigurationinvm2_a" name="LowLoadConfigurationInVM2_A" lower="0" upper="1">
+                <attribute id="a_100299600" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_2097492018" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" qualityAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1782820732" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
+                <attribute id="a_1581965707" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_1863976004" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="min"/>
+              </feature>
+              <feature id="mediumloadconfigurationinvm2_a" name="MediumLoadConfigurationInVM2_A" lower="0" upper="1">
+                <attribute id="a_300656348" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1558743766" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" qualityAttribute="true" defaultValue="3" minRangeValue="1" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1664397167" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
+                <attribute id="a_1611730961" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_1357486360" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20" minRangeValue="20" maxRangeValue="40" weight="1.0" objectiveFunctionAggregator="min"/>
+              </feature>
+              <feature id="highloadconfigurationinvm2_a" name="HighLoadConfigurationInVM2_A" lower="0" upper="1">
+                <attribute id="a_56020701" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_192569596" name="memory" type="integer" description="RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory" qualityAttribute="true" defaultValue="4" minRangeValue="1" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1963815222" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
+                <attribute id="a_555057018" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_486046333" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="40" minRangeValue="40" maxRangeValue="80" weight="1.0" objectiveFunctionAggregator="min"/>
+              </feature>
+            </group>
           </feature>
         </feature>
         <feature id="vm2_b" name="VM2_B" lower="0" upper="1">
@@ -92,27 +96,29 @@
             </group>
           </feature>
           <feature id="vm2_b_configuration" name="VM2_B Configuration" lower="1" upper="1">
-            <feature id="lowloadconfigurationinvm2_b" name="LowLoadConfigurationInVM2_B" lower="0" upper="1">
-              <attribute id="a_1360460815" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_1933072983" name="memory" type="integer" description="Description&#x9;RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory"/>
-              <attribute id="a_1048738917" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-              <attribute id="a_574582260" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
-              <attribute id="a_1970617905" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20"/>
-            </feature>
-            <feature id="mediumloadconfigurationinvm2_a_31331" name="MediumLoadConfigurationInVM2_B" lower="0" upper="1">
-              <attribute id="a_1320858704" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_633960292" name="memory" type="integer" description="Description&#x9;RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory"/>
-              <attribute id="a_293511434" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-              <attribute id="a_71167518" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
-              <attribute id="a_2067090082" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20"/>
-            </feature>
-            <feature id="highloadconfigurationinvm2_a_11694" name="HighLoadConfigurationInVM2_B" lower="0" upper="1">
-              <attribute id="a_1775284605" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
-              <attribute id="a_1013562699" name="memory" type="integer" description="Description&#x9;RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory"/>
-              <attribute id="a_1063903421" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-              <attribute id="a_345405682" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
-              <attribute id="a_1966524431" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20"/>
-            </feature>
+            <group lower="1" upper="1">
+              <feature id="lowloadconfigurationinvm2_b" name="LowLoadConfigurationInVM2_B" lower="0" upper="1">
+                <attribute id="a_1360460815" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1933072983" name="memory" type="integer" description="Description&#x9;RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory"/>
+                <attribute id="a_1048738917" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
+                <attribute id="a_574582260" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_1970617905" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20"/>
+              </feature>
+              <feature id="mediumloadconfigurationinvm2_a_31331" name="MediumLoadConfigurationInVM2_B" lower="0" upper="1">
+                <attribute id="a_1320858704" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_633960292" name="memory" type="integer" description="Description&#x9;RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory"/>
+                <attribute id="a_293511434" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
+                <attribute id="a_71167518" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_2067090082" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20"/>
+              </feature>
+              <feature id="highloadconfigurationinvm2_a_11694" name="HighLoadConfigurationInVM2_B" lower="0" upper="1">
+                <attribute id="a_1775284605" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1013562699" name="memory" type="integer" description="Description&#x9;RAM assigned to this VM. Sum over VMx Configuration.memory attributes for all configurations &lt;= Physical Configuration.memory"/>
+                <attribute id="a_1063903421" name="storage" type="integer" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
+                <attribute id="a_345405682" name="root_size" type="integer" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_1966524431" name="ovp_size" type="integer" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="20"/>
+              </feature>
+            </group>
           </feature>
         </feature>
       </feature>
