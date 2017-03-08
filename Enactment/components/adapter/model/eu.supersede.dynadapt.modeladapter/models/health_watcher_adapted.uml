@@ -31,6 +31,7 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_2FQEYNmYEeaqn4PsJwbRFQ" name="passwd" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_JlubQPOAEeaVN-Wgl4wvBw" name="protected system" type="_iV4zQNmXEeaqn4PsJwbRFQ" association="_Jlhm8POAEeaVN-Wgl4wvBw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_9l6TENmQEeaqn4PsJwbRFQ" name="HealthUnit">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_HUls8tmTEeaqn4PsJwbRFQ" name="workers" type="_6gA5INmQEeaqn4PsJwbRFQ" association="_HUke0NmTEeaqn4PsJwbRFQ">
@@ -215,6 +216,12 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_wzd3IdmXEeaqn4PsJwbRFQ" key="nature" value="UML_Nature"/>
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_wzd3I9mXEeaqn4PsJwbRFQ" type="_6gA5INmQEeaqn4PsJwbRFQ" association="_wzdQENmXEeaqn4PsJwbRFQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Jlhm8POAEeaVN-Wgl4wvBw" memberEnd="_JlubQPOAEeaVN-Wgl4wvBw _JlvpYPOAEeaVN-Wgl4wvBw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JltNIPOAEeaVN-Wgl4wvBw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Jlt0MPOAEeaVN-Wgl4wvBw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_JlvpYPOAEeaVN-Wgl4wvBw" type="_6gA5INmQEeaqn4PsJwbRFQ" association="_Jlhm8POAEeaVN-Wgl4wvBw"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3-9YANmYEeaqn4PsJwbRFQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3-_NMNmYEeaqn4PsJwbRFQ" source="http://www.eclipse.org/uml2/2.0.0/UML">

@@ -2,14 +2,60 @@ package eu.supersede.dynadapt.modeladapter.queries
 
 import "http://www.eclipse.org/uml2/5.0.0/UML"
 
-pattern InstanceSpecificationLink (link) {
+pattern InstanceSpecificationLink (link : InstanceSpecification) {
 	InstanceSpecification.classifier (link, classifier);
 	Association (classifier);
 }
 
-pattern InstanceOfInstanceSpecificationLink (link, instance){
+pattern InstanceOfInstanceSpecificationLink (link : InstanceSpecification, instance : InstanceSpecification){
 	find InstanceSpecificationLink(link);
 	InstanceSpecification.slot (link, slot);
 	Slot.value (slot,value);
 	InstanceValue.instance (value, instance);
 }
+
+pattern subClassOf (subclass : Classifier, superclass : Class){
+    Generalization.general (generalization, superclass);
+	Generalization.specific (generalization, subclass);
+	
+//	Class.name (superclass, name);
+//	check (
+//		name.equals("SystemToAuthenticate")
+//	);
+}
+
+pattern propertiesWithType (property : Property, type: Type){
+	Property.type (property, type);
+	
+//	Type.name (type, name);
+//	check (
+//		name.equals("UserRepository")
+//	);
+}
+
+pattern parametersWithType (parameter : Parameter, type: Type){
+	Parameter.type (parameter, type);
+	
+//	Type.name (type, name);
+//	check (
+//		name.equals("UserToAuthenticate")
+//	);
+}
+
+pattern referencesToType (element : Element, type:Class){
+	find subClassOf(element, type);
+}or{
+	find propertiesWithType (element, type);
+}or{
+	find parametersWithType(element, type);
+}
+
+pattern getReferenceToType(element : Element, type:Class){
+	find referencesToType(element, type);
+
+//	Type.name (type, name);
+//	check (
+//		name.equals ("UserToAuthenticate")
+//	);
+}
+
