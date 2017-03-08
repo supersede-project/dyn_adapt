@@ -54,7 +54,7 @@ NOTE: This template is not used anymore, since attribute serialization is prefix
 [/template]
 
 [template public attributeJSON(feature_id: String, anAttribute : Attribute)]
-"[feature_id/].[anAttribute.id/]":{
+"[feature_id/].[anAttribute.name/]":{
 	"domain":"[anAttribute.type/]",
 	"min":[anAttribute.minRangeValue/],
 	"max":[anAttribute.maxRangeValue/],

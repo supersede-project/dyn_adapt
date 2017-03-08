@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.modelrepository.manager.database;
+package eu.supersede.dynadapt.modelrepository.manager;
 
 import java.util.List;
 import java.util.Map;
@@ -8,37 +8,24 @@ import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
-public interface IDatabaseController {
+public interface IManager {
+		
+	public List<IModel> listAllModels(ModelType type) throws Exception;
 	
-	/**
-	 * List models for a given type
-	 */
-	public List<IModel> getAllModels(ModelType type) throws Exception;
+	public List<IModel> createModels(ModelType type, List<IModel> modelList) throws Exception;
 	
-	/**
-	 * Create new model instance for a given type
-	 */
 	public IModel createModel(ModelType type, IModel model) throws Exception;
 	
-	/**
-	 * Get attribute values for a given model id and type
-	 */
 	public IModel getModel(ModelType type, String id) throws Exception;
-	
-	/**
-	 * Updates a model instance
-	 */
-	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
-	
-	/**
-	 * Deletes a model instance
-	 */
-	public void deleteModel(ModelType type, String id) throws Exception;
-	
+
 	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
 
 	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
-
-	public List<IModel> getModels(ModelType type, Status status) throws Exception;
 	
+	public List<IModel> getModels(ModelType type, Status status) throws Exception;
+		
+	public void deleteModel(ModelType type, String id) throws Exception;
+	
+	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+
 }

@@ -7,14 +7,14 @@
     <input>
       <takesTypesFrom href="http://zcu.cz/yafmt/model/fm#/"/>
     </input>
-    <imports href="files/serializeEnabledFeature.emtl#/0"/>
+    <imports href="platform:/resource/eu.supersede.dynadapt.dm.feature.serializer/bin/eu/supersede/dynadapt/configuration/serializer/files/serializeEnabledFeature.emtl#/0"/>
     <imports href="files/serializeQualityAttributesOfEnabledFeature.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="mainFeatureConfiguration" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="files/serializeEnabledFeature.emtl#/0/fcEnabledFeaturesSerializer"/>
+        <definition href="platform:/resource/eu.supersede.dynadapt.dm.feature.serializer/bin/eu/supersede/dynadapt/configuration/serializer/files/serializeEnabledFeature.emtl#/0/fcEnabledFeaturesSerializer"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aFeatureConfiguration" referredVariable="/0/mainFeatureConfiguration/aFeatureConfiguration">
           <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
         </argument>
@@ -68,7 +68,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="files/serializeEnabledFeature.emtl#/0/fcEnabledFeaturesSerializer"/>
+          <references href="platform:/resource/eu.supersede.dynadapt.dm.feature.serializer/bin/eu/supersede/dynadapt/configuration/serializer/files/serializeEnabledFeature.emtl#/0/fcEnabledFeaturesSerializer"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aFeatureConfiguration">

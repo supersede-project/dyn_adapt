@@ -17,6 +17,9 @@
 [/template]
 
 [template public serializeQualityAttributes(aFeature : Feature, aFeatureConfiguration : FeatureConfiguration) post(trim())]
+[if (aFeature.hasAttributes())]
+[let rootFeature : Feature = aFeatureConfiguration.featureModelCopy.root]
+[if (aFeature.hasQualityAttributes(rootFeature.qualityAttributeNames()))]
 [file (aFeature.id.concat('.properties'), false, 'UTF-8')]
 [for (anAttribute : Attribute | aFeatureConfiguration.featureModelCopy.root.attributes)]
 [if (anAttribute.qualityAttribute)]
@@ -24,6 +27,9 @@
 [/if]
 [/for]
 [/file]
+[/if]
+[/let]
+[/if]
 [/template]
 
 [template public defaultAttributeValue(aFeature : Feature, attributeName: String, aFeatureConfiguration : FeatureConfiguration) post(trim())]
@@ -70,7 +76,11 @@
 [for (anAttributeValue : AttributeValue | aSelection.values)]
 [if (anAttributeValue.name = attributeName)]
 [if (not valueHasBeenAlreadySerialized(anAttributeValue.attribute.feature.name.concat('.').concat(anAttributeValue.attribute.name), '2'))]
+[if (anAttributeValue.oclIsTypeOf(DoubleValue))]
 [anAttributeValue.oclAsType(DoubleValue).value /]
+[elseif (anAttributeValue.oclIsTypeOf(IntegerValue))]
+[anAttributeValue.oclAsType(IntegerValue).value /]	
+[/if]
 [/if]
 [/if]
 [/for]
@@ -85,6 +95,18 @@ Therefore, position argument is required to make calls different in different po
 		'eu.supersede.dynadapt.feature.serializer.helpers.AttributeSerializationHelper', 
 		'attributeValueHasBeenSerialized(java.lang.String, java.lang.String)', Sequence{id, position})
   /]
+
+[query public qualityAttributeNames(aFeature : Feature) : Sequence(String) = 
+aFeature.attributes->select(qualityAttribute)->collect(name) /]
+
+[query public attributeNames(aFeature : Feature) : Sequence(String) = 
+aFeature.attributes->collect(name) /]
+
+[query public hasAttributes(aFeature : Feature) : Boolean = 
+not aFeature.attributes->isEmpty() /]
+
+[query public hasQualityAttributes(aFeature : Feature, theQualityAttributes: Sequence (String)) : Boolean = 
+not aFeature.attributeNames()->asSet()->intersection(theQualityAttributes->asSet())->isEmpty() /]
 
 [query public hasChildren(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) or not (aFeature.groups->isEmpty()) /]
 [query public hasANDGroup(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) /]
