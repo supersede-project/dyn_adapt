@@ -15,7 +15,7 @@
                 <feature id="dss" name="DSS" lower="0" upper="1"/>
               </group>
             </feature>
-            <feature id="vm1_configuration" name="VM1 Configuration" lower="1" upper="1">
+            <feature id="vm1_configuration" name="VM1_Configuration" lower="1" upper="1">
               <group lower="1" upper="1">
                 <feature id="lowloadconfigurationinvm1" name="LowLoadConfigurationInVM1" lower="0" upper="1">
                   <attribute id="a_949483085" name="storage" type="double" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="200" minRangeValue="0" maxRangeValue="1024">
@@ -42,7 +42,7 @@
             <feature id="services_2524" name="Services" lower="1" upper="1">
               <feature id="hap" name="HAP" lower="0" upper="1"/>
             </feature>
-            <feature id="vm3_configuration" name="VM3 Configuration" lower="1" upper="1">
+            <feature id="vm3_configuration" name="VM3_Configuration" lower="1" upper="1">
               <group lower="1" upper="1">
                 <feature id="lowloadconfigurationinvm3" name="LowLoadConfigurationInVM3" lower="0" upper="1">
                   <attribute id="a_1601343105" name="storage" type="double" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
@@ -70,7 +70,7 @@
                 <feature id="hsk" name="HSK" lower="0" upper="1"/>
               </group>
             </feature>
-            <feature id="vm2_a_configuration" name="VM2_A Configuration" lower="1" upper="1">
+            <feature id="vm2_a_configuration" name="VM2_A_Configuration" lower="1" upper="1">
               <group lower="1" upper="1">
                 <feature id="lowloadconfigurationinvm2_a" name="LowLoadConfigurationInVM2_A" lower="0" upper="1">
                   <attribute id="a_100299600" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
@@ -103,7 +103,7 @@
                 <feature id="hsk_7201" name="HSK" lower="0" upper="1"/>
               </group>
             </feature>
-            <feature id="vm2_b_configuration" name="VM2_B Configuration" lower="1" upper="1">
+            <feature id="vm2_b_configuration" name="VM2_B_Configuration" lower="1" upper="1">
               <group lower="1" upper="1">
                 <feature id="lowloadconfigurationinvm2_b" name="LowLoadConfigurationInVM2_B" lower="0" upper="1">
                   <attribute id="a_1360460815" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>

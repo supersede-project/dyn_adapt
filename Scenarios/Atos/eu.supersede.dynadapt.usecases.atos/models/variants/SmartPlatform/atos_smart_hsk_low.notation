@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Vy_8sATUEeeo4rafDiNNWw" type="PapyrusUMLClassDiagram" name="HSK Low Load Configuration" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Vy_8sATUEeeo4rafDiNNWw" type="PapyrusUMLClassDiagram" name="HSK Low Load Configuration" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_xqmVsATUEeeo4rafDiNNWw" type="InstanceSpecification_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_xqm8wATUEeeo4rafDiNNWw" type="InstanceSpecification_NameLabel"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_xqm8wQTUEeeo4rafDiNNWw" type="InstanceSpecification_FloatingNameLabel">
@@ -61,10 +61,28 @@
     <element xmi:type="uml:InstanceSpecification" href="atos_smart_hsk_low.uml#_-11A4ATUEeeo4rafDiNNWw"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-12PAQTUEeeo4rafDiNNWw" x="124" y="65" width="375"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_Ynif4ATfEeeo4rafDiNNWw" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_Ynif4QTfEeeo4rafDiNNWw"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_Ynif4wTfEeeo4rafDiNNWw" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:InstanceSpecification" href="atos_smart_hsk_low.uml#_-11A4ATUEeeo4rafDiNNWw"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ynif4gTfEeeo4rafDiNNWw" x="324" y="65"/>
+  </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_Vy_8sQTUEeeo4rafDiNNWw" name="diagram_compatibility_version" stringValue="1.2.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_Vy_8sgTUEeeo4rafDiNNWw"/>
   <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Vy_8swTUEeeo4rafDiNNWw">
     <owner xmi:type="uml:Model" href="atos_smart_hsk_low.uml#_10WOwATTEeeo4rafDiNNWw"/>
   </styles>
   <element xmi:type="uml:Model" href="atos_smart_hsk_low.uml#_10WOwATTEeeo4rafDiNNWw"/>
+  <edges xmi:type="notation:Connector" xmi:id="_Ynif5ATfEeeo4rafDiNNWw" type="StereotypeCommentLink" source="_-12PAATUEeeo4rafDiNNWw" target="_Ynif4ATfEeeo4rafDiNNWw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ynif5QTfEeeo4rafDiNNWw"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_Ynif6QTfEeeo4rafDiNNWw" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:InstanceSpecification" href="atos_smart_hsk_low.uml#_-11A4ATUEeeo4rafDiNNWw"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ynif5gTfEeeo4rafDiNNWw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Ynif5wTfEeeo4rafDiNNWw"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Ynif6ATfEeeo4rafDiNNWw"/>
+  </edges>
 </notation:Diagram>

@@ -9,6 +9,8 @@
       <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationLink"/>
       <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.InstanceOfInstanceSpecificationLink"/>
       <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.HSKExecutionEnvironments"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.VMInstancesContainingHSKServices"/>
     </group>
   </extension>
 </plugin>
