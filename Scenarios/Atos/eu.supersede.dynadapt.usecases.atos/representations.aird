@@ -989,4 +989,10 @@
   <semanticResources>features/models/SmartPlatform/SmartPlatformFM_HDD.yafm</semanticResources>
   <semanticResources>features/models/SmartPlatform/SmartPlatformFM_HDD.yafm.layout</semanticResources>
   <semanticResources>features/models/SmartPlatform/SmartPlatformFM_HSK.yafm.layout</semanticResources>
+  <semanticResources>models/adapted/SmartPlatform/atos_smart_base_model.uml</semanticResources>
+  <semanticResources>models/adapted/SmartPlatform/atos_smart_adapted_model.notation</semanticResources>
+  <semanticResources>models/adapted/SmartPlatform/atos_smart_adapted_model.uml</semanticResources>
+  <semanticResources>models/variants/SmartPlatform/atos_smart_hsk_low.uml</semanticResources>
+  <semanticResources>models/base/SmartPlatform/atos_smart_base_model.uml</semanticResources>
+  <semanticResources>models/variants/SmartPlatform/atos_smart_hsk_high.uml</semanticResources>
 </viewpoint:DAnalysis>
