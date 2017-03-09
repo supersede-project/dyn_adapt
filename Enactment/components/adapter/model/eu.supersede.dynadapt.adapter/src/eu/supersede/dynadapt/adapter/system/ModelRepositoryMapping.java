@@ -15,6 +15,8 @@ public class ModelRepositoryMapping{
 		switch (system) {
 		case ATOS:
 			return  URI.createURI (atosMapping.get(type.getType()).get(type.getTimestamp()));
+		case ATOS_HSK:
+			return  URI.createURI (atosHskMapping.get(type.getType()).get(type.getTimestamp()));
 		case HEALTH:
 			return URI.createURI (healthMapping.get(type.getType()).get(type.getTimestamp()));
 		case MONITORING:
@@ -28,6 +30,7 @@ public class ModelRepositoryMapping{
 	}
 	
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> atosMapping = new HashMap<>();
+	private static Map<ResourceType, Map<ResourceTimestamp, String>> atosHskMapping = new HashMap<>();
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> healthMapping = new HashMap<>();
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> monitoringMapping = new HashMap<>();
 	private static Map<ResourceType, Map<ResourceTimestamp, String>> siemensMapping = new HashMap<>();
@@ -44,6 +47,18 @@ public class ModelRepositoryMapping{
 				"/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc");
 		atosMapping.put(ResourceType.BASE, atosBaseModel);
 		atosMapping.put(ResourceType.FEATURE_CONFIGURATION, atosFeatureConfiguration);
+		
+		//ATOS HSK USE CASE
+		Map<ResourceTimestamp, String> atosHskBaseModel = new HashMap<>();
+		Map<ResourceTimestamp, String> atosHskFeatureConfiguration = new HashMap<>();
+		atosHskBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
+				"/models/base/atos_smart_base_model.uml");
+		atosHskFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/SmartPlatformFC_HSK_LowLoad.yafc");
+		atosHskFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
+				"/features/configurations/SmartPlatformFC_HSK_HighLoad.yafc");
+		atosHskMapping.put(ResourceType.BASE, atosHskBaseModel);
+		atosHskMapping.put(ResourceType.FEATURE_CONFIGURATION, atosHskFeatureConfiguration);
 		
 		//HEALTH USE CASE
 		Map<ResourceTimestamp, String> healthBaseModel = new HashMap<>();
@@ -90,8 +105,17 @@ public class ModelRepositoryMapping{
 			case ATOS:
 				mapping = atosMapping;
 				break;
+			case ATOS_HSK:
+				mapping = atosHskMapping;
+				break;
 			case HEALTH:
 				mapping = healthMapping;
+				break;
+			case MONITORING:
+				mapping = monitoringMapping;
+				break;
+			case SIEMENS:
+				mapping = siemensMapping;
 				break;
 			default:
 				//FIXME Other systems not supported

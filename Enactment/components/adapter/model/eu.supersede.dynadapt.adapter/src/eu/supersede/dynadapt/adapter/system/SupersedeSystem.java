@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 
 public enum SupersedeSystem {
 	ATOS ("atos"), 
+	ATOS_HSK ("atos_hsk"), 
 	SIEMENS ("siemens"), 
 	SENERCON ("senercon"), 
 	MONITORING ("monitoring"), 
@@ -29,6 +30,8 @@ public enum SupersedeSystem {
 		switch (suri){
 		case "atos":
 			return ATOS;
+		case "atos_hsk":
+			return ATOS_HSK;
 		case "siemens":
 			return SIEMENS;
 		case "senercon":
