@@ -44,8 +44,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
 					SupersedeSystem.ATOS_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
-			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+//			adapter.enactAdaptationDecisionAction(
+//					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

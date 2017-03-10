@@ -23,6 +23,7 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -33,18 +34,19 @@ import org.apache.log4j.Logger;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralReal;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.uml2.uml.internal.impl.ClassImpl;
-import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
-import org.eclipse.uml2.uml.Package;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificationLinkMatcher;
@@ -62,8 +64,8 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 	@Override
 	public void applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement,
 			Model usingVariantModel, Element jointpointVariantModelElement) {
-		InstanceSpecificationImpl instanceBase = (InstanceSpecificationImpl) jointpointBaseModelElement;
-		InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
+		InstanceSpecification instanceBase = (InstanceSpecification) jointpointBaseModelElement;
+		InstanceSpecification instanceVariant = (InstanceSpecification) jointpointVariantModelElement;
 		//Adding new slots in variant model to insertion point (e.g. Jointpoint) in base model
 		for (Slot slot : instanceVariant.getSlots()) {
 			log.debug("Adding slot: " + slot.getDefiningFeature().getName() + " in instance " + instanceBase.getQualifiedName());
@@ -85,8 +87,8 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 	@Override
 	public void applyDeleteComposition(Model inBaseModel,
 			Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) {
-		InstanceSpecificationImpl instanceBase = (InstanceSpecificationImpl) jointpointBaseModelElement;
-		InstanceSpecificationImpl instanceVariant = (InstanceSpecificationImpl) jointpointVariantModelElement;
+		InstanceSpecification instanceBase = (InstanceSpecification) jointpointBaseModelElement;
+		InstanceSpecification instanceVariant = (InstanceSpecification) jointpointVariantModelElement;
 		
 		//Deleting Slot occurrences in base model, corresponding to variant jointpoint instance
 		for (Slot slotInInstanceVariant: instanceVariant.getSlots()){
@@ -104,7 +106,10 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 	
 	private void addSlotInInstanceSpecification(Slot slot, InstanceSpecification instanceSpecification, Model model) {
 		// Creates the new slot referencing new object		
-		Slot newSlot = ModelAdapterUtilities.createElement (slot, instanceSpecification, baseJointpoints);
+		Slot newSlot = ModelAdapterUtilities.createElement (slot, instanceSpecification, baseJointpoints, model);
+//		//Resolve defining feature in base model
+//		Element definingFeature = ModelAdapterUtilities.getEquivalentElementInModel(slot.getDefiningFeature(), model);
+//		newSlot.setDefiningFeature((StructuralFeature)definingFeature);
 		
 		// DefiningFeature should be added to base model if it does not exit therein
 		StructuralFeature sf = slot.getDefiningFeature();
@@ -112,24 +117,44 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 			Package pack  = ModelAdapterUtilities.getPackageInModel (sf.getNearestPackage(), model);
 			if (pack != null){
 				log.debug("Adding instance: " + sf.getName() + " in base model in package " + pack.getQualifiedName());
-				ModelAdapterUtilities.addElementInPackage ((PackageableElement) sf, pack);
+				
+				//The model is created into the existing in base model
+				ModelAdapterUtilities.createElement((PackageableElement) sf, pack, baseJointpoints, model);
 			}
 		}
 
-		InstanceValue instanceValue = (InstanceValue) newSlot.getValues().get(0);
-		InstanceValue newInstanceValue = (InstanceValue) slot.getValues().get(0);
+		ValueSpecification valueSpecification = slot.getValues().get(0);
+		ValueSpecification newValueSpecification = newSlot.getValues().get(0);
+		
+		if (valueSpecification instanceof InstanceValue){
+			InstanceValue newInstanceValue = (InstanceValue) newSlot.getValues().get(0);
+			InstanceValue instanceValue = (InstanceValue) slot.getValues().get(0);
+			InstanceSpecification newInstance = createValueSpecificationInstance(model, instanceValue);
+			newInstanceValue.setInstance(newInstance);
+		}else if (valueSpecification instanceof LiteralReal){
+			((LiteralReal)newValueSpecification).setValue(((LiteralReal)valueSpecification).getValue());
+		}else if (valueSpecification instanceof LiteralInteger){
+			((LiteralInteger)newValueSpecification).setValue(((LiteralInteger)valueSpecification).getValue());
+		}else if (valueSpecification instanceof LiteralString){
+			((LiteralString)newValueSpecification).setValue(((LiteralString)valueSpecification).getValue());
+		}
+	}
+
+	private InstanceSpecification createValueSpecificationInstance(Model model, InstanceValue instanceValue) {
+		InstanceSpecification newInstance = null;
 		// Adds the instance to the model in the proper package
-		InstanceSpecification newInstance = newInstanceValue.getInstance();
+		InstanceSpecification instance = instanceValue.getInstance();
 		// Copy variant instance only if it does not exist in base model.
 		// If it does not exist it should placed in the package defined in variant model
-		Package pack  = ModelAdapterUtilities.getPackageInModel (newInstance.getNearestPackage(), model);
-		if (!ModelAdapterUtilities.modelContainsElement (newInstance, model) && pack != null){
-			log.debug("Adding instance: " + newInstance.getName() + " in base model in package " + pack.getQualifiedName());
-			ModelAdapterUtilities.addElementInPackage (newInstance, pack);
+		Package pack  = ModelAdapterUtilities.getPackageInModel (instance.getNearestPackage(), model);
+		if (!ModelAdapterUtilities.modelContainsElement (instance, model) && pack != null){
+			log.debug("Adding instance: " + instance.getName() + " in base model in package " + pack.getQualifiedName());
+			//Element should be created, not added (to avoid references to advice model)
+			newInstance = (InstanceSpecification)ModelAdapterUtilities.createElement((PackageableElement) instance, pack, baseJointpoints, model);
 		}
 		// Creates the reference between base object and referenced object in
 		// base model
-		instanceValue.setInstance(newInstance);
+		return newInstance;
 	}
 
 	private void addInstanceSpecificationInModel(InstanceSpecification linkInstance, Model model) {
@@ -139,15 +164,15 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 			//Create InstanceSpecification copy:
 			//Create Slots, Add them to the model
 			//Add instance to the model
-			InstanceSpecification newLinkInstance = ModelAdapterUtilities.createElement (linkInstance, pack, baseJointpoints);
+			InstanceSpecification newLinkInstance = ModelAdapterUtilities.createElement (linkInstance, pack, baseJointpoints, model);
 			for (Slot slot : linkInstance.getSlots()) {
 				addSlotInInstanceSpecification(slot, newLinkInstance, model);
 			}
 		}
 	}
 	
-	//FIXME This method does not work when modelQuery is created targetting target model.
-	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecificationImpl instanceVariant, Model model) {
+	//FIXME This method does not work when modelQuery is created targeting target model.
+	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecification instanceVariant, Model model) {
 		Set<InstanceSpecification> result = new HashSet<>();
 		try {
 			InstanceOfInstanceSpecificationLinkMatcher matcher = 
@@ -193,7 +218,9 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 		linkInstanceInBaseModel.destroy();
 	}
 	
-	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecificationImpl instanceBase) {
+	private void deleteSlotInInstanceBase(Slot slotInInstanceVariant, InstanceSpecification instanceBase) {
+		//Slots cannot be removed when traversing the array. Collect first all slots to remove into an array, and destroy the after
+		List<Slot> slotsToRemove = new ArrayList<>();
 		for (Slot slotInInstanceBase: instanceBase.getSlots()){
 			if (slotInInstanceBase.getDefiningFeature() == null){ //FIXME Investigate when this happens
 				continue;
@@ -203,18 +230,24 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 			if (ModelAdapterUtilities.slotsHasSameDefiningFeature(slotInInstanceVariant, slotInInstanceBase) && 
 				ModelAdapterUtilities.slotsHasSameValue(slotInInstanceVariant, slotInInstanceBase)){
 				log.debug("Deleting slot : " + slotInInstanceBase.getDefiningFeature().getQualifiedName() + " in instance " + instanceBase.getQualifiedName());
-				destroySlotInstance(slotInInstanceBase);
-				slotInInstanceBase.destroy();
+				destroySlotValueSpecification(slotInInstanceBase);
+				slotsToRemove.add(slotInInstanceBase);
 			}	
+		}
+		for (Slot slot: slotsToRemove){
+			slot.destroy();
 		}
 	}
 	
-	private void destroySlotInstance(Slot slot) {
-		InstanceValue iv = (InstanceValue)slot.getValues().get(0);
-		InstanceSpecification instance = iv.getInstance();
-		if (instance!=null) {
-			log.debug("Deleting instance value : " + instance.getQualifiedName() + " referenced by slot " + slot.getDefiningFeature().getQualifiedName());
-			instance.destroy();
+	private void destroySlotValueSpecification(Slot slot) {
+		ValueSpecification ve = slot.getValues().get(0);
+		if (ve instanceof InstanceValue){
+			InstanceValue iv = (InstanceValue)ve;
+			InstanceSpecification instance = iv.getInstance();
+			if (instance!=null) {
+				log.debug("Deleting instance value : " + instance.getQualifiedName() + " referenced by slot " + slot.getDefiningFeature().getQualifiedName());
+				instance.destroy();
+			}
 		}
 	}
 
@@ -225,25 +258,25 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 		
 	}
 	
-	/**
-	 * Given a pair of instances, retrieves the Relationship ref object of the
-	 * relationship
-	 * 
-	 * @param e1
-	 *            parent instance
-	 * @param e2
-	 *            child instance
-	 * @return relationship
-	 */
-	private Relationship getRelationship(InstanceSpecification e1, InstanceSpecification e2) {
-		List<Relationship> rs = ((ClassImpl) e1.getClassifiers().get(0)).getRelationships();
-		Relationship rel = null;
-		for (Relationship r : rs) {
-			if (r.getRelatedElements().contains(e2.getClassifiers().get(0))) {
-				rel = r;
-				break;
-			}
-		}
-		return rel;
-	}
+//	/**
+//	 * Given a pair of instances, retrieves the Relationship ref object of the
+//	 * relationship
+//	 * 
+//	 * @param e1
+//	 *            parent instance
+//	 * @param e2
+//	 *            child instance
+//	 * @return relationship
+//	 */
+//	private Relationship getRelationship(InstanceSpecification e1, InstanceSpecification e2) {
+//		List<Relationship> rs = ((org.eclipse.uml2.uml.Class) e1.getClassifiers().get(0)).getRelationships();
+//		Relationship rel = null;
+//		for (Relationship r : rs) {
+//			if (r.getRelatedElements().contains(e2.getClassifiers().get(0))) {
+//				rel = r;
+//				break;
+//			}
+//		}
+//		return rel;
+//	}
 }

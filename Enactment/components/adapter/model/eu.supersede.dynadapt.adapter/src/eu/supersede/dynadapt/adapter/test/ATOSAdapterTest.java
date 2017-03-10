@@ -60,8 +60,8 @@ public class ATOSAdapterTest {
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
 					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
-			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.ATOS.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+//			adapter.enactAdaptationDecisionAction(
+//					SupersedeSystem.ATOS.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

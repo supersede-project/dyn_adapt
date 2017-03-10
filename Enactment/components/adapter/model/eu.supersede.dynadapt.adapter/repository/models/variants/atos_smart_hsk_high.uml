@@ -3,7 +3,7 @@
   <uml:Model xmi:id="_Pw0F4ATWEeeo4rafDiNNWw" name="Atos_Smart_HSK_High_Load">
     <packagedElement xmi:type="uml:Package" xmi:id="_bvcbEATWEeeo4rafDiNNWw" name="Instances">
       <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ytx_EATWEeeo4rafDiNNWw" name="HighLoadConfigurationInBOVM2_A">
-        <classifier xmi:type="uml:Class" href="../../base/SmartPlatform/atos_smart_base_model.uml#_MmaAoOlREea6tPfvbkvCTg"/>
+        <classifier xmi:type="uml:Class" href="../base/atos_smart_base_model.uml#_MmaAoOlREea6tPfvbkvCTg"/>
         <slot xmi:type="uml:Slot" xmi:id="_7NRT4ATWEeeo4rafDiNNWw">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_PWe7kOlREea6tPfvbkvCTg"/>
           <value xmi:type="uml:LiteralString" xmi:id="_cB4ZcATXEeeo4rafDiNNWw" value="OVP BO"/>
