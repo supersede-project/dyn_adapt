@@ -1,0 +1,55 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module hypervisor.
+ */]
+[module hypervisor('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[**
+ * The documentation of the template generateVMConfigurationScripts.
+ * @param anInstanceSpecification
+ */]
+[template public generateVMConfigurationScripts(anInstanceSpecification : InstanceSpecification) 
+	? (anInstanceSpecification.isVMConfiguration())]
+
+[file (anInstanceSpecification.name.concat('.sh'), false, 'UTF-8')]
+[let vmName : String = anInstanceSpecification.vmName()]
+//VMConfiguration script for VM with name: [vmName/]
+[let vmCores : Integer = anInstanceSpecification.vmCores()]
+//Setting vm cores to [vmCores/]
+Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false
+[/let]
+[let vmMemory : Real = anInstanceSpecification.vmMemory()]
+//Setting vm memory to [vmMemory/]
+Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false
+[/let]
+[let vmStorage : Real = anInstanceSpecification.vmStorage()]
+//Setting vm storage to [vmStorage/]
+Get-HardDisk -vm "[vmName/]" | where {$_.Name -eq "/ovp"} | Set-HardDisk -CapacityGB [vmStorage/] -Confirm:$false
+[/let]
+//Restarting vm with name: [vmName/]
+Restart-VM -VM "[vmName/]" -Confirm:$false 
+[/let]
+[/file]
+[/template]
+
+[query public isVMConfiguration(instance : InstanceSpecification) : Boolean = 
+ not (instance.classifier->select(name.equalsIgnoreCase('VMConfiguration'))->isEmpty()) /]
+
+
+[query public vmName(instance : InstanceSpecification) : String = 
+	instance.slot->any(definingFeature.name.equalsIgnoreCase('vm_name')).value->first().oclAsType(LiteralString).value
+ /]
+
+[query public vmCores(instance : InstanceSpecification) : Integer = 
+	instance.slot->any(definingFeature.name.equalsIgnoreCase('cores')).value->first().oclAsType(LiteralInteger).value
+ /]
+
+[query public vmMemory(instance : InstanceSpecification) : Real = 
+	instance.slot->any(definingFeature.name.equalsIgnoreCase('memory')).value->first().oclAsType(LiteralReal).value
+ /]
+
+[query public vmStorage(instance : InstanceSpecification) : Real = 
+	instance.slot->any(definingFeature.name.equalsIgnoreCase('storage')).value->first().oclAsType(LiteralReal).value
+ /]
+
