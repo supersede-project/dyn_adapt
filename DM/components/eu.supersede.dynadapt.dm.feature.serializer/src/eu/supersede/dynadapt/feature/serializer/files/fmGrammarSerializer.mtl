@@ -14,6 +14,9 @@
 [template public feature (aFeature : Feature, belongsToXORGroup : Boolean) post(trim())]
 [if (aFeature.hasANDGroup())]
 <[aFeature.id/][groupType(aFeature)/]>::= [andGroupList(aFeature)/]
+[if (aFeature.optional)]
+	|
+[/if]
 [for (aChildFeature : Feature | aFeature.features)]
 [feature(aChildFeature, false)/]
 [/for][elseif (aFeature.hasORGroup())]
@@ -69,4 +72,6 @@
 [query public hasXORGroup(aFeature : Feature) : Boolean = not (aFeature.groups->isEmpty()) and aFeature.groups->first()._xor /]
 [query public hasMultipleMultiplicity(aFeature : Feature) : Boolean = aFeature.upper > 1 /]
 [query public hasChildren(aFeature : Feature) : Boolean = not (aFeature.features->isEmpty()) or not (aFeature.groups->isEmpty()) /]
+[query public hasOptionalChildren(aFeature : Feature) : Boolean = not (aFeature.features->select(mandatory)->isEmpty()) /]
+
 
