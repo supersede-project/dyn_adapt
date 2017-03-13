@@ -38,7 +38,7 @@ public class HypervisorEnactorTest {
 		String absoluteModelPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
 		String absoluteTargetFolderPath = 
-			"/home/yosu/Projects/Supersede/workspaces/workspace-adaptation/eu.supersede.dynadapt.enactor.HypervisorEnactor/serialization";
+			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor/serialization";
 		HypervisorEnactor.serializeVMConfigurationScriptsInFolder(absoluteModelPath, absoluteTargetFolderPath);
 	}
 	

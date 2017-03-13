@@ -12,23 +12,38 @@
 [template public generateVMConfigurationScripts(anInstanceSpecification : InstanceSpecification) 
 	? (anInstanceSpecification.isVMConfiguration())]
 
-[file (anInstanceSpecification.name.concat('.sh'), false, 'UTF-8')]
+[file (anInstanceSpecification.name.concat('.ps1'), false, 'UTF-8')]
 [let vmName : String = anInstanceSpecification.vmName()]
-//VMConfiguration script for VM with name: [vmName/]
+#VMConfiguration script for VM with name: [vmName/]
+param (
+   		['['/]Parameter(Mandatory=$true)[']'/]['['/]string[']'/]$password
+)
+
+# To execute script in command line invoke:
+# Powershell -File [anInstanceSpecification.name.concat('.ps1')/] -password <password>
+
+#Connect with Atos Smart Hypervisor
+#Password is taken from command line upon invocation
+Connect-VIServer -Server medialab13.atosresearch.eu -User root -Password $password
+
 [let vmCores : Integer = anInstanceSpecification.vmCores()]
-//Setting vm cores to [vmCores/]
+#Setting vm cores to [vmCores/]
 Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false
+
 [/let]
 [let vmMemory : Real = anInstanceSpecification.vmMemory()]
-//Setting vm memory to [vmMemory/]
+#Setting vm memory to [vmMemory/]
 Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false
+
 [/let]
 [let vmStorage : Real = anInstanceSpecification.vmStorage()]
-//Setting vm storage to [vmStorage/]
+#Setting vm storage to [vmStorage/]
 Get-HardDisk -vm "[vmName/]" | where {$_.Name -eq "/ovp"} | Set-HardDisk -CapacityGB [vmStorage/] -Confirm:$false
+
 [/let]
-//Restarting vm with name: [vmName/]
+#Restarting vm with name: [vmName/]
 Restart-VM -VM "[vmName/]" -Confirm:$false 
+
 [/let]
 [/file]
 [/template]
