@@ -20,11 +20,17 @@
 package eu.supersede.dynadapt.enactor.HypervisorEnactor.test;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
 
+import org.eclipse.uml2.uml.Model;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.enactor.HypervisorEnactor.HypervisorEnactor;
+import eu.supersede.dynadapt.enactor.HypervisorEnactor.IEnactor;
+import eu.supersede.dynadapt.model.ModelManager;
 
 
 public class HypervisorEnactorTest {	
@@ -39,7 +45,20 @@ public class HypervisorEnactorTest {
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
 		String absoluteTargetFolderPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor/serialization";
-		HypervisorEnactor.serializeVMConfigurationScriptsInFolder(absoluteModelPath, absoluteTargetFolderPath);
+		new HypervisorEnactor().serializeVMConfigurationScriptsInFolder(absoluteModelPath, absoluteTargetFolderPath);
 	}
 	
+	@Test
+	public void HypervisorEnactorInAtosHSKTest () throws IOException{		
+		// NOTE: Edit this absolute paths before testing		
+		String absoluteModelPath = 
+			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
+		
+		ModelManager mm = new ModelManager(true);
+		Model adaptedModel = mm.loadUMLModel(absoluteModelPath);
+		IEnactor enactor = new HypervisorEnactor();
+		List<Path> enactedArtifacts = enactor.enactAdaptedModel(adaptedModel);
+		Assert.assertNotNull(enactedArtifacts);
+		Assert.assertTrue(!enactedArtifacts.isEmpty());
+	}
 }
