@@ -8,4 +8,5 @@ import org.eclipse.uml2.uml.Model;
 
 public interface IEnactor {
 	List<Path> enactAdaptedModel (Model adaptedModel) throws IOException;
+	List<Path> enactAdaptedModel (Model adaptedModel, Model originalModel) throws IOException;
 }

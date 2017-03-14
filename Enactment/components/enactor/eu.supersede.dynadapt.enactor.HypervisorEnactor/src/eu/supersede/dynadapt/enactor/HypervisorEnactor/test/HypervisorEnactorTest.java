@@ -22,7 +22,9 @@ package eu.supersede.dynadapt.enactor.HypervisorEnactor.test;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
@@ -60,5 +62,22 @@ public class HypervisorEnactorTest {
 		List<Path> enactedArtifacts = enactor.enactAdaptedModel(adaptedModel);
 		Assert.assertNotNull(enactedArtifacts);
 		Assert.assertTrue(!enactedArtifacts.isEmpty());
+	}
+	
+	@Test
+	public void ModelComparisonTest () throws IOException{		
+		// NOTE: Edit this absolute paths before testing	
+		String originalModelPath = 
+				"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/base/atos_smart_base_model.uml";
+		String adaptedModelPath = 
+			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
+		
+		ModelManager mm = new ModelManager(true);
+		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
+		Model originalModel = mm.loadUMLModel(originalModelPath);
+		HypervisorEnactor enactor = new HypervisorEnactor();
+		Set<Element> diffElements = enactor.computeDiffBetweenModels(adaptedModel, originalModel);
+		Assert.assertNotNull(diffElements);
+		Assert.assertTrue(!diffElements.isEmpty());
 	}
 }
