@@ -23,6 +23,7 @@ import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.selection.SelectionSUPERSEDE;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -87,7 +88,7 @@ public class MonitoringAdapterTest {
 			String adaptationDecisionActionId = "timeSlot_twitter";
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.MONITORING.toString(), adaptationDecisionActionId, featureConfigurationId);
+					ModelSystem.MonitoringReconfiguration, adaptationDecisionActionId, featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

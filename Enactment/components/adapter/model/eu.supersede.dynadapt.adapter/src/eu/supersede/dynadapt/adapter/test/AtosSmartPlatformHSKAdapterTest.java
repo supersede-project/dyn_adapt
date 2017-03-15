@@ -15,6 +15,7 @@ import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AtosSmartPlatformHSKAdapterTest {
 	
@@ -43,7 +44,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
-					SupersedeSystem.ATOS_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(
 //					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {

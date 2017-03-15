@@ -9,3 +9,4 @@ Require-Bundle: org.eclipse.uml2.uml;bundle-version="5.2.2",
  eu.supersede.dynadapt.enactor.HypervisorEnactor,
  org.junit;bundle-version="4.12.0",
  eu.supersede.dynadapt.model
+Export-Package: eu.supersede.dynadapt.enactor.factory

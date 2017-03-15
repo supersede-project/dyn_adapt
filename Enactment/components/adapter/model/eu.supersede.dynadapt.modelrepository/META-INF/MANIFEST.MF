@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Export-Package: adaptability_models,
  eu.supersede.dynadapt.modelrepository.repositoryaccess,
  eu.supersede.dynadapt.modelrepository.repositoryaccesstest,
+ eu.supersede.integration.api.adaptation.types,
  eu.supersede.monitor.reconfiguration.queries,
  eu.supersede.monitor.reconfiguration.queries.util,
  features.configurations,

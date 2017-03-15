@@ -3,6 +3,13 @@ package eu.supersede.dynadapt.adapter.system;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Deprecated 
+/**
+ * Use IF:
+ * @Use eu.supersede.integration.api.adaptation.types.ModelSystem
+ * @author yosu
+ * 
+ */
 public enum SupersedeSystem {
 	ATOS ("atos"), 
 	ATOS_HSK ("atos_hsk"), 

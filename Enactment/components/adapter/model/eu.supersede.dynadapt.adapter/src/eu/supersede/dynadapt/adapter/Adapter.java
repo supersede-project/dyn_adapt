@@ -22,9 +22,8 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -59,12 +58,14 @@ import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl;
+import eu.supersede.dynadapt.enactor.factory.EnactorFactory;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class Adapter implements IAdapter {
 	private final static Logger log = LogManager.getLogger(Adapter.class);
@@ -224,9 +225,8 @@ public class Adapter implements IAdapter {
 	}
 	
 	@Override
-	public void enactAdaptationDecisionActionsFC(String systemId, 
+	public void enactAdaptationDecisionActionsFC(ModelSystem system, 
 			String featureConfigurationId) throws EnactmentException {
-		SupersedeSystem system = SupersedeSystem.getByURI(systemId);
 		
 		try {
 		
@@ -246,6 +246,9 @@ public class Adapter implements IAdapter {
 				mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
+			
+			//Ask Enactor to enact adapted model
+			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -255,18 +258,17 @@ public class Adapter implements IAdapter {
 	};
 
 	@Override
-	public void enactAdaptationDecisionAction(String systemId, String adaptationDecisionActionId,
+	public void enactAdaptationDecisionAction(ModelSystem system, String adaptationDecisionActionId,
 			String featureConfigurationId) throws EnactmentException {
 		List<String> adaptationDecisionActionIds = new ArrayList<>();
 		adaptationDecisionActionIds.add (adaptationDecisionActionId);
-		enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
+		enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
 	}
 
 	@Override
-	public void enactAdaptationDecisionActions(String systemId, List<String> adaptationDecisionActionIds,
+	public void enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId) throws EnactmentException {
 		try {
-			SupersedeSystem system = SupersedeSystem.getByURI(systemId);
 
 			// TODO Get BaseModel, original feature configuration and new
 			// feature configuration from Model Repository
@@ -314,6 +316,9 @@ public class Adapter implements IAdapter {
 				//mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
+			
+			//Ask Enactor to enact adapted model
+			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -30,6 +30,7 @@ import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ATOSAdapterTest {
 	private final static Logger log = LogManager.getLogger(ATOSAdapterTest.class);
@@ -59,7 +60,7 @@ public class ATOSAdapterTest {
 			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
-					SupersedeSystem.ATOS.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+					ModelSystem.Atos, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(
 //					SupersedeSystem.ATOS.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {

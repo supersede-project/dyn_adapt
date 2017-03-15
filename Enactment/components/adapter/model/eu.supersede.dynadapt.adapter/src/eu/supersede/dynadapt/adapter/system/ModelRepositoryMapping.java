@@ -8,24 +8,25 @@ import org.eclipse.emf.common.util.URI;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 // TODO Store models locally within Adapter execution. Resolve them
 public class ModelRepositoryMapping{
-	public static URI getModelURI (SupersedeSystem system, RepositoryMetadata type) throws EnactmentException{
+	public static URI getModelURI (ModelSystem system, RepositoryMetadata type) throws EnactmentException{
 		switch (system) {
-		case ATOS:
+		case Atos:
 			return  URI.createURI (atosMapping.get(type.getType()).get(type.getTimestamp()));
-		case ATOS_HSK:
+		case Atos_HSK:
 			return  URI.createURI (atosHskMapping.get(type.getType()).get(type.getTimestamp()));
-		case HEALTH:
+		case Health:
 			return URI.createURI (healthMapping.get(type.getType()).get(type.getTimestamp()));
-		case MONITORING:
+		case MonitoringReconfiguration:
 			return 	URI.createURI(monitoringMapping.get(type.getType()).get(type.getTimestamp()));
-		case SIEMENS:
+		case Siemens:
 			return URI.createURI(siemensMapping.get(type.getType()).get(type.getTimestamp()));
 		default:
 			//FIXME Other systems not supported
-			throw new EnactmentException("System not supported " + system.getURI());
+			throw new EnactmentException("System not supported " + system.getId());
 		}
 	}
 	
