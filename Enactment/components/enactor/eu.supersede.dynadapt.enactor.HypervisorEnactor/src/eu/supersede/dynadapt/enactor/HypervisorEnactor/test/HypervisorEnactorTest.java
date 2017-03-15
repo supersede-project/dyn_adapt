@@ -30,8 +30,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.enactor.IEnactor;
 import eu.supersede.dynadapt.enactor.HypervisorEnactor.HypervisorEnactor;
-import eu.supersede.dynadapt.enactor.HypervisorEnactor.IEnactor;
 import eu.supersede.dynadapt.model.ModelManager;
 
 
@@ -51,7 +51,7 @@ public class HypervisorEnactorTest {
 	}
 	
 	@Test
-	public void HypervisorEnactorInAtosHSKTest () throws IOException{		
+	public void HypervisorEnactorInAtosHSKTest () throws Exception{		
 		// NOTE: Edit this absolute paths before testing		
 		String absoluteModelPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
@@ -59,25 +59,29 @@ public class HypervisorEnactorTest {
 		ModelManager mm = new ModelManager(true);
 		Model adaptedModel = mm.loadUMLModel(absoluteModelPath);
 		IEnactor enactor = new HypervisorEnactor();
-		List<Path> enactedArtifacts = enactor.enactAdaptedModel(adaptedModel);
-		Assert.assertNotNull(enactedArtifacts);
-		Assert.assertTrue(!enactedArtifacts.isEmpty());
+		enactor.enactAdaptedModel(adaptedModel);
 	}
 	
 	@Test
-	public void ModelComparisonTest () throws IOException{		
-		// NOTE: Edit this absolute paths before testing	
+	public void HypervisorEnactorInAtosHSKTest2 () throws Exception{		
+		// NOTE: Edit this absolute paths before testing		
 		String originalModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/base/atos_smart_base_model.uml";
 		String adaptedModelPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
 		
 		ModelManager mm = new ModelManager(true);
-		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
 		Model originalModel = mm.loadUMLModel(originalModelPath);
-		HypervisorEnactor enactor = new HypervisorEnactor();
-		Set<Element> diffElements = enactor.computeDiffBetweenModels(adaptedModel, originalModel);
-		Assert.assertNotNull(diffElements);
-		Assert.assertTrue(!diffElements.isEmpty());
+		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
+		IEnactor enactor = new HypervisorEnactor();
+		enactor.enactAdaptedModel(adaptedModel, originalModel);
 	}
+	
+	@Test
+	public void ExecuteCommandTest () throws Exception{		
+		HypervisorEnactor enactor = new HypervisorEnactor();
+		System.out.println(enactor.executeCommand("sshpass -p '|>4rkFl4g80.' scp -o StrictHostKeyChecking=no /home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor/7099013625468193598/975766981687724842/HighLoadConfigurationBOInVM2_A.ps1 supersede@platform.supersede.eu:powershell_scripts/"));
+		System.out.println(enactor.executeCommand("sshpass -p '|>4rkFl4g80.' ssh -o StrictHostKeyChecking=no supersede@platform.supersede.eu \"powershell -File powershell_scripts/HighLoadConfigurationBOInVM2_A.ps1 -password diverS1celar\""));
+	}
+
 }
