@@ -206,3 +206,174 @@
 2017-03-15 14:49:34 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-03-15 14:49:35 [main] INFO  o.s.w.s.v.v.VelocityConfigurer.postProcessVelocityEngine(141) - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
 2017-03-15 14:49:35 [main] INFO  e.s.d.dm.dashboard.Application.logStarted(57) - Started Application in 14.102 seconds (JVM running for 16.234)
+2017-03-16 12:12:43 [main] INFO  e.s.d.dm.dashboard.Application.logStarting(48) - Starting Application on MC0X9UKC with PID 3992 (C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard\bin started by a553019 in C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard)
+2017-03-16 12:12:43 [main] DEBUG e.s.d.dm.dashboard.Application.logStarting(51) - Running with Spring Boot v1.4.2.RELEASE, Spring v4.3.4.RELEASE
+2017-03-16 12:12:43 [main] INFO  e.s.d.dm.dashboard.Application.logStartupProfileInfo(661) - No active profile set, falling back to default profiles: default
+2017-03-16 12:12:47 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader.prepareEmbeddedWebApplicationContext(276) - Root WebApplicationContext: initialization completed in 3598 ms
+2017-03-16 12:12:48 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: atos
+2017-03-16 12:12:48 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: siemens
+2017-03-16 12:12:48 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: senercon
+2017-03-16 12:12:48 [main] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(54) - decision-making-dashboard.multitenancy.default = null
+2017-03-16 12:12:48 [main] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(61) - supersede-frontend.multitenancy.default = atos
+2017-03-16 12:12:49 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:12:49 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:12:49 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:12:51 [main] INFO  e.s.fe.integration.ProxyWrapper.load(63) - decision-making-dashboard.multitenancy.names = null
+2017-03-16 12:12:51 [main] INFO  e.s.fe.integration.ProxyWrapper.load(70) - supersede-frontend.multitenancy.names = atos,siemens,senercon
+2017-03-16 12:12:51 [main] INFO  e.s.fe.integration.ProxyWrapper.load(88) - Tenants: 3
+2017-03-16 12:12:52 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:12:52 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:12:52 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:12:53 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/siemens
+2017-03-16 12:12:53 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/atos
+2017-03-16 12:12:53 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:12:53 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:12:53 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:12:53 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/senercon
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache(534) - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bbf42f: startup date [Thu Mar 16 12:12:43 CET 2017]; root of context hierarchy
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/adaptation],methods=[GET]}" onto public java.util.List<eu.supersede.dynadapt.dm.dashboard.model.Adaptation> eu.supersede.dynadapt.dm.dashboard.rest.AdaptationRest.getAdaptations()
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:12:54 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:12:55 [main] INFO  o.s.w.s.v.v.VelocityConfigurer.postProcessVelocityEngine(141) - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2017-03-16 12:12:55 [main] INFO  e.s.d.dm.dashboard.Application.logStarted(57) - Started Application in 12.92 seconds (JVM running for 14.03)
+2017-03-16 12:26:01 [Test worker] INFO  e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStarting(48) - Starting DecisionMakingDashboardApplicationTests on MC0X9UKC with PID 11276 (started by a553019 in C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard)
+2017-03-16 12:26:01 [Test worker] DEBUG e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStarting(51) - Running with Spring Boot v1.4.2.RELEASE, Spring v4.3.4.RELEASE
+2017-03-16 12:26:01 [Test worker] INFO  e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStartupProfileInfo(661) - No active profile set, falling back to default profiles: default
+2017-03-16 12:26:01 [Test worker] INFO  o.s.w.c.s.GenericWebApplicationContext.prepareRefresh(582) - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@30baeff9: startup date [Thu Mar 16 12:26:01 CET 2017]; root of context hierarchy
+2017-03-16 12:26:04 [Test worker] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: atos
+2017-03-16 12:26:04 [Test worker] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: siemens
+2017-03-16 12:26:04 [Test worker] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: senercon
+2017-03-16 12:26:05 [Test worker] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(54) - decision-making-dashboard.multitenancy.default = null
+2017-03-16 12:26:05 [Test worker] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(61) - supersede-frontend.multitenancy.default = atos
+2017-03-16 12:26:06 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:26:06 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:26:06 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:26:08 [Test worker] INFO  e.s.fe.integration.ProxyWrapper.load(63) - decision-making-dashboard.multitenancy.names = null
+2017-03-16 12:26:08 [Test worker] INFO  e.s.fe.integration.ProxyWrapper.load(70) - supersede-frontend.multitenancy.names = atos,siemens,senercon
+2017-03-16 12:26:08 [Test worker] INFO  e.s.fe.integration.ProxyWrapper.load(88) - Tenants: 3
+2017-03-16 12:26:09 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:26:09 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:26:09 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:26:09 [Test worker] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/siemens
+2017-03-16 12:26:10 [Test worker] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/atos
+2017-03-16 12:26:10 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:26:10 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:26:10 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:26:10 [Test worker] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/senercon
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache(534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@30baeff9: startup date [Thu Mar 16 12:26:01 CET 2017]; root of context hierarchy
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/adaptation],methods=[GET]}" onto public java.util.List<eu.supersede.dynadapt.dm.dashboard.model.Adaptation> eu.supersede.dynadapt.dm.dashboard.rest.AdaptationRest.getAdaptations()
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:26:12 [Test worker] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:26:13 [Test worker] INFO  o.s.w.s.v.v.VelocityConfigurer.postProcessVelocityEngine(141) - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2017-03-16 12:26:13 [Test worker] INFO  e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStarted(57) - Started DecisionMakingDashboardApplicationTests in 12.94 seconds (JVM running for 14.553)
+2017-03-16 12:26:13 [Thread-7] INFO  o.s.w.c.s.GenericWebApplicationContext.doClose(987) - Closing org.springframework.web.context.support.GenericWebApplicationContext@30baeff9: startup date [Thu Mar 16 12:26:01 CET 2017]; root of context hierarchy
+2017-03-16 12:26:40 [main] INFO  e.s.d.dm.dashboard.Application.logStarting(48) - Starting Application on MC0X9UKC with PID 11224 (C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard\bin started by a553019 in C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard)
+2017-03-16 12:26:41 [main] DEBUG e.s.d.dm.dashboard.Application.logStarting(51) - Running with Spring Boot v1.4.2.RELEASE, Spring v4.3.4.RELEASE
+2017-03-16 12:26:41 [main] INFO  e.s.d.dm.dashboard.Application.logStartupProfileInfo(661) - No active profile set, falling back to default profiles: default
+2017-03-16 12:26:45 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader.prepareEmbeddedWebApplicationContext(276) - Root WebApplicationContext: initialization completed in 4188 ms
+2017-03-16 12:26:46 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: atos
+2017-03-16 12:26:46 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: siemens
+2017-03-16 12:26:46 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: senercon
+2017-03-16 12:26:46 [main] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(54) - decision-making-dashboard.multitenancy.default = null
+2017-03-16 12:26:46 [main] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(61) - supersede-frontend.multitenancy.default = atos
+2017-03-16 12:26:47 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:26:47 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:26:47 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:26:48 [main] INFO  e.s.fe.integration.ProxyWrapper.load(63) - decision-making-dashboard.multitenancy.names = null
+2017-03-16 12:26:48 [main] INFO  e.s.fe.integration.ProxyWrapper.load(70) - supersede-frontend.multitenancy.names = atos,siemens,senercon
+2017-03-16 12:26:48 [main] INFO  e.s.fe.integration.ProxyWrapper.load(88) - Tenants: 3
+2017-03-16 12:26:50 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:26:50 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:26:50 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:26:50 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/siemens
+2017-03-16 12:26:51 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/atos
+2017-03-16 12:26:51 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:26:51 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:26:51 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:26:51 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/senercon
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache(534) - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bbf42f: startup date [Thu Mar 16 12:26:41 CET 2017]; root of context hierarchy
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/adaptation],methods=[GET]}" onto public java.util.List<eu.supersede.dynadapt.dm.dashboard.model.Adaptation> eu.supersede.dynadapt.dm.dashboard.rest.AdaptationRest.getAdaptations()
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:26:52 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:26:53 [main] INFO  o.s.w.s.v.v.VelocityConfigurer.postProcessVelocityEngine(141) - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2017-03-16 12:26:53 [main] INFO  e.s.d.dm.dashboard.Application.logStarted(57) - Started Application in 13.726 seconds (JVM running for 16.512)
+2017-03-16 12:28:30 [http-nio-8097-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(489) - FrameworkServlet 'dispatcherServlet': initialization started
+2017-03-16 12:28:30 [http-nio-8097-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(508) - FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2017-03-16 12:30:08 [Test worker] INFO  e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStarting(48) - Starting DecisionMakingDashboardApplicationTests on MC0X9UKC with PID 5476 (started by a553019 in C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard)
+2017-03-16 12:30:08 [Test worker] DEBUG e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStarting(51) - Running with Spring Boot v1.4.2.RELEASE, Spring v4.3.4.RELEASE
+2017-03-16 12:30:08 [Test worker] INFO  e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStartupProfileInfo(661) - No active profile set, falling back to default profiles: default
+2017-03-16 12:30:08 [Test worker] INFO  o.s.w.c.s.GenericWebApplicationContext.prepareRefresh(582) - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@61d452c2: startup date [Thu Mar 16 12:30:08 CET 2017]; root of context hierarchy
+2017-03-16 12:30:12 [Test worker] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: atos
+2017-03-16 12:30:12 [Test worker] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: siemens
+2017-03-16 12:30:12 [Test worker] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: senercon
+2017-03-16 12:30:13 [Test worker] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(54) - decision-making-dashboard.multitenancy.default = null
+2017-03-16 12:30:13 [Test worker] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(61) - supersede-frontend.multitenancy.default = atos
+2017-03-16 12:30:14 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:30:14 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:30:14 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:30:16 [Test worker] INFO  e.s.fe.integration.ProxyWrapper.load(63) - decision-making-dashboard.multitenancy.names = null
+2017-03-16 12:30:16 [Test worker] INFO  e.s.fe.integration.ProxyWrapper.load(70) - supersede-frontend.multitenancy.names = atos,siemens,senercon
+2017-03-16 12:30:16 [Test worker] INFO  e.s.fe.integration.ProxyWrapper.load(88) - Tenants: 3
+2017-03-16 12:30:18 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:30:18 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:30:18 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:30:18 [Test worker] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/siemens
+2017-03-16 12:30:18 [Test worker] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/atos
+2017-03-16 12:30:18 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:30:18 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:30:18 [Test worker] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:30:18 [Test worker] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/senercon
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache(534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@61d452c2: startup date [Thu Mar 16 12:30:08 CET 2017]; root of context hierarchy
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/adaptation],methods=[GET]}" onto public java.util.List<eu.supersede.dynadapt.dm.dashboard.model.Adaptation> eu.supersede.dynadapt.dm.dashboard.rest.AdaptationRest.getAdaptations()
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:30:21 [Test worker] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:30:22 [Test worker] INFO  o.s.w.s.v.v.VelocityConfigurer.postProcessVelocityEngine(141) - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2017-03-16 12:30:22 [Test worker] INFO  e.s.d.d.d.DecisionMakingDashboardApplicationTests.logStarted(57) - Started DecisionMakingDashboardApplicationTests in 14.468 seconds (JVM running for 16.355)
+2017-03-16 12:30:22 [Thread-7] INFO  o.s.w.c.s.GenericWebApplicationContext.doClose(987) - Closing org.springframework.web.context.support.GenericWebApplicationContext@61d452c2: startup date [Thu Mar 16 12:30:08 CET 2017]; root of context hierarchy
+2017-03-16 12:33:33 [main] INFO  e.s.d.dm.dashboard.Application.logStarting(48) - Starting Application on MC0X9UKC with PID 1532 (C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard\bin started by a553019 in C:\dev\supersede\dyn_adapt\DM\components\decision-making-dashboard)
+2017-03-16 12:33:33 [main] DEBUG e.s.d.dm.dashboard.Application.logStarting(51) - Running with Spring Boot v1.4.2.RELEASE, Spring v4.3.4.RELEASE
+2017-03-16 12:33:33 [main] INFO  e.s.d.dm.dashboard.Application.logStartupProfileInfo(661) - No active profile set, falling back to default profiles: default
+2017-03-16 12:33:38 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader.prepareEmbeddedWebApplicationContext(276) - Root WebApplicationContext: initialization completed in 5340 ms
+2017-03-16 12:33:41 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: atos
+2017-03-16 12:33:41 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: siemens
+2017-03-16 12:33:41 [main] INFO  e.s.f.m.DataSourceBasedMultiTenantConnectionProviderImpl.load(86) - Found tenant: senercon
+2017-03-16 12:33:41 [main] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(54) - decision-making-dashboard.multitenancy.default = null
+2017-03-16 12:33:41 [main] INFO  e.s.f.m.CurrentTenantIdentifierResolverImpl.load(61) - supersede-frontend.multitenancy.default = atos
+2017-03-16 12:33:42 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:33:42 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:33:42 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:33:43 [main] INFO  e.s.fe.integration.ProxyWrapper.load(63) - decision-making-dashboard.multitenancy.names = null
+2017-03-16 12:33:43 [main] INFO  e.s.fe.integration.ProxyWrapper.load(70) - supersede-frontend.multitenancy.names = atos,siemens,senercon
+2017-03-16 12:33:43 [main] INFO  e.s.fe.integration.ProxyWrapper.load(88) - Tenants: 3
+2017-03-16 12:33:45 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:33:45 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:33:45 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:33:45 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/siemens
+2017-03-16 12:33:45 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/atos
+2017-03-16 12:33:46 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - initialSize is larger than maxActive, setting initialSize to: 3
+2017-03-16 12:33:46 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - minIdle is larger than maxActive, setting minIdle to: 3
+2017-03-16 12:33:46 [main] WARN  o.a.tomcat.jdbc.pool.ConnectionPool.log(179) - maxIdle is larger than maxActive, setting maxIdle to: 3
+2017-03-16 12:33:46 [main] INFO  e.s.fe.multitenant.MultiJpaProvider.load(81) - Loading database: jdbc:postgresql://localhost/senercon
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache(534) - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bbf42f: startup date [Thu Mar 16 12:33:33 CET 2017]; root of context hierarchy
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/adaptation],methods=[GET]}" onto public java.util.List<eu.supersede.dynadapt.dm.dashboard.model.Adaptation> eu.supersede.dynadapt.dm.dashboard.rest.AdaptationRest.getAdaptations()
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping.register(543) - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping.registerHandler(354) - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-16 12:33:47 [main] INFO  o.s.w.s.v.v.VelocityConfigurer.postProcessVelocityEngine(141) - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2017-03-16 12:33:48 [main] INFO  e.s.d.dm.dashboard.Application.logStarted(57) - Started Application in 15.391 seconds (JVM running for 16.495)
+2017-03-16 12:34:03 [http-nio-8097-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(489) - FrameworkServlet 'dispatcherServlet': initialization started
+2017-03-16 12:34:03 [http-nio-8097-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(508) - FrameworkServlet 'dispatcherServlet': initialization completed in 27 ms
