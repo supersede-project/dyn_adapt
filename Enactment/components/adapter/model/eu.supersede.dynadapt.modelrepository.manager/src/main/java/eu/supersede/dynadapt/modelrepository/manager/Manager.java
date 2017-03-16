@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,11 @@ public class Manager implements IManager {
 	}
 	
 	@Override
+	public List<IModel> getModels(ModelType type, HashMap<String,String> params) throws Exception {
+		return dbController.getModels(type, params);
+	}
+	
+	/*@Override
 	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
 		return dbController.getModels(type, systemId);
 	}
@@ -55,7 +61,7 @@ public class Manager implements IManager {
 	@Override
 	public List<IModel> getModels(ModelType type,  ModelSystem systemId, Status status) throws Exception {
 		return dbController.getModels(type, systemId, status);
-	}
+	}*/
 	
 	@Override
 	public void deleteModel(ModelType type, String id) throws Exception {
