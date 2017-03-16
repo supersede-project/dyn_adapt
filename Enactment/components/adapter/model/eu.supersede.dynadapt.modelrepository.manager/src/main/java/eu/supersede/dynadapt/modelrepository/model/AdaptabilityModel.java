@@ -2,6 +2,8 @@ package eu.supersede.dynadapt.modelrepository.model;
 
 import java.sql.Timestamp;
 
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+
 public class AdaptabilityModel extends IModel {
 	
 	private String id;

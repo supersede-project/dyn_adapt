@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ZgaOENmcEeaqn4PsJwbRFQ" name="RootElement" metaclassReference="_jYfGcNmcEeaqn4PsJwbRFQ">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l5fDkNmcEeaqn4PsJwbRFQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_l5fqoNmcEeaqn4PsJwbRFQ" name="RootElement" nsURI="http:///schemas/RootElement/_l5bZMNmcEeaqn4PsJwbRFQ/0" nsPrefix="RootElement">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l5iG4dmcEeaqn4PsJwbRFQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l5iG4tmcEeaqn4PsJwbRFQ" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l5iG49mcEeaqn4PsJwbRFQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l5iG5NmcEeaqn4PsJwbRFQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l5iG5dmcEeaqn4PsJwbRFQ" key="Date" value="2017-01-13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l5iG5tmcEeaqn4PsJwbRFQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_l5fqodmcEeaqn4PsJwbRFQ" name="Authenticated_System">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l5fqotmcEeaqn4PsJwbRFQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bpVpcNmcEeaqn4PsJwbRFQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_l5fqo9mcEeaqn4PsJwbRFQ" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_l5fqpdmcEeaqn4PsJwbRFQ" name="Authenticated_User">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l5fqptmcEeaqn4PsJwbRFQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_eAg8MNmcEeaqn4PsJwbRFQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_l5fqp9mcEeaqn4PsJwbRFQ" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_jYfGcNmcEeaqn4PsJwbRFQ" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_ZmnjwNmcEeaqn4PsJwbRFQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_ZmnjwdmcEeaqn4PsJwbRFQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_bpVpcNmcEeaqn4PsJwbRFQ" name="Authenticated_System">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_kb-jwNmcEeaqn4PsJwbRFQ" name="base_Class" association="_kb8HgNmcEeaqn4PsJwbRFQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_eAg8MNmcEeaqn4PsJwbRFQ" name="Authenticated_User">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_k29PktmcEeaqn4PsJwbRFQ" name="base_Class" association="_k29PkNmcEeaqn4PsJwbRFQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_kb8HgNmcEeaqn4PsJwbRFQ" name="E_Authenticated_System_Class1" memberEnd="_kb98sNmcEeaqn4PsJwbRFQ _kb-jwNmcEeaqn4PsJwbRFQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_kb98sNmcEeaqn4PsJwbRFQ" name="extension_Authenticated_System" type="_bpVpcNmcEeaqn4PsJwbRFQ" aggregation="composite" association="_kb8HgNmcEeaqn4PsJwbRFQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_k29PkNmcEeaqn4PsJwbRFQ" name="E_Authenticated_User_Class1" memberEnd="_k29PkdmcEeaqn4PsJwbRFQ _k29PktmcEeaqn4PsJwbRFQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_k29PkdmcEeaqn4PsJwbRFQ" name="extension_Authenticated_User" type="_eAg8MNmcEeaqn4PsJwbRFQ" aggregation="composite" association="_k29PkNmcEeaqn4PsJwbRFQ"/>
+  </packagedElement>
+</uml:Profile>

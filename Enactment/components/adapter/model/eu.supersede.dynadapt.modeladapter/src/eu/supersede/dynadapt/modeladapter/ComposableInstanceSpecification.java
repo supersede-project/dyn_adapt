@@ -23,6 +23,8 @@
 
 package eu.supersede.dynadapt.modeladapter;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,15 +34,17 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.uml2.uml.Package;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificationLinkMatcher;
@@ -48,12 +52,11 @@ import eu.supersede.dynadapt.modeladapter.queries.util.InstanceOfInstanceSpecifi
 //import eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLinkMatcher;
 //import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
-class ComposableInstanceSpecification extends InstanceSpecificationImpl implements Composable{
+class ComposableInstanceSpecification extends ComposableImpl implements Composable{
 	private final static Logger log = LogManager.getLogger(ComposableInstanceSpecification.class);
-	private IModelQuery modelQuery;
 	
-	public ComposableInstanceSpecification (IModelQuery modelQuery){
-		this.modelQuery = modelQuery;
+	public ComposableInstanceSpecification (IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints){
+		super (modelQuery, baseJointpoints);
 	}
 	
 	@Override
@@ -71,6 +74,7 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 		for (InstanceSpecification linkInstance: getReferencingInstanceSpecificationLinks(instanceVariant, usingVariantModel)){
 			//Add link instance specification
 			//FIXME avoid adding duplicated instances
+			
 			if (!ModelAdapterUtilities.modelContainsElement(linkInstance, inBaseModel)){
 				log.debug("Adding detected link instance specification in variant model: " + linkInstance.getQualifiedName());
 				addInstanceSpecificationInModel (linkInstance, inBaseModel);
@@ -99,17 +103,13 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 	}
 	
 	private void addSlotInInstanceSpecification(Slot slot, InstanceSpecification instanceSpecification, Model model) {
-		ValueSpecification vs = slot.getValues().get(0);
-		// Creates the new slot referencing new object
-		Slot newSlot = instanceSpecification.createSlot();
-		newSlot.setDefiningFeature(slot.getDefiningFeature()); 
-		newSlot.createValue(vs.getName(), vs.getType(), vs.eClass());
-		newSlot.setOwningInstance(instanceSpecification);
+		// Creates the new slot referencing new object		
+		Slot newSlot = ModelAdapterUtilities.createElement (slot, instanceSpecification, baseJointpoints);
 		
 		// DefiningFeature should be added to base model if it does not exit therein
 		StructuralFeature sf = slot.getDefiningFeature();
 		if (!ModelAdapterUtilities.modelContainsElement(sf, model)){
-			org.eclipse.uml2.uml.Package pack  = ModelAdapterUtilities.getPackageInModel (sf.getNearestPackage(), model);
+			Package pack  = ModelAdapterUtilities.getPackageInModel (sf.getNearestPackage(), model);
 			if (pack != null){
 				log.debug("Adding instance: " + sf.getName() + " in base model in package " + pack.getQualifiedName());
 				ModelAdapterUtilities.addElementInPackage ((PackageableElement) sf, pack);
@@ -122,7 +122,7 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 		InstanceSpecification newInstance = newInstanceValue.getInstance();
 		// Copy variant instance only if it does not exist in base model.
 		// If it does not exist it should placed in the package defined in variant model
-		org.eclipse.uml2.uml.Package pack  = ModelAdapterUtilities.getPackageInModel (newInstance.getNearestPackage(), model);
+		Package pack  = ModelAdapterUtilities.getPackageInModel (newInstance.getNearestPackage(), model);
 		if (!ModelAdapterUtilities.modelContainsElement (newInstance, model) && pack != null){
 			log.debug("Adding instance: " + newInstance.getName() + " in base model in package " + pack.getQualifiedName());
 			ModelAdapterUtilities.addElementInPackage (newInstance, pack);
@@ -133,41 +133,36 @@ class ComposableInstanceSpecification extends InstanceSpecificationImpl implemen
 	}
 
 	private void addInstanceSpecificationInModel(InstanceSpecification linkInstance, Model model) {
-		//Create InstanceSpecification copy:
-		//Create Slots, Add them to the model
-		//Add instance to the model
-		InstanceSpecification newLinkInstance = UMLFactory.eINSTANCE.createInstanceSpecification();
-		newLinkInstance.setName(linkInstance.getName());
-		newLinkInstance.setSpecification(linkInstance.getSpecification());
-		newLinkInstance.getClassifiers().addAll(linkInstance.getClassifiers());
-		
 		//Get the package in base model where linkInstance should be placed
-		org.eclipse.uml2.uml.Package pack  = ModelAdapterUtilities.getPackageInModel (linkInstance.getNearestPackage(), model);
+		Package pack  = ModelAdapterUtilities.getPackageInModel (linkInstance.getNearestPackage(), model);
 		if (pack != null){
-			ModelAdapterUtilities.addElementInPackage (newLinkInstance, pack);
+			//Create InstanceSpecification copy:
+			//Create Slots, Add them to the model
+			//Add instance to the model
+			InstanceSpecification newLinkInstance = ModelAdapterUtilities.createElement (linkInstance, pack, baseJointpoints);
 			for (Slot slot : linkInstance.getSlots()) {
 				addSlotInInstanceSpecification(slot, newLinkInstance, model);
 			}
 		}
 	}
 	
+	//FIXME This method does not work when modelQuery is created targetting target model.
 	private Set<InstanceSpecification> getReferencingInstanceSpecificationLinks(InstanceSpecificationImpl instanceVariant, Model model) {
-		Set<InstanceSpecification> instances = null;
-	
+		Set<InstanceSpecification> result = new HashSet<>();
 		try {
 			InstanceOfInstanceSpecificationLinkMatcher matcher = 
 					(InstanceOfInstanceSpecificationLinkMatcher) modelQuery.queryMatcher(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
-			instances = matcher.getAllValuesOflink(instanceVariant);
+			Set<InstanceSpecification> instances = matcher.getAllValuesOflink(instanceVariant);
 			//Filtering out instances that do not belong to target model
 			for (InstanceSpecification instance: instances){
-				if (!ModelAdapterUtilities.modelContainsElement(instance, model)){
-					instances.remove(instance);
+				if (ModelAdapterUtilities.modelContainsElement(instance, model)){
+					result.add(instance); 
 				}
 			}
 		} catch (ViatraQueryException e) {
 			e.printStackTrace();
 		}
-		return instances;
+		return result;
 	}
 	
 	private void deleteInstanceSpecificationInModel(InstanceSpecification linkInstance, Element jointpointBaseModelElement, Model inBaseModel) {

@@ -172,7 +172,7 @@ public class ModelAdapterTest {
 			Slot s = (Slot) instance.getOwnedElements().get(1);
 			LiteralInteger integer = UMLFactory.eINSTANCE.createLiteralInteger();
 			integer.setValue(20);
-			umlResult = modelAdapter.applyModifyValueComposition(
+			umlResult = modelAdapter.applyUpdateComposition(
 					umlBaseModel, 
 					s, 
 					integer.toString());

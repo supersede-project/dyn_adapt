@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="HealthFeatureModel" version="1.0.0">
+  <rootFeature id="healthfeaturemodel" name="HealthFeatureModel" lower="1" upper="1">
+    <feature id="healthwatcher" name="HealthWatcher" lower="1" upper="1">
+      <group lower="1" upper="1">
+        <feature id="notauthenticated" name="NotAuthenticated" lower="0" upper="1"/>
+        <feature id="authenticated" name="Authenticated" lower="0" upper="1"/>
+      </group>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

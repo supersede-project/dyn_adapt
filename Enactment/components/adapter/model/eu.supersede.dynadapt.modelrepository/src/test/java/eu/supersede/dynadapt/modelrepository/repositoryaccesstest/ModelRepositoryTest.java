@@ -21,24 +21,42 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.BaseModel;
+import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 
 public class ModelRepositoryTest {
 
 	String repository = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/";
+	String repositoryRelativePath = "repository";
 
 	Map<String, String> modelsLocation;
 
@@ -66,7 +84,8 @@ public class ModelRepositoryTest {
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 		url = getClass().getResource("/");
 		mm = new ModelManager(false);
-		mr = new ModelRepository(repository, url, mm);
+//		mr = new ModelRepository(repository, url, mm);
+		mr = new ModelRepository(repository, repositoryRelativePath, mm);
 	}
 
 	@After
@@ -99,5 +118,182 @@ public class ModelRepositoryTest {
 	//
 	// List<Aspect> a = mr.getAspectModels(featureId, modelsLocation);
 	// }
+	
+	@Test
+	public void testCreateGetUpdateAndDeleteAdaptationModel() throws Exception {
+		//Create model
+		ModelMetadata metadata = createAdatabilityModelMetadata();
+		Aspect aspectModel = 
+			mm.loadAspectModel(
+				"platform:/resource/eu.supersede.dynadapt.modelrepository/models/adaptability_models/googleplay_api_googleplay_tool.aspect");
+		String id = mr.storeAspectModel(aspectModel, metadata);
+		Assert.assertNotNull(id);
+		Assert.assertTrue(!id.isEmpty());
+		
+		//Read created model
+		Aspect am = mr.getAspectModel(id);
+		Assert.assertNotNull(am);
+		
+		//Update created model
+		ModelUpdateMetadata mum = createAdaptatibityModelupdateMetadata();
+		mr.updateAspectModel(am, mum, id);
+		
+		//Delete created model
+		mr.deleteAspectModel(id);
+	}
+	
+	@Test
+	public void testCreateGetUpdateAndDeleteBaseModel() throws Exception {
+		//Create model
+		ModelMetadata metadata = createBaseModelMetadata();
+		Model baseModel = 
+			mm.loadUMLModel(
+				"platform:/resource/eu.supersede.dynadapt.modelrepository/models/uml_models/base/MonitoringSystemBaseModel.uml");
+		String id = mr.storeBaseModel(baseModel, metadata);
+		Assert.assertNotNull(id);
+		Assert.assertTrue(!id.isEmpty());
+		
+		//Read created model
+		Model model = mr.getBaseModel(id);
+		Assert.assertNotNull(model);
+		
+		//Update created model
+		ModelUpdateMetadata mum = createBaseModelupdateMetadata();
+		mr.updateBaseModel(model, mum, id);
+		
+		//Delete created model
+		mr.deleteBaseModel(id);
+	}
+	
+	@Test
+	public void testGetLastEnactedBaseModelForSystem() throws Exception {
+		Model baseModel = mr.getLastEnactedBaseModelForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(baseModel);
+	}
+	
+	@Test
+	public void testGetLastBaseModelForSystem() throws Exception {
+		Model baseModel = mr.getLastBaseModelForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(baseModel);
+	}
+	
+	@Test
+	public void testGetLastEnactedFeatureConfigurationForSystem() throws Exception {
+		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {
+		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetAspectModelsForSystem() throws Exception {
+		List<Aspect> models = mr.getAspectModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(models);
+		Assert.assertTrue(!models.isEmpty());
+	}
+	
+	@Test
+	public void testGetVariantModelsForSystem() throws Exception {
+		List<Model> models = mr.getVariantModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(models);
+		Assert.assertTrue(!models.isEmpty());
+	} 
+	
+	@Test
+	public void testGetProfilesForSystem() throws Exception {
+		List<Profile> profiles = mr.getProfilesForSystem (ModelSystem.Health);
+		Assert.assertNotNull(profiles);
+		Assert.assertTrue(!profiles.isEmpty());
+	} 
+	
+	@Test
+	public void testGetPatternModelsForSystem() throws Exception {
+		List<PatternModel> patterns = mr.getPatternModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(patterns);
+		Assert.assertTrue(!patterns.isEmpty());
+	} 
+	
+	private ModelUpdateMetadata createAdaptatibityModelupdateMetadata() {
+		ModelUpdateMetadata mum = new ModelUpdateMetadata();
+		mum.setSender("Adapter");
+		mum.setTimeStamp(Calendar.getInstance().getTime());
+		
+		Map<String, String> values = new HashMap<>();
+		values.put("authorId", "yosu");
+		values.put("featureId", "GooglePlay_API");
+		mum.setValues(values);
+		
+		return mum;
+	}
+	
+	private ModelUpdateMetadata createBaseModelupdateMetadata() {
+		ModelUpdateMetadata mum = new ModelUpdateMetadata();
+		mum.setSender("Adapter");
+		mum.setTimeStamp(Calendar.getInstance().getTime());
+		
+		Map<String, String> values = new HashMap<>();
+		values.put("authorId", "burak");
+		values.put("status", "adapted");
+		mum.setValues(values);
+		
+		return mum;
+	}
 
+	private ModelMetadata createAdatabilityModelMetadata() throws IOException {
+		ModelMetadata metadata = new ModelMetadata();
+		
+		metadata.setSender("Adapter");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
+		List<IModel> modelInstances = createAdaptabilityModelMetadataInstances();
+		metadata.setModelInstances(modelInstances);
+		
+		return metadata;
+	}
+
+	private List<IModel> createAdaptabilityModelMetadataInstances() throws IOException {
+		List<IModel> modelInstances = new ArrayList<>();
+		AdaptabilityModel am = new AdaptabilityModel();
+		modelInstances.add(am);
+		
+		am.setName("googleplay_api_googleplay_tool");
+		am.setAuthorId("zavala");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
+		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
+		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
+		am.setFeatureId("GooglePlay");
+		
+		return modelInstances;
+	}
+
+	private ModelMetadata createBaseModelMetadata() throws IOException {
+		ModelMetadata metadata = new ModelMetadata();
+		
+		metadata.setSender("Adapter");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
+		List<IModel> modelInstances = createBaseModelMetadataInstances();
+		metadata.setModelInstances(modelInstances);
+		
+		return metadata;
+	}
+	
+	private List<IModel> createBaseModelMetadataInstances() throws IOException {
+		List<IModel> modelInstances = new ArrayList<>();
+		BaseModel am = new BaseModel();
+		modelInstances.add(am);
+		
+		am.setName("ATOS Base Model");
+		am.setAuthorId("yosu");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
+		am.setFileExtension(ModelType.BaseModel.getExtension());
+		am.setSystemId(ModelSystem.Atos.getId());
+		am.setStatus("not adapted");
+		
+		return modelInstances;
+	}
 }

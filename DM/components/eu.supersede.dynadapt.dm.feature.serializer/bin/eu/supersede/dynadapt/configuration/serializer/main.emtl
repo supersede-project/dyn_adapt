@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="main" nsURI="eu::supersede::dynadapt::configuration::serializer::main" startHeaderPosition="29" endHeaderPosition="105">
+    <input>
+      <takesTypesFrom href="http://zcu.cz/yafmt/model/fc#/"/>
+    </input>
+    <input>
+      <takesTypesFrom href="http://zcu.cz/yafmt/model/fm#/"/>
+    </input>
+    <imports href="files/serializeEnabledFeature.emtl#/0"/>
+    <imports href="files/serializeQualityAttributesOfEnabledFeature.emtl#/0"/>
+    <ownedModuleElement xsi:type="mtl:Template" name="mainFeatureConfiguration" visibility="Public" main="true">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="files/serializeEnabledFeature.emtl#/0/fcEnabledFeaturesSerializer"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aFeatureConfiguration" referredVariable="/0/mainFeatureConfiguration/aFeatureConfiguration">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="files/serializeQualityAttributesOfEnabledFeature.emtl#/0/serializeQualityAttributesOfEnabledFeatureConfiguration"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aFeatureConfiguration" referredVariable="/0/mainFeatureConfiguration/aFeatureConfiguration">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <parameter name="aFeatureConfiguration">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="mainFeatureConfiguration">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/mainFeatureConfiguration"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeatureConfiguration">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="fcEnabledFeaturesSerializer">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="files/serializeEnabledFeature.emtl#/0/fcEnabledFeaturesSerializer"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeatureConfiguration">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="serializeQualityAttributesOfEnabledFeatureConfiguration">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="files/serializeQualityAttributesOfEnabledFeature.emtl#/0/serializeQualityAttributesOfEnabledFeatureConfiguration"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeatureConfiguration">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="fc_FeatureConfiguration_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="fc_Selection_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://zcu.cz/yafmt/model/fc#//Selection"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="fm_Feature_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fc#//FeatureConfiguration"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/mainFeatureConfiguration">
+      <details key="start" value="314"/>
+      <details key="end" value="577"/>
+      <details key="line" value="6"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/mainFeatureConfiguration/%">
+      <details key="start" value="403"/>
+      <details key="end" value="405"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/mainFeatureConfiguration/%.1">
+      <details key="start" value="424"/>
+      <details key="end" value="425"/>
+      <details key="line" value="9"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/mainFeatureConfiguration/%.2">
+      <details key="start" value="426"/>
+      <details key="end" value="477"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/mainFeatureConfiguration/%.2/aFeatureConfiguration">
+      <details key="start" value="426"/>
+      <details key="end" value="447"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/mainFeatureConfiguration/%.3">
+      <details key="start" value="479"/>
+      <details key="end" value="481"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/mainFeatureConfiguration/%.4">
+      <details key="start" value="482"/>
+      <details key="end" value="561"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/mainFeatureConfiguration/%.4/aFeatureConfiguration">
+      <details key="start" value="482"/>
+      <details key="end" value="503"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/mainFeatureConfiguration/%.5">
+      <details key="start" value="563"/>
+      <details key="end" value="565"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/mainFeatureConfiguration/aFeatureConfiguration">
+      <details key="start" value="356"/>
+      <details key="end" value="400"/>
+      <details key="line" value="6"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

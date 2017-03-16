@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
   <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <attribute id="a_772978206" name="memory_consumption" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="0.5" minimize="true" objectiveFunctionAggregator="sum"/>
+    <attribute id="a_1543580528" name="response_time" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="0.25" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+    <attribute id="a_687735495" name="availability" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="1" weight="0.5" objectiveFunctionAggregator="product"/>
     <feature id="feedbackissue" name="FeedbackIssue" lower="1" upper="1">
       <attribute id="language" name="language" type="string"/>
       <feature id="mechanism" name="Mechanism" lower="1" upper="4">
@@ -8,12 +11,18 @@
           <attribute id="a_1692518866" name="order" type="integer"/>
           <attribute id="a_1827679124" name="title" type="string"/>
           <attribute id="a_1525523262" name="maxTime" type="integer" description=""/>
+          <attribute id="a_3561686" name="memory_consumption" type="double" defaultValue="70"/>
+          <attribute id="a_1146828058" name="response_time" type="double" defaultValue="10"/>
+          <attribute id="a_965772941" name="availability" type="double" defaultValue="0.8"/>
         </feature>
         <feature id="rating" name="Rating" lower="0" upper="1">
           <attribute id="a_689581445" name="order" type="integer"/>
           <attribute id="a_139048492" name="title" type="string"/>
           <attribute id="a_683258672" name="ratingIcon" type="string"/>
           <attribute id="a_343221669" name="maxRating" type="integer"/>
+          <attribute id="a_412486530" name="memory_consumption" type="double" defaultValue="30"/>
+          <attribute id="a_1998410169" name="response_time" type="double" defaultValue="5"/>
+          <attribute id="a_498242695" name="availability" type="double" defaultValue="0.85"/>
         </feature>
         <feature id="textfeedback" name="TextFeedback" lower="0" upper="1">
           <attribute id="position" name="order" type="integer"/>
@@ -21,46 +30,111 @@
           <attribute id="lenght" name="maxLenght" type="integer"/>
           <attribute id="a_2124229747" name="hint" type="string"/>
           <attribute id="a_1296725815" name="label" type="string"/>
+          <attribute id="a_1550213967" name="memory_consumption" type="double" defaultValue="60"/>
+          <attribute id="a_1365699517" name="response_time" type="double" defaultValue="10"/>
+          <attribute id="a_762846977" name="availability" type="double" defaultValue="0.9"/>
         </feature>
         <feature id="screenshot" name="ScreenShot" lower="0" upper="1">
           <attribute id="a_1025825262" name="order" type="integer"/>
           <attribute id="a_591881697" name="title" type="string"/>
-          <feature id="annotation" name="Annotation" lower="1" upper="1"/>
-          <feature id="basicselectionshapes" name="BasicShapes" lower="0" upper="1"/>
-          <feature id="selectioncolor" name="SelectionColor" lower="0" upper="1"/>
-          <feature id="f_947289622" name="FreeHandDrawing" lower="0" upper="1"/>
-          <feature id="f_79118959" name="BasicEditionOption" lower="0" upper="1"/>
+          <feature id="annotation" name="Annotation" lower="0" upper="1">
+            <attribute id="a_1770338036" name="memory_consumption" type="double" defaultValue="30"/>
+            <attribute id="a_1665001657" name="response_time" type="double" defaultValue="10"/>
+            <attribute id="a_1616531660" name="availability" type="double" defaultValue="0.8"/>
+          </feature>
+          <feature id="basicselectionshapes" name="BasicShapes" lower="0" upper="1">
+            <attribute id="a_1274514082" name="memory_consumption" type="double" defaultValue="60"/>
+            <attribute id="a_2111891100" name="response_time" type="double" defaultValue="5"/>
+            <attribute id="a_605996034" name="availability" type="double" defaultValue="0.75"/>
+          </feature>
+          <feature id="selectioncolor" name="SelectionColor" lower="0" upper="1">
+            <attribute id="a_1262976118" name="memory_consumption" type="double" defaultValue="40"/>
+            <attribute id="a_1210518721" name="response_time" type="double" defaultValue="5"/>
+            <attribute id="a_1902117436" name="availability" type="double" defaultValue="0.6"/>
+          </feature>
+          <feature id="f_947289622" name="FreeHandDrawing" lower="0" upper="1">
+            <attribute id="a_1114171432" name="memory_consumption" type="double" defaultValue="50"/>
+            <attribute id="a_35223723" name="response_time" type="double" defaultValue="1"/>
+            <attribute id="a_1341479978" name="availability" type="double" defaultValue="0.9"/>
+          </feature>
+          <feature id="f_79118959" name="BasicEditionOption" lower="0" upper="1">
+            <attribute id="a_781987429" name="memory_consumption" type="double" defaultValue="80"/>
+            <attribute id="a_1595023634" name="response_time" type="double" defaultValue="20"/>
+            <attribute id="a_1176561647" name="availability" type="double" defaultValue="0.9"/>
+          </feature>
         </feature>
       </feature>
       <feature id="category" name="Category" lower="0" upper="1">
-        <feature id="selectcategory" name="SelectCategory" lower="1" upper="1"/>
-        <feature id="newcategory" name="NewCategory" lower="0" upper="1"/>
+        <feature id="selectcategory" name="SelectCategory" lower="1" upper="1">
+          <attribute id="a_1525796116" name="memory_consumption" type="double" defaultValue="5"/>
+          <attribute id="a_58856002" name="response_time" type="double" defaultValue="3"/>
+          <attribute id="a_1682003131" name="availability" type="double" defaultValue="0.9"/>
+        </feature>
+        <feature id="newcategory" name="NewCategory" lower="0" upper="1">
+          <attribute id="a_2110053624" name="memory_consumption" type="double" defaultValue="4" minRangeValue=""/>
+          <attribute id="a_2031813461" name="response_time" type="double" defaultValue="5"/>
+          <attribute id="a_746986387" name="availability" type="double" defaultValue="0.9"/>
+        </feature>
       </feature>
-      <feature id="attachment" name="Attachment" lower="0" upper="1"/>
+      <feature id="attachment" name="Attachment" lower="0" upper="1">
+        <attribute id="a_1505354263" name="memory_consumption" type="double" defaultValue="15"/>
+        <attribute id="a_2066290460" name="response_time" type="double" defaultValue="10"/>
+        <attribute id="a_1618280374" name="availability" type="double" defaultValue="0.9"/>
+      </feature>
       <feature id="receiver" name="Receiver" lower="1" upper="1">
         <group lower="1" upper="1">
-          <feature id="sharewithworkteam" name="ShareWithWorkTeam" lower="0" upper="1"/>
+          <feature id="sharewithworkteam" name="ShareWithWorkTeam" lower="0" upper="1">
+            <attribute id="a_214115063" name="memory_consumption" type="boolean" defaultValue="50"/>
+            <attribute id="a_1240837862" name="response_time" type="double" defaultValue="20"/>
+            <attribute id="a_1249286102" name="availability" type="double" defaultValue="0.8"/>
+          </feature>
           <feature id="sharewithallhelpdesk" name="ShareWithAll" lower="0" upper="1">
-            <attribute id="anonymous" name="anonymous" type="boolean"/>
+            <attribute id="anonymous" name="anonymous" type="boolean" defaultValue=""/>
+            <attribute id="a_1621392807" name="memory_consumption" type="double" defaultValue="20"/>
+            <attribute id="a_268591772" name="response_time" type="double" defaultValue="7"/>
+            <attribute id="a_129264424" name="availability" type="double" defaultValue="0.9"/>
           </feature>
         </group>
       </feature>
       <feature id="presentation" name="Presentation" lower="1" upper="1">
         <group lower="1" upper="1">
-          <feature id="link" name="Link" lower="0" upper="1"/>
-          <feature id="popup" name="Pop-Up" lower="0" upper="1"/>
+          <feature id="link" name="Link" lower="0" upper="1">
+            <attribute id="a_1151083693" name="memory_consumption" type="double" defaultValue="1"/>
+            <attribute id="a_43795374" name="response_time" type="double" defaultValue="2"/>
+            <attribute id="a_533625932" name="availability" type="double" defaultValue="0.75"/>
+          </feature>
+          <feature id="popup" name="Pop-Up" lower="0" upper="1">
+            <attribute id="a_1319262445" name="memory_consumption" type="double" defaultValue="10"/>
+            <attribute id="a_1222220719" name="response_time" type="double" defaultValue="1"/>
+            <attribute id="a_26129687" name="availability" type="double" defaultValue="0.9"/>
+          </feature>
         </group>
       </feature>
       <feature id="confirmationmessage" name="ConfirmationMessage" lower="0" upper="1">
         <attribute id="content" name="content" type="string"/>
         <attribute id="title" name="title" type="string"/>
+        <attribute id="a_2067341110" name="memory_consumption" type="double" defaultValue="10"/>
+        <attribute id="a_2129518116" name="response_time" type="double" defaultValue="10"/>
+        <attribute id="a_123193138" name="availability" type="double" defaultValue="0.6"/>
       </feature>
     </feature>
-    <feature id="device" name="Device" lower="1" upper="1">
+    <feature id="device" name="Device" lower="0" upper="1">
       <group lower="1" upper="-1">
-        <feature id="android" name="Android" lower="0" upper="1"/>
-        <feature id="webclient" name="Web-client" lower="0" upper="1"/>
-        <feature id="ios" name="iOS" lower="0" upper="1"/>
+        <feature id="android" name="Android" lower="0" upper="1">
+          <attribute id="a_1952052379" name="memory_consumption" type="double" defaultValue="5"/>
+          <attribute id="a_1276859260" name="response_time" type="double" defaultValue="2"/>
+          <attribute id="a_919692588" name="availability" type="double" defaultValue="0.8"/>
+        </feature>
+        <feature id="webclient" name="Web-client" lower="0" upper="1">
+          <attribute id="a_1834380259" name="memory_consumption" type="double" defaultValue="20"/>
+          <attribute id="a_1986632302" name="response_time" type="double" defaultValue="5"/>
+          <attribute id="a_920518751" name="availability" type="double" defaultValue="0.9"/>
+        </feature>
+        <feature id="ios" name="iOS" lower="0" upper="1">
+          <attribute id="a_989893068" name="memory_consumption" type="double" defaultValue="5" minRangeValue=""/>
+          <attribute id="a_245035808" name="response_time" type="double" defaultValue="2"/>
+          <attribute id="a_1094736788" name="availability" type="double" defaultValue="0.99"/>
+        </feature>
       </group>
     </feature>
   </rootFeature>

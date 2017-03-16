@@ -71,16 +71,19 @@ public class ModelAdapter implements IModelAdapter {
 			return null;
 		}
 		
-		Composable composable = ComposableFactory.create (variantElement, modelQuery);
+		Composable composable = ComposableFactory.create (variantElement, modelQuery, elements);
 
 		for (Stereotype stereotype : elements.keySet()) {
 			for (Element baseElement : elements.get(stereotype)) {
-				if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null)
-					composable.applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null)
-					composable.applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
-				else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null)
-					composable.applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				//Apply composition only if baseElement and variantElement share the same jointpoint role
+				if (ModelAdapterUtilities.elementHasRole (variantElement, stereotype)){
+					if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("ADD")) != null)
+						composable.applyAddComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+					else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("DELETE")) != null)
+						composable.applyDeleteComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+					else if (actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("REPLACE")) != null)
+						composable.applyReplaceComposition(inBaseModel, baseElement, usingVariantModel, variantElement);
+				}
 			}
 		}
 
@@ -88,30 +91,24 @@ public class ModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) {
+	public Model applyUpdateComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) {
 
 		StructuralFeature feat = jointpointBaseModelSlot.getDefiningFeature();
-		for (Element e : jointpointBaseModelSlot.allOwnedElements()) {
-			e.destroy();
-		}
 
 		if (feat.getType().getName().equals("Integer")) {
-			LiteralInteger value = (LiteralInteger) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralInteger());
+			LiteralInteger value = ((LiteralInteger) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(Integer.valueOf(newValue));
 		} else if (feat.getType().getName().equals("Boolean")) {
-			LiteralBoolean value = (LiteralBoolean) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralBoolean());
+			LiteralBoolean value = ((LiteralBoolean) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(Boolean.valueOf(newValue));
 		} else if (feat.getType().getName().equals("String")) {
-			LiteralString value = (LiteralString) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralString());
+			LiteralString value = ((LiteralString) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(newValue);
 		} else if (feat.getType().getName().equals("Real")) {
-			LiteralReal value = (LiteralReal) jointpointBaseModelSlot.createValue("", feat.getType(),
-					UMLPackage.eINSTANCE.getLiteralReal());
+			LiteralReal value = ((LiteralReal) jointpointBaseModelSlot.getValues().get(0));
 			value.setValue(Double.valueOf(newValue));
 		}
+		log.debug("Updated property value of " + feat.getName() + " with " + newValue);
 
 		return inBaseModel;
 	}
@@ -122,15 +119,10 @@ public class ModelAdapter implements IModelAdapter {
 		for (Stereotype stereotype : elements.keySet()) {
 			for (Element element : elements.get(stereotype)) {
 				Slot s = (Slot) element;
-				model = applyModifyValueComposition(inBaseModel, s, newValue);
+				model = applyUpdateComposition(inBaseModel, s, newValue);
 			}
 		}
 		return model;
-	}
-
-	private void stereotypeElement(Element e, Stereotype role) throws Exception {
-		mt.tagModel(e, role.getProfile(), role);
-		log.debug(e.getAppliedStereotypes());
 	}
 }
 

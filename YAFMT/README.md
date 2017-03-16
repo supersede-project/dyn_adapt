@@ -21,4 +21,4 @@ This folder only contains those YAFMT Eclipse projects modified by SUPERSEDE, an
 2- Clone the yafmt branch of this repository: 
 `git clone -b yafmt https://github.com/supersede-project/dyn_adapt.git`
 3- Install YAFMT in Eclipse. Open menu Help/Install New Software..., Add Local Software Site, 
-   Browse to dyn_adapt/YAFMT/cz.zcu.yafmt.update folder within dyn_adapt local repository. Select YAFMT feature and procede as any other Eclipse software installation process. 
+   Browse to dyn_adapt/YAFMT/cz.zcu.yafmt.update folder within dyn_adapt local repository. Select YAFMT feature and procede as any other Eclipse software installation process. If YAFMT feature is not shown, uncheck option "Group items by category", select all items and proceed.

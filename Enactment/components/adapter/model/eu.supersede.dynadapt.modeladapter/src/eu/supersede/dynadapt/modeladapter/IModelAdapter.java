@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 
 public interface IModelAdapter {
+	
 	public Model applyCompositionDirective(ActionOptionType actionOptionType, Model inBaseModel,
 			HashMap<Stereotype, List<Element>> elements, Stereotype adviceRole, Model usingVariantModel)
 			throws Exception;
@@ -43,6 +44,6 @@ public interface IModelAdapter {
 //	
 //	public Model applyReplaceComposition(Composable composable, Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
 	
-	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) throws Exception;
+	public Model applyUpdateComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) throws Exception;
 
 }

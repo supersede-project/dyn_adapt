@@ -20,5 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Export-Package: eu.supersede.dynadapt.feature.serializer.helpers
+Export-Package: eu.supersede.dynadapt.configuration.serializer,
+ eu.supersede.dynadapt.feature.serializer,
+ eu.supersede.dynadapt.feature.serializer.helpers
 

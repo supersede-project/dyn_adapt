@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_1BKgkIx9EeakeNQxQLNPog/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://RootElement/schemas/GetMeteorologicalData/_1BKgkIx9EeakeNQxQLNPog/2 ../Supersede-Profile/model.profile.uml#_1BLusIx9EeakeNQxQLNPog">
+  <uml:Model xmi:id="_JKFx4H6BEeac2-gti3SYOg" name="RootElement">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_JKRYEH6BEeac2-gti3SYOg" name="S3" node="_QoRasH6BEeac2-gti3SYOg _Rzc0YH6BEeac2-gti3SYOg _UiChkH6BEeac2-gti3SYOg _Zc9G8H6CEeac2-gti3SYOg _wA7qMH6CEeac2-gti3SYOg _xfpq8H6CEeac2-gti3SYOg _BTNDQH6DEeac2-gti3SYOg">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_X5LAAH6CEeac2-gti3SYOg" target="_Rzc0YH6BEeac2-gti3SYOg" source="_QoRasH6BEeac2-gti3SYOg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_YY6QAH6CEeac2-gti3SYOg" target="_UiChkH6BEeac2-gti3SYOg" source="_Rzc0YH6BEeac2-gti3SYOg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_1EXH0H6CEeac2-gti3SYOg" name="[null]" target="_xfpq8H6CEeac2-gti3SYOg" source="_wA7qMH6CEeac2-gti3SYOg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_1sfe0H6CEeac2-gti3SYOg" target="_Zc9G8H6CEeac2-gti3SYOg" source="_xfpq8H6CEeac2-gti3SYOg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_3e_-QH6CEeac2-gti3SYOg" name="[not null]" target="_Zc9G8H6CEeac2-gti3SYOg" source="_wA7qMH6CEeac2-gti3SYOg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_EJcQkH6DEeac2-gti3SYOg" target="_BTNDQH6DEeac2-gti3SYOg" source="_UiChkH6BEeac2-gti3SYOg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_EwIdIH6DEeac2-gti3SYOg" target="_wA7qMH6CEeac2-gti3SYOg" source="_BTNDQH6DEeac2-gti3SYOg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_QoRasH6BEeac2-gti3SYOg" name="" outgoing="_X5LAAH6CEeac2-gti3SYOg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Rzc0YH6BEeac2-gti3SYOg" name="Service S0" incoming="_X5LAAH6CEeac2-gti3SYOg" outgoing="_YY6QAH6CEeac2-gti3SYOg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_UiChkH6BEeac2-gti3SYOg" name="Callback CB1" incoming="_YY6QAH6CEeac2-gti3SYOg" outgoing="_EJcQkH6DEeac2-gti3SYOg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_Zc9G8H6CEeac2-gti3SYOg" name="" incoming="_1sfe0H6CEeac2-gti3SYOg _3e_-QH6CEeac2-gti3SYOg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_wA7qMH6CEeac2-gti3SYOg" name="" incoming="_EwIdIH6DEeac2-gti3SYOg" outgoing="_1EXH0H6CEeac2-gti3SYOg _3e_-QH6CEeac2-gti3SYOg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_xfpq8H6CEeac2-gti3SYOg" name="ERROR" incoming="_1EXH0H6CEeac2-gti3SYOg" outgoing="_1sfe0H6CEeac2-gti3SYOg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_BTNDQH6DEeac2-gti3SYOg" name="Check Output" incoming="_EJcQkH6DEeac2-gti3SYOg" outgoing="_EwIdIH6DEeac2-gti3SYOg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_oPcq4H6CEeac2-gti3SYOg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RqpCcIx-EeakeNQxQLNPog" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RqpCcYx-EeakeNQxQLNPog" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RqpCcox-EeakeNQxQLNPog" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RqpCc4x-EeakeNQxQLNPog" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RqpCdIx-EeakeNQxQLNPog" key="Date" value="2016-10-07"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RqpCdYx-EeakeNQxQLNPog" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oPd5AH6CEeac2-gti3SYOg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Supersede-Profile/model.profile.uml#_1BLusIx9EeakeNQxQLNPog"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../Supersede-Profile/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+    </profileApplication>
+  </uml:Model>
+  <GetMeteorologicalData:Service xmi:id="_qq29YH6CEeac2-gti3SYOg" base_OpaqueAction="_Rzc0YH6BEeac2-gti3SYOg"/>
+  <GetMeteorologicalData:Callback xmi:id="_sB5BwH6CEeac2-gti3SYOg" base_OpaqueAction="_UiChkH6BEeac2-gti3SYOg"/>
+</xmi:XMI>
