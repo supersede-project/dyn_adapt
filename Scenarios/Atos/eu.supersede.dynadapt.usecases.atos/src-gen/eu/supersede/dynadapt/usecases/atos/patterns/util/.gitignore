@@ -30,3 +30,7 @@
 /InstanceOfInstanceSpecificationLinkQuerySpecification.java
 /InstanceSpecificationLinkProcessor.java
 /InstanceSpecificationLinkQuerySpecification.java
+/.HSKExecutionEnvironmentsProcessor.java._trace
+/.HSKExecutionEnvironmentsQuerySpecification.java._trace
+/.VMInstancesContainingHSKServicesProcessor.java._trace
+/.VMInstancesContainingHSKServicesQuerySpecification.java._trace

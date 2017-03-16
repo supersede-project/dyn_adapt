@@ -11,7 +11,7 @@
 [template public serializeSelectedFeature(aSelection : Selection)post(trim())]
 [for (aSelectionChild : Selection | aSelection.selections)]
 [if (aSelectionChild.isLeaveSelection())]
-[aSelectionChild.feature.name/]
+[aSelectionChild.feature.id/]
 [else]
 [serializeSelectedFeature(aSelectionChild)/]
 [/if]

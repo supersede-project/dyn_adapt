@@ -13,49 +13,49 @@
 
 [template public feature (aFeature : Feature, belongsToXORGroup : Boolean) post(trim())]
 [if (aFeature.hasANDGroup())]
-<[aFeature.name/][groupType(aFeature)/]>::= [andGroupList(aFeature)/]
+<[aFeature.id/][groupType(aFeature)/]>::= [andGroupList(aFeature)/]
 [for (aChildFeature : Feature | aFeature.features)]
 [feature(aChildFeature, false)/]
 [/for][elseif (aFeature.hasORGroup())]
-<[aFeature.name/]_or>::= <[aFeature.name/]> <[aFeature.name/]_or>
-	| <[aFeature.name/]>
-<[aFeature.name/]>::= [orGroupList(aFeature)/]
+<[aFeature.id/]_or>::= <[aFeature.id/]> <[aFeature.id/]_or>
+	| <[aFeature.id/]>
+<[aFeature.id/]>::= [orGroupList(aFeature)/]
 [for (aChildFeature : Feature | aFeature.groups->first().features)]
 [feature(aChildFeature, false)/]
 [/for][elseif (aFeature.hasXORGroup())]
-<[aFeature.name/]>::= [xorGroupList(aFeature)/]
+<[aFeature.id/]>::= [xorGroupList(aFeature)/]
 [for (aChildFeature : Feature | aFeature.groups->first().features)]
 [feature(aChildFeature, true)/]
 [/for][elseif (aFeature.hasMultipleMultiplicity())]
-<[aFeature.name/][groupType(aFeature)/]>::= <[aFeature.name/]> <[aFeature.name/][groupType(aFeature)/]>
-	| <[aFeature.name/]>
-<[aFeature.name/]>::= "[aFeature.name/]"[elseif (belongsToXORGroup)]
-<[aFeature.name/]>::= "[aFeature.name/]"[else]
+<[aFeature.id/][groupType(aFeature)/]>::= <[aFeature.id/]> <[aFeature.id/][groupType(aFeature)/]>
+	| <[aFeature.id/]>
+<[aFeature.id/]>::= "[aFeature.id/]"[elseif (belongsToXORGroup)]
+<[aFeature.id/]>::= "[aFeature.id/]"[else]
 [if (not (aFeature.mandatory and not aFeature.hasChildren()))]
-	<[aFeature.name/][groupType(aFeature)/]>::= <[aFeature.name/]>
+	<[aFeature.id/][groupType(aFeature)/]>::= <[aFeature.id/]>
 	|
 [/if]
-<[aFeature.name/]>::= "[aFeature.name/]"[/if]
+<[aFeature.id/]>::= "[aFeature.id/]"[/if]
 [/template]
 
 [template public andGroupList (aFeature : Feature)]
-[if hasANDGroup(aFeature)][for (aChildFeature : Feature | aFeature.features)]<[aChildFeature.name/][groupType(aChildFeature)/]> [/for][/if]
+[if hasANDGroup(aFeature)][for (aChildFeature : Feature | aFeature.features)]<[aChildFeature.id/][groupType(aChildFeature)/]> [/for][/if]
 [/template]
 
 [template public orGroupList (aFeature : Feature) post(trim())]
 [let firstFeature : Feature = aFeature.groups->first().features->first()]
-<[firstFeature.name/][groupType(firstFeature)/]>
+<[firstFeature.id/][groupType(firstFeature)/]>
 [for (aChildFeature : Feature | aFeature.groups->first().features->excluding(firstFeature))] 
-	| <[aChildFeature.name/][groupType(aChildFeature)/]>
+	| <[aChildFeature.id/][groupType(aChildFeature)/]>
 [/for]
 [/let]
 [/template]
 
 [template public xorGroupList (aFeature : Feature) post(trim())]
 [let firstFeature : Feature = aFeature.groups->first().features->first()]
-<[firstFeature.name/]>
+<[firstFeature.id/]>
 [for (aChildFeature : Feature | aFeature.groups->first().features->excluding(firstFeature))]
-	| <[aChildFeature.name/]>
+	| <[aChildFeature.id/]>
 [/for]
 [/let]
 [/template]

@@ -47,13 +47,25 @@ public class FeatureModelSerializerTest {
 	}
 	
 	@Test
-	public void FCSerializerFGTest () throws IOException{		
+	public void FCSerializerTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
 		String absoluteFCModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fc/FeedbackGatheringConfigCurrent.yafc";
 		String absoluteFMModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
+		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";
+		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+	}
+	
+	@Test
+	public void SerializeAtosHSKTest () throws IOException{		
+		// NOTE: Edit this absolute paths before testing
+		String absoluteFCModelPath = 
+				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
+		String absoluteFMModelPath = 
+				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFM_HSK.yafm";
+		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";;
+		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
 		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
 }

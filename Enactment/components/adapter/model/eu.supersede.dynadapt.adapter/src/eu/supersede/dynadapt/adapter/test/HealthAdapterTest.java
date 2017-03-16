@@ -35,6 +35,7 @@ import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class HealthAdapterTest {
 	private final static Logger log = LogManager.getLogger(HealthAdapterTest.class);
@@ -64,7 +65,7 @@ public class HealthAdapterTest {
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.HEALTH.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+					ModelSystem.Health, adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -101,7 +102,7 @@ public class HealthAdapterTest {
 			
 			//FIXME Select correctly the current and newest FC
 			adapter.enactAdaptationDecisionAction(
-					SupersedeSystem.HEALTH.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+					ModelSystem.Health, adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

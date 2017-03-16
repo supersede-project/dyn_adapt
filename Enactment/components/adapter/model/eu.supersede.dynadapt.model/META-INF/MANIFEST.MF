@@ -5,6 +5,7 @@ Bundle-SymbolicName: eu.supersede.dynadapt.model;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Supersede Project
 Export-Package: eu.supersede.dynadapt.model,
+ eu.supersede.dynadapt.model.compare,
  eu.supersede.dynadapt.model.query,
  eu.supersede.dynadapt.model.query.test,
  eu.supersede.dynadapt.model.query.test.util,

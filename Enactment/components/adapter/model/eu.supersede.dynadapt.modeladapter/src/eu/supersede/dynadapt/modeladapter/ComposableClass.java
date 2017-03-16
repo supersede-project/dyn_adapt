@@ -81,11 +81,11 @@ class ComposableClass extends ComposableImpl implements Composable {
 
 		// Add to classBase all properties in classVariant (but not already
 		// existing in classVariant)
-		addProperties(classVariant, classBase);
+		addProperties(classVariant, classBase, inBaseModel);
 
 		// Add to classBase all operations in classVariant (but not already
 		// existing in classVariant)
-		addOperations(classVariant, classBase);
+		addOperations(classVariant, classBase, inBaseModel);
 
 		// Add elements connected to classVariant through relationships:
 		// associations|generalizations (include relationships themselves)
@@ -126,7 +126,7 @@ class ComposableClass extends ComposableImpl implements Composable {
 		// Locate container in model corresponding to element to copy
 		Package pack = ModelAdapterUtilities.getPackageInModelMatchingElement(model, elementToAdd);
 		// Add elementToAdd in container
-		PackageableElement addedElement = ModelAdapterUtilities.createElement(elementToAdd, pack, baseJointpoints);
+		PackageableElement addedElement = ModelAdapterUtilities.createElement(elementToAdd, pack, baseJointpoints, model);
 
 		// Add elements connected to classVariant through relationships:
 		// generalizations (include relationships themselves)
@@ -145,21 +145,21 @@ class ComposableClass extends ComposableImpl implements Composable {
 
 	// Add to classBase all operations in classVariant (but not already existing
 	// in classVariant)
-	private void addOperations(ClassImpl fromClass, ClassImpl toClass) {
+	private void addOperations(ClassImpl fromClass, ClassImpl toClass, Model model) {
 		for (Operation operation : fromClass.getOperations()) {
 			if (ModelAdapterUtilities.elementMatchesInList(operation, toClass.getOperations()))
 				continue;
-			Operation clonedOperation = ModelAdapterUtilities.createElement(operation, toClass, baseJointpoints);
+			Operation clonedOperation = ModelAdapterUtilities.createElement(operation, toClass, baseJointpoints, model);
 		}
 	}
 
 	// Add to classBase all properties in classVariant (but not already existing
 	// in classVariant)
-	private void addProperties(ClassImpl fromClass, ClassImpl toClass) {
+	private void addProperties(ClassImpl fromClass, ClassImpl toClass, Model model) {
 		for (Property property : fromClass.getAttributes()) {
 			if (ModelAdapterUtilities.elementMatchesInList(property, toClass.getAttributes()))
 				continue;
-			Property clonedProperty = ModelAdapterUtilities.createElement(property, toClass, baseJointpoints);
+			Property clonedProperty = ModelAdapterUtilities.createElement(property, toClass, baseJointpoints, model);
 		}
 	}
 
