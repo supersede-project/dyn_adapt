@@ -159,13 +159,16 @@ public class HypervisorEnactor implements IEnactor{
 			//Upload script to supersede platform
 			String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
 				" " + supersede_account_user + "@" + supersede_platform_host + ":powershell_scripts/";
+//			String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
+//					" " + supersede_account_user + "@" + supersede_platform_host + ":powershell_scripts/ > " + script + ".log 2>&1";
 			
 			String result = executeCommand(uploadCommand);
 			log.info("Uploaded script in " + supersede_platform_host + " with result: " + result);
 			
 			//Execute script
 			String scriptCommand = "sshpass -p '" + supersede_account_passwd + "' ssh -o StrictHostKeyChecking=no " + 
-				supersede_account_user + "@" + supersede_platform_host + " \"powershell -File powershell_scripts/" + script.getFileName() + " -password " + hypervisor_account_passwd + "\"";
+				supersede_account_user + "@" + supersede_platform_host + " \"powershell -File powershell_scripts/" + 
+				script.getFileName() + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
 		
 			result = executeCommand(scriptCommand);
 			log.info("Executed script " + script.getFileName() + " with result: " + result);
@@ -175,11 +178,12 @@ public class HypervisorEnactor implements IEnactor{
 	public String executeCommand(String command) throws Exception {
 
 		StringBuffer output = new StringBuffer();
+		String[] shellCommand = { "/bin/sh", "-c", command};
 
-		Process p = Runtime.getRuntime().exec(command);
+		Process p = Runtime.getRuntime().exec(shellCommand);
 		p.waitFor();
 		BufferedReader reader =
-				new BufferedReader(new InputStreamReader(p.getInputStream()));
+				new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
         String line = "";
 		while ((line = reader.readLine())!= null) {

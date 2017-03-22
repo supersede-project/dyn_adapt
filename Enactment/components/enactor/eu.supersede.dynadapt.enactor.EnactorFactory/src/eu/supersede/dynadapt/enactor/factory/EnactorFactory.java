@@ -10,6 +10,7 @@ public class EnactorFactory {
 	public static IEnactor getEnactorForSystem(ModelSystem system) throws IOException{
 		switch (system){
 		case Atos:
+		case Atos_HSK:
 			return new HypervisorEnactor();
 		case Siemens:
 			//Ask Srdjan to provide Siemens Enactor
