@@ -31,4 +31,6 @@ public interface FitnessFunction {
 	 * @return true if best individual is better than current configuration, false otherwise
 	 */
 	public boolean isFinished(Chromosome chromosome);
+	
+	public boolean violatesConstraint(Chromosome chromosome);
 }

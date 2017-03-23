@@ -61,10 +61,22 @@ public class FeatureModelSerializerTest {
 	public void SerializeAtosHSKTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
 		String absoluteFCModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
+				"/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
 		String absoluteFMModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFM_HSK.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";;
+				"/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFM_HSK.yafm";
+		String absolutetargetFolderPath = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";;
+		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
+		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+	}
+	
+	@Test
+	public void SerializeSiemens () throws IOException{		
+		// NOTE: Edit this absolute paths before testing
+		String absoluteFCModelPath = 
+				"/data/workspace_supersede2/dyn_adapt/Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafc";
+		String absoluteFMModelPath = 
+				"/data/workspace_supersede2/dyn_adapt/Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
+		String absolutetargetFolderPath = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/siemens/";
 		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
 		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}

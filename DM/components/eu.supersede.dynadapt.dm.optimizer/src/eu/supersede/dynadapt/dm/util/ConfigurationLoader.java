@@ -133,11 +133,12 @@ public class ConfigurationLoader {
 			try {
 				attributes.load(new FileReader(configurationPath + File.separator + feature + ".properties"));
 				// save in cache
-				featureAttributes.put(feature, attributes);
+//				featureAttributes.put(feature, attributes);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println("probably the feature: " + feature + " does not have quality attributes associated.");
+//				e.printStackTrace();
 			}
+			featureAttributes.put(feature, attributes);
 		}
 		return attributes;
 	}

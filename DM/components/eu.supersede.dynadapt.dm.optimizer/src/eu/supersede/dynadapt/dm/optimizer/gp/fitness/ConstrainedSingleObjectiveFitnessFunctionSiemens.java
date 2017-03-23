@@ -19,7 +19,10 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.dm.optimizer.gp.fitness;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -29,14 +32,14 @@ import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata;
 
-public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFunction{
+public class ConstrainedSingleObjectiveFitnessFunctionSiemens extends AbstractFitnessFunction{
 	
-	private static final Logger logger = LoggerFactory.getLogger(ConstrainedSingleObjectiveFitnessFunction.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConstrainedSingleObjectiveFitnessFunctionSiemens.class);
 
 	/**
 	 * @param currentConfig
 	 */
-	public ConstrainedSingleObjectiveFitnessFunction(List<String> currentConfig) {
+	public ConstrainedSingleObjectiveFitnessFunctionSiemens(List<String> currentConfig) {
 		super(currentConfig);		
 	}
 
@@ -46,45 +49,62 @@ public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFu
 		
 		List<Properties> attributesOfAllFeatures =  configurationLoader.loadAttributes(features);
 		
-		// create and initialize
-		String costAttribute = "price";
-		double overallCost = 0d;
-		String valueAttribute = "availability";
-		double overallValue = 1d;
+		Map<String, Double> aggregateValues = new HashMap<String, Double>();
 		
-		String alertAttribute = "response_time";
-		double overallConstraint = 0d;
+		// create and initialize
+		String priceAttribute = "price";
+		aggregateValues.put(priceAttribute, 0d);
+		
+		String availabilityAttribute = "availability";
+		aggregateValues.put(availabilityAttribute, 1d);
+		
+		String responseTimeAttribute = "response_time";
+		aggregateValues.put(responseTimeAttribute, 0d);
 		
 		for (Properties attributes : attributesOfAllFeatures){
-			if (attributes == null){
+			if (attributes == null || attributes.isEmpty()){
 				// no quality attributes for some features
 				continue;
 			}
-			double cost = Double.parseDouble(attributes.getProperty(costAttribute));
-			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(costAttribute);
+			double price = Double.parseDouble(attributes.getProperty(priceAttribute));
+			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(priceAttribute);
 			double minimum = costAttributeMetadata.getMinimumValue();
 			double maximum = costAttributeMetadata.getMaximumValue();
 			double weight = costAttributeMetadata.getWeight();
 			// normalize to a value in [0, 1]
-			cost = cost / (maximum - minimum);
-			overallCost += cost*weight;
+//			price = price / (maximum - minimum);
+			aggregateValues.put(priceAttribute, aggregateValues.get(priceAttribute) + price * weight);
 			
-			double value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
-			value = 1d - value; // convert to minimization
-			weight = featureAttributeMetadata.get(valueAttribute).getWeight();
-			overallValue *= value * weight;
+			double availability = Double.parseDouble(attributes.getProperty(availabilityAttribute)); // already in [0,1]
+			availability = 1d - availability; // convert to minimization
+			weight = featureAttributeMetadata.get(availabilityAttribute).getWeight();
+			aggregateValues.put(availabilityAttribute, aggregateValues.get(availabilityAttribute) * availability * weight);
 			
-			double alertValue = Double.parseDouble(attributes.getProperty(alertAttribute));
-			overallConstraint += alertValue;
+			double responseTime = Double.parseDouble(attributes.getProperty(responseTimeAttribute));
+			weight = featureAttributeMetadata.get(responseTimeAttribute).getWeight();
+			aggregateValues.put(responseTimeAttribute, aggregateValues.get(responseTimeAttribute) + responseTime * weight);
 		}
+		
 		
 		// overall aggregate sum of all attribute values
 		double[] result = new double[2];
-		result[0] = overallCost + overallValue;	// fitness value
-		result[1] = overallConstraint; // constraint value
+		result[0] = aggregateValues.get(Parameters.ALERT_ATTRIBUTE_SIEMENS);
+		result[1] = sumAll (aggregateValues.values());
+		logger.debug("{} Fitness: {}, Constraint: {}", features.toString(), result[0], result[1]);
 		return result;
 	}
 	
+	
+	
+	private double sumAll(Collection<Double> values) {
+		double total = 0;
+		for (Double d : values){
+			total += d;
+		}
+		return total;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see eu.supersede.dynadapt.dm.optimizer.gp.fitness.SingleObjectiveFitnessFunction#isFinished(eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome)
 	 */
@@ -103,10 +123,10 @@ public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFu
 	
 	@Override
 	public boolean violatesConstraint (Chromosome chromosome){
-		if (chromosome.getOverallConstraint() > Parameters.SOFT_CONSTRAINT_THRESHOLD){
-			return true;
-		}else{
+//		if (chromosome.getOverallConstraint() > Parameters.SOFT_CONSTRAINT_THRESHOLD){
+//			return true;
+//		}else{
 			return false;
-		}
+//		}
 	}
 }

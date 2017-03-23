@@ -71,7 +71,7 @@ public class FileUtils {
 		configs.append("config_id,configuration\n");
 		int sol = 1;
 		for (Chromosome solution : solutions) {
-			if (feasibleOnly && !(solution.getOverallConstraintViolation() < Parameters.CONSTRAINT_THRESHOLD))
+			if (feasibleOnly && !(solution.getOverallConstraintViolation() < Parameters.CONSTRAINT_THRESHOLD_FEEDBACK))
 				continue;
 			
 			String msg = buildLine (solution, sol);
