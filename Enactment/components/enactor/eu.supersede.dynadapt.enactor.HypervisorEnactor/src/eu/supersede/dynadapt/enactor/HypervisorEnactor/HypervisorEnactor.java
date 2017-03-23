@@ -55,10 +55,26 @@ public class HypervisorEnactor implements IEnactor{
 	ModelManager mm = null;
 	ModelCompare mc = null;
 	Properties hypervisorProperties = null;
+	String supersede_account_user;
+	String supersede_account_passwd;
+	
+	String hypervisor_account_passwd;
+	String supersede_platform_host;
+	
+	boolean remoteConnection;
 	
 	public HypervisorEnactor () throws IOException {
 		//Hypervisor properties
 		hypervisorProperties = loadHypervisorHookProperties();
+		
+		// TODO Take passwords and all configurations for secure place		
+		supersede_account_user = hypervisorProperties.getProperty("supersede_account_user");
+		supersede_account_passwd = hypervisorProperties.getProperty("supersede_account_passwd");
+				
+		hypervisor_account_passwd = hypervisorProperties.getProperty("hypervisor_account_passwd");
+		supersede_platform_host = hypervisorProperties.getProperty("supersede_platform_host");
+				
+		remoteConnection = Boolean.valueOf(hypervisorProperties.getProperty("remote_connection"));
 		
 		//ModelManager
 		mm = new ModelManager(true);
@@ -118,17 +134,20 @@ public class HypervisorEnactor implements IEnactor{
 	@Override
 	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
 		//Compute model differences
+		log.debug("Comparing base and adapted models");
 		Map<DiffType,Set<Element>> diffElements = mc.computeDifferencesBetweenModels (adaptedModel, originalModel);
 		
 		//Enact adapted Model
+		log.debug("Generating Hypervisor scripts out of model: " + adaptedModel.getName());
 		List<Path> enactmentArfifacts = createEnactmentArtefactsForAdaptedModel(adaptedModel);
 		
 		//Select enactment artifacts associated to model differences
+		log.debug("Selecting scripts associated to model differences");
 		enactmentArfifacts = selectDiffArtefacts (enactmentArfifacts, diffElements);
 		
 		//Invoke enactment artifacts in Hypervisor Hook
+		log.debug("Enacting hypervisor scripts");
 		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts);
-		
 	}
 	
 	@Override
@@ -147,32 +166,40 @@ public class HypervisorEnactor implements IEnactor{
 	}
 	
 	private void invokeEnactmentArtefactsInHypervisorHook(List<Path> enactmentArfifacts) throws Exception {
-		// TODO Take passwords and all configurations for secure place		
-		String supersede_account_user = hypervisorProperties.getProperty("supersede_account_user");
-		String supersede_account_passwd = hypervisorProperties.getProperty("supersede_account_passwd");
-		
-		String hypervisor_account_passwd = hypervisorProperties.getProperty("hypervisor_account_passwd");
-		String supersede_platform_host = hypervisorProperties.getProperty("supersede_platform_host");	
 		
 		for (Path script: enactmentArfifacts){
-			
-			//Upload script to supersede platform
-			String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
-				" " + supersede_account_user + "@" + supersede_platform_host + ":powershell_scripts/";
-//			String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
-//					" " + supersede_account_user + "@" + supersede_platform_host + ":powershell_scripts/ > " + script + ".log 2>&1";
-			
-			String result = executeCommand(uploadCommand);
-			log.info("Uploaded script in " + supersede_platform_host + " with result: " + result);
+			log.info("Enacting Hypervisor script: " + script);
+			if (remoteConnection){
+				//Upload script to supersede platform
+				String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
+						" " + supersede_account_user + "@" + supersede_platform_host + ":powershell_scripts/ > " + script + ".log 2>&1";
+				executeCommand(uploadCommand);
+				log.debug("Uploaded script in " + supersede_platform_host + " with result: " + 
+					readFile(Paths.get(script.toString() + ".log")));
+			}
 			
 			//Execute script
-			String scriptCommand = "sshpass -p '" + supersede_account_passwd + "' ssh -o StrictHostKeyChecking=no " + 
+			String scriptCommand = getScriptCommand(remoteConnection, script);
+		
+			executeCommand(scriptCommand);
+			log.info("Executed script " + script.getFileName() + " with result: " + 
+				readFile(Paths.get(script.toString() + ".log")));
+		}
+	}
+	
+	
+	
+	private String getScriptCommand (boolean remoteConnection, Path script){
+		String scriptCommand;
+		if (remoteConnection){
+			scriptCommand = "sshpass -p '" + supersede_account_passwd + "' ssh -o StrictHostKeyChecking=no " + 
 				supersede_account_user + "@" + supersede_platform_host + " \"powershell -File powershell_scripts/" + 
 				script.getFileName() + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
-		
-			result = executeCommand(scriptCommand);
-			log.info("Executed script " + script.getFileName() + " with result: " + result);
+		}else{
+			scriptCommand = "powershell -File " + 
+				script + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
 		}
+		return scriptCommand;
 	}
 	
 	public String executeCommand(String command) throws Exception {
@@ -182,16 +209,37 @@ public class HypervisorEnactor implements IEnactor{
 
 		Process p = Runtime.getRuntime().exec(shellCommand);
 		p.waitFor();
+		readOutput(output, p);
+		readErrorOutput(output, p);
+
+		return output.toString();
+
+	}
+	
+	private String readFile (Path path) throws IOException{
+		return new String(Files.readAllBytes(path));
+	}
+
+	private void readOutput(StringBuffer output, Process p) throws IOException {
+		BufferedReader reader =
+				new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        String line = "";
+        output.append ("Normal output:\n");
+		while ((line = reader.readLine())!= null) {
+			output.append(line + "\n");
+		}
+	}
+	
+	private void readErrorOutput(StringBuffer output, Process p) throws IOException {
 		BufferedReader reader =
 				new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
         String line = "";
+        output.append ("Error output:\n");
 		while ((line = reader.readLine())!= null) {
 			output.append(line + "\n");
 		}
-
-		return output.toString();
-
 	}
 
 	//TODO Move Model Comparator stuff to ModelManager helper class

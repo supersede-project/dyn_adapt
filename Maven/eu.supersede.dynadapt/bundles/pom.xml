@@ -31,5 +31,8 @@
 	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.model</module>
 	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.modeladapter</module>
 	<module>../../../Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.dynadapt.enactor.Enactor</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.dynadapt.enactor.EnactorFactory</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor</module>
     </modules>
 </project>
