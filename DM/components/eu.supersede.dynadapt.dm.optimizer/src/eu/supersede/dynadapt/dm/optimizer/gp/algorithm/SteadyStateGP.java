@@ -125,13 +125,12 @@ public class SteadyStateGP extends StandardGP {
 		
 		switch (Parameters.TENANT){
 		case SIEMENS:
-			Parameters.ALERT_ATTRIBUTE_SIEMENS = "availability";
-			Parameters.CONSTRAINT_THRESHOLD_SIEMENS = 1;
+			Parameters.ALERT_ATTRIBUTE = "availability";
+			Parameters.CONSTRAINT_THRESHOLD = 1;
 			break;
 		case ATOS:
-			Parameters.CONSTRAINT_THRESHOLD_ATOS = 20; // physical memory(16) + physical cores(4)
-			Parameters.SOFT_CONSTRAINT_THRESHOLD = 4; // current configuration (memory+cores)
-			Parameters.CONSTRAINT_VIOLATION_PENALTY = 100;
+			Parameters.CONSTRAINT_THRESHOLD = 4; // ART in seconds
+//			Parameters.CONSTRAINT_VIOLATION_PENALTY = 100;
 			break;
 		case FEEDBACK_GATHERING:
 			break;

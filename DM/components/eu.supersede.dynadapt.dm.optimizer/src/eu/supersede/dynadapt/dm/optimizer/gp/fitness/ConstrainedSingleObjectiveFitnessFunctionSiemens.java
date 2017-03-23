@@ -88,7 +88,7 @@ public class ConstrainedSingleObjectiveFitnessFunctionSiemens extends AbstractFi
 		
 		// overall aggregate sum of all attribute values
 		double[] result = new double[2];
-		result[0] = aggregateValues.get(Parameters.ALERT_ATTRIBUTE_SIEMENS);
+		result[0] = aggregateValues.get(Parameters.ALERT_ATTRIBUTE);
 		result[1] = sumAll (aggregateValues.values());
 		logger.debug("{} Fitness: {}, Constraint: {}", features.toString(), result[0], result[1]);
 		return result;

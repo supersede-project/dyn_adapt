@@ -99,7 +99,7 @@ public class ConstrainedMultiObjectiveFitnessFunction extends AbstractFitnessFun
 		String valueAttribute = "availability";
 		double overallValue = 1d;
 		
-		String alertAttribute = Parameters.ALERT_ATTRIBUTE_FEEDBACK; // "response_time";
+		String alertAttribute = Parameters.ALERT_ATTRIBUTE; // "response_time";
 		double overallConstraint = 0d;
 		
 		for (Properties attributes : attributesOfAllFeatures){

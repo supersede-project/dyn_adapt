@@ -104,7 +104,7 @@ public class ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration ex
 	
 	@Override
 	public boolean violatesConstraint (Chromosome chromosome){
-		if (chromosome.getOverallConstraint() > Parameters.CONSTRAINT_THRESHOLD_FEEDBACK){
+		if (chromosome.getOverallConstraint() > Parameters.CONSTRAINT_THRESHOLD){
 			return true;
 		}else{
 			return false;

@@ -24,7 +24,7 @@ public class Parameters {
 	public enum Tenants{
 		ATOS, SIEMENS, SENERCON, MONITORING, FEEDBACK_GATHERING
 	}
-	public static Tenants TENANT = Tenants.FEEDBACK_GATHERING;
+	public static Tenants TENANT = Tenants.ATOS; // .FEEDBACK_GATHERING;
 	
 	private static String ATOS_INPUT_DIR = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/atos/";
 	private static String ATOS_OUTPUT_DIR = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/output/atos/";
@@ -100,15 +100,15 @@ public class Parameters {
 	public static int NUM_OBJECTIVES = 2;
 	public static int NUM_CONSTRAINTS = 1;
 
-	public static double CONSTRAINT_THRESHOLD_ATOS = 20;
-	public static double SOFT_CONSTRAINT_THRESHOLD = 4;
-	public static double CONSTRAINT_VIOLATION_PENALTY = 20; //CONSTRAINT_THRESHOLD;
+	public static double CONSTRAINT_THRESHOLD = 20;
+//	public static double SOFT_CONSTRAINT_THRESHOLD = 4;
+//	public static double CONSTRAINT_VIOLATION_PENALTY = 20; //CONSTRAINT_THRESHOLD;
 	
-	public static String ALERT_ATTRIBUTE_SIEMENS = "response_time";
-	public static double CONSTRAINT_THRESHOLD_SIEMENS = 0.15;
+	public static String ALERT_ATTRIBUTE = "response_time";
+//	public static double CONSTRAINT_THRESHOLD_SIEMENS = 0.15;
 	
-	public static String ALERT_ATTRIBUTE_FEEDBACK = "response_time";
-	public static double CONSTRAINT_THRESHOLD_FEEDBACK = 0.95;
+//	public static String ALERT_ATTRIBUTE_FEEDBACK = "response_time";
+//	public static double CONSTRAINT_THRESHOLD_FEEDBACK = 0.95;
 	
 	public void loadFromFile(String parametersFile){
 		

@@ -258,7 +258,7 @@ public class ConstrainedNSGAII {
 	public static void main(String[] args) {
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD_FEEDBACK = 30;
+		Parameters.CONSTRAINT_THRESHOLD = 30;
 		Parameters.POPULATION_SIZE = 5;
 		int depth = 5;
 		double probRecursive = 0.05;

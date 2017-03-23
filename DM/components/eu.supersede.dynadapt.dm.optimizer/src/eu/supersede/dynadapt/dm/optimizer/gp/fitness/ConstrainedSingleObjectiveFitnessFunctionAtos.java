@@ -151,7 +151,7 @@ public class ConstrainedSingleObjectiveFitnessFunctionAtos extends AbstractFitne
 	}
 	
 	private double computeFitness (double totalCores, double totalMemory){
-		final double ART = Parameters.CONSTRAINT_THRESHOLD_ATOS; // = 5 seconds
+		final double ART = Parameters.CONSTRAINT_THRESHOLD; // = 5 seconds
 		final double C1 = 10, C2 = 1, C3 = 0, C4 = 1, C5 = 1;
 		double threads = C1 / ART;
 		double minimumCores = C2 * threads + C3;

@@ -65,13 +65,13 @@ public class RefsqDriver {
 		double probRecursive = 0.0002;
 		Parameters.SEARCH_BUDGET = 3; // seconds
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.CONSTRAINT_THRESHOLD_FEEDBACK = 30;
+		Parameters.CONSTRAINT_THRESHOLD = 30;
 		Parameters.POPULATION_SIZE = 150;
 		Parameters.CROSSOVER_RATE = 0.6;
 		Parameters.MUTATION_RATE = 0.2;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		
-		int threshold = (int) Parameters.CONSTRAINT_THRESHOLD_FEEDBACK;
+		int threshold = (int) Parameters.CONSTRAINT_THRESHOLD;
 		int min = 0;
 		int max = 100;
 		while (true){

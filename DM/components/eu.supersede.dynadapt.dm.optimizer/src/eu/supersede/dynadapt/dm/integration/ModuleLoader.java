@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.Tenants;
 import eu.supersede.dynadapt.dm.optimizer.gp.algorithm.SteadyStateGP;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
@@ -132,18 +133,21 @@ public class ModuleLoader {
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
-		String optimalConfig = null;
-		Boolean multiObjective = true; //TODO: how to determine this parameter??
+		Boolean multiObjective = false; //TODO: how to determine this parameter??
 		
-		if (!multiObjective){
-			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, 
-					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
-		}else{
-			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, 
-					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
-		}
+		String optimalConfig = doOptimization(modelURI, currentConfig, qualityAttributePath, 
+				alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
+				alert.getConditions().get(0).getValue() /*alertThresholdValue*/, 
+				multiObjective, alert);
+//		if (!multiObjective){
+//			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, 
+//					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
+//					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
+//		}else{
+//			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, 
+//					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
+//					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
+//		}
 		System.out.println(optimalConfig);
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		
@@ -185,7 +189,11 @@ public class ModuleLoader {
 		return path.substring(path.lastIndexOf('/'));
 	}
 	
-	private String doMOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
+	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective, Alert alert) {
+		
+		// get the tenant
+		Parameters.TENANT = Tenants.valueOf(alert.getTenant());
+		
 		if (!modelURI.isEmpty())
 			Parameters.GRAMMAR_FILE = modelURI;
 		
@@ -197,46 +205,83 @@ public class ModuleLoader {
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue; // 30;
-		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		Parameters.POPULATION_SIZE = 150;
-		int depth = 15;
-		double probRecursive = 0.05;
-		Parameters.CROSSOVER_RATE = 0.6;
-		Parameters.MUTATION_RATE = 0.2;
-		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-		ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
-		List<Chromosome> solutions = nsgaii.generateSolution();
-		StringBuffer sols = new StringBuffer();
-		for (Chromosome c : solutions){
-			sols.append("[" + c.getConfiguration().toString() + "],");
-		}
-		return sols.toString();
-	}
-	
-	private String doSOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
-		if (!modelURI.isEmpty())
-			Parameters.GRAMMAR_FILE = modelURI;
 		
-		if (!currentConfig.isEmpty())
-			Parameters.CURRENT_CONFIGURATION = currentConfig;
-		
-		if (!qualityAttributePath.isEmpty())
-			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
-		
-		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.SEARCH_BUDGET = 5;
 		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
 		Parameters.ALERT_ATTRIBUTE = alertAttribute;
-		Parameters.POPULATION_SIZE = 150;
 		int depth = 15;
 		double probRecursive = 0.005;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
-		List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
-		eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
-		System.out.println(solution.getConfiguration().toString());
-		return solution.getConfiguration().toString();
+		String optimalConfiguration = "";
+		if (multiObjective){
+			ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
+			List<Chromosome> solutions = nsgaii.generateSolution();
+			StringBuffer sols = new StringBuffer();
+			for (Chromosome c : solutions){
+				sols.append("[" + c.getConfiguration().toString() + "],");
+			}
+			optimalConfiguration = sols.toString();
+		}else{
+			SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
+			List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
+			eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
+			System.out.println(solution.getConfiguration().toString());
+			optimalConfiguration = solution.getConfiguration().toString();
+		}
+		return optimalConfiguration;
 	}
+//	private String doMOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
+//		if (!modelURI.isEmpty())
+//			Parameters.GRAMMAR_FILE = modelURI;
+//		
+//		if (!currentConfig.isEmpty())
+//			Parameters.CURRENT_CONFIGURATION = currentConfig;
+//		
+//		if (!qualityAttributePath.isEmpty())
+//			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
+//		
+//		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
+//		Parameters.SEARCH_BUDGET = 5;
+//		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue; // 30;
+//		Parameters.ALERT_ATTRIBUTE = alertAttribute;
+//		Parameters.POPULATION_SIZE = 150;
+//		int depth = 15;
+//		double probRecursive = 0.05;
+//		Parameters.CROSSOVER_RATE = 0.6;
+//		Parameters.MUTATION_RATE = 0.2;
+//		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
+//		ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
+//		List<Chromosome> solutions = nsgaii.generateSolution();
+//		StringBuffer sols = new StringBuffer();
+//		for (Chromosome c : solutions){
+//			sols.append("[" + c.getConfiguration().toString() + "],");
+//		}
+//		return sols.toString();
+//	}
+//	
+//	private String doSOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
+//		if (!modelURI.isEmpty())
+//			Parameters.GRAMMAR_FILE = modelURI;
+//		
+//		if (!currentConfig.isEmpty())
+//			Parameters.CURRENT_CONFIGURATION = currentConfig;
+//		
+//		if (!qualityAttributePath.isEmpty())
+//			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
+//		
+//		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
+//		Parameters.SEARCH_BUDGET = 5;
+//		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
+//		Parameters.ALERT_ATTRIBUTE = alertAttribute;
+//		Parameters.POPULATION_SIZE = 150;
+//		int depth = 15;
+//		double probRecursive = 0.005;
+//		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
+//		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
+//		List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
+//		eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
+//		System.out.println(solution.getConfiguration().toString());
+//		return solution.getConfiguration().toString();
+//	}
 	
 }

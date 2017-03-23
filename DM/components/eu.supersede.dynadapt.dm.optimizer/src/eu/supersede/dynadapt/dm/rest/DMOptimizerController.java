@@ -135,8 +135,8 @@ public class DMOptimizerController {
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD_FEEDBACK = Double.parseDouble(alertThresholdValue); // 30;
-		Parameters.ALERT_ATTRIBUTE_FEEDBACK = alertAttribute;
+		Parameters.CONSTRAINT_THRESHOLD = Double.parseDouble(alertThresholdValue); // 30;
+		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		Parameters.POPULATION_SIZE = 150;
 		int depth = 15;
 		double probRecursive = 0.05;
@@ -164,8 +164,8 @@ public class DMOptimizerController {
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD_FEEDBACK = Double.parseDouble(alertThresholdValue);
-		Parameters.ALERT_ATTRIBUTE_FEEDBACK = alertAttribute;
+		Parameters.CONSTRAINT_THRESHOLD = Double.parseDouble(alertThresholdValue);
+		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		Parameters.POPULATION_SIZE = 150;
 		int depth = 15;
 		double probRecursive = 0.005;
