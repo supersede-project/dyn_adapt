@@ -50,6 +50,7 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
 import eu.supersede.dynadapt.adapter.system.ModelRepositoryResolver;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
@@ -78,6 +79,8 @@ public class Adapter implements IAdapter {
 	private ModelRepositoryResolver mrr;
 
 	private Map<String, String> modelsLocation;
+	
+	private AdapterKPIComputer kpiComputer = new AdapterKPIComputer();
 
 	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
 	// another one by AdaptationParser
@@ -270,6 +273,8 @@ public class Adapter implements IAdapter {
 			String featureConfigurationId) throws EnactmentException {
 		try {
 
+			kpiComputer.startComputingKPI();
+			
 			// TODO Get BaseModel, original feature configuration and new
 			// feature configuration from Model Repository
 			// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
@@ -318,7 +323,22 @@ public class Adapter implements IAdapter {
 			}
 			
 			//Ask Enactor to enact adapted model
+			log.debug("Invoking enactor for system " + system);
 			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
+			
+			//TODO Store adapted model as current base model in Model Repository
+			log.debug("Storing adapted model as current based model in ModelRepository");
+			//mr.storeBaseModel(model, bmMetadata);
+			
+			//TODO Store new feature configuration model as current current feature configuration in Model Repository
+			log.debug("Storing FC model as current FC model in ModelRepository");
+			//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
+			
+			//TODO Notified back to DM that adaptation actions have been enacted
+			log.debug("Notifing back to DM that adaptation actions have been enacted");
+			
+			kpiComputer.stopComputingKPI();
+			kpiComputer.reportComputedKPI();
 
 		} catch (Exception e) {
 			e.printStackTrace();
