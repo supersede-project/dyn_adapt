@@ -19,7 +19,10 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.dm.optimizer.gp.fitness;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -27,27 +30,28 @@ import org.slf4j.LoggerFactory;
 
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
+import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata.Aggregators;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata;
 
-public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFunction{
+public class ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration extends AbstractFitnessFunction{
 	
-	private static final Logger logger = LoggerFactory.getLogger(ConstrainedSingleObjectiveFitnessFunction.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration.class);
 
 	/**
 	 * @param currentConfig
 	 */
-	public ConstrainedSingleObjectiveFitnessFunction(List<String> currentConfig) {
+	public ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(List<String> currentConfig) {
 		super(currentConfig);		
 	}
 
 
 	@Override
 	protected double[] calculate (List<String> features){
-		
+	
 		List<Properties> attributesOfAllFeatures =  configurationLoader.loadAttributes(features);
 		
 		// create and initialize
-		String costAttribute = "price";
+		String costAttribute = "memory_consumption";
 		double overallCost = 0d;
 		String valueAttribute = "availability";
 		double overallValue = 1d;
@@ -56,10 +60,6 @@ public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFu
 		double overallConstraint = 0d;
 		
 		for (Properties attributes : attributesOfAllFeatures){
-			if (attributes == null){
-				// no quality attributes for some features
-				continue;
-			}
 			double cost = Double.parseDouble(attributes.getProperty(costAttribute));
 			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(costAttribute);
 			double minimum = costAttributeMetadata.getMinimumValue();
@@ -83,7 +83,8 @@ public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFu
 		result[0] = overallCost + overallValue;	// fitness value
 		result[1] = overallConstraint; // constraint value
 		return result;
-	}
+
+}
 	
 	/* (non-Javadoc)
 	 * @see eu.supersede.dynadapt.dm.optimizer.gp.fitness.SingleObjectiveFitnessFunction#isFinished(eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome)
@@ -103,7 +104,7 @@ public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFu
 	
 	@Override
 	public boolean violatesConstraint (Chromosome chromosome){
-		if (chromosome.getOverallConstraint() > Parameters.SOFT_CONSTRAINT_THRESHOLD){
+		if (chromosome.getOverallConstraint() > Parameters.CONSTRAINT_THRESHOLD_FEEDBACK){
 			return true;
 		}else{
 			return false;

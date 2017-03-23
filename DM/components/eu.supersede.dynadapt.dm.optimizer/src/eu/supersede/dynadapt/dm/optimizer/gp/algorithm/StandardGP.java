@@ -28,9 +28,13 @@ import org.slf4j.LoggerFactory;
 
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.Tenants;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.ChromosomeFactory;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunction;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionAtos;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionSiemens;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.FitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.operators.CrossoverFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.operators.MutationFunction;
@@ -64,7 +68,18 @@ public class StandardGP {
 	public StandardGP(String grammarFile, int depth, double probRecursive, List<String> currentConfiguration) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
-		fitnessFunction = new ConstrainedSingleObjectiveFitnessFunction(currentConfiguration);
+		switch(Parameters.TENANT){
+			case FEEDBACK_GATHERING : 
+				fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
+				break;
+			case ATOS:
+				fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionAtos(currentConfiguration);
+				break;
+			case SIEMENS:
+				fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionSiemens(currentConfiguration);
+				break;
+		}
+		
 		selectionFunction = new TournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
 		mutationFunction = new SubtreeMutation(chromosomeFactory.getConfigurationFactory());

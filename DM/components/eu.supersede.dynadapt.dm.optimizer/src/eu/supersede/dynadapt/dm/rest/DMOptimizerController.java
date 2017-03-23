@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.Tenants;
 import eu.supersede.dynadapt.dm.optimizer.gp.algorithm.SteadyStateGP;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
@@ -55,7 +56,7 @@ public class DMOptimizerController {
 			@RequestParam(value="featureConfigurationURI", defaultValue="") String fcURI,
 			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
 			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
-			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) throws Exception {
+			@RequestParam(value="multiObjective", defaultValue="false") boolean multiObjective) throws Exception {
 //		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
 		//Serialize input FC to grammar and QualityAttribute JSON. Pass grammar and quality attributes URIs
 		//modelURI points at generated grammar from Input FM
@@ -134,8 +135,8 @@ public class DMOptimizerController {
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD = Double.parseDouble(alertThresholdValue); // 30;
-		Parameters.ALERT_ATTRIBUTE = alertAttribute;
+		Parameters.CONSTRAINT_THRESHOLD_FEEDBACK = Double.parseDouble(alertThresholdValue); // 30;
+		Parameters.ALERT_ATTRIBUTE_FEEDBACK = alertAttribute;
 		Parameters.POPULATION_SIZE = 150;
 		int depth = 15;
 		double probRecursive = 0.05;
@@ -163,8 +164,8 @@ public class DMOptimizerController {
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD = Double.parseDouble(alertThresholdValue);
-		Parameters.ALERT_ATTRIBUTE = alertAttribute;
+		Parameters.CONSTRAINT_THRESHOLD_FEEDBACK = Double.parseDouble(alertThresholdValue);
+		Parameters.ALERT_ATTRIBUTE_FEEDBACK = alertAttribute;
 		Parameters.POPULATION_SIZE = 150;
 		int depth = 15;
 		double probRecursive = 0.005;
@@ -175,6 +176,5 @@ public class DMOptimizerController {
 		System.out.println(solution.getConfiguration().toString());
 		return solution.getConfiguration().toString();
 	}
-	
 
 }

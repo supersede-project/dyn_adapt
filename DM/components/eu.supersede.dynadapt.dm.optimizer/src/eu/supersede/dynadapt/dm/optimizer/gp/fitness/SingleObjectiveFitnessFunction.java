@@ -33,7 +33,7 @@ import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata.Aggregators;
 
-public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
+public abstract class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	
 	private static final Logger logger = LoggerFactory.getLogger(SingleObjectiveFitnessFunction.class);
 
@@ -72,12 +72,12 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 			unique = false;
 //			logger.debug("Cache size: {} >> Chromsome: {} = {}", fitnessCache.size(), chromosome.getConfiguration().toString(), fitness);
 		}else{
-			List<String> features = Arrays.asList(chromosome.toString().split(" "));
+//			List<String> features = Arrays.asList(chromosome.toString().split(" "));
 			
-			double[] result = calculate(features);
+			calculate(chromosome.toFeatureList());
 			
-			chromosome.setFitness(result[0]);
-			chromosome.setOverallConstraint(result[1]);
+//			chromosome.setFitness(result[0]);
+//			chromosome.setOverallConstraint(result[1]);
 			// save this fitness in cache
 			cacheFitness(chromosome);
 		}
@@ -85,59 +85,59 @@ public class SingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	}
 
 	
-	protected double[] calculate (List<String> features){
-		
-		List<Properties> allAttributes =  configurationLoader.loadAttributes(features);
-		Map<String, Double> aggregatedValues = new HashMap<String, Double>();
-		for (Properties attributes : allAttributes){
-			for (Entry<String, FeatureAttributeMetadata> entry : featureAttributeMetadata.entrySet()){
-				String attributeName = entry.getKey();
-				double attributeValue = Double.parseDouble(attributes.getProperty(attributeName));
-				
-				FeatureAttributeMetadata attributeMetadata = entry.getValue();
-				
-				// normalize to a value in [0, 1]
-				double minimum = featureAttributeMetadata.get(attributeName).getMinimumValue();
-				double maximum = featureAttributeMetadata.get(attributeName).getMaximumValue();
-				attributeValue = attributeValue / (maximum - minimum);
-				
-				// apply weight
-				double weight = featureAttributeMetadata.get(attributeName).getWeight();
-				attributeValue *= weight;
-				
-				// is minimize? invert to minimization
-				if (!attributeMetadata.isMinimize()){
-					attributeValue = 1d - attributeValue;
-				}
-				
-				// aggregate
-				Aggregators aggregator = featureAttributeMetadata.get(attributeName).getAggregator();
-				if (Aggregators.sum == aggregator){
-					if (aggregatedValues.containsKey(attributeName)){
-						aggregatedValues.put(attributeName, aggregatedValues.get(attributeName) + attributeValue);
-					}else{
-						aggregatedValues.put(attributeName, attributeValue);
-					}
-				} else if (Aggregators.product == aggregator){
-					if (aggregatedValues.containsKey(attributeName)){
-						aggregatedValues.put(attributeName, aggregatedValues.get(attributeName) * attributeValue);
-					}else{
-						aggregatedValues.put(attributeName, attributeValue);
-					}
-				} else {
-					throw new RuntimeException("Unsupported aggregator function for attribute values: " + aggregator);
-				}
-				
-			}
-		}
-		
-		// overall aggregate sum of all attribute values
-		double[] result = {0d, 0d};
-		for (Double v : aggregatedValues.values()){
-			result[0] += v;
-		}
-		return result;
-	}
+//	protected double[] calculate (List<String> features){
+//		
+//		List<Properties> allAttributes =  configurationLoader.loadAttributes(features);
+//		Map<String, Double> aggregatedValues = new HashMap<String, Double>();
+//		for (Properties attributes : allAttributes){
+//			for (Entry<String, FeatureAttributeMetadata> entry : featureAttributeMetadata.entrySet()){
+//				String attributeName = entry.getKey();
+//				double attributeValue = Double.parseDouble(attributes.getProperty(attributeName));
+//				
+//				FeatureAttributeMetadata attributeMetadata = entry.getValue();
+//				
+//				// normalize to a value in [0, 1]
+//				double minimum = featureAttributeMetadata.get(attributeName).getMinimumValue();
+//				double maximum = featureAttributeMetadata.get(attributeName).getMaximumValue();
+//				attributeValue = attributeValue / (maximum - minimum);
+//				
+//				// apply weight
+//				double weight = featureAttributeMetadata.get(attributeName).getWeight();
+//				attributeValue *= weight;
+//				
+//				// is minimize? invert to minimization
+//				if (!attributeMetadata.isMinimize()){
+//					attributeValue = 1d - attributeValue;
+//				}
+//				
+//				// aggregate
+//				Aggregators aggregator = featureAttributeMetadata.get(attributeName).getAggregator();
+//				if (Aggregators.sum == aggregator){
+//					if (aggregatedValues.containsKey(attributeName)){
+//						aggregatedValues.put(attributeName, aggregatedValues.get(attributeName) + attributeValue);
+//					}else{
+//						aggregatedValues.put(attributeName, attributeValue);
+//					}
+//				} else if (Aggregators.product == aggregator){
+//					if (aggregatedValues.containsKey(attributeName)){
+//						aggregatedValues.put(attributeName, aggregatedValues.get(attributeName) * attributeValue);
+//					}else{
+//						aggregatedValues.put(attributeName, attributeValue);
+//					}
+//				} else {
+//					throw new RuntimeException("Unsupported aggregator function for attribute values: " + aggregator);
+//				}
+//				
+//			}
+//		}
+//		
+//		// overall aggregate sum of all attribute values
+//		double[] result = {0d, 0d};
+//		for (Double v : aggregatedValues.values()){
+//			result[0] += v;
+//		}
+//		return result;
+//	}
 	
 //	private double calculateJson (List<String> features){
 //		double result;

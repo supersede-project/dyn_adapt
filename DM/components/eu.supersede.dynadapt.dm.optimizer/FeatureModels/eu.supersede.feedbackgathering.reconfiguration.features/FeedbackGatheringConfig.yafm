@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
   <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <attribute id="a_792369764" name="memory_consumption" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="0.2" minimize="true" objectiveFunctionAggregator="sum"/>
+    <attribute id="a_1832228173" name="response_time" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="0.3" minimize="true" objectiveFunctionAggregator="min"/>
+    <attribute id="a_527915904" name="availability" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="1" weight="0.6" objectiveFunctionAggregator="product"/>
     <feature id="feedbackissue" name="FeedbackIssue" lower="1" upper="1">
       <attribute id="language" name="language" type="string"/>
       <feature id="mechanism" name="Mechanism" lower="1" upper="4">
