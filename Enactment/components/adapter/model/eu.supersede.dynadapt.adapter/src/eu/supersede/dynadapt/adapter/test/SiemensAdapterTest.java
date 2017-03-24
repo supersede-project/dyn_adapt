@@ -23,6 +23,7 @@ import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.selection.SelectionSUPERSEDE;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -86,7 +87,7 @@ public class SiemensAdapterTest {
 			//once Model Repository is available as service.
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActionsFC(
-					SupersedeSystem.SIEMENS.toString(), featureConfigurationId);
+					ModelSystem.Siemens, featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

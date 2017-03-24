@@ -255,8 +255,8 @@ public class PopulateModelRepositoryTest {
 	 * @param extension
 	 * @return
 	 */
-	Map<Path, BasicFileAttributes> getFiles (Path path, String extension){
-		Map<Path, BasicFileAttributes> files=new HashMap<>();
+	Map<Path, BasicFileAttributes> getFiles (Path path, final String extension){
+		final Map<Path, BasicFileAttributes> files=new HashMap<>();
 		try {
 		    Files.walkFileTree(path, new SimpleFileVisitor<Path>(){
 		     @Override

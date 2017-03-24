@@ -38,9 +38,9 @@ public class SteadyStateGPTest {
 		String grammarFile = Parameters.GRAMMAR_FILE;
 		int depth = 6;
 		double probRecursive = 0.1;
-		Parameters.SEARCH_BUDGET = 2;
+		Parameters.SEARCH_BUDGET = 5;
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.POPULATION_SIZE = 10;
+		Parameters.POPULATION_SIZE = 5;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		SteadyStateGP algorithm = new SteadyStateGP(grammarFile, depth, probRecursive, currentConfiguration);
 		assertFalse(algorithm == null);

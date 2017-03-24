@@ -25,9 +25,10 @@ package eu.supersede.dynadapt.adapter;
 import java.util.List;
 
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public interface IAdapter {
-	void enactAdaptationDecisionAction (String systemId, String adaptationDecisionActionId, String featureConfigurationId) throws EnactmentException;
-	void enactAdaptationDecisionActions (String systemId, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws EnactmentException;
-	void enactAdaptationDecisionActionsFC (String systemId, String featureConfigurationId) throws EnactmentException;
+	void enactAdaptationDecisionAction (ModelSystem system, String adaptationDecisionActionId, String featureConfigurationId) throws EnactmentException;
+	void enactAdaptationDecisionActions (ModelSystem system, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws EnactmentException;
+	void enactAdaptationDecisionActionsFC (ModelSystem system, String featureConfigurationId) throws EnactmentException;
 }

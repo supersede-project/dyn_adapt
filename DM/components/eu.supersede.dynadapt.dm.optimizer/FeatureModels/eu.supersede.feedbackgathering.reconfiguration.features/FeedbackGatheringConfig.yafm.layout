@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
-  <mapping value="602 16 185 30">
+  <mapping value="602 16 253 107">
     <key href="FeedbackGatheringConfig.yafm#//@root"/>
   </mapping>
   <mapping value="424 124 138 57">

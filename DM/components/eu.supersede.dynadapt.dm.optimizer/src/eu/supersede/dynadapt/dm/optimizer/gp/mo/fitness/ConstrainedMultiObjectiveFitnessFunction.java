@@ -94,7 +94,7 @@ public class ConstrainedMultiObjectiveFitnessFunction extends AbstractFitnessFun
 		List<Properties> attributesOfAllFeatures =  configurationLoader.loadAttributes(features);
 		
 		// create and initialize
-		String costAttribute = "memory_consumption";
+		String costAttribute = "price";
 		double overallCost = 0d;
 		String valueAttribute = "availability";
 		double overallValue = 1d;

@@ -22,9 +22,8 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -51,6 +50,7 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
 import eu.supersede.dynadapt.adapter.system.ModelRepositoryResolver;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
@@ -59,12 +59,14 @@ import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl;
+import eu.supersede.dynadapt.enactor.factory.EnactorFactory;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class Adapter implements IAdapter {
 	private final static Logger log = LogManager.getLogger(Adapter.class);
@@ -77,6 +79,8 @@ public class Adapter implements IAdapter {
 	private ModelRepositoryResolver mrr;
 
 	private Map<String, String> modelsLocation;
+	
+	private AdapterKPIComputer kpiComputer = new AdapterKPIComputer();
 
 	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
 	// another one by AdaptationParser
@@ -224,9 +228,8 @@ public class Adapter implements IAdapter {
 	}
 	
 	@Override
-	public void enactAdaptationDecisionActionsFC(String systemId, 
+	public void enactAdaptationDecisionActionsFC(ModelSystem system, 
 			String featureConfigurationId) throws EnactmentException {
-		SupersedeSystem system = SupersedeSystem.getByURI(systemId);
 		
 		try {
 		
@@ -246,6 +249,9 @@ public class Adapter implements IAdapter {
 				mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
+			
+			//Ask Enactor to enact adapted model
+			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -255,19 +261,20 @@ public class Adapter implements IAdapter {
 	};
 
 	@Override
-	public void enactAdaptationDecisionAction(String systemId, String adaptationDecisionActionId,
+	public void enactAdaptationDecisionAction(ModelSystem system, String adaptationDecisionActionId,
 			String featureConfigurationId) throws EnactmentException {
 		List<String> adaptationDecisionActionIds = new ArrayList<>();
 		adaptationDecisionActionIds.add (adaptationDecisionActionId);
-		enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
+		enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
 	}
 
 	@Override
-	public void enactAdaptationDecisionActions(String systemId, List<String> adaptationDecisionActionIds,
+	public void enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId) throws EnactmentException {
 		try {
-			SupersedeSystem system = SupersedeSystem.getByURI(systemId);
 
+			kpiComputer.startComputingKPI();
+			
 			// TODO Get BaseModel, original feature configuration and new
 			// feature configuration from Model Repository
 			// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
@@ -314,6 +321,24 @@ public class Adapter implements IAdapter {
 				//mm.saveModel(model.eResource(), uri, ".uml");
 				log.debug("Saved updated model in " + uri);
 			}
+			
+			//Ask Enactor to enact adapted model
+			log.debug("Invoking enactor for system " + system);
+			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
+			
+			//TODO Store adapted model as current base model in Model Repository
+			log.debug("Storing adapted model as current based model in ModelRepository");
+			//mr.storeBaseModel(model, bmMetadata);
+			
+			//TODO Store new feature configuration model as current current feature configuration in Model Repository
+			log.debug("Storing FC model as current FC model in ModelRepository");
+			//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
+			
+			//TODO Notified back to DM that adaptation actions have been enacted
+			log.debug("Notifing back to DM that adaptation actions have been enacted");
+			
+			kpiComputer.stopComputingKPI();
+			kpiComputer.reportComputedKPI();
 
 		} catch (Exception e) {
 			e.printStackTrace();

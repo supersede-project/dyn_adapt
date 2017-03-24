@@ -41,12 +41,16 @@ public class ChromosomeFactory {
 		
 		GPIndividual configuration = getConfigurationFactory().getNewIndividual();
 		
-		while (chromosomeCache.put(configuration.toString().hashCode(), chromosome) != null){
+		while (chromosomeCache.containsKey(configuration.toString().hashCode())){
 			configuration = getConfigurationFactory().getNewIndividual();
 			duplicates++;
+			if (duplicates > Parameters.MAX_DUPLICATE_TRIALS){
+				break;
+			}
 		}
 		chromosome.setConfiguration(configuration);
 		chromosome.setNumberOfObjectives(Parameters.NUM_OBJECTIVES);
+		chromosomeCache.put(configuration.toString().hashCode(), chromosome);
 		
 		return chromosome;
 	}

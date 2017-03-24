@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import eu.fbk.gbtlib.gp.individual.GPAnnotatedIndividualFactory;
 import eu.fbk.gbtlib.gp.individual.GPIndividual;
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 
 public class ChromosomeFactory {
 	private static final Logger logger = LoggerFactory.getLogger(ChromosomeFactory.class);
@@ -44,9 +45,12 @@ public class ChromosomeFactory {
 		Chromosome chromosome = new Chromosome();
 		
 		GPIndividual configuration = getConfigurationFactory().getNewIndividual();
-		while (chromosomeCache.put(configuration.toString().hashCode(), chromosome) != null){
+		while (chromosomeCache.containsKey(configuration.toString().hashCode())){
 			configuration = getConfigurationFactory().getNewIndividual();
 			duplicates++;
+			if (duplicates > Parameters.MAX_DUPLICATE_TRIALS){
+				break;
+			}
 		}
 //		logger.debug("duplicates: {}", duplicates);
 		double fitness = Double.MAX_VALUE;
@@ -55,6 +59,7 @@ public class ChromosomeFactory {
 		chromosome.setConfiguration(configuration);
 		chromosome.setFitness(fitness);
 		chromosome.setOverallConstraint(overallConstraint);
+		chromosomeCache.put(configuration.toString().hashCode(), chromosome);
 		return chromosome;
 	}
 
