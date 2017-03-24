@@ -51,15 +51,27 @@ public class ModelManagerController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String listModels(@PathVariable String modelType,
 							@RequestParam(value = "systemId", required = false) String systemId,
-				            @RequestParam(value = "status", required = false) String status) {
+				            @RequestParam(value = "status", required = false) String status,
+				            @RequestParam(value = "name", required = false) String name,
+				            @RequestParam(value = "url", required = false) String url,
+				            @RequestParam(value = "authorId", required = false) String authorId,
+				            @RequestParam(value = "creationDate", required = false) String creationDate,
+				            @RequestParam(value = "lastModificationDate", required = false) String lastModificationDate,
+				            @RequestParam(value = "fileExtension", required = false) String fileExtension) {
 		
 		List<IModel> models = new ArrayList<>();
 		String response = "";
 		try {
-			if (systemId == null && status == null) models = manager.listAllModels(ModelType.valueOf(modelType));
-			else if (status == null) models = manager.getModels(ModelType.valueOf(modelType), ModelSystem.valueOf(systemId));
-			else if (systemId == null) models = manager.getModels(ModelType.valueOf(modelType), Status.valueOf(status));
-			else models = manager.getModels(ModelType.valueOf(modelType), ModelSystem.valueOf(systemId), Status.valueOf(status));
+			HashMap<String,String> params = new HashMap<>();
+			if (systemId != null) params.put("systemId", systemId);
+			if (status != null) params.put("status", status);
+			if (name != null) params.put("name", name);
+			if (url != null) params.put("url", url);
+			if (authorId != null) params.put("authorId", authorId);
+			if (creationDate != null) params.put("creationDate", creationDate);
+			if (lastModificationDate != null) params.put("lastModificationDate", lastModificationDate);
+			if (fileExtension != null) params.put("fileExtension", fileExtension);
+			models = manager.getModels(ModelType.valueOf(modelType), params);
 		} catch (IllegalArgumentException e) {
 			throw new UnprocessableEntityException();
 		} catch (Exception e) {
