@@ -145,6 +145,15 @@ public class ModelManager implements IModelManager {
 		
 		initCache();
 	}
+	
+	/**
+	 * Creates an instance of ModelManager, associated to a target UML base model defined by its path
+	 * @param targetModelPath path of the associated target UML base model
+	 * @throws Exception
+	 */
+	public ModelManager () throws Exception{
+		this(true);
+	}
 
 	/**
 	 * Creates an instance of ModelManager, associated to a target UML base model defined by its path
@@ -185,6 +194,12 @@ public class ModelManager implements IModelManager {
 	@Override
 	public Resource getTargetModelAsResource(){
 		return targetModelResource;
+	}
+	
+	@Override
+	public void setTargetModel (Model model){
+		//this.targetModelURI = URI.createURI(model.getURI());
+		this.targetModelResource = model.eResource();
 	}
 	
 	@Override

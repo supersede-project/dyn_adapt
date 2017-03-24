@@ -86,7 +86,7 @@ public class SiemensAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String featureConfigurationId = null;
-			adapter.enactAdaptationDecisionActionsFC(
+			adapter.enactAdaptationDecisionActionsForFC(
 					ModelSystem.Siemens, featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();

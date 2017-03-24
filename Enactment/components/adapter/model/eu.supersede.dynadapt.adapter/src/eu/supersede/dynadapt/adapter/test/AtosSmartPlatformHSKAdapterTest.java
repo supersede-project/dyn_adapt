@@ -19,11 +19,11 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AtosSmartPlatformHSKAdapterTest {
 	
-	String baseModelPath;
+//	String baseModelPath;
 	String repository;
-	String originalFeatureConfigPath;
-	String newFeatureConfigPath;
-	String featureModelPath;
+//	String originalFeatureConfigPath;
+//	String newFeatureConfigPath;
+//	String featureModelPath;
 	String repositoryRelativePath;
 	String platformRelativePath;
 	
@@ -57,16 +57,16 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Before
 	public void setUp() throws Exception {
 		setupPlatform();		
-		mm = new ModelManager(baseModelPath); //Base Model loaded here
+		mm = new ModelManager(); 
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
 	}
 
 	private void setupPlatform() {
-		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_smart_base_model.uml";
+//		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_smart_base_model.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/SmartPlatformFC_HSK_LowLoad.yafc";
-		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/SmartPlatformFC_HSK_HighLoad.yafc";
-		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/SmartPlatformFM_HSK.yafm";
+//		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/SmartPlatformFC_HSK_LowLoad.yafc";
+//		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/SmartPlatformFC_HSK_HighLoad.yafc";
+//		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/SmartPlatformFM_HSK.yafm";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 

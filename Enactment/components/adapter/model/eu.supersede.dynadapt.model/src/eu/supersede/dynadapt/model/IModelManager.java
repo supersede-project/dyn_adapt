@@ -60,6 +60,7 @@ public interface IModelManager {
 	 */
 	Model getTargetModel();
 	Resource getTargetModelAsResource();
+	void setTargetModel (Model model);
 
 	/**
 	 * @throws IOException 

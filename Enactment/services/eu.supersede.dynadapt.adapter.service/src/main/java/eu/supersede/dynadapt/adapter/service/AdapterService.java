@@ -21,10 +21,11 @@ import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 @RequestMapping(value="/enactment")
-public class AdapterService implements IAdapter{	
+public class AdapterService {	
 	private final static Logger log = LogManager.getLogger(AdapterService.class);
 	String baseModelPath;
 	String repository;
@@ -81,18 +82,18 @@ public class AdapterService implements IAdapter{
 
 	//FIXME: POST API with no content in request body or request param seems not to be working when dispatched by WSO2 ESB
 	//Therefore this method is not exposed as REST API. This is not a problem because is subsumed by enactAdaptationDecisionActions
-	@Override
+
 	//@RequestMapping(value="/adaptationDecisionAction/{adaptationDecisionActionId}/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionAction(@PathVariable String systemId, @PathVariable String adaptationDecisionActionId,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
-		adapter.enactAdaptationDecisionAction(systemId, adaptationDecisionActionId, featureConfigurationId);
+		adapter.enactAdaptationDecisionAction(ModelSystem.valueOf(systemId), adaptationDecisionActionId, featureConfigurationId);
 	}
 
-	@Override
+
 	@RequestMapping(value="/adaptationDecisionActions/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
-		adapter.enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
+		adapter.enactAdaptationDecisionActions(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationId);
 	}
 	
 	@RequestMapping(value="/ping/{message}", method=RequestMethod.GET)
@@ -100,9 +101,8 @@ public class AdapterService implements IAdapter{
 		return "Pong: " + message;
 	}
 
-	@Override
-	@RequestMapping(value="/adaptationDecisionActionsFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
-	public void enactAdaptationDecisionActionsFC(@PathVariable String systemId, @RequestParam (value="featureConfigurationId") String featureConfigurationId) throws EnactmentException {
-		adapter.enactAdaptationDecisionActionsFC(systemId, featureConfigurationId);
+	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
+	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @RequestParam (value="featureConfigurationId") String featureConfigurationId) throws EnactmentException {
+		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
 }

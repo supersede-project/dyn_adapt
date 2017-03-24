@@ -228,7 +228,7 @@ public class Adapter implements IAdapter {
 	}
 	
 	@Override
-	public void enactAdaptationDecisionActionsFC(ModelSystem system, 
+	public void enactAdaptationDecisionActionsForFC(ModelSystem system, 
 			String featureConfigurationId) throws EnactmentException {
 		
 		try {
@@ -285,7 +285,9 @@ public class Adapter implements IAdapter {
 			//In order to avoid loading it twice, get it from Model Manager
 //			Model baseModel = mrr.getModelForSystem(system,
 //					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
-			Model baseModel = mm.getTargetModel();
+			Model baseModel = mrr.getModelForSystem(system,
+					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+			mm.setTargetModel(baseModel);
 
 			//FIXME featureConfigurationId not used to retrieve the feature configuration
 			//This implementation gets the latest configuration

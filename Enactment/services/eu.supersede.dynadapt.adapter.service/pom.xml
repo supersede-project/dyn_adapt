@@ -128,6 +128,21 @@
     	<version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.Enactor</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.EnactorFactory</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.HypervisorEnactor</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.11</version>
@@ -372,6 +387,52 @@
         <groupId>feedback_library</groupId>
         <artifactId>feedback_library</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+     </dependency>
+     <!-- Acceleo -->
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.acceleo.engine</artifactId>
+        <version>3.6.6.201610060831</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.acceleo.common</artifactId>
+        <version>3.6.6.201610060831</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.acceleo.model</artifactId>
+        <version>3.6.6.201610060831</version>
+     </dependency>     
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.ocl.ecore</artifactId>
+        <version>3.6.0.v20160523-1914</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.ocl</artifactId>
+        <version>3.6.0.v20160523-1914</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.ocl.common</artifactId>
+        <version>1.4.0.v20160521-2033</version>
+     </dependency>    
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.core.runtime</artifactId>
+        <version>3.12.0.v20160606-1342</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.core.contenttype</artifactId>
+        <version>3.5.100.v20160418-1621</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>lpg.runtime.java</artifactId>
+        <version>2.0.17.v201004271640</version>
      </dependency>
   </dependencies>
   
