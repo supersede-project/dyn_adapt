@@ -24,7 +24,7 @@ public class Parameters {
 	public enum Tenants{
 		ATOS, SIEMENS, SENERCON, MONITORING, FEEDBACK_GATHERING
 	}
-	public static Tenants TENANT = Tenants.ATOS; // .FEEDBACK_GATHERING;
+	public static Tenants TENANT = Tenants.FEEDBACK_GATHERING;
 	
 	private static String ATOS_INPUT_DIR = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/atos/";
 	private static String ATOS_OUTPUT_DIR = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/output/atos/";
