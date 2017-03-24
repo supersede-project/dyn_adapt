@@ -72,7 +72,7 @@
   <mapping value="1332 166 45 45">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0"/>
   </mapping>
-  <mapping value="1135 286 45 45">
+  <mapping value="1245 291 45 45">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.3/@groups.0"/>
   </mapping>
   <mapping value="1551 406 45 45">
@@ -84,10 +84,10 @@
   <mapping value="1281 135 149 53">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3"/>
   </mapping>
-  <mapping value="871 278 106 30">
+  <mapping value="735 271 106 30">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.0"/>
   </mapping>
-  <mapping value="1098 278 138 66">
+  <mapping value="1017 277 138 66">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.1"/>
   </mapping>
   <mapping value="1396 278 161 30">
@@ -105,7 +105,7 @@
   <mapping value="924 278 108 53">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.1"/>
   </mapping>
-  <mapping value="1104 278 115 30">
+  <mapping value="1214 283 115 30">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.3"/>
   </mapping>
   <mapping value="1054 398 90 30">
@@ -154,12 +154,8 @@
   <mapping value="1144 166 45 45">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0"/>
   </mapping>
-  <mapping value="728 286 45 45">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.0/@groups.0"/>
-  </mapping>
-  <mapping value="899 286 45 45">
-    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.0/@groups.0"/>
-  </mapping>
+  <mapping value="592 279 45 45"/>
+  <mapping value="899 286 45 45"/>
   <mapping value="1512 406 45 45">
     <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.2/@features.1/@groups.0"/>
   </mapping>
@@ -210,5 +206,8 @@
   </mapping>
   <mapping value="2249 278 161 30">
     <key href="FeatureModel-S1b.yafm#//@root/@features.4/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="765 279 45 45">
+    <key href="FeatureModel-S1b.yafm#//@root/@features.3/@groups.0/@features.0/@groups.0"/>
   </mapping>
 </layout:LayoutData>

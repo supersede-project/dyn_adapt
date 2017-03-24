@@ -1,0 +1,140 @@
+- call the service using the curl from the terminal: 
+
+REST GET:
+
+curl -k -i -H "Content-Type: application/json" "http://localhost:4567/relay/https://nike.erd.siemens.at/supersede/format/"
+
+
+REST POST:
+
+curl -k -i -H "Content-Type: application/json" "http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/format/"  -X POST -d '<?xml version="1.0" standalone="no"?>
+<!DOCTYPE entity PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="supersede-validation-service1-case2" class="ptolemy.actor.TypedCompositeActor">
+    <property name="_createdBy" class="ptolemy.kernel.attributes.VersionAttribute" value="11.0.devel">
+    </property>
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={106, 92, 1080, 632}, maximized=false}">
+    </property>
+    <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[864, 514]">
+    </property>
+    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="0.6527307333457738">
+    </property>
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{454.6328124999997, 253.62703571854303}">
+    </property>
+    <property name="DE Director" class="ptolemy.domains.de.kernel.DEDirector">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[50.0, 115.0]">
+        </property>
+    </property>
+    <property name="enableBackwardTypeInference" class="ptolemy.data.expr.Parameter" value="false">
+    </property>
+    <entity name="VariableSleep" class="ptolemy.actor.lib.VariableSleep">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[625.0, 320.0]">
+        </property>
+    </entity>
+    <entity name="Expression" class="ptolemy.actor.lib.Expression">
+        <property name="expression" class="ptolemy.kernel.util.StringAttribute" value="in*50">
+        </property>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="expression">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+            <property name="displayHeight" class="ptolemy.data.expr.Parameter" value="10">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[145.0, 305.0]">
+        </property>
+        <port name="in" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+    </entity>
+    <entity name="RESTGet" class="srdjan.supersede.extension.RESTGet">
+        <property name="endpoint" class="ptolemy.data.expr.Parameter" value="&quot;http://api.geonames.org/countryInfoJSON?lang=en&amp;country=FR&amp;username=srdjan.stevanetic&quot;">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[795.0, 310.0]">
+        </property>
+    </entity>
+    <entity name="SingleEvent" class="ptolemy.actor.lib.SingleEvent">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-120.0, 270.0]">
+        </property>
+    </entity>
+    <entity name="Recorder" class="ptolemy.actor.lib.Recorder">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[965.0, 320.0]">
+        </property>
+    </entity>
+    <entity name="Gaussian" class="ptolemy.actor.lib.Gaussian">
+        <property name="mean" class="ptolemy.actor.parameters.PortParameter" value="1.0">
+        </property>
+        <property name="standardDeviation" class="ptolemy.actor.parameters.PortParameter" value="0.388">
+        </property>
+        <doc>Create a sequence of gaussian random variables</doc>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[35.0, 305.0]">
+        </property>
+    </entity>
+    <entity name="Round" class="ptolemy.actor.lib.conversions.Round">
+        <property name="function" class="ptolemy.kernel.util.StringAttribute" value="round">
+            <property name="style" class="ptolemy.actor.gui.style.ChoiceStyle">
+                <property name="ceil" class="ptolemy.kernel.util.StringAttribute" value="ceil">
+                </property>
+                <property name="floor" class="ptolemy.kernel.util.StringAttribute" value="floor">
+                </property>
+                <property name="round" class="ptolemy.kernel.util.StringAttribute" value="round">
+                </property>
+                <property name="truncate" class="ptolemy.kernel.util.StringAttribute" value="truncate">
+                </property>
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[425.0, 320.0]">
+        </property>
+    </entity>
+    <entity name="Expression2" class="ptolemy.actor.lib.Expression">
+        <property name="expression" class="ptolemy.kernel.util.StringAttribute" value="(in&lt;0) ? 0 : in">
+        </property>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="expression">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+            <property name="displayHeight" class="ptolemy.data.expr.Parameter" value="10">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[280.0, 305.0]">
+        </property>
+        <port name="in" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+    </entity>
+    <relation name="relation" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation7" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation3" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation8" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="[510.0, 320.0]">
+        </vertex>
+    </relation>
+    <relation name="relation6" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation4" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation2" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <link port="VariableSleep.input" relation="relation8"/>
+    <link port="VariableSleep.output" relation="relation6"/>
+    <link port="VariableSleep.sleepTime" relation="relation8"/>
+    <link port="Expression.output" relation="relation4"/>
+    <link port="Expression.in" relation="relation3"/>
+    <link port="RESTGet.trigger" relation="relation6"/>
+    <link port="RESTGet.output" relation="relation7"/>
+    <link port="SingleEvent.output" relation="relation"/>
+    <link port="Recorder.input" relation="relation7"/>
+    <link port="Gaussian.output" relation="relation3"/>
+    <link port="Gaussian.trigger" relation="relation"/>
+    <link port="Round.input" relation="relation2"/>
+    <link port="Round.output" relation="relation8"/>
+    <link port="Expression2.output" relation="relation2"/>
+    <link port="Expression2.in" relation="relation4"/>
+</entity>'
