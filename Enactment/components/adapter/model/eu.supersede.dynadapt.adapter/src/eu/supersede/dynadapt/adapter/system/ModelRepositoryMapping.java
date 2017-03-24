@@ -77,9 +77,9 @@ public class ModelRepositoryMapping{
 		siemensBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
 				"/models/base/BaseModel-S1.uml");
 		siemensFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
-				"/features/configurations/FeatureConfiguration-S1.yafc");
+				"/features/configurations/FeatureConfiguration-S1c_dm.yafc");
 		siemensFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
-				"/features/configurations/FeatureConfiguration-S1.yafc");
+				"/features/configurations/FeatureConfiguration-S1c_dm.yafc");
 		siemensMapping.put(ResourceType.BASE, siemensBaseModel);
 		siemensMapping.put(ResourceType.FEATURE_CONFIGURATION, siemensFeatureConfiguration);
 	}
