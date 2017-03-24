@@ -3,12 +3,21 @@ package eu.supersede.dynadapt.adapter.system;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Deprecated 
+/**
+ * Use IF:
+ * @Use eu.supersede.integration.api.adaptation.types.ModelSystem
+ * @author yosu
+ * 
+ */
 public enum SupersedeSystem {
 	ATOS ("atos"), 
+	ATOS_HSK ("atos_hsk"), 
 	SIEMENS ("siemens"), 
 	SENERCON ("senercon"), 
 	MONITORING ("monitoring"), 
-	FEEDBACK_GATHERING ("feedback_gathering");
+	FEEDBACK_GATHERING ("feedback_gathering"),
+	HEALTH ("health");
 	
 	private URI uri;
 	
@@ -28,6 +37,8 @@ public enum SupersedeSystem {
 		switch (suri){
 		case "atos":
 			return ATOS;
+		case "atos_hsk":
+			return ATOS_HSK;
 		case "siemens":
 			return SIEMENS;
 		case "senercon":
@@ -36,6 +47,8 @@ public enum SupersedeSystem {
 			return MONITORING;
 		case "feedback_gathering":
 			return FEEDBACK_GATHERING;
+		case "health":
+			return HEALTH;
 		default:
 			return null;
 		}

@@ -24,17 +24,21 @@ package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
@@ -161,10 +165,62 @@ public class ModelRepositoryTest {
 		mr.deleteBaseModel(id);
 	}
 	
+	@Test
+	public void testGetLastEnactedBaseModelForSystem() throws Exception {
+		Model baseModel = mr.getLastEnactedBaseModelForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(baseModel);
+	}
+	
+	@Test
+	public void testGetLastBaseModelForSystem() throws Exception {
+		Model baseModel = mr.getLastBaseModelForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(baseModel);
+	}
+	
+	@Test
+	public void testGetLastEnactedFeatureConfigurationForSystem() throws Exception {
+		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {
+		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetAspectModelsForSystem() throws Exception {
+		List<Aspect> models = mr.getAspectModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(models);
+		Assert.assertTrue(!models.isEmpty());
+	}
+	
+	@Test
+	public void testGetVariantModelsForSystem() throws Exception {
+		List<Model> models = mr.getVariantModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(models);
+		Assert.assertTrue(!models.isEmpty());
+	} 
+	
+	@Test
+	public void testGetProfilesForSystem() throws Exception {
+		List<Profile> profiles = mr.getProfilesForSystem (ModelSystem.Health);
+		Assert.assertNotNull(profiles);
+		Assert.assertTrue(!profiles.isEmpty());
+	} 
+	
+	@Test
+	public void testGetPatternModelsForSystem() throws Exception {
+		List<PatternModel> patterns = mr.getPatternModelsForSystem (ModelSystem.Atos);
+		Assert.assertNotNull(patterns);
+		Assert.assertTrue(!patterns.isEmpty());
+	} 
+	
 	private ModelUpdateMetadata createAdaptatibityModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
-		mum.setTimeStamp("2016-10-20T20:10:30:201");
+		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
 		Map<String, String> values = new HashMap<>();
 		values.put("authorId", "yosu");
@@ -177,7 +233,7 @@ public class ModelRepositoryTest {
 	private ModelUpdateMetadata createBaseModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
-		mum.setTimeStamp("2016-10-20T20:10:30:201");
+		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
 		Map<String, String> values = new HashMap<>();
 		values.put("authorId", "burak");
@@ -191,7 +247,7 @@ public class ModelRepositoryTest {
 		ModelMetadata metadata = new ModelMetadata();
 		
 		metadata.setSender("Adapter");
-		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createAdaptabilityModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
 		
@@ -205,8 +261,8 @@ public class ModelRepositoryTest {
 		
 		am.setName("googleplay_api_googleplay_tool");
 		am.setAuthorId("zavala");
-		am.setCreationDate("2016-10-13 12:54:21.0");
-		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
 		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
 		am.setFeatureId("GooglePlay");
@@ -218,7 +274,7 @@ public class ModelRepositoryTest {
 		ModelMetadata metadata = new ModelMetadata();
 		
 		metadata.setSender("Adapter");
-		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createBaseModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
 		
@@ -232,8 +288,8 @@ public class ModelRepositoryTest {
 		
 		am.setName("ATOS Base Model");
 		am.setAuthorId("yosu");
-		am.setCreationDate("2016-10-13 12:54:21.0");
-		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
 		am.setSystemId(ModelSystem.Atos.getId());
 		am.setStatus("not adapted");

@@ -84,6 +84,16 @@
     		</execution>
   		</executions>
 	  </plugin>
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <excludes>
+            <exclude>**/*FeatureModelSerializerTest.java,**/*FeatureConfigurationBuilderForDMOptimizerTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   
@@ -92,12 +102,40 @@
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
+    <repository>
+        <id>central</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/libs-release</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>snapshots</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/libs-snapshot</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
   </repositories>
   <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
+    <pluginRepository>
+        <id>central</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/plugins-release</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+        <id>snapshots</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/plugins-snapshot</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </pluginRepository>
   </pluginRepositories>
   
   <dependencies>
@@ -144,7 +182,49 @@
         <artifactId>spring-boot-starter-test</artifactId>
         <scope>test</scope>
      </dependency>
-     <!-- SUPERSEDE Eclipse Plugins -->
+     <!-- SUPERSEDE Integration Framework -->
+    <dependency>
+    	<groupId>eu.supersede.if</groupId>
+    	<artifactId>eu.supersede.if.api</artifactId>
+    	<version>0.3.0-SNAPSHOT</version>
+		<exclusions>
+              <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+              </exclusion>
+        </exclusions>
+     </dependency>
+     <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.12</version>
+     </dependency>
+     <dependency>
+    	<groupId>javax.jms</groupId>
+    	<artifactId>jms</artifactId>
+    	<version>1.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.apache.geronimo.specs.wso2</groupId>
+    	<artifactId>geronimo-jms_1.1_spec</artifactId>
+    	<version>1.1.0.wso2v1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.andes.wso2</groupId>
+    	<artifactId>andes-client</artifactId>
+    	<version>3.1.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.carbon</groupId>
+    	<artifactId>org.wso2.carbon.logging</artifactId>
+   		<version>4.4.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.securevault</groupId>
+    	<artifactId>org.wso2.securevault</artifactId>
+    	<version>1.0.0-wso2v2</version>
+     </dependency>
+     <!-- SUPERSEDE Eclipse Plugins -->    
      <dependency>
     	<groupId>eu.supersede.dynadapt</groupId>
     	<artifactId>eu.supersede.dynadapt.dm.feature.serializer</artifactId>

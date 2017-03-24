@@ -97,7 +97,7 @@ public class SteadyStateGP extends StandardGP {
 				
 				
 				// add offsprings if they are not worse than their parents
-				if ((!offspring1.violatesConstraint() && !offspring2.violatesConstraint())
+				if ((!fitnessFunction.violatesConstraint(offspring1) && !fitnessFunction.violatesConstraint(offspring2))
 						&& replacementFunction.keepOffspring(parent1, parent2, offspring1, offspring2)){
 					nextGeneration.add(offspring1);
 					nextGeneration.add(offspring2);
@@ -120,10 +120,23 @@ public class SteadyStateGP extends StandardGP {
 	// For testing purposes only!!
 	public static void main (String[] args){
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.SEARCH_BUDGET = 5;
-		Parameters.CONSTRAINT_THRESHOLD = 30;
-		Parameters.POPULATION_SIZE = 150;
-		int depth = 15;
+		Parameters.SEARCH_BUDGET = 10;
+		Parameters.POPULATION_SIZE = 15;
+		
+		switch (Parameters.TENANT){
+		case SIEMENS:
+			Parameters.ALERT_ATTRIBUTE = "availability";
+			Parameters.CONSTRAINT_THRESHOLD = 1;
+			break;
+		case ATOS:
+			Parameters.CONSTRAINT_THRESHOLD = 4; // ART in seconds
+//			Parameters.CONSTRAINT_VIOLATION_PENALTY = 100;
+			break;
+		case FEEDBACK_GATHERING:
+			break;
+		}
+		
+		int depth = 5;
 		double probRecursive = 0.005;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);

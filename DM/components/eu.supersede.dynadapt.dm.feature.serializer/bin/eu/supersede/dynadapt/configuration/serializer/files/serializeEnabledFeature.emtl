@@ -51,7 +51,7 @@
               </source>
               <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fc#//Selection/feature"/>
             </source>
-            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/name"/>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
           </body>
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
           <ifExpr xsi:type="mtl:QueryInvocation" definition="/0/isLeaveSelection">
@@ -333,22 +333,22 @@
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/serializeSelectedFeature">
       <details key="start" value="326"/>
-      <details key="end" value="615"/>
+      <details key="end" value="613"/>
       <details key="line" value="11"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/serializeSelectedFeature/%">
       <details key="start" value="405"/>
-      <details key="end" value="603"/>
+      <details key="end" value="601"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/serializeSelectedFeature/%/%">
       <details key="start" value="465"/>
-      <details key="end" value="596"/>
+      <details key="end" value="594"/>
       <details key="line" value="13"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/serializeSelectedFeature/%/%/%">
       <details key="start" value="508"/>
-      <details key="end" value="536"/>
+      <details key="end" value="534"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/serializeSelectedFeature/%/%/%/%">
@@ -362,8 +362,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/serializeSelectedFeature/%/%/%.1">
-      <details key="start" value="538"/>
-      <details key="end" value="539"/>
+      <details key="start" value="536"/>
+      <details key="end" value="537"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/serializeSelectedFeature/%/%/%.2">
@@ -377,23 +377,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/serializeSelectedFeature/%/%/%.3">
-      <details key="start" value="539"/>
-      <details key="end" value="591"/>
+      <details key="start" value="537"/>
+      <details key="end" value="589"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/serializeSelectedFeature/%/%/%.3/%">
-      <details key="start" value="547"/>
-      <details key="end" value="588"/>
+      <details key="start" value="545"/>
+      <details key="end" value="586"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/serializeSelectedFeature/%/%/%.3/%/aSelectionChild">
-      <details key="start" value="572"/>
-      <details key="end" value="587"/>
+      <details key="start" value="570"/>
+      <details key="end" value="585"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/serializeSelectedFeature/%/%/%.3/%.1">
-      <details key="start" value="590"/>
-      <details key="end" value="591"/>
+      <details key="start" value="588"/>
+      <details key="end" value="589"/>
       <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/serializeSelectedFeature/%/aSelectionChild">
@@ -427,28 +427,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/isLeaveSelection">
-      <details key="start" value="617"/>
-      <details key="end" value="719"/>
+      <details key="start" value="615"/>
+      <details key="end" value="717"/>
       <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/isLeaveSelection/aSelection">
-      <details key="start" value="648"/>
-      <details key="end" value="670"/>
+      <details key="start" value="646"/>
+      <details key="end" value="668"/>
       <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/isLeaveSelection/%">
-      <details key="start" value="684"/>
-      <details key="end" value="716"/>
+      <details key="start" value="682"/>
+      <details key="end" value="714"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/isLeaveSelection/%/%">
-      <details key="start" value="684"/>
-      <details key="end" value="705"/>
+      <details key="start" value="682"/>
+      <details key="end" value="703"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/isLeaveSelection/%/%/aSelection">
-      <details key="start" value="684"/>
-      <details key="end" value="694"/>
+      <details key="start" value="682"/>
+      <details key="end" value="692"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

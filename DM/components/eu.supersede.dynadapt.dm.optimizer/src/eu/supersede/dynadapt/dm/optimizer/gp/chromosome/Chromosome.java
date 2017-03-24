@@ -19,6 +19,9 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.dm.optimizer.gp.chromosome;
 
+import java.util.Arrays;
+import java.util.List;
+
 import eu.fbk.gbtlib.gp.individual.GPIndividual;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 
@@ -52,12 +55,12 @@ public class Chromosome implements Comparable {
 	@Override
 	public int compareTo(Object o) {
 		Chromosome other = (Chromosome)o;
-//		return Double.compare(fitness, other.getFitness());
-		int compare = Double.compare(overallConstraint, other.getOverallConstraint());
-		if (compare == 0){
-			compare = Double.compare(fitness, other.getFitness());
-		}
-		return compare;
+		return Double.compare(fitness, other.getFitness());
+//		int compare = Double.compare(overallConstraint, other.getOverallConstraint());
+//		if (compare == 0){
+//			compare = Double.compare(fitness, other.getFitness());
+//		}
+//		return compare;
 	}
 	
 	@Override
@@ -94,9 +97,13 @@ public class Chromosome implements Comparable {
 		}
 	}
 	
-	public boolean violatesConstraint(){
-		return (overallConstraint > Parameters.CONSTRAINT_THRESHOLD);
+	public List<String> toFeatureList(){
+		return Arrays.asList(toString().split(" "));
 	}
+	
+//	public boolean violatesConstraint(){
+//		return (overallConstraint > Parameters.CONSTRAINT_THRESHOLD);
+//	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

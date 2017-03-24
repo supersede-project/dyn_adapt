@@ -99,4 +99,10 @@ public class AdapterService implements IAdapter{
 	public String ping(@PathVariable String message) {
 		return "Pong: " + message;
 	}
+
+	@Override
+	@RequestMapping(value="/adaptationDecisionActionsFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
+	public void enactAdaptationDecisionActionsFC(@PathVariable String systemId, @RequestParam (value="featureConfigurationId") String featureConfigurationId) throws EnactmentException {
+		adapter.enactAdaptationDecisionActionsFC(systemId, featureConfigurationId);
+	}
 }

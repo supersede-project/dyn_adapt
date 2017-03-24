@@ -7,18 +7,22 @@ import eu.supersede.dynadapt.usecases.atos.patterns.ArtifactManifestationsMatche
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSConfigurationInstancesMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLinkMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstancesMatcher;
+import eu.supersede.dynadapt.usecases.atos.patterns.HSKExecutionEnvironmentsMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.InstanceOfInstanceSpecificationLinkMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationLinkMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.NodeArtifactsMatcher;
+import eu.supersede.dynadapt.usecases.atos.patterns.VMInstancesContainingHSKServicesMatcher;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.ArtifactManifestationsQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.CMSConfigurationInstancesQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.CMSInstanceToConfigurationLinkQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.CMSInstancesQuerySpecification;
+import eu.supersede.dynadapt.usecases.atos.patterns.util.HSKExecutionEnvironmentsQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceSpecificationLinkQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification;
 import eu.supersede.dynadapt.usecases.atos.patterns.util.NodeArtifactsQuerySpecification;
+import eu.supersede.dynadapt.usecases.atos.patterns.util.VMInstancesContainingHSKServicesQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
@@ -39,6 +43,8 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * <li>InstanceSpecificationLink</li>
  * <li>InstanceOfInstanceSpecificationLink</li>
  * <li>CMSInstanceToConfigurationLink</li>
+ * <li>HSKExecutionEnvironments</li>
+ * <li>VMInstancesContainingHSKServices</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -71,6 +77,8 @@ public final class Atos_query_patterns extends BaseGeneratedPatternGroup {
     querySpecifications.add(InstanceSpecificationLinkQuerySpecification.instance());
     querySpecifications.add(InstanceOfInstanceSpecificationLinkQuerySpecification.instance());
     querySpecifications.add(CMSInstanceToConfigurationLinkQuerySpecification.instance());
+    querySpecifications.add(HSKExecutionEnvironmentsQuerySpecification.instance());
+    querySpecifications.add(VMInstancesContainingHSKServicesQuerySpecification.instance());
   }
   
   public NodeArtifactsQuerySpecification getNodeArtifacts() throws ViatraQueryException {
@@ -135,5 +143,21 @@ public final class Atos_query_patterns extends BaseGeneratedPatternGroup {
   
   public CMSInstanceToConfigurationLinkMatcher getCMSInstanceToConfigurationLink(final ViatraQueryEngine engine) throws ViatraQueryException {
     return CMSInstanceToConfigurationLinkMatcher.on(engine);
+  }
+  
+  public HSKExecutionEnvironmentsQuerySpecification getHSKExecutionEnvironments() throws ViatraQueryException {
+    return HSKExecutionEnvironmentsQuerySpecification.instance();
+  }
+  
+  public HSKExecutionEnvironmentsMatcher getHSKExecutionEnvironments(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return HSKExecutionEnvironmentsMatcher.on(engine);
+  }
+  
+  public VMInstancesContainingHSKServicesQuerySpecification getVMInstancesContainingHSKServices() throws ViatraQueryException {
+    return VMInstancesContainingHSKServicesQuerySpecification.instance();
+  }
+  
+  public VMInstancesContainingHSKServicesMatcher getVMInstancesContainingHSKServices(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return VMInstancesContainingHSKServicesMatcher.on(engine);
   }
 }

@@ -33,7 +33,6 @@ jar {
 }
 
 repositories {
-    mavenCentral()
     mavenLocal()
     jcenter()
     maven { url "http://repo.spring.io/libs-snapshot" }

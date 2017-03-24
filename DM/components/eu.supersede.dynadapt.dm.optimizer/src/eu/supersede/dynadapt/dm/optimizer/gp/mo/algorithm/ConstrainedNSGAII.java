@@ -259,8 +259,8 @@ public class ConstrainedNSGAII {
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
 		Parameters.SEARCH_BUDGET = 5;
 		Parameters.CONSTRAINT_THRESHOLD = 30;
-		Parameters.POPULATION_SIZE = 150;
-		int depth = 15;
+		Parameters.POPULATION_SIZE = 5;
+		int depth = 5;
 		double probRecursive = 0.05;
 		Parameters.CROSSOVER_RATE = 0.6;
 		Parameters.MUTATION_RATE = 0.2;

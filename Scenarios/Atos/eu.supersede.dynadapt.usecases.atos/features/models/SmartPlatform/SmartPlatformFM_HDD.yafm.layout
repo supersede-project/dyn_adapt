@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="951 77 45 45">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="951 446 45 45">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="15 621 134 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root"/>
+  </mapping>
+  <mapping value="239 621 132 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="461 559 123 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="674 196 119 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="883 87 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="1063 64 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1063 109 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="883 215 159 129">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="674 565 119 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="883 456 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1063 433 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1063 478 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="883 584 159 129">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="674 911 119 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2"/>
+  </mapping>
+  <mapping value="883 803 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2/@features.0"/>
+  </mapping>
+  <mapping value="1063 802 90 30">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="883 908 159 129">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2/@features.1"/>
+  </mapping>
+  <mapping value="461 1120 179 107">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="1132 169 260 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1132 325 286 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.1/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="1132 247 263 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping/>
+  <mapping value="1020 253 45 45">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.0/@features.1/@groups.0"/>
+  </mapping>
+  <mapping value="1132 616 260 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.1/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="1132 694 263 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.1/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="1132 538 286 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.1/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1020 622 45 45">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.1/@features.1/@groups.0"/>
+  </mapping>
+  <mapping value="1132 940 286 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="1132 862 260 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1132 1018 263 63">
+    <key href="SmartPlatformFM_HDD.yafm#//@root/@features.0/@features.0/@features.2/@features.1/@features.2"/>
+  </mapping>
+</layout:LayoutData>
