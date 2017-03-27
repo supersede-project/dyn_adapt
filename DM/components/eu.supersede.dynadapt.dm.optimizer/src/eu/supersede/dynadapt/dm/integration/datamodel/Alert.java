@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Alert {
 
-	String					ID;
+	String					id;
 	String					applicationID;
 	long					timestamp;
 	String					tenant;
@@ -25,7 +25,7 @@ public class Alert {
 			List<ActionOnAttribute>	actionAttributes,
 			TypeAlert				type) {		
 		super();
-		ID = iD;
+		this.id = iD;
 		this.applicationID = applicationID;
 		this.timestamp = timestamp;
 		this.tenant = tenant;
@@ -36,11 +36,11 @@ public class Alert {
 	}
 	
 	public void setID(String iD) {
-		ID = iD;
+		this.id = iD;
 	}
 	
 	public String getID() {
-		return ID;
+		return this.id;
 	}
 
 	public void setApplicationID(String applicationID) {
