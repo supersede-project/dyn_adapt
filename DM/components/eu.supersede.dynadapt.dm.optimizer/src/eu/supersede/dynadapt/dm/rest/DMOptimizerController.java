@@ -82,8 +82,13 @@ public class DMOptimizerController {
 		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
 		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
-		String modelURI = temp + getFileNameOfPath(fmURI).replace("yafm", "bnf");
-		Parameters.ATTRIBUTE_METADATA = temp + getFileNameOfPath(fmURI).replace("yafm", "json");
+		//FIXME Serializer saves model in a file with name <FM_name>.bnf, not in a file with name <FM_File_name.bnf>
+		//so name needs to be retrieved from FM.getModelName
+		ModelManager mm = new ModelManager();
+		FeatureModel fm = mm.loadFM(fmURI);
+		String modelURI = temp + "/"  + fm.getName() + ".bnf";
+		
+		Parameters.ATTRIBUTE_METADATA = temp + "/"  + fm.getName() + ".json";
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
@@ -97,8 +102,6 @@ public class DMOptimizerController {
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		
 		//Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
-		ModelManager mm = new ModelManager();
-		FeatureModel fm = mm.loadFM(fmURI);
 		List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(fc.getOptimalConfig().split("\\s+")));
 		//Remove empty entries
 		selectedFeatureIds.removeAll(Arrays.asList(null,""));
