@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns" id="eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns">
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.nodeArtifacts"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.artifactManifestations"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.instanceSpecificationsAsManifestationsOfNodeArtifacts"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSConfigurationInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.InstanceOfInstanceSpecificationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.HSKExecutionEnvironments"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.VMInstancesContainingHSKServices"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.VirtualExecutionEnvContainingAComponent"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.HSKVirtualExecutionEnvironments"/>
+    </group>
+  </extension>
+  <extension id="eu.supersede.dynadapt.usecases.health.Health" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.health.Health" id="eu.supersede.dynadapt.usecases.health.Health">
+      <query-specification fqn="eu.supersede.dynadapt.usecases.health.authenticated_system"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.health.authenticated_user"/>
+    </group>
+  </extension>
+  <extension id="patterns.Monitoring_reconfiguration_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:patterns.Monitoring_reconfiguration_queries" id="patterns.Monitoring_reconfiguration_queries">
+      <query-specification fqn="patterns.classes"/>
+      <query-specification fqn="patterns.classGeneralizations"/>
+      <query-specification fqn="patterns.instances"/>
+      <query-specification fqn="patterns.realizations"/>
+      <query-specification fqn="patterns.monitors"/>
+      <query-specification fqn="patterns.twitterTimeSlot"/>
+      <query-specification fqn="patterns.GetMeteorologicalDataServices"/>
+    </group>
+  </extension>
+</plugin>
