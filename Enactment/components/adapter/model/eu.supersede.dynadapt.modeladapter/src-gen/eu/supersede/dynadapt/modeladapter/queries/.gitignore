@@ -5,11 +5,6 @@
 /.Model_adapter.java._trace
 /.InstanceOfInstanceSpecificationLinkMatch.java._trace
 /.InstanceOfInstanceSpecificationLinkMatcher.java._trace
-/InstanceOfInstanceSpecificationLinkMatch.java
-/InstanceOfInstanceSpecificationLinkMatcher.java
-/InstanceSpecificationLinkMatch.java
-/InstanceSpecificationLinkMatcher.java
-/Model_adapter.java
 /.SubClassOfMatch.java._trace
 /.SubClassOfMatcher.java._trace
 /.PropertyTypeMatch.java._trace
@@ -26,13 +21,4 @@
 /.AreThereReferenceToTypeMatcher.java._trace
 /.GetReferenceToTypeMatch.java._trace
 /.GetReferenceToTypeMatcher.java._trace
-/GetReferenceToTypeMatch.java
-/GetReferenceToTypeMatcher.java
-/ParametersWithTypeMatch.java
-/ParametersWithTypeMatcher.java
-/PropertiesWithTypeMatch.java
-/PropertiesWithTypeMatcher.java
-/ReferencesToTypeMatch.java
-/ReferencesToTypeMatcher.java
-/SubClassOfMatch.java
-/SubClassOfMatcher.java
+
