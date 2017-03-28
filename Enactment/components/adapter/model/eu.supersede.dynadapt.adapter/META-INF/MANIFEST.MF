@@ -3,6 +3,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Adapter
 Bundle-SymbolicName: eu.supersede.dynadapt.adapter
 Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: lib/log4j-1.2.17.jar,
+ .
+Export-Package: eu.supersede.dynadapt.adapter,
+ eu.supersede.dynadapt.usecases.atos.patterns,
+ eu.supersede.dynadapt.usecases.atos.patterns.util,
+ eu.supersede.dynadapt.usecases.health,
+ eu.supersede.dynadapt.usecases.health.util,
+ patterns,
+ patterns.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.11.1",
  org.eclipse.emf.ecore;bundle-version="2.11.2",
@@ -21,5 +30,3 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.eclipse.viatra.query.patternlanguage.patternLanguage,
  org.junit;version="4.12.0"
-Export-Package: eu.supersede.dynadapt.adapter
-Bundle-ClassPath: lib/log4j-1.2.17.jar
