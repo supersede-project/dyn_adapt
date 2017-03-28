@@ -59,7 +59,7 @@ pattern getReferenceToType(element : Element, type:Class){
 //	);
 }
 
-pattern getManifestations (client: ExecutionEnvironment, supplier: InstanceSpecification){
+pattern getManifestations (manifestation: Manifestation, client: ExecutionEnvironment, supplier: InstanceSpecification){
 	Manifestation.client (manifestation, client);
 	Manifestation.supplier (manifestation, supplier);
 }
