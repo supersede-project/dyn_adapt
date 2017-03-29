@@ -35,6 +35,7 @@ class ComposableFactory {
 	private final static String INSTANCE = "InstanceSpecificationImpl";
 	private final static String CLASS = "ClassImpl";
 	private final static String OPAQUE_ACTION = "OpaqueActionImpl";
+	private final static String EXECUTABLE_ENVIRONMENT = "ExecutionEnvironmentImpl";
 
 	public static Composable create(Element element, IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints) {
 		Composable composable = null;
@@ -48,6 +49,9 @@ class ComposableFactory {
 			break;
 		case OPAQUE_ACTION:
 			composable = new ComposableOpaqueAction();
+			break;
+		case EXECUTABLE_ENVIRONMENT:
+			composable = new ComposableExecutionEnvironment(modelQuery, baseJointpoints);
 			break;
 		}
 		return composable;

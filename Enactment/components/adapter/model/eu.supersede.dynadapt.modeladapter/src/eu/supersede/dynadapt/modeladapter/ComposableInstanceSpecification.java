@@ -112,32 +112,32 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 //		newSlot.setDefiningFeature((StructuralFeature)definingFeature);
 		
 		// DefiningFeature should be added to base model if it does not exit therein
-		StructuralFeature sf = slot.getDefiningFeature();
-		if (!ModelAdapterUtilities.modelContainsElement(sf, model)){
-			Package pack  = ModelAdapterUtilities.getPackageInModel (sf.getNearestPackage(), model);
-			if (pack != null){
-				log.debug("Adding instance: " + sf.getName() + " in base model in package " + pack.getQualifiedName());
-				
-				//The model is created into the existing in base model
-				ModelAdapterUtilities.createElement((PackageableElement) sf, pack, baseJointpoints, model);
-			}
-		}
-
-		ValueSpecification valueSpecification = slot.getValues().get(0);
-		ValueSpecification newValueSpecification = newSlot.getValues().get(0);
-		
-		if (valueSpecification instanceof InstanceValue){
-			InstanceValue newInstanceValue = (InstanceValue) newSlot.getValues().get(0);
-			InstanceValue instanceValue = (InstanceValue) slot.getValues().get(0);
-			InstanceSpecification newInstance = createValueSpecificationInstance(model, instanceValue);
-			newInstanceValue.setInstance(newInstance);
-		}else if (valueSpecification instanceof LiteralReal){
-			((LiteralReal)newValueSpecification).setValue(((LiteralReal)valueSpecification).getValue());
-		}else if (valueSpecification instanceof LiteralInteger){
-			((LiteralInteger)newValueSpecification).setValue(((LiteralInteger)valueSpecification).getValue());
-		}else if (valueSpecification instanceof LiteralString){
-			((LiteralString)newValueSpecification).setValue(((LiteralString)valueSpecification).getValue());
-		}
+//		StructuralFeature sf = slot.getDefiningFeature();
+//		if (!ModelAdapterUtilities.modelContainsElement(sf, model)){
+//			Package pack  = ModelAdapterUtilities.getPackageInModel (sf.getNearestPackage(), model);
+//			if (pack != null){
+//				log.debug("Adding instance: " + sf.getName() + " in base model in package " + pack.getQualifiedName());
+//				
+//				//The model is created into the existing in base model
+//				ModelAdapterUtilities.createElement((PackageableElement) sf, pack, baseJointpoints, model);
+//			}
+//		}
+//
+//		ValueSpecification valueSpecification = slot.getValues().get(0);
+//		ValueSpecification newValueSpecification = newSlot.getValues().get(0);
+//		
+//		if (valueSpecification instanceof InstanceValue){
+//			InstanceValue newInstanceValue = (InstanceValue) newSlot.getValues().get(0);
+//			InstanceValue instanceValue = (InstanceValue) slot.getValues().get(0);
+//			InstanceSpecification newInstance = createValueSpecificationInstance(model, instanceValue);
+//			newInstanceValue.setInstance(newInstance);
+//		}else if (valueSpecification instanceof LiteralReal){
+//			((LiteralReal)newValueSpecification).setValue(((LiteralReal)valueSpecification).getValue());
+//		}else if (valueSpecification instanceof LiteralInteger){
+//			((LiteralInteger)newValueSpecification).setValue(((LiteralInteger)valueSpecification).getValue());
+//		}else if (valueSpecification instanceof LiteralString){
+//			((LiteralString)newValueSpecification).setValue(((LiteralString)valueSpecification).getValue());
+//		}
 	}
 
 	private InstanceSpecification createValueSpecificationInstance(Model model, InstanceValue instanceValue) {

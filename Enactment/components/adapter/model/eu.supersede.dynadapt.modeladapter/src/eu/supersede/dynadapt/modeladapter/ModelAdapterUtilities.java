@@ -43,13 +43,16 @@ import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionEnvironment;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Parameter;
@@ -173,8 +176,15 @@ public class ModelAdapterUtilities {
 //			return getPrimitiveTypeInModel ((PrimitiveType) element, model);
 		}
 		
+		//Properties
 		if (element instanceof Property && ((Property)element).getAssociation()==null){
 			return getPropertyInModel ((Property)element, model);
+		}
+		
+		//ExecutionEnvironment
+		//FIXME Generalize resolution of different elements
+		if (element instanceof ExecutionEnvironment){
+			return getExecutionEnvironmentInModel ((ExecutionEnvironment)element, model);
 		}
 
 		PackageableElement equivalentElement = null;
@@ -206,6 +216,22 @@ public class ModelAdapterUtilities {
 				if (p.getName().equals(property.getName()) && 
 					p.getType().getQualifiedName().equals(property.getType().getQualifiedName())){
 					result = p;
+					break;
+				}
+			}
+		}
+	
+		return result;
+	}
+	
+	private static ExecutionEnvironment getExecutionEnvironmentInModel(ExecutionEnvironment execEnv, Model model) {
+		ExecutionEnvironment result = null;
+		Node nodeInModel = (Node)getEquivalentElementInModel((NamedElement)execEnv.eContainer(), model);
+		
+		if (nodeInModel != null){
+			for (Node node: nodeInModel.getNestedNodes()){
+				if (node instanceof ExecutionEnvironment && node.getName().equals(execEnv.getName())){
+					result = (ExecutionEnvironment)node;
 					break;
 				}
 			}
@@ -302,25 +328,80 @@ public class ModelAdapterUtilities {
 
 	public static <T extends Element> T createElement(T element, PackageableElement inContainer,
 			HashMap<Stereotype, List<Element>> baseJointpoints, Model model) {
+		
 		if (element instanceof Class) {
-			return (T) createClass((Class) element, (Package) inContainer, baseJointpoints, model);
+			Class clazz = (Class)element;
+			log.debug("Creating class: " + clazz.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createClass(clazz, (Package) inContainer, baseJointpoints, model);
 		} else if (element instanceof Association) {
-			return (T) createAssociation((Association) element, (Class) inContainer, baseJointpoints, model);
+			Association association = (Association)element;
+			log.debug("Creating association: " + association.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createAssociation(association, (Class) inContainer, baseJointpoints, model);
 		} else if (element instanceof Operation) {
-			return (T) createOperation((Operation) element, (Class) inContainer, baseJointpoints, model);
+			Operation operation = (Operation)element;
+			log.debug("Creating operation: " + operation.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createOperation(operation, (Class) inContainer, baseJointpoints, model);
 		} else if (element instanceof Property) {
+			Property property = (Property)element;
+			log.debug("Creating property: " + property.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createProperty((Property) element, (Class) inContainer, baseJointpoints, model);
 		} else if (element instanceof Package) {
+			Package pack = (Package)element;
+			log.debug("Creating package: " + pack.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createPackage((Package) element, (Model) inContainer, baseJointpoints, model);
 		} else if (element instanceof Slot) {
+			Slot slot = (Slot)element;
+			log.debug("Creating slot for defining feature: " + slot.getDefiningFeature().getQualifiedName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createSlot((Slot) element, (InstanceSpecification) inContainer, baseJointpoints, model);
 		} else if (element instanceof InstanceSpecification) {
+			InstanceSpecification instanceSpecification = (InstanceSpecification)element;
+			log.debug("Creating instanceSpecification: " + instanceSpecification.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createInstanceSpecification((InstanceSpecification) element, (Package) inContainer,
+					baseJointpoints, model);
+		}else if (element instanceof Manifestation) {
+			Manifestation manifestation = (Manifestation)element;
+			log.debug("Creating manifestation for utilized element: " + manifestation.getUtilizedElement().getQualifiedName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createManifestation((Manifestation) element, (Package) inContainer,
 					baseJointpoints, model);
 		} else {
 			log.error("UML Type : " + element.getClass().toString() + " not supported for clonning");
 			return null;
 		}
+	}
+
+	private static Manifestation createManifestation(Manifestation manifestation, Package inContainer,
+			HashMap<Stereotype, List<Element>> baseJointpoints, Model model) {
+		Manifestation newManifestation = UMLFactory.eINSTANCE.createManifestation();
+		newManifestation.setName(manifestation.getName());
+		
+		//Resolve clients in base model
+		for (NamedElement client: manifestation.getClients()){
+			NamedElement equivalentClient = (NamedElement)getEquivalentElementInModel(client, model);
+			if (equivalentClient==null){
+				Package pack  = getPackageInModel (client.getNearestPackage(), model);
+				if (pack != null){
+					equivalentClient = createElement(client, pack, baseJointpoints, model);
+				}
+			}
+			newManifestation.getClients().add(equivalentClient);
+		}
+		
+		//Resolve suppliers in base model
+		for (NamedElement supplier: manifestation.getSuppliers()){
+			NamedElement equivalentSupplier = (NamedElement)getEquivalentElementInModel(supplier, model);
+			if (equivalentSupplier==null){
+				Package pack  = getPackageInModel (supplier.getNearestPackage(), model);
+				if (pack != null){
+					equivalentSupplier = createElement(supplier, pack, baseJointpoints, model);
+				}
+			}
+			newManifestation.getSuppliers().add(equivalentSupplier);
+			newManifestation.setUtilizedElement((PackageableElement)equivalentSupplier);
+		}
+		
+		inContainer.getPackagedElements().add(newManifestation);		
+		
+		return newManifestation;
 	}
 
 	private static InstanceSpecification createInstanceSpecification(InstanceSpecification instance,
@@ -351,17 +432,32 @@ public class ModelAdapterUtilities {
 		Slot newSlot = inInstanceSpecification.createSlot();
 		//Resolve defining feature in base model
 		StructuralFeature equivalentDefiningFeature = (StructuralFeature)getEquivalentElementInModel(slot.getDefiningFeature(), model);
+		//FIXME Check that in ComposableInstanceSpecification missing defining features are not checked nor created if missed
+		if (equivalentDefiningFeature == null){
+			Package pack  = getPackageInModel (slot.getDefiningFeature().getNearestPackage(), model);
+			if (pack != null){
+				equivalentDefiningFeature = createElement(slot.getDefiningFeature(), slot.getDefiningFeature().getNearestPackage(), baseJointpoints, model);
+		
+			}
+		}
 		newSlot.setDefiningFeature(equivalentDefiningFeature);
-		createValue(newSlot, vs, model);
+		createValue(newSlot, vs, baseJointpoints, model);
 
 		newSlot.setOwningInstance(inInstanceSpecification);
 		return newSlot;
 	}
 	
-	private static void createValue (Slot slot, ValueSpecification vs, Model model){
+	private static void createValue (Slot slot, ValueSpecification vs, HashMap<Stereotype, List<Element>> baseJointpoints, Model model){
 		ValueSpecification newVs = slot.createValue(vs.getName(), vs.getType(), vs.eClass());
 		if (vs instanceof InstanceValue){
 			InstanceSpecification equivalentInstance = (InstanceSpecification)getEquivalentElementInModel(((InstanceValue) vs).getInstance(), model);
+			//FIXME Check that in ComposableInstanceSpecification missing defining features are not checked nor created if missed
+			if (equivalentInstance == null){
+				Package pack  = getPackageInModel (((InstanceValue) vs).getInstance().getNearestPackage(), model);
+				if (pack != null){
+					equivalentInstance = createElement(((InstanceValue) vs).getInstance(), pack, baseJointpoints, model);
+				}
+			}
 			((InstanceValue)newVs).setInstance(equivalentInstance);
 		}else if (vs instanceof LiteralString){
 			((LiteralString)newVs).setValue(((LiteralString)vs).getValue());
