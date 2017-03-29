@@ -107,7 +107,7 @@ public class DMOptimizerController {
 		selectedFeatureIds.removeAll(Arrays.asList(null,""));
 		//FIXME selected feature ids should be feature ids and no names. Current workaround is get the feature corresponding to the name, and get the id
 		// assuming FM does no contains features with duplicated names: TODO Discuss fix with Fitsum
-		selectedFeatureIds = selectedFeatureIds.stream().map(name->FeatureModelUtility.getFeatureByName(fm, name).getId()).collect(Collectors.toList());
+		//selectedFeatureIds = selectedFeatureIds.stream().map(name->FeatureModelUtility.getFeatureByName(fm, name).getId()).collect(Collectors.toList());
 		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = 
 				new FeatureConfigurationBuilder().buildFeatureConfiguration(fm, selectedFeatureIds);
 		String newConfig = temp + getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
