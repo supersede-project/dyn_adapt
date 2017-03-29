@@ -6,24 +6,30 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/emf/mapping/ecore2xml/org-eclipse-emf-mapping-ecore2xml/2.9.0.v20160526-0356/org-eclipse-emf-mapping-ecore2xml-2.9.0.v20160526-0356.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/uml2/common/org-eclipse-uml2-common/2.1.0.v20161114-0827/org-eclipse-uml2-common-2.1.0.v20161114-0827.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/emf/common/org-eclipse-emf-common/2.12.0.v20160420-0247/org-eclipse-emf-common-2.12.0.v20160420-0247.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/emf/ecore/org-eclipse-emf-ecore/2.12.0.v20160420-0247/org-eclipse-emf-ecore-2.12.0.v20160420-0247.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/uml2/org-eclipse-uml2-uml/5.2.2.v20161114-0827/org-eclipse-uml2-uml-5.2.2.v20161114-0827.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptsupport/ptsupport/11.0/ptsupport-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptolemy/de/ptolemy-de/11.0/ptolemy-de-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptolemy/json/ptolemy-json/11.0/ptolemy-json-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptolemy/org/json/ptolemy-org-json/11.0/ptolemy-org-json-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/emf/ecore/xmi/org-eclipse-emf-ecore-xmi/2.12.0.v20160420-0247/org-eclipse-emf-ecore-xmi-2.12.0.v20160420-0247.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptolemy/domains/ptolemy-domains/11.0/ptolemy-domains-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptolemy/actor/lib/jjs/ptolemy-actor-lib-jjs/11.0/ptolemy-actor-lib-jjs-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ptolemy/supersede/ptolemy-supersede/11.0/ptolemy-supersede-11.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/gwt/servlet/google-gwt-servlet/2.0.4.v20100709-0658/google-gwt-servlet-2.0.4.v20100709-0658.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/servicemix/bundles/org-apache-servicemix-bundles-gwt-user/2.4.0_1/org-apache-servicemix-bundles-gwt-user-2.4.0_1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/uml2/types/org-eclipse-uml2-types/2.0.0.v20161114-0827/org-eclipse-uml2-types-2.0.0.v20161114-0827.jar"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
-		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
