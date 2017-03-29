@@ -12,22 +12,13 @@ import org.junit.Test;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
-import eu.supersede.dynadapt.adapter.system.ModelRepositoryMapping;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
-import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AtosSmartPlatformHSKAdapterTest {
 	
-//	String baseModelPath;
 	String repository;
-//	String originalFeatureConfigPath;
-//	String newFeatureConfigPath;
-//	String featureModelPath;
 	String repositoryRelativePath;
 	String platformRelativePath;
 	
@@ -46,7 +37,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = null;
+			String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";;
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(
@@ -62,15 +53,11 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHugeHSKAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
-						
-			//Computed optimal FC
-			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
-			ModelRepositoryMapping.setModelURI(SupersedeSystem.ATOS_HSK, metadata, "/features/configurations/SmartPlatformFC_HSK_HugeLoad.yafc");
-			
+									
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
-			String featureConfigurationId = null;
+			String featureConfigurationId = "SmartPlatformFC_HSK_HugeLoad";
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(
@@ -90,11 +77,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	}
 
 	private void setupPlatform() {
-//		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/atos_smart_base_model.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-//		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/SmartPlatformFC_HSK_LowLoad.yafc";
-//		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/SmartPlatformFC_HSK_HighLoad.yafc";
-//		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/SmartPlatformFM_HSK.yafm";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 

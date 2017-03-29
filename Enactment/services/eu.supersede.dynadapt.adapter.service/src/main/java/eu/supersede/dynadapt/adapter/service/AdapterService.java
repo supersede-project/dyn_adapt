@@ -27,11 +27,7 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 @RequestMapping(value="/enactment")
 public class AdapterService {	
 	private final static Logger log = LogManager.getLogger(AdapterService.class);
-	String baseModelPath;
 	String repository;
-	String originalFeatureConfigPath;
-	String newFeatureConfigPath;
-	String featureModelPath;
 	String repositoryRelativePath;
 	String platformRelativePath;
 	
@@ -49,21 +45,14 @@ public class AdapterService {
 	
 	private void setUp() throws Exception {
 		setupPlatform();		
-		mm = new ModelManager(baseModelPath);
+		mm = new ModelManager();
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
 		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 	}
 
 	private void setupPlatform() {
 		log.debug("Setting up Adapter Service. Execution path is: " + System.getProperty("user.dir"));
-		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository/models/base/atos_base_model.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository/";
-		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository/features/configurations/AtosNormalCMSCapacityConfiguration.yafc";
-		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
-		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
-	
-//		repositoryRelativePath = "./repository";
-//		platformRelativePath = "../";
 		
 		//These relative paths are compatible for standalone execution within eu.supersede.dynadapt.adapter.service project
 		//and within $TOMCAT/bin, provided above project is copied within $TOMCAT folder

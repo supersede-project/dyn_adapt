@@ -51,6 +51,7 @@ import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
+import eu.supersede.dynadapt.adapter.system.ModelRepositoryMapping;
 import eu.supersede.dynadapt.adapter.system.ModelRepositoryResolver;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
@@ -274,6 +275,12 @@ public class Adapter implements IAdapter {
 		try {
 
 			kpiComputer.startComputingKPI();
+			
+			//FIXME Before FCs computed by DM are stored in the model repository and FC is retrieved by id
+			//We use FC id as name of latest computed one, to override default, located in standard local repository
+			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
+			ModelRepositoryMapping.setModelURI(SupersedeSystem.ATOS_HSK, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
+			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
 			
 			// TODO Get BaseModel, original feature configuration and new
 			// feature configuration from Model Repository
