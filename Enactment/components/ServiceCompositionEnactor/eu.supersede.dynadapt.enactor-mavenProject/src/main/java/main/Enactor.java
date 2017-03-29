@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.internal.impl.ModelImpl;
@@ -18,7 +19,7 @@ import ptolemy.kernel.util.NameDuplicationException;
 import ptolemy.kernel.util.Workspace;
 
 @SuppressWarnings("restriction")
-public class Enactor implements IEnactor{
+public class Enactor implements eu.supersede.dynadapt.enactor.IEnactor{
 
 	public static void main(String[] args) {
 
@@ -186,6 +187,16 @@ public class Enactor implements IEnactor{
 		return "";
 		
 				
+	}
+
+	public void enactAdaptedModel(Model arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void enactAdaptedModel(Model arg0, Model arg1) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

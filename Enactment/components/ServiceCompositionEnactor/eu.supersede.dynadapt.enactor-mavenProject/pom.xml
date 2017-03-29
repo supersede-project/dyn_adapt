@@ -75,15 +75,22 @@
     	<version>2.0.4.v20100709-0658</version>
   	</dependency> 
   	<dependency>
-    <groupId>org.apache.servicemix.bundles</groupId>
-    <artifactId>org-apache-servicemix-bundles-gwt-user</artifactId>
-    <version>2.4.0_1</version>
-</dependency>
-<dependency>
-    <groupId>org.eclipse.uml2.types</groupId>
-    <artifactId>org-eclipse-uml2-types</artifactId>
-    <version>2.0.0.v20161114-0827</version>
-</dependency>
+	    <groupId>org.apache.servicemix.bundles</groupId>
+	    <artifactId>org-apache-servicemix-bundles-gwt-user</artifactId>
+	    <version>2.4.0_1</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.eclipse.uml2.types</groupId>
+	    <artifactId>org-eclipse-uml2-types</artifactId>
+	    <version>2.0.0.v20161114-0827</version>
+	</dependency>
+	<dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.Enactor</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
+	<!-- SUPERSEDE Dynamic Adaptation -->
+	
    	</dependencies>   	
    	<build>           
         <plugins>
