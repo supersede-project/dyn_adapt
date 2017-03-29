@@ -20,3 +20,6 @@
 /.AreThereReferenceToTypeQuerySpecification.java._trace
 /.GetReferenceToTypeProcessor.java._trace
 /.GetReferenceToTypeQuerySpecification.java._trace
+/.GetManifestationsProcessor.java._trace
+/.GetManifestationsQuerySpecification.java._trace
+/.GetReferenceToTypeQuerySpecification.java._trace

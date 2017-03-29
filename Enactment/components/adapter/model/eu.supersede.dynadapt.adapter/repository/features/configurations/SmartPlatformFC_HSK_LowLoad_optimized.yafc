@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_LowLoad" version="1.0.0">
-  <featureModel href="SmartPlatformFM_HSK.yafm#/"/>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFMConf">
+  <featureModel href="../models/SmartPlatformFM_HSK.yafm#/"/>
   <featureModelCopy name="SmartPlatformFM" version="1.0.0" description="">
     <rootFeature id="smartplatform" name="SmartPlatform" description="" lower="1" upper="1">
       <attribute id="a_1176535340" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
@@ -147,52 +147,38 @@
     <attributeValue xsi:type="fc:double" id="a_92600371" value="0.0"/>
     <selection id="physicalserver">
       <selection id="virtualization">
-        <selection id="vm1">
-          <attributeValue xsi:type="fc:string" id="a_1942060137" value="OVP PRT"/>
-          <selection id="services">
-            <selection id="cms"/>
-            <selection id="dss"/>
-          </selection>
-          <selection id="vm1_configuration">
-            <selection id="mediumloadconfigurationinvm1">
-              <attributeValue xsi:type="fc:double" id="a_1130835644" value="200.0"/>
-              <attributeValue xsi:type="fc:double" id="a_440263765" value="5.0"/>
-              <attributeValue xsi:type="fc:double" id="a_687156606" value="100.0"/>
-            </selection>
-          </selection>
-        </selection>
         <selection id="vm3">
-          <attributeValue xsi:type="fc:string" id="a_959179604" value="OVP HAP"/>
+          <attributeValue xsi:type="fc:string" id="a_959179604" value=""/>
           <selection id="services_2524">
             <selection id="hap"/>
           </selection>
           <selection id="vm3_configuration">
             <selection id="lowloadconfigurationinvm3">
-              <attributeValue xsi:type="fc:double" id="a_1601343105" value="20.0"/>
-              <attributeValue xsi:type="fc:double" id="a_751696459" value="5.0"/>
-              <attributeValue xsi:type="fc:double" id="a_1070019319" value="5.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1601343105" value="50.0"/>
+              <attributeValue xsi:type="fc:double" id="a_751696459" value="10.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1070019319" value="10.0"/>
             </selection>
           </selection>
         </selection>
         <selection id="vm2_a">
-          <attributeValue xsi:type="fc:string" id="a_206757797" value="OVP BO"/>
+          <attributeValue xsi:type="fc:string" id="a_206757797" value=""/>
           <selection id="services_13032">
             <selection id="hsk"/>
           </selection>
           <selection id="vm2_a_configuration">
-            <selection id="lowloadconfigurationinvm2_a">
-              <attributeValue xsi:type="fc:integer" id="a_100299600" value="1"/>
-              <attributeValue xsi:type="fc:double" id="a_2097492018" value="2.0"/>
-              <attributeValue xsi:type="fc:double" id="a_1782820732" value="20.0"/>
-              <attributeValue xsi:type="fc:double" id="a_1581965707" value="5.0"/>
-              <attributeValue xsi:type="fc:double" id="a_1863976004" value="5.0"/>
+            <selection id="highloadconfigurationinvm2_a">
+              <attributeValue xsi:type="fc:integer" id="a_56020701" value="2"/>
+              <attributeValue xsi:type="fc:double" id="a_192569596" value="4.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1963815222" value="50.0"/>
+              <attributeValue xsi:type="fc:double" id="a_555057018" value="5.0"/>
+              <attributeValue xsi:type="fc:double" id="a_486046333" value="40.0"/>
             </selection>
           </selection>
         </selection>
       </selection>
       <selection id="physicalconfiguration">
         <attributeValue xsi:type="fc:double" id="a_1912204655" value="4.0"/>
-        <attributeValue xsi:type="fc:double" id="a_903746155" value="16.0"/>
+        <attributeValue xsi:type="fc:double" id="a_903746155" value="4.0"/>
         <attributeValue xsi:type="fc:double" id="a_741824766" value="1024.0"/>
       </selection>
     </selection>

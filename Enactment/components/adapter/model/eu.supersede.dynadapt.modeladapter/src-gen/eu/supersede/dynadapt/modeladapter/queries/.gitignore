@@ -21,4 +21,5 @@
 /.AreThereReferenceToTypeMatcher.java._trace
 /.GetReferenceToTypeMatch.java._trace
 /.GetReferenceToTypeMatcher.java._trace
-
+/.GetManifestationsMatch.java._trace
+/.GetManifestationsMatcher.java._trace
