@@ -6,6 +6,7 @@ import eu.supersede.dynadapt.enactor.HypervisorEnactor.HypervisorEnactor;
 import eu.supersede.dynadapt.enactor.IEnactor;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
+
 public class EnactorFactory {
 	public static IEnactor getEnactorForSystem(ModelSystem system) throws IOException{
 		switch (system){
