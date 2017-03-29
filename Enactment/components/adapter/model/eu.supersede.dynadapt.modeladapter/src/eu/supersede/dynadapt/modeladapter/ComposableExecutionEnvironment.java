@@ -41,7 +41,9 @@ public class ComposableExecutionEnvironment extends ComposableImpl implements Co
 		Set<Manifestation> manifestations = getManifestationForExecutionEnvironment ((ExecutionEnvironment)jointpointVariantModelElement);
 		for (Manifestation manifestation: manifestations){
 			if (!ModelAdapterUtilities.modelContainsElement(manifestation, inBaseModel)){
-				log.debug("Adding detected manifestation in variant model: " + manifestation.getQualifiedName());
+				log.debug("Adding detected manifestation in variant model, from client: " 
+					+ manifestation.getClients().get(0).getQualifiedName()
+					+ " to utilized element: " + manifestation.getUtilizedElement().getQualifiedName());
 				addManifestationInModel (manifestation, inBaseModel);
 			}
 		}

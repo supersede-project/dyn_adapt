@@ -328,22 +328,39 @@ public class ModelAdapterUtilities {
 
 	public static <T extends Element> T createElement(T element, PackageableElement inContainer,
 			HashMap<Stereotype, List<Element>> baseJointpoints, Model model) {
+		
 		if (element instanceof Class) {
-			return (T) createClass((Class) element, (Package) inContainer, baseJointpoints, model);
+			Class clazz = (Class)element;
+			log.debug("Creating class: " + clazz.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createClass(clazz, (Package) inContainer, baseJointpoints, model);
 		} else if (element instanceof Association) {
-			return (T) createAssociation((Association) element, (Class) inContainer, baseJointpoints, model);
+			Association association = (Association)element;
+			log.debug("Creating association: " + association.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createAssociation(association, (Class) inContainer, baseJointpoints, model);
 		} else if (element instanceof Operation) {
-			return (T) createOperation((Operation) element, (Class) inContainer, baseJointpoints, model);
+			Operation operation = (Operation)element;
+			log.debug("Creating operation: " + operation.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
+			return (T) createOperation(operation, (Class) inContainer, baseJointpoints, model);
 		} else if (element instanceof Property) {
+			Property property = (Property)element;
+			log.debug("Creating property: " + property.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createProperty((Property) element, (Class) inContainer, baseJointpoints, model);
 		} else if (element instanceof Package) {
+			Package pack = (Package)element;
+			log.debug("Creating package: " + pack.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createPackage((Package) element, (Model) inContainer, baseJointpoints, model);
 		} else if (element instanceof Slot) {
+			Slot slot = (Slot)element;
+			log.debug("Creating slot for defining feature: " + slot.getDefiningFeature().getQualifiedName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createSlot((Slot) element, (InstanceSpecification) inContainer, baseJointpoints, model);
 		} else if (element instanceof InstanceSpecification) {
+			InstanceSpecification instanceSpecification = (InstanceSpecification)element;
+			log.debug("Creating instanceSpecification: " + instanceSpecification.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createInstanceSpecification((InstanceSpecification) element, (Package) inContainer,
 					baseJointpoints, model);
 		}else if (element instanceof Manifestation) {
+			Manifestation manifestation = (Manifestation)element;
+			log.debug("Creating manifestation for utilized element: " + manifestation.getUtilizedElement().getQualifiedName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
 			return (T) createManifestation((Manifestation) element, (Package) inContainer,
 					baseJointpoints, model);
 		} else {

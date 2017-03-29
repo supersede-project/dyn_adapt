@@ -293,7 +293,7 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.osgi</artifactId>
-        <version>3.11.2.v20161107-1947</version>
+        <version>3.11.3.v20170209-1843</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
