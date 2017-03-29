@@ -77,3 +77,19 @@ pattern VMInstancesContainingHSKServices (instance : InstanceSpecification){
 	Manifestation.client (manifestation, execEnv);
 	Manifestation.supplier (manifestation, instance);
 }
+
+pattern VirtualExecutionEnvContainingAComponent(execEnv : ExecutionEnvironment, instanceClassifier:Component){
+	ExecutionEnvironment.nestedClassifier (execEnv, classifier);
+	Artifact.manifestation (classifier, manifestation);
+	Manifestation.supplier (manifestation, instance);
+	InstanceSpecification.classifier (instance, instanceClassifier);
+}
+
+pattern HSKVirtualExecutionEnvironments (execEnv : ExecutionEnvironment){
+	find VirtualExecutionEnvContainingAComponent(execEnv, component);
+	Component.name (component, name);
+	
+	check (
+		name.equalsIgnoreCase("HSK")
+	);
+}
