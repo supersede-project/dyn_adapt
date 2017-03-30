@@ -104,7 +104,7 @@ public class ModuleLoader {
 
 	public void handleAlert(Alert alert) throws IOException, URISyntaxException
     {		
-		System.out.println("Handling alert: " + alert.getID() + ", " + alert.getApplicationID() + ", "
+		System.out.println("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
 		
 		// collect the parameters for the optimizer		
@@ -118,8 +118,8 @@ public class ModuleLoader {
 		//Map qualityAttributePath to temporary folder where serialized files are placed.
 		
 		//Creating temporary folder for serialized models		
-		String fmURI = obtainFMURI(alert.getApplicationID(), alert.getTenant());
-		String fcURI = obtainNameCurrentConfig(alert.getApplicationID(), alert.getTenant());
+		String fmURI = obtainFMURI(alert.getApplicationId(), alert.getTenant());
+		String fcURI = obtainNameCurrentConfig(alert.getApplicationId(), alert.getTenant());
 		
 		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
 		Path temporaryFolder = Files.createTempDirectory(path, "");

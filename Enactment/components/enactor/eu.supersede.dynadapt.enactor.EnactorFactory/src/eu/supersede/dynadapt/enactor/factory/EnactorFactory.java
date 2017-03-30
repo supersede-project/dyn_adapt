@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.enactor.factory;
 import java.io.IOException;
 
 import eu.supersede.dynadapt.enactor.HypervisorEnactor.HypervisorEnactor;
+import eu.supersede.dynadapt.serviceCompositionEnactor.ServiceCompositionEnactor;
 import eu.supersede.dynadapt.enactor.IEnactor;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
@@ -14,8 +15,7 @@ public class EnactorFactory {
 		case Atos_HSK:
 			return new HypervisorEnactor();
 		case Siemens:
-			//Ask Srdjan to provide Siemens Enactor
-			throw new UnsupportedOperationException();
+			return new ServiceCompositionEnactor();
 		case MonitoringReconfiguration:
 			//Ask Edith to provide Siemens Enactor
 			throw new UnsupportedOperationException();
