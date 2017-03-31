@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
-	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/jsr311-api/1.0/jsr311-api-1.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/jms/jms/1.1/jms-1.1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.adapter/1.0.0-SNAPSHOT/eu.supersede.dynadapt.adapter-1.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.modelrepository/1.0.0-SNAPSHOT/eu.supersede.dynadapt.modelrepository-1.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.model/1.0.0-SNAPSHOT/eu.supersede.dynadapt.model-1.0.0-SNAPSHOT.jar"/>
@@ -168,5 +186,10 @@
 	<classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.ocl.common/1.4.0.v20160521-2033/org.eclipse.ocl.common-1.4.0.v20160521-2033.jar"/>
 	<classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.core.contenttype/3.5.100.v20160418-1621/org.eclipse.core.contenttype-3.5.100.v20160418-1621.jar"/>
 	<classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/lpg.runtime.java/2.0.17.v201004271640/lpg.runtime.java-2.0.17.v201004271640.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -10,6 +10,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,6 +84,11 @@ public class AdapterService {
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
 		adapter.enactAdaptationDecisionActions(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationId);
+	}
+	
+	@RequestMapping(value="/adaptationDecisionActions/system/{systemId}", method=RequestMethod.POST)
+	public void enactAdaptationDecisionActionsInFCasString(@PathVariable String systemId, @RequestParam (value="fc") String featureConfigurationAsString, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds) throws EnactmentException {
+		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationAsString);
 	}
 	
 	@RequestMapping(value="/ping/{message}", method=RequestMethod.GET)

@@ -70,29 +70,29 @@ public class ATOSAdapterTest {
 		}
 	}
 	
-	@Test
-	public void adapt() {
-		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
-			Model baseModel = mm.loadUMLModel(baseModelPath);
-			
-			FeatureConfiguration originalFeatureConfig = mm.loadFeatureConfiguration(originalFeatureConfigPath);
-			FeatureConfiguration newFeatureConfig = mm.loadFeatureConfiguration(newFeatureConfigPath);
-			List<Selection> changedSelections = diffFeatureConfigurations (originalFeatureConfig, newFeatureConfig);
-
-			Model model = ((Adapter)adapter).adapt(changedSelections, baseModel);
-			
-			System.out.println("Saving model");
-			
-			if (model != null){
-				URI uri = URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml");
-				log.debug("Saving updated model in " + uri);
-				save(model, uri);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void adapt() {
+//		try {
+//			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+//			Model baseModel = mm.loadUMLModel(baseModelPath);
+//			
+//			FeatureConfiguration originalFeatureConfig = mm.loadFeatureConfiguration(originalFeatureConfigPath);
+//			FeatureConfiguration newFeatureConfig = mm.loadFeatureConfiguration(newFeatureConfigPath);
+//			List<Selection> changedSelections = diffFeatureConfigurations (originalFeatureConfig, newFeatureConfig);
+//
+//			Model model = ((Adapter)adapter).adapt(changedSelections, baseModel);
+//			
+//			System.out.println("Saving model");
+//			
+//			if (model != null){
+//				URI uri = URI.createURI(repository + modelsLocation.get("base") + "atos_adapted_base_model.uml");
+//				log.debug("Saving updated model in " + uri);
+//				save(model, uri);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@Before
 	public void setUp() throws Exception {

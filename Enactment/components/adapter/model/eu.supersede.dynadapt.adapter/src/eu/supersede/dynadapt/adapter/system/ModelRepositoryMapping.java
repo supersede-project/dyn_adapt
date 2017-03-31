@@ -100,27 +100,27 @@ public class ModelRepositoryMapping{
 		siemensMapping.put(ResourceType.FEATURE_CONFIGURATION, siemensFeatureConfiguration);
 	}
 	
-	public static void setModelURI (SupersedeSystem system, RepositoryMetadata type, String relativeModelPath) throws EnactmentException{
+	public static void setModelURI (ModelSystem system, RepositoryMetadata type, String relativeModelPath) throws EnactmentException{
 		Map<ResourceType, Map<ResourceTimestamp, String>> mapping = null;
 		switch (system) {
-			case ATOS:
+			case Atos:
 				mapping = atosMapping;
 				break;
-			case ATOS_HSK:
+			case Atos_HSK:
 				mapping = atosHskMapping;
 				break;
-			case HEALTH:
+			case Health:
 				mapping = healthMapping;
 				break;
-			case MONITORING:
+			case MonitoringReconfiguration:
 				mapping = monitoringMapping;
 				break;
-			case SIEMENS:
+			case Siemens:
 				mapping = siemensMapping;
 				break;
 			default:
 				//FIXME Other systems not supported
-				throw new EnactmentException("System not supported " + system.getURI());
+				throw new EnactmentException("System not supported " + system.getId());
 		}
 		mapping.get(type.getType()).put(type.getTimestamp(), ModelRepositoryResolver.repositoryRelativePath + relativeModelPath);
 	}

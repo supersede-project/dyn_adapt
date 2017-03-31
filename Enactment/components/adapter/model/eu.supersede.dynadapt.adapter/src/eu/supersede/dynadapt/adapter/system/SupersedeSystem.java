@@ -3,10 +3,11 @@ package eu.supersede.dynadapt.adapter.system;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@Deprecated 
+@Deprecated
 /**
  * Use IF:
  * @Use eu.supersede.integration.api.adaptation.types.ModelSystem
+ * @Deprecated Use IF ModelSystem
  * @author yosu
  * 
  */
