@@ -68,16 +68,21 @@ public class StandardGP {
 	public StandardGP(String grammarFile, int depth, double probRecursive, List<String> currentConfiguration) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
-		switch(Parameters.TENANT){
-			case FEEDBACK_GATHERING : 
-				fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
-				break;
+		switch(Parameters.APPLICATION){
+		case DYNAMIC_ADAPTATION:
+			switch(Parameters.TENANT){
 			case ATOS:
 				fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionAtos(currentConfiguration);
 				break;
 			case SIEMENS:
 				fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionSiemens(currentConfiguration);
 				break;
+		}
+
+			break;
+		case FEEDBACK_GATHERING:
+			fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
+			break;
 		}
 		
 		selectionFunction = new TournamentSelection();

@@ -22,9 +22,15 @@ package eu.supersede.dynadapt.dm.optimizer.gp;
 public class Parameters {
 	// tenant
 	public enum Tenants{
-		ATOS, SIEMENS, SENERCON, MONITORING, FEEDBACK_GATHERING
+		ATOS, SIEMENS, SENERCON
 	}
-	public static Tenants TENANT = Tenants.FEEDBACK_GATHERING;
+	
+	public enum Applications{
+		DYNAMIC_ADAPTATION, MONITORING, FEEDBACK_GATHERING
+	}
+	
+	public static Applications APPLICATION = Applications.FEEDBACK_GATHERING;
+	public static Tenants TENANT = Tenants.SENERCON;
 	
 	private static String ATOS_INPUT_DIR = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/atos/";
 	private static String ATOS_OUTPUT_DIR = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/output/atos/";
@@ -45,35 +51,68 @@ public class Parameters {
 	public static String ATTRIBUTE_METADATA = INPUT_DIR + "SmartPlatformFM.json";
 	
 	static{
-		switch (TENANT){
-		case ATOS:
-			INPUT_DIR = ATOS_INPUT_DIR;
-			OUTPUT_DIR = ATOS_OUTPUT_DIR;
+		switch (APPLICATION){
+		case DYNAMIC_ADAPTATION:
+			switch (TENANT){
+			case ATOS:
+				INPUT_DIR = ATOS_INPUT_DIR;
+				OUTPUT_DIR = ATOS_OUTPUT_DIR;
+				
+				GRAMMAR_FILE = INPUT_DIR + "SmartPlatformFM.bnf";
+				FEATURE_ATTRIBUTE_PATH = INPUT_DIR; // + "attribute_values/";
+				CURRENT_CONFIGURATION = INPUT_DIR + "SmartPlatformFC_HSK_LowLoad.conf";
+				ATTRIBUTE_METADATA = INPUT_DIR + "SmartPlatformFM.json";
+				
+				break;
+			case SIEMENS:
+				INPUT_DIR = SIEMENS_INPUT_DIR;
+				OUTPUT_DIR = SIEMENS_OUTPUT_DIR;
+				
+				GRAMMAR_FILE = INPUT_DIR + "FeatureModel.bnf";
+				FEATURE_ATTRIBUTE_PATH = INPUT_DIR; // + "attribute_values/";
+				CURRENT_CONFIGURATION = INPUT_DIR + "FeatureModel-S1c_dm.conf";
+				ATTRIBUTE_METADATA = INPUT_DIR + "FeatureModel.json";
+				
+				break;
+			}
+			break;
 			
-			GRAMMAR_FILE = INPUT_DIR + "SmartPlatformFM.bnf";
-			FEATURE_ATTRIBUTE_PATH = INPUT_DIR; // + "attribute_values/";
-			CURRENT_CONFIGURATION = INPUT_DIR + "SmartPlatformFC_HSK_LowLoad.conf";
-			ATTRIBUTE_METADATA = INPUT_DIR + "SmartPlatformFM.json";
+		case FEEDBACK_GATHERING: //TODO: Create a directory different for tenance 
+			switch (TENANT){
+			case ATOS:
+				INPUT_DIR = FEEDBACK_INPUT_DIR;
+				OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
+				
+				GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
+				FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+				CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+				ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+				
+				break;
+			case SIEMENS:
+				INPUT_DIR = FEEDBACK_INPUT_DIR;
+				OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
+				
+				GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
+				FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+				CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+				ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+				
+				break;
+			case SENERCON:
+				INPUT_DIR = FEEDBACK_INPUT_DIR;
+				OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
+				
+				GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
+				FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+				CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+				ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+				
+				break;
+			}
 			
 			break;
-		case SIEMENS:
-			INPUT_DIR = SIEMENS_INPUT_DIR;
-			OUTPUT_DIR = SIEMENS_OUTPUT_DIR;
-			
-			GRAMMAR_FILE = INPUT_DIR + "FeatureModel.bnf";
-			FEATURE_ATTRIBUTE_PATH = INPUT_DIR; // + "attribute_values/";
-			CURRENT_CONFIGURATION = INPUT_DIR + "FeatureModel-S1c_dm.conf";
-			ATTRIBUTE_METADATA = INPUT_DIR + "FeatureModel.json";
-			
-			break;
-		case FEEDBACK_GATHERING:
-			INPUT_DIR = FEEDBACK_INPUT_DIR;
-			OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
-			
-			GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
-			FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
-			CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
-			ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+		case MONITORING: //TODO: Complete for monitoring 
 			break;
 		}
 	}
