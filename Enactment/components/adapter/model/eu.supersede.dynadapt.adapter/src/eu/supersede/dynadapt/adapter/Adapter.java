@@ -233,6 +233,8 @@ public class Adapter implements IAdapter {
 			String featureConfigurationId) throws EnactmentException {
 		
 		try {
+			
+			kpiComputer.startComputingKPI();
 		
 			Model baseModel = mm.getTargetModel();
 			
@@ -253,6 +255,20 @@ public class Adapter implements IAdapter {
 			
 			//Ask Enactor to enact adapted model
 			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
+			
+			//TODO Store adapted model as current base model in Model Repository
+			log.debug("Storing adapted model as current based model in ModelRepository");
+			//mr.storeBaseModel(model, bmMetadata);
+			
+			//TODO Store new feature configuration model as current current feature configuration in Model Repository
+			log.debug("Storing FC model as current FC model in ModelRepository");
+			//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
+			
+			//TODO Notified back to DM that adaptation actions have been enacted
+			log.debug("Notifing back to DM that adaptation actions have been enacted");
+			
+			kpiComputer.stopComputingKPI();
+			kpiComputer.reportComputedKPI();
 
 		} catch (Exception e) {
 			e.printStackTrace();

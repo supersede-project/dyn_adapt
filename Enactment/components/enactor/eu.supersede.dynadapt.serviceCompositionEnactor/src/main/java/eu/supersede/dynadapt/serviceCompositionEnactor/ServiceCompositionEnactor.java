@@ -1,9 +1,7 @@
 package eu.supersede.dynadapt.serviceCompositionEnactor;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -11,7 +9,6 @@ import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
-import org.eclipse.uml2.uml.internal.impl.ModelImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 import ptolemy.kernel.util.IllegalActionException;
@@ -188,15 +185,12 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 	}
 
 	public void enactAdaptedModel(Model adaptedModel) throws Exception {
-		// TODO Auto-generated method stub
 		this.umlEnactingModel=adaptedModel;
 		this.getEnactmentCode();
-		
 	}
 
-	public void enactAdaptedModel(Model arg0, Model arg1) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
+		enactAdaptedModel(adaptedModel);
 	}
 
 }

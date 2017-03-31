@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD:Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/.project
-	<name>eu.supersede.dynadapt.serviceCompositionEnactor</name>
+	<name>eu.supersede.dynadapt.enactor.ServiceCompositionEnactor</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -11,32 +10,8 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
-=======
-  <name>ServiceCompositionEnactor</name>
-  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
-  <buildSpec>
-    <buildCommand>
-      <name>org.eclipse.jdt.core.javabuilder</name>
-    </buildCommand>
-    <buildCommand>
-      <name>org.eclipse.m2e.core.maven2Builder</name>
-    </buildCommand>
-  </buildSpec>
-  <natures>
-    <nature>org.eclipse.m2e.core.maven2Nature</nature>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-  </natures>
-</projectDescription>
->>>>>>> 9e2c9e0cb8a4db78294a8f3f9e903fe7c62b21fe:Enactment/components/ServiceCompositionEnactor/eu.supersede.dynadapt.enactor-mavenProject/.project
