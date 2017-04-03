@@ -27,7 +27,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.adapter/1.0.0-SNAPSHOT/eu.supersede.dynadapt.adapter-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.adapter/1.0.0-SNAPSHOT/eu.supersede.dynadapt.adapter-1.0.0-SNAPSHOT.jar" sourcepath="/ADAPTER"/>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.modelrepository/1.0.0-SNAPSHOT/eu.supersede.dynadapt.modelrepository-1.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.model/1.0.0-SNAPSHOT/eu.supersede.dynadapt.model-1.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.aom.dsl/1.0.0-SNAPSHOT/eu.supersede.dynadapt.aom.dsl-1.0.0-SNAPSHOT.jar"/>

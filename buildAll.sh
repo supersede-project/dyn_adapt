@@ -12,7 +12,7 @@ echo -e "\nBuilding Supersede dynamic adaptation adapter...\n"
 cd ../../Enactment/services/eu.supersede.dynadapt.adapter.service/ && mvn eclipse:eclipse && mvn clean package
 
 echo -e "\nBuilding Supersede dynamic adaptation optimizer...\n"
-cd ../../../DM/components/eu.supersede.dynadapt.dm.optimizer/ && mvn clean && mvn package
+cd ../../../DM/components/eu.supersede.dynadapt.dm.optimizer/ && installGPLibDependency.sh && mvn clean && mvn package
 
 echo -e "\nBuilding Supersede dynamic adaptation model repository...\n"
 cd ../../../Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository.manager && mvn clean install
