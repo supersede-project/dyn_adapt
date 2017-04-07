@@ -1,19 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>eu.supersede.dynadapt</groupId>
   <artifactId>eu.supersede.dynadapt.adapter.service</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <name>Adapter Service</name>
+  <description>Enactment model adapter for runtime adaptation</description>
   <packaging>jar</packaging>
   
-  <parent>
+<!-- <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
-  </parent>
+  </parent> -->
 
-  <name>Adapter Service</name>
   <url>http://www.supersede.eu</url>
 
   <properties>
@@ -21,6 +20,8 @@
     <java.version>1.8</java.version>
     <start-class>eu.supersede.dynadapt.adapter.service.AdapterApplication</start-class>
     <tomcat.version>8.5.9</tomcat.version>
+    <spring.version>4.3.4.RELEASE</spring.version>
+    <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
   </properties>
   
   <build>
@@ -31,6 +32,13 @@
                 <configuration>
         			<executable>true</executable>
     			</configuration>
+    			<executions>
+	   				<execution>
+	      				<goals>
+	         				<goal>repackage</goal>
+	      				</goals>
+	   				</execution>
+				</executions>
             </plugin>
         </plugins>
     </build>
@@ -142,11 +150,6 @@
     	<artifactId>eu.supersede.dynadapt.enactor.HypervisorEnactor</artifactId>
     	<version>1.0.0-SNAPSHOT</version>
     </dependency>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.11</version>
-     </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.emf.mwe.utils</artifactId>
@@ -351,20 +354,24 @@
      <dependency>
          <groupId>org.springframework.boot</groupId> 
          <artifactId>spring-boot-starter-web</artifactId> 
+         <version>${spring.boot.version}</version>
      </dependency> 
      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-tomcat</artifactId>
+        <version>${spring.boot.version}</version>
         <scope>provided</scope>
     </dependency>
      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
+        <version>${spring.boot.version}</version>
         <scope>test</scope>
      </dependency>
      <dependency>
         <groupId>com.jayway.jsonpath</groupId>
         <artifactId>json-path</artifactId>
+        <version>2.2.0</version>
         <scope>test</scope>
      </dependency>
      <!-- Integration Framework -->
@@ -421,11 +428,6 @@
      </dependency>    
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
-        <artifactId>org.eclipse.core.runtime</artifactId>
-        <version>3.12.0.v20160606-1342</version>
-     </dependency>
-     <dependency>
-        <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.core.contenttype</artifactId>
         <version>3.5.100.v20160418-1621</version>
      </dependency>
@@ -435,6 +437,5 @@
         <version>2.0.17.v201004271640</version>
      </dependency>
   </dependencies>
-  
   
 </project>
