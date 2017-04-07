@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>DecisionMaking</name>
   <description>Decision making for runtime adaptation</description>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   
   <!--  <parent>
         <groupId>org.springframework.boot</groupId>
@@ -105,13 +105,6 @@
           </excludes>
         </configuration>
       </plugin>
-      <plugin>
-    	<artifactId>maven-war-plugin</artifactId>
-    	<version>2.6</version>
-    	<configuration>
-        	<failOnMissingWebXml>false</failOnMissingWebXml>
-    	</configuration>
-	  </plugin>
     </plugins>
   </build>
   
