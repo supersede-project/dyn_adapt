@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.manager.database;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +42,6 @@ public interface IDatabaseController {
 	 */
 	public void deleteModel(ModelType type, String id) throws Exception;
 	
-	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
-
-	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
-
-	public List<IModel> getModels(ModelType type, Status status) throws Exception;
+	public List<IModel> getModels(ModelType type, HashMap<String,String> params) throws Exception;
 	
 }

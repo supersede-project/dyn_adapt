@@ -196,27 +196,29 @@ public class DatabaseController implements IDatabaseController {
 			
 	}
 	
+	@Override
+	public List<IModel> getModels(ModelType type, HashMap<String,String> params) throws Exception {
+		if (params.containsKey("systemId")) 
+			ModelSystem.valueOf(params.get("systemId"));
+		if (params.containsKey("status"))
+			Status.valueOf(params.get("status"));
+		String sql = "SELECT * FROM " + type;
+		boolean first = true;
+		for (String key : params.keySet()) {
+			if (first) {
+				first = false;
+				sql += " WHERE";
+			} else {
+				sql += " AND";
+			}
+			sql += " " + key + " = '" + params.get(key) + "'";
+		}
+		return queryModels(type, sql);
+	}
+	
 	private void resetDBConnection() throws Exception {
 		DatabaseConnection dbConn = new DatabaseConnection();
 		this.con = dbConn.init();
-	}
-
-	@Override
-	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
-		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "'"; 
-		return queryModels(type, query);
-	}
-	
-	@Override
-	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception {
-		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "' AND status = '" + status + "'";  
-		return queryModels(type, query);
-	}
-	
-	@Override
-	public List<IModel> getModels(ModelType type, Status status) throws Exception {
-		String query = "SELECT * FROM " + type + " WHERE status = '" + status + "'";  
-		return queryModels(type, query);
 	}
 	
 	private List<IModel> queryModels(ModelType type, String query) throws Exception {
