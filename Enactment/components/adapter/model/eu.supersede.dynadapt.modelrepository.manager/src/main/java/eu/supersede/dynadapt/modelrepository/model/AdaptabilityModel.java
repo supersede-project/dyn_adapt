@@ -1,6 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
-public class AdaptabilityModel extends IModel {
+public class AdaptabilityModel extends GenericModel {
 	
 	private String featureId;
 

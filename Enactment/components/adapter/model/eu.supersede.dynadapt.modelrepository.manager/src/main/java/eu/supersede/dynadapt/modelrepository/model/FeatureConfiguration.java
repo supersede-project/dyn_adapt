@@ -1,6 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
-public class FeatureConfiguration extends IModel {
+public class FeatureConfiguration extends GenericModel {
 	
 	private String status;
 	

@@ -132,7 +132,7 @@ public class DatabaseController implements IDatabaseController {
 							dependencies.add(new TypedModelId(modelType, pair[1]));
 						}
 					}
-					model.setDependencies(dependencies);
+					model.setValue("dependencies", dependencies);
 				}
 				else model.setValue(name, rs.getString(name));
 			}
@@ -255,7 +255,7 @@ public class DatabaseController implements IDatabaseController {
 								dependencies.add(new TypedModelId(modelType, pair[1]));
 							}
 						}
-						model.setDependencies(dependencies);
+						model.setValue("dependencies", dependencies);
 					}
 					else model.setValue(name, rs.getString(name));
 				} 
