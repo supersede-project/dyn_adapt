@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public abstract class IModel {
 
 	public void setValue(String property, Object value) throws Exception {
@@ -55,6 +58,27 @@ public abstract class IModel {
 		
 		return fields;
 				
+	}
+	
+	public JSONObject toJson() throws Exception {
+		JSONObject json = new JSONObject();
+		
+		List<Field> fields = getFields();
+		for (Field f: fields) {
+			f.setAccessible(true);
+			if (f.getName().equals("dependencies")) {
+				List<TypedModelId> dependencies = (List<TypedModelId>) f.get(this);
+				JSONArray list = new JSONArray();
+				for (TypedModelId dependency : dependencies) {
+					JSONObject dependencyJson = new JSONObject();
+					dependencyJson.put("modelType", dependency.getModelType());
+					dependencyJson.put("number", dependency.getNumber());
+					list.put(dependencyJson);
+				}
+				json.put("dependencies", list);
+			} else json.put(f.getName(), f.get(this));
+		}
+		return json;
 	}
 	
 }

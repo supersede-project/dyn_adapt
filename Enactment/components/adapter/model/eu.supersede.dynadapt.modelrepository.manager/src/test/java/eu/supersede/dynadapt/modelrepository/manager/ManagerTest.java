@@ -172,7 +172,7 @@ public class ManagerTest {
 				assertEquals(typedModelId.getNumber().toString(), "1");
 			}
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
-			manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
+			//manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
