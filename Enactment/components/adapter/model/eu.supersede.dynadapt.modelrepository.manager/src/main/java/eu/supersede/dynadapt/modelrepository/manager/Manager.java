@@ -8,6 +8,7 @@ import eu.supersede.dynadapt.modelrepository.manager.database.DatabaseController
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class Manager implements IManager {
@@ -65,6 +66,11 @@ public class Manager implements IManager {
 	@Override
 	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception {
 		return dbController.updateModel(type, id, propertySet);
+	}
+
+	@Override
+	public IModel getModel(TypedModelId typedModelId) throws Exception {
+		return dbController.getModel(typedModelId);
 	}
 	
 }

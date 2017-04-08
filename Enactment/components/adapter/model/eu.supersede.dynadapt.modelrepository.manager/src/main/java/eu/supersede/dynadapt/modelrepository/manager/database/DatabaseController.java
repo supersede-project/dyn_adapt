@@ -17,6 +17,7 @@ import com.mysql.jdbc.exceptions.MySQLNonTransientConnectionException;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class DatabaseController implements IDatabaseController {
@@ -45,9 +46,20 @@ public class DatabaseController implements IDatabaseController {
 		String keys = "";
 		String values = "";
 		
-		for (Field f : model.getClass().getDeclaredFields()) {
+		for (Field f : model.getFields()) {
 			f.setAccessible(true);
-			if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
+			//Array of dependencies is parsed in "type/id;type/id;[...]" format
+			if (f.getName().equals("dependencies")) {
+				keys += f.getName() + ",";
+				List<TypedModelId> dependencies = (List<TypedModelId>) f.get(model);
+				String value = "";
+				if (dependencies != null) for (TypedModelId typedModelId: dependencies) value += typedModelId.getModelType() + "/" + typedModelId.getNumber() + ";";
+				if (value.length() > 0) {
+					value = value.substring(0, value.length()-1);
+				} else value = null;
+				values += "\"" + value + "\","; 
+			}
+			else if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
 				keys += f.getName() + ",";
 				values += "\"" + f.get(model) + "\",";
 			}
@@ -79,7 +91,13 @@ public class DatabaseController implements IDatabaseController {
 			
 		return model;
 	}
+	
+	@Override
+	public IModel getModel(TypedModelId typedModelId) throws Exception {
+		return getModel(typedModelId.getModelType(), typedModelId.getNumber());
+	}
 
+	@Override
 	public IModel getModel(ModelType type, String id) throws Exception {
 		
 		Map<String,String> properties = new HashMap<>();
@@ -103,6 +121,18 @@ public class DatabaseController implements IDatabaseController {
 				String name = rsmd.getColumnName(i);
 				if (name.equals("creationDate") || name.equals("lastModificationDate")) {
 					model.setValue(name, rs.getTimestamp(name));
+				} else if (name.equals("dependencies")) {
+					List<TypedModelId> dependencies = new ArrayList<>();
+					String value = rs.getString(name);
+					String[] dependencyArray = value.split(";");
+					for (String s : dependencyArray) {
+						String[] pair = s.split("/");
+						if (pair.length == 2) {
+							ModelType modelType = ModelType.valueOf(pair[0]);
+							dependencies.add(new TypedModelId(modelType, pair[1]));
+						}
+					}
+					model.setDependencies(dependencies);
 				}
 				else model.setValue(name, rs.getString(name));
 			}
@@ -120,6 +150,7 @@ public class DatabaseController implements IDatabaseController {
 		if (model == null) throw new Exception("There is no " + type + " with this id");
 		
 		String newValues = "";
+		//FIXME update dependencies
 		for (String key: propertySet.keySet()) {
 			model.setValue(key, propertySet.get(key));
 			if (!key.equals("modelContent")) {
@@ -211,6 +242,18 @@ public class DatabaseController implements IDatabaseController {
 				if (!name.equals("filePath")) {
 					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
 						model.setValue(name, rs.getTimestamp(name));
+					} else if (name.equals("dependencies")) {
+						List<TypedModelId> dependencies = new ArrayList<>();
+						String value = rs.getString(name);
+						String[] dependencyArray = value.split(";");
+						for (String s : dependencyArray) {
+							String[] pair = s.split("/");
+							if (pair.length == 2) {
+								ModelType modelType = ModelType.valueOf(pair[0]);
+								dependencies.add(new TypedModelId(modelType, pair[1]));
+							}
+						}
+						model.setDependencies(dependencies);
 					}
 					else model.setValue(name, rs.getString(name));
 				} 

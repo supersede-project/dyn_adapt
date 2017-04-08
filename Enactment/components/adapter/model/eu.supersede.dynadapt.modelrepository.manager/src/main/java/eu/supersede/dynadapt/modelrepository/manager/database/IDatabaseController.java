@@ -6,6 +6,7 @@ import java.util.Map;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public interface IDatabaseController {
@@ -24,6 +25,11 @@ public interface IDatabaseController {
 	 * Get attribute values for a given model id and type
 	 */
 	public IModel getModel(ModelType type, String id) throws Exception;
+	
+	/**
+	 * Get model metadata for a given typedModelId
+	 */
+	public IModel getModel(TypedModelId typedModelId) throws Exception;
 	
 	/**
 	 * Updates a model instance

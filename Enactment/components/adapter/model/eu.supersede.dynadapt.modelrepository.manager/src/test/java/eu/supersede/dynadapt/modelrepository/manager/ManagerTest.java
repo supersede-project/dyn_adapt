@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,7 @@ import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ManagerTest {
@@ -60,6 +62,7 @@ public class ManagerTest {
 			assertEquals(newModel.getValue("fileExtension"),".aspect");
 			assertEquals(newModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 			assertEquals(newModel.getValue("featureId"),"Feat1");
+			assertEquals(newModel.getValue("relativePath"), "/path/to/model");
 			System.out.println("Model created successfully (id = " + id + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, id);
 		} catch (Exception e) {
@@ -83,6 +86,7 @@ public class ManagerTest {
 				assertEquals(model.getValue("fileExtension"),".aspect");
 				assertEquals(model.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 				assertEquals(model.getValue("featureId"),"Feat1");
+				assertEquals(model.getValue("relativePath"), "/path/to/model");
 				ids += model.getValue("id") + "/";
 			}
 			System.out.println("Models created successfully (id list = " + ids + ")");
@@ -107,6 +111,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("fileExtension"),".aspect");
 			assertEquals(getModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
 			assertEquals(getModel.getValue("featureId"),"Feat1");
+			assertEquals(getModel.getValue("relativePath"), "/path/to/model");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
@@ -160,6 +165,12 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
 			assertEquals(getModel.getValue("fileExtension"),".uml");
 			assertEquals(getModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
+			assertEquals(getModel.getValue("relativePath"), "/path/to/model");
+			List<TypedModelId> dependencies = getModel.getDependencies();
+			for (TypedModelId typedModelId : dependencies) {
+				assertEquals(typedModelId.getModelType(), ModelType.ProfileModel);
+				assertEquals(typedModelId.getNumber(), "1");
+			}
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
@@ -171,11 +182,12 @@ public class ManagerTest {
 	public void createAndGetModelsBySystemId() {
 		try {
 			IModel model = generateBaseModelData();
-			manager.createModel(ModelType.BaseModel, model);
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
 			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration);
 			for (IModel m : models) {
 				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 			}
+			manager.deleteModel(ModelType.BaseModel, newModel.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -185,12 +197,13 @@ public class ManagerTest {
 	public void createAndGetModelsBySystemIdAndStatus() {
 		try {
 			IModel model = generateBaseModelData();
-			manager.createModel(ModelType.BaseModel, model);
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
 			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, Status.Enacted);
 			for (IModel m : models) {
 				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 				assertEquals(Status.Enacted.toString(), m.getValue("status"));
 			}
+			manager.deleteModel(ModelType.BaseModel, newModel.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -205,6 +218,7 @@ public class ManagerTest {
 		model.setFileExtension(".aspect");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setFeatureId("Feat1");
+		model.setRelativePath("/path/to/model");
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
 		String content = "";
@@ -222,6 +236,8 @@ public class ManagerTest {
 		model.setFileExtension(".uml");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setStatus(Status.Enacted.toString());
+		model.setRelativePath("/path/to/model");
+		model.setDependencies(generateDependenciesList());
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);
 		String content = "";
@@ -229,6 +245,13 @@ public class ManagerTest {
 		content = content.replace("\"","'");
 		model.setModelContent(content);
 		return model;
+	}
+	
+	private List<TypedModelId> generateDependenciesList() {
+		List<TypedModelId> dependencies = new ArrayList<>();
+		dependencies.add(new TypedModelId(ModelType.ProfileModel,"1"));
+		dependencies.add(new TypedModelId(ModelType.ProfileModel,"1"));
+		return dependencies;
 	}
 
 }
