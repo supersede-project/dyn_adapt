@@ -69,9 +69,13 @@ public class Manager implements IManager {
 		dbController.deleteModel(type, id);
 	}
 	
-	@Override
+	/*@Override
 	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception {
 		return dbController.updateModel(type, id, propertySet);
+	}*/
+	
+	public IModel updateModel(ModelType type, String id, IModel model) throws Exception {
+		return dbController.updateModel(type, id, model);
 	}
 
 	@Override

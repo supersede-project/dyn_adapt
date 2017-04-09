@@ -138,16 +138,27 @@ public class ManagerTest {
 	@Test
 	public void createAndUpdateModel() {
 		try {
-			Map<String,String> propertySet = new HashMap<>();
-			propertySet.put("name", "AdaptModelB");
-			propertySet.put("modelContent", "NewContent");
-			IModel model = generateAdaptabilityModelData();
-			IModel createModel = manager.createModel(ModelType.AdaptabilityModel, model);
-			IModel updateModel = manager.updateModel(ModelType.AdaptabilityModel, createModel.getValue("id").toString(), propertySet);
-			assertEquals(updateModel.getValue("name").toString(), "AdaptModelB");
+			IModel model = generateBaseModelData();
+			IModel createModel = manager.createModel(ModelType.BaseModel, model);
+			createModel.setValue("name", "NewName");
+			createModel.setValue("modelContent", "NewContent");
+			createModel.setValue("relativePath", "/new/relative/path");
+			List<TypedModelId> dependencies = new ArrayList<>();
+			dependencies.add(new TypedModelId(ModelType.ProfileModel, "1"));
+			dependencies.add(new TypedModelId(ModelType.BaseModel, "2"));
+			createModel.setValue("dependencies", dependencies);
+			IModel updateModel = manager.updateModel(ModelType.BaseModel, createModel.getValue("id").toString(), createModel);
+			assertEquals(updateModel.getValue("name").toString(), "NewName");
 			assertEquals(updateModel.getValue("modelContent").toString(), "NewContent");
+			assertEquals(updateModel.getValue("relativePath").toString(), "/new/relative/path");
+			List<TypedModelId> updatedDep = (List<TypedModelId>) updateModel.getValue("dependencies");
+			assertEquals(updatedDep.size(), 2);
+			assertEquals(updatedDep.get(0).getModelType(), ModelType.ProfileModel);
+			assertEquals(updatedDep.get(0).getNumber(), "1");
+			assertEquals(updatedDep.get(1).getModelType(), ModelType.BaseModel);
+			assertEquals(updatedDep.get(1).getNumber(), "2");
 			System.out.println("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
-			manager.deleteModel(ModelType.AdaptabilityModel, updateModel.getValue("id").toString());
+			manager.deleteModel(ModelType.BaseModel, updateModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -33,9 +33,14 @@ public interface IDatabaseController {
 	public IModel getModel(TypedModelId typedModelId) throws Exception;
 	
 	/**
+	 * Updates a model instance given a set of key-values
+	 */
+	//public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+	
+	/**
 	 * Updates a model instance
 	 */
-	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+	public IModel updateModel(ModelType type, String id, IModel model) throws Exception;
 	
 	/**
 	 * Deletes a model instance

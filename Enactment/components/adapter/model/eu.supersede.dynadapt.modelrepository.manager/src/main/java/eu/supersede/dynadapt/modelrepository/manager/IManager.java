@@ -32,6 +32,8 @@ public interface IManager {
 		
 	public void deleteModel(ModelType type, String id) throws Exception;
 	
-	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+	//public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+	
+	public IModel updateModel(ModelType type, String id, IModel model) throws Exception;
 
 }

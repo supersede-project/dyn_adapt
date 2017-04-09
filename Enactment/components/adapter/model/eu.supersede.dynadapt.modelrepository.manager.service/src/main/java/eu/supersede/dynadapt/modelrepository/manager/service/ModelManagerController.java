@@ -156,13 +156,10 @@ public class ModelManagerController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String updateModel(@PathVariable String modelType, @PathVariable String modelId, 
 			@RequestBody String input) {
-		JsonObject jsonObject = (new JsonParser()).parse(input).getAsJsonObject();
-		Map<String,String> propertySet = new HashMap<>();
-		for (Entry<String,JsonElement> entry : jsonObject.get("values").getAsJsonObject().entrySet()) {
-			propertySet.put(entry.getKey(), entry.getValue().getAsString());
-		}
+		JSONObject jsonObject = new JSONObject(input);
 		try {
-			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, propertySet);
+			IModel updateModel = jsonToModel(jsonObject.getJSONObject("values"), ModelType.valueOf(modelType));
+			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, updateModel);
 			return model.toJson().toString();
 		} catch (Exception e) {
 			throw new UnprocessableEntityException();

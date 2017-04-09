@@ -144,6 +144,7 @@ public class DatabaseController implements IDatabaseController {
 
 	}
 
+	/*@Override
 	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception {
 		
 		IModel model = getModel(type, id);
@@ -174,8 +175,53 @@ public class DatabaseController implements IDatabaseController {
 		
 		return model;
 		
+	}*/
+	
+	public IModel updateModel(ModelType type, String id, IModel model) throws Exception {
+		
+		IModel oldModel = getModel(type, id);
+		if (oldModel == null) throw new Exception("There is no " + type + " with this id");
+		
+		String values = "";
+		
+		for (Field f : model.getFields()) {
+			f.setAccessible(true);
+			//Array of dependencies is parsed in "type/id;type/id;[...]" format
+			if (f.getName().equals("dependencies")) {
+				List<TypedModelId> dependencies = (List<TypedModelId>) f.get(model);
+				String value = "";
+				if (dependencies != null) for (TypedModelId typedModelId: dependencies) value += typedModelId.getModelType() + "/" + typedModelId.getNumber() + ";";
+				if (value.length() > 0) {
+					value = value.substring(0, value.length()-1);
+					values += " dependencies=\"" + value + "\",";
+				}
+			}
+			else if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
+				if (f.get(model) != null) values += " " + f.getName() + "=\"" + f.get(model) + "\",";
+			}
+		}
+		
+		if (model.getValue("modelContent") != null) {
+			String path = contentFileManager.saveModelContent(model);
+			values += " filePath=\"" + path + "\"";
+		} else values = values.substring(0,values.length()-1);
+		
+		Statement updateStm = con.createStatement();
+		String sql = "UPDATE " + type
+				+ " SET " + values
+				+ " WHERE id = " + id;
+		try {
+			updateStm.executeUpdate(sql);
+		} catch (MySQLNonTransientConnectionException e) {
+			resetDBConnection();
+			updateStm.executeUpdate(sql);
+		}
+		
+		return getModel(type, id);
+		
 	}
 
+	@Override
 	public void deleteModel(ModelType type, String id) throws Exception {
 
 		IModel model = getModel(type,id);
