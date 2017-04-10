@@ -94,7 +94,7 @@ public class AdapterService {
 	}
 
 	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
-	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @RequestParam (value="featureConfigurationId") String featureConfigurationId) throws EnactmentException {
+	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException {
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
 }
