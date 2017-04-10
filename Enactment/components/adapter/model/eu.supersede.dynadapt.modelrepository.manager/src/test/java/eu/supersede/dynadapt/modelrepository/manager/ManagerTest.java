@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.junit.After;
 import org.junit.Before;
@@ -28,6 +29,8 @@ import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ManagerTest {
+	
+	final static Logger logger = Logger.getLogger(ManagerTest.class);
 	
 	Manager manager;
 	
@@ -45,8 +48,8 @@ public class ManagerTest {
 	public void listAdaptabilityModels() {
 		try {
 			List<IModel> models = manager.listAllModels(ModelType.AdaptabilityModel);
-			System.out.println("Number of AdaptabilityModels: " + models.size());
-			for (IModel model : models) System.out.println("\tModel id: " + model.getValue("id"));
+			logger.debug("Number of AdaptabilityModels: " + models.size());
+			for (IModel model : models) logger.debug("\tModel id: " + model.getValue("id"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,7 +69,7 @@ public class ManagerTest {
 			assertEquals(newModel.getValue("systemId").toString(),ModelSystem.MonitoringReconfiguration.toString());
 			assertEquals(newModel.getValue("featureId").toString(),"Feat1");
 			assertEquals(newModel.getValue("relativePath").toString(), "/path/to/model");
-			System.out.println("Model created successfully (id = " + id + ")");
+			logger.debug("Model created successfully (id = " + id + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, id);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +95,7 @@ public class ManagerTest {
 				assertEquals(model.getValue("relativePath").toString(), "/path/to/model");
 				ids += model.getValue("id") + "/";
 			}
-			System.out.println("Models created successfully (id list = " + ids + ")");
+			logger.debug("Models created successfully (id list = " + ids + ")");
 			for (IModel model : models) {
 				manager.deleteModel(ModelType.AdaptabilityModel, model.getValue("id").toString());
 			}
@@ -115,7 +118,7 @@ public class ManagerTest {
 			assertEquals(getModel.getValue("systemId").toString(),ModelSystem.MonitoringReconfiguration.toString());
 			assertEquals(getModel.getValue("featureId").toString(),"Feat1");
 			assertEquals(getModel.getValue("relativePath").toString(), "/path/to/model");
-			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
+			logger.debug("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,7 +134,7 @@ public class ManagerTest {
 			try {
 				manager.getModel(ModelType.AdaptabilityModel, newModel.getValue("id").toString());
 			} catch (Exception e) {
-				System.out.println("Model created and deleted successfully (id = " + newModel.getValue("id") + ")");
+				logger.debug("Model created and deleted successfully (id = " + newModel.getValue("id") + ")");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,7 +163,7 @@ public class ManagerTest {
 			assertEquals(updatedDep.get(0).getNumber(), "1");
 			assertEquals(updatedDep.get(1).getModelType(), ModelType.BaseModel);
 			assertEquals(updatedDep.get(1).getNumber(), "2");
-			System.out.println("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
+			logger.debug("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.BaseModel, updateModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -185,7 +188,7 @@ public class ManagerTest {
 				assertEquals(typedModelId.getModelType().toString(), ModelType.ProfileModel.toString());
 				assertEquals(typedModelId.getNumber().toString(), "1");
 			}
-			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
+			logger.debug("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			//manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();

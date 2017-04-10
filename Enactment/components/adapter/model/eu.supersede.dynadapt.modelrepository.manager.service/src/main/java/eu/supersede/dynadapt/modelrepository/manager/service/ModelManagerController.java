@@ -1,8 +1,5 @@
 package eu.supersede.dynadapt.modelrepository.manager.service;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,13 +7,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,16 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
-import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.FeatureConfiguration;
@@ -46,20 +32,21 @@ import eu.supersede.dynadapt.modelrepository.model.PatternModel;
 import eu.supersede.dynadapt.modelrepository.model.ProfileModel;
 import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.dynadapt.modelrepository.model.VariantModel;
-import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 @RequestMapping("/models")
 public class ModelManagerController {
 	
-	private final String packageRoute = "eu.supersede.dynadapt.modelrepository.model.";
-	
+	final static Logger logger = Logger.getLogger(ModelManagerController.class);
+		
 	Manager manager;
 	
 	public ModelManagerController() {
 		try {
 			manager = new Manager("../repository");
+			logger.debug("Model Manager Controller initialization - SUCCESS");
 		} catch (Exception e) {
+			logger.debug(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -75,7 +62,7 @@ public class ModelManagerController {
 				            @RequestParam(value = "creationDate", required = false) String creationDate,
 				            @RequestParam(value = "lastModificationDate", required = false) String lastModificationDate,
 				            @RequestParam(value = "fileExtension", required = false) String fileExtension,
-				            @RequestParam(value = "relativePath", required = false) String relativePath) {
+				            @RequestParam(value = "relativePath", required = false) String relativePath) throws Exception {
 		
 		List<IModel> models = new ArrayList<>();
 		String response = "";
@@ -93,9 +80,7 @@ public class ModelManagerController {
 			models = manager.getModels(ModelType.valueOf(modelType), params);
 		} catch (IllegalArgumentException e) {
 			throw new UnprocessableEntityException();
-		} catch (Exception e) {
-			throw new ResourceNotFoundException();
-		}
+		} 
 		try {
 			JSONArray array = new JSONArray();
 			for (IModel model : models) {
