@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.URI;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
@@ -199,10 +198,7 @@ public class ModelManagerController {
 		        Date parsedDate = dateFormat.parse(json.get(key).toString());
 		        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
 		        model.setValue(key, timestamp);
-		    } else if (key.equals("relativePath")) {
-				model.setValue("relativePath", URI.createURI(json.get(key).toString())); 
-			} 
-		    else model.setValue(key, json.get(key));
+		    } else model.setValue(key, json.get(key));
 		}
 		return model;
 	}

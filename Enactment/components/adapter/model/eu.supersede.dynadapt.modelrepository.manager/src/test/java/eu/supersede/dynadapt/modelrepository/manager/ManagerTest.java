@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.URI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -148,7 +147,7 @@ public class ManagerTest {
 			IModel createModel = manager.createModel(ModelType.BaseModel, model);
 			createModel.setValue("name", "NewName");
 			createModel.setValue("modelContent", "NewContent");
-			createModel.setValue("relativePath", URI.createURI("/new/relative/path"));
+			createModel.setValue("relativePath", "/new/relative/path");
 			List<TypedModelId> dependencies = new ArrayList<>();
 			dependencies.add(new TypedModelId(ModelType.ProfileModel, "1"));
 			dependencies.add(new TypedModelId(ModelType.BaseModel, "2"));
@@ -236,10 +235,10 @@ public class ManagerTest {
 		try {
 			IModel model = generateBaseModelData();
 			IModel newModel = manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, URI.createURI("/path/to/model"));
+			List<IModel> models = manager.getModels(ModelType.BaseModel,"/path/to/model");
 			assertNotEquals(models.size(), 0);
 			for (IModel m : models) {
-				assertEquals(URI.createURI("/path/to/model"), m.getValue("relativePath"));
+				assertEquals("/path/to/model", m.getValue("relativePath"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -255,7 +254,7 @@ public class ManagerTest {
 		model.setFileExtension(".aspect");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setFeatureId("Feat1");
-		model.setRelativePath(URI.createURI("/path/to/model"));
+		model.setRelativePath("/path/to/model");
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
 		String content = "";
@@ -273,7 +272,7 @@ public class ManagerTest {
 		model.setFileExtension(".uml");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setStatus(Status.Enacted.toString());
-		model.setRelativePath(URI.createURI("/path/to/model"));
+		model.setRelativePath("/path/to/model");
 		model.setDependencies(generateDependenciesList());
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);

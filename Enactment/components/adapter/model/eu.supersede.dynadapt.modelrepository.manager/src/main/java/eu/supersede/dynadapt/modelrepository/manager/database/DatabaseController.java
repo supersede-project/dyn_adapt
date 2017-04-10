@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.URI;
 
 import com.mysql.jdbc.exceptions.MySQLNonTransientConnectionException;
 
@@ -145,9 +144,6 @@ public class DatabaseController implements IDatabaseController {
 					}
 					model.setValue("dependencies", dependencies);
 				}
-				else if (name.equals("relativePath")) {
-					model.setValue("relativePath", URI.createURI(rs.getString(name))); 
-				} 
 				else model.setValue(name, rs.getString(name));
 
 			}
@@ -313,7 +309,7 @@ public class DatabaseController implements IDatabaseController {
 	}
 	
 	@Override
-	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception {
+	public List<IModel> getModels(ModelType type, String relativePath) throws Exception {
 		String query = "SELECT * FROM " + type + " WHERE relativePath = '" + relativePath + "'";
 		return queryModels(type, query);
 	}
@@ -353,10 +349,7 @@ public class DatabaseController implements IDatabaseController {
 							}
 						}
 						model.setValue("dependencies", dependencies);
-					} else if (name.equals("relativePath")) {
-						model.setValue("relativePath", URI.createURI(rs.getString(name))); 
-					} 
-					else model.setValue(name, rs.getString(name));
+					} else model.setValue(name, rs.getString(name));
 				} 
 			}
 			modelList.add(model);
