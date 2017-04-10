@@ -39,7 +39,6 @@ public class ModelToJsonTest {
 		try {
 			List<IModel> models = manager.listAllModels(ModelType.BaseModel);
 			for (IModel model : models) {
-				System.out.println(model.toJson());
 				IModel modelConverted = jsonToModel(model.toJson(), ModelType.BaseModel);
 			}
 		} catch (Exception e) {

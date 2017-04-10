@@ -5,15 +5,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
+import org.apache.log4j.Logger;
 
-import com.google.gson.JsonObject;
 import com.mysql.jdbc.exceptions.MySQLNonTransientConnectionException;
 
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
@@ -23,6 +21,8 @@ import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class DatabaseController implements IDatabaseController {
+	
+	final static Logger logger = Logger.getLogger(DatabaseController.class);
 	
 	private final String packageRoute = "eu.supersede.dynadapt.modelrepository.model.";
 	
@@ -79,7 +79,7 @@ public class DatabaseController implements IDatabaseController {
 		} catch (MySQLNonTransientConnectionException e) {
 			resetDBConnection();
 			stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-		}
+		} 
 		ResultSet rs = stm.getGeneratedKeys();
 		rs.next();
 		int id = rs.getInt(1);
@@ -87,9 +87,17 @@ public class DatabaseController implements IDatabaseController {
 		
 		String path = contentFileManager.saveModelContent(model);
 		
+		stm.close();
 		stm = con.createStatement();
 		sql = "UPDATE " + type + " SET filePath=\"" + path + "\" WHERE id = " + id;
-		stm.executeUpdate(sql);
+		try {
+			stm.executeUpdate(sql);
+		} catch (MySQLNonTransientConnectionException e) {
+			resetDBConnection();
+			stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+		} finally {
+			stm.close();
+		}
 			
 		return model;
 	}
@@ -113,7 +121,7 @@ public class DatabaseController implements IDatabaseController {
 		} catch (MySQLNonTransientConnectionException e) {
 			resetDBConnection();
 			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		}
+		} 
 		ResultSetMetaData rsmd = rs.getMetaData();
 		
 		if (!rs.next()) throw new Exception("There is no " + type + " with this id");
@@ -136,15 +144,13 @@ public class DatabaseController implements IDatabaseController {
 					}
 					model.setValue("dependencies", dependencies);
 				}
-				else if (name.equals("relativePath")) {
-					model.setValue("relativePath", URI.createURI(rs.getString(name))); 
-				} 
 				else model.setValue(name, rs.getString(name));
 
 			}
 		}
 		String content = contentFileManager.loadModelContent(model);
 		model.setValue("modelContent", content);
+		stm.close();
 		
 		return model;
 
@@ -221,6 +227,8 @@ public class DatabaseController implements IDatabaseController {
 		} catch (MySQLNonTransientConnectionException e) {
 			resetDBConnection();
 			updateStm.executeUpdate(sql);
+		} finally {
+			updateStm.close();
 		}
 		
 		return getModel(type, id);
@@ -238,11 +246,20 @@ public class DatabaseController implements IDatabaseController {
 		} catch (MySQLNonTransientConnectionException e) {
 			resetDBConnection();
 			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		}
+		} 
 		if (!rs.next()) throw new Exception("There is no " + type + " for this id");
 			
 		Statement deleteStm = con.createStatement();
-		deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+		
+		try {
+			deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+		} catch (MySQLNonTransientConnectionException e) {
+			resetDBConnection();
+			deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+		} finally {
+			stm.close();
+			deleteStm.close();
+		}
 		
 		contentFileManager.deleteModelContent(model);
 			
@@ -292,7 +309,7 @@ public class DatabaseController implements IDatabaseController {
 	}
 	
 	@Override
-	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception {
+	public List<IModel> getModels(ModelType type, String relativePath) throws Exception {
 		String query = "SELECT * FROM " + type + " WHERE relativePath = '" + relativePath + "'";
 		return queryModels(type, query);
 	}
@@ -310,7 +327,7 @@ public class DatabaseController implements IDatabaseController {
 		} catch (MySQLNonTransientConnectionException e) {
 			resetDBConnection();
 			rs = stm.executeQuery(query);
-		}
+		} 
 		ResultSetMetaData rsmd = rs.getMetaData();
 		
 		while (rs.next()) {
@@ -332,14 +349,12 @@ public class DatabaseController implements IDatabaseController {
 							}
 						}
 						model.setValue("dependencies", dependencies);
-					} else if (name.equals("relativePath")) {
-						model.setValue("relativePath", URI.createURI(rs.getString(name))); 
-					} 
-					else model.setValue(name, rs.getString(name));
+					} else model.setValue(name, rs.getString(name));
 				} 
 			}
 			modelList.add(model);
 		}
+		stm.close();
 			
 		return modelList;
 	}

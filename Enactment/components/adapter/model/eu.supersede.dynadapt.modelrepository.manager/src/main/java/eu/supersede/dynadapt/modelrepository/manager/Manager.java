@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
+import org.apache.log4j.Logger;
 
 import eu.supersede.dynadapt.modelrepository.manager.database.DatabaseController;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
@@ -16,10 +16,13 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class Manager implements IManager {
 	
+	final static Logger logger = Logger.getLogger(Manager.class);
+	
 	DatabaseController dbController;
 
 	public Manager(String modelStoragePath) throws Exception {
 		dbController = new DatabaseController(modelStoragePath);
+		logger.debug("Model repository manager initialization - SUCCESS");
 	}
 	
 	@Override
@@ -67,7 +70,7 @@ public class Manager implements IManager {
 	}
 	
 	@Override
-	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception {
+	public List<IModel> getModels(ModelType type, String relativePath) throws Exception {
 		return dbController.getModels(type, relativePath);
 	}
 

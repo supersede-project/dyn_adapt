@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
-
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
@@ -32,7 +30,7 @@ public interface IManager {
 	
 	public List<IModel> getModels(ModelType type, Status status) throws Exception;
 	
-	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception;
+	public List<IModel> getModels(ModelType type, String relativePath) throws Exception;
 		
 	public void deleteModel(ModelType type, String id) throws Exception;
 	

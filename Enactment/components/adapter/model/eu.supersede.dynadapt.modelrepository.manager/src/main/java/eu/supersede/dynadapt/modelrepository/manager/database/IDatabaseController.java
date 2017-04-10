@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
-
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
@@ -52,7 +50,7 @@ public interface IDatabaseController {
 	/**
 	 * Get a metadata list of models given a model type and a relativePath
 	 */
-	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception;
+	public List<IModel> getModels(ModelType type, String relativePath) throws Exception;
 	
 	/**
 	 * Updates a model instance
