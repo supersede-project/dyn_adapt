@@ -1,5 +1,5 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
-public class PatternModel extends GenericModel {
+public interface IModelId extends Comparable<IModelId> {
 	
 }

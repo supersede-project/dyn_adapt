@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.manager;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +23,8 @@ import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.IModelId;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ManagerTest {
@@ -53,13 +58,14 @@ public class ManagerTest {
 			IModel model = generateAdaptabilityModelData();
 			IModel newModel = manager.createModel(ModelType.AdaptabilityModel, model);
 			String id = newModel.getValue("id").toString();
-			assertEquals(newModel.getValue("name"),"AdaptModelA");
-			assertEquals(newModel.getValue("authorId"),"SUPERSEDE");
-			assertEquals(newModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
-			assertEquals(newModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
-			assertEquals(newModel.getValue("fileExtension"),".aspect");
-			assertEquals(newModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
-			assertEquals(newModel.getValue("featureId"),"Feat1");
+			assertEquals(newModel.getValue("name").toString(),"AdaptModelA");
+			assertEquals(newModel.getValue("authorId").toString(),"SUPERSEDE");
+			assertEquals(newModel.getValue("creationDate").toString(),"2016-09-30 01:25:37.0");
+			assertEquals(newModel.getValue("lastModificationDate").toString(),"2016-09-30 01:25:37.0");
+			assertEquals(newModel.getValue("fileExtension").toString(),".aspect");
+			assertEquals(newModel.getValue("systemId").toString(),ModelSystem.MonitoringReconfiguration.toString());
+			assertEquals(newModel.getValue("featureId").toString(),"Feat1");
+			assertEquals(newModel.getValue("relativePath").toString(), "/path/to/model");
 			System.out.println("Model created successfully (id = " + id + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, id);
 		} catch (Exception e) {
@@ -76,13 +82,14 @@ public class ManagerTest {
 			List<IModel> models = manager.createModels(ModelType.AdaptabilityModel, propertySetList);
 			String ids = "";
 			for (IModel model : models) {
-				assertEquals(model.getValue("name"),"AdaptModelA");
-				assertEquals(model.getValue("authorId"),"SUPERSEDE");
-				assertEquals(model.getValue("creationDate"),"2016-09-30 01:25:37.0");
-				assertEquals(model.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
-				assertEquals(model.getValue("fileExtension"),".aspect");
-				assertEquals(model.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
-				assertEquals(model.getValue("featureId"),"Feat1");
+				assertEquals(model.getValue("name").toString(),"AdaptModelA");
+				assertEquals(model.getValue("authorId").toString(),"SUPERSEDE");
+				assertEquals(model.getValue("creationDate").toString(),"2016-09-30 01:25:37.0");
+				assertEquals(model.getValue("lastModificationDate").toString(),"2016-09-30 01:25:37.0");
+				assertEquals(model.getValue("fileExtension").toString(),".aspect");
+				assertEquals(model.getValue("systemId").toString(),ModelSystem.MonitoringReconfiguration.toString());
+				assertEquals(model.getValue("featureId").toString(),"Feat1");
+				assertEquals(model.getValue("relativePath").toString(), "/path/to/model");
 				ids += model.getValue("id") + "/";
 			}
 			System.out.println("Models created successfully (id list = " + ids + ")");
@@ -100,13 +107,14 @@ public class ManagerTest {
 			IModel model = generateAdaptabilityModelData();
 			IModel newModel = manager.createModel(ModelType.AdaptabilityModel, model);
 			IModel getModel = manager.getModel(ModelType.AdaptabilityModel, newModel.getValue("id").toString());
-			assertEquals(getModel.getValue("name"),"AdaptModelA");
-			assertEquals(getModel.getValue("authorId"),"SUPERSEDE");
-			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
-			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
-			assertEquals(getModel.getValue("fileExtension"),".aspect");
-			assertEquals(getModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
-			assertEquals(getModel.getValue("featureId"),"Feat1");
+			assertEquals(getModel.getValue("name").toString(),"AdaptModelA");
+			assertEquals(getModel.getValue("authorId").toString(),"SUPERSEDE");
+			assertEquals(getModel.getValue("creationDate").toString(),"2016-09-30 01:25:37.0");
+			assertEquals(getModel.getValue("lastModificationDate").toString(),"2016-09-30 01:25:37.0");
+			assertEquals(getModel.getValue("fileExtension").toString(),".aspect");
+			assertEquals(getModel.getValue("systemId").toString(),ModelSystem.MonitoringReconfiguration.toString());
+			assertEquals(getModel.getValue("featureId").toString(),"Feat1");
+			assertEquals(getModel.getValue("relativePath").toString(), "/path/to/model");
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
 			manager.deleteModel(ModelType.AdaptabilityModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
@@ -133,16 +141,27 @@ public class ManagerTest {
 	@Test
 	public void createAndUpdateModel() {
 		try {
-			Map<String,String> propertySet = new HashMap<>();
-			propertySet.put("name", "AdaptModelB");
-			propertySet.put("modelContent", "NewContent");
-			IModel model = generateAdaptabilityModelData();
-			IModel createModel = manager.createModel(ModelType.AdaptabilityModel, model);
-			IModel updateModel = manager.updateModel(ModelType.AdaptabilityModel, createModel.getValue("id").toString(), propertySet);
-			assertEquals(updateModel.getValue("name"), "AdaptModelB");
-			assertEquals(updateModel.getValue("modelContent"), "NewContent");
+			IModel model = generateBaseModelData();
+			IModel createModel = manager.createModel(ModelType.BaseModel, model);
+			createModel.setValue("name", "NewName");
+			createModel.setValue("modelContent", "NewContent");
+			createModel.setValue("relativePath", URI.createURI("/new/relative/path"));
+			List<TypedModelId> dependencies = new ArrayList<>();
+			dependencies.add(new TypedModelId(ModelType.ProfileModel, "1"));
+			dependencies.add(new TypedModelId(ModelType.BaseModel, "2"));
+			createModel.setValue("dependencies", dependencies);
+			IModel updateModel = manager.updateModel(ModelType.BaseModel, createModel.getValue("id").toString(), createModel);
+			assertEquals(updateModel.getValue("name").toString(), "NewName");
+			assertEquals(updateModel.getValue("modelContent").toString(), "NewContent");
+			assertEquals(updateModel.getValue("relativePath").toString(), "/new/relative/path");
+			List<TypedModelId> updatedDep = (List<TypedModelId>) updateModel.getValue("dependencies");
+			assertEquals(updatedDep.size(), 2);
+			assertEquals(updatedDep.get(0).getModelType(), ModelType.ProfileModel);
+			assertEquals(updatedDep.get(0).getNumber(), "1");
+			assertEquals(updatedDep.get(1).getModelType(), ModelType.BaseModel);
+			assertEquals(updatedDep.get(1).getNumber(), "2");
 			System.out.println("Model created and updated successfully (id = " + updateModel.getValue("id") + ")");
-			manager.deleteModel(ModelType.AdaptabilityModel, updateModel.getValue("id").toString());
+			manager.deleteModel(ModelType.BaseModel, updateModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,14 +173,20 @@ public class ManagerTest {
 			IModel model = generateBaseModelData();
 			IModel newModel = manager.createModel(ModelType.BaseModel, model);
 			IModel getModel = manager.getModel(ModelType.BaseModel, newModel.getValue("id").toString());
-			assertEquals(getModel.getValue("name"),"BaseModelA");
-			assertEquals(getModel.getValue("authorId"),"SUPERSEDE");
-			assertEquals(getModel.getValue("creationDate"),"2016-09-30 01:25:37.0");
-			assertEquals(getModel.getValue("lastModificationDate"),"2016-09-30 01:25:37.0");
-			assertEquals(getModel.getValue("fileExtension"),".uml");
-			assertEquals(getModel.getValue("systemId"),ModelSystem.MonitoringReconfiguration.toString());
+			assertEquals(getModel.getValue("name").toString(),"BaseModelA");
+			assertEquals(getModel.getValue("authorId").toString(),"SUPERSEDE");
+			assertEquals(getModel.getValue("creationDate").toString(),"2016-09-30 01:25:37.0");
+			assertEquals(getModel.getValue("lastModificationDate").toString(),"2016-09-30 01:25:37.0");
+			assertEquals(getModel.getValue("fileExtension").toString(),".uml");
+			assertEquals(getModel.getValue("systemId").toString(),ModelSystem.MonitoringReconfiguration.toString());
+			assertEquals(getModel.getValue("relativePath").toString(), "/path/to/model");
+			List<TypedModelId> dependencies = (List<TypedModelId>) getModel.getValue("dependencies");
+			for (TypedModelId typedModelId : dependencies) {
+				assertEquals(typedModelId.getModelType().toString(), ModelType.ProfileModel.toString());
+				assertEquals(typedModelId.getNumber().toString(), "1");
+			}
 			System.out.println("Model created and retrieved successfully (id = " + getModel.getValue("id") + ")");
-			manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
+			//manager.deleteModel(ModelType.BaseModel, getModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,11 +196,14 @@ public class ManagerTest {
 	public void createAndGetModelsBySystemId() {
 		try {
 			IModel model = generateBaseModelData();
-			manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration);
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
+			HashMap<String, String> map = new HashMap<>();
+			map.put("systemId", ModelSystem.MonitoringReconfiguration.toString());
+			List<IModel> models = manager.getModels(ModelType.BaseModel, map);
 			for (IModel m : models) {
 				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
 			}
+			manager.deleteModel(ModelType.BaseModel, newModel.getValue("id").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -185,11 +213,30 @@ public class ManagerTest {
 	public void createAndGetModelsBySystemIdAndStatus() {
 		try {
 			IModel model = generateBaseModelData();
-			manager.createModel(ModelType.BaseModel, model);
-			List<IModel> models = manager.getModels(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, Status.Enacted);
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
+			HashMap<String, String> map = new HashMap<>();
+			map.put("systemId", ModelSystem.MonitoringReconfiguration.toString());
+			map.put("status", Status.Enacted.toString());
+			List<IModel> models = manager.getModels(ModelType.BaseModel, map);
 			for (IModel m : models) {
-				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId"));
-				assertEquals(Status.Enacted.toString(), m.getValue("status"));
+				assertEquals(ModelSystem.MonitoringReconfiguration.toString(), m.getValue("systemId").toString());
+				assertEquals(Status.Enacted.toString(), m.getValue("status").toString());
+			}
+			manager.deleteModel(ModelType.BaseModel, newModel.getValue("id").toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void createAndGetModelsByRelativePath() {
+		try {
+			IModel model = generateBaseModelData();
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
+			List<IModel> models = manager.getModels(ModelType.BaseModel, URI.createURI("/path/to/model"));
+			assertNotEquals(models.size(), 0);
+			for (IModel m : models) {
+				assertEquals(URI.createURI("/path/to/model"), m.getValue("relativePath"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -205,6 +252,7 @@ public class ManagerTest {
 		model.setFileExtension(".aspect");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setFeatureId("Feat1");
+		model.setRelativePath(URI.createURI("/path/to/model"));
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
 		String content = "";
@@ -222,6 +270,8 @@ public class ManagerTest {
 		model.setFileExtension(".uml");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setStatus(Status.Enacted.toString());
+		model.setRelativePath(URI.createURI("/path/to/model"));
+		model.setDependencies(generateDependenciesList());
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);
 		String content = "";
@@ -229,6 +279,13 @@ public class ManagerTest {
 		content = content.replace("\"","'");
 		model.setModelContent(content);
 		return model;
+	}
+	
+	private List<IModelId> generateDependenciesList() {
+		List<IModelId> dependencies = new ArrayList<>();
+		dependencies.add(new TypedModelId(ModelType.ProfileModel,"1"));
+		dependencies.add(new TypedModelId(ModelType.ProfileModel,"1"));
+		return dependencies;
 	}
 
 }
