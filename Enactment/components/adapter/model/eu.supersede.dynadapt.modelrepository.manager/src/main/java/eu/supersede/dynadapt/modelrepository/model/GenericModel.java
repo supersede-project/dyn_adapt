@@ -2,6 +2,7 @@ package eu.supersede.dynadapt.modelrepository.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import org.eclipse.emf.common.util.URI;
 
 public class GenericModel extends IModel {
 	
@@ -13,8 +14,8 @@ public class GenericModel extends IModel {
 	private String fileExtension;
 	private String systemId;
 	private String modelContent;
-	private String relativePath;
-	private List<TypedModelId> dependencies;
+	private URI relativePath;
+	private List<IModelId> dependencies;
 	
 	public String getId() {
 		return id;
@@ -64,16 +65,16 @@ public class GenericModel extends IModel {
 	public void setModelContent(String modelContent) {
 		this.modelContent = modelContent;
 	}
-	public String getRelativePath() {
+	public URI getRelativePath() {
 		return relativePath;
 	}
-	public void setRelativePath(String relativePath) {
+	public void setRelativePath(URI relativePath) {
 		this.relativePath = relativePath;
 	}
-	public List<TypedModelId> getDependencies() {
+	public List<IModelId> getDependencies() {
 		return dependencies;
 	}
-	public void setDependencies(List<TypedModelId> dependencies) {
+	public void setDependencies(List<IModelId> dependencies) {
 		this.dependencies = dependencies;
 	}
 

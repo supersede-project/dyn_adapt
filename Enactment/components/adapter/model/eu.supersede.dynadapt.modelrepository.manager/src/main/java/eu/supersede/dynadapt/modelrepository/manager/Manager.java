@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+
 import eu.supersede.dynadapt.modelrepository.manager.database.DatabaseController;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
@@ -49,7 +51,7 @@ public class Manager implements IManager {
 		return dbController.getModels(type, params);
 	}
 	
-	/*@Override
+	@Override
 	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
 		return dbController.getModels(type, systemId);
 	}
@@ -62,7 +64,13 @@ public class Manager implements IManager {
 	@Override
 	public List<IModel> getModels(ModelType type,  ModelSystem systemId, Status status) throws Exception {
 		return dbController.getModels(type, systemId, status);
-	}*/
+	}
+	
+	@Override
+	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception {
+		return dbController.getModels(type, relativePath);
+	}
+
 	
 	@Override
 	public void deleteModel(ModelType type, String id) throws Exception {

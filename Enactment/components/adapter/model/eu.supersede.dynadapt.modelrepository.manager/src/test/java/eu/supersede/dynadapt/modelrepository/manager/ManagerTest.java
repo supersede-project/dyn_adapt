@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.manager;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,7 @@ import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.IModelId;
 import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
@@ -142,7 +145,7 @@ public class ManagerTest {
 			IModel createModel = manager.createModel(ModelType.BaseModel, model);
 			createModel.setValue("name", "NewName");
 			createModel.setValue("modelContent", "NewContent");
-			createModel.setValue("relativePath", "/new/relative/path");
+			createModel.setValue("relativePath", URI.createURI("/new/relative/path"));
 			List<TypedModelId> dependencies = new ArrayList<>();
 			dependencies.add(new TypedModelId(ModelType.ProfileModel, "1"));
 			dependencies.add(new TypedModelId(ModelType.BaseModel, "2"));
@@ -225,6 +228,21 @@ public class ManagerTest {
 		}
 	}
 	
+	@Test
+	public void createAndGetModelsByRelativePath() {
+		try {
+			IModel model = generateBaseModelData();
+			IModel newModel = manager.createModel(ModelType.BaseModel, model);
+			List<IModel> models = manager.getModels(ModelType.BaseModel, URI.createURI("/path/to/model"));
+			assertNotEquals(models.size(), 0);
+			for (IModel m : models) {
+				assertEquals(URI.createURI("/path/to/model"), m.getValue("relativePath"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private IModel generateAdaptabilityModelData() throws Exception {
 		AdaptabilityModel model = new AdaptabilityModel();
 		model.setName("AdaptModelA");
@@ -234,7 +252,7 @@ public class ManagerTest {
 		model.setFileExtension(".aspect");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setFeatureId("Feat1");
-		model.setRelativePath("/path/to/model");
+		model.setRelativePath(URI.createURI("/path/to/model"));
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
 		String content = "";
@@ -252,7 +270,7 @@ public class ManagerTest {
 		model.setFileExtension(".uml");
 		model.setSystemId(ModelSystem.MonitoringReconfiguration.toString());
 		model.setStatus(Status.Enacted.toString());
-		model.setRelativePath("/path/to/model");
+		model.setRelativePath(URI.createURI("/path/to/model"));
 		model.setDependencies(generateDependenciesList());
 		File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);
@@ -263,8 +281,8 @@ public class ManagerTest {
 		return model;
 	}
 	
-	private List<TypedModelId> generateDependenciesList() {
-		List<TypedModelId> dependencies = new ArrayList<>();
+	private List<IModelId> generateDependenciesList() {
+		List<IModelId> dependencies = new ArrayList<>();
 		dependencies.add(new TypedModelId(ModelType.ProfileModel,"1"));
 		dependencies.add(new TypedModelId(ModelType.ProfileModel,"1"));
 		return dependencies;

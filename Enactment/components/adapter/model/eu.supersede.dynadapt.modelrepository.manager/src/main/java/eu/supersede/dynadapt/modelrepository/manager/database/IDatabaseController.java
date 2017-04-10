@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
@@ -33,9 +35,24 @@ public interface IDatabaseController {
 	public IModel getModel(TypedModelId typedModelId) throws Exception;
 	
 	/**
-	 * Updates a model instance given a set of key-values
+	 * Get a metadata list of models given a model type and a model system
 	 */
-	//public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type, a model system and a status
+	 */
+	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type and a status
+	 */
+	public List<IModel> getModels(ModelType type, Status status) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type and a relativePath
+	 */
+	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception;
 	
 	/**
 	 * Updates a model instance

@@ -88,6 +88,7 @@ public class ModelManagerController {
 			if (creationDate != null) params.put("creationDate", creationDate);
 			if (lastModificationDate != null) params.put("lastModificationDate", lastModificationDate);
 			if (fileExtension != null) params.put("fileExtension", fileExtension);
+			if (relativePath != null) params.put("relativePath", relativePath);
 			models = manager.getModels(ModelType.valueOf(modelType), params);
 		} catch (IllegalArgumentException e) {
 			throw new UnprocessableEntityException();

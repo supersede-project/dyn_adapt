@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+
 import com.google.gson.JsonObject;
 import com.mysql.jdbc.exceptions.MySQLNonTransientConnectionException;
 
@@ -134,7 +136,11 @@ public class DatabaseController implements IDatabaseController {
 					}
 					model.setValue("dependencies", dependencies);
 				}
+				else if (name.equals("relativePath")) {
+					model.setValue("relativePath", URI.createURI(rs.getString(name))); 
+				} 
 				else model.setValue(name, rs.getString(name));
+
 			}
 		}
 		String content = contentFileManager.loadModelContent(model);
@@ -267,6 +273,30 @@ public class DatabaseController implements IDatabaseController {
 		this.con = dbConn.init();
 	}
 	
+	@Override
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception {
+		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "'"; 
+		return queryModels(type, query);
+	}
+	
+	@Override
+	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception {
+		String query = "SELECT * FROM " + type + " WHERE systemId = '" + systemId + "' AND status = '" + status + "'";  
+		return queryModels(type, query);
+	}
+	
+	@Override
+	public List<IModel> getModels(ModelType type, Status status) throws Exception {
+		String query = "SELECT * FROM " + type + " WHERE status = '" + status + "'";  
+		return queryModels(type, query);
+	}
+	
+	@Override
+	public List<IModel> getModels(ModelType type, URI relativePath) throws Exception {
+		String query = "SELECT * FROM " + type + " WHERE relativePath = '" + relativePath + "'";
+		return queryModels(type, query);
+	}
+	
 	private List<IModel> queryModels(ModelType type, String query) throws Exception {
 		
 		List<IModel> modelList = new ArrayList<IModel>();
@@ -302,7 +332,9 @@ public class DatabaseController implements IDatabaseController {
 							}
 						}
 						model.setValue("dependencies", dependencies);
-					}
+					} else if (name.equals("relativePath")) {
+						model.setValue("relativePath", URI.createURI(rs.getString(name))); 
+					} 
 					else model.setValue(name, rs.getString(name));
 				} 
 			}
