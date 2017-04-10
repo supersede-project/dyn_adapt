@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -213,7 +214,10 @@ public class ModelManagerController {
 		        Date parsedDate = dateFormat.parse(json.get(key).toString());
 		        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
 		        model.setValue(key, timestamp);
-		    } else model.setValue(key, json.get(key));
+		    } else if (key.equals("relativePath")) {
+				model.setValue("relativePath", URI.createURI(json.get(key).toString())); 
+			} 
+		    else model.setValue(key, json.get(key));
 		}
 		return model;
 	}
