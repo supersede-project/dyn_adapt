@@ -1,19 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>eu.supersede.dynadapt</groupId>
   <artifactId>eu.supersede.dynadapt.adapter.service</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <name>Adapter Service</name>
+  <description>Enactment model adapter for runtime adaptation</description>
   <packaging>jar</packaging>
   
-  <parent>
+<!-- <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
-  </parent>
+  </parent> -->
 
-  <name>Adapter Service</name>
   <url>http://www.supersede.eu</url>
 
   <properties>
@@ -21,6 +20,8 @@
     <java.version>1.8</java.version>
     <start-class>eu.supersede.dynadapt.adapter.service.AdapterApplication</start-class>
     <tomcat.version>8.5.9</tomcat.version>
+    <spring.version>4.3.4.RELEASE</spring.version>
+    <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
   </properties>
   
   <build>
@@ -28,9 +29,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.2.RELEASE</version>
                 <configuration>
         			<executable>true</executable>
     			</configuration>
+    			<executions>
+	   				<execution>
+	      				<goals>
+	         				<goal>repackage</goal>
+	      				</goals>
+	   				</execution>
+				</executions>
             </plugin>
         </plugins>
     </build>
@@ -128,10 +137,20 @@
     	<version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.11</version>
-     </dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.Enactor</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.EnactorFactory</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>eu.supersede.dynadapt</groupId>
+    	<artifactId>eu.supersede.dynadapt.enactor.HypervisorEnactor</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+    </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.emf.mwe.utils</artifactId>
@@ -185,12 +204,12 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.core.resources</artifactId>
-        <version>3.11.0.v20160503-1608</version>
+        <version>3.11.1.v20161107-2032</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.osgi</artifactId>
-        <version>3.11.1.v20160708-1632</version>
+        <version>3.11.3.v20170209-1843</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -200,27 +219,27 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.uml2.uml.resources</artifactId>
-        <version>5.2.0.v20160822-0739</version>
+        <version>5.2.0.v20170227-0935</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.uml2.uml</artifactId>
-        <version>5.2.1.v20160822-0739</version>
+        <version>5.2.3.v20170227-0935</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.uml2.common</artifactId>
-        <version>2.1.0.v20160822-0739</version>
+        <version>2.1.0.v20170227-0935</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.uml2.types</artifactId>
-        <version>2.0.0.v20160822-0739</version>
+        <version>2.0.0.v20170227-0935</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.uml2.uml.profile.standard</artifactId>
-        <version>1.0.100.v20160822-0739</version>
+        <version>1.0.100.v20170227-0935</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -260,47 +279,47 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.patternlanguage</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.patternlanguage.emf</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.matchers</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.base</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.rete</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.base.itc</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.rete.recipes</artifactId>
-        <version>1.5.1.201702031027</version>
+        <version>1.5.2.201703171608</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.xtext.xbase</artifactId>
-        <version>2.10.0.v201605250459</version>
+        <version>2.11.0.v20170131-1210</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -325,7 +344,7 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.objectweb.asm</artifactId>
-        <version>5.0.1.v201404251740</version>
+        <version>5.1.0.v20160914-0701</version>
      </dependency>
      <dependency>
         <groupId>cz.zcu.yafmt</groupId>
@@ -336,20 +355,24 @@
      <dependency>
          <groupId>org.springframework.boot</groupId> 
          <artifactId>spring-boot-starter-web</artifactId> 
+         <version>${spring.boot.version}</version>
      </dependency> 
      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-tomcat</artifactId>
+        <version>${spring.boot.version}</version>
         <scope>provided</scope>
     </dependency>
      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
+        <version>${spring.boot.version}</version>
         <scope>test</scope>
      </dependency>
      <dependency>
         <groupId>com.jayway.jsonpath</groupId>
         <artifactId>json-path</artifactId>
+        <version>2.2.0</version>
         <scope>test</scope>
      </dependency>
      <!-- Integration Framework -->
@@ -368,12 +391,52 @@
         <artifactId>jms</artifactId>
         <version>1.1</version>
      </dependency>
-     <dependency>
+<!--      <dependency>
         <groupId>feedback_library</groupId>
         <artifactId>feedback_library</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+     </dependency> -->
+     <!-- Acceleo -->
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.acceleo.engine</artifactId>
+        <version>3.6.6.201610060831</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.acceleo.common</artifactId>
+        <version>3.6.6.201610060831</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.acceleo.model</artifactId>
+        <version>3.6.6.201610060831</version>
+     </dependency>     
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.ocl.ecore</artifactId>
+        <version>3.6.0.v20160523-1914</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.ocl</artifactId>
+        <version>3.6.0.v20160523-1914</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.ocl.common</artifactId>
+        <version>1.4.0.v20160521-2033</version>
+     </dependency>    
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>org.eclipse.core.contenttype</artifactId>
+        <version>3.5.100.v20160418-1621</version>
+     </dependency>
+     <dependency>
+        <groupId>p2.osgi.bundle</groupId>
+        <artifactId>lpg.runtime.java</artifactId>
+        <version>2.0.17.v201004271640</version>
      </dependency>
   </dependencies>
-  
   
 </project>

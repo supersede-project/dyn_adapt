@@ -1,0 +1,1430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="hypervisor" nsURI="eu::supersede::dynadapt::enactor::HypervisorEnactor::files::hypervisor" startHeaderPosition="85" endHeaderPosition="257">
+    <documentation xsi:type="mtl:ModuleDocumentation">
+      <body startPosition="32" endPosition="82" value="&#xA;The documentation of the module hypervisor.&#xA;&#xA;"/>
+    </documentation>
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateVMConfigurationScripts" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="mtl:LetBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#VMConfiguration script for VM with name: "/>
+          <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;param (&#xA;   &#x9;&#x9;"/>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Parameter(Mandatory=$true)"/>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="string"/>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="$password&#xA;)&#xA;&#xA;# To execute script in command line invoke:&#xA;# Powershell -File "/>
+          <body xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+            </source>
+            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".ps1">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" -password &lt;password>&#xA;&#xA;#Connect with Atos Smart Hypervisor&#xA;#Password is taken from command line upon invocation&#xA;Connect-VIServer -Server medialab13.atosresearch.eu -User root -Password $password&#xA;&#xA;"/>
+          <body xsi:type="mtl:LetBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#Setting vm cores to "/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmCores" referredVariable="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores.2">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;Get-VM &quot;"/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; | Set-VM -NumCpu "/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmCores" referredVariable="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores.2">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" -Confirm:$false&#xA;&#xA;"/>
+            <letVariable name="vmCores">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+              <initExpression xsi:type="mtl:QueryInvocation" definition="/0/vmCores">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+                <argument xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                </argument>
+              </initExpression>
+            </letVariable>
+          </body>
+          <body xsi:type="mtl:LetBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#Setting vm memory to "/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmMemory" referredVariable="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory.2">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;Get-VM &quot;"/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; | Set-VM -MemoryGB "/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmMemory" referredVariable="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory.2">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" -Confirm:$false&#xA;&#xA;"/>
+            <letVariable name="vmMemory">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+              <initExpression xsi:type="mtl:QueryInvocation" definition="/0/vmMemory">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+                <argument xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                </argument>
+              </initExpression>
+            </letVariable>
+          </body>
+          <body xsi:type="mtl:LetBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#Setting vm storage to "/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmStorage" referredVariable="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage.2">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;Get-HardDisk -vm &quot;"/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; | where {$_.Name -eq &quot;/ovp&quot;} | Set-HardDisk -CapacityGB "/>
+            <body xsi:type="ocl.ecore:VariableExp" name="vmStorage" referredVariable="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage.2">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" -Confirm:$false&#xA;&#xA;"/>
+            <letVariable name="vmStorage">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+              <initExpression xsi:type="mtl:QueryInvocation" definition="/0/vmStorage">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+                <argument xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                </argument>
+              </initExpression>
+            </letVariable>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#Restarting vm with name: "/>
+          <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;Restart-VM -VM &quot;"/>
+          <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; -Confirm:$false &#xA;&#xA;"/>
+          <letVariable name="vmName">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <initExpression xsi:type="mtl:QueryInvocation" definition="/0/vmName">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <argument xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+              </argument>
+            </initExpression>
+          </letVariable>
+        </body>
+        <fileUrl xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+          </source>
+          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".ps1">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <documentation xsi:type="mtl:ModuleElementDocumentation">
+        <body startPosition="151" endPosition="257" value="&#xA;The documentation of the template generateVMConfigurationScripts.&#xA;@param anInstanceSpecification&#xA;&#xA;"/>
+        <parametersDocumentation name="anInstanceSpecification">
+          <body value=""/>
+        </parametersDocumentation>
+      </documentation>
+      <parameter name="anInstanceSpecification">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </parameter>
+      <guard xsi:type="mtl:QueryInvocation" definition="/0/isVMConfiguration">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="anInstanceSpecification" referredVariable="/0/generateVMConfigurationScripts/anInstanceSpecification">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </argument>
+      </guard>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="isVMConfiguration" visibility="Public">
+      <parameter name="instance">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/32/Set(Classifier)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/Set(Classifier)">
+              <source xsi:type="ocl.ecore:VariableExp" name="instance" referredVariable="/0/isVMConfiguration/instance">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification/classifier"/>
+            </source>
+            <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/equalsIgnoreCase">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/isVMConfiguration/%/%/select/temp1">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+              </source>
+              <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="VMConfiguration">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </argument>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp1">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+            </iterator>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/isEmpty"/>
+        </source>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="vmName" visibility="Public">
+      <parameter name="instance">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralString"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecification"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/OrderedSet(ValueSpecification)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="any">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/Set(Slot)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="instance" referredVariable="/0/vmName/instance">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification/slot"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/equalsIgnoreCase">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeature"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/vmName/%/%/%/%/any/temp2">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/definingFeature"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="vm_name">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="temp2">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                </iterator>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/value"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/36/LiteralString">
+            <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralString"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralString/value"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="vmCores" visibility="Public">
+      <parameter name="instance">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralInteger"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecification"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/OrderedSet(ValueSpecification)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="any">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/Set(Slot)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="instance" referredVariable="/0/vmCores/instance">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification/slot"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/equalsIgnoreCase">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeature"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/vmCores/%/%/%/%/any/temp3">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/definingFeature"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="cores">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="temp3">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                </iterator>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/value"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/36/LiteralInteger">
+            <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralInteger"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralInteger/value"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="vmMemory" visibility="Public">
+      <parameter name="instance">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecification"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/OrderedSet(ValueSpecification)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="any">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/Set(Slot)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="instance" referredVariable="/0/vmMemory/instance">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification/slot"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/equalsIgnoreCase">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeature"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/vmMemory/%/%/%/%/any/temp4">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/definingFeature"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="memory">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="temp4">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                </iterator>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/value"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/36/LiteralReal">
+            <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal/value"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="vmStorage" visibility="Public">
+      <parameter name="instance">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecification"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/OrderedSet(ValueSpecification)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="any">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/32/Set(Slot)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="instance" referredVariable="/0/vmStorage/instance">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification/slot"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/equalsIgnoreCase">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeature"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/vmStorage/%/%/%/%/any/temp5">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/definingFeature"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="storage">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="temp5">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+                </iterator>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot/value"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/36/LiteralReal">
+            <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal/value"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+      <eOperations name="equalsIgnoreCase">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="other">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateVMConfigurationScripts">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateVMConfigurationScripts"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="anInstanceSpecification">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="isVMConfiguration">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/isVMConfiguration"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="instance">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="vmName">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/vmName"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="instance">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="vmCores">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/vmCores"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+        <eParameters name="instance">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="vmMemory">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/vmMemory"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+        <eParameters name="instance">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="vmStorage">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/vmStorage"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+        <eParameters name="instance">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_InstanceSpecification_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Classifier)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Slot)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(ValueSpecification)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecification"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="LiteralString">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="LiteralInteger">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralInteger"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="LiteralReal">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralReal"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/%">
+      <details key="start" value="29"/>
+      <details key="end" value="84"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateVMConfigurationScripts">
+      <details key="start" value="260"/>
+      <details key="end" value="1630"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateVMConfigurationScripts/%">
+      <details key="start" value="408"/>
+      <details key="end" value="409"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateVMConfigurationScripts/%.1">
+      <details key="start" value="409"/>
+      <details key="end" value="1618"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateVMConfigurationScripts/%.1/%">
+      <details key="start" value="478"/>
+      <details key="end" value="1610"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateVMConfigurationScripts/%.1/%/%">
+      <details key="start" value="535"/>
+      <details key="end" value="577"/>
+      <details key="line" value="17"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateVMConfigurationScripts/%.1/%/vmName">
+      <details key="start" value="578"/>
+      <details key="end" value="584"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateVMConfigurationScripts/%.1/%/%.1">
+      <details key="start" value="586"/>
+      <details key="end" value="600"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateVMConfigurationScripts/%.1/%/%.2">
+      <details key="start" value="601"/>
+      <details key="end" value="604"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateVMConfigurationScripts/%.1/%/%.3">
+      <details key="start" value="606"/>
+      <details key="end" value="632"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateVMConfigurationScripts/%.1/%/%.4">
+      <details key="start" value="633"/>
+      <details key="end" value="636"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateVMConfigurationScripts/%.1/%/%.5">
+      <details key="start" value="639"/>
+      <details key="end" value="642"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateVMConfigurationScripts/%.1/%/%.6">
+      <details key="start" value="644"/>
+      <details key="end" value="650"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateVMConfigurationScripts/%.1/%/%.7">
+      <details key="start" value="651"/>
+      <details key="end" value="654"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateVMConfigurationScripts/%.1/%/%.8">
+      <details key="start" value="656"/>
+      <details key="end" value="732"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateVMConfigurationScripts/%.1/%/%.9">
+      <details key="start" value="733"/>
+      <details key="end" value="776"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateVMConfigurationScripts/%.1/%/%.9/%">
+      <details key="start" value="733"/>
+      <details key="end" value="761"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateVMConfigurationScripts/%.1/%/%.9/%/anInstanceSpecification">
+      <details key="start" value="733"/>
+      <details key="end" value="756"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateVMConfigurationScripts/%.1/%/%.9/%.1">
+      <details key="start" value="769"/>
+      <details key="end" value="775"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateVMConfigurationScripts/%.1/%/%.10">
+      <details key="start" value="778"/>
+      <details key="end" value="974"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateVMConfigurationScripts/%.1/%/%.11">
+      <details key="start" value="974"/>
+      <details key="end" value="1136"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateVMConfigurationScripts/%.1/%/%.11/%">
+      <details key="start" value="1034"/>
+      <details key="end" value="1055"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores">
+      <details key="start" value="1056"/>
+      <details key="end" value="1063"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateVMConfigurationScripts/%.1/%/%.11/%.1">
+      <details key="start" value="1065"/>
+      <details key="end" value="1074"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateVMConfigurationScripts/%.1/%/%.11/vmName">
+      <details key="start" value="1075"/>
+      <details key="end" value="1081"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateVMConfigurationScripts/%.1/%/%.11/%.2">
+      <details key="start" value="1083"/>
+      <details key="end" value="1102"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores.1">
+      <details key="start" value="1103"/>
+      <details key="end" value="1110"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateVMConfigurationScripts/%.1/%/%.11/%.3">
+      <details key="start" value="1112"/>
+      <details key="end" value="1130"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores.2">
+      <details key="start" value="979"/>
+      <details key="end" value="1032"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores.2/%">
+      <details key="start" value="1000"/>
+      <details key="end" value="1033"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateVMConfigurationScripts/%.1/%/%.11/vmCores.2/%/anInstanceSpecification">
+      <details key="start" value="1000"/>
+      <details key="end" value="1023"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateVMConfigurationScripts/%.1/%/%.12">
+      <details key="start" value="1137"/>
+      <details key="end" value="1303"/>
+      <details key="line" value="34"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateVMConfigurationScripts/%.1/%/%.12/%">
+      <details key="start" value="1196"/>
+      <details key="end" value="1218"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory">
+      <details key="start" value="1219"/>
+      <details key="end" value="1227"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateVMConfigurationScripts/%.1/%/%.12/%.1">
+      <details key="start" value="1229"/>
+      <details key="end" value="1238"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generateVMConfigurationScripts/%.1/%/%.12/vmName">
+      <details key="start" value="1239"/>
+      <details key="end" value="1245"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generateVMConfigurationScripts/%.1/%/%.12/%.2">
+      <details key="start" value="1247"/>
+      <details key="end" value="1268"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory.1">
+      <details key="start" value="1269"/>
+      <details key="end" value="1277"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generateVMConfigurationScripts/%.1/%/%.12/%.3">
+      <details key="start" value="1279"/>
+      <details key="end" value="1297"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory.2">
+      <details key="start" value="1142"/>
+      <details key="end" value="1194"/>
+      <details key="line" value="34"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory.2/%">
+      <details key="start" value="1161"/>
+      <details key="end" value="1195"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateVMConfigurationScripts/%.1/%/%.12/vmMemory.2/%/anInstanceSpecification">
+      <details key="start" value="1161"/>
+      <details key="end" value="1184"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generateVMConfigurationScripts/%.1/%/%.13">
+      <details key="start" value="1304"/>
+      <details key="end" value="1522"/>
+      <details key="line" value="39"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generateVMConfigurationScripts/%.1/%/%.13/%">
+      <details key="start" value="1365"/>
+      <details key="end" value="1388"/>
+      <details key="line" value="40"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage">
+      <details key="start" value="1389"/>
+      <details key="end" value="1398"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateVMConfigurationScripts/%.1/%/%.13/%.1">
+      <details key="start" value="1400"/>
+      <details key="end" value="1419"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateVMConfigurationScripts/%.1/%/%.13/vmName">
+      <details key="start" value="1420"/>
+      <details key="end" value="1426"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/generateVMConfigurationScripts/%.1/%/%.13/%.2">
+      <details key="start" value="1428"/>
+      <details key="end" value="1486"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage.1">
+      <details key="start" value="1487"/>
+      <details key="end" value="1496"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateVMConfigurationScripts/%.1/%/%.13/%.3">
+      <details key="start" value="1498"/>
+      <details key="end" value="1516"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage.2">
+      <details key="start" value="1309"/>
+      <details key="end" value="1363"/>
+      <details key="line" value="39"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage.2/%">
+      <details key="start" value="1329"/>
+      <details key="end" value="1364"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateVMConfigurationScripts/%.1/%/%.13/vmStorage.2/%/anInstanceSpecification">
+      <details key="start" value="1329"/>
+      <details key="end" value="1352"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateVMConfigurationScripts/%.1/%/%.14">
+      <details key="start" value="1523"/>
+      <details key="end" value="1549"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateVMConfigurationScripts/%.1/%/vmName.1">
+      <details key="start" value="1550"/>
+      <details key="end" value="1556"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateVMConfigurationScripts/%.1/%/%.15">
+      <details key="start" value="1558"/>
+      <details key="end" value="1575"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateVMConfigurationScripts/%.1/%/vmName.2">
+      <details key="start" value="1576"/>
+      <details key="end" value="1582"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateVMConfigurationScripts/%.1/%/%.16">
+      <details key="start" value="1584"/>
+      <details key="end" value="1604"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateVMConfigurationScripts/%.1/%/vmName.3">
+      <details key="start" value="483"/>
+      <details key="end" value="533"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateVMConfigurationScripts/%.1/%/vmName.3/%">
+      <details key="start" value="502"/>
+      <details key="end" value="534"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateVMConfigurationScripts/%.1/%/vmName.3/%/anInstanceSpecification">
+      <details key="start" value="502"/>
+      <details key="end" value="525"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateVMConfigurationScripts/%.1/%.1">
+      <details key="start" value="416"/>
+      <details key="end" value="459"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateVMConfigurationScripts/%.1/%.1/%">
+      <details key="start" value="416"/>
+      <details key="end" value="444"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateVMConfigurationScripts/%.1/%.1/%/anInstanceSpecification">
+      <details key="start" value="416"/>
+      <details key="end" value="439"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateVMConfigurationScripts/%.1/%.1/%.1">
+      <details key="start" value="452"/>
+      <details key="end" value="458"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateVMConfigurationScripts/%.1/%.2">
+      <details key="start" value="468"/>
+      <details key="end" value="475"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateVMConfigurationScripts/%.2">
+      <details key="start" value="148"/>
+      <details key="end" value="259"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateVMConfigurationScripts/%.2/anInstanceSpecification">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateVMConfigurationScripts/anInstanceSpecification">
+      <details key="start" value="308"/>
+      <details key="end" value="355"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateVMConfigurationScripts/%.3">
+      <details key="start" value="362"/>
+      <details key="end" value="405"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateVMConfigurationScripts/%.3/anInstanceSpecification">
+      <details key="start" value="362"/>
+      <details key="end" value="385"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/isVMConfiguration">
+      <details key="start" value="1632"/>
+      <details key="end" value="1801"/>
+      <details key="line" value="51"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/isVMConfiguration/instance">
+      <details key="start" value="1664"/>
+      <details key="end" value="1696"/>
+      <details key="line" value="51"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/isVMConfiguration/%">
+      <details key="start" value="1712"/>
+      <details key="end" value="1798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/isVMConfiguration/%/%">
+      <details key="start" value="1716"/>
+      <details key="end" value="1798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/isVMConfiguration/%/%/select">
+      <details key="start" value="1717"/>
+      <details key="end" value="1786"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/isVMConfiguration/%/%/select/%">
+      <details key="start" value="1717"/>
+      <details key="end" value="1736"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/isVMConfiguration/%/%/select/%/instance">
+      <details key="start" value="1717"/>
+      <details key="end" value="1725"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/isVMConfiguration/%/%/select/%.1">
+      <details key="start" value="1745"/>
+      <details key="end" value="1785"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/isVMConfiguration/%/%/select/%.1/%">
+      <details key="start" value="1745"/>
+      <details key="end" value="1749"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/isVMConfiguration/%/%/select/%.1/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/isVMConfiguration/%/%/select/%.1/%.1">
+      <details key="start" value="1767"/>
+      <details key="end" value="1784"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.82" references="/0/isVMConfiguration/%/%/select/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.83" references="/0/vmName">
+      <details key="start" value="1804"/>
+      <details key="end" value="1990"/>
+      <details key="line" value="55"/>
+    </eAnnotations>
+    <eAnnotations source="positions.84" references="/0/vmName/instance">
+      <details key="start" value="1825"/>
+      <details key="end" value="1857"/>
+      <details key="line" value="55"/>
+    </eAnnotations>
+    <eAnnotations source="positions.85" references="/0/vmName/%">
+      <details key="start" value="1872"/>
+      <details key="end" value="1986"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.86" references="/0/vmName/%/%">
+      <details key="start" value="1872"/>
+      <details key="end" value="1980"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.87" references="/0/vmName/%/%/%">
+      <details key="start" value="1872"/>
+      <details key="end" value="1955"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.88" references="/0/vmName/%/%/%/%">
+      <details key="start" value="1872"/>
+      <details key="end" value="1946"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.89" references="/0/vmName/%/%/%/%/any">
+      <details key="start" value="1872"/>
+      <details key="end" value="1940"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.90" references="/0/vmName/%/%/%/%/any/%">
+      <details key="start" value="1872"/>
+      <details key="end" value="1885"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.91" references="/0/vmName/%/%/%/%/any/%/instance">
+      <details key="start" value="1872"/>
+      <details key="end" value="1880"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.92" references="/0/vmName/%/%/%/%/any/%.1">
+      <details key="start" value="1891"/>
+      <details key="end" value="1939"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.93" references="/0/vmName/%/%/%/%/any/%.1/%">
+      <details key="start" value="1891"/>
+      <details key="end" value="1911"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.94" references="/0/vmName/%/%/%/%/any/%.1/%/%">
+      <details key="start" value="1891"/>
+      <details key="end" value="1906"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.95" references="/0/vmName/%/%/%/%/any/%.1/%/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.96" references="/0/vmName/%/%/%/%/any/%.1/%.1">
+      <details key="start" value="1929"/>
+      <details key="end" value="1938"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.97" references="/0/vmName/%/%/%/%/any/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.98" references="/0/vmName/%/%/%.1">
+      <details key="start" value="1966"/>
+      <details key="end" value="1979"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.99" references="/0/vmCores">
+      <details key="start" value="1992"/>
+      <details key="end" value="2179"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.100" references="/0/vmCores/instance">
+      <details key="start" value="2014"/>
+      <details key="end" value="2046"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.101" references="/0/vmCores/%">
+      <details key="start" value="2062"/>
+      <details key="end" value="2175"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.102" references="/0/vmCores/%/%">
+      <details key="start" value="2062"/>
+      <details key="end" value="2169"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.103" references="/0/vmCores/%/%/%">
+      <details key="start" value="2062"/>
+      <details key="end" value="2143"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.104" references="/0/vmCores/%/%/%/%">
+      <details key="start" value="2062"/>
+      <details key="end" value="2134"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.105" references="/0/vmCores/%/%/%/%/any">
+      <details key="start" value="2062"/>
+      <details key="end" value="2128"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.106" references="/0/vmCores/%/%/%/%/any/%">
+      <details key="start" value="2062"/>
+      <details key="end" value="2075"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.107" references="/0/vmCores/%/%/%/%/any/%/instance">
+      <details key="start" value="2062"/>
+      <details key="end" value="2070"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.108" references="/0/vmCores/%/%/%/%/any/%.1">
+      <details key="start" value="2081"/>
+      <details key="end" value="2127"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.109" references="/0/vmCores/%/%/%/%/any/%.1/%">
+      <details key="start" value="2081"/>
+      <details key="end" value="2101"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.110" references="/0/vmCores/%/%/%/%/any/%.1/%/%">
+      <details key="start" value="2081"/>
+      <details key="end" value="2096"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.111" references="/0/vmCores/%/%/%/%/any/%.1/%/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.112" references="/0/vmCores/%/%/%/%/any/%.1/%.1">
+      <details key="start" value="2119"/>
+      <details key="end" value="2126"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.113" references="/0/vmCores/%/%/%/%/any/temp3">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.114" references="/0/vmCores/%/%/%.1">
+      <details key="start" value="2154"/>
+      <details key="end" value="2168"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.115" references="/0/vmMemory">
+      <details key="start" value="2181"/>
+      <details key="end" value="2364"/>
+      <details key="line" value="63"/>
+    </eAnnotations>
+    <eAnnotations source="positions.116" references="/0/vmMemory/instance">
+      <details key="start" value="2204"/>
+      <details key="end" value="2236"/>
+      <details key="line" value="63"/>
+    </eAnnotations>
+    <eAnnotations source="positions.117" references="/0/vmMemory/%">
+      <details key="start" value="2249"/>
+      <details key="end" value="2360"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.118" references="/0/vmMemory/%/%">
+      <details key="start" value="2249"/>
+      <details key="end" value="2354"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.119" references="/0/vmMemory/%/%/%">
+      <details key="start" value="2249"/>
+      <details key="end" value="2331"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.120" references="/0/vmMemory/%/%/%/%">
+      <details key="start" value="2249"/>
+      <details key="end" value="2322"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.121" references="/0/vmMemory/%/%/%/%/any">
+      <details key="start" value="2249"/>
+      <details key="end" value="2316"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.122" references="/0/vmMemory/%/%/%/%/any/%">
+      <details key="start" value="2249"/>
+      <details key="end" value="2262"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.123" references="/0/vmMemory/%/%/%/%/any/%/instance">
+      <details key="start" value="2249"/>
+      <details key="end" value="2257"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.124" references="/0/vmMemory/%/%/%/%/any/%.1">
+      <details key="start" value="2268"/>
+      <details key="end" value="2315"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.125" references="/0/vmMemory/%/%/%/%/any/%.1/%">
+      <details key="start" value="2268"/>
+      <details key="end" value="2288"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.126" references="/0/vmMemory/%/%/%/%/any/%.1/%/%">
+      <details key="start" value="2268"/>
+      <details key="end" value="2283"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.127" references="/0/vmMemory/%/%/%/%/any/%.1/%/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.128" references="/0/vmMemory/%/%/%/%/any/%.1/%.1">
+      <details key="start" value="2306"/>
+      <details key="end" value="2314"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.129" references="/0/vmMemory/%/%/%/%/any/temp4">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.130" references="/0/vmMemory/%/%/%.1">
+      <details key="start" value="2342"/>
+      <details key="end" value="2353"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.131" references="/0/vmStorage">
+      <details key="start" value="2366"/>
+      <details key="end" value="2551"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.132" references="/0/vmStorage/instance">
+      <details key="start" value="2390"/>
+      <details key="end" value="2422"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.133" references="/0/vmStorage/%">
+      <details key="start" value="2435"/>
+      <details key="end" value="2547"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.134" references="/0/vmStorage/%/%">
+      <details key="start" value="2435"/>
+      <details key="end" value="2541"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.135" references="/0/vmStorage/%/%/%">
+      <details key="start" value="2435"/>
+      <details key="end" value="2518"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.136" references="/0/vmStorage/%/%/%/%">
+      <details key="start" value="2435"/>
+      <details key="end" value="2509"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.137" references="/0/vmStorage/%/%/%/%/any">
+      <details key="start" value="2435"/>
+      <details key="end" value="2503"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.138" references="/0/vmStorage/%/%/%/%/any/%">
+      <details key="start" value="2435"/>
+      <details key="end" value="2448"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.139" references="/0/vmStorage/%/%/%/%/any/%/instance">
+      <details key="start" value="2435"/>
+      <details key="end" value="2443"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.140" references="/0/vmStorage/%/%/%/%/any/%.1">
+      <details key="start" value="2454"/>
+      <details key="end" value="2502"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.141" references="/0/vmStorage/%/%/%/%/any/%.1/%">
+      <details key="start" value="2454"/>
+      <details key="end" value="2474"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.142" references="/0/vmStorage/%/%/%/%/any/%.1/%/%">
+      <details key="start" value="2454"/>
+      <details key="end" value="2469"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.143" references="/0/vmStorage/%/%/%/%/any/%.1/%/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.144" references="/0/vmStorage/%/%/%/%/any/%.1/%.1">
+      <details key="start" value="2492"/>
+      <details key="end" value="2501"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.145" references="/0/vmStorage/%/%/%/%/any/temp5">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.146" references="/0/vmStorage/%/%/%.1">
+      <details key="start" value="2529"/>
+      <details key="end" value="2540"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
@@ -20,14 +19,12 @@ import org.springframework.stereotype.Component;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
-import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.Tenants;
 import eu.supersede.dynadapt.dm.optimizer.gp.algorithm.SteadyStateGP;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
-import eu.supersede.dynadapt.poc.feature.builder.FeatureModelUtility;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
 import eu.supersede.integration.api.adaptation.types.Alert;
@@ -104,7 +101,7 @@ public class ModuleLoader {
 
 	public void handleAlert(Alert alert) throws IOException, URISyntaxException
     {		
-		System.out.println("Handling alert: " + alert.getID() + ", " + alert.getApplicationID() + ", "
+		System.out.println("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
 		
 		// collect the parameters for the optimizer		
@@ -118,8 +115,8 @@ public class ModuleLoader {
 		//Map qualityAttributePath to temporary folder where serialized files are placed.
 		
 		//Creating temporary folder for serialized models		
-		String fmURI = obtainFMURI(alert.getApplicationID(), alert.getTenant());
-		String fcURI = obtainNameCurrentConfig(alert.getApplicationID(), alert.getTenant());
+		String fmURI = obtainFMURI(alert.getApplicationId(), alert.getTenant());
+		String fcURI = obtainNameCurrentConfig(alert.getApplicationId(), alert.getTenant());
 		
 		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
@@ -152,7 +149,7 @@ public class ModuleLoader {
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		
 		//Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
-		ModelManager mm = new ModelManager();
+		ModelManager mm = new ModelManager();		
 		FeatureModel fm = mm.loadFM(fmURI);
 		List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(fc.getOptimalConfig().split("\\s+")));
 		
@@ -160,7 +157,7 @@ public class ModuleLoader {
 		selectedFeatureIds.removeAll(Arrays.asList(null,""));
 		//FIXME selected feature ids should be feature ids and no names. Current workaround is get the feature corresponding to the name, and get the id
 		// assuming FM does no contains features with duplicated names: TODO Discuss fix with Fitsum
-		selectedFeatureIds = selectedFeatureIds.stream().map(name->FeatureModelUtility.getFeatureByName(fm, name).getId()).collect(Collectors.toList());
+		//selectedFeatureIds = selectedFeatureIds.stream().map(name->FeatureModelUtility.getFeatureByName(fm, name).getId()).collect(Collectors.toList());
 		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = 
 				new FeatureConfigurationBuilder().buildFeatureConfiguration(fm, selectedFeatureIds);
 		String newConfig = temp + getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
@@ -172,12 +169,47 @@ public class ModuleLoader {
 	
 	private String obtainFMURI(String appID, String tenant){
 		//TODO: Call Model Repository with these two parameters
-		return Parameters.INPUT_DIR + "fm/FeedbackGatheringConf.yafm";
+		switch (appID) {
+		case "dynamic":
+			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION; break;
+		case "feedback":
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING; break;	
+		case "monitoring":
+			Parameters.APPLICATION = Parameters.Applications.MONITORING; break;
+		}
+		
+		switch (tenant) {
+		case "atos":
+			Parameters.TENANT= Parameters.Tenants.ATOS; break;
+		case "siemens":
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
+		case "senercon":
+			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
+		}
+		
+		return Parameters.INPUT_DIR + "fm/FeedbackGatheringConfig.yafm";
 	} 
 	
 	private String obtainNameCurrentConfig(String appID, String tenant){
 		//TODO: Call Model Repository with these two parameters
-		return "FeedbackConfigCurrent.yafc";
+		switch (appID) {
+		case "dynamic":
+			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION; break;
+		case "feedback":
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING; break;	
+		case "monitoring":
+			Parameters.APPLICATION = Parameters.Applications.MONITORING; break;
+		}
+		
+		switch (tenant) {
+		case "atos":
+			Parameters.TENANT= Parameters.Tenants.ATOS; break;
+		case "siemens":
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
+		case "senercon":
+			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
+		}
+		return Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";
 	} 
 	
 	private String getFolder (String urlString){
@@ -192,7 +224,7 @@ public class ModuleLoader {
 	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective, Alert alert) {
 		
 		// get the tenant
-		Parameters.TENANT = Tenants.valueOf(alert.getTenant());
+		//Parameters.TENANT = Tenants.valueOf(alert.getTenant());
 		
 		if (!modelURI.isEmpty())
 			Parameters.GRAMMAR_FILE = modelURI;

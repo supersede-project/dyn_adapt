@@ -132,8 +132,8 @@ public class SteadyStateGP extends StandardGP {
 			Parameters.CONSTRAINT_THRESHOLD = 4; // ART in seconds
 //			Parameters.CONSTRAINT_VIOLATION_PENALTY = 100;
 			break;
-		case FEEDBACK_GATHERING:
-			break;
+		//case FEEDBACK_GATHERING:
+			//break;
 		}
 		
 		int depth = 5;

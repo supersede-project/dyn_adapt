@@ -195,6 +195,15 @@ public abstract class GenericModelRepository {
 		}
 	}
 	
+	public <T extends EObject> T readModelFromString(String modelContent, ModelType type, Class<T> modelClass) throws Exception {
+		//Store model in temporary file
+		Path path = Paths.get(temp.toString(), UUID.randomUUID() + type.getExtension());
+		saveModelFromString(modelContent, path);
+		
+		//Use ModelManager to retrieve the model
+		return modelManager.loadModel(path.toString(), modelClass);
+	}
+	
 	private void saveModelFromString (String model, Path path) throws IOException{
 		Files.write(path, model.getBytes());
 	}

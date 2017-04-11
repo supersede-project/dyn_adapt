@@ -3,6 +3,7 @@
  */
 package eu.supersede.dynadapt.modeladapter.queries;
 
+import eu.supersede.dynadapt.modeladapter.queries.GetManifestationsMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.GetReferenceToTypeMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceOfInstanceSpecificationLinkMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.InstanceSpecificationLinkMatcher;
@@ -10,6 +11,7 @@ import eu.supersede.dynadapt.modeladapter.queries.ParametersWithTypeMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.PropertiesWithTypeMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.ReferencesToTypeMatcher;
 import eu.supersede.dynadapt.modeladapter.queries.SubClassOfMatcher;
+import eu.supersede.dynadapt.modeladapter.queries.util.GetManifestationsQuerySpecification;
 import eu.supersede.dynadapt.modeladapter.queries.util.GetReferenceToTypeQuerySpecification;
 import eu.supersede.dynadapt.modeladapter.queries.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 import eu.supersede.dynadapt.modeladapter.queries.util.InstanceSpecificationLinkQuerySpecification;
@@ -36,6 +38,7 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * <li>parametersWithType</li>
  * <li>referencesToType</li>
  * <li>getReferenceToType</li>
+ * <li>getManifestations</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -67,6 +70,7 @@ public final class Model_adapter extends BaseGeneratedPatternGroup {
     querySpecifications.add(ParametersWithTypeQuerySpecification.instance());
     querySpecifications.add(ReferencesToTypeQuerySpecification.instance());
     querySpecifications.add(GetReferenceToTypeQuerySpecification.instance());
+    querySpecifications.add(GetManifestationsQuerySpecification.instance());
   }
   
   public InstanceSpecificationLinkQuerySpecification getInstanceSpecificationLink() throws ViatraQueryException {
@@ -123,5 +127,13 @@ public final class Model_adapter extends BaseGeneratedPatternGroup {
   
   public GetReferenceToTypeMatcher getGetReferenceToType(final ViatraQueryEngine engine) throws ViatraQueryException {
     return GetReferenceToTypeMatcher.on(engine);
+  }
+  
+  public GetManifestationsQuerySpecification getGetManifestations() throws ViatraQueryException {
+    return GetManifestationsQuerySpecification.instance();
+  }
+  
+  public GetManifestationsMatcher getGetManifestations(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return GetManifestationsMatcher.on(engine);
   }
 }

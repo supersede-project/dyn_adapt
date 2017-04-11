@@ -4,10 +4,6 @@
 /.InstanceSpecificationLinkQuerySpecification.java._trace
 /.InstanceOfInstanceSpecificationLinkProcessor.java._trace
 /.InstanceOfInstanceSpecificationLinkQuerySpecification.java._trace
-/InstanceOfInstanceSpecificationLinkProcessor.java
-/InstanceOfInstanceSpecificationLinkQuerySpecification.java
-/InstanceSpecificationLinkProcessor.java
-/InstanceSpecificationLinkQuerySpecification.java
 /.SubClassOfProcessor.java._trace
 /.SubClassOfQuerySpecification.java._trace
 /.PropertyTypeProcessor.java._trace
@@ -24,13 +20,6 @@
 /.AreThereReferenceToTypeQuerySpecification.java._trace
 /.GetReferenceToTypeProcessor.java._trace
 /.GetReferenceToTypeQuerySpecification.java._trace
-/GetReferenceToTypeProcessor.java
-/GetReferenceToTypeQuerySpecification.java
-/ParametersWithTypeProcessor.java
-/ParametersWithTypeQuerySpecification.java
-/PropertiesWithTypeProcessor.java
-/PropertiesWithTypeQuerySpecification.java
-/ReferencesToTypeProcessor.java
-/ReferencesToTypeQuerySpecification.java
-/SubClassOfProcessor.java
-/SubClassOfQuerySpecification.java
+/.GetManifestationsProcessor.java._trace
+/.GetManifestationsQuerySpecification.java._trace
+/.GetReferenceToTypeQuerySpecification.java._trace

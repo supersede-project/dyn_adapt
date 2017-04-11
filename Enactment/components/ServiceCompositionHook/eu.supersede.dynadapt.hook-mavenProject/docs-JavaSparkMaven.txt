@@ -1,0 +1,5 @@
+Doc page aout how to build javaSpark with maven:
+
+https://github.com/arekgofi/Setting-up-Spark-with-Maven
+
+

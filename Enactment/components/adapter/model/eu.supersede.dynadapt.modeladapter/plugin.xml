@@ -8,6 +8,7 @@
       <query-specification fqn="eu.supersede.dynadapt.modeladapter.queries.parametersWithType"/>
       <query-specification fqn="eu.supersede.dynadapt.modeladapter.queries.referencesToType"/>
       <query-specification fqn="eu.supersede.dynadapt.modeladapter.queries.getReferenceToType"/>
+      <query-specification fqn="eu.supersede.dynadapt.modeladapter.queries.getManifestations"/>
     </group>
   </extension>
 </plugin>

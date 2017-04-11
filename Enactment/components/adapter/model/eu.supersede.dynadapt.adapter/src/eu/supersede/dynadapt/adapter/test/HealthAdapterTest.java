@@ -30,7 +30,6 @@ import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.system.ModelRepositoryMapping;
 import eu.supersede.dynadapt.adapter.system.ModelRepositoryResolver;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
-import eu.supersede.dynadapt.adapter.system.SupersedeSystem;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
@@ -40,11 +39,8 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 public class HealthAdapterTest {
 	private final static Logger log = LogManager.getLogger(HealthAdapterTest.class);
 	
-	String baseModelPath;
+//	String baseModelPath;
 	String repository;
-//	String originalFeatureConfigPath;
-//	String newFeatureConfigPath;
-//	String featureModelPath;
 	String repositoryRelativePath;
 	String platformRelativePath;
 	
@@ -77,23 +73,23 @@ public class HealthAdapterTest {
 	public void testNotAuthenticatedHealthUCAdaptation() {
 		try {
 			//Setting input models for the test (overlapping default test models)
-			baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/adapted/HealthWatcher_authenticated.uml";
-			mm = new ModelManager(baseModelPath); //Base Model loaded here
+//			baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/adapted/HealthWatcher_authenticated.uml";
+			mm = new ModelManager(); //Base Model loaded here
 			mr = new ModelRepository(repository,repositoryRelativePath, mm);
 			
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			
 			//Current runtime base model
 			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT);
-			ModelRepositoryMapping.setModelURI(SupersedeSystem.HEALTH, metadata, "/models/adapted/HealthWatcher_authenticated.uml");
+			ModelRepositoryMapping.setModelURI(ModelSystem.Health, metadata, "/models/adapted/HealthWatcher_authenticated.uml");
 			
 			//Current runtime FC
 			metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT);
-			ModelRepositoryMapping.setModelURI(SupersedeSystem.HEALTH, metadata, "/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc");
+			ModelRepositoryMapping.setModelURI(ModelSystem.Health, metadata, "/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc");
 			
 			//Computed optimal FC
 			metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
-			ModelRepositoryMapping.setModelURI(SupersedeSystem.HEALTH, metadata, "/features/configurations/HealthNotAuthenticatedFeatureConfiguration.yafc");
+			ModelRepositoryMapping.setModelURI(ModelSystem.Health, metadata, "/features/configurations/HealthNotAuthenticatedFeatureConfiguration.yafc");
 			
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
@@ -113,16 +109,13 @@ public class HealthAdapterTest {
 	@Before
 	public void setUp() throws Exception {
 		setupPlatform();		
-		mm = new ModelManager(baseModelPath); //Base Model loaded here
+		mm = new ModelManager(); //Base Model loaded here
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
 	}
 
 	private void setupPlatform() {
-		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/health_watcher.uml";
+//		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/health_watcher.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-//		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HealthŃotAuthenticatedFeatureConfiguration.yafc";
-//		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HealthAuthenticatedFeatureConfiguration.yafc";
-//		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/HealthFeatureModel.yafm";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 

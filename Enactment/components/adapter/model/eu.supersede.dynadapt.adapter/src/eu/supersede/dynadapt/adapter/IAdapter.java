@@ -30,5 +30,7 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 public interface IAdapter {
 	void enactAdaptationDecisionAction (ModelSystem system, String adaptationDecisionActionId, String featureConfigurationId) throws EnactmentException;
 	void enactAdaptationDecisionActions (ModelSystem system, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws EnactmentException;
-	void enactAdaptationDecisionActionsFC (ModelSystem system, String featureConfigurationId) throws EnactmentException;
+	void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
+		String featureConfigurationAsString) throws EnactmentException;
+	void enactAdaptationDecisionActionsForFC (ModelSystem system, String featureConfigurationId) throws EnactmentException;
 }

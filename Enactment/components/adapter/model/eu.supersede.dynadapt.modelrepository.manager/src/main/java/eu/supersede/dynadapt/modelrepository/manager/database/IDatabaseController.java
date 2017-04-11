@@ -7,6 +7,7 @@ import java.util.Map;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public interface IDatabaseController {
@@ -27,9 +28,34 @@ public interface IDatabaseController {
 	public IModel getModel(ModelType type, String id) throws Exception;
 	
 	/**
+	 * Get model metadata for a given typedModelId
+	 */
+	public IModel getModel(TypedModelId typedModelId) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type and a model system
+	 */
+	public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type, a model system and a status
+	 */
+	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type and a status
+	 */
+	public List<IModel> getModels(ModelType type, Status status) throws Exception;
+	
+	/**
+	 * Get a metadata list of models given a model type and a relativePath
+	 */
+	public List<IModel> getModels(ModelType type, String relativePath) throws Exception;
+	
+	/**
 	 * Updates a model instance
 	 */
-	public IModel updateModel(ModelType type, String id, Map<String,String> propertySet) throws Exception;
+	public IModel updateModel(ModelType type, String id, IModel model) throws Exception;
 	
 	/**
 	 * Deletes a model instance
@@ -37,11 +63,5 @@ public interface IDatabaseController {
 	public void deleteModel(ModelType type, String id) throws Exception;
 	
 	public List<IModel> getModels(ModelType type, HashMap<String,String> params) throws Exception;
-	
-	/*public List<IModel> getModels(ModelType type, ModelSystem systemId) throws Exception;
-
-	public List<IModel> getModels(ModelType type, ModelSystem systemId, Status status) throws Exception;
-
-	public List<IModel> getModels(ModelType type, Status status) throws Exception;*/
 	
 }

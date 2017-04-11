@@ -2,6 +2,7 @@ package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
@@ -11,6 +12,7 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 
 /*
@@ -94,4 +96,6 @@ public interface IModelRepository {
 	//Repository clean-up
 	void cleanUpRepository();
 	
+	//Reading models from string
+	public <T extends EObject> T readModelFromString(String modelContent, ModelType type, Class<T> modelClass) throws Exception;
 }

@@ -1,14 +1,16 @@
 package eu.supersede.dynadapt.modelrepository.manager.service;
 
-import java.io.IOException;
-import java.io.StringWriter;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,31 +20,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
-import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
+import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
+import eu.supersede.dynadapt.modelrepository.model.BaseModel;
+import eu.supersede.dynadapt.modelrepository.model.FeatureConfiguration;
+import eu.supersede.dynadapt.modelrepository.model.FeatureModel;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
-import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.dynadapt.modelrepository.model.PatternModel;
+import eu.supersede.dynadapt.modelrepository.model.ProfileModel;
+import eu.supersede.dynadapt.modelrepository.model.TypedModelId;
+import eu.supersede.dynadapt.modelrepository.model.VariantModel;
 
 @RestController
 @RequestMapping("/models")
 public class ModelManagerController {
 	
-	private final String packageRoute = "eu.supersede.dynadapt.modelrepository.model.";
-	
+	final static Logger logger = Logger.getLogger(ModelManagerController.class);
+		
 	Manager manager;
 	
 	public ModelManagerController() {
 		try {
 			manager = new Manager("../repository");
+			logger.debug("Model Manager Controller initialization - SUCCESS");
 		} catch (Exception e) {
+			logger.debug(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -57,7 +60,8 @@ public class ModelManagerController {
 				            @RequestParam(value = "authorId", required = false) String authorId,
 				            @RequestParam(value = "creationDate", required = false) String creationDate,
 				            @RequestParam(value = "lastModificationDate", required = false) String lastModificationDate,
-				            @RequestParam(value = "fileExtension", required = false) String fileExtension) {
+				            @RequestParam(value = "fileExtension", required = false) String fileExtension,
+				            @RequestParam(value = "relativePath", required = false) String relativePath) throws Exception {
 		
 		List<IModel> models = new ArrayList<>();
 		String response = "";
@@ -71,20 +75,17 @@ public class ModelManagerController {
 			if (creationDate != null) params.put("creationDate", creationDate);
 			if (lastModificationDate != null) params.put("lastModificationDate", lastModificationDate);
 			if (fileExtension != null) params.put("fileExtension", fileExtension);
+			if (relativePath != null) params.put("relativePath", relativePath);
 			models = manager.getModels(ModelType.valueOf(modelType), params);
 		} catch (IllegalArgumentException e) {
 			throw new UnprocessableEntityException();
-		} catch (Exception e) {
-			throw new ResourceNotFoundException();
-		}
+		} 
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.setSerializationInclusion(Include.NON_NULL);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			mapper.setDateFormat(format);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, models);
-			response = writer.toString();
+			JSONArray array = new JSONArray();
+			for (IModel model : models) {
+				array.put(model.toJson());
+			}
+			response = array.toString();
 		} catch (Exception e) {
 			throw new UnprocessableEntityException();
 		}
@@ -93,33 +94,26 @@ public class ModelManagerController {
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public String createModel(@PathVariable String modelType, @RequestBody String input) {
-		JsonObject jsonObject = (new JsonParser()).parse(input).getAsJsonObject();
-		ObjectMapper mapper = new ObjectMapper();
-		Class classObject;
-		try {
-			classObject = Class.forName(packageRoute + modelType);
-		} catch (ClassNotFoundException e) {
-			throw new ResourceNotFoundException();
-		}
-		JsonArray array = jsonObject.get("modelInstances").getAsJsonArray();
+	public String createModel(@PathVariable String modelType, @RequestBody String input) throws Exception {
+		JSONObject jsonObject = new JSONObject(input);
+		JSONArray array = jsonObject.getJSONArray("modelInstances");
 		List<IModel> models = new ArrayList<>();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		mapper.setDateFormat(format);
-		for (int i = 0; i < array.size(); ++i) {
-			JsonObject jsonModel = array.get(i).getAsJsonObject();
-			try {
-				IModel model = (IModel) mapper.readValue(jsonModel.toString(), classObject);
+		for (int i = 0; i < array.length(); ++i) {
+			JSONObject jsonModel = array.getJSONObject(i);
+			//try {
+				IModel model = jsonToModel(jsonModel, ModelType.valueOf(modelType));
 				models.add(model);
-			} catch (IOException e) {
-				throw new UnprocessableEntityException();
-			}
+			//} catch (Exception e) {
+			//	throw new UnprocessableEntityException();
+			//}
 		}
 		try {
 			manager.createModels(ModelType.valueOf(modelType), models);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, models);
-			return writer.toString();
+			JSONArray modelsArray = new JSONArray();
+			for (IModel model : models) {
+				modelsArray.put(model.toJson());
+			}
+			return modelsArray.toString();
 		} catch (Exception e) {
 			throw new UnprocessableEntityException();
 		}
@@ -137,12 +131,7 @@ public class ModelManagerController {
 			throw new ResourceNotFoundException();
 		}
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			mapper.setDateFormat(format);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, model);
-			response = writer.toString();
+			response = model.toJson().toString();
 		} catch (Exception e) {
 			throw new UnprocessableEntityException();
 		}
@@ -153,19 +142,11 @@ public class ModelManagerController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String updateModel(@PathVariable String modelType, @PathVariable String modelId, 
 			@RequestBody String input) {
-		JsonObject jsonObject = (new JsonParser()).parse(input).getAsJsonObject();
-		Map<String,String> propertySet = new HashMap<>();
-		for (Entry<String,JsonElement> entry : jsonObject.get("values").getAsJsonObject().entrySet()) {
-			propertySet.put(entry.getKey(), entry.getValue().getAsString());
-		}
+		JSONObject jsonObject = new JSONObject(input);
 		try {
-			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, propertySet);
-			ObjectMapper mapper = new ObjectMapper();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			mapper.setDateFormat(format);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, model);
-			return writer.toString();
+			IModel updateModel = jsonToModel(jsonObject.getJSONObject("values"), ModelType.valueOf(modelType));
+			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, updateModel);
+			return model.toJson().toString();
 		} catch (Exception e) {
 			throw new UnprocessableEntityException();
 		}
@@ -189,6 +170,37 @@ public class ModelManagerController {
 	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
 	public class UnprocessableEntityException extends RuntimeException {
 	    
+	}
+	
+	private IModel jsonToModel(JSONObject json, ModelType type) throws Exception {
+		IModel model = null;
+		if (type.equals(ModelType.AdaptabilityModel)) model = new AdaptabilityModel();
+		if (type.equals(ModelType.BaseModel)) model = new BaseModel();
+		if (type.equals(ModelType.FeatureConfiguration)) model = new FeatureConfiguration();
+		if (type.equals(ModelType.FeatureModel)) model = new FeatureModel();
+		if (type.equals(ModelType.ProfileModel)) model = new ProfileModel();
+		if (type.equals(ModelType.PatternModel)) model = new PatternModel();
+		if (type.equals(ModelType.VariantModel)) model = new VariantModel();
+
+		Iterator<?> keys = json.keys();
+		while(keys.hasNext()) {
+		    String key = (String)keys.next();
+		    if (key.equals("dependencies")) {
+		    	JSONArray array = json.getJSONArray(key);
+		    	List<TypedModelId> dependencies = new ArrayList<>();
+		    	for (int i = 0; i < array.length(); ++i) {
+		    		JSONObject obj = array.getJSONObject(i);
+		    		dependencies.add(new TypedModelId(ModelType.valueOf(obj.get("modelType").toString()), obj.get("number").toString()));
+		    	}
+		    	model.setValue(key, dependencies);
+		    } else if (key.equals("lastModificationDate") || key.equals("creationDate")) {
+		    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		        Date parsedDate = dateFormat.parse(json.get(key).toString());
+		        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+		        model.setValue(key, timestamp);
+		    } else model.setValue(key, json.get(key));
+		}
+		return model;
 	}
 
 }
