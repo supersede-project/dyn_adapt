@@ -264,8 +264,10 @@ public class ModelRepositoryTest {
 		am.setCreationDate(Calendar.getInstance().getTime());
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
-		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
+		am.setSystemId(ModelSystem.MonitoringReconfiguration);
 		am.setFeatureId("GooglePlay");
+		am.setRelativePath("relativepath");
+		am.setDependencies(new ArrayList<>());
 		
 		return modelInstances;
 	}
@@ -291,8 +293,10 @@ public class ModelRepositoryTest {
 		am.setCreationDate(Calendar.getInstance().getTime());
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
-		am.setSystemId(ModelSystem.Atos.getId());
+		am.setSystemId(ModelSystem.Atos);
 		am.setStatus("not adapted");
+		am.setRelativePath("relativepath");
+		am.setDependencies(new ArrayList<>());
 		
 		return modelInstances;
 	}
