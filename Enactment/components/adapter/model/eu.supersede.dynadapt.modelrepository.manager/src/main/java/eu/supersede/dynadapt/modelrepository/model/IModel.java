@@ -60,7 +60,7 @@ public abstract class IModel {
 				
 	}
 	
-	public JSONObject toJson() throws Exception {
+	public JSONObject toJson() throws IllegalAccessException {
 		JSONObject json = new JSONObject();
 		
 		List<Field> fields = getFields();
