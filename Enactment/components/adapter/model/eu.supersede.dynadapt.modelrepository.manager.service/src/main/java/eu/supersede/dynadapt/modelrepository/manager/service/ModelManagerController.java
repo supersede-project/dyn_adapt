@@ -212,6 +212,7 @@ public class ModelManagerController {
 				throw new IllegalAccessException();
 			}
 		}
+		if (!model.validateFields()) throw new Exception("Missing mandatory fields");
 		return model;
 	}
 
