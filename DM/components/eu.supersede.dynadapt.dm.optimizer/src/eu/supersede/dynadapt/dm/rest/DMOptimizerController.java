@@ -36,7 +36,7 @@ public class DMOptimizerController {
 			@RequestParam(value="qualityAttributePath", defaultValue="") String qualityAttributePath,
 			@RequestParam(value="alertAttribute", defaultValue="response_time") String alertAttribute,
 			@RequestParam(value="alertThresholdValue", defaultValue="30") String alertThresholdValue,
-			@RequestParam(value="multiObjective", defaultValue="true") boolean multiObjective) {
+			@RequestParam(value="multiObjective", defaultValue="false") boolean multiObjective) {
 //		optimize (URI modelURI, URI currentConfigurationId, String alertAttribute, String alertThresholdValue
 		System.out.println(modelURI);
 		String optimalConfig = null;
