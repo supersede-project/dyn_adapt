@@ -166,14 +166,13 @@ public class ModuleLoader {
 		new ModelManager().saveFC(featureConf, org.eclipse.emf.common.util.URI.createFileURI(newConfig));
 		
 		//TODO Delete a temporary folder during Optimizer shutdown
-		//TODO send fc to Adapter;
+		//Send FC to Adapter;
 		Path fcPath = Paths.get(newConfig);
 		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-		List<String> adaptationDecisionActionIds = new ArrayList<>();
 		
 		boolean processEnactment = true; //FIXME Get from configuration
 		if (processEnactment)
-			proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds , featureConfigurationAsString);
+			proxy.enactAdaptationDecisionActionsInFCasString(system, featureConfigurationAsString);
 		
 		return fc;
 	}
