@@ -172,7 +172,7 @@ public class ModuleLoader {
 		
 		boolean processEnactment = true; //FIXME Get from configuration
 		if (processEnactment)
-			proxy.enactAdaptationDecisionActionsInFCasString(system, featureConfigurationAsString);
+			proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
 		
 		return fc;
 	}
