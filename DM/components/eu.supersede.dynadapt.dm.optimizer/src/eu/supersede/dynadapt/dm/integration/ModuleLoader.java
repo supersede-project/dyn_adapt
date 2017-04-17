@@ -27,20 +27,22 @@ import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
+import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
-
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
 
 @Component
 public class ModuleLoader {
+	private AdapterProxy<?, ?> proxy;
 
 	//@Autowired
 	//private RequirementsJpa requirementsTable;
 
 	public ModuleLoader() {
-
+		proxy = new AdapterProxy<Object, Object>();
 	}
 
 	@PostConstruct
@@ -67,16 +69,12 @@ public class ModuleLoader {
                                 Thread.sleep(1000); // FIXME Configure sleeping time
                             }
 						}
-					} catch( InterruptedException e ) {
+					} catch( Exception e ) {
 						e.printStackTrace();
 					}
 					subscriber.closeSubscription();
 					subscriber.closeTopicConnection();
 					
-				}catch (URISyntaxException u){
-					u.printStackTrace();
-				}catch(IOException i){
-					i.printStackTrace();
 				}catch (JMSException e) {
 					e.printStackTrace();
 				}catch (NamingException e1)
@@ -99,7 +97,7 @@ public class ModuleLoader {
 			}} ).start();
 	}
 
-	public void handleAlert(Alert alert) throws IOException, URISyntaxException
+	private void handleAlert(Alert alert) throws Exception
     {		
 		System.out.println("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
@@ -114,9 +112,18 @@ public class ModuleLoader {
 		//String fmFolder = getFolder (fmURI);
 		//Map qualityAttributePath to temporary folder where serialized files are placed.
 		
-		//Creating temporary folder for serialized models		
+		// Process Alert data	
 		String fmURI = obtainFMURI(alert.getApplicationId(), alert.getTenant());
 		String fcURI = obtainNameCurrentConfig(alert.getApplicationId(), alert.getTenant());
+		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
+		Double alertThresholdValue = alert.getConditions().get(0).getValue();
+		ModelSystem system = alert.getTenant();
+		
+		processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
+    }
+
+	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
+		//Creating temporary folder for serialized models
 		
 		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
@@ -125,32 +132,27 @@ public class ModuleLoader {
 		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
 		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
-		String modelURI = temp + getFileNameOfPath(fmURI).replace("yafm", "bnf");
-		Parameters.ATTRIBUTE_METADATA = temp + getFileNameOfPath(fmURI).replace("yafm", "json");
+		//Serializer saves model in a file with name <FM_name>.bnf, not in a file with name <FM_File_name.bnf>
+		//so name needs to be retrieved from FM.getModelName
+		ModelManager mm = new ModelManager();
+		FeatureModel fm = mm.loadFM(fmURI);
+		String modelURI = temp + "/"  + fm.getName() + ".bnf";
+		
+		Parameters.ATTRIBUTE_METADATA = temp + "/"  + fm.getName() + ".json";
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
-		Boolean multiObjective = false; //TODO: how to determine this parameter??
+		Boolean multiObjective = false; //TODO: how to determine this parameter?? By configuration?
 		
 		String optimalConfig = doOptimization(modelURI, currentConfig, qualityAttributePath, 
-				alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-				alert.getConditions().get(0).getValue() /*alertThresholdValue*/, 
-				multiObjective, alert);
-//		if (!multiObjective){
-//			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, 
-//					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-//					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
-//		}else{
-//			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, 
-//					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-//					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
-//		}
+				alertAttribute, 
+				alertThresholdValue, 
+				multiObjective);
+
 		System.out.println(optimalConfig);
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		
 		//Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
-		ModelManager mm = new ModelManager();		
-		FeatureModel fm = mm.loadFM(fmURI);
 		List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(fc.getOptimalConfig().split("\\s+")));
 		
 		//Remove empty entries
@@ -165,9 +167,18 @@ public class ModuleLoader {
 		
 		//TODO Delete a temporary folder during Optimizer shutdown
 		//TODO send fc to Adapter;
-    }
+		Path fcPath = Paths.get(newConfig);
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		
+		boolean processEnactment = true; //FIXME Get from configuration
+		if (processEnactment)
+			proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds , featureConfigurationAsString);
+		
+		return fc;
+	}
 	
-	private String obtainFMURI(String appID, String tenant){
+	private String obtainFMURI(String appID, ModelSystem tenant){
 		//TODO: Call Model Repository with these two parameters
 		switch (appID) {
 		case "dynamic":
@@ -179,18 +190,19 @@ public class ModuleLoader {
 		}
 		
 		switch (tenant) {
-		case "atos":
+		case Atos:
+		case Atos_HSK:
 			Parameters.TENANT= Parameters.Tenants.ATOS; break;
-		case "siemens":
+		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
-		case "senercon":
+		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
 		
 		return Parameters.INPUT_DIR + "fm/FeedbackGatheringConfig.yafm";
 	} 
 	
-	private String obtainNameCurrentConfig(String appID, String tenant){
+	private String obtainNameCurrentConfig(String appID, ModelSystem tenant){
 		//TODO: Call Model Repository with these two parameters
 		switch (appID) {
 		case "dynamic":
@@ -202,11 +214,12 @@ public class ModuleLoader {
 		}
 		
 		switch (tenant) {
-		case "atos":
+		case Atos:
+		case Atos_HSK:
 			Parameters.TENANT= Parameters.Tenants.ATOS; break;
-		case "siemens":
+		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
-		case "senercon":
+		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
 		return Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";
@@ -221,7 +234,7 @@ public class ModuleLoader {
 		return path.substring(path.lastIndexOf('/'));
 	}
 	
-	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective, Alert alert) {
+	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective) {
 		
 		// get the tenant
 		//Parameters.TENANT = Tenants.valueOf(alert.getTenant());

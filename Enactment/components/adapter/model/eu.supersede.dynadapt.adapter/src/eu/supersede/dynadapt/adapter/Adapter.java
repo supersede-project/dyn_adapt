@@ -241,15 +241,17 @@ public class Adapter implements IAdapter {
 
 		List<Selection> changedSelections = diffFeatureConfigurations(originalFeatureConfig, newFeatureConfig);
 
-		// Filter out changedSelections not included in adaptationDecisionActionIds
-		List<Selection> droppedSelections = new ArrayList<>();
-		for (Selection s: changedSelections){
-			if (!adaptationDecisionActionIds.contains(s.getId())){
-				log.debug("Selection " + s.getId() + " not required for enactment. Dropped from list of changed selections");
-				droppedSelections.add (s);
+		if (adaptationDecisionActionIds!=null && !adaptationDecisionActionIds.isEmpty()){
+			// Filter out changedSelections not included in adaptationDecisionActionIds
+			List<Selection> droppedSelections = new ArrayList<>();
+			for (Selection s: changedSelections){
+				if (!adaptationDecisionActionIds.contains(s.getId())){
+					log.debug("Selection " + s.getId() + " not required for enactment. Dropped from list of changed selections");
+					droppedSelections.add (s);
+				}
 			}
+			changedSelections.removeAll(droppedSelections);
 		}
-		changedSelections.removeAll(droppedSelections);
 
 		Model model = adapt(changedSelections, baseModel);
 

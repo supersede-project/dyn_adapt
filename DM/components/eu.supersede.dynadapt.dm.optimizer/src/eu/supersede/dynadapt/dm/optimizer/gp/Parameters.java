@@ -139,7 +139,7 @@ public class Parameters {
 	public static int NUM_OBJECTIVES = 2;
 	public static int NUM_CONSTRAINTS = 1;
 
-	public static double CONSTRAINT_THRESHOLD = 20;
+	public static double CONSTRAINT_THRESHOLD = 20; //Average Response Time
 //	public static double SOFT_CONSTRAINT_THRESHOLD = 4;
 //	public static double CONSTRAINT_VIOLATION_PENALTY = 20; //CONSTRAINT_THRESHOLD;
 	
@@ -152,9 +152,9 @@ public class Parameters {
 	
 	// parameters specific to ATOS HSK Scenario
 	public static double ATOS_HSK_CONST1 = 10;
-	public static double ATOS_HSK_CONST2 = 1;
+	public static double ATOS_HSK_CONST2 = 2;
 	public static double ATOS_HSK_CONST3 = 0;
-	public static double ATOS_HSK_CONST4 = 1;
+	public static double ATOS_HSK_CONST4 = 2;
 	public static double ATOS_HSK_CONST5 = 1;
 	public static double ATOS_HSK_CONST6 = 1000;
 	
