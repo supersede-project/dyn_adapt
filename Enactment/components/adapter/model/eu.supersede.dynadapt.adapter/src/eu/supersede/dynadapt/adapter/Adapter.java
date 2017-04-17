@@ -239,6 +239,7 @@ public class Adapter implements IAdapter {
 //			newFeatureConfig = mrr.getConfigurationForSystem(system,
 //					new RepositoryMetadata(fcUri));
 
+		//Only leaf selections are included
 		List<Selection> changedSelections = diffFeatureConfigurations(originalFeatureConfig, newFeatureConfig);
 
 		if (adaptationDecisionActionIds!=null && !adaptationDecisionActionIds.isEmpty()){
@@ -387,6 +388,7 @@ public class Adapter implements IAdapter {
 
 	}
 
+	//Calculate leaf selection changes among provided feature configurations
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig,
 			FeatureConfiguration newFeatureConfig) {
 		FeatureModel fm = originalFeatureConfig.getFeatureModelCopy();
@@ -397,8 +399,14 @@ public class Adapter implements IAdapter {
 	
 	private List<Selection> diffFeatureConfigurationsInFeature(Feature feature,
 			FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {
-		List<Selection> selections = diffFeatureConfigurationsInFeature(feature.getId(), originalFeatureConfig,
+		
+		List<Selection> selections = new ArrayList<Selection>();
+		
+		//Only computes differences for leaf features
+		if (isLeafFeature(feature)){
+			selections = diffFeatureConfigurationsInFeature(feature.getId(), originalFeatureConfig,
 				newFeatureConfig);
+		}
 
 		for (Feature child : feature.getFeatures()) {
 			selections.addAll(diffFeatureConfigurationsInFeature(child, originalFeatureConfig, newFeatureConfig));
@@ -411,6 +419,10 @@ public class Adapter implements IAdapter {
 			}
 		}
 		return selections;
+	}
+
+	private boolean isLeafFeature(Feature feature) {
+		return feature.getFeatures().isEmpty() && feature.getGroups().isEmpty();
 	}
 
 	private List<Selection> diffFeatureConfigurationsInFeature(String featureId,

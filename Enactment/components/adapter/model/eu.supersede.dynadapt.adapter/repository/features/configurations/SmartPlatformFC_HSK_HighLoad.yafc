@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_HighLoad" version="1.0.0">
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_LowLoad" version="1.0.0">
   <featureModel href="../models/SmartPlatformFM_HSK.yafm#/"/>
   <featureModelCopy name="SmartPlatformFM" version="1.0.0" description="">
     <rootFeature id="smartplatform" name="SmartPlatform" description="" lower="1" upper="1">
@@ -8,34 +8,34 @@
       <feature id="physicalserver" name="PhysicalServer" lower="1" upper="1">
         <feature id="virtualization" name="Virtualization" lower="1" upper="1">
           <feature id="vm1" name="VM1" lower="1" upper="1">
-            <attribute id="a_1942060137" name="name" type="string"/>
+            <attribute id="a_1942060137" name="name" type="string" defaultValue="OVP PRT"/>
             <feature id="services" name="Services" lower="1" upper="1">
               <feature id="cms" name="CMS" lower="1" upper="1"/>
               <feature id="dss" name="DSS" lower="1" upper="1"/>
             </feature>
             <feature id="vm1_configuration" name="VM1_Configuration" lower="1" upper="1">
               <feature id="mediumloadconfigurationinvm1" name="MediumLoadConfigurationInVM1" lower="1" upper="1">
-                <attribute id="a_1130835644" name="storage" type="double"/>
-                <attribute id="a_440263765" name="root_size" type="double"/>
+                <attribute id="a_1130835644" name="storage" type="double" defaultValue="200"/>
+                <attribute id="a_440263765" name="root_size" type="double" defaultValue="5"/>
                 <attribute id="a_687156606" name="ovp_size" type="double" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="100" minRangeValue="100" maxRangeValue="200" weight="1.0" objectiveFunctionAggregator="min"/>
               </feature>
             </feature>
           </feature>
           <feature id="vm3" name="VM3" lower="1" upper="1">
-            <attribute id="a_959179604" name="name" type="string"/>
+            <attribute id="a_959179604" name="name" type="string" defaultValue="OVP HAP"/>
             <feature id="services_2524" name="Services" lower="1" upper="1">
               <feature id="hap" name="HAP" lower="1" upper="1"/>
             </feature>
             <feature id="vm3_configuration" name="VM3_Configuration" lower="1" upper="1">
               <feature id="lowloadconfigurationinvm3" name="LowLoadConfigurationInVM3" lower="1" upper="1">
-                <attribute id="a_1601343105" name="storage" type="double" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="50"/>
-                <attribute id="a_751696459" name="root_size" type="double" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10"/>
-                <attribute id="a_1070019319" name="ovp_size" type="double" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" objectiveFunctionAggregator="min"/>
+                <attribute id="a_1601343105" name="storage" type="double" description="HDD capacity assigned to this VM. Sum over VMx Configuration.storage attributes for all configurations &lt;= Physical Configuration.storage" defaultValue="20"/>
+                <attribute id="a_751696459" name="root_size" type="double" description="/ partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5"/>
+                <attribute id="a_1070019319" name="ovp_size" type="double" description="/ovp partition size. size (/ partition) + size (/ovp partition) &lt;= storage" defaultValue="5" minRangeValue="10" maxRangeValue="20" weight="1.0" objectiveFunctionAggregator="min"/>
               </feature>
             </feature>
           </feature>
           <feature id="vm2_a" name="VM2_A" lower="0" upper="1">
-            <attribute id="a_206757797" name="name" type="string"/>
+            <attribute id="a_206757797" name="name" type="string" description="" defaultValue="OVP BO"/>
             <feature id="services_13032" name="Services" lower="1" upper="1">
               <feature id="cre" name="CRE" lower="1" upper="1"/>
               <feature id="hsk" name="HSK" lower="1" upper="1"/>

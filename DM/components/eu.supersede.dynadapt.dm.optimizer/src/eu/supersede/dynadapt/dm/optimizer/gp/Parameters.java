@@ -152,9 +152,9 @@ public class Parameters {
 	
 	// parameters specific to ATOS HSK Scenario
 	public static double ATOS_HSK_CONST1 = 10;
-	public static double ATOS_HSK_CONST2 = 2;
+	public static double ATOS_HSK_CONST2 = 1.5;
 	public static double ATOS_HSK_CONST3 = 0;
-	public static double ATOS_HSK_CONST4 = 2;
+	public static double ATOS_HSK_CONST4 = 1.5;
 	public static double ATOS_HSK_CONST5 = 1;
 	public static double ATOS_HSK_CONST6 = 1000;
 	
