@@ -1,27 +1,31 @@
 package eu.supersede.dynadapt.dm.integration;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dynadapt.dm.optimizer.gp.algorithm.SteadyStateGP;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
+import eu.supersede.dynadapt.dm.optimizer.kpi.OptimizerKPIComputer;
 import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
@@ -36,7 +40,12 @@ import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
 
 @Component
 public class ModuleLoader {
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private AdapterProxy<?, ?> proxy;
+	//Configuration
+	DMOptimizationConfiguration config;
+	//KPI Computer
+	private OptimizerKPIComputer kpiComputer = new OptimizerKPIComputer();
 
 	//@Autowired
 	//private RequirementsJpa requirementsTable;
@@ -99,7 +108,7 @@ public class ModuleLoader {
 
 	private void handleAlert(Alert alert) throws Exception
     {		
-		System.out.println("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
+		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
 		
 		// collect the parameters for the optimizer		
@@ -120,11 +129,13 @@ public class ModuleLoader {
 		ModelSystem system = alert.getTenant();
 		
 		processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
+		
     }
 
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
-		//Creating temporary folder for serialized models
+		kpiComputer.startComputingKPI();
 		
+		//Creating temporary folder for serialized models
 		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
@@ -142,14 +153,15 @@ public class ModuleLoader {
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
-		Boolean multiObjective = false; //TODO: how to determine this parameter?? By configuration?
+		Boolean multiObjective = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("multiobjective"));
 		
 		String optimalConfig = doOptimization(modelURI, currentConfig, qualityAttributePath, 
 				alertAttribute, 
 				alertThresholdValue, 
 				multiObjective);
 
-		System.out.println(optimalConfig);
+		log.debug("Computed optimal configuration: " + optimalConfig);
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		
 		//Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
@@ -157,22 +169,35 @@ public class ModuleLoader {
 		
 		//Remove empty entries
 		selectedFeatureIds.removeAll(Arrays.asList(null,""));
-		//FIXME selected feature ids should be feature ids and no names. Current workaround is get the feature corresponding to the name, and get the id
-		// assuming FM does no contains features with duplicated names: TODO Discuss fix with Fitsum
-		//selectedFeatureIds = selectedFeatureIds.stream().map(name->FeatureModelUtility.getFeatureByName(fm, name).getId()).collect(Collectors.toList());
+		
+		//Generate FC
 		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = 
 				new FeatureConfigurationBuilder().buildFeatureConfiguration(fm, selectedFeatureIds);
 		String newConfig = temp + getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
 		new ModelManager().saveFC(featureConf, org.eclipse.emf.common.util.URI.createFileURI(newConfig));
 		
-		//TODO Delete a temporary folder during Optimizer shutdown
+		kpiComputer.stopComputingKPI();
+		kpiComputer.reportComputedKPI();
+		
+		//TODO Store optimal computed FCs onto the ModelRepository
+		
 		//Send FC to Adapter;
 		Path fcPath = Paths.get(newConfig);
 		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
 		
-		boolean processEnactment = true; //FIXME Get from configuration
+		boolean processEnactment = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
 		if (processEnactment)
 			proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
+		
+		//Remove temporary file
+		boolean removeTemp = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("temp_file.remove_after_computing"));
+		if (removeTemp){
+			//Remove all files within the temporary folder
+			Files.walk(temporaryFolder).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+			Files.deleteIfExists(temporaryFolder);
+		}
 		
 		return fc;
 	}
@@ -269,63 +294,9 @@ public class ModuleLoader {
 			SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 			List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
 			eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
-			System.out.println(solution.getConfiguration().toString());
+			log.debug(solution.getConfiguration().toString());
 			optimalConfiguration = solution.getConfiguration().toString();
 		}
 		return optimalConfiguration;
 	}
-//	private String doMOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
-//		if (!modelURI.isEmpty())
-//			Parameters.GRAMMAR_FILE = modelURI;
-//		
-//		if (!currentConfig.isEmpty())
-//			Parameters.CURRENT_CONFIGURATION = currentConfig;
-//		
-//		if (!qualityAttributePath.isEmpty())
-//			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
-//		
-//		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-//		Parameters.SEARCH_BUDGET = 5;
-//		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue; // 30;
-//		Parameters.ALERT_ATTRIBUTE = alertAttribute;
-//		Parameters.POPULATION_SIZE = 150;
-//		int depth = 15;
-//		double probRecursive = 0.05;
-//		Parameters.CROSSOVER_RATE = 0.6;
-//		Parameters.MUTATION_RATE = 0.2;
-//		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-//		ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
-//		List<Chromosome> solutions = nsgaii.generateSolution();
-//		StringBuffer sols = new StringBuffer();
-//		for (Chromosome c : solutions){
-//			sols.append("[" + c.getConfiguration().toString() + "],");
-//		}
-//		return sols.toString();
-//	}
-//	
-//	private String doSOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
-//		if (!modelURI.isEmpty())
-//			Parameters.GRAMMAR_FILE = modelURI;
-//		
-//		if (!currentConfig.isEmpty())
-//			Parameters.CURRENT_CONFIGURATION = currentConfig;
-//		
-//		if (!qualityAttributePath.isEmpty())
-//			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
-//		
-//		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-//		Parameters.SEARCH_BUDGET = 5;
-//		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
-//		Parameters.ALERT_ATTRIBUTE = alertAttribute;
-//		Parameters.POPULATION_SIZE = 150;
-//		int depth = 15;
-//		double probRecursive = 0.005;
-//		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-//		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
-//		List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
-//		eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
-//		System.out.println(solution.getConfiguration().toString());
-//		return solution.getConfiguration().toString();
-//	}
-	
 }

@@ -32,7 +32,7 @@
             </feature>
           </feature>
         </feature>
-        <feature id="vm2_a" name="VM2_A" lower="0" upper="1">
+        <feature id="vm2_a" name="VM2_A" lower="1" upper="1">
           <attribute id="a_206757797" name="name" type="string" description="" defaultValue="OVP BO"/>
           <feature id="services_13032" name="Services" lower="1" upper="1">
             <feature id="cre" name="CRE" lower="1" upper="1"/>

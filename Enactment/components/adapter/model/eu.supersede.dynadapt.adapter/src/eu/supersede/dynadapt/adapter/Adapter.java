@@ -96,65 +96,6 @@ public class Adapter implements IAdapter {
 		log.debug("Adapter set up");
 	}
 
-//	public Model adapt(FeatureModel variability, FeatureConfiguration featureConfig, Aspect adaptationModel,
-//			Model baseModel) throws Exception {
-//
-//		List<Feature> features = new ArrayList<>();
-//		features.add(adaptationModel.getFeature());
-//		Model model = null;
-//
-//		for (Feature f : features) {
-//
-//			List<String> enabledFeatureIds = new ArrayList<>();
-//			for (Selection selection : featureConfig.getSelectionsById(f.getId())) {
-//				if (selection.isEnabled())
-//					enabledFeatureIds.add(selection.getFeature().getId());
-//			}
-//
-//			log.debug("Feature ID: " + f.getId());
-//			List<Aspect> aspects = mr.getAspectModels(f.getId(), modelsLocation);
-//			log.debug("Found " + aspects.size() + " adaptations for feature: " + f.getId());
-//			for (Aspect a : aspects) {
-//				log.debug("\tAspect name: " + a.getName());
-//				Stereotype role = null;
-//				List<Pointcut> pointcuts = a.getPointcuts();
-//
-//				HashMap<Stereotype, List<Element>> elements = new HashMap<>();
-//
-//				for (Pointcut p : pointcuts) {
-//					role = p.getRole();
-//					elements.put(role, new ArrayList<>());
-//					log.debug("		Role: " + role.getName());
-//					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
-//					for (IPatternMatch i : matches) {
-//						Element e = (Element) i.get(0);
-//						log.debug("\t\tElement: " + e);
-//						elements.get(role).add(e);
-//					}
-//				}
-//				Model variant = a.getAdvice();
-//				for (Composition c : a.getCompositions()) {
-//					boolean enabled = c.getFeature_enabled();
-//					if (enabled && enabledFeatureIds.contains(f.getId())
-//							|| !enabled && !enabledFeatureIds.contains(f.getId())) {
-//						ActionOptionType actionOptionType = c.getAction();
-//						if (actionOptionType instanceof UpdateValueImpl) {
-//							String value = actionOptionType
-//									.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
-//							model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
-//						} else {
-//							model = ma.applyCompositionDirective(a.getCompositions().get(0).getAction(), baseModel,
-//									elements, c.getAdvice(), variant);
-//						}
-//					}
-//				}
-//			}
-//		}
-//
-//		return model;
-//
-//	}
-
 	@Override
 	public void enactAdaptationDecisionAction(ModelSystem system, String adaptationDecisionActionId,
 			String featureConfigurationId) throws EnactmentException {
@@ -463,17 +404,6 @@ public class Adapter implements IAdapter {
 
 		return selectionsInFeature(root, featureConfig);
 	}
-
-//	private List<Feature> listFeatures(Feature root, String featureId) {
-//		List<Feature> features = new ArrayList<>();
-//		log.debug(root.getId());
-//		if (root.getId().equals(featureId))
-//			features.add(root);
-//		if (root.getFeatures().size() > 0)
-//			for (Feature f : root.getFeatures())
-//				features.addAll(listFeatures(f, featureId));
-//		return features;
-//	}
 
 	private boolean selectionExistsInList(Selection s1, List<Selection> list) {
 		boolean result = false;
