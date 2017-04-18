@@ -135,6 +135,10 @@ public class ModuleLoader {
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
 		kpiComputer.startComputingKPI();
 		
+		//Resolving relative URIs to execution directory
+		fmURI = System.getProperty("user.dir") + "/" + fmURI;
+		fcURI = System.getProperty("user.dir") + "/" + fcURI;
+		
 		//Creating temporary folder for serialized models
 		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
@@ -204,6 +208,7 @@ public class ModuleLoader {
 	
 	private String obtainFMURI(String appID, ModelSystem tenant){
 		//TODO: Call Model Repository with these two parameters
+		String uri = Parameters.INPUT_DIR + "fm/FeedbackGatheringConfig.yafm";
 		switch (appID) {
 		case "dynamic":
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION; break;
@@ -216,18 +221,21 @@ public class ModuleLoader {
 		switch (tenant) {
 		case Atos:
 		case Atos_HSK:
-			Parameters.TENANT= Parameters.Tenants.ATOS; break;
+			Parameters.TENANT= Parameters.Tenants.ATOS; 
+			uri = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
+			break;
 		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
 		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
 		
-		return Parameters.INPUT_DIR + "fm/FeedbackGatheringConfig.yafm";
+		return uri;
 	} 
 	
 	private String obtainNameCurrentConfig(String appID, ModelSystem tenant){
 		//TODO: Call Model Repository with these two parameters
+		String uri = Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";
 		switch (appID) {
 		case "dynamic":
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION; break;
@@ -240,13 +248,15 @@ public class ModuleLoader {
 		switch (tenant) {
 		case Atos:
 		case Atos_HSK:
-			Parameters.TENANT= Parameters.Tenants.ATOS; break;
+			Parameters.TENANT= Parameters.Tenants.ATOS; 
+			uri = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
+			break;
 		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
 		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
-		return Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";
+		return uri;
 	} 
 	
 	private String getFolder (String urlString){
