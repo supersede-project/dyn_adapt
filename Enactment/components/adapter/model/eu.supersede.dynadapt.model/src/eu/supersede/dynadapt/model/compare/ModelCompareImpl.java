@@ -18,6 +18,7 @@ import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -197,18 +198,48 @@ public class ModelCompareImpl implements ModelCompare{
 	}
 	
 	private boolean compareQName (NamedElement e1, NamedElement e2){
-		String e1QName = e1.getQualifiedName().substring(e1.getQualifiedName().indexOf("::"));
-		String e2QName = e2.getQualifiedName().substring(e2.getQualifiedName().indexOf("::"));
+		String e1QName = e1.getQualifiedName();
+		String e2QName = e2.getQualifiedName();
+		
+		//Compare attributes with no QName (e.g. associations)
+		if (e1QName == null && e1 instanceof Property){
+			Property p1 = (Property) e1;
+			e1QName = p1.getType().getQualifiedName() + "::" + p1.getName();
+		}
+		
+		if (e2QName == null && e2 instanceof Property){
+			Property p2 = (Property) e2;
+			e2QName = p2.getType().getQualifiedName() + "::" + p2.getName();
+		}
+		
+		if (e1QName != null)
+			if (e1QName.indexOf("::") >= 0)
+				e1QName = e1QName.substring(e1QName.indexOf("::") + 2);
+		if (e2QName != null)
+			if (e2QName.indexOf("::") >= 0)
+				e2QName = e2QName.substring(e2QName.indexOf("::") + 2);
+		
 		return e1QName.equals(e2QName);
 	}
 
 	private boolean areEquivalentManifestations(Manifestation element, Manifestation child) {
 		boolean result = false;
+		
+		//Comparing suppliers
 		if (element.getSuppliers().size() == child.getSuppliers().size() && element.getSuppliers().size()>0){
 			result = compareQName(element.getSuppliers().get(0), child.getSuppliers().get(0));
 		}
-		result = result && compareQName (element.getUtilizedElement(), child.getUtilizedElement())
-				&& compareQName(element.getSuppliers().get(0), child.getSuppliers().get(0));
+		
+		//Comparing clients
+		if (element.getClients().size() == child.getClients().size() && element.getClients().size()>0){
+			result = result && compareQName(element.getClients().get(0), child.getClients().get(0));
+		}
+		
+		//Comparing utilized element
+		if (element.getUtilizedElement()!=null && child.getUtilizedElement()!=null){
+			result = result && compareQName(element.getUtilizedElement(), child.getUtilizedElement());
+		}
+		
 		return result;
 	}
 
