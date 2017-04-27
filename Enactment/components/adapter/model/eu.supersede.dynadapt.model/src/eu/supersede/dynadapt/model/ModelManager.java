@@ -133,9 +133,13 @@ public class ModelManager implements IModelManager {
 				                Files.delete(file);
 				                return FileVisitResult.CONTINUE;
 				            }
+				            @Override
+				            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+								log.debug("deleting temporary folder: " + dir);
+								Files.delete(dir);
+							    return FileVisitResult.CONTINUE;
+				            }
 				        }); 
-						log.debug("deleting temporary directory: " + temp);
-						Files.deleteIfExists(temp);
 		        	}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -243,7 +247,12 @@ public class ModelManager implements IModelManager {
 		if (path.startsWith("http")){
 			return resourceSet.loadModel(downloadModel(path), clazz);
 		}
-		return resourceSet.loadModel(URI.createURI(path), clazz);
+		if (path.startsWith("platform") || path.startsWith("file")) {
+			return resourceSet.loadModel(URI.createURI(path), clazz);
+		}
+		else {
+			return resourceSet.loadModel(URI.createFileURI(path), clazz);
+		}
 	}
 	
 	@Override
@@ -389,6 +398,7 @@ public class ModelManager implements IModelManager {
 		File outputFile = new File(outputDirectory + outputFileName);
 
 		if (!outputFile.exists()) {
+			outputFile.getParentFile().mkdirs();
 			outputFile.createNewFile();
 		}
 

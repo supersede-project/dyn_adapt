@@ -223,9 +223,19 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return super.storeModel(model, type, metadata);
 	}
 	
+	// TODO pass declaration to the interface
+	public <T extends EObject, S extends IModel> String storeModel(T model, ModelType type, ModelMetadata metadata, String repository) throws Exception{
+		return super.storeModel(model, type, metadata, repository);
+	}
+	
 	@Override
 	public String storeBaseModel(Model model, ModelMetadata metadata) throws Exception {
 		return storeModel(model, ModelType.BaseModel, metadata);
+	}
+	
+	//TODO promote this method to the interface instead of the above one
+	public String storeBaseModel(Model model, ModelMetadata metadata, String repository) throws Exception {
+		return storeModel(model, ModelType.BaseModel, metadata, repository);
 	}
 
 	@Override
