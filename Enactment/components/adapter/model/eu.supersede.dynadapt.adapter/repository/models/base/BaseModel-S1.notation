@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_JANJAGYKEeaNFfJ_821P-Q" type="PapyrusUMLActivityDiagram" name="Activity Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_JANJAGYKEeaNFfJ_821P-Q" type="PapyrusUMLActivityDiagram" name="Activity Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_JANJAWYKEeaNFfJ_821P-Q" type="Activity_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_JANJAmYKEeaNFfJ_821P-Q" type="Activity_NameLabel"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_4vGyIOIVEeabtLZxiue2-Q" type="Activity_ParameterCompartment">
@@ -84,6 +84,9 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fo7FgmYOEeaNFfJ_821P-Q" x="636" y="93"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_bFRJMGqlEea9j5eeGnhsGg" type="CallBehaviorAction_Shape">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AsN0MB-DEeei2YF3kcRClA" source="PapyrusCSSForceValue">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AsN0MR-DEeei2YF3kcRClA" key="mutable" value="true"/>
+        </eAnnotations>
         <children xmi:type="notation:DecorationNode" xmi:id="_bFRJM2qlEea9j5eeGnhsGg" type="CallBehaviorAction_NameLabel"/>
         <children xmi:type="notation:DecorationNode" xmi:id="_bFRJNGqlEea9j5eeGnhsGg" type="CallBehaviorAction_FloatingNameLabel">
           <layoutConstraint xmi:type="notation:Location" xmi:id="_bFRJNWqlEea9j5eeGnhsGg" y="5"/>

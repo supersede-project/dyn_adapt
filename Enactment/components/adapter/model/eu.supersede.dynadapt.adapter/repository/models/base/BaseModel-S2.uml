@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA ../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog">
+  <uml:Model xmi:id="_I5_MQGYKEeaNFfJ_821P-Q" name="SiemensBaseModel">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_I9S-8GYKEeaNFfJ_821P-Q" name="SmartDataAnalyser" isReentrant="true" node="_LdtbUGYMEeaNFfJ_821P-Q _foN64GYOEeaNFfJ_821P-Q _RfHHQGqlEea9j5eeGnhsGg">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_bES40GqlEea9j5eeGnhsGg" name="Get Meteorological Data"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_BI0ZMGYOEeaNFfJ_821P-Q" target="_RfHHQGqlEea9j5eeGnhsGg" source="_LdtbUGYMEeaNFfJ_821P-Q"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_QMCucCBjEeeN1epRLuJQ9A" target="_foN64GYOEeaNFfJ_821P-Q" source="_RfHHQGqlEea9j5eeGnhsGg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_LdtbUGYMEeaNFfJ_821P-Q" outgoing="_BI0ZMGYOEeaNFfJ_821P-Q"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_foN64GYOEeaNFfJ_821P-Q" incoming="_QMCucCBjEeeN1epRLuJQ9A"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_RfHHQGqlEea9j5eeGnhsGg" name="GetMteorologicalData" incoming="_BI0ZMGYOEeaNFfJ_821P-Q" outgoing="_QMCucCBjEeeN1epRLuJQ9A" behavior="_bES40GqlEea9j5eeGnhsGg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_isn88OIWEeabtLZxiue2-Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ivxXkOIWEeabtLZxiue2-Q" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXkeIWEeabtLZxiue2-Q" key="Version" value="0.1.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXkuIWEeabtLZxiue2-Q" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXk-IWEeabtLZxiue2-Q" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXlOIWEeabtLZxiue2-Q" key="Date" value="2016-07-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXleIWEeabtLZxiue2-Q" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_itT5cOIWEeabtLZxiue2-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GePncOPeEeaai-gt0WbWRA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GeVHAOPeEeaai-gt0WbWRA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ucdq8H57Eeac2-gti3SYOg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P4-HAJCQEeaXdZaX7NGpaw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P4-HAZCQEeaXdZaX7NGpaw" key="Version" value="0.0.8"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P4-HApCQEeaXdZaX7NGpaw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P4-HA5CQEeaXdZaX7NGpaw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P4-HBJCQEeaXdZaX7NGpaw" key="Date" value="2016-10-07"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P4-HBZCQEeaXdZaX7NGpaw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ucguQH57Eeac2-gti3SYOg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_UYtBMB9oEeei2YF3kcRClA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UYwEgB9oEeei2YF3kcRClA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+    </profileApplication>
+  </uml:Model>
+  <ADM:Joinpoint xmi:id="_x0xAwOIWEeabtLZxiue2-Q" base_RedefinableElement="_RfHHQGqlEea9j5eeGnhsGg" base_NamedElement="_RfHHQGqlEea9j5eeGnhsGg"/>
+</xmi:XMI>

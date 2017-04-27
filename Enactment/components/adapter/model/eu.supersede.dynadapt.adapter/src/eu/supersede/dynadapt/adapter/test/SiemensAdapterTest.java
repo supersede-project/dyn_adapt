@@ -63,7 +63,7 @@ public class SiemensAdapterTest {
 	}
 
 	private void setupPlatform() {
-		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/BaseModel-S1.uml";
+		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/BaseModel-S2.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/FeatureModel-S1c.yafm";
 		repositoryRelativePath = "./repository";
