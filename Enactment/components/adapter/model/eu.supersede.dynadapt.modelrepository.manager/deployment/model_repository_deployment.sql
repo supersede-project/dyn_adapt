@@ -19,6 +19,8 @@ CREATE TABLE `AdaptabilityModel` (
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
   `featureId` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -32,6 +34,8 @@ CREATE TABLE `BaseModel` (
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -44,6 +48,8 @@ CREATE TABLE `VariantModel` (
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -56,6 +62,8 @@ CREATE TABLE `ProfileModel` (
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -68,6 +76,8 @@ CREATE TABLE `FeatureModel` (
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -81,6 +91,8 @@ CREATE TABLE `FeatureConfiguration` (
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -93,5 +105,7 @@ CREATE TABLE `PatternModel` (
   `lastModificationDate` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `fileExtension` varchar(255) NOT NULL,
   `systemId` varchar(255) NOT NULL,
+  `relativePath` varchar(255) NOT NULL,
+  `dependencies` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

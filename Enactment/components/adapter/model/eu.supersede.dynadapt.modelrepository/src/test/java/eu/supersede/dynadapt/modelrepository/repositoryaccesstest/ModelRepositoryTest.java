@@ -52,6 +52,7 @@ import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class ModelRepositoryTest {
 
@@ -264,8 +265,10 @@ public class ModelRepositoryTest {
 		am.setCreationDate(Calendar.getInstance().getTime());
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
-		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
+		am.setSystemId(ModelSystem.MonitoringReconfiguration);
 		am.setFeatureId("GooglePlay");
+		am.setRelativePath("relativepath");
+		am.setDependencies(new ArrayList<TypedModelId>());
 		
 		return modelInstances;
 	}
@@ -291,8 +294,10 @@ public class ModelRepositoryTest {
 		am.setCreationDate(Calendar.getInstance().getTime());
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
-		am.setSystemId(ModelSystem.Atos.getId());
+		am.setSystemId(ModelSystem.Atos);
 		am.setStatus("not adapted");
+		am.setRelativePath("relativepath");
+		am.setDependencies(new ArrayList<TypedModelId>());
 		
 		return modelInstances;
 	}

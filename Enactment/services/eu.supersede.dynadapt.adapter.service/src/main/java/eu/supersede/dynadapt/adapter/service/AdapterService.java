@@ -9,6 +9,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,7 +77,6 @@ public class AdapterService {
 		adapter.enactAdaptationDecisionAction(ModelSystem.valueOf(systemId), adaptationDecisionActionId, featureConfigurationId);
 	}
 
-
 	@RequestMapping(value="/adaptationDecisionActions/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
@@ -88,13 +88,18 @@ public class AdapterService {
 		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationAsString);
 	}
 	
+	@RequestMapping(value="/adaptationConfiguration/system/{systemId}", method=RequestMethod.POST)
+	public void enactFCasString(@PathVariable String systemId, @RequestBody String featureConfigurationAsString) throws EnactmentException {
+		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), null, featureConfigurationAsString);
+	}
+	
 	@RequestMapping(value="/ping/{message}", method=RequestMethod.GET)
 	public String ping(@PathVariable String message) {
 		return "Pong: " + message;
 	}
 
 	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
-	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @RequestParam (value="featureConfigurationId") String featureConfigurationId) throws EnactmentException {
+	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException {
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
 }

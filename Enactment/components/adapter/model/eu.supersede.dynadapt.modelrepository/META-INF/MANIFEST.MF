@@ -36,4 +36,5 @@ Require-Bundle: org.eclipse.emf.common;bundle-version="2.11.1",
  org.springframework.beans;bundle-version="4.3.0",
  com.fasterxml.jackson.core.jackson-annotations;bundle-version="2.5.0"
 Import-Package: eu.supersede.dynadapt.featuremodel.fc,
- eu.supersede.dynadapt.model
+ eu.supersede.dynadapt.model,
+ eu.supersede.integration.api.adaptation.types

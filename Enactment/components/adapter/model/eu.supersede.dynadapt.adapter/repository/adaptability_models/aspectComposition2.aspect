@@ -1,5 +1,5 @@
 aspect sc2 {
-	feature FeatureModel.Service_management.Service_Compositions.SC2,
+	feature FeatureModel.Service_management.SC2,
 	advice Siemens_Variant_SC2,
 	pointcuts{	
 		pointcut GMDService{

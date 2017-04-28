@@ -74,7 +74,7 @@ public class ModelRepositoryControllerTest {
      * the \"\ character properly by changing it to \'\
      * @throws Exception
      */
-    @Test
+    /*@Test
     public void createAndGetBaseModel() throws Exception {
     	File f = new File("");
 		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/service/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);
@@ -103,13 +103,13 @@ public class ModelRepositoryControllerTest {
 				.content(json.toString())
 				.contentType(contentType))
 				.andExpect(status().isCreated());
-    }
+    }*/
     
-    /*@Test
+    @Test
     public void listModels() throws Exception {
     	mockMvc.perform(get("/models/AdaptabilityModel"))
     			.andExpect(status().isOk());
-    }*/
+    }
     
     /*@Test
     public void getModel() throws Exception {

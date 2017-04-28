@@ -58,7 +58,7 @@ public class ATOSAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
-			String featureConfigurationId = null;
+			String featureConfigurationId = "AtosOverloadedCMSCapacityConfiguration";
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(

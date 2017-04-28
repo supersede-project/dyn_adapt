@@ -50,9 +50,9 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4LI4RQTZEeeo4rafDiNNWw" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4LIRMATZEeeo4rafDiNNWw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_9iGC8ATmEeeo4rafDiNNWw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9iJGQATmEeeo4rafDiNNWw" source="http://www.eclipse.org/uml2/2.0.0/UML">

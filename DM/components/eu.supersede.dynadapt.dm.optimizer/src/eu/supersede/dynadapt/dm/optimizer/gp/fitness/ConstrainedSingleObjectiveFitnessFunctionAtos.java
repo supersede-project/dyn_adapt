@@ -145,17 +145,17 @@ public class ConstrainedSingleObjectiveFitnessFunctionAtos extends AbstractFitne
 		double a = 1;
 		double b = 1;
 //		double threads = (totalCores - b) / a;
-		double threads = 1000 * totalCores;
+		double threads = Parameters.ATOS_HSK_CONST6 * totalCores;
 		double art = a / threads;
 		return art;
 	}
 	
 	private double computeFitness (double totalCores, double totalMemory){
 		final double ART = Parameters.CONSTRAINT_THRESHOLD; // = 5 seconds
-		final double C1 = 10, C2 = 1, C3 = 0, C4 = 1, C5 = 1;
-		double threads = C1 / ART;
-		double minimumCores = C2 * threads + C3;
-		double minimumMemory = C4 * threads + C5;
+//		final double C1 = 10, C2 = 1, C3 = 0, C4 = 1, C5 = 1;
+		double threads = Parameters.ATOS_HSK_CONST1 / ART;
+		double minimumCores = Parameters.ATOS_HSK_CONST2 * threads + Parameters.ATOS_HSK_CONST3;
+		double minimumMemory = Parameters.ATOS_HSK_CONST4 * threads + Parameters.ATOS_HSK_CONST5;
 		if (totalCores < minimumCores || totalMemory < minimumMemory){
 			// invalid individual
 			return Double.MAX_VALUE;
