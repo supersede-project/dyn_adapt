@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
@@ -124,7 +125,7 @@ public class DatabaseController implements IDatabaseController {
 		} 
 		ResultSetMetaData rsmd = rs.getMetaData();
 		
-		if (!rs.next()) throw new Exception("There is no " + type + " with this id");
+		if (!rs.next()) throw new NoSuchElementException("There is no " + type + " with this id");
 		
 		for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
 			if (!rsmd.getColumnName(i).equals("filePath")) {
@@ -192,7 +193,7 @@ public class DatabaseController implements IDatabaseController {
 	public IModel updateModel(ModelType type, String id, IModel model) throws Exception {
 		
 		IModel oldModel = getModel(type, id);
-		if (oldModel == null) throw new Exception("There is no " + type + " with this id");
+		if (oldModel == null) throw new NoSuchElementException("There is no " + type + " with this id");
 		
 		String values = "";
 		
@@ -247,7 +248,7 @@ public class DatabaseController implements IDatabaseController {
 			resetDBConnection();
 			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
 		} 
-		if (!rs.next()) throw new Exception("There is no " + type + " for this id");
+		if (!rs.next()) throw new NoSuchElementException("There is no " + type + " for this id");
 			
 		Statement deleteStm = con.createStatement();
 		

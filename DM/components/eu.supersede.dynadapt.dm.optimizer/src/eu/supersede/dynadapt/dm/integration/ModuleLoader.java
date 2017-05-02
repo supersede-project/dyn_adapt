@@ -1,46 +1,57 @@
 package eu.supersede.dynadapt.dm.integration;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
 import eu.supersede.dynadapt.dm.optimizer.gp.algorithm.SteadyStateGP;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm.ConstrainedNSGAII;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
+import eu.supersede.dynadapt.dm.optimizer.kpi.OptimizerKPIComputer;
 import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
+import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
-
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
 
 @Component
 public class ModuleLoader {
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private AdapterProxy<?, ?> proxy;
+	//Configuration
+	DMOptimizationConfiguration config;
+	//KPI Computer
+	private OptimizerKPIComputer kpiComputer = new OptimizerKPIComputer();
 
 	//@Autowired
 	//private RequirementsJpa requirementsTable;
 
 	public ModuleLoader() {
-
+		proxy = new AdapterProxy<Object, Object>();
 	}
 
 	@PostConstruct
@@ -67,16 +78,12 @@ public class ModuleLoader {
                                 Thread.sleep(1000); // FIXME Configure sleeping time
                             }
 						}
-					} catch( InterruptedException e ) {
+					} catch( Exception e ) {
 						e.printStackTrace();
 					}
 					subscriber.closeSubscription();
 					subscriber.closeTopicConnection();
 					
-				}catch (URISyntaxException u){
-					u.printStackTrace();
-				}catch(IOException i){
-					i.printStackTrace();
 				}catch (JMSException e) {
 					e.printStackTrace();
 				}catch (NamingException e1)
@@ -99,9 +106,9 @@ public class ModuleLoader {
 			}} ).start();
 	}
 
-	public void handleAlert(Alert alert) throws IOException, URISyntaxException
+	private void handleAlert(Alert alert) throws Exception
     {		
-		System.out.println("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
+		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
 		
 		// collect the parameters for the optimizer		
@@ -114,10 +121,25 @@ public class ModuleLoader {
 		//String fmFolder = getFolder (fmURI);
 		//Map qualityAttributePath to temporary folder where serialized files are placed.
 		
-		//Creating temporary folder for serialized models		
+		// Process Alert data	
 		String fmURI = obtainFMURI(alert.getApplicationId(), alert.getTenant());
 		String fcURI = obtainNameCurrentConfig(alert.getApplicationId(), alert.getTenant());
+		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
+		Double alertThresholdValue = alert.getConditions().get(0).getValue();
+		ModelSystem system = alert.getTenant();
 		
+		processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
+		
+    }
+
+	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
+		kpiComputer.startComputingKPI();
+		
+		//Resolving relative URIs to execution directory
+		fmURI = System.getProperty("user.dir") + "/" + fmURI;
+		fcURI = System.getProperty("user.dir") + "/" + fcURI;
+		
+		//Creating temporary folder for serialized models
 		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
@@ -125,50 +147,68 @@ public class ModuleLoader {
 		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
 		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
-		String modelURI = temp + getFileNameOfPath(fmURI).replace("yafm", "bnf");
-		Parameters.ATTRIBUTE_METADATA = temp + getFileNameOfPath(fmURI).replace("yafm", "json");
+		//Serializer saves model in a file with name <FM_name>.bnf, not in a file with name <FM_File_name.bnf>
+		//so name needs to be retrieved from FM.getModelName
+		ModelManager mm = new ModelManager();
+		FeatureModel fm = mm.loadFM(fmURI);
+		String modelURI = temp + "/"  + fm.getName() + ".bnf";
+		
+		Parameters.ATTRIBUTE_METADATA = temp + "/"  + fm.getName() + ".json";
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
 		
-		Boolean multiObjective = false; //TODO: how to determine this parameter??
+		Boolean multiObjective = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("multiobjective"));
 		
 		String optimalConfig = doOptimization(modelURI, currentConfig, qualityAttributePath, 
-				alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-				alert.getConditions().get(0).getValue() /*alertThresholdValue*/, 
-				multiObjective, alert);
-//		if (!multiObjective){
-//			optimalConfig = doSOOptimization (modelURI, currentConfig, qualityAttributePath, 
-//					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-//					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
-//		}else{
-//			optimalConfig = doMOOptimization (modelURI, currentConfig, qualityAttributePath, 
-//					alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored() /*alertAttribute*/, 
-//					alert.getConditions().get(0).getValue() /*alertThresholdValue*/);
-//		}
-		System.out.println(optimalConfig);
+				alertAttribute, 
+				alertThresholdValue, 
+				multiObjective);
+
+		log.debug("Computed optimal configuration: " + optimalConfig);
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
 		
 		//Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
-		ModelManager mm = new ModelManager();		
-		FeatureModel fm = mm.loadFM(fmURI);
 		List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(fc.getOptimalConfig().split("\\s+")));
 		
 		//Remove empty entries
 		selectedFeatureIds.removeAll(Arrays.asList(null,""));
-		//FIXME selected feature ids should be feature ids and no names. Current workaround is get the feature corresponding to the name, and get the id
-		// assuming FM does no contains features with duplicated names: TODO Discuss fix with Fitsum
-		//selectedFeatureIds = selectedFeatureIds.stream().map(name->FeatureModelUtility.getFeatureByName(fm, name).getId()).collect(Collectors.toList());
+		
+		//Generate FC
 		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = 
 				new FeatureConfigurationBuilder().buildFeatureConfiguration(fm, selectedFeatureIds);
 		String newConfig = temp + getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
 		new ModelManager().saveFC(featureConf, org.eclipse.emf.common.util.URI.createFileURI(newConfig));
 		
-		//TODO Delete a temporary folder during Optimizer shutdown
-		//TODO send fc to Adapter;
-    }
+		kpiComputer.stopComputingKPI();
+		kpiComputer.reportComputedKPI();
+		
+		//TODO Store optimal computed FCs onto the ModelRepository
+		
+		//Send FC to Adapter;
+		Path fcPath = Paths.get(newConfig);
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		
+		boolean processEnactment = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
+		if (processEnactment)
+			proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
+		
+		//Remove temporary file
+		boolean removeTemp = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("temp_file.remove_after_computing"));
+		if (removeTemp){
+			//Remove all files within the temporary folder
+			Files.walk(temporaryFolder).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+			Files.deleteIfExists(temporaryFolder);
+		}
+		
+		return fc;
+	}
 	
-	private String obtainFMURI(String appID, String tenant){
+	private String obtainFMURI(String appID, ModelSystem tenant){
 		//TODO: Call Model Repository with these two parameters
+		String uri = Parameters.INPUT_DIR + "fm/FeedbackGatheringConfig.yafm";
 		switch (appID) {
 		case "dynamic":
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION; break;
@@ -179,19 +219,23 @@ public class ModuleLoader {
 		}
 		
 		switch (tenant) {
-		case "atos":
-			Parameters.TENANT= Parameters.Tenants.ATOS; break;
-		case "siemens":
+		case Atos:
+		case Atos_HSK:
+			Parameters.TENANT= Parameters.Tenants.ATOS; 
+			uri = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
+			break;
+		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
-		case "senercon":
+		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
 		
-		return Parameters.INPUT_DIR + "fm/FeedbackGatheringConfig.yafm";
+		return uri;
 	} 
 	
-	private String obtainNameCurrentConfig(String appID, String tenant){
+	private String obtainNameCurrentConfig(String appID, ModelSystem tenant){
 		//TODO: Call Model Repository with these two parameters
+		String uri = Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";
 		switch (appID) {
 		case "dynamic":
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION; break;
@@ -202,14 +246,17 @@ public class ModuleLoader {
 		}
 		
 		switch (tenant) {
-		case "atos":
-			Parameters.TENANT= Parameters.Tenants.ATOS; break;
-		case "siemens":
+		case Atos:
+		case Atos_HSK:
+			Parameters.TENANT= Parameters.Tenants.ATOS; 
+			uri = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
+			break;
+		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
-		case "senercon":
+		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
-		return Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";
+		return uri;
 	} 
 	
 	private String getFolder (String urlString){
@@ -221,7 +268,7 @@ public class ModuleLoader {
 		return path.substring(path.lastIndexOf('/'));
 	}
 	
-	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective, Alert alert) {
+	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective) {
 		
 		// get the tenant
 		//Parameters.TENANT = Tenants.valueOf(alert.getTenant());
@@ -257,63 +304,9 @@ public class ModuleLoader {
 			SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 			List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
 			eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
-			System.out.println(solution.getConfiguration().toString());
+			log.debug(solution.getConfiguration().toString());
 			optimalConfiguration = solution.getConfiguration().toString();
 		}
 		return optimalConfiguration;
 	}
-//	private String doMOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
-//		if (!modelURI.isEmpty())
-//			Parameters.GRAMMAR_FILE = modelURI;
-//		
-//		if (!currentConfig.isEmpty())
-//			Parameters.CURRENT_CONFIGURATION = currentConfig;
-//		
-//		if (!qualityAttributePath.isEmpty())
-//			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
-//		
-//		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-//		Parameters.SEARCH_BUDGET = 5;
-//		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue; // 30;
-//		Parameters.ALERT_ATTRIBUTE = alertAttribute;
-//		Parameters.POPULATION_SIZE = 150;
-//		int depth = 15;
-//		double probRecursive = 0.05;
-//		Parameters.CROSSOVER_RATE = 0.6;
-//		Parameters.MUTATION_RATE = 0.2;
-//		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-//		ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
-//		List<Chromosome> solutions = nsgaii.generateSolution();
-//		StringBuffer sols = new StringBuffer();
-//		for (Chromosome c : solutions){
-//			sols.append("[" + c.getConfiguration().toString() + "],");
-//		}
-//		return sols.toString();
-//	}
-//	
-//	private String doSOOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue) {
-//		if (!modelURI.isEmpty())
-//			Parameters.GRAMMAR_FILE = modelURI;
-//		
-//		if (!currentConfig.isEmpty())
-//			Parameters.CURRENT_CONFIGURATION = currentConfig;
-//		
-//		if (!qualityAttributePath.isEmpty())
-//			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
-//		
-//		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-//		Parameters.SEARCH_BUDGET = 5;
-//		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
-//		Parameters.ALERT_ATTRIBUTE = alertAttribute;
-//		Parameters.POPULATION_SIZE = 150;
-//		int depth = 15;
-//		double probRecursive = 0.005;
-//		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
-//		SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
-//		List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
-//		eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
-//		System.out.println(solution.getConfiguration().toString());
-//		return solution.getConfiguration().toString();
-//	}
-	
 }

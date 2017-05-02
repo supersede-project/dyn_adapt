@@ -78,10 +78,27 @@ public class AtosSmartPlatformHSKAdapterTest {
 	}
 	
 	@Test
-	public void testAtosHighHSKAdaptationTakenFCfromString() {
+	public void testAtosHighHSKAdaptationSpecificActionsTakenFCfromString() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
+			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
+			Path fcPath = Paths.get(fcUri.toString());
+			String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+			adapter.enactAdaptationDecisionActionsInFCasString(
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testAtosHighHSKAdaptationTakenFCfromString() {
+		try {
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			String[] adaptationDecisionActionIds = new String[]{};
 			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 			Path fcPath = Paths.get(fcUri.toString());
 			String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
