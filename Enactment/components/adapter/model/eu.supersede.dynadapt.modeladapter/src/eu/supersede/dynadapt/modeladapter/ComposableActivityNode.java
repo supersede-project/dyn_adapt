@@ -28,6 +28,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityFinalNode;
@@ -110,9 +111,15 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 		} else {
 		
 			originAction = (ActivityNode) activity.createOwnedNode(variantModelAction.getName(), variantModelAction.eClass());
-			//apply stereotypes
+			//FIXME apply stereotypes and values
 			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
 				originAction.applyStereotype(s);
+				if (s.getName().equals("Service")) {
+					originAction.setValue(s, "endpoint", variantModelAction.getValue(s, "endpoint"));
+				}
+				else if (s.getName().equals("Callback")) {
+					originAction.setValue(s, "function", variantModelAction.getValue(s, "function"));
+				}
 			}
 			ModelAdapterUtilities.setIncomingEdges(incomingEdges, originAction);
 
