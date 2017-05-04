@@ -91,11 +91,11 @@ public class ModelRepositoryMapping{
 		Map<ResourceTimestamp, String> siemensFeatureConfiguration = new HashMap<>();
 		
 		siemensBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
-				"/models/base/BaseModel-S1.uml");
+				"/models/base/BaseModel-S2.uml");
 		siemensFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
-				"/features/configurations/FeatureConfiguration-S1c_dm.yafc");
+				"/features/configurations/FeatureModel-S1c_dm.yafc");
 		siemensFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
-				"/features/configurations/FeatureConfiguration-S1c_dm.yafc");
+				"/features/configurations/FeatureModel-S1c_dm_optimized.yafc");
 		siemensMapping.put(ResourceType.BASE, siemensBaseModel);
 		siemensMapping.put(ResourceType.FEATURE_CONFIGURATION, siemensFeatureConfiguration);
 	}

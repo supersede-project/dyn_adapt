@@ -112,7 +112,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 		
 			originAction = (ActivityNode) activity.createOwnedNode(variantModelAction.getName(), variantModelAction.eClass());
 			log.debug("\t" + originAction.getName() + " node created");
-			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
+			/*for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
 				originAction.applyStereotype(s);
 				if (s.getName().equals("Service")) {
 					originAction.setValue(s, "endpoint", variantModelAction.getValue(s, "endpoint"));
@@ -120,7 +120,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 				else if (s.getName().equals("Callback")) {
 					originAction.setValue(s, "function", variantModelAction.getValue(s, "function"));
 				}
-			}
+			}*/
 			ModelAdapterUtilities.setIncomingEdges(incomingEdges, originAction);
 
 			ModelAdapterUtilities.setOutgoingEdges(activity, outgoingEdges, originAction);
