@@ -307,7 +307,7 @@ public class ModelAdapterUtilities {
 		List<ActivityEdge> edges = new ArrayList<>();
 		for (int i = 0; i < outgoingEdges.size(); ++i) {
 			ActivityEdge edge = (ActivityEdge) activity.createEdge(outgoingEdges.get(i).getName(), outgoingEdges.get(i).eClass());
-			log.debug("\tNew edge from " + originAction.getName());
+			//log.debug("\tNew edge from " + originAction.getName());
 			edges.add(edge);
 			edge.setSource(originAction);
 			originAction.getOutgoings().add(edge);
@@ -318,7 +318,7 @@ public class ModelAdapterUtilities {
 	public static void setIncomingEdges(List<ActivityEdge> incomingEdges, ActivityNode originAction) {
 		for (int i = 0; i < incomingEdges.size(); ++i) {
 			//log.debug("\tNew edge to " + originAction.getName());
-			log.debug("\tSet edge target to " + originAction.getName() );
+			//log.debug("\tSet edge target to " + originAction.getName() );
 			ActivityEdge edge = incomingEdges.get(i);
 			edge.setTarget(originAction);
 			originAction.getIncomings().add(edge);

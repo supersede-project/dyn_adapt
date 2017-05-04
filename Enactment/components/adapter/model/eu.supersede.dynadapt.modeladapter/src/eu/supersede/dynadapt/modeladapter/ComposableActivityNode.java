@@ -66,9 +66,9 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 		ActivityImpl activity = (ActivityImpl) baseModelAction.getOwner();
 		
 		List<ActivityEdge> incomingEdges = baseModelAction.getIncomings();
-		log.debug("Incoming edges: " + incomingEdges.size());
+		//log.debug("Incoming edges: " + incomingEdges.size());
 		List<ActivityEdge> outgoingEdges = variantModelAction.getOutgoings();
-		log.debug("Outcoming edges: " + outgoingEdges.size());
+		//log.debug("Outcoming edges: " + outgoingEdges.size());
 		
 		//Starting from the already created incomingEdges in baseModel, appends the new
 		//variantModelAction and creates the new outgoingEdges from the variantModel
@@ -80,7 +80,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 		
 		for (ActivityNode node : finalNodes) {
 			for (ActivityEdge edge : node.getOutgoings()) {
-				log.debug("\tSet edge target to " + finalNode);
+				//log.debug("\tSet edge target to " + finalNode);
 				edge.setTarget(finalNode);
 			}
 		}
@@ -90,7 +90,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 			for (ActivityEdge edge : baseModelAction.getOutgoings()) ModelAdapterUtilities.setIncomingEdges(edges, edge.getTarget());
 		}*/
 		
-		log.debug("Destroying " + baseModelAction.getName());
+		//log.debug("Destroying " + baseModelAction.getName());
 		baseModelAction.destroy();
 		
 	}
@@ -111,7 +111,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 		} else {
 		
 			originAction = (ActivityNode) activity.createOwnedNode(variantModelAction.getName(), variantModelAction.eClass());
-			//FIXME apply stereotypes and values
+			log.debug("\t" + originAction.getName() + " node created");
 			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
 				originAction.applyStereotype(s);
 				if (s.getName().equals("Service")) {
