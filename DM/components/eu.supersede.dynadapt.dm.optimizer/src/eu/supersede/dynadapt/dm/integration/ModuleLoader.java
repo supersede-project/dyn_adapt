@@ -153,6 +153,7 @@ public class ModuleLoader {
 		FeatureModel fm = mm.loadFM(fmURI);
 		String modelURI = temp + "/"  + fm.getName() + ".bnf";
 		
+		setTenant(system);
 		Parameters.ATTRIBUTE_METADATA = temp + "/"  + fm.getName() + ".json";
 		String qualityAttributePath = temp;
 		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
@@ -204,6 +205,21 @@ public class ModuleLoader {
 		}
 		
 		return fc;
+	}
+	
+	private void setTenant(ModelSystem tenant){
+		switch (tenant) {
+		case Atos:
+		case Atos_HSK:
+			Parameters.TENANT= Parameters.Tenants.ATOS;
+			break;
+		case Siemens:
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			break;	
+		case Senercon:
+			Parameters.TENANT= Parameters.Tenants.SENERCON; 
+			break;
+		}
 	}
 	
 	private String obtainFMURI(String appID, ModelSystem tenant){

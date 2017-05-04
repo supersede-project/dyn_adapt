@@ -79,5 +79,8 @@ public class FeatureModelSerializerTest {
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
 		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
 		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+		
+		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
+		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
 }
