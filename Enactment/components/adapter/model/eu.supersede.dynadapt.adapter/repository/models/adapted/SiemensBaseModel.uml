@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_WP3SYIyEEeakeNQxQLNPog/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA http://RootElement/schemas/GetMeteorologicalData/_WP3SYIyEEeakeNQxQLNPog/3 ../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog">
-  <uml:Model xmi:id="_9Td9sCsdEee_BvTo2v1Kfg" name="SiemensBaseModel">
-    <packagedElement xmi:type="uml:Activity" xmi:id="_9Td9sSsdEee_BvTo2v1Kfg" name="SmartDataAnalyser" isReentrant="true" node="_9Td9tSsdEee_BvTo2v1Kfg _9Td9tisdEee_BvTo2v1Kfg __iHmkCsdEee_BvTo2v1Kfg __iNGICsdEee_BvTo2v1Kfg __iO7UCsdEee_BvTo2v1Kfg __iQJcCsdEee_BvTo2v1Kfg __iQwgSsdEee_BvTo2v1Kfg __iR-oCsdEee_BvTo2v1Kfg __iSlsSsdEee_BvTo2v1Kfg __iTz0CsdEee_BvTo2v1Kfg">
-      <ownedBehavior xmi:type="uml:Activity" xmi:id="_9Td9sisdEee_BvTo2v1Kfg" name="Get Meteorological Data"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_9Td9sysdEee_BvTo2v1Kfg" target="__iHmkCsdEee_BvTo2v1Kfg" source="_9Td9tSsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iL4ACsdEee_BvTo2v1Kfg" target="__iNGICsdEee_BvTo2v1Kfg" source="__iHmkCsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iMfECsdEee_BvTo2v1Kfg" target="__iR-oCsdEee_BvTo2v1Kfg" source="__iHmkCsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iOUQCsdEee_BvTo2v1Kfg" target="__iO7UCsdEee_BvTo2v1Kfg" source="__iNGICsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iPiYCsdEee_BvTo2v1Kfg" target="__iQJcCsdEee_BvTo2v1Kfg" source="__iO7UCsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iQwgCsdEee_BvTo2v1Kfg" target="__iQwgSsdEee_BvTo2v1Kfg" source="__iQJcCsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iRXkCsdEee_BvTo2v1Kfg" target="_9Td9tisdEee_BvTo2v1Kfg" source="__iQwgSsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iSlsCsdEee_BvTo2v1Kfg" target="__iSlsSsdEee_BvTo2v1Kfg" source="__iR-oCsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iTMwSsdEee_BvTo2v1Kfg" target="__iTz0CsdEee_BvTo2v1Kfg" source="__iSlsSsdEee_BvTo2v1Kfg"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__iUa4SsdEee_BvTo2v1Kfg" target="__iQwgSsdEee_BvTo2v1Kfg" source="__iTz0CsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:InitialNode" xmi:id="_9Td9tSsdEee_BvTo2v1Kfg" outgoing="_9Td9sysdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:ActivityFinalNode" xmi:id="_9Td9tisdEee_BvTo2v1Kfg" incoming="__iRXkCsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:ForkNode" xmi:id="__iHmkCsdEee_BvTo2v1Kfg" name="Fork1" incoming="_9Td9sysdEee_BvTo2v1Kfg" outgoing="__iL4ACsdEee_BvTo2v1Kfg __iMfECsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="__iNGICsdEee_BvTo2v1Kfg" name="Service s0" incoming="__iL4ACsdEee_BvTo2v1Kfg" outgoing="__iOUQCsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="__iO7UCsdEee_BvTo2v1Kfg" name="Callback CB1" incoming="__iOUQCsdEee_BvTo2v1Kfg" outgoing="__iPiYCsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="__iQJcCsdEee_BvTo2v1Kfg" name="Service s0_1" incoming="__iPiYCsdEee_BvTo2v1Kfg" outgoing="__iQwgCsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:JoinNode" xmi:id="__iQwgSsdEee_BvTo2v1Kfg" name="JoinNode1" incoming="__iQwgCsdEee_BvTo2v1Kfg __iUa4SsdEee_BvTo2v1Kfg" outgoing="__iRXkCsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="__iR-oCsdEee_BvTo2v1Kfg" name="Service s0_2" incoming="__iMfECsdEee_BvTo2v1Kfg" outgoing="__iSlsCsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="__iSlsSsdEee_BvTo2v1Kfg" name="Callback CB1_1" incoming="__iSlsCsdEee_BvTo2v1Kfg" outgoing="__iTMwSsdEee_BvTo2v1Kfg"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="__iTz0CsdEee_BvTo2v1Kfg" name="Service s0_3" incoming="__iTMwSsdEee_BvTo2v1Kfg" outgoing="__iUa4SsdEee_BvTo2v1Kfg"/>
+  <uml:Model xmi:id="_kd-MIC_xEeeng8Gf1pHSxg" name="SiemensBaseModel">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_kd-MIS_xEeeng8Gf1pHSxg" name="SmartDataAnalyser" isReentrant="true" node="_kd-MJS_xEeeng8Gf1pHSxg _kd-MJi_xEeeng8Gf1pHSxg _m63FUC_xEeeng8Gf1pHSxg _m7CrgS_xEeeng8Gf1pHSxg _m7D5oS_xEeeng8Gf1pHSxg _m7Fu0S_xEeeng8Gf1pHSxg _m7GV4i_xEeeng8Gf1pHSxg _m7G88S_xEeeng8Gf1pHSxg _m7ILES_xEeeng8Gf1pHSxg _m7JZMC_xEeeng8Gf1pHSxg">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_kd-MIi_xEeeng8Gf1pHSxg" name="Get Meteorological Data"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_kd-MIy_xEeeng8Gf1pHSxg" target="_m63FUC_xEeeng8Gf1pHSxg" source="_kd-MJS_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7CEcS_xEeeng8Gf1pHSxg" target="_m7CrgS_xEeeng8Gf1pHSxg" source="_m63FUC_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7CrgC_xEeeng8Gf1pHSxg" target="_m7G88S_xEeeng8Gf1pHSxg" source="_m63FUC_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7D5oC_xEeeng8Gf1pHSxg" target="_m7D5oS_xEeeng8Gf1pHSxg" source="_m7CrgS_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7Fu0C_xEeeng8Gf1pHSxg" target="_m7Fu0S_xEeeng8Gf1pHSxg" source="_m7D5oS_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7GV4S_xEeeng8Gf1pHSxg" target="_m7GV4i_xEeeng8Gf1pHSxg" source="_m7Fu0S_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7G88C_xEeeng8Gf1pHSxg" target="_kd-MJi_xEeeng8Gf1pHSxg" source="_m7GV4i_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7ILEC_xEeeng8Gf1pHSxg" target="_m7ILES_xEeeng8Gf1pHSxg" source="_m7G88S_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7IyIS_xEeeng8Gf1pHSxg" target="_m7JZMC_xEeeng8Gf1pHSxg" source="_m7ILES_xEeeng8Gf1pHSxg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_m7KAQC_xEeeng8Gf1pHSxg" target="_m7GV4i_xEeeng8Gf1pHSxg" source="_m7JZMC_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_kd-MJS_xEeeng8Gf1pHSxg" outgoing="_kd-MIy_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_kd-MJi_xEeeng8Gf1pHSxg" incoming="_m7G88C_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_m63FUC_xEeeng8Gf1pHSxg" name="Fork1" incoming="_kd-MIy_xEeeng8Gf1pHSxg" outgoing="_m7CEcS_xEeeng8Gf1pHSxg _m7CrgC_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_m7CrgS_xEeeng8Gf1pHSxg" name="Service s0" incoming="_m7CEcS_xEeeng8Gf1pHSxg" outgoing="_m7D5oC_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_m7D5oS_xEeeng8Gf1pHSxg" name="Callback CB1" incoming="_m7D5oC_xEeeng8Gf1pHSxg" outgoing="_m7Fu0C_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_m7Fu0S_xEeeng8Gf1pHSxg" name="Service s0_1" incoming="_m7Fu0C_xEeeng8Gf1pHSxg" outgoing="_m7GV4S_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_m7GV4i_xEeeng8Gf1pHSxg" name="JoinNode1" incoming="_m7GV4S_xEeeng8Gf1pHSxg _m7KAQC_xEeeng8Gf1pHSxg" outgoing="_m7G88C_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_m7G88S_xEeeng8Gf1pHSxg" name="Service s0_2" incoming="_m7CrgC_xEeeng8Gf1pHSxg" outgoing="_m7ILEC_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_m7ILES_xEeeng8Gf1pHSxg" name="Callback CB1_1" incoming="_m7ILEC_xEeeng8Gf1pHSxg" outgoing="_m7IyIS_xEeeng8Gf1pHSxg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_m7JZMC_xEeeng8Gf1pHSxg" name="Service s0_3" incoming="_m7IyIS_xEeeng8Gf1pHSxg" outgoing="_m7KAQC_xEeeng8Gf1pHSxg"/>
     </packagedElement>
-    <profileApplication xmi:id="_9Td9uCsdEee_BvTo2v1Kfg">
-      <eAnnotations xmi:id="_9Td9uSsdEee_BvTo2v1Kfg" source="PapyrusVersion">
-        <details xmi:id="_9Td9uisdEee_BvTo2v1Kfg" key="Version" value="0.1.1"/>
-        <details xmi:id="_9Td9uysdEee_BvTo2v1Kfg" key="Comment" value=""/>
-        <details xmi:id="_9Td9vCsdEee_BvTo2v1Kfg" key="Copyright" value=""/>
-        <details xmi:id="_9Td9vSsdEee_BvTo2v1Kfg" key="Date" value="2016-07-19"/>
-        <details xmi:id="_9Td9visdEee_BvTo2v1Kfg" key="Author" value=""/>
+    <profileApplication xmi:id="_kd-MKC_xEeeng8Gf1pHSxg">
+      <eAnnotations xmi:id="_kd-MKS_xEeeng8Gf1pHSxg" source="PapyrusVersion">
+        <details xmi:id="_kd-MKi_xEeeng8Gf1pHSxg" key="Version" value="0.1.1"/>
+        <details xmi:id="_kd-MKy_xEeeng8Gf1pHSxg" key="Comment" value=""/>
+        <details xmi:id="_kd-MLC_xEeeng8Gf1pHSxg" key="Copyright" value=""/>
+        <details xmi:id="_kd-MLS_xEeeng8Gf1pHSxg" key="Date" value="2016-07-19"/>
+        <details xmi:id="_kd-MLi_xEeeng8Gf1pHSxg" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:id="_9Td9vysdEee_BvTo2v1Kfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:id="_kd-MLy_xEeeng8Gf1pHSxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
       <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
-    <profileApplication xmi:id="_9Td9wCsdEee_BvTo2v1Kfg">
-      <eAnnotations xmi:id="_9Td9wSsdEee_BvTo2v1Kfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_kd-MMC_xEeeng8Gf1pHSxg">
+      <eAnnotations xmi:id="_kd-MMS_xEeeng8Gf1pHSxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
       <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
-    <profileApplication xmi:id="_9Td9wisdEee_BvTo2v1Kfg">
-      <eAnnotations xmi:id="_9Td9wysdEee_BvTo2v1Kfg" source="PapyrusVersion">
-        <details xmi:id="_9Td9xCsdEee_BvTo2v1Kfg" key="Version" value="0.0.8"/>
-        <details xmi:id="_9Td9xSsdEee_BvTo2v1Kfg" key="Comment" value=""/>
-        <details xmi:id="_9Td9xisdEee_BvTo2v1Kfg" key="Copyright" value=""/>
-        <details xmi:id="_9Td9xysdEee_BvTo2v1Kfg" key="Date" value="2016-10-07"/>
-        <details xmi:id="_9Td9yCsdEee_BvTo2v1Kfg" key="Author" value=""/>
+    <profileApplication xmi:id="_kd-MMi_xEeeng8Gf1pHSxg">
+      <eAnnotations xmi:id="_kd-MMy_xEeeng8Gf1pHSxg" source="PapyrusVersion">
+        <details xmi:id="_kd-MNC_xEeeng8Gf1pHSxg" key="Version" value="0.0.8"/>
+        <details xmi:id="_kd-MNS_xEeeng8Gf1pHSxg" key="Comment" value=""/>
+        <details xmi:id="_kd-MNi_xEeeng8Gf1pHSxg" key="Copyright" value=""/>
+        <details xmi:id="_kd-MNy_xEeeng8Gf1pHSxg" key="Date" value="2016-10-07"/>
+        <details xmi:id="_kd-MOC_xEeeng8Gf1pHSxg" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:id="_9Td9ySsdEee_BvTo2v1Kfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:id="_kd-MOS_xEeeng8Gf1pHSxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
       </eAnnotations>
       <appliedProfile href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
-    <profileApplication xmi:id="_9Td9yisdEee_BvTo2v1Kfg">
-      <eAnnotations xmi:id="_9Td9yysdEee_BvTo2v1Kfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_kd-MOi_xEeeng8Gf1pHSxg">
+      <eAnnotations xmi:id="_kd-MOy_xEeeng8Gf1pHSxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
       </eAnnotations>
       <appliedProfile href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
   </uml:Model>
-  <ADM:Joinpoint xmi:id="__iLQ8CsdEee_BvTo2v1Kfg" base_RedefinableElement="__iHmkCsdEee_BvTo2v1Kfg" base_NamedElement="__iHmkCsdEee_BvTo2v1Kfg"/>
-  <GetMeteorologicalData:Service xmi:id="__iNtMCsdEee_BvTo2v1Kfg" base_OpaqueAction="__iNGICsdEee_BvTo2v1Kfg"/>
-  <GetMeteorologicalData:Callback xmi:id="__iO7USsdEee_BvTo2v1Kfg" base_OpaqueAction="__iO7UCsdEee_BvTo2v1Kfg"/>
-  <GetMeteorologicalData:Service xmi:id="__iQJcSsdEee_BvTo2v1Kfg" base_OpaqueAction="__iQJcCsdEee_BvTo2v1Kfg"/>
-  <GetMeteorologicalData:Service xmi:id="__iR-oSsdEee_BvTo2v1Kfg" base_OpaqueAction="__iR-oCsdEee_BvTo2v1Kfg"/>
-  <GetMeteorologicalData:Callback xmi:id="__iTMwCsdEee_BvTo2v1Kfg" base_OpaqueAction="__iSlsSsdEee_BvTo2v1Kfg"/>
-  <GetMeteorologicalData:Service xmi:id="__iUa4CsdEee_BvTo2v1Kfg" base_OpaqueAction="__iTz0CsdEee_BvTo2v1Kfg"/>
+  <ADM:Joinpoint xmi:id="_m7CEcC_xEeeng8Gf1pHSxg" base_RedefinableElement="_m63FUC_xEeeng8Gf1pHSxg" base_NamedElement="_m63FUC_xEeeng8Gf1pHSxg"/>
+  <GetMeteorologicalData:Service xmi:id="_m7DSkC_xEeeng8Gf1pHSxg" base_OpaqueAction="_m7CrgS_xEeeng8Gf1pHSxg" endpoint="&quot;http://api.geonames.org/countryInfoJSON?lang=en&amp;country=DE&amp;username=srdjan.stevanetic&quot;"/>
+  <GetMeteorologicalData:Callback xmi:id="_m7FHwC_xEeeng8Gf1pHSxg" base_OpaqueAction="_m7D5oS_xEeeng8Gf1pHSxg" function="exports.setup = function() {&#xD;&#xA;&#x9;this.input('input');&#xD;&#xA;&#x9;this.output('output');&#xD;&#xA;};&#xD;&#xA;exports.fire = function () {&#xD;&#xA;&#xD;&#xA;   var value = this.get('input');&#xD;&#xA;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#xD;&#xA;   var response=&quot;&quot;;&#xD;&#xA;&#xD;&#xA;   request=JSON.parse(request);&#xD;&#xA;&#xD;&#xA;   var south=request.geonames[0].south;&#xD;&#xA;   var north=request.geonames[0].north;&#xD;&#xA;   var east=request.geonames[0].east;&#xD;&#xA;   var west=request.geonames[0].west;&#xD;&#xA;&#xD;&#xA;   var BoundingBox = {};&#xD;&#xA;   BoundingBox[&quot;south&quot;]= String(south);&#xD;&#xA;   BoundingBox[&quot;north&quot;]= String(north);&#xD;&#xA;   BoundingBox[&quot;east&quot;]= String(east);&#xD;&#xA;   BoundingBox[&quot;west&quot;]= String(west);&#xD;&#xA;&#xD;&#xA;   var reqRes = {};&#xD;&#xA;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#xD;&#xA;   reqRes=JSON.stringify(reqRes);&#xD;&#xA;    &#xD;&#xA;   this.send('output', reqRes);  &#xD;&#xA;}"/>
+  <GetMeteorologicalData:Service xmi:id="_m7GV4C_xEeeng8Gf1pHSxg" base_OpaqueAction="_m7Fu0S_xEeeng8Gf1pHSxg" endpoint="&quot;http://api.geonames.org/earthquakesJSON?&quot;"/>
+  <GetMeteorologicalData:Service xmi:id="_m7HkAC_xEeeng8Gf1pHSxg" base_OpaqueAction="_m7G88S_xEeeng8Gf1pHSxg" endpoint="&quot;http://api.geonames.org/countryInfoJSON?lang=en&amp;country=FR&amp;username=srdjan.stevanetic&quot;"/>
+  <GetMeteorologicalData:Callback xmi:id="_m7IyIC_xEeeng8Gf1pHSxg" base_OpaqueAction="_m7ILES_xEeeng8Gf1pHSxg" function="exports.setup = function() {&#xD;&#xA;&#x9;this.input('input');&#xD;&#xA;&#x9;this.output('output');&#xD;&#xA;};&#xD;&#xA;exports.fire = function () {&#xD;&#xA;&#xD;&#xA;   var value = this.get('input');&#xD;&#xA;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#xD;&#xA;   var response=&quot;&quot;;&#xD;&#xA;&#xD;&#xA;   request=JSON.parse(request);&#xD;&#xA;&#xD;&#xA;   var south=request.geonames[0].south;&#xD;&#xA;   var north=request.geonames[0].north;&#xD;&#xA;   var east=request.geonames[0].east;&#xD;&#xA;   var west=request.geonames[0].west;&#xD;&#xA;&#xD;&#xA;   var BoundingBox = {};&#xD;&#xA;   BoundingBox[&quot;south&quot;]= String(south);&#xD;&#xA;   BoundingBox[&quot;north&quot;]= String(north);&#xD;&#xA;   BoundingBox[&quot;east&quot;]= String(east);&#xD;&#xA;   BoundingBox[&quot;west&quot;]= String(west);&#xD;&#xA;&#xD;&#xA;   var reqRes = {};&#xD;&#xA;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#xD;&#xA;   reqRes=JSON.stringify(reqRes);&#xD;&#xA;    &#xD;&#xA;   this.send('output', reqRes);  &#xD;&#xA;}"/>
+  <GetMeteorologicalData:Service xmi:id="_m7JZMS_xEeeng8Gf1pHSxg" base_OpaqueAction="_m7JZMC_xEeeng8Gf1pHSxg" endpoint="&quot;http://api.geonames.org/earthquakesJSON?&quot;"/>
 </xmi:XMI>
