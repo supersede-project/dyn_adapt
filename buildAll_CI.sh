@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo -e "\nBuilding Supersede Service Composition Enactor ...\n"
-cd Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/ && mvn clean install && cp target/ServiceCompositionEnactor-0.0.1-SNAPSHOT.jar ../eu.supersede.dynadapt.enactor.EnactorFactory/lib/
+cd Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/ && ./installDependencies.sh && mvn clean install && cp target/ServiceCompositionEnactor-0.0.1-SNAPSHOT.jar ../eu.supersede.dynadapt.enactor.EnactorFactory/lib/
 
 if [ $? -eq 0 ] 
 then
