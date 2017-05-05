@@ -132,16 +132,24 @@ public class Enactor implements IEnactor{
 		//Resource res1 = set.getResource(URI.createFileURI("D:/mars_workspace/test/S1.uml"), true);
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test/S2.uml"), true);
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test/SiemensBaseModel.uml"), true);
-		Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/S2.uml"), true);
+
+		/*
+		 * Comment the below 3 lines when executing from SUPERSEDE components.
+		 * They are just used for testing the UML models locally  
+		 */		
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/S2.uml"), true);
+		//Model umlModel = (Model)EcoreUtil.getObjectByType(res2.getContents(), UMLPackage.Literals.MODEL);
+		//this.umlEnactingModel=umlModel;
 		
-		Model umlModel = (Model)EcoreUtil.getObjectByType(res2.getContents(), UMLPackage.Literals.MODEL);
-		this.umlEnactingModel=umlModel;
+		
+		/*
+		 * How to get the activity diagram from the Resource
+		 */
+		//Resource res=res_list.get(i);
+		//ModelImpl root=(ModelImpl)res.getContents().get(0);
+		//ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
 		
 		
-		
-		ArrayList<Resource> res_list = new ArrayList<Resource>();
-		//res_list.add(res1);
-		res_list.add(res2);
 		
 		/**Load the model (this is also working but the approach above is used)
 		 * 
@@ -181,20 +189,16 @@ public class Enactor implements IEnactor{
                     e.printStackTrace();
 		}
 		
-		CURLGenerator CURLcode = new CURLGenerator();
-		for(int i=0;i<res_list.size();i++)
-		{
-			Resource res=res_list.get(i);
-			ModelImpl root=(ModelImpl)res.getContents().get(0);
-			//ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
-			ActivityImpl activity=(ActivityImpl)this.umlEnactingModel.getPackagedElements().get(0);
-			
-			List <ActivityNode> activity_nodes=activity.getNodes();
-			//CURLcode.analyze(activity, activity_nodes);
-			//CURLcode.inject();
-			ptolemyModel.analyze(activity, activity_nodes);
-			ptolemyModel.inject();
-		}
+		//CURLGenerator CURLcode = new CURLGenerator();
+				
+		ActivityImpl activity=(ActivityImpl)this.umlEnactingModel.getPackagedElements().get(0);
+		
+		List <ActivityNode> activity_nodes=activity.getNodes();
+		//CURLcode.analyze(activity, activity_nodes);
+		//CURLcode.inject();
+		ptolemyModel.analyze(activity, activity_nodes);
+		ptolemyModel.inject();
+		
 						
 		return "";
 		
@@ -204,6 +208,7 @@ public class Enactor implements IEnactor{
 	public void enactAdaptedModel(Model adaptedModel) throws Exception {
 		// TODO Auto-generated method stub
 		this.umlEnactingModel=adaptedModel;
+		this.getEnactmentCode();
 		
 	}
 
