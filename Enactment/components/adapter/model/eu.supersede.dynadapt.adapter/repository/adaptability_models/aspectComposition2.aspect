@@ -1,6 +1,6 @@
 aspect sc4 {
 	feature FeatureModel.Service_management.SC4,
-	advice Siemens_Variant_2,
+	advice S2,
 	pointcuts{	
 		pointcut GMDService{
 			pattern patterns.GetMeteorologicalDataServices,

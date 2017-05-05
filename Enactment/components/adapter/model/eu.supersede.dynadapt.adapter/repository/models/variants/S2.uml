@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_WP3SYIyEEeakeNQxQLNPog/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA http://RootElement/schemas/GetMeteorologicalData/_WP3SYIyEEeakeNQxQLNPog/3 ../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog">
-  <uml:Model xmi:id="_YkVTUH52Eeac2-gti3SYOg" name="Siemens_Variant_2">
+  <uml:Model xmi:id="_YkVTUH52Eeac2-gti3SYOg" name="S2">
     <packagedElement xmi:type="uml:Activity" xmi:id="_YklK8H52Eeac2-gti3SYOg" name="format" node="_Z-ngAH52Eeac2-gti3SYOg _fZqzcH52Eeac2-gti3SYOg _YG1FsH57Eeac2-gti3SYOg _f_2QYH57Eeac2-gti3SYOg _2cM-4K_iEea1750BS59zjg _AnKXAK_jEea1750BS59zjg _AnK-Ea_jEea1750BS59zjg _AnLlIK_jEea1750BS59zjg _Y2__IK_jEea1750BS59zjg _gCi_0K_jEea1750BS59zjg">
       <edge xmi:type="uml:ControlFlow" xmi:id="_NYLtgH6CEeac2-gti3SYOg" target="_YG1FsH57Eeac2-gti3SYOg" source="_fZqzcH52Eeac2-gti3SYOg"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_9CU-UK_iEea1750BS59zjg" target="_2cM-4K_iEea1750BS59zjg" source="_YG1FsH57Eeac2-gti3SYOg"/>
@@ -36,27 +36,15 @@
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_UYtBMB9oEeei2YF3kcRClA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UYwEgB9oEeei2YF3kcRClA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_izVHwDF8Eeez-4kIZ5O3GQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_izW88DF8Eeez-4kIZ5O3GQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_izW88TF8Eeez-4kIZ5O3GQ" key="Version" value="0.1.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_izW88jF8Eeez-4kIZ5O3GQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_izW88zF8Eeez-4kIZ5O3GQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_izW89DF8Eeez-4kIZ5O3GQ" key="Date" value="2016-07-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_izW89TF8Eeez-4kIZ5O3GQ" key="Author" value=""/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_isn88OIWEeabtLZxiue2-Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ivxXkOIWEeabtLZxiue2-Q" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXkeIWEeabtLZxiue2-Q" key="Version" value="0.1.1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXkuIWEeabtLZxiue2-Q" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXk-IWEeabtLZxiue2-Q" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXlOIWEeabtLZxiue2-Q" key="Date" value="2016-07-19"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ivxXleIWEeabtLZxiue2-Q" key="Author" value=""/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_itT5cOIWEeabtLZxiue2-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GePncOPeEeaai-gt0WbWRA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GeVHAOPeEeaai-gt0WbWRA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_izWV4DF8Eeez-4kIZ5O3GQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
@@ -69,5 +57,5 @@
   <GetMeteorologicalData:Callback xmi:id="_AnREsK_jEea1750BS59zjg" base_OpaqueAction="_AnK-Ea_jEea1750BS59zjg" function="exports.setup = function() {&#xD;&#xA;&#x9;this.input('input');&#xD;&#xA;&#x9;this.output('output');&#xD;&#xA;};&#xD;&#xA;exports.fire = function () {&#xD;&#xA;&#xD;&#xA;   var value = this.get('input');&#xD;&#xA;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#xD;&#xA;   var response=&quot;&quot;;&#xD;&#xA;&#xD;&#xA;   request=JSON.parse(request);&#xD;&#xA;&#xD;&#xA;   var south=request.geonames[0].south;&#xD;&#xA;   var north=request.geonames[0].north;&#xD;&#xA;   var east=request.geonames[0].east;&#xD;&#xA;   var west=request.geonames[0].west;&#xD;&#xA;&#xD;&#xA;   var BoundingBox = {};&#xD;&#xA;   BoundingBox[&quot;south&quot;]= String(south);&#xD;&#xA;   BoundingBox[&quot;north&quot;]= String(north);&#xD;&#xA;   BoundingBox[&quot;east&quot;]= String(east);&#xD;&#xA;   BoundingBox[&quot;west&quot;]= String(west);&#xD;&#xA;&#xD;&#xA;   var reqRes = {};&#xD;&#xA;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#xD;&#xA;   reqRes=JSON.stringify(reqRes);&#xD;&#xA;    &#xD;&#xA;   this.send('output', reqRes);  &#xD;&#xA;}"/>
   <GetMeteorologicalData:Service xmi:id="_AnRrwK_jEea1750BS59zjg" base_OpaqueAction="_AnKXAK_jEea1750BS59zjg" endpoint="&quot;http://api.geonames.org/countryInfoJSON?lang=en&amp;country=FR&amp;username=srdjan.stevanetic&quot;"/>
   <GetMeteorologicalData:Service xmi:id="_8pPlkLAGEea1750BS59zjg" base_Activity="_YklK8H52Eeac2-gti3SYOg" endpoint="&quot;http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/format/&quot;"/>
-  <ADM:Joinpoint xmi:id="_-2UEoCBVEeeN1epRLuJQ9A" base_RedefinableElement="_Y2__IK_jEea1750BS59zjg" base_NamedElement="_Y2__IK_jEea1750BS59zjg"/>
+  <ADM:Joinpoint xmi:id="_j14w8DF8Eeez-4kIZ5O3GQ" base_RedefinableElement="_Y2__IK_jEea1750BS59zjg" base_NamedElement="_Y2__IK_jEea1750BS59zjg"/>
 </xmi:XMI>
