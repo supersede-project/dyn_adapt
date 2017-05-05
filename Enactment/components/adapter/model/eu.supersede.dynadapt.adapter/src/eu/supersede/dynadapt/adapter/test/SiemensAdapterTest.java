@@ -63,7 +63,7 @@ public class SiemensAdapterTest {
 	}
 
 	private void setupPlatform() {
-		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/BaseModel-S1.uml";
+		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/BaseModel-S2.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/FeatureModel-S1c.yafm";
 		repositoryRelativePath = "./repository";
@@ -85,9 +85,15 @@ public class SiemensAdapterTest {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
-			String featureConfigurationId = null;
-			adapter.enactAdaptationDecisionActionsForFC(
-					ModelSystem.Siemens, featureConfigurationId);
+			//String featureConfigurationId = "c4";
+			//adapter.enactAdaptationDecisionActionsForFC(
+			//		ModelSystem.Siemens, featureConfigurationId);
+			
+			
+			String[] adaptationDecisionActionIds = new String[]{"c4"};
+			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
+			adapter.enactAdaptationDecisionActions(
+					ModelSystem.Siemens, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

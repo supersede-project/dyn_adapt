@@ -307,7 +307,8 @@ public class Adapter implements IAdapter {
 					}
 				}
 				Model variant = aspect.getAdvice();
-
+				log.debug("\tVariant: " + variant.getName());
+				
 				for (Composition c : aspect.getCompositions()) {
 					boolean compositionEnabled = c.getFeature_enabled();
 					if (featureEnabled == compositionEnabled) {
