@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
@@ -60,7 +61,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 	@Override
 	public void applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel,
 			Element jointpointVariantModelElement) {
-		
+				
 		ActivityNode baseModelAction = (ActivityNode) jointpointBaseModelElement;
 		ActivityNode variantModelAction = (ActivityNode) jointpointVariantModelElement;
 		ActivityImpl activity = (ActivityImpl) baseModelAction.getOwner();
@@ -109,10 +110,11 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 			originAction = (ActivityNode) activity.getNode(variantModelAction.getName());
 			ModelAdapterUtilities.setIncomingEdges(incomingEdges, originAction);
 		} else {
-		
 			originAction = (ActivityNode) activity.createOwnedNode(variantModelAction.getName(), variantModelAction.eClass());
 			log.debug("\t" + originAction.getName() + " node created");
-			/*for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
+					
+			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
+				log.debug("\tApplicable stereotypes: " + originAction.getApplicableStereotypes().size());
 				originAction.applyStereotype(s);
 				if (s.getName().equals("Service")) {
 					originAction.setValue(s, "endpoint", variantModelAction.getValue(s, "endpoint"));
@@ -120,7 +122,7 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 				else if (s.getName().equals("Callback")) {
 					originAction.setValue(s, "function", variantModelAction.getValue(s, "function"));
 				}
-			}*/
+			}
 			ModelAdapterUtilities.setIncomingEdges(incomingEdges, originAction);
 
 			ModelAdapterUtilities.setOutgoingEdges(activity, outgoingEdges, originAction);

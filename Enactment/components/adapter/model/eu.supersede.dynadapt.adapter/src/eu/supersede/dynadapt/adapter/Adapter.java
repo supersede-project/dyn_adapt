@@ -34,12 +34,14 @@ import java.util.UUID;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.junit.Assert;
@@ -303,13 +305,15 @@ public class Adapter implements IAdapter {
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
 						log.debug("\tMatching Element: " + e);
+						log.debug("\tApplicable stereotypes: " + e.getApplicableStereotypes().size());
 						matchingElements.get(role).add(e);
 					}
 				}
 				Model variant = aspect.getAdvice();
 				log.debug("\tVariant: " + variant.getName());
-				
+								
 				for (Composition c : aspect.getCompositions()) {
+					log.debug("\tComposition " + c.getName());
 					boolean compositionEnabled = c.getFeature_enabled();
 					if (featureEnabled == compositionEnabled) {
 						ActionOptionType actionOptionType = c.getAction();
