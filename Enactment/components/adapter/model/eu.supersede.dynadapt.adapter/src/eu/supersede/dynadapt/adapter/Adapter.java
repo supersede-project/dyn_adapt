@@ -233,7 +233,7 @@ public class Adapter implements IAdapter {
 			Model baseModel = mm.getTargetModel();
 			
 			FeatureConfiguration featureConfig = mrr.getConfigurationForSystem(system,
-					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT));
+					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 			
 			List<Selection> changedSelections = getSelections(featureConfig);
 	

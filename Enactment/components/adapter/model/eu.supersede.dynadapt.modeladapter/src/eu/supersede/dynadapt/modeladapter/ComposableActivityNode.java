@@ -114,7 +114,6 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 			log.debug("\t" + originAction.getName() + " node created");
 					
 			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
-				log.debug("\tApplicable stereotypes: " + originAction.getApplicableStereotypes().size());
 				originAction.applyStereotype(s);
 				if (s.getName().equals("Service")) {
 					originAction.setValue(s, "endpoint", variantModelAction.getValue(s, "endpoint"));
