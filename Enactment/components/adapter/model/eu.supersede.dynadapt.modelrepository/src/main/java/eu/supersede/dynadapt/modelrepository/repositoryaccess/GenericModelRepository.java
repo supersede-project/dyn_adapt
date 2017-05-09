@@ -118,12 +118,14 @@ public abstract class GenericModelRepository {
 		}
 	}
 	
+	public abstract ModelType getModelType(EObject model);
+	
 	/**
 	 * FIXME Implement factory method.
 	 * @param model
 	 * @return the type of the model
 	 */
-	protected ModelType getModelType(EObject model) {
+	/*protected ModelType getModelType(EObject model) {
 		if (model instanceof Model) {
 			return ModelType.BaseModel;
 		}
@@ -131,7 +133,7 @@ public abstract class GenericModelRepository {
 			return ModelType.ProfileModel;
 		}
 		return null;
-	}
+	}*/
 		
 	/**
 	 * Returns the list of resources references by a given model's resource

@@ -32,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
@@ -52,6 +54,8 @@ import eu.supersede.integration.api.adaptation.types.Status;
 
 public class ModelRepository extends GenericModelRepository implements IModelRepository{
 
+	private final static Logger log = LogManager.getLogger(ModelRepository.class);
+	
 	private String repository;
 	private URL url;
 
@@ -79,9 +83,17 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	 *            modelsLocation
 	 */
 	public List<Aspect> getAspectModels(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
+		
 		List<Aspect> aspects = new ArrayList<Aspect>();
+		try {
+			log.debug("Getting aspect models");
+			aspects = this.getAspectModelsForSystem(null);
+			//aspects = this.getModelsOfTypeForSystemWithStatus(ModelType.AdaptabilityModel, null, null, Aspect.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
+		/*File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
 
 //		IAdaptationParser ap = loadModels(modelsLocation);
 		loadModels(modelsLocation);
@@ -94,7 +106,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 					aspects.add(a);
 				}
 			}
-		}
+		}*/
 		return aspects;
 	}
 	
@@ -133,29 +145,31 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	private IModelManager loadModels(Map<String, String> modelsLocation) {
 //		IAdaptationParser parser = new AdaptationParser(modelManager);
 
-		File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
-		for (int i = 0; i < variants.length; i++) {
-//			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
-			modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants[i].getName());
-		}
-
-		File[] profiles = getFiles(modelsLocation.get("profiles"), "uml");
-		for (int i = 0; i < profiles.length; i++) {
-//			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
-			modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles[i].getName());
-		}
-
-		File[] patterns = getFiles(modelsLocation.get("patterns"), "vql");
-		for (int i = 0; i < patterns.length; i++) {
-//			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
-			modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns[i].getName());
-		}
-
-
-		File[] features = getFiles(modelsLocation.get("features"), "yafm");
-		for (int i = 0; i < features.length; i++) {
-//			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
-			modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features[i].getName());
+		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
+		
+		try {
+			List<Model> variants = this.getVariantModelsForSystem(null);
+			for (int i = 0; i < variants.size(); i++) {
+				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
+			}
+			
+			List<Profile> profiles = this.getProfilesForSystem(null);
+			for (int i = 0; i < profiles.size(); i++) {
+				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
+			}
+			
+			List<PatternModel> patterns = this.getPatternModelsForSystem(null);
+			for (int i = 0; i < patterns.size(); i++) {
+				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).eContainingFeature().getName());
+			}
+			
+			List<FeatureModel> features = this.getModelsOfTypeForSystemWithStatus(ModelType.FeatureModel, null, null, FeatureModel.class);
+			for (int i = 0; i < features.size(); i++) {
+				modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features.get(i).getName());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		//return parser;
@@ -419,5 +433,22 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	@Override
 	public void cleanUpRepository() {
 		super.cleanUpRepository();
+	}
+
+	@Override
+	public ModelType getModelType(EObject model) {
+		if (model instanceof Model) {
+			return ModelType.BaseModel;
+		}
+		else if (model instanceof Profile) {
+			return ModelType.ProfileModel;
+		} else if (model instanceof FeatureConfiguration) {
+			return ModelType.FeatureConfiguration;
+		} else if (model instanceof FeatureModel) {
+			return ModelType.FeatureModel;
+		} else if (model instanceof PatternModel) {
+			return ModelType.PatternModel;
+		}
+		return null;
 	}
 }
