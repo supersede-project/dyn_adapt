@@ -67,12 +67,12 @@ public abstract class GenericModelRepository {
 		//For XML-based models, replacing " by '
 		modelContent = modelContent.replace("\"","'");
 		
-		((S)metadata.getModelInstances().get(0)).setValue("modelContent",modelContent);
+		((S)metadata.getModelInstances().get(0)).setValue("modelContent", modelContent);
 		S[] result = (S[]) proxy.createModelInstances(type, metadata);
 		
 		//Return model id
-		Assert.assertNotNull("Retrieved null Adaptability Model", result);
-		Assert.assertTrue("Retrieved emtpy Adaptability Model", result.length > 0);
+		Assert.assertNotNull("Retrieved null model", result);
+		Assert.assertTrue("Retrieved emtpy model", result.length > 0);
 		
 		return (String)result[0].getValue("id");
 	}

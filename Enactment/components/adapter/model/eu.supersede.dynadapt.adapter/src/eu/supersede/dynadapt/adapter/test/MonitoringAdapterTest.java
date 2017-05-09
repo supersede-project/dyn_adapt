@@ -86,7 +86,7 @@ public class MonitoringAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String adaptationDecisionActionId = "timeSlot_twitter";
-			String featureConfigurationId = null;
+			String featureConfigurationId = "MonitoringSystemConfigHighTimeslot";
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.MonitoringReconfiguration, adaptationDecisionActionId, featureConfigurationId);
 		} catch (EnactmentException e) {
