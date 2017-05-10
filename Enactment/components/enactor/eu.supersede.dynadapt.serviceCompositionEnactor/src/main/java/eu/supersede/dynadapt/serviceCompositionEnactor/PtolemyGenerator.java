@@ -418,6 +418,12 @@ public class PtolemyGenerator extends TypedCompositeActor {
                     this.addActors(activity_nodes_backup.get(0), "Callback", activity_nodes_backup.get(0).getValue(service_stereotype, "function").toString());
                     
                 }
+                //this else is added in case that element has some other stereotype that is not Service or Callback (e.g. <<Jointpoint>> in SUPERSEDE)
+                else
+                {
+                    this.addActors(activity_nodes_backup.get(0), "","");
+                    
+                }
             
             }
             else
