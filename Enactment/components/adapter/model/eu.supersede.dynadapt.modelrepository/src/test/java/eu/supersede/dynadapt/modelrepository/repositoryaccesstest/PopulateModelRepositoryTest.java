@@ -62,6 +62,8 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.PatternModel;
 import eu.supersede.integration.api.adaptation.types.ProfileModel;
+import eu.supersede.integration.api.adaptation.types.Status;
+import eu.supersede.integration.api.adaptation.types.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.VariantModel;
 
 public class PopulateModelRepositoryTest {
@@ -149,23 +151,23 @@ public class PopulateModelRepositoryTest {
 			
 			//Create metadata
 			S instanceMetadata = instanceMetadataType.newInstance();
-			ModelMetadata metadata = createModelMetadata(instanceMetadata, file, models.get(file), fileExtension);
+			ModelMetadata metadata = createModelMetadata(instanceMetadata, file, models.get(file), fileExtension, repositorySubFolder);
 			
 			//Store model in repository
 			mr.storeModel(model, modelType, metadata);
 		}
 	}
 	
-	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, Path file, BasicFileAttributes attributes, String fileExtension) throws Exception {
+	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, Path file, BasicFileAttributes attributes, String fileExtension, String relativePath) throws Exception {
 		ModelMetadata metadata = new ModelMetadata();
 		metadata.setSender("ModelRepositoryInitialization");
 		metadata.setTimeStamp(Calendar.getInstance().getTime());
-		metadata.setModelInstances(createBaseModelMetadataInstances(instanceMetadata, file, attributes, fileExtension));
+		metadata.setModelInstances(createBaseModelMetadataInstances(instanceMetadata, file, attributes, fileExtension, relativePath));
 		
 		return metadata;
 	}
 	
-	private <T extends IModel> List<IModel> createBaseModelMetadataInstances(T metadata, Path file, BasicFileAttributes attributes, String fileExtension) throws Exception {
+	private <T extends IModel> List<IModel> createBaseModelMetadataInstances(T metadata, Path file, BasicFileAttributes attributes, String fileExtension, String relativePath) throws Exception {
 		List<IModel> modelInstances = new ArrayList<>();
 		modelInstances.add(metadata);
 
@@ -180,8 +182,16 @@ public class PopulateModelRepositoryTest {
 		metadata.setValue ("fileExtension", ModelType.BaseModel.getExtension());
 		metadata.setValue ("systemId", getModelSystemForModel(file));
 		metadata.setValue ("fileExtension", "." + fileExtension);
+		metadata.setValue ("relativePath", relativePath);
+		metadata.setValue ("dependencies", new ArrayList<TypedModelId>());
 		try {
-			metadata.setValue ("status", "");
+			metadata.setValue ("status", Status.Enacted.name());
+		} catch (Exception e) {
+			//Ignored
+		}
+		
+		try {
+			metadata.setValue ("featureId", "featureId"); //FIXME FeatureId should not be mandatory in AdaptabilityModels
 		} catch (Exception e) {
 			//Ignored
 		}
@@ -193,26 +203,26 @@ public class PopulateModelRepositoryTest {
 		return file.getFileName().getName(file.getFileName().getNameCount()-1).toString();
 	}
 	
-	private String getModelSystemForModel(Path file) {
+	private ModelSystem getModelSystemForModel(Path file) {
 		// Use heuristic knowledge of file name to set the model system
 		if (getFileName(file).toLowerCase().contains("adm")){
-			return ModelSystem.Supersede.getId();
+			return ModelSystem.Supersede;
 		}else if (getFileName(file).toLowerCase().contains("atos") ||
 				  getFileName(file).toLowerCase().contains("cms")){
-			return ModelSystem.Atos.getId();
+			return ModelSystem.Atos;
 		}else if (getFileName(file).toLowerCase().contains("siemens") ||
 				  getFileName(file).toLowerCase().contains("basemodel") ||
 				  getFileName(file).toLowerCase().contains("composition") ||
 				  getFileName(file).toLowerCase().contains("s1")){
-			return ModelSystem.Siemens.getId();
+			return ModelSystem.Siemens;
 		}else if (getFileName(file).toLowerCase().contains("health") ||
 			      getFileName(file).toLowerCase().contains("authentication")){
-			return ModelSystem.Health.getId();
+			return ModelSystem.Health;
 		}else if (getFileName(file).toLowerCase().contains("monitoring") ||
 			 	  getFileName(file).toLowerCase().contains("twitter")){
-			return ModelSystem.MonitoringReconfiguration.getId();
+			return ModelSystem.MonitoringReconfiguration;
 		}else{
-			return null;
+			return ModelSystem.Supersede;
 		}
 	}
 
@@ -235,7 +245,7 @@ public class PopulateModelRepositoryTest {
 			 	  getFileName(file).toLowerCase().contains("twitter")){
 			return "Edith";
 		}else{
-			return null;
+			return "Supersede";
 		}
 	}
 

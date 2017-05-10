@@ -185,7 +185,7 @@ public class ModelRepositoryTest {
 	}
 	
 	@Test
-	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {
+	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {		
 		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos);
 		Assert.assertNotNull(fc);
 	}

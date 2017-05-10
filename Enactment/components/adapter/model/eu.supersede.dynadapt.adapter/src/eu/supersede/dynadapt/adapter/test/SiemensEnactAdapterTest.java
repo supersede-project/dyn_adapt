@@ -44,6 +44,7 @@ public class SiemensEnactAdapterTest {
 	String featureModelPath;
 	String localPath;
 	String repositoryRelativePath;
+	String repositoryResolverPath;
 	String platformRelativePath;
 	Map<String, String> modelsLocation;
 
@@ -58,7 +59,7 @@ public class SiemensEnactAdapterTest {
 	@Before
 	public void setUp() throws Exception {
 		setupPlatform();		
-		mm = new ModelManager(baseModelPath); //Base Model loaded here
+		mm = new ModelManager(); 
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
 	}
 
@@ -67,6 +68,7 @@ public class SiemensEnactAdapterTest {
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/FeatureModel-S1c_dm.yafm";
 		repositoryRelativePath = "./repository";
+		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -77,23 +79,17 @@ public class SiemensEnactAdapterTest {
 		modelsLocation.put("profiles", "models/profiles/");
 		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/monitoring/patterns/");
 		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("adapted", "models/adapted/");
 	}
 	
 	@Test
 	public void testSiemensUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
-			//FIXME featureConfigurationId is ignored. Use correct one
-			//once Model Repository is available as service.
-			String featureConfigurationId = "c4";
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
 			adapter.enactAdaptationDecisionActionsForFC(
 					ModelSystem.Siemens, featureConfigurationId);
 			
-			
-			/*String[] adaptationDecisionActionIds = new String[]{"c4"};
-			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
-			adapter.enactAdaptationDecisionActions(
-					ModelSystem.Siemens, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);*/
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
