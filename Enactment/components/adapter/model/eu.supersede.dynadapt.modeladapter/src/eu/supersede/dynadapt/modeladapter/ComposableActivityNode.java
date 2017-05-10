@@ -65,6 +65,19 @@ class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 		ActivityNode baseModelAction = (ActivityNode) jointpointBaseModelElement;
 		ActivityNode variantModelAction = (ActivityNode) jointpointVariantModelElement;
 		ActivityImpl activity = (ActivityImpl) baseModelAction.getOwner();
+		ActivityImpl variantActivity = (ActivityImpl) variantModelAction.getOwner();
+		
+		//Apply stereotypes from variant activity to base activity
+		for (Stereotype s : variantActivity.getAppliedStereotypes()) {
+			log.debug("\tApplying stereotype " + s.getName() + " to activity");
+			activity.applyStereotype(s);
+			if (s.getName().equals("Service")) {
+				activity.setValue(s, "endpoint", variantActivity.getValue(s, "endpoint"));
+			}
+			else if (s.getName().equals("Callback")) {
+				activity.setValue(s, "function", variantActivity.getValue(s, "function"));
+			}
+		}
 		
 		List<ActivityEdge> incomingEdges = baseModelAction.getIncomings();
 		//log.debug("Incoming edges: " + incomingEdges.size());
