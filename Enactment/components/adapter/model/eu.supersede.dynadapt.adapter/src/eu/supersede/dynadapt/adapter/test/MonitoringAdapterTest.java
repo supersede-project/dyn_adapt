@@ -44,6 +44,7 @@ public class MonitoringAdapterTest {
 	String featureModelPath;
 	String localPath;
 	String repositoryRelativePath;
+	String repositoryResolverPath;
 	String platformRelativePath;
 	Map<String, String> modelsLocation;
 
@@ -67,6 +68,7 @@ public class MonitoringAdapterTest {
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/MonitoringSystem.yafm";
 		repositoryRelativePath = "./repository";
+		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -82,7 +84,7 @@ public class MonitoringAdapterTest {
 	@Test
 	public void testMonitoringUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String adaptationDecisionActionId = "timeSlot_twitter";
