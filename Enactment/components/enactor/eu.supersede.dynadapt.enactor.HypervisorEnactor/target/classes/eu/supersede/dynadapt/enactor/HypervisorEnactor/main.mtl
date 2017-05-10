@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[module main('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[import eu::supersede::dynadapt::enactor::HypervisorEnactor::files::hypervisor/]
+
+
+[template public mainInstanceSpecification(aInstanceSpecification : InstanceSpecification)]
+	
+	[comment @main /]
+	[aInstanceSpecification.generateVMConfigurationScripts()/]
+	
+[/template]
