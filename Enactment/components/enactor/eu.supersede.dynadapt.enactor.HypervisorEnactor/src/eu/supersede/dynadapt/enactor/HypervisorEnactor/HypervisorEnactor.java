@@ -77,7 +77,7 @@ public class HypervisorEnactor implements IEnactor{
 		remoteConnection = Boolean.valueOf(hypervisorProperties.getProperty("remote_connection"));
 		
 		//ModelManager
-		mm = new ModelManager(true);
+		mm = new ModelManager(false);
 		
 		//Model Compare
 		mc = new ModelCompareImpl();

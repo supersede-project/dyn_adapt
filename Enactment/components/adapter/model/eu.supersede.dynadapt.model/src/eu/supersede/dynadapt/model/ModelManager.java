@@ -152,7 +152,7 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager () throws Exception{
-		this(true);
+		this(false);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager (String targetModelPath) throws Exception{
-		this(true);
+		this(false);
 		
 		setTargetModel(targetModelPath);
 	}
@@ -407,7 +407,9 @@ public class ModelManager implements IModelManager {
 		return temp;
 	}
 	
-	private URI createTemporaryURI (String surl){
+	private URI createTemporaryURI (String surl) throws IOException{
+		if (temp == null)
+			temp = createTemporaryDirectory();
 		Path file = Paths.get(temp.toString(), surl);
 		return URI.createURI(file.toString());
 	}
@@ -415,6 +417,8 @@ public class ModelManager implements IModelManager {
 	private URI downloadModel (String surl){
 		URI uri = null;
 		try {
+			if (temp == null)
+				temp = createTemporaryDirectory();
 			URL url = new URL (surl);
 			InputStream in = url.openStream();
 			Assert.assertNotNull(in);
