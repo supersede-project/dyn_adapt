@@ -34,12 +34,14 @@ import java.util.UUID;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.junit.Assert;
@@ -81,18 +83,21 @@ public class Adapter implements IAdapter {
 	private Map<String, String> modelsLocation;
 	
 	private AdapterKPIComputer kpiComputer = new AdapterKPIComputer();
+	
+	private String repositoryRelativePath;
 
 	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
 	// another one by AdaptationParser
 	// FIXME: Manage a single ResourceSet
 
-	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryResolverPath, String repositoryRelativePath) throws Exception {
 		this.mr = mr;
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
-		this.mrr = new ModelRepositoryResolver(mm, repositoryRelativePath);
+		this.mrr = new ModelRepositoryResolver(mm, repositoryResolverPath);
+		this.repositoryRelativePath = repositoryRelativePath;
 		log.debug("Adapter set up");
 	}
 
@@ -152,6 +157,34 @@ public class Adapter implements IAdapter {
 			throw new EnactmentException(e);
 		}
 	}
+	
+	@Override
+	public void enactAdaptationDecisionActionsForFC(ModelSystem system, 
+			String featureConfigurationId) throws EnactmentException {
+		
+		try {
+			
+			kpiComputer.startComputingKPI();
+			
+			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
+			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
+			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
+			
+			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
+					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
+	
+			doEnactment(system, null, newFeatureConfig);
+			
+			kpiComputer.stopComputingKPI();
+			kpiComputer.reportComputedKPI();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+		
+	};
+
 
 	private void doEnactment(ModelSystem system, List<String> adaptationDecisionActionIds,
 			FeatureConfiguration newFeatureConfig) throws EnactmentException, Exception, IOException {
@@ -161,25 +194,15 @@ public class Adapter implements IAdapter {
 		// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
 		// to simulate their retrieval given a systemId
 
-		//FIXME Base model was already loaded by Model Manager during initialization
-		//In order to avoid loading it twice, get it from Model Manager
-//			Model baseModel = mrr.getModelForSystem(system,
-//					new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+		// NOTE: The correct way to load models so that the ModelManager resolve dependencies is to use "platform:/resource/..." URIs
+		// as this is done for Model Repository Resolver, using the repositoryResolverPath passed in the Adapter initialization
 		Model baseModel = mrr.getModelForSystem(system,
 				new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
 		mm.setTargetModel(baseModel);
-
-		//FIXME featureConfigurationId not used to retrieve the feature configuration
-		//This implementation gets the latest configuration
-		//URI fcUri = URI.createURI (featureConfigurationId);
 		
 		FeatureConfiguration originalFeatureConfig = mrr.getConfigurationForSystem(system,
 				new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT));
 		
-		//FIXME Next invocation gets FC by id (this one should be used once Model Repository is available
-//			newFeatureConfig = mrr.getConfigurationForSystem(system,
-//					new RepositoryMetadata(fcUri));
-
 		//Only leaf selections are included
 		List<Selection> changedSelections = diffFeatureConfigurations(originalFeatureConfig, newFeatureConfig);
 
@@ -198,9 +221,11 @@ public class Adapter implements IAdapter {
 		Model model = adapt(changedSelections, baseModel);
 
 		if (model != null){
-			URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
-			//URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
-			//mm.saveModel(model.eResource(), uri, ".uml");
+			//NOTE dapted model must be placed in same folder level as base model, otherwise referenced models (i.e. profiles) are not resolved.
+			//Current configuration stores the adapted model in ./models/adapted, so profiles are correctly resolved.
+			String suri = repositoryRelativePath + "/" + modelsLocation.get("adapted") + model.getName() + ".uml";
+			URI uri = URI.createFileURI(suri);
+			uri = mm.saveModel(model.eResource(), uri, "_" + UUID.randomUUID() + ".uml");
 			log.debug("Saved updated model in " + uri);
 		}
 		
@@ -220,55 +245,6 @@ public class Adapter implements IAdapter {
 		log.debug("Notifing back to DM that adaptation actions have been enacted");
 	}
 	
-	@Override
-	public void enactAdaptationDecisionActionsForFC(ModelSystem system, 
-			String featureConfigurationId) throws EnactmentException {
-		
-		try {
-			
-			kpiComputer.startComputingKPI();
-		
-			Model baseModel = mm.getTargetModel();
-			
-			FeatureConfiguration featureConfig = mrr.getConfigurationForSystem(system,
-					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT));
-			
-			List<Selection> changedSelections = getSelections(featureConfig);
-	
-			Model model = adapt(changedSelections, baseModel);
-	
-			if (model != null){
-				//URI uri = mm.saveModelInTemporaryFolder(model, "_" + UUID.randomUUID() + ".uml");
-				//log.debug("Saved updated model in " + uri);
-				URI uri = URI.createFileURI("repository/models/adapted/" + model.getName() + ".uml");
-				mm.saveModel(model.eResource(), uri, ".uml");
-				log.debug("Saved updated model in " + uri);
-			}
-			
-			//Ask Enactor to enact adapted model
-			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
-			
-			//TODO Store adapted model as current base model in Model Repository
-			log.debug("Storing adapted model as current based model in ModelRepository");
-			//mr.storeBaseModel(model, bmMetadata);
-			
-			//TODO Store new feature configuration model as current current feature configuration in Model Repository
-			log.debug("Storing FC model as current FC model in ModelRepository");
-			//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
-			
-			//TODO Notified back to DM that adaptation actions have been enacted
-			log.debug("Notifing back to DM that adaptation actions have been enacted");
-			
-			kpiComputer.stopComputingKPI();
-			kpiComputer.reportComputedKPI();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new EnactmentException(e);
-		}
-		
-	};
-
 	private Model adapt(List<Selection> selections, Model baseModel) throws Exception {
 
 		Model model = null;
@@ -303,13 +279,15 @@ public class Adapter implements IAdapter {
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
 						log.debug("\tMatching Element: " + e);
+						log.debug("\tApplicable stereotypes: " + e.getApplicableStereotypes().size());
 						matchingElements.get(role).add(e);
 					}
 				}
 				Model variant = aspect.getAdvice();
 				log.debug("\tVariant: " + variant.getName());
-				
+								
 				for (Composition c : aspect.getCompositions()) {
+					log.debug("\tComposition " + c.getName());
 					boolean compositionEnabled = c.getFeature_enabled();
 					if (featureEnabled == compositionEnabled) {
 						ActionOptionType actionOptionType = c.getAction();

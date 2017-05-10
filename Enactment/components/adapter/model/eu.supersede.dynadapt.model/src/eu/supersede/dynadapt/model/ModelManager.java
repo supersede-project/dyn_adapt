@@ -163,6 +163,10 @@ public class ModelManager implements IModelManager {
 	public ModelManager (String targetModelPath) throws Exception{
 		this(true);
 		
+		setTargetModel(targetModelPath);
+	}
+
+	public void setTargetModel(String targetModelPath) throws Exception {
 		this.targetModelURI = URI.createURI(targetModelPath);
 		targetModelResource = loadResource(targetModelPath);
 		if (targetModelResource == null){
@@ -200,6 +204,12 @@ public class ModelManager implements IModelManager {
 	public void setTargetModel (Model model){
 		//this.targetModelURI = URI.createURI(model.getURI());
 		this.targetModelResource = model.eResource();
+	}
+	
+	@Override
+	public void setTargetResource (Resource resource){
+		//this.targetModelURI = URI.createURI(model.getURI());
+		this.targetModelResource = resource;
 	}
 	
 	@Override
@@ -332,17 +342,8 @@ public class ModelManager implements IModelManager {
 		if (temp == null){
 			temp = createTemporaryDirectory();
 		}
-		URI uri = createTemporaryURI (model.getName() + suffixe);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(model);
-		try {
-			resource.save(null); // no save options needed
-		} catch (IOException ioe) {
-			throw ioe;
-		}
-		
-		return uri;
+		URI uri = createTemporaryURI (model.getName());
+		return saveModel (model.eResource(), uri, suffixe);
 	}
 	
 	/* (non-Javadoc)
@@ -383,7 +384,10 @@ public class ModelManager implements IModelManager {
 		// Create the output filename
 		String outputFileName = inputFileName;
 		if (suffixe != null){
-			outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
+			if (inputFileName.lastIndexOf('.')>=0)
+				outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
+			else
+				outputFileName = inputFileName + suffixe;
 		}
 		
 		File outputFile = new File(outputDirectory + outputFileName);

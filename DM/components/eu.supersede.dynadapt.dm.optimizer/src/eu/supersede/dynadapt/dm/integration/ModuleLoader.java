@@ -241,7 +241,9 @@ public class ModuleLoader {
 			uri = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
 			break;
 		case Siemens:
-			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			uri = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
+			break;
 		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}
@@ -268,7 +270,9 @@ public class ModuleLoader {
 			uri = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
 			break;
 		case Siemens:
-			Parameters.TENANT= Parameters.Tenants.SIEMENS; break;	
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			uri = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafc";
+			break;	
 		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
 		}

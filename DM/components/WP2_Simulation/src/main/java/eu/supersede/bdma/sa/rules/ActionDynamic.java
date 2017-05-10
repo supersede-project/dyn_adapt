@@ -19,7 +19,7 @@ import eu.supersede.integration.api.pubsub.TopicPublisher;
  */
 public class ActionDynamic {
 
-    private static Alert createAlert() {
+    private static Alert createAtosHSKAlert() {
         Alert alert = new Alert();
 
         alert.setId("id"+ System.currentTimeMillis());
@@ -37,10 +37,29 @@ public class ActionDynamic {
         return alert;
     }
     
+    private static Alert createSiemensAlert() {
+        Alert alert = new Alert();
+
+        alert.setId("id"+ System.currentTimeMillis());
+        alert.setApplicationId("dynamic");
+        alert.setTimestamp(Calendar.getInstance().getTimeInMillis());
+        alert.setTenant(ModelSystem.Siemens);
+
+        List<Condition> conditions = Lists.newArrayList();
+        conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 10.0));
+        // response_time: quality attribute
+        // 10.0: threshold
+
+        alert.setConditions(conditions);
+        
+        return alert;
+    }
+    
 
     public static void sendAlert() throws Exception {
         TopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC,true);
-        publisher.publishTextMesssageInTopic(new Gson().toJson(createAlert()));
+        //publisher.publishTextMesssageInTopic(new Gson().toJson(createAtosHSKAlert()));
+        publisher.publishTextMesssageInTopic(new Gson().toJson(createSiemensAlert()));
         publisher.closeTopicConnection();
     }
 }
