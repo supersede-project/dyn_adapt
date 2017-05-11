@@ -82,7 +82,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Test
 	public void testAtosLow2BHSKAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 									
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.

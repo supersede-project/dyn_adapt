@@ -15,7 +15,7 @@ Import-Package: eu.supersede.dynadapt.model,org.apache.log4j
 Eclipse-LazyStart: true
 Export-Package: eu.supersede.dynadapt.enactor.HypervisorEnactor
 Bundle-Name: Acceleo HypervisorEnactor Module Runtime Plug-in
-Bundle-Version: 1.0.0.201704051344
+Bundle-Version: 1.0.0.201705111110
 Bundle-Activator: eu.supersede.dynadapt.enactor.HypervisorEnactor.Acti
  vator
 
