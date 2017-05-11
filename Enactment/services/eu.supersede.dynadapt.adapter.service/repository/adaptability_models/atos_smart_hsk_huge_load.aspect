@@ -3,7 +3,7 @@ aspect atos_smart_hsk_huge_load {
 	advice Atos_Smart_HSK_Huge_Load,
 	pointcuts{
 		pointcut HSK_VM{
-			pattern eu.supersede.dynadapt.usecases.atos.patterns.HSKVirtualExecutionEnvironments,
+			pattern eu.supersede.dynadapt.usecases.patterns.HSKVirtualExecutionEnvironments,
 			role ADM.Joinpoint
 		}
 	},

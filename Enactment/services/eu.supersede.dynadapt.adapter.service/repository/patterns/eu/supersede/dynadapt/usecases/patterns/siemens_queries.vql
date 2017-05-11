@@ -1,0 +1,8 @@
+package eu.supersede.dynadapt.usecases.patterns
+
+import "http://www.eclipse.org/uml2/5.0.0/UML"
+
+pattern GetMeteorologicalDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("GetMteorologicalData"));
+}

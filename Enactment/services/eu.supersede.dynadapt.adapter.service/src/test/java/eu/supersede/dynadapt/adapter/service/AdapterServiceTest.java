@@ -32,4 +32,19 @@ public class AdapterServiceTest {
 		}
 	}
 	
+	@Test
+	public void testSiemensUCAdaptation() {
+		try {
+			//FIXME featureConfigurationId is ignored. Use correct one
+			//once Model Repository is available as service.
+			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
+			service.enactAdaptationDecisionActionsForFC(
+					ModelSystem.Siemens.toString(), featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

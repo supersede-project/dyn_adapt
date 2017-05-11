@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.usecases.atos.patterns
+package eu.supersede.dynadapt.usecases.patterns
 
 import "http://www.eclipse.org/uml2/5.0.0/UML"
 

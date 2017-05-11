@@ -1,14 +1,14 @@
-aspect sc2 {
-	feature FeatureModel.Service_management.Service_Compositions.SC2,
-	advice Siemens_Variant_SC2,
+aspect sc4 {
+	feature FeatureModel.Service_management.SC4,
+	advice S2,
 	pointcuts{	
 		pointcut GMDService{
-			pattern patterns.GetMeteorologicalDataServices,
+			pattern eu.supersede.dynadapt.usecases.patterns.GetMeteorologicalDataServices,
 			role ADM.Joinpoint
 		}
 	},
 	compositions{
-		composition replaceGMDServiceBySC2{
+		composition replaceGMDServiceBySC4{
 			feature_enabled true,
 			adviceRole ADM.Joinpoint,
 			action replace

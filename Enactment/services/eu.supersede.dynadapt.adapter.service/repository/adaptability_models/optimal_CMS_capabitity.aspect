@@ -3,7 +3,7 @@ aspect optimal_cms_capability{
 	advice Atos_UC_CMS_Overloaded_Variant,
 	pointcuts {
 		pointcut CMSInstance{
-			pattern eu.supersede.dynadapt.usecases.atos.patterns.CMSInstances,
+			pattern eu.supersede.dynadapt.usecases.patterns.CMSInstances,
 			role ADM.Joinpoint
 		}
 	},
