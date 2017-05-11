@@ -23,3 +23,5 @@
 /.GetManifestationsProcessor.java._trace
 /.GetManifestationsQuerySpecification.java._trace
 /.GetReferenceToTypeQuerySpecification.java._trace
+/GetManifestationsProcessor.java
+/GetManifestationsQuerySpecification.java

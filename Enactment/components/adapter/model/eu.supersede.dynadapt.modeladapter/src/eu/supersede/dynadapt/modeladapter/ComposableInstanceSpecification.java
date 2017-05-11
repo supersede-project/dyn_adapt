@@ -64,6 +64,10 @@ class ComposableInstanceSpecification extends ComposableImpl implements Composab
 	@Override
 	public void applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement,
 			Model usingVariantModel, Element jointpointVariantModelElement) {
+		
+		//IDEA: check if there is any instance already applied, if so call applyReplaceComposition
+		
+		
 		InstanceSpecification instanceBase = (InstanceSpecification) jointpointBaseModelElement;
 		InstanceSpecification instanceVariant = (InstanceSpecification) jointpointVariantModelElement;
 		//Adding new slots in variant model to insertion point (e.g. Jointpoint) in base model

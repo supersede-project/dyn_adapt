@@ -337,7 +337,7 @@ public class ModelManager implements IModelManager {
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(model);
 		try {
-			resource.save(null); // no save options needed
+			resource.save(null); // no save options needed // save(null)=> save(OPTION_SAVE_ONLY_IF_CHANGED)??<-- EXCEPTION!!!!!
 		} catch (IOException ioe) {
 			throw ioe;
 		}
@@ -405,7 +405,9 @@ public class ModelManager implements IModelManager {
 	
 	private URI createTemporaryURI (String surl){
 		Path file = Paths.get(temp.toString(), surl);
-		return URI.createURI(file.toString());
+		String file2="file:///"+file.toString(); //added to fix uri problems for windows C:/ <- c taken as scheme(protecol)
+		//return URI.createURI(file.toString());
+		return URI.createURI(file2);
 	}
 
 	private URI downloadModel (String surl){

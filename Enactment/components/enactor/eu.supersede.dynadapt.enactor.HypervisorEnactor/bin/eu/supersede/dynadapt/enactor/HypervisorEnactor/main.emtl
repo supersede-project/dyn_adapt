@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
-  <mtl:Module name="main" nsURI="eu::supersede::dynadapt::enactor::HypervisorEnactor::main" startHeaderPosition="29" endHeaderPosition="82">
+  <mtl:Module name="main" nsURI="eu::supersede::dynadapt::enactor::HypervisorEnactor::main" startHeaderPosition="30" endHeaderPosition="83">
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </input>
     <imports href="files/hypervisor.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="mainInstanceSpecification" visibility="Public" main="true">
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xD;&#xA;"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -15,7 +15,7 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
         </argument>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;&#x9;"/>
       <parameter name="aInstanceSpecification">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
       </parameter>
@@ -110,38 +110,38 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/mainInstanceSpecification">
-      <details key="start" value="168"/>
-      <details key="end" value="354"/>
+      <details key="start" value="173"/>
+      <details key="end" value="364"/>
       <details key="line" value="6"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/mainInstanceSpecification/%">
-      <details key="start" value="260"/>
-      <details key="end" value="262"/>
+      <details key="start" value="266"/>
+      <details key="end" value="269"/>
       <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/mainInstanceSpecification/%.1">
-      <details key="start" value="281"/>
-      <details key="end" value="282"/>
+      <details key="start" value="289"/>
+      <details key="end" value="290"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/mainInstanceSpecification/%.2">
-      <details key="start" value="283"/>
-      <details key="end" value="338"/>
+      <details key="start" value="291"/>
+      <details key="end" value="346"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/mainInstanceSpecification/%.2/aInstanceSpecification">
-      <details key="start" value="283"/>
-      <details key="end" value="305"/>
+      <details key="start" value="291"/>
+      <details key="end" value="313"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/mainInstanceSpecification/%.3">
-      <details key="start" value="340"/>
-      <details key="end" value="342"/>
+      <details key="start" value="348"/>
+      <details key="end" value="351"/>
       <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/mainInstanceSpecification/aInstanceSpecification">
-      <details key="start" value="211"/>
-      <details key="end" value="257"/>
+      <details key="start" value="216"/>
+      <details key="end" value="262"/>
       <details key="line" value="6"/>
     </eAnnotations>
   </ecore:EAnnotation>

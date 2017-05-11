@@ -59,7 +59,7 @@ public class HealthAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
-			String featureConfigurationId = null;
+			String featureConfigurationId = "HealthAuthenticatedFeatureConfiguration";//null <-- changed FCId
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.Health, adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -94,7 +94,7 @@ public class HealthAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"notauthenticated"};
-			String featureConfigurationId = null;
+			String featureConfigurationId = "HealthNotAuthenticatedFeatureConfiguration";//null;  <-- changed FCId
 			
 			//FIXME Select correctly the current and newest FC
 			adapter.enactAdaptationDecisionAction(

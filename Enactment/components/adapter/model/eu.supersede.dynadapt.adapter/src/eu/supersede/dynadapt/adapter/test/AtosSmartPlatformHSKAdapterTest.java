@@ -65,7 +65,28 @@ public class AtosSmartPlatformHSKAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_HugeLoad";
+			String featureConfigurationId = "SmartPlatformFC_HSK_HugeLoad"; 
+			adapter.enactAdaptationDecisionActions(
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+//			adapter.enactAdaptationDecisionAction(
+//					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Test
+	public void testAtosLow2BHSKAdaptation() {
+		try {
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+									
+			//FIXME featureConfigurationId is ignored. Use correct one
+			//once Model Repository is available as service.
+			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+			String featureConfigurationId = "SmartPlatformFC_HSK_Low2_BLoad";
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(
