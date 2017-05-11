@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.adapter.service;
 import java.util.Arrays;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
@@ -32,7 +33,7 @@ public class AdapterServiceTest {
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testSiemensUCAdaptation() {
 		try {
 			//FIXME featureConfigurationId is ignored. Use correct one
