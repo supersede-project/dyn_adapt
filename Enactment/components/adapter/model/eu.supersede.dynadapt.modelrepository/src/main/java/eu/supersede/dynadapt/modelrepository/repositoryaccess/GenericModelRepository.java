@@ -29,6 +29,7 @@ import org.junit.Assert;
 
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.GenericModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.IModelId;
@@ -349,8 +350,26 @@ public abstract class GenericModelRepository {
 		}
 		return getModel((String)iModel.getValue("id"), modelType, modelClass);
 	}
-
-
+	
+	protected <T extends EObject, S extends IModel> List<T> getModelsFromMetadata(ModelType modelType, GenericModel modelMetadata, Class<T> modelClass) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<S> metadata = (List<S>) proxy.getModelInstances(modelType, modelMetadata);
+		List<T> results = new ArrayList<>();
+		for (S metadatum: metadata){
+			String id = (String) metadatum.getValue("id");
+			if (metadatum.getValue("id")==null){
+				log.error ("Model repository return a model with null identifier and metadatum: " + metadatum);
+				continue;
+			}
+			T model = getModel (id, modelType, modelClass);
+			if (model == null){
+				log.error ("Model repository return a null model for identifier: " + id);
+				continue;
+			}
+			results.add (model);
+		}
+		return results;
+	}
 	
 	protected <T extends EObject> void updateModel(T model, ModelUpdateMetadata metadata, String id, ModelType type) throws Exception{
 		///Assuming only one model instance is store

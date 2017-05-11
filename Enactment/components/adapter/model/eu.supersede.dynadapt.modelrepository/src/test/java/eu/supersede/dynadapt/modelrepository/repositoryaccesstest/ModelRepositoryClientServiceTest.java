@@ -63,11 +63,17 @@ public class ModelRepositoryClientServiceTest {
 	
 	@Test
 	public void getAspectModels() throws Exception {
-		List<Aspect> aspects = mr.getAspectModels("GooglePlay", modelsLocation);
+		List<Aspect> aspects = mr.getAspectModels("featureId", modelsLocation);
 		log.debug("Retrieved " + aspects.size() + " aspect models");
 		for (int i = 0; i < aspects.size(); ++i) {
 			log.debug(aspects.get(i).getName());
 		}
 	}
+	
+	/*@Test
+	public void loadModels() throws Exception {
+		mr.loadModels(modelsLocation);
+		
+	}*/
 	
 }

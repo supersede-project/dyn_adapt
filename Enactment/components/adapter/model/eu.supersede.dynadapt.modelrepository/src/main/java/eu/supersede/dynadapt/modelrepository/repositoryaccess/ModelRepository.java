@@ -45,6 +45,8 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.GenericModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -87,7 +89,9 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		List<Aspect> aspects = new ArrayList<Aspect>();
 		try {
 			log.debug("Getting aspect models");
-			aspects = this.getAspectModelsForSystem(null);
+			AdaptabilityModel modelMetadata = new AdaptabilityModel();
+			modelMetadata.setFeatureId(featureSUPERSEDEId);
+			aspects = this.getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
 			//aspects = this.getModelsOfTypeForSystemWithStatus(ModelType.AdaptabilityModel, null, null, Aspect.class);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +146,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return uris;
 	}
 
-	private IModelManager loadModels(Map<String, String> modelsLocation) {
+	public IModelManager loadModels(Map<String, String> modelsLocation) {
 //		IAdaptationParser parser = new AdaptationParser(modelManager);
 
 		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
