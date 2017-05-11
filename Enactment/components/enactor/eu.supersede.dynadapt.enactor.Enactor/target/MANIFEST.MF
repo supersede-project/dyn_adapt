@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-SymbolicName: eu.supersede.dynadapt.enactor.Enactor
-Export-Package: eu.supersede.dynadapt.enactor
-Bundle-Name: Enactor
-Bundle-Version: 1.0.0.201705111110
-Require-Bundle: org.eclipse.uml2.uml;bundle-version="5.2.2"
-Bundle-ManifestVersion: 2
-
