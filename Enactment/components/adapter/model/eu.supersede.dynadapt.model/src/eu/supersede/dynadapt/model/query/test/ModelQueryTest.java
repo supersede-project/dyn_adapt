@@ -123,7 +123,7 @@ public class ModelQueryTest {
 		PatternModel patternModel = modelQuery.loadPatternModel(URI.createURI(patternModelPath));
 		
 		Assert.assertNotNull(patternModel);
-		Assert.assertTrue(patternModel.getPackageName().equals("eu.supersede.dynadapt.atos.queries"));
+		Assert.assertTrue(patternModel.getPackageName().equals("eu.supersede.dynadapt.model.query.test"));
 	}
 
 }

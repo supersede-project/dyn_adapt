@@ -152,7 +152,7 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager () throws Exception{
-		this(true);
+		this(false);
 	}
 
 	/**
@@ -161,8 +161,12 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager (String targetModelPath) throws Exception{
-		this(true);
+		this(false);
 		
+		setTargetModel(targetModelPath);
+	}
+
+	public void setTargetModel(String targetModelPath) throws Exception {
 		this.targetModelURI = URI.createURI(targetModelPath);
 		targetModelResource = loadResource(targetModelPath);
 		if (targetModelResource == null){
@@ -200,6 +204,12 @@ public class ModelManager implements IModelManager {
 	public void setTargetModel (Model model){
 		//this.targetModelURI = URI.createURI(model.getURI());
 		this.targetModelResource = model.eResource();
+	}
+	
+	@Override
+	public void setTargetResource (Resource resource){
+		//this.targetModelURI = URI.createURI(model.getURI());
+		this.targetModelResource = resource;
 	}
 	
 	@Override
@@ -332,17 +342,9 @@ public class ModelManager implements IModelManager {
 		if (temp == null){
 			temp = createTemporaryDirectory();
 		}
-		URI uri = createTemporaryURI (model.getName() + suffixe);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(model);
-		try {
-			resource.save(null); // no save options needed // save(null)=> save(OPTION_SAVE_ONLY_IF_CHANGED)??<-- EXCEPTION!!!!!
-		} catch (IOException ioe) {
-			throw ioe;
-		}
-		
-		return uri;
+
+		URI uri = createTemporaryURI (model.getName());
+		return saveModel (model.eResource(), uri, suffixe);
 	}
 	
 	/* (non-Javadoc)
@@ -383,7 +385,10 @@ public class ModelManager implements IModelManager {
 		// Create the output filename
 		String outputFileName = inputFileName;
 		if (suffixe != null){
-			outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
+			if (inputFileName.lastIndexOf('.')>=0)
+				outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
+			else
+				outputFileName = inputFileName + suffixe;
 		}
 		
 		File outputFile = new File(outputDirectory + outputFileName);
@@ -403,7 +408,9 @@ public class ModelManager implements IModelManager {
 		return temp;
 	}
 	
-	private URI createTemporaryURI (String surl){
+	private URI createTemporaryURI (String surl) throws IOException{
+		if (temp == null)
+			temp = createTemporaryDirectory();
 		Path file = Paths.get(temp.toString(), surl);
 		String file2="file:///"+file.toString(); //added to fix uri problems for windows C:/ <- c taken as scheme(protecol)
 		//return URI.createURI(file.toString());
@@ -413,6 +420,8 @@ public class ModelManager implements IModelManager {
 	private URI downloadModel (String surl){
 		URI uri = null;
 		try {
+			if (temp == null)
+				temp = createTemporaryDirectory();
 			URL url = new URL (surl);
 			InputStream in = url.openStream();
 			Assert.assertNotNull(in);

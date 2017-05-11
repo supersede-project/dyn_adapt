@@ -40,7 +40,7 @@ import cz.zcu.yafmt.model.fm.util.FeatureModelUtil;
 
 public class FMSerializer {
 	private static List<String> arguments = new ArrayList<String>();
-	private static ResourceSet resultSet = new ResourceSetImpl();
+	private static ResourceSet resultSet;
 	
 	/**
 	 * Serializes an input feature model, as YAFMT FM instance, 
@@ -50,6 +50,7 @@ public class FMSerializer {
 	 * @throws IOException
 	 */
 	public static void serializeFMToArtifactsInFolder (String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
+		resultSet = new ResourceSetImpl();
 		URI modelURI = URI.createFileURI(absoluteFMModelPath);
 		File targetFolder = new File (absoluteTargetFolderPath);
 		eu.supersede.dynadapt.feature.serializer.Main generator = new eu.supersede.dynadapt.feature.serializer.Main(modelURI, targetFolder, arguments);
@@ -58,6 +59,7 @@ public class FMSerializer {
 	}
 	
 	public static void serializeFCToArtifactsInFolder (String absoluteFCModelPath, String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
+		resultSet = new ResourceSetImpl();
 		URI fcURI = URI.createFileURI(absoluteFCModelPath);
 		File targetFolder = new File (absoluteTargetFolderPath);
 		eu.supersede.dynadapt.configuration.serializer.Main generator = new eu.supersede.dynadapt.configuration.serializer.Main(fcURI, targetFolder, arguments);

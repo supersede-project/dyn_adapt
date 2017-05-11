@@ -1,7 +1,18 @@
 #!/bin/sh
 
+echo -e "\nBuilding Supersede Service Composition Enactor ...\n"
+cd Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/ && ./installDependencies.sh && mvn clean install && cp target/ServiceCompositionEnactor-0.0.1-SNAPSHOT.jar ../eu.supersede.dynadapt.enactor.EnactorFactory/lib/
+
+if [ $? -eq 0 ] 
+then
+  echo "Supersede Service Composition Enactor compiled"
+else
+  echo "There are problems compiling Supersede Service Composition Enactor" >&2
+  exit 1
+fi
+
 echo -e "\nBuilding Supersede YAFMT plugins...\n"
-cd  Maven/cz.zcu.yafmt/releng/cz.zcu.yafmt.configuration/ && ./installPom.sh
+cd  ../../../../Maven/cz.zcu.yafmt/releng/cz.zcu.yafmt.configuration/ && ./installPom.sh
 cd ../../ && mvn clean install
 
 if [ $? -eq 0 ] 

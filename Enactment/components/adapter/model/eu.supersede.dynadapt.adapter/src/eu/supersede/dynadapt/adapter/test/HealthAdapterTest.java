@@ -42,6 +42,7 @@ public class HealthAdapterTest {
 //	String baseModelPath;
 	String repository;
 	String repositoryRelativePath;
+	String repositoryResolverPath;
 	String platformRelativePath;
 	
 	Map<String, String> modelsLocation;
@@ -55,7 +56,7 @@ public class HealthAdapterTest {
 	@Test
 	public void testAuthenticatedHealthUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
@@ -77,7 +78,7 @@ public class HealthAdapterTest {
 			mm = new ModelManager(); //Base Model loaded here
 			mr = new ModelRepository(repository,repositoryRelativePath, mm);
 			
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 			
 			//Current runtime base model
 			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT);
@@ -117,6 +118,7 @@ public class HealthAdapterTest {
 //		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/health_watcher.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		repositoryRelativePath = "./repository";
+		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);

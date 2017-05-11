@@ -32,7 +32,7 @@ public class Parameters {
 	public static Applications APPLICATION = Applications.DYNAMIC_ADAPTATION;
 	public static Tenants TENANT = Tenants.ATOS;
 	
-	private static String ATOS_INPUT_DIR = "serialization/atos/";
+	private static String ATOS_INPUT_DIR = "input/atos_hsk/";
 	private static String ATOS_OUTPUT_DIR = "output/atos/";
 	private static String SIEMENS_INPUT_DIR = "serialization/siemens/";
 	private static String SIEMENS_OUTPUT_DIR = "output/siemens/";
