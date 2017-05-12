@@ -323,8 +323,10 @@ public abstract class GenericModelRepository {
 		Path path = Paths.get(temp.toString(), (String)result.getValue("relativePath"), fileName);
 		String modelContent = (String) result.getValue ("modelContent"); // For XML-based models, replacing ' by "
 		modelContent = modelContent.replace("'","\"");
+		//FIXME escape \" char
+		modelContent = modelContent.replace("(\"", "('").replace("\")", "')").replace("\",", "',");
 		saveModelFromString(modelContent, path);
-		
+				
 		//Use ModelManager to retrieve the model
 		return modelManager.loadModel(path.toString(), modelClass);
 	}
