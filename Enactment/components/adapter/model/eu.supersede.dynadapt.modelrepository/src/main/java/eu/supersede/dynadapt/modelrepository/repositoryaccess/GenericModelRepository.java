@@ -183,9 +183,11 @@ public abstract class GenericModelRepository {
 					String dRelativePath = dModel.eResource().getURI().toString().replace(originalRepoPath, "");
 					ModelType dType = getModelType(dModel);
 					ModelMetadata dependMetadata = createModelMetadata(metadata, dType, dRelativePath);
-					String dId = storeModel(dModel, dType, dependMetadata, originalRepoPath);
-					ITypedModelId modelId = new TypedModelId(dType, dId);
-					dependencies.add(modelId);
+					if (dependMetadata.getModelInstances().get(0) != null) {
+						String dId = storeModel(dModel, dType, dependMetadata, originalRepoPath);
+						ITypedModelId modelId = new TypedModelId(dType, dId);
+						dependencies.add(modelId);
+					}
 				}
 			}
 		}
@@ -255,8 +257,8 @@ public abstract class GenericModelRepository {
 		S[] result = (S[]) proxy.createModelInstances(type, metadata);
 		
 		//Return model id
-		Assert.assertNotNull("Retrieved null Adaptability Model", result);
-		Assert.assertTrue("Retrieved emtpy Adaptability Model", result.length > 0);
+		Assert.assertNotNull("Retrieved null model", result);
+		Assert.assertTrue("Retrieved emtpy model", result.length > 0);
 		
 		return (String)result[0].getValue("id");
 	}
@@ -310,7 +312,8 @@ public abstract class GenericModelRepository {
 		getDependencies(modelId);
 		
 		// Store model in temporary local folder of the repository
-		Path path = Paths.get(temp.toString(), (String)result.getValue("relativePath"));
+		String fileName = (String) result.getValue("name") + (String) result.getValue("fileExtension");
+		Path path = Paths.get(temp.toString(), (String)result.getValue("relativePath"), fileName);
 		String modelContent = (String) result.getValue ("modelContent"); // For XML-based models, replacing ' by "
 		modelContent = modelContent.replace("'","\"");
 		saveModelFromString(modelContent, path);
@@ -448,6 +451,10 @@ public abstract class GenericModelRepository {
 	}
 	
 	private void saveModelFromString (String model, Path path) throws IOException{
+		//Check if the directory exists
+		Path parentDir = path.getParent();
+		if (!Files.exists(parentDir))
+		    Files.createDirectories(parentDir);
 		Files.write(path, model.getBytes());
 	}
 	

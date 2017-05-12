@@ -88,7 +88,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		
 		List<Aspect> aspects = new ArrayList<Aspect>();
 		try {
-			log.debug("Getting aspect models");
 			AdaptabilityModel modelMetadata = new AdaptabilityModel();
 			modelMetadata.setFeatureId(featureSUPERSEDEId);
 			aspects = this.getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
