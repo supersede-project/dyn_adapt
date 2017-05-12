@@ -29,16 +29,8 @@ public class ModelRepositoryClientServiceTest {
 
 	Map<String, String> modelsLocation;
 
-	String featureConfigPath = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/features/configurations/MonitoringSystemConfigDefault.yafc";
-
-	String featureModelPath = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/features/models/MonitoringSystem.yafm";
-
-	URL url = null;
-
 	ModelRepository mr = null;
 	ModelManager mm = null;
-
-	IFeatureConfigLAO fcLAO = null;
 
 	@Before
 	public void setUp() throws Exception {
@@ -50,8 +42,6 @@ public class ModelRepositoryClientServiceTest {
 		modelsLocation.put("patterns", "patterns/");
 		modelsLocation.put("features", "features/models/");
 
-		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
-		url = getClass().getResource("/");
 		mm = new ModelManager(false);
 		mr = new ModelRepository(repository, repositoryRelativePath, mm);
 	}
