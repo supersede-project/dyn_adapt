@@ -65,6 +65,7 @@ import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.PatternModel;
 import eu.supersede.integration.api.adaptation.types.ProfileModel;
 import eu.supersede.integration.api.adaptation.types.Status;
+import eu.supersede.integration.api.adaptation.types.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.VariantModel;
 
 public class PopulateModelRepositoryTest {
@@ -251,8 +252,7 @@ public class PopulateModelRepositoryTest {
 			 	  getFileName(file).toLowerCase().contains("twitter")){
 			return ModelSystem.MonitoringReconfiguration;
 		}else{
-			log.error("No model system found for file " + file.getFileName());
-			return null;
+			return ModelSystem.Supersede;
 		}
 	}
 
@@ -276,7 +276,7 @@ public class PopulateModelRepositoryTest {
 			 	  getFileName(file).toLowerCase().contains("twitter")){
 			return "Edith";
 		}else{
-			return null;
+			return "Supersede";
 		}
 	}
 

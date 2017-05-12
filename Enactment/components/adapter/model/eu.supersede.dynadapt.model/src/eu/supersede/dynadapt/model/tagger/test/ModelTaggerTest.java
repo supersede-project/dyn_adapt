@@ -41,9 +41,9 @@ import eu.supersede.dynadapt.model.tagger.ModelTagger;
 public class ModelTaggerTest {
 	String modelPath = "./models/atos_base_model.uml";
 	String profilePath = "./models/adm.profile.uml";
-	String patternModelPath = "./models/atos_queries.vql";
+	String patternModelPath = "./src/eu/supersede/dynadapt/model/query/test/atos_queries.vql";
 	
-	String patternFQN = "eu.supersede.dynadapt.atos.queries.nodeArtifacts";
+	String patternFQN = "eu.supersede.dynadapt.model.query.test.nodeArtifacts";
 	private static final String OUTPUT_FILE_SUFFIX = "_tagged.uml";
 	
 	IModelQuery modelQuery = null;

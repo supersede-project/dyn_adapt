@@ -52,6 +52,7 @@ import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class ModelRepositoryTest {
 
@@ -184,7 +185,7 @@ public class ModelRepositoryTest {
 	}
 	
 	@Test
-	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {
+	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {		
 		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos);
 		Assert.assertNotNull(fc);
 	}
@@ -267,7 +268,7 @@ public class ModelRepositoryTest {
 		am.setSystemId(ModelSystem.MonitoringReconfiguration);
 		am.setFeatureId("GooglePlay");
 		am.setRelativePath("relativepath");
-		am.setDependencies(new ArrayList<>());
+		am.setDependencies(new ArrayList<TypedModelId>());
 		
 		return modelInstances;
 	}
@@ -296,7 +297,7 @@ public class ModelRepositoryTest {
 		am.setSystemId(ModelSystem.Atos);
 		am.setStatus("not adapted");
 		am.setRelativePath("relativepath");
-		am.setDependencies(new ArrayList<>());
+		am.setDependencies(new ArrayList<TypedModelId>());
 		
 		return modelInstances;
 	}

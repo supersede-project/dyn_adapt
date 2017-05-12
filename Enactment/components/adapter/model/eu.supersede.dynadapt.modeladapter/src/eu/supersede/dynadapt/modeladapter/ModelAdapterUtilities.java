@@ -178,7 +178,12 @@ public class ModelAdapterUtilities {
 		
 		//Properties
 		if (element instanceof Property && ((Property)element).getAssociation()==null){
-			return getPropertyInModel ((Property)element, model);
+			return getPropertyInModel ((Property)element, model, false);
+		}
+		
+		//Association
+		if (element instanceof Property && ((Property)element).getAssociation()!=null){
+			return getPropertyInModel ((Property)element, model, true);
 		}
 		
 		//ExecutionEnvironment
@@ -205,9 +210,14 @@ public class ModelAdapterUtilities {
 		return equivalentElement;
 	}
 
-	private static Property getPropertyInModel(Property property, Model model) {
+	private static Property getPropertyInModel(Property property, Model model, boolean isAssociation) {
 		Property result = null;
-		org.eclipse.uml2.uml.Class classInModel = (org.eclipse.uml2.uml.Class)getEquivalentElementInModel((NamedElement)property.eContainer(), model);
+		Classifier classInModel = null;
+		if (isAssociation){
+			classInModel = (Classifier) getEquivalentElementInModel(property.getAssociation(), model);
+		}else{
+			classInModel = (org.eclipse.uml2.uml.Class)getEquivalentElementInModel((NamedElement)property.eContainer(), model);
+		}
 		
 		if (classInModel != null){
 			//As given property is defined in another model than where class is defined, matches must be found by matching name and type
@@ -296,8 +306,8 @@ public class ModelAdapterUtilities {
 	public static List<ActivityEdge> setOutgoingEdges(ActivityImpl activity, List<ActivityEdge> outgoingEdges, ActivityNode originAction) {
 		List<ActivityEdge> edges = new ArrayList<>();
 		for (int i = 0; i < outgoingEdges.size(); ++i) {
-			//log.debug("\tNew edge from " + originAction.getName());
 			ActivityEdge edge = (ActivityEdge) activity.createEdge(outgoingEdges.get(i).getName(), outgoingEdges.get(i).eClass());
+			//log.debug("\tNew edge from " + originAction.getName());
 			edges.add(edge);
 			edge.setSource(originAction);
 			originAction.getOutgoings().add(edge);
@@ -308,6 +318,7 @@ public class ModelAdapterUtilities {
 	public static void setIncomingEdges(List<ActivityEdge> incomingEdges, ActivityNode originAction) {
 		for (int i = 0; i < incomingEdges.size(); ++i) {
 			//log.debug("\tNew edge to " + originAction.getName());
+			//log.debug("\tSet edge target to " + originAction.getName() );
 			ActivityEdge edge = incomingEdges.get(i);
 			edge.setTarget(originAction);
 			originAction.getIncomings().add(edge);
@@ -326,7 +337,7 @@ public class ModelAdapterUtilities {
 		return (Package) getEquivalentElementInModel(element.getNearestPackage(), model);
 	}
 
-	public static <T extends Element> T createElement(T element, PackageableElement inContainer,
+	public static <T extends Element> T createElement(T element, NamedElement inContainer,
 			HashMap<Stereotype, List<Element>> baseJointpoints, Model model) {
 		
 		if (element instanceof Class) {
@@ -344,7 +355,7 @@ public class ModelAdapterUtilities {
 		} else if (element instanceof Property) {
 			Property property = (Property)element;
 			log.debug("Creating property: " + property.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
-			return (T) createProperty((Property) element, (Class) inContainer, baseJointpoints, model);
+			return (T) createProperty((Property) element, (Classifier) inContainer, baseJointpoints, model);
 		} else if (element instanceof Package) {
 			Package pack = (Package)element;
 			log.debug("Creating package: " + pack.getName() + " in container:" + inContainer.getQualifiedName() + " in model: " + model.getName());
@@ -436,7 +447,7 @@ public class ModelAdapterUtilities {
 		if (equivalentDefiningFeature == null){
 			Package pack  = getPackageInModel (slot.getDefiningFeature().getNearestPackage(), model);
 			if (pack != null){
-				equivalentDefiningFeature = createElement(slot.getDefiningFeature(), slot.getDefiningFeature().getNearestPackage(), baseJointpoints, model);
+				equivalentDefiningFeature = createElement(slot.getDefiningFeature(), (NamedElement)slot.getDefiningFeature().eContainer(), baseJointpoints, model);
 		
 			}
 		}
@@ -483,7 +494,7 @@ public class ModelAdapterUtilities {
 		return newPackage;
 	}
 
-	private static Property createProperty(Property property, Class inClass,
+	private static Property createProperty(Property property, Classifier inClassifier,
 			HashMap<Stereotype, List<Element>> baseJointpoints, Model model) {
 		// Resolve type if refers to Jointpoint role: from base model JP role
 		// element resolves advice type
@@ -491,17 +502,18 @@ public class ModelAdapterUtilities {
 		// Resolve types pointing to the base model
 		// Resolve type in case of advice jointpoint role type
 
-		Type type = (Type) resolveElementInModel(property.getType(), inClass.getModel(), baseJointpoints);
+		Type type = (Type) resolveElementInModel(property.getType(), inClassifier.getModel(), baseJointpoints);
 
 		// Non-association property
 		Association association = property.getAssociation();
 		Property newProperty = null;
 		if (association == null) {
+			Class inClass = (Class)inClassifier;
 			newProperty = inClass.createOwnedAttribute(property.getName(), type);
 		} else {
 			// Manage association properties
-			Association newAssociation = createAssociation(association, inClass, baseJointpoints, model);
-			newProperty = inClass.getAttributes().get(inClass.getAttributes().size() - 1);
+			Association newAssociation = createAssociation(association, inClassifier, baseJointpoints, model);
+			newProperty = inClassifier.getAttributes().get(inClassifier.getAttributes().size() - 1);
 		}
 		return newProperty;
 	}
@@ -526,7 +538,7 @@ public class ModelAdapterUtilities {
 		return inClass.createOwnedOperation(operation.getName(), parameterNames, parameterTypes, returnType);
 	}
 
-	private static Association createAssociation(Association association, Class inClass,
+	private static Association createAssociation(Association association, Classifier inClass,
 			HashMap<Stereotype, List<Element>> baseJointpoints, Model model) {
 		Association newAssociation = inClass.createAssociation(association.getMemberEnds().get(0).isNavigable(),
 				association.getMemberEnds().get(0).getAggregation(), association.getMemberEnds().get(0).getName(),

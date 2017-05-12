@@ -77,7 +77,7 @@ public class HypervisorEnactor implements IEnactor{
 		remoteConnection = Boolean.valueOf(hypervisorProperties.getProperty("remote_connection"));
 		
 		//ModelManager
-		mm = new ModelManager(true);
+		mm = new ModelManager(false);
 		
 		//Model Compare
 		mc = new ModelCompareImpl();
@@ -112,7 +112,7 @@ public class HypervisorEnactor implements IEnactor{
 		generator.doGenerate(new BasicMonitor());
 	}
 
-	private List<Path> createEnactmentArtefactsForAdaptedModel(Model adaptedModel) throws IOException {
+	private List<Path> createEnactmentArtefactsForAdaptedModel(Model adaptedModel) throws Exception {
 		log.debug("Enacting adapted model: " + adaptedModel.getModel().getName());
 		
 		List<Path> enactmentArtefacts = null;

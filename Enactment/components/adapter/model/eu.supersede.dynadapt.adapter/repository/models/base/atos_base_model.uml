@@ -207,7 +207,7 @@
           <manifestation xmi:id="_4S8jkCNEEeaAV7iIHwGF1A" client="_nMbukCNEEeaAV7iIHwGF1A" supplier="_QPY_UCMpEeaAV7iIHwGF1A" utilizedElement="_QPY_UCMpEeaAV7iIHwGF1A"/>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Artifact" xmi:id="_5UaAkCNEEeaAV7iIHwGF1A" name="SGA Service" fileName="">
-          <manifestation xmi:id="_AlH1ICNFEeaAV7iIHwGF1A" client="_5UaAkCNEEeaAV7iIHwGF1A" supplier="_Ao5agCNIEeaAV7iIHwGF1A"/>
+          <manifestation xmi:id="_AlH1ICNFEeaAV7iIHwGF1A" name="SGA instance 2 SGA Service" client="_5UaAkCNEEeaAV7iIHwGF1A" supplier="_Ao5agCNIEeaAV7iIHwGF1A" utilizedElement="_Ao5agCNIEeaAV7iIHwGF1A"/>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CkTeoCNFEeaAV7iIHwGF1A" name="MIP Service" fileName="">
           <manifestation xmi:id="_HoQgsCNFEeaAV7iIHwGF1A" client="_CkTeoCNFEeaAV7iIHwGF1A" supplier="_TRQ04CMpEeaAV7iIHwGF1A" utilizedElement="_TRQ04CMpEeaAV7iIHwGF1A"/>
@@ -222,18 +222,18 @@
       <ownedAttribute xmi:id="_00rkICY9EeaPTdlPuA_7kA" name="dc virtualized env" type="_nnGQICMqEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
       <ownedAttribute xmi:id="_7a5qMSY9EeaPTdlPuA_7kA" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_7a5DICY9EeaPTdlPuA_7kA"/>
       <nestedClassifier xmi:type="uml:Artifact" xmi:id="_baxzgCNGEeaAV7iIHwGF1A" name="Player App" fileName="">
-        <manifestation xmi:id="_tjwyICNGEeaAV7iIHwGF1A" client="_baxzgCNGEeaAV7iIHwGF1A" supplier="_3J-XECNJEeaAV7iIHwGF1A"/>
+        <manifestation xmi:id="_tjwyICNGEeaAV7iIHwGF1A" name="Player instance 2 Player App" client="_baxzgCNGEeaAV7iIHwGF1A" supplier="_3J-XECNJEeaAV7iIHwGF1A" utilizedElement="_3J-XECNJEeaAV7iIHwGF1A"/>
       </nestedClassifier>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_X9ee0CNJEeaAV7iIHwGF1A" name="relationships">
-    <packagedElement xmi:type="uml:Manifestation" xmi:id="_HxIawCNDEeaAV7iIHwGF1A" client="_u7P7wCNBEeaAV7iIHwGF1A" supplier="_R___UCM_EeaAV7iIHwGF1A" utilizedElement="_R___UCM_EeaAV7iIHwGF1A"/>
-    <packagedElement xmi:type="uml:Manifestation" xmi:id="_QrwW8CNEEeaAV7iIHwGF1A" client="_u7P7wCNBEeaAV7iIHwGF1A" supplier="_BwvsACNLEeaAV7iIHwGF1A"/>
-    <packagedElement xmi:type="uml:Manifestation" xmi:id="_RVxv4CM6EeaAV7iIHwGF1A" client="_IIwmsCM6EeaAV7iIHwGF1A" supplier="_NSuZ4CMpEeaAV7iIHwGF1A" utilizedElement="_NSuZ4CMpEeaAV7iIHwGF1A"/>
-    <packagedElement xmi:type="uml:Manifestation" xmi:id="_AkwToCNDEeaAV7iIHwGF1A" client="_a7hzECNDEeaAV7iIHwGF1A" supplier="_2LvjUCNAEeaAV7iIHwGF1A" utilizedElement="_2LvjUCNAEeaAV7iIHwGF1A"/>
-    <packagedElement xmi:type="uml:Manifestation" xmi:id="_p8PZMCNDEeaAV7iIHwGF1A" client="_a7hzECNDEeaAV7iIHwGF1A" supplier="_IURDYCNLEeaAV7iIHwGF1A"/>
-    <packagedElement xmi:type="uml:Manifestation" xmi:id="_hB--gCNEEeaAV7iIHwGF1A" client="_nnGQICMqEeaAV7iIHwGF1A" supplier="_huroQCNLEeaAV7iIHwGF1A"/>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GdSs8CNGEeaAV7iIHwGF1A" memberEnd="_GdTUAiNGEeaAV7iIHwGF1A _GdTUAyNGEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_HxIawCNDEeaAV7iIHwGF1A" name="m BC center physical 2 BC physical Env" client="_u7P7wCNBEeaAV7iIHwGF1A" supplier="_R___UCM_EeaAV7iIHwGF1A" utilizedElement="_R___UCM_EeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_QrwW8CNEEeaAV7iIHwGF1A" name="m BC Phys Instance 2 BC Physical Env" client="_u7P7wCNBEeaAV7iIHwGF1A" supplier="_BwvsACNLEeaAV7iIHwGF1A" utilizedElement="_BwvsACNLEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_RVxv4CM6EeaAV7iIHwGF1A" name="CMS 2 CMS instance" client="_IIwmsCM6EeaAV7iIHwGF1A" supplier="_NSuZ4CMpEeaAV7iIHwGF1A" utilizedElement="_NSuZ4CMpEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_AkwToCNDEeaAV7iIHwGF1A" name="DC Physical 2 DC Physical Env" client="_a7hzECNDEeaAV7iIHwGF1A" supplier="_2LvjUCNAEeaAV7iIHwGF1A" utilizedElement="_2LvjUCNAEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_p8PZMCNDEeaAV7iIHwGF1A" name="DC Phys Instance 2 DC Physical Env" client="_a7hzECNDEeaAV7iIHwGF1A" supplier="_IURDYCNLEeaAV7iIHwGF1A" utilizedElement="_IURDYCNLEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_hB--gCNEEeaAV7iIHwGF1A" name="DC VM Instance 2 DC Virtualized Env" client="_nnGQICMqEeaAV7iIHwGF1A" supplier="_huroQCNLEeaAV7iIHwGF1A" utilizedElement="_huroQCNLEeaAV7iIHwGF1A"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GdSs8CNGEeaAV7iIHwGF1A" name="A_cdn_player" memberEnd="_GdTUAiNGEeaAV7iIHwGF1A _GdTUAyNGEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_GdTUACNGEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_GdTUASNGEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
@@ -246,79 +246,79 @@
       <ownedEnd xmi:id="_f3hDYCMsEeaAV7iIHwGF1A" name="cms" type="_NSuZ4CMpEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
       <ownedEnd xmi:id="_f3gcUCMsEeaAV7iIHwGF1A" name="conf" type="_bPtx0CMsEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_smRkQCNIEeaAV7iIHwGF1A" memberEnd="_smSLUiNIEeaAV7iIHwGF1A _smSLUyNIEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_smRkQCNIEeaAV7iIHwGF1A" name="A_conf_handshake" memberEnd="_smSLUiNIEeaAV7iIHwGF1A _smSLUyNIEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_smSLUCNIEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_smSLUSNIEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_smSLUyNIEeaAV7iIHwGF1A" name="handshake" type="_BTiXICNBEeaAV7iIHwGF1A" association="_smRkQCNIEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_PL7mICNIEeaAV7iIHwGF1A" memberEnd="_PL7mIyNIEeaAV7iIHwGF1A _PL8NMCNIEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_PL7mICNIEeaAV7iIHwGF1A" name="A_conf_sga" memberEnd="_PL7mIyNIEeaAV7iIHwGF1A _PL8NMCNIEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_PL7mISNIEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_PL7mIiNIEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_PL8NMCNIEeaAV7iIHwGF1A" name="sga" type="_RiDhECMpEeaAV7iIHwGF1A" association="_PL7mICNIEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_ukXwACNFEeaAV7iIHwGF1A" memberEnd="_ukYXEiNFEeaAV7iIHwGF1A _ukY-ICNFEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_ukXwACNFEeaAV7iIHwGF1A" name="A_dc physical env_bc physical env" memberEnd="_ukYXEiNFEeaAV7iIHwGF1A _ukY-ICNFEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_ukYXECNFEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_ukYXESNFEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_ukY-ICNFEeaAV7iIHwGF1A" name="bc physical env" type="_u7P7wCNBEeaAV7iIHwGF1A" association="_ukXwACNFEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_JhTQgCNGEeaAV7iIHwGF1A" memberEnd="_JhTQgyNGEeaAV7iIHwGF1A _JhT3kCNGEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_JhTQgCNGEeaAV7iIHwGF1A" name="A_dc virtualized env_player 2" memberEnd="_JhTQgyNGEeaAV7iIHwGF1A _JhT3kCNGEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_JhTQgSNGEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_JhTQgiNGEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_JhT3kCNGEeaAV7iIHwGF1A" name="player" type="_xY8JYCNFEeaAV7iIHwGF1A" association="_JhTQgCNGEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_gx3FkCNJEeaAV7iIHwGF1A" memberEnd="_gx4TsiNJEeaAV7iIHwGF1A _gx46wCNJEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_gx3FkCNJEeaAV7iIHwGF1A" name="A_conf_load balancer" memberEnd="_gx4TsiNJEeaAV7iIHwGF1A _gx46wCNJEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_gx4TsCNJEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_gx4TsSNJEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_gx46wCNJEeaAV7iIHwGF1A" name="load balancer" type="_DdcC4CNBEeaAV7iIHwGF1A" association="_gx3FkCNJEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_n99qcCNKEeaAV7iIHwGF1A" memberEnd="_n9-RgiNKEeaAV7iIHwGF1A _n9-RgyNKEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_n99qcCNKEeaAV7iIHwGF1A" name="A_conf_player" memberEnd="_n9-RgiNKEeaAV7iIHwGF1A _n9-RgyNKEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_n9-RgCNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_n9-RgSNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_n9-RgyNKEeaAV7iIHwGF1A" name="player" type="_jBpNUCM9EeaAV7iIHwGF1A" association="_n99qcCNKEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_7dIY4CNKEeaAV7iIHwGF1A" memberEnd="_7dKOEiNKEeaAV7iIHwGF1A _7dK1ICNKEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_7dIY4CNKEeaAV7iIHwGF1A" name="A_conf_broadcast center physical" memberEnd="_7dKOEiNKEeaAV7iIHwGF1A _7dK1ICNKEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_7dKOECNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_7dKOESNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_7dK1ICNKEeaAV7iIHwGF1A" name="broadcast center physical" type="_R___UCM_EeaAV7iIHwGF1A" association="_7dIY4CNKEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_3v9jkCNKEeaAV7iIHwGF1A" memberEnd="_3v-KoiNKEeaAV7iIHwGF1A _3v-xsCNKEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_3v9jkCNKEeaAV7iIHwGF1A" name="A_conf_data center physical" memberEnd="_3v-KoiNKEeaAV7iIHwGF1A _3v-xsCNKEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_3v-KoCNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_3v-KoSNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_3v-xsCNKEeaAV7iIHwGF1A" name="data center physical" type="_2LvjUCNAEeaAV7iIHwGF1A" association="_3v9jkCNKEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_0CWpYCNKEeaAV7iIHwGF1A" memberEnd="_0CXQciNKEeaAV7iIHwGF1A _0CXQcyNKEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:Association" xmi:id="_0CWpYCNKEeaAV7iIHwGF1A" name="A_conf_data center vm" memberEnd="_0CXQciNKEeaAV7iIHwGF1A _0CXQcyNKEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_0CXQcCNKEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_0CXQcSNKEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_0CXQcyNKEeaAV7iIHwGF1A" name="data center vm" type="_6fi60CNAEeaAV7iIHwGF1A" association="_0CWpYCNKEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_HfRNsCNOEeaAV7iIHwGF1A" memberEnd="_HfR0wSNOEeaAV7iIHwGF1A _HfR0wiNOEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_HfRNsCNOEeaAV7iIHwGF1A" name="A_data center_handshake" memberEnd="_HfR0wSNOEeaAV7iIHwGF1A _HfR0wiNOEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_HfRNsSNOEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_HfR0wCNOEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_HfR0wiNOEeaAV7iIHwGF1A" name="handshake" type="_oVG3wCNNEeaAV7iIHwGF1A" association="_HfRNsCNOEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GztvQCNOEeaAV7iIHwGF1A" memberEnd="_GzuWUCNOEeaAV7iIHwGF1A _GzuWUSNOEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GztvQCNOEeaAV7iIHwGF1A" name="A_handshake_load balancer" memberEnd="_GzuWUCNOEeaAV7iIHwGF1A _GzuWUSNOEeaAV7iIHwGF1A">
       <eAnnotations xmi:id="_GztvQSNOEeaAV7iIHwGF1A" source="org.eclipse.papyrus">
         <details xmi:id="_GztvQiNOEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_GzuWUSNOEeaAV7iIHwGF1A" name="load balancer" type="_mplxICNNEeaAV7iIHwGF1A" association="_GztvQCNOEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_00n5wCY9EeaPTdlPuA_7kA" memberEnd="_00rkICY9EeaPTdlPuA_7kA _00rkISY9EeaPTdlPuA_7kA">
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_00n5wCY9EeaPTdlPuA_7kA" name="A_dc virtualized env_player" memberEnd="_00rkICY9EeaPTdlPuA_7kA _00rkISY9EeaPTdlPuA_7kA">
       <eAnnotations xmi:id="_00qWACY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
         <details xmi:id="_00qWASY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_00rkISY9EeaPTdlPuA_7kA" name="player" type="_axdwwCNGEeaAV7iIHwGF1A" association="_00n5wCY9EeaPTdlPuA_7kA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_7a5DICY9EeaPTdlPuA_7kA" memberEnd="_7a5qMSY9EeaPTdlPuA_7kA _7a5qMiY9EeaPTdlPuA_7kA">
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_7a5DICY9EeaPTdlPuA_7kA" name="A_handshake_player" memberEnd="_7a5qMSY9EeaPTdlPuA_7kA _7a5qMiY9EeaPTdlPuA_7kA">
       <eAnnotations xmi:id="_7a5DISY9EeaPTdlPuA_7kA" source="org.eclipse.papyrus">
         <details xmi:id="_7a5qMCY9EeaPTdlPuA_7kA" key="nature" value="UML_Nature"/>
       </eAnnotations>

@@ -3,7 +3,7 @@ aspect standard_cms_capability{
 	advice Atos_UC_CMS_Default_Variant,
 	pointcuts {
 		pointcut CMSInstance{
-			pattern eu.supersede.dynadapt.usecases.atos.patterns.CMSInstances,
+			pattern eu.supersede.dynadapt.usecases.patterns.CMSInstances,
 			role ADM.Joinpoint
 		}
 	},

@@ -9,6 +9,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ public class AdapterService {
 	private final static Logger log = LogManager.getLogger(AdapterService.class);
 	String repository;
 	String repositoryRelativePath;
+	String repositoryResolverPath;
 	String platformRelativePath;
 	
 	Map<String, String> modelsLocation;
@@ -45,7 +47,7 @@ public class AdapterService {
 		setupPlatform();		
 		mm = new ModelManager();
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
-		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 	}
 
 	private void setupPlatform() {
@@ -55,6 +57,7 @@ public class AdapterService {
 		//These relative paths are compatible for standalone execution within eu.supersede.dynadapt.adapter.service project
 		//and within $TOMCAT/bin, provided above project is copied within $TOMCAT folder
 		repositoryRelativePath = "../eu.supersede.dynadapt.adapter.service/repository";
+		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository";
 		platformRelativePath = "../";
 		
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -63,8 +66,9 @@ public class AdapterService {
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/patterns/");
 		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("adapted", "models/adapted/");
 	}
 
 	//FIXME: POST API with no content in request body or request param seems not to be working when dispatched by WSO2 ESB
@@ -76,7 +80,6 @@ public class AdapterService {
 		adapter.enactAdaptationDecisionAction(ModelSystem.valueOf(systemId), adaptationDecisionActionId, featureConfigurationId);
 	}
 
-
 	@RequestMapping(value="/adaptationDecisionActions/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
@@ -86,6 +89,11 @@ public class AdapterService {
 	@RequestMapping(value="/adaptationDecisionActions/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActionsInFCasString(@PathVariable String systemId, @RequestParam (value="fc") String featureConfigurationAsString, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds) throws EnactmentException {
 		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationAsString);
+	}
+	
+	@RequestMapping(value="/adaptationConfiguration/system/{systemId}", method=RequestMethod.POST)
+	public void enactFCasString(@PathVariable String systemId, @RequestBody String featureConfigurationAsString) throws EnactmentException {
+		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), null, featureConfigurationAsString);
 	}
 	
 	@RequestMapping(value="/ping/{message}", method=RequestMethod.GET)

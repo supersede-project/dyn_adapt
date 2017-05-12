@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -61,7 +62,7 @@ public class ModelManagerController {
 				            @RequestParam(value = "creationDate", required = false) String creationDate,
 				            @RequestParam(value = "lastModificationDate", required = false) String lastModificationDate,
 				            @RequestParam(value = "fileExtension", required = false) String fileExtension,
-				            @RequestParam(value = "relativePath", required = false) String relativePath) throws Exception {
+				            @RequestParam(value = "relativePath", required = false) String relativePath) {
 		
 		List<IModel> models = new ArrayList<>();
 		String response = "";
@@ -77,35 +78,33 @@ public class ModelManagerController {
 			if (fileExtension != null) params.put("fileExtension", fileExtension);
 			if (relativePath != null) params.put("relativePath", relativePath);
 			models = manager.getModels(ModelType.valueOf(modelType), params);
-		} catch (IllegalArgumentException e) {
-			throw new UnprocessableEntityException();
-		} 
-		try {
 			JSONArray array = new JSONArray();
 			for (IModel model : models) {
 				array.put(model.toJson());
 			}
 			response = array.toString();
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new UnprocessableEntityException();
-		}
+		} 
 		return response;
 	}
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public String createModel(@PathVariable String modelType, @RequestBody String input) throws Exception {
+	public String createModel(@PathVariable String modelType, @RequestBody String input) {
 		JSONObject jsonObject = new JSONObject(input);
 		JSONArray array = jsonObject.getJSONArray("modelInstances");
 		List<IModel> models = new ArrayList<>();
 		for (int i = 0; i < array.length(); ++i) {
 			JSONObject jsonModel = array.getJSONObject(i);
-			//try {
+			try {
 				IModel model = jsonToModel(jsonModel, ModelType.valueOf(modelType));
 				models.add(model);
-			//} catch (Exception e) {
-			//	throw new UnprocessableEntityException();
-			//}
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+				throw new UnprocessableEntityException();
+			}
 		}
 		try {
 			manager.createModels(ModelType.valueOf(modelType), models);
@@ -115,6 +114,7 @@ public class ModelManagerController {
 			}
 			return modelsArray.toString();
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new UnprocessableEntityException();
 		}
 		
@@ -127,12 +127,12 @@ public class ModelManagerController {
 		IModel model;
 		try {
 			model = manager.getModel(ModelType.valueOf(modelType), modelId);
-		} catch (Exception e) {
-			throw new ResourceNotFoundException();
-		}
-		try {
 			response = model.toJson().toString();
+		} catch (NoSuchElementException e) {
+			logger.error("There is no " + modelType + " with id " + modelId);
+			throw new ResourceNotFoundException();
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new UnprocessableEntityException();
 		}
 		return response;
@@ -147,7 +147,11 @@ public class ModelManagerController {
 			IModel updateModel = jsonToModel(jsonObject.getJSONObject("values"), ModelType.valueOf(modelType));
 			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, updateModel);
 			return model.toJson().toString();
+		} catch (NoSuchElementException e) {
+			logger.error("There is no " + modelType + " with id " + modelId);
+			throw new ResourceNotFoundException();
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new UnprocessableEntityException();
 		}
 	}
@@ -157,8 +161,12 @@ public class ModelManagerController {
 	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) {
 		try {
 			manager.deleteModel(ModelType.valueOf(modelType), modelId);
-		} catch (Exception e) {
+		} catch (NoSuchElementException e) {
+			logger.error("There is no " + modelType + " with id " + modelId);
 			throw new ResourceNotFoundException();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new UnprocessableEntityException();
 		}
 	}
 	
@@ -184,22 +192,27 @@ public class ModelManagerController {
 
 		Iterator<?> keys = json.keys();
 		while(keys.hasNext()) {
-		    String key = (String)keys.next();
-		    if (key.equals("dependencies")) {
-		    	JSONArray array = json.getJSONArray(key);
-		    	List<TypedModelId> dependencies = new ArrayList<>();
-		    	for (int i = 0; i < array.length(); ++i) {
-		    		JSONObject obj = array.getJSONObject(i);
-		    		dependencies.add(new TypedModelId(ModelType.valueOf(obj.get("modelType").toString()), obj.get("number").toString()));
-		    	}
-		    	model.setValue(key, dependencies);
-		    } else if (key.equals("lastModificationDate") || key.equals("creationDate")) {
-		    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		        Date parsedDate = dateFormat.parse(json.get(key).toString());
-		        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-		        model.setValue(key, timestamp);
-		    } else model.setValue(key, json.get(key));
+			try {
+			    String key = (String)keys.next();
+			    if (key.equals("dependencies")) {
+			    	JSONArray array = json.getJSONArray(key);
+			    	List<TypedModelId> dependencies = new ArrayList<>();
+			    	for (int i = 0; i < array.length(); ++i) {
+			    		JSONObject obj = array.getJSONObject(i);
+			    		dependencies.add(new TypedModelId(ModelType.valueOf(obj.get("modelType").toString()), obj.get("number").toString()));
+			    	}
+			    	model.setValue(key, dependencies);
+			    } else if (key.equals("lastModificationDate") || key.equals("creationDate")) {
+			    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+			        Date parsedDate = dateFormat.parse(json.get(key).toString());
+			        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+			        model.setValue(key, timestamp);
+			    } else model.setValue(key, json.get(key));
+			} catch (Exception e) {
+				throw new IllegalAccessException();
+			}
 		}
+		if (!model.validateFields()) throw new Exception("Missing mandatory fields");
 		return model;
 	}
 

@@ -23,7 +23,7 @@ public class ModelCompareTest {
 		String adaptedModelPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
 		
-		ModelManager mm = new ModelManager(true);
+		ModelManager mm = new ModelManager(false);
 		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
 		Model originalModel = mm.loadUMLModel(originalModelPath);
 		ModelCompare mc = new ModelCompareImpl();

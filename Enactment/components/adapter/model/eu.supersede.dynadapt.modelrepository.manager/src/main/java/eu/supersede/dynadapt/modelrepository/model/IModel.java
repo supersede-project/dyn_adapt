@@ -60,7 +60,16 @@ public abstract class IModel {
 				
 	}
 	
-	public JSONObject toJson() throws Exception {
+	public boolean validateFields() throws IllegalAccessException {
+		List<Field> fields = getFields();
+		for (Field f: fields) {
+			f.setAccessible(true);
+			if (!f.getName().equals("id") && f.get(this) == null) return false;
+		}
+		return true;
+	}
+	
+	public JSONObject toJson() throws IllegalAccessException {
 		JSONObject json = new JSONObject();
 		
 		List<Field> fields = getFields();

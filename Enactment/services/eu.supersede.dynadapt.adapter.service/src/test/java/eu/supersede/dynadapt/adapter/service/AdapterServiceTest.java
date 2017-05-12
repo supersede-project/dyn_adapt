@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.adapter.service;
 import java.util.Arrays;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
@@ -25,6 +26,21 @@ public class AdapterServiceTest {
 			String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Ignore @Test
+	public void testSiemensUCAdaptation() {
+		try {
+			//FIXME featureConfigurationId is ignored. Use correct one
+			//once Model Repository is available as service.
+			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
+			service.enactAdaptationDecisionActionsForFC(
+					ModelSystem.Siemens.toString(), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
