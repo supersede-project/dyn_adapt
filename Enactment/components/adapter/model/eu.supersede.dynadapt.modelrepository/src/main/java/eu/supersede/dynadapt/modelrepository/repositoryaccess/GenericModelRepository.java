@@ -75,7 +75,7 @@ public abstract class GenericModelRepository {
 	 * @param relativePath Relative path of the model with respect to the model repository where it was created
 	 * @return The meta-data for the model instance
 	 */
-	protected ModelMetadata createModelMetadata(ModelMetadata originalMetadata, ModelType type, String relativePath) {
+	protected ModelMetadata createModelMetadata(ModelMetadata originalMetadata, ModelType type, String relativePath, String fileName) {
 		// FIXME Assuming only one model instance is store
 		Assert.assertNotNull("No model instance found in metadata", originalMetadata.getModelInstances().get(0));
 		IModel originalModelInstanceMetadata = originalMetadata.getModelInstances().get(0);	
@@ -84,7 +84,7 @@ public abstract class GenericModelRepository {
 		metadata.setSender(originalMetadata.getSender());
 		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = new ArrayList<IModel>();
-		modelInstances.add(createMetadataInstance(originalModelInstanceMetadata, type, relativePath));
+		modelInstances.add(createMetadataInstance(originalModelInstanceMetadata, type, relativePath, fileName));
 		metadata.setModelInstances(modelInstances);
 		return metadata;
 	}
@@ -97,13 +97,13 @@ public abstract class GenericModelRepository {
 	 * @param relativePath Relative path of the model with respect to the model repository where it was created
 	 * @return The meta-data for the model instance
 	 */
-	protected IModel createMetadataInstance(IModel originalMetadata, ModelType type, String relativePath) {
+	protected IModel createMetadataInstance(IModel originalMetadata, ModelType type, String relativePath, String fileName) {
 		switch (type) {
 			case ProfileModel: 
 				ProfileModel profileModel = new ProfileModel();
 				if (originalMetadata instanceof GenericModel) {
 					GenericModel originalGenericModel = (GenericModel)originalMetadata;
-					profileModel.setName(type.toString() + " of " + originalGenericModel.getName());
+					profileModel.setName(fileName);
 					profileModel.setAuthorId(originalGenericModel.getAuthorId());
 					profileModel.setCreationDate(Calendar.getInstance().getTime());
 					profileModel.setLastModificationDate(Calendar.getInstance().getTime());
@@ -180,9 +180,11 @@ public abstract class GenericModelRepository {
 			if (resource != model.eResource()) {
 				if (resource.getURI().isPlatformResource() || resource.getURI().isFile()) {			
 					EObject dModel = resource.getContents().get(0);
-					String dRelativePath = dModel.eResource().getURI().toString().replace(originalRepoPath, "");
+					Path path = Paths.get(dModel.eResource().getURI().toString().replace("file:" + originalRepoPath, ""));
+					String dRelativePath = path.getParent().toString();
+					String fileName = path.getFileName().toString();
 					ModelType dType = getModelType(dModel);
-					ModelMetadata dependMetadata = createModelMetadata(metadata, dType, dRelativePath);
+					ModelMetadata dependMetadata = createModelMetadata(metadata, dType, dRelativePath, fileName);
 					if (dependMetadata.getModelInstances().get(0) != null) {
 						String dId = storeModel(dModel, dType, dependMetadata, originalRepoPath);
 						ITypedModelId modelId = new TypedModelId(dType, dId);
@@ -215,7 +217,13 @@ public abstract class GenericModelRepository {
 		modelInstanceMetadata.setValue("dependencies", dependencies);
 		
 		// Store model in temporary local folder of the repository
-		Path path = Paths.get(temp.toString(), (String)modelInstanceMetadata.getValue("relativePath"));
+		Path path = Paths.get(temp.toString(), (String)modelInstanceMetadata.getValue("relativePath"), 
+				(String)modelInstanceMetadata.getValue("name"));
+		
+		//FIXME modelmanager should be responsible of this
+		Path outDir = Paths.get(path.getParent().toString());
+		Files.createDirectories(outDir);
+		
 		modelManager.saveModel(model.eResource(), URI.createFileURI(path.toString()), null);
 		
 		// Updating model content in model's meta-data 

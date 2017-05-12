@@ -22,6 +22,7 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -162,8 +163,9 @@ public class PopulateModelRepositoryTest {
 			ModelMetadata metadata = createModelMetadata(instanceMetadata, file, models.get(file), fileExtension, repositorySubFolder, modelType, customMetadata);
 			
 			//Store model in repository
-			mr.storeModel(model, modelType, metadata, path.toString());
-			System.out.println("Model " + metadata.getModelInstances().get(0).getValue("name") + " stored in repository");
+			mr.storeModel(model, modelType, metadata, path.toRealPath().toString());
+			
+			System.out.println("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
 		}
 	}
 	
