@@ -28,6 +28,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -85,13 +86,35 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	 *            modelsLocation
 	 */
 	public List<Aspect> getAspectModels(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
+		List<Aspect> aspects = new ArrayList<Aspect>();
+
+		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
+
+//		IAdaptationParser ap = loadModels(modelsLocation);
+		loadModels(modelsLocation);
+
+		if (aspectsFiles != null) {
+			for (int i = 0; i < aspectsFiles.length; i++) {
+//				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+				Aspect a = getAspectModelFromPath(repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
+					aspects.add(a);
+				}
+			}
+		}
+		return aspects;
+	}
+	
+	public List<Aspect> getAspectModelsFromRepository(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		
+		loadModelsFromRepository (modelsLocation);
 		List<Aspect> aspects = new ArrayList<Aspect>();
 		try {
 			AdaptabilityModel modelMetadata = new AdaptabilityModel();
 			modelMetadata.setFeatureId(featureSUPERSEDEId);
-			aspects = this.getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
-			//aspects = this.getModelsOfTypeForSystemWithStatus(ModelType.AdaptabilityModel, null, null, Aspect.class);
+			
+			aspects = this.getAspectModelsForSystem(null);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -145,25 +168,58 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return uris;
 	}
 
-	public IModelManager loadModels(Map<String, String> modelsLocation) {
+	private IModelManager loadModels(Map<String, String> modelsLocation) {
+//		IAdaptationParser parser = new AdaptationParser(modelManager);
+
+		File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
+		for (int i = 0; i < variants.length; i++) {
+//			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
+			modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants[i].getName());
+		}
+
+		File[] profiles = getFiles(modelsLocation.get("profiles"), "uml");
+		for (int i = 0; i < profiles.length; i++) {
+//			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
+			modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles[i].getName());
+		}
+
+		File[] patterns = getFiles(modelsLocation.get("patterns"), "vql");
+		for (int i = 0; i < patterns.length; i++) {
+//			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
+			modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns[i].getName());
+		}
+
+
+		File[] features = getFiles(modelsLocation.get("features"), "yafm");
+		for (int i = 0; i < features.length; i++) {
+//			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
+			modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features[i].getName());
+		}
+
+		//return parser;
+		return modelManager;
+	}
+	
+	private IModelManager loadModelsFromRepository(Map<String, String> modelsLocation) {
 //		IAdaptationParser parser = new AdaptationParser(modelManager);
 
 		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
 		
 		try {
-			List<Model> variants = this.getVariantModelsForSystem(null);
-			for (int i = 0; i < variants.size(); i++) {
-				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
-			}
-			
 			List<Profile> profiles = this.getProfilesForSystem(null);
 			for (int i = 0; i < profiles.size(); i++) {
 				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
 			}
 			
+			List<Model> variants = this.getVariantModelsForSystem(null);
+			for (int i = 0; i < variants.size(); i++) {
+				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
+			}
+			
 			List<PatternModel> patterns = this.getPatternModelsForSystem(null);
 			for (int i = 0; i < patterns.size(); i++) {
-				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).eContainingFeature().getName());
+				System.out.println(patterns.get(i).getPackageName());
+				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
 			}
 			
 			List<FeatureModel> features = this.getModelsOfTypeForSystemWithStatus(ModelType.FeatureModel, null, null, FeatureModel.class);

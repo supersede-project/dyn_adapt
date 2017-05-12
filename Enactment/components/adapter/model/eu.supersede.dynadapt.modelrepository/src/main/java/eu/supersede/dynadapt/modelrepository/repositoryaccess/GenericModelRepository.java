@@ -23,13 +23,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.junit.Assert;
 
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
-import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.GenericModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.IModelId;
@@ -320,7 +319,7 @@ public abstract class GenericModelRepository {
 		getDependencies(modelId);
 		
 		// Store model in temporary local folder of the repository
-		String fileName = (String) result.getValue("name") + (String) result.getValue("fileExtension");
+		String fileName = (String) result.getValue("name") ;
 		Path path = Paths.get(temp.toString(), (String)result.getValue("relativePath"), fileName);
 		String modelContent = (String) result.getValue ("modelContent"); // For XML-based models, replacing ' by "
 		modelContent = modelContent.replace("'","\"");
@@ -345,6 +344,9 @@ public abstract class GenericModelRepository {
 				log.error ("Model repository return a null model for identifier: " + id);
 				continue;
 			}
+			String s = metadatum.getValue("name").toString();
+			if (model.eClass().getEStructuralFeature("name") != null ) model.eSet(model.eClass().getEStructuralFeature("name"), s);
+			else ((PatternModel) model).setPackageName(s);
 			results.add (model);
 		}
 		return results;

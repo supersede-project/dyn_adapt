@@ -1,6 +1,5 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,18 +12,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
-import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
-import eu.supersede.dynadapt.modelrepository.repositoryaccess.GenericModelRepository;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 
 public class ModelRepositoryClientServiceTest {
 
 	private final static Logger log = LogManager.getLogger(ModelRepositoryClientServiceTest.class);
 	
-	String repository = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/";
+	String repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 	String repositoryRelativePath = "repository";
 
 	Map<String, String> modelsLocation;
@@ -53,10 +48,10 @@ public class ModelRepositoryClientServiceTest {
 	
 	@Test
 	public void getAspectModels() throws Exception {
-		List<Aspect> aspects = mr.getAspectModels("featureId", modelsLocation);
+		List<Aspect> aspects = mr.getAspectModelsFromRepository("timeSlot_twitter", modelsLocation);
 		System.out.println("Retrieved " + aspects.size() + " aspect models");
-		for (int i = 0; i < aspects.size(); ++i) {
-			System.out.println(aspects.get(0).getName());
+		for (Aspect a : aspects) {
+			System.out.println(a.getName());
 		}
 	}
 	
