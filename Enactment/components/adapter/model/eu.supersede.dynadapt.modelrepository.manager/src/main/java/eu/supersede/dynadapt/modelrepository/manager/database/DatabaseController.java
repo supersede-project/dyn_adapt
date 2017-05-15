@@ -27,14 +27,12 @@ public class DatabaseController implements IDatabaseController {
 	
 	private final String packageRoute = "eu.supersede.dynadapt.modelrepository.model.";
 	
-	private Connection con;
-	
+	private DatabaseConnection dbConn;
 	private ContentFileManager contentFileManager;
 
 	public DatabaseController(String modelStoragePath) throws Exception {
-		DatabaseConnection dbConn = new DatabaseConnection();
+		this.dbConn = new DatabaseConnection();
 		contentFileManager = new ContentFileManager(modelStoragePath);
-		con = dbConn.init();
 	}
 
 	@Override
@@ -70,17 +68,13 @@ public class DatabaseController implements IDatabaseController {
 				
 		keys = keys.substring(0, keys.length()-1);
 		values = values.substring(0, values.length()-1);
+		Connection con = dbConn.initConnection();
 		Statement stm = con.createStatement();
 		String sql = "INSERT INTO " + type
 				+ " (" + keys + ")"
 				+ " VALUES "
 				+ " (" + values + ")";
-		try {
-			stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-		} 
+		stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 		ResultSet rs = stm.getGeneratedKeys();
 		rs.next();
 		int id = rs.getInt(1);
@@ -89,16 +83,15 @@ public class DatabaseController implements IDatabaseController {
 		String path = contentFileManager.saveModelContent(model);
 		
 		stm.close();
+		rs.close();
+		
 		stm = con.createStatement();
 		sql = "UPDATE " + type + " SET filePath=\"" + path + "\" WHERE id = " + id;
-		try {
-			stm.executeUpdate(sql);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-		} finally {
-			stm.close();
-		}
+		
+		stm.executeUpdate(sql);
+		
+		stm.close();
+		con.close();
 			
 		return model;
 	}
@@ -115,14 +108,11 @@ public class DatabaseController implements IDatabaseController {
 		Class classObject = Class.forName(packageRoute + type);
 		IModel model = (IModel) classObject.newInstance();
 		
+		Connection con = dbConn.initConnection();
 		Statement stm = con.createStatement();
 		ResultSet rs = null;
-		try {
-			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		} 
+		rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+		
 		ResultSetMetaData rsmd = rs.getMetaData();
 		
 		if (!rs.next()) throw new NoSuchElementException("There is no " + type + " with this id");
@@ -151,7 +141,10 @@ public class DatabaseController implements IDatabaseController {
 		}
 		String content = contentFileManager.loadModelContent(model);
 		model.setValue("modelContent", content);
+		
 		stm.close();
+		rs.close();
+		con.close();
 		
 		return model;
 
@@ -219,18 +212,16 @@ public class DatabaseController implements IDatabaseController {
 			values += " filePath=\"" + path + "\"";
 		} else values = values.substring(0,values.length()-1);
 		
+		Connection con = dbConn.initConnection();
 		Statement updateStm = con.createStatement();
 		String sql = "UPDATE " + type
 				+ " SET " + values
 				+ " WHERE id = " + id;
-		try {
-			updateStm.executeUpdate(sql);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			updateStm.executeUpdate(sql);
-		} finally {
-			updateStm.close();
-		}
+		
+		updateStm.executeUpdate(sql);
+		
+		updateStm.close();
+		con.close();
 		
 		return getModel(type, id);
 		
@@ -240,27 +231,20 @@ public class DatabaseController implements IDatabaseController {
 	public void deleteModel(ModelType type, String id) throws Exception {
 
 		IModel model = getModel(type,id);
+		Connection con = dbConn.initConnection();
 		Statement stm = con.createStatement();
 		ResultSet rs = null;
-		try {
-			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		} 
+		rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
 		if (!rs.next()) throw new NoSuchElementException("There is no " + type + " for this id");
 			
 		Statement deleteStm = con.createStatement();
 		
-		try {
-			deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
-		} finally {
-			stm.close();
-			deleteStm.close();
-		}
+		deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+		
+		rs.close();
+		stm.close();
+		deleteStm.close();
+		con.close();
 		
 		contentFileManager.deleteModelContent(model);
 			
@@ -284,11 +268,6 @@ public class DatabaseController implements IDatabaseController {
 			sql += " " + key + " = '" + params.get(key) + "'";
 		}
 		return queryModels(type, sql);
-	}
-	
-	private void resetDBConnection() throws Exception {
-		DatabaseConnection dbConn = new DatabaseConnection();
-		this.con = dbConn.init();
 	}
 	
 	@Override
@@ -321,14 +300,11 @@ public class DatabaseController implements IDatabaseController {
 		
 		Class classObject = Class.forName(packageRoute + type);
 		
+		Connection con = dbConn.initConnection();
 		Statement stm = con.createStatement();
 		ResultSet rs = null;
-		try {
-			rs = stm.executeQuery(query);
-		} catch (MySQLNonTransientConnectionException e) {
-			resetDBConnection();
-			rs = stm.executeQuery(query);
-		} 
+		rs = stm.executeQuery(query);
+
 		ResultSetMetaData rsmd = rs.getMetaData();
 		
 		while (rs.next()) {
@@ -356,6 +332,8 @@ public class DatabaseController implements IDatabaseController {
 			modelList.add(model);
 		}
 		stm.close();
+		rs.close();
+		con.close();
 			
 		return modelList;
 	}
