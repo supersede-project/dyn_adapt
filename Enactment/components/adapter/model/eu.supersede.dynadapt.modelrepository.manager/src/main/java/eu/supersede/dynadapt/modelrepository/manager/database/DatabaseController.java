@@ -13,8 +13,6 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-import com.mysql.jdbc.exceptions.MySQLNonTransientConnectionException;
-
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.manager.enums.Status;
 import eu.supersede.dynadapt.modelrepository.model.IModel;
@@ -44,56 +42,64 @@ public class DatabaseController implements IDatabaseController {
 	@Override
 	public IModel createModel(ModelType type, IModel model) throws Exception {
 		
-		String keys = "";
-		String values = "";
+		Connection con = null;
+		Statement stm = null;
 		
-		for (Field f : model.getFields()) {
-			f.setAccessible(true);
-			//Array of dependencies is parsed in "type/id;type/id;[...]" format
-			if (f.getName().equals("dependencies")) {
-				keys += f.getName() + ",";
-				List<TypedModelId> dependencies = (List<TypedModelId>) f.get(model);
-				String value = "";
-				if (dependencies != null) for (TypedModelId typedModelId: dependencies) value += typedModelId.getModelType() + "/" + typedModelId.getNumber() + ";";
-				if (value.length() > 0) {
-					value = value.substring(0, value.length()-1);
-				} else value = null;
-				values += "\"" + value + "\","; 
-			}
-			else if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
-				keys += f.getName() + ",";
-				values += "\"" + f.get(model) + "\",";
-			}
-		}
-				
-		keys = keys.substring(0, keys.length()-1);
-		values = values.substring(0, values.length()-1);
-		Connection con = dbConn.initConnection();
-		Statement stm = con.createStatement();
-		String sql = "INSERT INTO " + type
-				+ " (" + keys + ")"
-				+ " VALUES "
-				+ " (" + values + ")";
-		stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-		ResultSet rs = stm.getGeneratedKeys();
-		rs.next();
-		int id = rs.getInt(1);
-		model.setValue("id", String.valueOf(id));
-		
-		String path = contentFileManager.saveModelContent(model);
-		
-		stm.close();
-		rs.close();
-		
-		stm = con.createStatement();
-		sql = "UPDATE " + type + " SET filePath=\"" + path + "\" WHERE id = " + id;
-		
-		stm.executeUpdate(sql);
-		
-		stm.close();
-		con.close();
+		try {
 			
+			String keys = "";
+			String values = "";
+			
+			for (Field f : model.getFields()) {
+				f.setAccessible(true);
+				//Array of dependencies is parsed in "type/id;type/id;[...]" format
+				if (f.getName().equals("dependencies")) {
+					keys += f.getName() + ",";
+					List<TypedModelId> dependencies = (List<TypedModelId>) f.get(model);
+					String value = "";
+					if (dependencies != null) for (TypedModelId typedModelId: dependencies) value += typedModelId.getModelType() + "/" + typedModelId.getNumber() + ";";
+					if (value.length() > 0) {
+						value = value.substring(0, value.length()-1);
+					} else value = null;
+					values += "\"" + value + "\","; 
+				}
+				else if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
+					keys += f.getName() + ",";
+					values += "\"" + f.get(model) + "\",";
+				}
+			}
+					
+			keys = keys.substring(0, keys.length()-1);
+			values = values.substring(0, values.length()-1);
+			con = dbConn.initConnection();
+			stm = con.createStatement();
+			String sql = "INSERT INTO " + type
+					+ " (" + keys + ")"
+					+ " VALUES "
+					+ " (" + values + ")";
+			stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = stm.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			model.setValue("id", String.valueOf(id));
+			
+			String path = contentFileManager.saveModelContent(model);
+			
+			stm.close();
+			rs.close();
+			
+			stm = con.createStatement();
+			sql = "UPDATE " + type + " SET filePath=\"" + path + "\" WHERE id = " + id;
+			
+			stm.executeUpdate(sql);
+
+		} finally {
+			stm.close();
+			dbConn.closeConnection();
+		}
+		
 		return model;
+		
 	}
 	
 	@Override
@@ -104,48 +110,55 @@ public class DatabaseController implements IDatabaseController {
 	@Override
 	public IModel getModel(ModelType type, String id) throws Exception {
 		
-		Map<String,String> properties = new HashMap<>();
-		Class classObject = Class.forName(packageRoute + type);
-		IModel model = (IModel) classObject.newInstance();
-		
-		Connection con = dbConn.initConnection();
-		Statement stm = con.createStatement();
+		Statement stm = null;
 		ResultSet rs = null;
-		rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+		IModel model = null;
 		
-		ResultSetMetaData rsmd = rs.getMetaData();
-		
-		if (!rs.next()) throw new NoSuchElementException("There is no " + type + " with this id");
-		
-		for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-			if (!rsmd.getColumnName(i).equals("filePath")) {
-				String name = rsmd.getColumnName(i);
-				if (name.equals("creationDate") || name.equals("lastModificationDate")) {
-					model.setValue(name, rs.getTimestamp(name));
-				} else if (name.equals("dependencies")) {
-					List<TypedModelId> dependencies = new ArrayList<>();
-					String value = rs.getString(name);
-					String[] dependencyArray = value.split(";");
-					for (String s : dependencyArray) {
-						String[] pair = s.split("/");
-						if (pair.length == 2) {
-							ModelType modelType = ModelType.valueOf(pair[0]);
-							dependencies.add(new TypedModelId(modelType, pair[1]));
+		try {
+			
+			Map<String,String> properties = new HashMap<>();
+			Class classObject = Class.forName(packageRoute + type);
+			model = (IModel) classObject.newInstance();
+			
+			Connection con = dbConn.initConnection();
+			stm = con.createStatement();
+			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+			
+			ResultSetMetaData rsmd = rs.getMetaData();
+			
+			if (!rs.next()) throw new NoSuchElementException("There is no " + type + " with this id");
+			
+			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
+				if (!rsmd.getColumnName(i).equals("filePath")) {
+					String name = rsmd.getColumnName(i);
+					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
+						model.setValue(name, rs.getTimestamp(name));
+					} else if (name.equals("dependencies")) {
+						List<TypedModelId> dependencies = new ArrayList<>();
+						String value = rs.getString(name);
+						String[] dependencyArray = value.split(";");
+						for (String s : dependencyArray) {
+							String[] pair = s.split("/");
+							if (pair.length == 2) {
+								ModelType modelType = ModelType.valueOf(pair[0]);
+								dependencies.add(new TypedModelId(modelType, pair[1]));
+							}
 						}
+						model.setValue("dependencies", dependencies);
 					}
-					model.setValue("dependencies", dependencies);
-				}
-				else model.setValue(name, rs.getString(name));
+					else model.setValue(name, rs.getString(name));
 
+				}
 			}
+			String content = contentFileManager.loadModelContent(model);
+			model.setValue("modelContent", content);
+			
+		} finally {
+			stm.close();
+			rs.close();
+			dbConn.closeConnection();
 		}
-		String content = contentFileManager.loadModelContent(model);
-		model.setValue("modelContent", content);
-		
-		stm.close();
-		rs.close();
-		con.close();
-		
+
 		return model;
 
 	}
@@ -185,43 +198,50 @@ public class DatabaseController implements IDatabaseController {
 	
 	public IModel updateModel(ModelType type, String id, IModel model) throws Exception {
 		
-		IModel oldModel = getModel(type, id);
-		if (oldModel == null) throw new NoSuchElementException("There is no " + type + " with this id");
+		Connection con = null;
+		Statement updateStm = null;
 		
-		String values = "";
-		
-		for (Field f : model.getFields()) {
-			f.setAccessible(true);
-			//Array of dependencies is parsed in "type/id;type/id;[...]" format
-			if (f.getName().equals("dependencies")) {
-				List<TypedModelId> dependencies = (List<TypedModelId>) f.get(model);
-				String value = "";
-				if (dependencies != null) for (TypedModelId typedModelId: dependencies) value += typedModelId.getModelType() + "/" + typedModelId.getNumber() + ";";
-				if (value.length() > 0) {
-					value = value.substring(0, value.length()-1);
-					values += " dependencies=\"" + value + "\",";
+		try {
+			IModel oldModel = getModel(type, id);
+			if (oldModel == null) throw new NoSuchElementException("There is no " + type + " with this id");
+			
+			String values = "";
+			
+			for (Field f : model.getFields()) {
+				f.setAccessible(true);
+				//Array of dependencies is parsed in "type/id;type/id;[...]" format
+				if (f.getName().equals("dependencies")) {
+					List<TypedModelId> dependencies = (List<TypedModelId>) f.get(model);
+					String value = "";
+					if (dependencies != null) for (TypedModelId typedModelId: dependencies) value += typedModelId.getModelType() + "/" + typedModelId.getNumber() + ";";
+					if (value.length() > 0) {
+						value = value.substring(0, value.length()-1);
+						values += " dependencies=\"" + value + "\",";
+					}
+				}
+				else if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
+					if (f.get(model) != null) values += " " + f.getName() + "=\"" + f.get(model) + "\",";
 				}
 			}
-			else if (!f.getName().equals("id") && !f.getName().equals("modelContent")) {
-				if (f.get(model) != null) values += " " + f.getName() + "=\"" + f.get(model) + "\",";
-			}
+			
+			if (model.getValue("modelContent") != null) {
+				String path = contentFileManager.saveModelContent(model);
+				values += " filePath=\"" + path + "\"";
+			} else values = values.substring(0,values.length()-1);
+			
+			con = dbConn.initConnection();
+			updateStm = con.createStatement();
+			String sql = "UPDATE " + type
+					+ " SET " + values
+					+ " WHERE id = " + id;
+			
+			updateStm.executeUpdate(sql);
+			
+			
+		} finally {
+			updateStm.close();
+			dbConn.closeConnection();
 		}
-		
-		if (model.getValue("modelContent") != null) {
-			String path = contentFileManager.saveModelContent(model);
-			values += " filePath=\"" + path + "\"";
-		} else values = values.substring(0,values.length()-1);
-		
-		Connection con = dbConn.initConnection();
-		Statement updateStm = con.createStatement();
-		String sql = "UPDATE " + type
-				+ " SET " + values
-				+ " WHERE id = " + id;
-		
-		updateStm.executeUpdate(sql);
-		
-		updateStm.close();
-		con.close();
 		
 		return getModel(type, id);
 		
@@ -229,22 +249,28 @@ public class DatabaseController implements IDatabaseController {
 
 	@Override
 	public void deleteModel(ModelType type, String id) throws Exception {
-
-		IModel model = getModel(type,id);
-		Connection con = dbConn.initConnection();
-		Statement stm = con.createStatement();
+		
 		ResultSet rs = null;
-		rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
-		if (!rs.next()) throw new NoSuchElementException("There is no " + type + " for this id");
+		Statement stm = null;
+		Statement deleteStm = null;
+		IModel model = null;
+
+		try {
+			model = getModel(type,id);
+			Connection con = dbConn.initConnection();
+			stm = con.createStatement();
+			rs = stm.executeQuery("SELECT * FROM " + type + " WHERE id = " + id);
+			if (!rs.next()) throw new NoSuchElementException("There is no " + type + " for this id");
+				
+			deleteStm = con.createStatement();
 			
-		Statement deleteStm = con.createStatement();
-		
-		deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
-		
-		rs.close();
-		stm.close();
-		deleteStm.close();
-		con.close();
+			deleteStm.executeUpdate("DELETE FROM " + type + " WHERE id = " + id);
+		} finally {
+			rs.close();
+			stm.close();
+			deleteStm.close();
+			dbConn.closeConnection();
+		}
 		
 		contentFileManager.deleteModelContent(model);
 			
@@ -297,43 +323,49 @@ public class DatabaseController implements IDatabaseController {
 	private List<IModel> queryModels(ModelType type, String query) throws Exception {
 		
 		List<IModel> modelList = new ArrayList<IModel>();
-		
-		Class classObject = Class.forName(packageRoute + type);
-		
-		Connection con = dbConn.initConnection();
-		Statement stm = con.createStatement();
+		Statement stm = null;
 		ResultSet rs = null;
-		rs = stm.executeQuery(query);
-
-		ResultSetMetaData rsmd = rs.getMetaData();
 		
-		while (rs.next()) {
-			IModel model = (IModel) classObject.newInstance();
-			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-				String name = rsmd.getColumnName(i);
-				if (!name.equals("filePath")) {
-					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
-						model.setValue(name, rs.getTimestamp(name));
-					} else if (name.equals("dependencies")) {
-						List<TypedModelId> dependencies = new ArrayList<>();
-						String value = rs.getString(name);
-						String[] dependencyArray = value.split(";");
-						for (String s : dependencyArray) {
-							String[] pair = s.split("/");
-							if (pair.length == 2) {
-								ModelType modelType = ModelType.valueOf(pair[0]);
-								dependencies.add(new TypedModelId(modelType, pair[1]));
+		try {
+			Class classObject = Class.forName(packageRoute + type);
+			
+			Connection con = dbConn.initConnection();
+			stm = con.createStatement();
+			rs = stm.executeQuery(query);
+
+			ResultSetMetaData rsmd = rs.getMetaData();
+			
+			while (rs.next()) {
+				IModel model = (IModel) classObject.newInstance();
+				for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
+					String name = rsmd.getColumnName(i);
+					if (!name.equals("filePath")) {
+						if (name.equals("creationDate") || name.equals("lastModificationDate")) {
+							model.setValue(name, rs.getTimestamp(name));
+						} else if (name.equals("dependencies")) {
+							List<TypedModelId> dependencies = new ArrayList<>();
+							String value = rs.getString(name);
+							String[] dependencyArray = value.split(";");
+							for (String s : dependencyArray) {
+								String[] pair = s.split("/");
+								if (pair.length == 2) {
+									ModelType modelType = ModelType.valueOf(pair[0]);
+									dependencies.add(new TypedModelId(modelType, pair[1]));
+								}
 							}
-						}
-						model.setValue("dependencies", dependencies);
-					} else model.setValue(name, rs.getString(name));
-				} 
+							model.setValue("dependencies", dependencies);
+						} else model.setValue(name, rs.getString(name));
+					} 
+				}
+				modelList.add(model);
 			}
-			modelList.add(model);
+		} finally {
+			stm.close();
+			rs.close();
+			dbConn.closeConnection();
 		}
-		stm.close();
-		rs.close();
-		con.close();
+		
+		
 			
 		return modelList;
 	}

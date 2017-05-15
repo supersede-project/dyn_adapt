@@ -38,15 +38,15 @@ public class DatabaseConnection {
 		
 		logger.debug("Connecting to DB...");
 		
-		try {
+		//try {
 			Connection con = DriverManager.getConnection(host, user, password);
 			logger.debug("Database connection - SUCCESS");
 			this.connection = con;
 			return this.connection;
-		} catch (SQLException e) {
-			logger.debug("Database connection - ERROR (wrong credentials - check config.properties file)");
-			throw new IllegalStateException("Cannot connect to the database with the specified credentials!");
-		}
+		//} catch (SQLException e) {
+		//	logger.debug("Database connection - ERROR (wrong credentials - check config.properties file)");
+		//	throw new IllegalStateException("Cannot connect to the database with the specified credentials!");
+		//}
 		
 	}
 	
