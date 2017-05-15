@@ -12,8 +12,10 @@ import org.apache.log4j.Logger;
 public class DatabaseConnection {
 	
 	final static Logger logger = Logger.getLogger(DatabaseConnection.class);
+	
+	private Connection connection;
 
-	public Connection init() throws Exception {
+	public Connection initConnection() throws Exception {
 		
 		try {
 		    Class.forName("com.mysql.jdbc.Driver");
@@ -36,16 +38,20 @@ public class DatabaseConnection {
 		
 		logger.debug("Connecting to DB...");
 		
-		try {
+		//try {
 			Connection con = DriverManager.getConnection(host, user, password);
 			logger.debug("Database connection - SUCCESS");
-			return con;
-		} catch (SQLException e) {
-			logger.debug("Database connection - ERROR (wrong credentials - check config.properties file)");
-			throw new IllegalStateException("Cannot connect to the database with the specified credentials!");
-		}
+			this.connection = con;
+			return this.connection;
+		//} catch (SQLException e) {
+		//	logger.debug("Database connection - ERROR (wrong credentials - check config.properties file)");
+		//	throw new IllegalStateException("Cannot connect to the database with the specified credentials!");
+		//}
 		
-		
+	}
+	
+	public void closeConnection() throws Exception {
+		this.connection.close();
 	}
 	
 }
