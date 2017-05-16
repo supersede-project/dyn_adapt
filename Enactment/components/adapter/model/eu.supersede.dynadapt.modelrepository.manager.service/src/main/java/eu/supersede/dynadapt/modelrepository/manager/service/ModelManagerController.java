@@ -62,67 +62,52 @@ public class ModelManagerController {
 				            @RequestParam(value = "creationDate", required = false) String creationDate,
 				            @RequestParam(value = "lastModificationDate", required = false) String lastModificationDate,
 				            @RequestParam(value = "fileExtension", required = false) String fileExtension,
-				            @RequestParam(value = "relativePath", required = false) String relativePath) {
+				            @RequestParam(value = "relativePath", required = false) String relativePath) throws Exception {
 		
 		List<IModel> models = new ArrayList<>();
 		String response = "";
-		try {
-			HashMap<String,String> params = new HashMap<>();
-			if (systemId != null) params.put("systemId", systemId);
-			if (status != null) params.put("status", status);
-			if (name != null) params.put("name", name);
-			if (url != null) params.put("url", url);
-			if (authorId != null) params.put("authorId", authorId);
-			if (creationDate != null) params.put("creationDate", creationDate);
-			if (lastModificationDate != null) params.put("lastModificationDate", lastModificationDate);
-			if (fileExtension != null) params.put("fileExtension", fileExtension);
-			if (relativePath != null) params.put("relativePath", relativePath);
-			models = manager.getModels(ModelType.valueOf(modelType), params);
-			JSONArray array = new JSONArray();
-			for (IModel model : models) {
-				array.put(model.toJson());
-			}
-			response = array.toString();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new UnprocessableEntityException();
-		} 
+		HashMap<String,String> params = new HashMap<>();
+		if (systemId != null) params.put("systemId", systemId);
+		if (status != null) params.put("status", status);
+		if (name != null) params.put("name", name);
+		if (url != null) params.put("url", url);
+		if (authorId != null) params.put("authorId", authorId);
+		if (creationDate != null) params.put("creationDate", creationDate);
+		if (lastModificationDate != null) params.put("lastModificationDate", lastModificationDate);
+		if (fileExtension != null) params.put("fileExtension", fileExtension);
+		if (relativePath != null) params.put("relativePath", relativePath);
+		models = manager.getModels(ModelType.valueOf(modelType), params);
+		JSONArray array = new JSONArray();
+		for (IModel model : models) {
+			array.put(model.toJson());
+		}
+		response = array.toString();
 		return response;
 	}
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public String createModel(@PathVariable String modelType, @RequestBody String input) {
+	public String createModel(@PathVariable String modelType, @RequestBody String input) throws Exception {
 		JSONObject jsonObject = new JSONObject(input);
 		JSONArray array = jsonObject.getJSONArray("modelInstances");
 		List<IModel> models = new ArrayList<>();
 		for (int i = 0; i < array.length(); ++i) {
 			JSONObject jsonModel = array.getJSONObject(i);
-			try {
-				IModel model = jsonToModel(jsonModel, ModelType.valueOf(modelType));
-				models.add(model);
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-				throw new UnprocessableEntityException();
-			}
+			IModel model = jsonToModel(jsonModel, ModelType.valueOf(modelType));
+			models.add(model);
 		}
-		try {
-			manager.createModels(ModelType.valueOf(modelType), models);
-			JSONArray modelsArray = new JSONArray();
-			for (IModel model : models) {
-				modelsArray.put(model.toJson());
-			}
-			return modelsArray.toString();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new UnprocessableEntityException();
+		manager.createModels(ModelType.valueOf(modelType), models);
+		JSONArray modelsArray = new JSONArray();
+		for (IModel model : models) {
+			modelsArray.put(model.toJson());
 		}
+		return modelsArray.toString();
 		
 	}
 	
 	@RequestMapping(value="/{modelType}/{modelId}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public String getModel(@PathVariable String modelType, @PathVariable String modelId) {
+	public String getModel(@PathVariable String modelType, @PathVariable String modelId) throws Exception {
 		String response = "";
 		IModel model;
 		try {
@@ -131,17 +116,14 @@ public class ModelManagerController {
 		} catch (NoSuchElementException e) {
 			logger.error("There is no " + modelType + " with id " + modelId);
 			throw new ResourceNotFoundException();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new UnprocessableEntityException();
-		}
+		} 
 		return response;
 	}
 	
 	@RequestMapping(value="/{modelType}/{modelId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	public String updateModel(@PathVariable String modelType, @PathVariable String modelId, 
-			@RequestBody String input) {
+			@RequestBody String input) throws Exception {
 		JSONObject jsonObject = new JSONObject(input);
 		try {
 			IModel updateModel = jsonToModel(jsonObject.getJSONObject("values"), ModelType.valueOf(modelType));
@@ -150,33 +132,22 @@ public class ModelManagerController {
 		} catch (NoSuchElementException e) {
 			logger.error("There is no " + modelType + " with id " + modelId);
 			throw new ResourceNotFoundException();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new UnprocessableEntityException();
-		}
+		} 
 	}
 	
 	@RequestMapping(value="/{modelType}/{modelId}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) {
+	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) throws Exception {
 		try {
 			manager.deleteModel(ModelType.valueOf(modelType), modelId);
 		} catch (NoSuchElementException e) {
 			logger.error("There is no " + modelType + " with id " + modelId);
 			throw new ResourceNotFoundException();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new UnprocessableEntityException();
-		}
+		} 
 	}
 	
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public class ResourceNotFoundException extends RuntimeException {
-	    
-	}
-	
-	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public class UnprocessableEntityException extends RuntimeException {
 	    
 	}
 	

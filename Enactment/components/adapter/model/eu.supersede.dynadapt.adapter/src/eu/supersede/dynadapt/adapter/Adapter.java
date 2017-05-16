@@ -227,22 +227,25 @@ public class Adapter implements IAdapter {
 			URI uri = URI.createFileURI(suri);
 			uri = mm.saveModel(model.eResource(), uri, "_" + UUID.randomUUID() + ".uml");
 			log.debug("Saved updated model in " + uri);
+		
+			//Ask Enactor to enact adapted model
+			log.debug("Invoking enactor for system " + system);
+			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
+			
+			//TODO Store adapted model as current base model in Model Repository
+			log.debug("Storing adapted model as current based model in ModelRepository");
+			//mr.storeBaseModel(model, bmMetadata);
+			
+			//TODO Store new feature configuration model as current current feature configuration in Model Repository
+			log.debug("Storing FC model as current FC model in ModelRepository");
+			//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
+			
+			//TODO Notified back to DM that adaptation actions have been enacted
+			log.debug("Notifing back to DM that adaptation actions have been enacted");
+		} else {
+			//TODO Notified back to DM that adaptation actions have not been enacted
+			log.debug("Notifing back to DM that adaptation actions have not been enacted");
 		}
-		
-		//Ask Enactor to enact adapted model
-		log.debug("Invoking enactor for system " + system);
-		EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
-		
-		//TODO Store adapted model as current base model in Model Repository
-		log.debug("Storing adapted model as current based model in ModelRepository");
-		//mr.storeBaseModel(model, bmMetadata);
-		
-		//TODO Store new feature configuration model as current current feature configuration in Model Repository
-		log.debug("Storing FC model as current FC model in ModelRepository");
-		//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
-		
-		//TODO Notified back to DM that adaptation actions have been enacted
-		log.debug("Notifing back to DM that adaptation actions have been enacted");
 	}
 	
 	private Model adapt(List<Selection> selections, Model baseModel) throws Exception {
@@ -442,3 +445,4 @@ public class Adapter implements IAdapter {
 	}
 
 }
+
