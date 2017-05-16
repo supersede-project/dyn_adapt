@@ -86,7 +86,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 									
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
-			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
 			String featureConfigurationId = "SmartPlatformFC_HSK_Low2_BLoad";
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
