@@ -61,7 +61,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	
 	@Test
 	public void testBatchAtosHighHSKAdaptation() throws Exception{
-		int numberRuns = 2;
+		int numberRuns = 100;
 		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 		String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
