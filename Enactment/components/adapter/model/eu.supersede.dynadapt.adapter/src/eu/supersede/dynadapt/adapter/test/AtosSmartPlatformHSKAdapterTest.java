@@ -51,11 +51,28 @@ public class AtosSmartPlatformHSKAdapterTest {
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 //			adapter.enactAdaptationDecisionAction(
 //					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+			
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testBatchAtosHighHSKAdaptation() throws Exception{
+		int numberRuns = 2;
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
+		String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
+		
+		for (int i=0; i<numberRuns; i++){
+			adapter.enactAdaptationDecisionActions(
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+		}
+		
+		((Adapter)adapter).kpiComputerAdapter.reportComputedKPITimeSeries();
+		((Adapter)adapter).kpiComputerEnactor.reportComputedKPITimeSeries();
 	}
 	
 	@Test

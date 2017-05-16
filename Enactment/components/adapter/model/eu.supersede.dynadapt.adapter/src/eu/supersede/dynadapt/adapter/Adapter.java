@@ -82,7 +82,8 @@ public class Adapter implements IAdapter {
 
 	private Map<String, String> modelsLocation;
 	
-	private AdapterKPIComputer kpiComputer = new AdapterKPIComputer();
+	public AdapterKPIComputer kpiComputerAdapter = new AdapterKPIComputer("Enactment KPI: Adapter Enactment Time");
+	public AdapterKPIComputer kpiComputerEnactor = new AdapterKPIComputer("Enactment KPI: Enactor Enactment Time");
 	
 	private String repositoryRelativePath;
 
@@ -114,7 +115,7 @@ public class Adapter implements IAdapter {
 			String featureConfigurationId) throws EnactmentException {
 		try {
 
-			kpiComputer.startComputingKPI();
+			kpiComputerAdapter.startComputingKPI();
 			
 			//FIXME Before FCs computed by DM are stored in the model repository and FC is retrieved by id
 			//We use FC id as name of latest computed one, to override default, located in standard local repository
@@ -127,8 +128,6 @@ public class Adapter implements IAdapter {
 			
 			doEnactment(system, adaptationDecisionActionIds, newFeatureConfig);
 			
-			kpiComputer.stopComputingKPI();
-			kpiComputer.reportComputedKPI();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,17 +139,12 @@ public class Adapter implements IAdapter {
 	public void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationAsString) throws EnactmentException {
 		try {
-
-			kpiComputer.startComputingKPI();
 			
 			//FIXME Read feature configuration from string
 			FeatureConfiguration newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 			Assert.assertNotNull("Passed feature configuration could not be loaded", newFeatureConfig);
 			
 			doEnactment(system, adaptationDecisionActionIds, newFeatureConfig);
-			
-			kpiComputer.stopComputingKPI();
-			kpiComputer.reportComputedKPI();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,9 +157,7 @@ public class Adapter implements IAdapter {
 			String featureConfigurationId) throws EnactmentException {
 		
 		try {
-			
-			kpiComputer.startComputingKPI();
-			
+						
 			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
 			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
 			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
@@ -174,9 +166,6 @@ public class Adapter implements IAdapter {
 					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 	
 			doEnactment(system, null, newFeatureConfig);
-			
-			kpiComputer.stopComputingKPI();
-			kpiComputer.reportComputedKPI();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,6 +182,8 @@ public class Adapter implements IAdapter {
 		// feature configuration (by id) from Model Repository
 		// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
 		// to simulate their retrieval given a systemId
+		
+		kpiComputerAdapter.startComputingKPI();
 
 		// NOTE: The correct way to load models so that the ModelManager resolve dependencies is to use "platform:/resource/..." URIs
 		// as this is done for Model Repository Resolver, using the repositoryResolverPath passed in the Adapter initialization
@@ -219,6 +210,9 @@ public class Adapter implements IAdapter {
 		}
 
 		Model model = adapt(changedSelections, baseModel);
+		
+		kpiComputerAdapter.stopComputingKPI();
+		kpiComputerAdapter.reportComputedKPI();
 
 		if (model != null){
 			//NOTE dapted model must be placed in same folder level as base model, otherwise referenced models (i.e. profiles) are not resolved.
@@ -229,8 +223,13 @@ public class Adapter implements IAdapter {
 			log.debug("Saved updated model in " + uri);
 		
 			//Ask Enactor to enact adapted model
+			kpiComputerEnactor.startComputingKPI();
+			
 			log.debug("Invoking enactor for system " + system);
 			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
+			
+			kpiComputerEnactor.stopComputingKPI();
+			kpiComputerEnactor.reportComputedKPI();
 			
 			//TODO Store adapted model as current base model in Model Repository
 			log.debug("Storing adapted model as current based model in ModelRepository");

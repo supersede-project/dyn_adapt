@@ -381,7 +381,6 @@ public class ModelManager implements IModelManager {
 	//TODO: Simplify this method using Java8 io library
 	private File createOutputFile(URI outputModelURI, String suffixe) throws Exception {
 		String fileSeparator = System.getProperty("file.separator");
-<<<<<<< HEAD
 		String inputFileName = outputModelURI.lastSegment();
 		if (inputFileName == null){
 			inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
@@ -390,10 +389,7 @@ public class ModelManager implements IModelManager {
 		if (inputFilePath == null){
 			inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
 		}
-=======
-		String inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
-		String inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
->>>>>>> c39b9c8221fd35f437a7b653287fef2ee9822b2c
+
 		// Find output directory
 		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf(fileSeparator) + 1));
 		//Create outputDirectory if it doesn't exist

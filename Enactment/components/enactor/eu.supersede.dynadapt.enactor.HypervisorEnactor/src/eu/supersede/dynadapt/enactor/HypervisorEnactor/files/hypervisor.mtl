@@ -28,21 +28,21 @@ Connect-VIServer -Server medialab13.atosresearch.eu -User root -Password $passwo
 
 [let vmCores : Integer = anInstanceSpecification.vmCores()]
 #Setting vm cores to [vmCores/]
-Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false
+Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false -whatif
 
 [/let]
 [let vmMemory : Real = anInstanceSpecification.vmMemory()]
 #Setting vm memory to [vmMemory/]
-Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false
+Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false -whatif
 
 [/let]
 [let vmStorage : Real = anInstanceSpecification.vmStorage()]
 #Setting vm storage to [vmStorage/]
-Get-HardDisk -vm "[vmName/]" | where {$_.Name -eq "/ovp"} | Set-HardDisk -CapacityGB [vmStorage/] -Confirm:$false
+Get-HardDisk -vm "[vmName/]" | where {$_.Name -eq "/ovp"} | Set-HardDisk -CapacityGB [vmStorage/] -Confirm:$false -whatif
 
 [/let]
 #Restarting vm with name: [vmName/]
-Restart-VM -VM "[vmName/]" -Confirm:$false 
+Restart-VM -VM "[vmName/]" -Confirm:$false  -whatif
 
 [/let]
 [/file]
