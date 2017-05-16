@@ -33,6 +33,22 @@ public class AdapterServiceTest {
 		}
 	}
 	
+	@Test
+	public void testBatchAtosHighHSKAdaptation() throws Exception{
+		int numberRuns = 2;
+		
+		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
+		String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
+		
+		for (int i=0; i<numberRuns; i++){
+			service.enactAdaptationDecisionActions(
+					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+		}
+		
+		service.getAdapterKPIComputer().reportComputedKPITimeSeries();
+		service.getEnactorKPIComputer().reportComputedKPITimeSeries();
+	}
+	
 	@Ignore @Test
 	public void testSiemensUCAdaptation() {
 		try {

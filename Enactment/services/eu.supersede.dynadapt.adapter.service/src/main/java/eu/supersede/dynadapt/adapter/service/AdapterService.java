@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -104,5 +105,13 @@ public class AdapterService {
 	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException {
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
+	}
+	
+	public AdapterKPIComputer getEnactorKPIComputer(){
+		return ((Adapter)adapter).kpiComputerEnactor;
+	}
+	
+	public AdapterKPIComputer getAdapterKPIComputer(){
+		return ((Adapter)adapter).kpiComputerAdapter;
 	}
 }
