@@ -14,6 +14,7 @@ import org.junit.Test;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ModelRepositoryClientServiceTest {
 
@@ -34,7 +35,7 @@ public class ModelRepositoryClientServiceTest {
 		modelsLocation.put("aspects", "adaptability_models/");
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "patterns/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/monitoring/patterns/");
 		modelsLocation.put("features", "features/models/");
 
 		mm = new ModelManager(false);
@@ -48,10 +49,10 @@ public class ModelRepositoryClientServiceTest {
 	
 	@Test
 	public void getAspectModels() throws Exception {
-		List<Aspect> aspects = mr.getAspectModelsFromRepository("timeSlot_twitter", modelsLocation);
-		System.out.println("Retrieved " + aspects.size() + " aspect models");
+		List<Aspect> aspects = mr.getAspectModelsFromRepository(ModelSystem.MonitoringReconfiguration, "timeSlot_twitter", modelsLocation);
+		System.out.println("Found " + aspects.size() + " aspect models");
 		for (Aspect a : aspects) {
-			System.out.println(a.getName());
+			System.out.println(a.getName() + " with feature " + a.getFeature().getId());
 		}
 	}
 	

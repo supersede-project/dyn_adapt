@@ -209,7 +209,7 @@ public class Adapter implements IAdapter {
 			changedSelections.removeAll(droppedSelections);
 		}
 
-		Model model = adapt(changedSelections, baseModel);
+		Model model = adapt(system, changedSelections, baseModel);
 		
 		kpiComputerAdapter.stopComputingKPI();
 		kpiComputerAdapter.reportComputedKPI();
@@ -247,7 +247,7 @@ public class Adapter implements IAdapter {
 		}
 	}
 	
-	private Model adapt(List<Selection> selections, Model baseModel) throws Exception {
+	private Model adapt(ModelSystem modelSystem, List<Selection> selections, Model baseModel) throws Exception {
 
 		Model model = null;
 		//Clone base model
@@ -262,7 +262,7 @@ public class Adapter implements IAdapter {
 			boolean featureEnabled = selection.isEnabled();
 
 			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled ? " Enabled" : " Disabled"));
-			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
+			List<Aspect> aspects = mr.getAspectModelsFromRepository(modelSystem, feature.getId(), modelsLocation);
 			log.debug("Found " + aspects.size() + " adaptations for feature: " + feature.getId());
 
 			for (Aspect aspect : aspects) {

@@ -105,15 +105,20 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return aspects;
 	}
 	
-	public List<Aspect> getAspectModelsFromRepository(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
+	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		
-		loadModelsFromRepository (modelsLocation);
+		System.out.println("Loading models from repository...");
+		loadModelsFromRepository (system, modelsLocation);
+		System.out.println("Models loaded");
 		List<Aspect> aspects = new ArrayList<Aspect>();
 		try {
 			AdaptabilityModel modelMetadata = new AdaptabilityModel();
 			modelMetadata.setFeatureId(featureSUPERSEDEId);
+			modelMetadata.setSystemId(system);
 			
-			aspects = this.getAspectModelsForSystem(null);
+			System.out.println("Loading adaptability models from " + system + " with feature " + featureSUPERSEDEId + "...");
+			aspects = this.getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
+			System.out.println("Adaptability models loaded");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -200,7 +205,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return modelManager;
 	}
 	
-	private IModelManager loadModelsFromRepository(Map<String, String> modelsLocation) {
+	private IModelManager loadModelsFromRepository(ModelSystem system, Map<String, String> modelsLocation) {
 //		IAdaptationParser parser = new AdaptationParser(modelManager);
 
 		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
@@ -216,9 +221,9 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
 			}
 			
-			List<PatternModel> patterns = this.getPatternModelsForSystem(null);
+			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
 			for (int i = 0; i < patterns.size(); i++) {
-				System.out.println(patterns.get(i).getPackageName());
+				System.out.println(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
 				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
 			}
 			
