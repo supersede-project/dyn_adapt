@@ -3,7 +3,7 @@ aspect sc4 {
 	advice S2,
 	pointcuts{	
 		pointcut GMDService{
-			pattern patterns.GetMeteorologicalDataServices,
+			pattern eu.supersede.dynadapt.usecases.siemens.patterns.GetMeteorologicalDataServices,
 			role ADM.Joinpoint
 		}
 	},
