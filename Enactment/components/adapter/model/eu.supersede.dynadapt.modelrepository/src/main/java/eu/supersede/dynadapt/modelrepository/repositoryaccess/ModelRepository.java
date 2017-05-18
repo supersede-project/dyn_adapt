@@ -211,12 +211,12 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
 		
 		try {
-			List<Profile> profiles = this.getProfilesForSystem(null);
+			List<Profile> profiles = this.getProfilesForSystem(system);
 			for (int i = 0; i < profiles.size(); i++) {
 				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
 			}
 			
-			List<Model> variants = this.getVariantModelsForSystem(null);
+			List<Model> variants = this.getVariantModelsForSystem(system);
 			for (int i = 0; i < variants.size(); i++) {
 				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
 			}
@@ -226,7 +226,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
 			}
 			
-			List<FeatureModel> features = this.getModelsOfTypeForSystemWithStatus(ModelType.FeatureModel, null, null, FeatureModel.class);
+			List<FeatureModel> features = this.getFeatureModelsForSystem(system);
 			for (int i = 0; i < features.size(); i++) {
 				modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features.get(i).getName());
 			}
@@ -486,6 +486,11 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	@Override
 	public List<Profile> getProfilesForSystem(ModelSystem system) throws Exception{
 		return getModelsOfTypeForSystemWithStatus (ModelType.ProfileModel, system, null, Profile.class);
+	}
+	
+	@Override
+	public List<FeatureModel> getFeatureModelsForSystem(ModelSystem system) throws Exception {
+		return getModelsOfTypeForSystemWithStatus(ModelType.FeatureModel, system, null, FeatureModel.class);
 	}
 
 	@Override

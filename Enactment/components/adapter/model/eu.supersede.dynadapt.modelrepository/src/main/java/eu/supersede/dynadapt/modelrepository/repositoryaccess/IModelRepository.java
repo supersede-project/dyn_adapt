@@ -92,10 +92,12 @@ public interface IModelRepository {
 	List<Model> getVariantModelsForSystem (ModelSystem system) throws Exception;
 	List<Profile> getProfilesForSystem (ModelSystem system) throws Exception;
 	List<PatternModel> getPatternModelsForSystem (ModelSystem system) throws Exception;
+	List<FeatureModel> getFeatureModelsForSystem(ModelSystem system) throws Exception;
 	
 	//Repository clean-up
 	void cleanUpRepository();
 	
 	//Reading models from string
 	public <T extends EObject> T readModelFromString(String modelContent, ModelType type, Class<T> modelClass) throws Exception;
+
 }
