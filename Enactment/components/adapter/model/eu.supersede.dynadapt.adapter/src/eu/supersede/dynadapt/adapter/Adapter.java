@@ -123,8 +123,10 @@ public class Adapter implements IAdapter {
 			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
 			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
 			
-			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
-					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
+//			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
+//					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
+						
+			FeatureConfiguration newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
 			
 			doEnactment(system, adaptationDecisionActionIds, newFeatureConfig);
 			
@@ -187,8 +189,9 @@ public class Adapter implements IAdapter {
 
 		// NOTE: The correct way to load models so that the ModelManager resolve dependencies is to use "platform:/resource/..." URIs
 		// as this is done for Model Repository Resolver, using the repositoryResolverPath passed in the Adapter initialization
-		Model baseModel = mrr.getModelForSystem(system,
-				new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+//		Model baseModel = mrr.getModelForSystem(system,
+//				new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
+		Model baseModel = mr.getLastBaseModelForSystem(system);
 		mm.setTargetModel(baseModel);
 		
 		FeatureConfiguration originalFeatureConfig = mrr.getConfigurationForSystem(system,
