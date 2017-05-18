@@ -126,8 +126,12 @@ public class PopulateModelRepositoryTest {
 		populateModels(path, "features/models", "yafm", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 		populateModels(path, "features/configurations", "yafc", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		populateModels(path, "adaptability_models", "aspect", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
-		populateModels(path, "patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
-		
+		//FIXME add other system patterns
+		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/siemens/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/atos/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/monitoring/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/health", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
 	}
 
 //	private void populateBaseModels(Path path, String repositorySubFolder, String extension) throws IOException, Exception {

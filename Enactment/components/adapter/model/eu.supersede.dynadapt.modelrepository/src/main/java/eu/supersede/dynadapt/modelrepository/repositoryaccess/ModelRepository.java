@@ -223,7 +223,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 			
 			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
 			for (int i = 0; i < patterns.size(); i++) {
-				System.out.println(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
 				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
 			}
 			
