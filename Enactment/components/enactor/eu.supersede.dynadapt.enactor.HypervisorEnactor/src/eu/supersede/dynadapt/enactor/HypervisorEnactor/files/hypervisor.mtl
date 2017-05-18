@@ -26,6 +26,9 @@ param (
 #Password is taken from command line upon invocation
 Connect-VIServer -Server medialab13.atosresearch.eu -User root -Password $password
 
+#Stoping vm with name: [vmName/]
+Stop-VM -VM "[vmName/]" -Confirm:$false  -whatif
+
 [let vmCores : Integer = anInstanceSpecification.vmCores()]
 #Setting vm cores to [vmCores/]
 Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false -whatif
@@ -41,8 +44,8 @@ Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false -whatif
 Get-HardDisk -vm "[vmName/]" | where {$_.Name -eq "/ovp"} | Set-HardDisk -CapacityGB [vmStorage/] -Confirm:$false -whatif
 
 [/let]
-#Restarting vm with name: [vmName/]
-Restart-VM -VM "[vmName/]" -Confirm:$false  -whatif
+#Starting vm with name: [vmName/]
+Start-VM -VM "[vmName/]" -Confirm:$false  -whatif
 
 [/let]
 [/file]

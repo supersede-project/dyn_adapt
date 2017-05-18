@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -201,6 +202,28 @@ public class HypervisorEnactor implements IEnactor{
 		}
 		return scriptCommand;
 	}
+	
+	
+	public String injectPowerShellScript (String scriptPath, String serverPassword, String hypervisorPassword) throws Exception{
+		//Store script in temporary folder
+		//Inject password in script
+		Path originalScript = Paths.get (scriptPath);
+		String scriptContent = readFile(originalScript);
+		scriptContent = scriptContent.replace("$password", hypervisorPassword);
+		Path temp = createTemporaryDirectory();
+		Path script = temp.resolve(originalScript.getFileName());
+		Files.write(script, scriptContent.getBytes(), StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+		
+		
+		return executeCommand(
+			"sshpass -p '" + serverPassword + "' scp -o StrictHostKeyChecking=no " + script + " supersede@platform.supersede.eu:powershell_scripts/ 2>&1");
+	}
+	
+	public String executePowerShellScript (String scriptName, String serverPassword, String hypervisorPassword) throws Exception{
+		return executeCommand(
+				"sshpass -p '" + serverPassword + "' ssh -o StrictHostKeyChecking=no supersede@platform.supersede.eu \"powershell -File powershell_scripts/" + scriptName + " -password " + hypervisorPassword + "\" 2>&1");
+	}
+	
 	
 	public String executeCommand(String command) throws Exception {
 
