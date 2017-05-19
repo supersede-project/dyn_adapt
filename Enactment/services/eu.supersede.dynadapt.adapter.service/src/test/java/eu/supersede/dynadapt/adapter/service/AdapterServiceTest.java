@@ -49,6 +49,22 @@ public class AdapterServiceTest {
 		service.getEnactorKPIComputer().reportComputedKPITimeSeries();
 	}
 	
+	@Test
+	public void testBatchSiemensAdaptation() throws Exception{
+		int numberRuns = 2;
+		
+		String[] adaptationDecisionActionIds = new String[]{"c4"};
+		String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
+		
+		for (int i=0; i<numberRuns; i++){
+			service.enactAdaptationDecisionActions(
+					ModelSystem.Siemens.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+		}
+		
+		service.getAdapterKPIComputer().reportComputedKPITimeSeries();
+		service.getEnactorKPIComputer().reportComputedKPITimeSeries();
+	}
+	
 	@Ignore @Test
 	public void testSiemensUCAdaptation() {
 		try {
