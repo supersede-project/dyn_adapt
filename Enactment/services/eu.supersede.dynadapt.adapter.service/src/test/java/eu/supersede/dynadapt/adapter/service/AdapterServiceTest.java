@@ -49,7 +49,7 @@ public class AdapterServiceTest {
 		service.getEnactorKPIComputer().reportComputedKPITimeSeries();
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testBatchSiemensAdaptation() throws Exception{
 		int numberRuns = 2;
 		
