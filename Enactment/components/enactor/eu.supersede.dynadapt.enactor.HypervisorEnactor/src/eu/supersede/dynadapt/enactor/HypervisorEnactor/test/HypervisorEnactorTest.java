@@ -76,12 +76,5 @@ public class HypervisorEnactorTest {
 		IEnactor enactor = new HypervisorEnactor();
 		enactor.enactAdaptedModel(adaptedModel, originalModel);
 	}
-	
-	@Test
-	public void ExecuteCommandTest () throws Exception{		
-		HypervisorEnactor enactor = new HypervisorEnactor();
-		System.out.println(enactor.executeCommand("sshpass -p '|>4rkFl4g80.' scp -o StrictHostKeyChecking=no /home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor/7099013625468193598/975766981687724842/HighLoadConfigurationBOInVM2_A.ps1 supersede@platform.supersede.eu:powershell_scripts/"));
-		System.out.println(enactor.executeCommand("sshpass -p '|>4rkFl4g80.' ssh -o StrictHostKeyChecking=no supersede@platform.supersede.eu \"powershell -File powershell_scripts/HighLoadConfigurationBOInVM2_A.ps1 -password diverS1celar\""));
-	}
 
 }

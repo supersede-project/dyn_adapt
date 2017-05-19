@@ -26,24 +26,21 @@ param (
 #Password is taken from command line upon invocation
 Connect-VIServer -Server medialab13.atosresearch.eu -User root -Password $password
 
+#Stoping vm with name: [vmName/]
+Stop-VM -VM "[vmName/]" -Confirm:$false
+
 [let vmCores : Integer = anInstanceSpecification.vmCores()]
 #Setting vm cores to [vmCores/]
-Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false -whatif
+Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false
 
 [/let]
 [let vmMemory : Real = anInstanceSpecification.vmMemory()]
 #Setting vm memory to [vmMemory/]
-Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false -whatif
-
+Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false
 [/let]
-[let vmStorage : Real = anInstanceSpecification.vmStorage()]
-#Setting vm storage to [vmStorage/]
-Get-HardDisk -vm "[vmName/]" | where {$_.Name -eq "/ovp"} | Set-HardDisk -CapacityGB [vmStorage/] -Confirm:$false -whatif
 
-[/let]
-#Restarting vm with name: [vmName/]
-Restart-VM -VM "[vmName/]" -Confirm:$false  -whatif
-
+#Starting vm with name: [vmName/]
+Start-VM -VM "[vmName/]" -Confirm:$false
 [/let]
 [/file]
 [/template]

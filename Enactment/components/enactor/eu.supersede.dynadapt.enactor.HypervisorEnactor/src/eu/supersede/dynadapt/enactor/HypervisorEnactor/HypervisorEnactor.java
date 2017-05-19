@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,6 +63,7 @@ public class HypervisorEnactor implements IEnactor{
 	String supersede_platform_host;
 	
 	boolean remoteConnection;
+	boolean simulated_execution;
 	
 	public HypervisorEnactor () throws IOException {
 		//Hypervisor properties
@@ -75,6 +77,7 @@ public class HypervisorEnactor implements IEnactor{
 		supersede_platform_host = hypervisorProperties.getProperty("supersede_platform_host");
 				
 		remoteConnection = Boolean.valueOf(hypervisorProperties.getProperty("remote_connection"));
+		simulated_execution = Boolean.valueOf(hypervisorProperties.getProperty("simulated_execution"));
 		
 		//ModelManager
 		mm = new ModelManager(false);
@@ -169,6 +172,11 @@ public class HypervisorEnactor implements IEnactor{
 		
 		for (Path script: enactmentArfifacts){
 			log.info("Enacting Hypervisor script: " + script);
+			
+			if (simulated_execution){
+				configureScriptForSimulation (script);
+			}
+			
 			if (remoteConnection){
 				//Upload script to supersede platform
 				String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
@@ -189,6 +197,12 @@ public class HypervisorEnactor implements IEnactor{
 	
 	
 	
+	private void configureScriptForSimulation(Path script) throws IOException {
+		String scriptContent = readFile(script);
+		scriptContent = scriptContent.replace("-Confirm:$false", "-Confirm:$false -whatif");
+		Files.write(script, scriptContent.getBytes(), StandardOpenOption.WRITE);
+	}
+
 	private String getScriptCommand (boolean remoteConnection, Path script){
 		String scriptCommand;
 		if (remoteConnection){
@@ -201,6 +215,28 @@ public class HypervisorEnactor implements IEnactor{
 		}
 		return scriptCommand;
 	}
+	
+	
+	public String injectPowerShellScript (String scriptPath, String serverPassword, String hypervisorPassword) throws Exception{
+		//Store script in temporary folder
+		//Inject password in script
+		Path originalScript = Paths.get (scriptPath);
+		String scriptContent = readFile(originalScript);
+		scriptContent = scriptContent.replace("$password", hypervisorPassword);
+		Path temp = createTemporaryDirectory();
+		Path script = temp.resolve(originalScript.getFileName());
+		Files.write(script, scriptContent.getBytes(), StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+		
+		
+		return executeCommand(
+			"sshpass -p '" + serverPassword + "' scp -o StrictHostKeyChecking=no " + script + " supersede@platform.supersede.eu:powershell_scripts/ 2>&1");
+	}
+	
+	public String executePowerShellScript (String scriptName, String serverPassword, String hypervisorPassword) throws Exception{
+		return executeCommand(
+				"sshpass -p '" + serverPassword + "' ssh -o StrictHostKeyChecking=no supersede@platform.supersede.eu \"powershell -File powershell_scripts/" + scriptName + " -password " + hypervisorPassword + "\" 2>&1");
+	}
+	
 	
 	public String executeCommand(String command) throws Exception {
 
