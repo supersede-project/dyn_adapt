@@ -156,7 +156,7 @@ public class AdaptationService {
 	}
 
 	//service adaptation using ptolemy workflow software (.xml files that represents the adaptation model are saved as adaptations and then executed in ptolemy)
-	public static String processSteps_ptolemy(String url, Request req) throws Exception
+	public static synchronized String processSteps_ptolemy(String url, Request req) throws Exception
         {
 	    File file=null;  
 	    String reqRes=null;
