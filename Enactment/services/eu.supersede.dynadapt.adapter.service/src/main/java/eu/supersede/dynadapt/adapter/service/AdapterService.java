@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -28,6 +29,7 @@ public class AdapterService {
 	private final static Logger log = LogManager.getLogger(AdapterService.class);
 	String repository;
 	String repositoryRelativePath;
+	String repositoryResolverPath;
 	String platformRelativePath;
 	
 	Map<String, String> modelsLocation;
@@ -46,7 +48,7 @@ public class AdapterService {
 		setupPlatform();		
 		mm = new ModelManager();
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
-		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 	}
 
 	private void setupPlatform() {
@@ -56,6 +58,7 @@ public class AdapterService {
 		//These relative paths are compatible for standalone execution within eu.supersede.dynadapt.adapter.service project
 		//and within $TOMCAT/bin, provided above project is copied within $TOMCAT folder
 		repositoryRelativePath = "../eu.supersede.dynadapt.adapter.service/repository";
+		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository";
 		platformRelativePath = "../";
 		
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -64,8 +67,9 @@ public class AdapterService {
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/patterns/");
 		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("adapted", "models/adapted/");
 	}
 
 	//FIXME: POST API with no content in request body or request param seems not to be working when dispatched by WSO2 ESB
@@ -101,5 +105,13 @@ public class AdapterService {
 	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException {
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
+	}
+	
+	public AdapterKPIComputer getEnactorKPIComputer(){
+		return ((Adapter)adapter).kpiComputerEnactor;
+	}
+	
+	public AdapterKPIComputer getAdapterKPIComputer(){
+		return ((Adapter)adapter).kpiComputerAdapter;
 	}
 }

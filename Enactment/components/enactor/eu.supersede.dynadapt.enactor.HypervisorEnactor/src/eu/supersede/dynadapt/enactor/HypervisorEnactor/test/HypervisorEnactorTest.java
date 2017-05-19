@@ -56,7 +56,7 @@ public class HypervisorEnactorTest {
 		String absoluteModelPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
 		
-		ModelManager mm = new ModelManager(true);
+		ModelManager mm = new ModelManager(false);
 		Model adaptedModel = mm.loadUMLModel(absoluteModelPath);
 		IEnactor enactor = new HypervisorEnactor();
 		enactor.enactAdaptedModel(adaptedModel);
@@ -70,18 +70,11 @@ public class HypervisorEnactorTest {
 		String adaptedModelPath = 
 			"/home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/repository/models/adapted/atos_smart_adapted_model.uml";
 		
-		ModelManager mm = new ModelManager(true);
+		ModelManager mm = new ModelManager(false);
 		Model originalModel = mm.loadUMLModel(originalModelPath);
 		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
 		IEnactor enactor = new HypervisorEnactor();
 		enactor.enactAdaptedModel(adaptedModel, originalModel);
-	}
-	
-	@Test
-	public void ExecuteCommandTest () throws Exception{		
-		HypervisorEnactor enactor = new HypervisorEnactor();
-		System.out.println(enactor.executeCommand("sshpass -p '|>4rkFl4g80.' scp -o StrictHostKeyChecking=no /home/yosu/Projects/Supersede/Git/dyn_adapt/Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor/7099013625468193598/975766981687724842/HighLoadConfigurationBOInVM2_A.ps1 supersede@platform.supersede.eu:powershell_scripts/"));
-		System.out.println(enactor.executeCommand("sshpass -p '|>4rkFl4g80.' ssh -o StrictHostKeyChecking=no supersede@platform.supersede.eu \"powershell -File powershell_scripts/HighLoadConfigurationBOInVM2_A.ps1 -password diverS1celar\""));
 	}
 
 }

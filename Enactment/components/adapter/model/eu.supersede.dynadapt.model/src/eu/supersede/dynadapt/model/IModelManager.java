@@ -71,7 +71,7 @@ public interface IModelManager {
 	 * @param suffixe
 	 * @throws  
 	 */
-	URI saveModel(Resource modelResource, URI outputModelURI, String suffixe) throws IOException;
+	URI saveModel(Resource modelResource, URI outputModelURI, String suffixe) throws Exception;
 
 	/**
 	 * Saves a copy of associated target model adding given suffixe to the original target model name
@@ -79,14 +79,14 @@ public interface IModelManager {
 	 * @return locator for saved model
 	 * @throws IOException
 	 */
-	URI saveTargetModel(String suffixe) throws IOException;
+	URI saveTargetModel(String suffixe) throws Exception;
 	
 	/**
 	 * Saves a associated target model replacing original file
 	 * @return locator for saved model
 	 * @throws IOException
 	 */
-	URI saveTargetModel() throws IOException;
+	URI saveTargetModel() throws Exception;
 	
 //	/**
 //	 * Regiser given model into the ModelManager resource set
@@ -116,5 +116,5 @@ public interface IModelManager {
 	Aspect loadAspectModel(String path);
 	Aspect loadAspectModel(URI uri);
 
-	URI saveModelInTemporaryFolder(Model model, String suffixe) throws IOException;
+	URI saveModelInTemporaryFolder(Model model, String suffixe) throws Exception;
 }

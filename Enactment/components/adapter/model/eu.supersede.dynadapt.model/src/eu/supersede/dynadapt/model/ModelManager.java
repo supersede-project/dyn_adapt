@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -152,7 +153,7 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager () throws Exception{
-		this(true);
+		this(false);
 	}
 
 	/**
@@ -161,7 +162,7 @@ public class ModelManager implements IModelManager {
 	 * @throws Exception
 	 */
 	public ModelManager (String targetModelPath) throws Exception{
-		this(true);
+		this(false);
 		
 		setTargetModel(targetModelPath);
 	}
@@ -313,7 +314,7 @@ public class ModelManager implements IModelManager {
 	 * @see eu.supersede.dynadapt.model.IModelManager#saveModel(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.common.util.URI, java.lang.String)
 	 */
 	@Override
-	public URI saveModel (Resource modelResource, URI outputModelURI, String suffixe) throws IOException{
+	public URI saveModel (Resource modelResource, URI outputModelURI, String suffixe) throws Exception{
 		FileOutputStream foStream = null;
 		if (modelResource != null) {
 			try {
@@ -338,7 +339,7 @@ public class ModelManager implements IModelManager {
 	}
 
 	@Override
-	public URI saveModelInTemporaryFolder(Model model, String suffixe) throws IOException {
+	public URI saveModelInTemporaryFolder(Model model, String suffixe) throws Exception {
 		if (temp == null){
 			temp = createTemporaryDirectory();
 		}
@@ -354,7 +355,7 @@ public class ModelManager implements IModelManager {
 	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel()
 	 */
 	@Override
-	public URI saveTargetModel () throws IOException{
+	public URI saveTargetModel () throws Exception{
 		return saveModel(getTargetModelAsResource(), getTargetModelURI(), null);
 	}
 
@@ -362,7 +363,7 @@ public class ModelManager implements IModelManager {
 	 * @see eu.supersede.dynadapt.model.IModelManager#saveTargetModel(java.lang.String)
 	 */
 	@Override
-	public URI saveTargetModel (String suffixe) throws IOException{
+	public URI saveTargetModel (String suffixe) throws Exception{
 		return saveModel(getTargetModelAsResource(), getTargetModelURI(), suffixe);
 	}
 	
@@ -375,12 +376,28 @@ public class ModelManager implements IModelManager {
 	 * @return Returns an instance of {@link File} to be used to save the
 	 *         results.
 	 * @throws IOException
+	 * @throws URISyntaxException 
 	 */
-	private File createOutputFile(URI outputModelURI, String suffixe) throws IOException {
+	//TODO: Simplify this method using Java8 io library
+	private File createOutputFile(URI outputModelURI, String suffixe) throws Exception {
+		String fileSeparator = System.getProperty("file.separator");
 		String inputFileName = outputModelURI.lastSegment();
+		if (inputFileName == null){
+			inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
+		}
 		String inputFilePath = outputModelURI.path();
+		if (inputFilePath == null){
+			inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
+		}
+
 		// Find output directory
-		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf('/') + 1));
+		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf(fileSeparator) + 1));
+		//Create outputDirectory if it doesn't exist
+		Path outDir = Paths.get(outputDirectory);
+		if (Files.notExists(outDir)) {
+			Files.createDirectory(outDir);
+		}
+		
 		// Create the output filename
 		String outputFileName = inputFileName;
 		if (suffixe != null){
@@ -407,7 +424,9 @@ public class ModelManager implements IModelManager {
 		return temp;
 	}
 	
-	private URI createTemporaryURI (String surl){
+	private URI createTemporaryURI (String surl) throws IOException{
+		if (temp == null)
+			temp = createTemporaryDirectory();
 		Path file = Paths.get(temp.toString(), surl);
 		return URI.createURI(file.toString());
 	}
@@ -415,6 +434,8 @@ public class ModelManager implements IModelManager {
 	private URI downloadModel (String surl){
 		URI uri = null;
 		try {
+			if (temp == null)
+				temp = createTemporaryDirectory();
 			URL url = new URL (surl);
 			InputStream in = url.openStream();
 			Assert.assertNotNull(in);
