@@ -143,7 +143,8 @@ public class Adapter implements IAdapter {
 		try {
 			
 			//FIXME Read feature configuration from string
-			FeatureConfiguration newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+//			FeatureConfiguration newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+			FeatureConfiguration newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
 			Assert.assertNotNull("Passed feature configuration could not be loaded", newFeatureConfig);
 			
 			doEnactment(system, adaptationDecisionActionIds, newFeatureConfig);
@@ -289,7 +290,7 @@ public class Adapter implements IAdapter {
 					}
 				}
 				Model variant = aspect.getAdvice();
-				log.debug("\tVariant: " + variant.getName());
+				if (variant != null) log.debug("\tVariant: " + variant.getName());
 								
 				for (Composition c : aspect.getCompositions()) {
 					log.debug("\tComposition " + c.getName());

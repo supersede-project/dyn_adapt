@@ -241,22 +241,23 @@ public class PopulateModelRepositoryTest {
 		// Use heuristic knowledge of file name to set the model system
 		if (getFileName(file).toLowerCase().contains("adm")){
 			return ModelSystem.Supersede;
+		}else if (getFileName(file).toLowerCase().contains("monitoring") ||
+			 	  getFileName(file).toLowerCase().contains("twitter")){
+			return ModelSystem.MonitoringReconfiguration;
+		}else if (getFileName(file).toLowerCase().contains("health") ||
+			      getFileName(file).toLowerCase().contains("authentication")){
+			return ModelSystem.Health;
+		}else if (getFileName(file).toLowerCase().contains("smart") ||
+				  getFileName(file).toLowerCase().contains("hsk")) {
+			return ModelSystem.Atos_HSK;
 		}else if (getFileName(file).toLowerCase().contains("atos") ||
 				  getFileName(file).toLowerCase().contains("cms")){
 			return ModelSystem.Atos;
 		}else if (getFileName(file).toLowerCase().contains("siemens") ||
-				  getFileName(file).toLowerCase().contains("basemodel") ||
 				  getFileName(file).toLowerCase().contains("composition") ||
 				  getFileName(file).toLowerCase().contains("s1") ||
 				  getFileName(file).toLowerCase().contains("s2")){
 			return ModelSystem.Siemens;
-		}else if (getFileName(file).toLowerCase().contains("health") ||
-			      getFileName(file).toLowerCase().contains("authentication") ||
-			      getFileName(file).toLowerCase().contains("smart")){
-			return ModelSystem.Health;
-		}else if (getFileName(file).toLowerCase().contains("monitoring") ||
-			 	  getFileName(file).toLowerCase().contains("twitter")){
-			return ModelSystem.MonitoringReconfiguration;
 		}else{
 			return ModelSystem.Supersede;
 		}
