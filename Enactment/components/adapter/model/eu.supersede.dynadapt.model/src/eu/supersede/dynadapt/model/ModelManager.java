@@ -389,40 +389,48 @@ public class ModelManager implements IModelManager {
 	 */
 	//TODO: Simplify this method using Java8 io library
 	private File createOutputFile(URI outputModelURI, String suffixe) throws Exception {
-		String fileSeparator = System.getProperty("file.separator");
-		String inputFileName = outputModelURI.lastSegment();
-		if (inputFileName == null){
-			inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
-		}
-		String inputFilePath = outputModelURI.path();
-		if (inputFilePath == null){
-			inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
-		}
-
-		// Find output directory
-		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf(fileSeparator) + 1));
-		//Create outputDirectory if it doesn't exist
-		Path outDir = Paths.get(outputDirectory);
-		if (Files.notExists(outDir)) {
-			Files.createDirectory(outDir);
-		}
+//		String fileSeparator = System.getProperty("file.separator");
+//		String inputFileName = outputModelURI.lastSegment();
+//		if (inputFileName == null){
+//			inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
+//		}
+//		String inputFilePath = outputModelURI.path();
+//		if (inputFilePath == null){
+//			inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
+//		}
+//
+//		// Find output directory
+//		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf(fileSeparator) + 1));
+//		//Create outputDirectory if it doesn't exist
+//		Path outDir = Paths.get(outputDirectory);
+//		if (Files.notExists(outDir)) {
+//			Files.createDirectory(outDir);
+//		}
 		
-		// Create the output filename
-		String outputFileName = inputFileName;
+//		// Create the output filename
+//		String outputFileName = inputFileName;
+//		if (suffixe != null){
+//			if (inputFileName.lastIndexOf('.')>=0)
+//				outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
+//			else
+//				outputFileName = inputFileName + suffixe;
+//		}
+		
+		String outputFilePath = outputModelURI.path();
 		if (suffixe != null){
-			if (inputFileName.lastIndexOf('.')>=0)
-				outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
-			else
-				outputFileName = inputFileName + suffixe;
+			if (outputFilePath.lastIndexOf('.') >= 0) {
+				outputFilePath = outputFilePath.substring(0, outputFilePath.lastIndexOf('.')) + suffixe;
+			}
+			else {
+				outputFilePath = outputFilePath + suffixe;
+			}
 		}
-		
-		File outputFile = new File(outputDirectory + outputFileName);
-
+		File outputFile = new File(outputFilePath);
+//		File outputFile = new File(outputDirectory + outputFileName);
 		if (!outputFile.exists()) {
 			outputFile.getParentFile().mkdirs();
 			outputFile.createNewFile();
 		}
-
 		return outputFile;
 	}
 	

@@ -179,7 +179,9 @@ public abstract class GenericModelRepository {
 			if (resource != model.eResource()) {
 				if (resource.getURI().isPlatformResource() || resource.getURI().isFile()) {			
 					EObject dModel = resource.getContents().get(0);
-					Path path = Paths.get(dModel.eResource().getURI().toString().replace("file:" + originalRepoPath, ""));
+					URI originalRepoURI = resource.getURI().isPlatformResource() ? URI.createPlatformResourceURI(originalRepoPath, true) : URI.createFileURI(originalRepoPath);
+					Path path = Paths.get(resource.getURI().toString().replace(originalRepoURI.toString(), ""));
+					//Path path = Paths.get(dModel.eResource().getURI().toString().replace("file:" + originalRepoPath, ""));
 					String dRelativePath = path.getParent().toString();
 					String fileName = path.getFileName().toString();
 					ModelType dType = getModelType(dModel);
@@ -188,6 +190,7 @@ public abstract class GenericModelRepository {
 						String dId = storeModel(dModel, dType, dependMetadata, originalRepoPath);
 						ITypedModelId modelId = new TypedModelId(dType, dId);
 						dependencies.add(modelId);
+						log.info("Stored dependency " + fileName + " for " + metadata.getModelInstances().get(0).getValue("name") + " model");
 					}
 				}
 			}
@@ -220,8 +223,8 @@ public abstract class GenericModelRepository {
 				(String)modelInstanceMetadata.getValue("name"));
 		
 		//FIXME modelmanager should be responsible of this
-		Path outDir = Paths.get(path.getParent().toString());
-		Files.createDirectories(outDir);
+		//Path outDir = Paths.get(path.getParent().toString());
+		//Files.createDirectories(outDir);
 		
 		modelManager.saveModel(model.eResource(), URI.createFileURI(path.toString()), null);
 		
