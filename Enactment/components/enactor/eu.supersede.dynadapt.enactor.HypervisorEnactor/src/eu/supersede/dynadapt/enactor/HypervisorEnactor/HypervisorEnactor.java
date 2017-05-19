@@ -63,6 +63,7 @@ public class HypervisorEnactor implements IEnactor{
 	String supersede_platform_host;
 	
 	boolean remoteConnection;
+	boolean simulated_execution;
 	
 	public HypervisorEnactor () throws IOException {
 		//Hypervisor properties
@@ -76,6 +77,7 @@ public class HypervisorEnactor implements IEnactor{
 		supersede_platform_host = hypervisorProperties.getProperty("supersede_platform_host");
 				
 		remoteConnection = Boolean.valueOf(hypervisorProperties.getProperty("remote_connection"));
+		simulated_execution = Boolean.valueOf(hypervisorProperties.getProperty("simulated_execution"));
 		
 		//ModelManager
 		mm = new ModelManager(false);
@@ -170,6 +172,11 @@ public class HypervisorEnactor implements IEnactor{
 		
 		for (Path script: enactmentArfifacts){
 			log.info("Enacting Hypervisor script: " + script);
+			
+			if (simulated_execution){
+				configureScriptForSimulation (script);
+			}
+			
 			if (remoteConnection){
 				//Upload script to supersede platform
 				String uploadCommand = "sshpass -p '" + supersede_account_passwd + "' scp -o StrictHostKeyChecking=no " + script +
@@ -190,6 +197,12 @@ public class HypervisorEnactor implements IEnactor{
 	
 	
 	
+	private void configureScriptForSimulation(Path script) throws IOException {
+		String scriptContent = readFile(script);
+		scriptContent = scriptContent.replace("-Confirm:$false", "-Confirm:$false -whatif");
+		Files.write(script, scriptContent.getBytes(), StandardOpenOption.WRITE);
+	}
+
 	private String getScriptCommand (boolean remoteConnection, Path script){
 		String scriptCommand;
 		if (remoteConnection){
