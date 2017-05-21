@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@ComponentScan(basePackages = { "eu.supersede.dynadapt.dm.dashboard", "eu.supersede.fe" })
+@ComponentScan(basePackages = { "eu.supersede.dynadapt.adapter.dashboard", "eu.supersede.fe" })
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableRedisHttpSession
 public class AdaptationDashboardApplication extends SpringBootServletInitializer{
