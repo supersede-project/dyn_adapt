@@ -28,8 +28,12 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			row['feature_id'] = data[i]['feature_id'];
 			row['enabled'] = data[i]['enabled'];
 			row['description'] = data[i]['description'];
-			row['enacted_timestamp'] = data[i]['enacted_timestamp'];
-			row['result'] = data[i]['result'];
+			var date = new Date(data[i]['enacted_timestamp']);
+			row['enacted_timestamp'] = date.toUTCString();
+			var result = data[i]['result'];
+			if (result == true) row['result'] = "SUCCESS";
+			else row['result'] = "FAILURE";
+			//var time = new Date(data[i]['enacted_time']);
 			row['enacted_time'] = data[i]['enacted_time'];
 			
 			
@@ -69,7 +73,12 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 				{ text: 'Enabled', datafield: 'enabled' },
 				{ text: 'Description', datafield: 'description' },
 				{ text: 'Enactment timestamp', datafield: 'enacted_timestamp' },
-				{ text: 'Result', datafield: 'result' },
+				{ text: 'Result', datafield: 'result', 
+					cellsRenderer: function (row, columnDataField, value) {
+						if (value == 'SUCCESS') var color = 'green';
+						else var color = 'red';
+						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';margin-top: 4px; margin-bottom: 4px;">' + value + '</div>';
+					} },
 				{ text: 'Enactment time', datafield: 'enacted_time' }
 			],
 			ready: function()
