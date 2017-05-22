@@ -1,0 +1,22 @@
+aspect atos_smart_hsk_low2_B_load {
+	feature SmartPlatformFM.SmartPlatform.PhysicalServer.Virtualization.VM2_B.VM2_B_Configuration.LowLoadConfigurationInVM2_B,
+	advice Atos_Smart_HSK_Low2_B_Load,
+	pointcuts{
+		pointcut HSK_VM{
+			pattern eu.supersede.dynadapt.usecases.atos.patterns.HSKVirtualExecutionEnvironments,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition EnableLowLoad{
+			feature_enabled true,
+			adviceRole ADM.Joinpoint,
+			action add
+		},
+		composition DisableLowLoad{
+			feature_enabled false,
+			adviceRole ADM.Joinpoint,
+			action delete
+		}
+	}
+}
