@@ -179,10 +179,12 @@ public abstract class GenericModelRepository {
 			if (resource != model.eResource()) {
 				if (resource.getURI().isPlatformResource() || resource.getURI().isFile()) {			
 					EObject dModel = resource.getContents().get(0);
-					URI originalRepoURI = resource.getURI().isPlatformResource() ? URI.createPlatformResourceURI(originalRepoPath, true) : URI.createFileURI(originalRepoPath);
+					URI originalRepoURI = resource.getURI().isPlatformResource() ?
+							URI.createPlatformResourceURI(originalRepoPath, true) : URI.createFileURI(originalRepoPath);
 					Path path = Paths.get(resource.getURI().toString().replace(originalRepoURI.toString(), ""));
 					//Path path = Paths.get(dModel.eResource().getURI().toString().replace("file:" + originalRepoPath, ""));
-					String dRelativePath = path.getParent().toString();
+					// We make use of the URI.createFileURI method the backslash (Windows file separator)
+					String dRelativePath = URI.createFileURI(path.getParent().toString()).toString();
 					String fileName = path.getFileName().toString();
 					ModelType dType = getModelType(dModel);
 					ModelMetadata dependMetadata = createModelMetadata(metadata, dType, dRelativePath, fileName);
