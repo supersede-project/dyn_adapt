@@ -5,7 +5,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
 //        $http({
-//            url: "decision-making-app/adaptation",
+//            url: "adaptation-app/adaptation",
 //            method: 'GET'
 //        }).success(function(data) {
 //            $scope.adaptations = data;//.firstName + " " + data.lastName;
@@ -25,8 +25,13 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 		{
 			var row = {};
 			row['name'] = data[i]['name'];
+			row['feature_id'] = data[i]['feature_id'];
+			row['enabled'] = data[i]['enabled'];
 			row['description'] = data[i]['description'];
-			row['priority'] = data[i]['priority'];
+			row['enacted_timestamp'] = data[i]['enacted_timestamp'];
+			row['result'] = data[i]['result'];
+			row['enacted_time'] = data[i]['enacted_time'];
+			
 			
 			localData.push(row);
 		}
@@ -37,8 +42,12 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			datatype: "json",
 			datafields: [
 				{ name: 'name', type: 'string' },
+				{ name: 'feature_id', type: 'string' },
+				{ name: 'enabled', type: 'string' },
 				{ name: 'description', type: 'string' },
-				{ name: 'priority', type: 'string' }
+				{ name: 'enacted_timestamp', type: 'string' },
+				{ name: 'result', type: 'string' },
+				{ name: 'enacted_time', type: 'string' }
 			],
 			id: 'adaptationId',
 			localdata: localData
@@ -56,22 +65,12 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Name', datafield: 'name' },
+				{ text: 'Feature Id', datafield: 'feature_id' },
+				{ text: 'Enabled', datafield: 'enabled' },
 				{ text: 'Description', datafield: 'description' },
-				{ text: 'Priority', datafield: 'priority', 
-					cellsRenderer: function (row, columnDataField, value) {
-						var tmp = value.split(";");
-						var r = '<div class="jqx-grid-cell-left-align" style="margin-top: 4px; margin-bottom: 4px;">';
-						for(var x = 0; x < tmp.length; x++)
-						{
-							r = r.concat(tmp[x]);
-							if(x < tmp.length - 1)
-							{
-								r = r.concat("<br/>");
-							}
-						}
-						return r.concat("</div>");
-					}
-				}
+				{ text: 'Enactment timestamp', datafield: 'enacted_timestamp' },
+				{ text: 'Result', datafield: 'result' },
+				{ text: 'Enactment time', datafield: 'enacted_time' }
 			],
 			ready: function()
 			{

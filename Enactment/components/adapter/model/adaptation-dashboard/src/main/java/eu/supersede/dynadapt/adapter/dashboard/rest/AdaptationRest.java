@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.adapter.dashboard.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class AdaptationRest
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Adaptation> getAdaptations()
     {
-        return adaptations.findAll();
+    	List<Adaptation> adapts = adaptations.findAll();
+    	List<Adaptation> result = new ArrayList<>();
+    	for (int i = 0; i < adapts.size(); ++i) {
+    		if (adapts.get(i).isEnacted()) result.add(adapts.get(i));
+    	}
+    	return result;
     }
 }
