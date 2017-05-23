@@ -43,7 +43,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Test
 	public void testAtosHighHSKAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 			adapter.enactAdaptationDecisionActions(
@@ -59,7 +60,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Ignore @Test
 	public void testBatchAtosHighHSKAdaptation() throws Exception{
 		int numberRuns = 2;
-		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+		boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 		
@@ -77,7 +79,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Test
 	public void testAtosHugeHSKAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 									
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
 			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighMediumLoad";
@@ -93,7 +96,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Test
 	public void testAtosHSKDualVMHighLowAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 									
 			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
 			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
@@ -109,7 +113,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Test
 	public void testAtosHighHSKAdaptationSpecificActionsTakenFCfromString() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 			String sFcUri = fcUri.toString();
@@ -128,7 +133,8 @@ public class AtosSmartPlatformHSKAdapterTest {
 	@Test
 	public void testAtosHighHSKAdaptationTakenFCfromString() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{};
 			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 			String sFcUri = fcUri.toString();

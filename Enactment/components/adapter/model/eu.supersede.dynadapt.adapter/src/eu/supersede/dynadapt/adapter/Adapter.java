@@ -86,12 +86,17 @@ public class Adapter implements IAdapter {
 	public AdapterKPIComputer kpiComputerEnactor = new AdapterKPIComputer("Enactment KPI: Enactor Enactment Time");
 	
 	private String repositoryRelativePath;
+	private boolean demo = false;
 
 	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
 	// another one by AdaptationParser
 	// FIXME: Manage a single ResourceSet
 
 	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryResolverPath, String repositoryRelativePath) throws Exception {
+		this (mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, false);
+	}
+	
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryResolverPath, String repositoryRelativePath, boolean demo) throws Exception {
 		this.mr = mr;
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
@@ -99,6 +104,7 @@ public class Adapter implements IAdapter {
 		this.modelsLocation = modelsLocation;
 		this.mrr = new ModelRepositoryResolver(mm, repositoryResolverPath);
 		this.repositoryRelativePath = repositoryRelativePath;
+		this.demo = demo;
 		log.debug("Adapter set up");
 	}
 
@@ -226,7 +232,7 @@ public class Adapter implements IAdapter {
 			kpiComputerEnactor.startComputingKPI();
 			
 			log.debug("Invoking enactor for system " + system);
-			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel);
+			EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
 			
 			kpiComputerEnactor.stopComputingKPI();
 			kpiComputerEnactor.reportComputedKPI();

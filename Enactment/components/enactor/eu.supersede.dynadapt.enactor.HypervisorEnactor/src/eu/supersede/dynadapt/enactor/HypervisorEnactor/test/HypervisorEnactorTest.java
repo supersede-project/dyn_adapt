@@ -59,7 +59,8 @@ public class HypervisorEnactorTest {
 		ModelManager mm = new ModelManager(false);
 		Model adaptedModel = mm.loadUMLModel(absoluteModelPath);
 		IEnactor enactor = new HypervisorEnactor();
-		enactor.enactAdaptedModel(adaptedModel);
+		boolean demo = true;
+		enactor.enactAdaptedModel(adaptedModel, demo);
 	}
 	
 	@Test
@@ -74,7 +75,8 @@ public class HypervisorEnactorTest {
 		Model originalModel = mm.loadUMLModel(originalModelPath);
 		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
 		IEnactor enactor = new HypervisorEnactor();
-		enactor.enactAdaptedModel(adaptedModel, originalModel);
+		boolean demo = true;
+		enactor.enactAdaptedModel(adaptedModel, originalModel, demo);
 	}
 
 }

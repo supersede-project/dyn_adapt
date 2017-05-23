@@ -135,7 +135,7 @@ public class HypervisorEnactor implements IEnactor{
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
 		//Compute model differences
 		log.debug("Comparing base and adapted models");
 		Map<DiffType,Set<Element>> diffElements = mc.computeDifferencesBetweenModels (adaptedModel, originalModel);
@@ -150,16 +150,16 @@ public class HypervisorEnactor implements IEnactor{
 		
 		//Invoke enactment artifacts in Hypervisor Hook
 		log.debug("Enacting hypervisor scripts");
-		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts);
+		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts, demo);
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel) throws Exception {
+	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
 		//Enact adapted Model
 		List<Path> enactmentArfifacts = createEnactmentArtefactsForAdaptedModel(adaptedModel);
 		
 		//Invoke enactment artifacts in Hypervisor Hook
-		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts);
+		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts, demo);
 	}
 	
 	private Properties loadHypervisorHookProperties() throws IOException{
@@ -168,12 +168,13 @@ public class HypervisorEnactor implements IEnactor{
 		return properties;
 	}
 	
-	private void invokeEnactmentArtefactsInHypervisorHook(List<Path> enactmentArfifacts) throws Exception {
+	private void invokeEnactmentArtefactsInHypervisorHook(List<Path> enactmentArfifacts, boolean demo) throws Exception {
 		
 		for (Path script: enactmentArfifacts){
 			log.info("Enacting Hypervisor script: " + script);
 			
-			if (simulated_execution){
+			//Simulating enactment whenever demo is true (set in test) and if not, whenever simulated_execution is true (set by configuration)
+			if (demo || simulated_execution){ 
 				configureScriptForSimulation (script);
 			}
 			
