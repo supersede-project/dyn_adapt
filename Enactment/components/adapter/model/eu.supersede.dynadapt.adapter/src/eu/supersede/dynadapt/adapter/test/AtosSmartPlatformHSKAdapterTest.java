@@ -11,6 +11,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.adapter.Adapter;
@@ -43,14 +44,10 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHighHSKAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
-			//FIXME featureConfigurationId is ignored. Use correct one
-			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
+			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
-//			adapter.enactAdaptationDecisionAction(
-//					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
 			
 		} catch (EnactmentException e) {
 			e.printStackTrace();
@@ -59,12 +56,12 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testBatchAtosHighHSKAdaptation() throws Exception{
-		int numberRuns = 100;
+		int numberRuns = 2;
 		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-		String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
+		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 		
 		for (int i=0; i<numberRuns; i++){
 			adapter.enactAdaptationDecisionActions(
@@ -75,19 +72,33 @@ public class AtosSmartPlatformHSKAdapterTest {
 		((Adapter)adapter).kpiComputerEnactor.reportComputedKPITimeSeries();
 	}
 	
+	
+	
 	@Test
 	public void testAtosHugeHSKAdaptation() {
 		try {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
 									
-			//FIXME featureConfigurationId is ignored. Use correct one
-			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_HugeLoad";
+			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighMediumLoad";
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
-//			adapter.enactAdaptationDecisionAction(
-//					SupersedeSystem.ATOS_HSK.toString(), adaptationDecisionActionIds[0], featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testAtosHSKDualVMHighLowAdaptation() {
+		try {
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+									
+			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
+			adapter.enactAdaptationDecisionActions(
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

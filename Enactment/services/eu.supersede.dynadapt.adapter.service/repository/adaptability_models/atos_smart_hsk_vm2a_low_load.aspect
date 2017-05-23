@@ -1,6 +1,6 @@
 aspect atos_smart_hsk_low_load {
 	feature SmartPlatformFM.SmartPlatform.PhysicalServer.Virtualization.VM2_A.VM2_A_Configuration.LowLoadConfigurationInVM2_A,
-	advice Atos_Smart_HSK_Low_Load,
+	advice atos_smart_hsk_vm2a_low,
 	pointcuts{
 		pointcut HSK_VM{
 			pattern eu.supersede.dynadapt.usecases.patterns.VMInstancesContainingHSKServices,

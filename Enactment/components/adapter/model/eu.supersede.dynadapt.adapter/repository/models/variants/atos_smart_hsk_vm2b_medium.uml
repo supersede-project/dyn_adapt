@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
-  <uml:Model xmi:id="_gSfJ4BL3Eee755surl-vag" name="Atos_Smart_HSK_Huge_Load" URI="">
+  <uml:Model xmi:id="_gSfJ4BL3Eee755surl-vag" name="atos_smart_hsk_vm2b_medium" URI="">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_gThrsBL3Eee755surl-vag">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
@@ -13,7 +13,7 @@
         </slot>
         <slot xmi:type="uml:Slot" xmi:id="_yXo78BL4Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_FzsL4ATKEeeo4rafDiNNWw"/>
-          <value xmi:type="uml:LiteralString" xmi:id="_3ccSkBL4Eee755surl-vag" value="OVP BO"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_3ccSkBL4Eee755surl-vag" value="OVP BO_2"/>
         </slot>
       </packagedElement>
       <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_5MRRcBL4Eee755surl-vag" name="MediumLoadConfigurationInBOVM2_B">
@@ -28,7 +28,7 @@
         </slot>
         <slot xmi:type="uml:Slot" xmi:id="_KwWMMBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_PWe7kOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralString" xmi:id="_edY-kBL5Eee755surl-vag" value="OVP BO"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_edY-kBL5Eee755surl-vag" value="OVP BO_2"/>
         </slot>
         <slot xmi:type="uml:Slot" xmi:id="_LSEZMBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_ZefGUOlREea6tPfvbkvCTg"/>

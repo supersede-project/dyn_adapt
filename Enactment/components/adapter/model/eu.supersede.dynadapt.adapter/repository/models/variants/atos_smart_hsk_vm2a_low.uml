@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
-  <uml:Model xmi:id="_10WOwATTEeeo4rafDiNNWw" name="Atos_Smart_HSK_Low_Load">
+  <uml:Model xmi:id="_10WOwATTEeeo4rafDiNNWw" name="atos_smart_hsk_vm2a_low" URI="">
     <packagedElement xmi:type="uml:Package" xmi:id="_tUvvwATUEeeo4rafDiNNWw" name="Instances">
       <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_xqluoATUEeeo4rafDiNNWw" name="LowLoadConfigurationInBOVM2_A">
         <classifier xmi:type="uml:Class" href="../base/atos_smart_base_model.uml#_MmaAoOlREea6tPfvbkvCTg"/>

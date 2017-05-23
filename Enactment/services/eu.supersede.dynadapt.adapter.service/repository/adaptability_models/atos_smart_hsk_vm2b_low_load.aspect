@@ -1,9 +1,9 @@
-aspect atos_smart_hsk_low_load {
-	feature SmartPlatformFM.SmartPlatform.PhysicalServer.Virtualization.VM2_A.VM2_A_Configuration.LowLoadConfigurationInVM2_A,
-	advice Atos_Smart_HSK_Low_Load,
+aspect atos_smart_hsk_dualVM_high_load {
+	feature SmartPlatformFM.SmartPlatform.PhysicalServer.Virtualization.VM2_B.VM2_B_Configuration.LowLoadConfigurationInVM2_B,
+	advice atos_smart_hsk_vm2b_low,
 	pointcuts{
 		pointcut HSK_VM{
-			pattern eu.supersede.dynadapt.usecases.atos.patterns.VMInstancesContainingHSKServices,
+			pattern eu.supersede.dynadapt.usecases.patterns.VMInstancesContainingHSKServices,
 			role ADM.Joinpoint
 		}
 	},
