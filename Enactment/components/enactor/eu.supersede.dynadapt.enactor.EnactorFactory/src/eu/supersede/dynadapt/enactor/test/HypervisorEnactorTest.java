@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.enactor.IEnactor;
@@ -42,7 +43,7 @@ public class HypervisorEnactorTest {
 	}
 	
 	
-	@Test
+	@Ignore @Test
 	public void AtosEnactorInAtosHSKTest () throws Exception{		
 		// NOTE: Edit this absolute paths before testing		
 		String originalModelPath = 
@@ -54,7 +55,8 @@ public class HypervisorEnactorTest {
 		Model originalModel = mm.loadUMLModel(originalModelPath);
 		Model adaptedModel = mm.loadUMLModel(adaptedModelPath);
 		IEnactor enactor = EnactorFactory.getEnactorForSystem(ModelSystem.Atos);
-		enactor.enactAdaptedModel(adaptedModel, originalModel);
+		boolean demo = true;
+		enactor.enactAdaptedModel(adaptedModel, originalModel, demo);
 	}
 	
 

@@ -1,0 +1,22 @@
+aspect atos_smart_hsk_huge_load {
+	feature SmartPlatformFM.SmartPlatform.PhysicalServer.Virtualization.VM2_B.VM2_B_Configuration.MediumLoadConfigurationInVM2_B,
+	advice atos_smart_hsk_vm2b_medium,
+	pointcuts{
+		pointcut HSK_VM{
+			pattern eu.supersede.dynadapt.usecases.atos.patterns.HSKVirtualExecutionEnvironments,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition EnableHugeLoad{
+			feature_enabled true,
+			adviceRole ADM.Joinpoint,
+			action add
+		},
+		composition DisableHugeLoad{
+			feature_enabled false,
+			adviceRole ADM.Joinpoint,
+			action delete
+		}
+	}
+}
