@@ -76,6 +76,34 @@ public class AdaptationService {
 			{
 				res.body(Util.sendGet(url));
 			}
+
+			//for the validation purpose (make a service unavailable 5% of the time)
+			if(url.contains("unavailable5"))
+			{
+				//Random numbers from the range 0..99 is generated
+			    Random randomGenerator = new Random();
+			    int randomInt = randomGenerator.nextInt(100);
+			    if(randomInt<5) 
+			    {
+			    	res.status(500);
+			    	res.body("Service is unavailable at the moment!");
+			    }
+			    
+			}
+			//for the validation purpose (make a service unavailable 10% of the time)
+			if(url.contains("unavailable10"))
+			{
+				//Random numbers from the range 0..99 is generated
+			    Random randomGenerator = new Random();
+			    int randomInt = randomGenerator.nextInt(100);
+			    if(randomInt<10) 
+			    {
+			    	res.status(500);
+			    	res.body("Service is unavailable at the moment!");
+			    }
+			    
+			}
+
 			return res.body();						
 		});
 
