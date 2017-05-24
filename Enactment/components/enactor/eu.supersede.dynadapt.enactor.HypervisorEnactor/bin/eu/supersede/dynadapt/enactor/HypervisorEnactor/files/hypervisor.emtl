@@ -108,11 +108,11 @@
           <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.5">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           </body>
-          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;#Start-VM -VM &quot;"/>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" only if it is not already started&#xA;Get-VM &quot;"/>
           <body xsi:type="ocl.ecore:VariableExp" name="vmName" referredVariable="/0/generateVMConfigurationScripts/%.1/%/vmName.5">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           </body>
-          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; -Confirm:$false&#xA;"/>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; | ?{$_.PowerState -eq &quot;PoweredOff&quot;} | Start-VM -Confirm:$false&#xA;&#xA;"/>
           <letVariable name="vmName">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <initExpression xsi:type="mtl:QueryInvocation" definition="/0/vmName">
@@ -678,7 +678,7 @@
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateVMConfigurationScripts">
       <details key="start" value="260"/>
-      <details key="end" value="1595"/>
+      <details key="end" value="1670"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/generateVMConfigurationScripts/%">
@@ -688,12 +688,12 @@
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/generateVMConfigurationScripts/%.1">
       <details key="start" value="409"/>
-      <details key="end" value="1583"/>
+      <details key="end" value="1658"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/generateVMConfigurationScripts/%.1/%">
       <details key="start" value="478"/>
-      <details key="end" value="1575"/>
+      <details key="end" value="1650"/>
       <details key="line" value="16"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/generateVMConfigurationScripts/%.1/%/%">
@@ -923,17 +923,17 @@
     </eAnnotations>
     <eAnnotations source="positions.50" references="/0/generateVMConfigurationScripts/%.1/%/%.18">
       <details key="start" value="1526"/>
-      <details key="end" value="1542"/>
-      <details key="line" value="45"/>
+      <details key="end" value="1569"/>
+      <details key="line" value="44"/>
     </eAnnotations>
     <eAnnotations source="positions.51" references="/0/generateVMConfigurationScripts/%.1/%/vmName.4">
-      <details key="start" value="1543"/>
-      <details key="end" value="1549"/>
+      <details key="start" value="1570"/>
+      <details key="end" value="1576"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.52" references="/0/generateVMConfigurationScripts/%.1/%/%.19">
-      <details key="start" value="1551"/>
-      <details key="end" value="1569"/>
+      <details key="start" value="1578"/>
+      <details key="end" value="1644"/>
       <details key="line" value="45"/>
     </eAnnotations>
     <eAnnotations source="positions.53" references="/0/generateVMConfigurationScripts/%.1/%/vmName.5">
@@ -1002,48 +1002,48 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.66" references="/0/isVMConfiguration">
-      <details key="start" value="1597"/>
-      <details key="end" value="1766"/>
-      <details key="line" value="50"/>
+      <details key="start" value="1672"/>
+      <details key="end" value="1841"/>
+      <details key="line" value="51"/>
     </eAnnotations>
     <eAnnotations source="positions.67" references="/0/isVMConfiguration/instance">
-      <details key="start" value="1629"/>
-      <details key="end" value="1661"/>
-      <details key="line" value="50"/>
+      <details key="start" value="1704"/>
+      <details key="end" value="1736"/>
+      <details key="line" value="51"/>
     </eAnnotations>
     <eAnnotations source="positions.68" references="/0/isVMConfiguration/%">
-      <details key="start" value="1677"/>
-      <details key="end" value="1763"/>
+      <details key="start" value="1752"/>
+      <details key="end" value="1838"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.69" references="/0/isVMConfiguration/%/%">
-      <details key="start" value="1681"/>
-      <details key="end" value="1763"/>
+      <details key="start" value="1756"/>
+      <details key="end" value="1838"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.70" references="/0/isVMConfiguration/%/%/select">
-      <details key="start" value="1682"/>
-      <details key="end" value="1751"/>
+      <details key="start" value="1757"/>
+      <details key="end" value="1826"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.71" references="/0/isVMConfiguration/%/%/select/%">
-      <details key="start" value="1682"/>
-      <details key="end" value="1701"/>
+      <details key="start" value="1757"/>
+      <details key="end" value="1776"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.72" references="/0/isVMConfiguration/%/%/select/%/instance">
-      <details key="start" value="1682"/>
-      <details key="end" value="1690"/>
+      <details key="start" value="1757"/>
+      <details key="end" value="1765"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.73" references="/0/isVMConfiguration/%/%/select/%.1">
-      <details key="start" value="1710"/>
-      <details key="end" value="1750"/>
+      <details key="start" value="1785"/>
+      <details key="end" value="1825"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.74" references="/0/isVMConfiguration/%/%/select/%.1/%">
-      <details key="start" value="1710"/>
-      <details key="end" value="1714"/>
+      <details key="start" value="1785"/>
+      <details key="end" value="1789"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.75" references="/0/isVMConfiguration/%/%/select/%.1/%/temp1">
@@ -1052,8 +1052,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.76" references="/0/isVMConfiguration/%/%/select/%.1/%.1">
-      <details key="start" value="1732"/>
-      <details key="end" value="1749"/>
+      <details key="start" value="1807"/>
+      <details key="end" value="1824"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.77" references="/0/isVMConfiguration/%/%/select/temp1">
@@ -1062,63 +1062,63 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.78" references="/0/vmName">
-      <details key="start" value="1769"/>
-      <details key="end" value="1955"/>
-      <details key="line" value="54"/>
+      <details key="start" value="1844"/>
+      <details key="end" value="2030"/>
+      <details key="line" value="55"/>
     </eAnnotations>
     <eAnnotations source="positions.79" references="/0/vmName/instance">
-      <details key="start" value="1790"/>
-      <details key="end" value="1822"/>
-      <details key="line" value="54"/>
+      <details key="start" value="1865"/>
+      <details key="end" value="1897"/>
+      <details key="line" value="55"/>
     </eAnnotations>
     <eAnnotations source="positions.80" references="/0/vmName/%">
-      <details key="start" value="1837"/>
-      <details key="end" value="1951"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="2026"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.81" references="/0/vmName/%/%">
-      <details key="start" value="1837"/>
-      <details key="end" value="1945"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="2020"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.82" references="/0/vmName/%/%/%">
-      <details key="start" value="1837"/>
-      <details key="end" value="1920"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="1995"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.83" references="/0/vmName/%/%/%/%">
-      <details key="start" value="1837"/>
-      <details key="end" value="1911"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="1986"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.84" references="/0/vmName/%/%/%/%/any">
-      <details key="start" value="1837"/>
-      <details key="end" value="1905"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="1980"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.85" references="/0/vmName/%/%/%/%/any/%">
-      <details key="start" value="1837"/>
-      <details key="end" value="1850"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="1925"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.86" references="/0/vmName/%/%/%/%/any/%/instance">
-      <details key="start" value="1837"/>
-      <details key="end" value="1845"/>
+      <details key="start" value="1912"/>
+      <details key="end" value="1920"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.87" references="/0/vmName/%/%/%/%/any/%.1">
-      <details key="start" value="1856"/>
-      <details key="end" value="1904"/>
+      <details key="start" value="1931"/>
+      <details key="end" value="1979"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.88" references="/0/vmName/%/%/%/%/any/%.1/%">
-      <details key="start" value="1856"/>
-      <details key="end" value="1876"/>
+      <details key="start" value="1931"/>
+      <details key="end" value="1951"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.89" references="/0/vmName/%/%/%/%/any/%.1/%/%">
-      <details key="start" value="1856"/>
-      <details key="end" value="1871"/>
+      <details key="start" value="1931"/>
+      <details key="end" value="1946"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.90" references="/0/vmName/%/%/%/%/any/%.1/%/%/temp1">
@@ -1127,8 +1127,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.91" references="/0/vmName/%/%/%/%/any/%.1/%.1">
-      <details key="start" value="1894"/>
-      <details key="end" value="1903"/>
+      <details key="start" value="1969"/>
+      <details key="end" value="1978"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.92" references="/0/vmName/%/%/%/%/any/temp2">
@@ -1137,68 +1137,68 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.93" references="/0/vmName/%/%/%.1">
-      <details key="start" value="1931"/>
-      <details key="end" value="1944"/>
+      <details key="start" value="2006"/>
+      <details key="end" value="2019"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.94" references="/0/vmCores">
-      <details key="start" value="1957"/>
-      <details key="end" value="2144"/>
-      <details key="line" value="58"/>
+      <details key="start" value="2032"/>
+      <details key="end" value="2219"/>
+      <details key="line" value="59"/>
     </eAnnotations>
     <eAnnotations source="positions.95" references="/0/vmCores/instance">
-      <details key="start" value="1979"/>
-      <details key="end" value="2011"/>
-      <details key="line" value="58"/>
+      <details key="start" value="2054"/>
+      <details key="end" value="2086"/>
+      <details key="line" value="59"/>
     </eAnnotations>
     <eAnnotations source="positions.96" references="/0/vmCores/%">
-      <details key="start" value="2027"/>
-      <details key="end" value="2140"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2215"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.97" references="/0/vmCores/%/%">
-      <details key="start" value="2027"/>
-      <details key="end" value="2134"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2209"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.98" references="/0/vmCores/%/%/%">
-      <details key="start" value="2027"/>
-      <details key="end" value="2108"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2183"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.99" references="/0/vmCores/%/%/%/%">
-      <details key="start" value="2027"/>
-      <details key="end" value="2099"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2174"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.100" references="/0/vmCores/%/%/%/%/any">
-      <details key="start" value="2027"/>
-      <details key="end" value="2093"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2168"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.101" references="/0/vmCores/%/%/%/%/any/%">
-      <details key="start" value="2027"/>
-      <details key="end" value="2040"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2115"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.102" references="/0/vmCores/%/%/%/%/any/%/instance">
-      <details key="start" value="2027"/>
-      <details key="end" value="2035"/>
+      <details key="start" value="2102"/>
+      <details key="end" value="2110"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.103" references="/0/vmCores/%/%/%/%/any/%.1">
-      <details key="start" value="2046"/>
-      <details key="end" value="2092"/>
+      <details key="start" value="2121"/>
+      <details key="end" value="2167"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.104" references="/0/vmCores/%/%/%/%/any/%.1/%">
-      <details key="start" value="2046"/>
-      <details key="end" value="2066"/>
+      <details key="start" value="2121"/>
+      <details key="end" value="2141"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.105" references="/0/vmCores/%/%/%/%/any/%.1/%/%">
-      <details key="start" value="2046"/>
-      <details key="end" value="2061"/>
+      <details key="start" value="2121"/>
+      <details key="end" value="2136"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.106" references="/0/vmCores/%/%/%/%/any/%.1/%/%/temp1">
@@ -1207,8 +1207,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.107" references="/0/vmCores/%/%/%/%/any/%.1/%.1">
-      <details key="start" value="2084"/>
-      <details key="end" value="2091"/>
+      <details key="start" value="2159"/>
+      <details key="end" value="2166"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.108" references="/0/vmCores/%/%/%/%/any/temp3">
@@ -1217,68 +1217,68 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.109" references="/0/vmCores/%/%/%.1">
-      <details key="start" value="2119"/>
-      <details key="end" value="2133"/>
+      <details key="start" value="2194"/>
+      <details key="end" value="2208"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.110" references="/0/vmMemory">
-      <details key="start" value="2146"/>
-      <details key="end" value="2329"/>
-      <details key="line" value="62"/>
+      <details key="start" value="2221"/>
+      <details key="end" value="2404"/>
+      <details key="line" value="63"/>
     </eAnnotations>
     <eAnnotations source="positions.111" references="/0/vmMemory/instance">
-      <details key="start" value="2169"/>
-      <details key="end" value="2201"/>
-      <details key="line" value="62"/>
+      <details key="start" value="2244"/>
+      <details key="end" value="2276"/>
+      <details key="line" value="63"/>
     </eAnnotations>
     <eAnnotations source="positions.112" references="/0/vmMemory/%">
-      <details key="start" value="2214"/>
-      <details key="end" value="2325"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2400"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.113" references="/0/vmMemory/%/%">
-      <details key="start" value="2214"/>
-      <details key="end" value="2319"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2394"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.114" references="/0/vmMemory/%/%/%">
-      <details key="start" value="2214"/>
-      <details key="end" value="2296"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2371"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.115" references="/0/vmMemory/%/%/%/%">
-      <details key="start" value="2214"/>
-      <details key="end" value="2287"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2362"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.116" references="/0/vmMemory/%/%/%/%/any">
-      <details key="start" value="2214"/>
-      <details key="end" value="2281"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2356"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.117" references="/0/vmMemory/%/%/%/%/any/%">
-      <details key="start" value="2214"/>
-      <details key="end" value="2227"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2302"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.118" references="/0/vmMemory/%/%/%/%/any/%/instance">
-      <details key="start" value="2214"/>
-      <details key="end" value="2222"/>
+      <details key="start" value="2289"/>
+      <details key="end" value="2297"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.119" references="/0/vmMemory/%/%/%/%/any/%.1">
-      <details key="start" value="2233"/>
-      <details key="end" value="2280"/>
+      <details key="start" value="2308"/>
+      <details key="end" value="2355"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.120" references="/0/vmMemory/%/%/%/%/any/%.1/%">
-      <details key="start" value="2233"/>
-      <details key="end" value="2253"/>
+      <details key="start" value="2308"/>
+      <details key="end" value="2328"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.121" references="/0/vmMemory/%/%/%/%/any/%.1/%/%">
-      <details key="start" value="2233"/>
-      <details key="end" value="2248"/>
+      <details key="start" value="2308"/>
+      <details key="end" value="2323"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.122" references="/0/vmMemory/%/%/%/%/any/%.1/%/%/temp1">
@@ -1287,8 +1287,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.123" references="/0/vmMemory/%/%/%/%/any/%.1/%.1">
-      <details key="start" value="2271"/>
-      <details key="end" value="2279"/>
+      <details key="start" value="2346"/>
+      <details key="end" value="2354"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.124" references="/0/vmMemory/%/%/%/%/any/temp4">
@@ -1297,68 +1297,68 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.125" references="/0/vmMemory/%/%/%.1">
-      <details key="start" value="2307"/>
-      <details key="end" value="2318"/>
+      <details key="start" value="2382"/>
+      <details key="end" value="2393"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.126" references="/0/vmStorage">
-      <details key="start" value="2331"/>
-      <details key="end" value="2516"/>
-      <details key="line" value="66"/>
+      <details key="start" value="2406"/>
+      <details key="end" value="2591"/>
+      <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.127" references="/0/vmStorage/instance">
-      <details key="start" value="2355"/>
-      <details key="end" value="2387"/>
-      <details key="line" value="66"/>
+      <details key="start" value="2430"/>
+      <details key="end" value="2462"/>
+      <details key="line" value="67"/>
     </eAnnotations>
     <eAnnotations source="positions.128" references="/0/vmStorage/%">
-      <details key="start" value="2400"/>
-      <details key="end" value="2512"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2587"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.129" references="/0/vmStorage/%/%">
-      <details key="start" value="2400"/>
-      <details key="end" value="2506"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2581"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.130" references="/0/vmStorage/%/%/%">
-      <details key="start" value="2400"/>
-      <details key="end" value="2483"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2558"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.131" references="/0/vmStorage/%/%/%/%">
-      <details key="start" value="2400"/>
-      <details key="end" value="2474"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2549"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.132" references="/0/vmStorage/%/%/%/%/any">
-      <details key="start" value="2400"/>
-      <details key="end" value="2468"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2543"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.133" references="/0/vmStorage/%/%/%/%/any/%">
-      <details key="start" value="2400"/>
-      <details key="end" value="2413"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2488"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.134" references="/0/vmStorage/%/%/%/%/any/%/instance">
-      <details key="start" value="2400"/>
-      <details key="end" value="2408"/>
+      <details key="start" value="2475"/>
+      <details key="end" value="2483"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.135" references="/0/vmStorage/%/%/%/%/any/%.1">
-      <details key="start" value="2419"/>
-      <details key="end" value="2467"/>
+      <details key="start" value="2494"/>
+      <details key="end" value="2542"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.136" references="/0/vmStorage/%/%/%/%/any/%.1/%">
-      <details key="start" value="2419"/>
-      <details key="end" value="2439"/>
+      <details key="start" value="2494"/>
+      <details key="end" value="2514"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.137" references="/0/vmStorage/%/%/%/%/any/%.1/%/%">
-      <details key="start" value="2419"/>
-      <details key="end" value="2434"/>
+      <details key="start" value="2494"/>
+      <details key="end" value="2509"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.138" references="/0/vmStorage/%/%/%/%/any/%.1/%/%/temp1">
@@ -1367,8 +1367,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.139" references="/0/vmStorage/%/%/%/%/any/%.1/%.1">
-      <details key="start" value="2457"/>
-      <details key="end" value="2466"/>
+      <details key="start" value="2532"/>
+      <details key="end" value="2541"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.140" references="/0/vmStorage/%/%/%/%/any/temp5">
@@ -1377,8 +1377,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.141" references="/0/vmStorage/%/%/%.1">
-      <details key="start" value="2494"/>
-      <details key="end" value="2505"/>
+      <details key="start" value="2569"/>
+      <details key="end" value="2580"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

@@ -41,8 +41,9 @@ Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false
 [/let]
 
 [comment Disable when Hypervisor hotplug is supported /]
-#Starting vm with name: [vmName/]
-#Start-VM -VM "[vmName/]" -Confirm:$false
+#Starting vm with name: [vmName/] only if it is not already started
+Get-VM "[vmName/]" | ?{$_.PowerState -eq "PoweredOff"} | Start-VM -Confirm:$false
+
 [/let]
 [/file]
 [/template]
