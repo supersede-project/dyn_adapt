@@ -15,7 +15,8 @@ public class AdapterServiceTest {
 	
 	@Before
 	public void setup() throws Exception{
-		service = new AdapterService();
+		boolean demo = true;
+		service = new AdapterService(demo);
 	}
 	
 	@Test
