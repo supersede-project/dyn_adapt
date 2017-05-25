@@ -61,7 +61,7 @@
         <details xmi:id="_v458tSTgEeeh8IEHb3wZ9g" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:id="_v4shUCTgEeeh8IEHb3wZ9g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="/eu.supersede.dynadapt.adapter/repository/models/profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
       <appliedProfile href="/eu.supersede.dynadapt.adapter/repository/models/profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
