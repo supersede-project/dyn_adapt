@@ -183,6 +183,7 @@ public abstract class GenericModelRepository {
 							URI.createPlatformResourceURI(originalRepoPath, true) : URI.createFileURI(originalRepoPath);
 					Path path = Paths.get(resource.getURI().toString().replace(originalRepoURI.toString(), ""));
 					//Path path = Paths.get(dModel.eResource().getURI().toString().replace("file:" + originalRepoPath, ""));
+					
 					// We make use of the URI.createFileURI method the backslash (Windows file separator)
 					String dRelativePath = URI.createFileURI(path.getParent().toString()).toString();
 					String fileName = path.getFileName().toString();
@@ -223,11 +224,8 @@ public abstract class GenericModelRepository {
 		// Store model in temporary local folder of the repository
 		Path path = Paths.get(temp.toString(), (String)modelInstanceMetadata.getValue("relativePath"), 
 				(String)modelInstanceMetadata.getValue("name"));
-		
-		//FIXME modelmanager should be responsible of this
-		//Path outDir = Paths.get(path.getParent().toString());
-		//Files.createDirectories(outDir);
-		
+	
+		// Saving the model in the repository's temporal local folder
 		modelManager.saveModel(model.eResource(), URI.createFileURI(path.toString()), null);
 		
 		// Updating model content in model's meta-data 
@@ -306,6 +304,9 @@ public abstract class GenericModelRepository {
 	
 	/**
 	 * Loads from the repository the root object of a given model stored in the repository
+	 * FIXME Do no re-load the model if the model was previously loaded and has not changed
+	 *  - implement a cache
+	 * 	- make use of id and timestamp
 	 * @param id Number of the model (with respect to its type)
 	 * @param type Type of the model
 	 * @param modelClass Class of the object to return
@@ -331,7 +332,8 @@ public abstract class GenericModelRepository {
 		//FIXME escape \" char
 		modelContent = modelContent.replace("(\"", "('").replace("\")", "')").replace("\",", "',");
 		saveModelFromString(modelContent, path);
-				
+		log.debug("Model " + fileName + " recovered from repository proxy");
+		
 		//Use ModelManager to retrieve the model
 		return modelManager.loadModel(path.toString(), modelClass);
 	}
@@ -500,11 +502,28 @@ public abstract class GenericModelRepository {
 		                Files.delete(file);
 		                return FileVisitResult.CONTINUE;
 		            }
+		            @Override
+		            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException
+		            {
+		                // try to delete the file anyway, even if its attributes
+		                // could not be read, since delete-only access is
+		                // theoretically possible
+		                Files.delete(file);
+		                return FileVisitResult.CONTINUE;
+		            }
 					@Override
 					public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-						log.debug("deleting temporary folder: " + dir);
-						Files.delete(dir);
-					    return FileVisitResult.CONTINUE;
+					    if (exc == null)
+			            {
+					    	log.debug("deleting temporary folder: " + dir);
+			                Files.delete(dir);
+			                return FileVisitResult.CONTINUE;
+			            }
+			            else
+			            {
+			                // directory iteration failed; propagate exception
+			                throw exc;
+			            }
 					}
 		        }); 
         	}

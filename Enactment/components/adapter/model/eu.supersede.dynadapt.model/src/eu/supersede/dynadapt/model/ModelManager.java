@@ -42,7 +42,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -255,15 +254,19 @@ public class ModelManager implements IModelManager {
 	
 	@Override
 	public <T extends EObject> T loadModel(String path, Class<T> clazz){
-		if (path.startsWith("http")){
-			return resourceSet.loadModel(downloadModel(path), clazz);
+		URI uri = null;
+		if (path.startsWith("http")) {
+			uri = downloadModel(path);
 		}
-		if (path.startsWith("platform") || path.startsWith("file")) {
-			return resourceSet.loadModel(URI.createURI(path), clazz);
+		else if (path.startsWith("platform") || path.startsWith("file")) {
+			uri = URI.createURI(path);
 		}
 		else {
-			return resourceSet.loadModel(URI.createFileURI(path), clazz);
+			uri = URI.createFileURI(path);
 		}
+		T object = resourceSet.loadModel(uri, clazz);
+		log.debug("Model " + path + " loaded by model manager is " + object);
+		return object;
 	}
 	
 	@Override

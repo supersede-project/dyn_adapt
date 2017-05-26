@@ -107,18 +107,18 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	
 	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		
-		System.out.println("Loading models from repository...");
+		log.debug("Loading adaptability models' dependencies from repository...");
 		loadModelsFromRepository (system, modelsLocation);
-		System.out.println("Models loaded");
+		log.debug("Adaptability models' dependencies loaded");
 		List<Aspect> aspects = new ArrayList<Aspect>();
 		try {
 			AdaptabilityModel modelMetadata = new AdaptabilityModel();
 			modelMetadata.setFeatureId(featureSUPERSEDEId);
 			modelMetadata.setSystemId(system);
 			
-			System.out.println("Loading adaptability models from " + system + " with feature " + featureSUPERSEDEId + "...");
+			log.debug("Loading adaptability models from " + system + " with feature " + featureSUPERSEDEId + "...");
 			aspects = this.getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
-			System.out.println("Adaptability models loaded");
+			log.debug("Adaptability models loaded");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -211,26 +211,30 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
 		
 		try {
-			List<Profile> profiles = this.getProfilesForSystem(system);
-			for (int i = 0; i < profiles.size(); i++) {
-				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
-			}
+			getProfilesForSystem(system);
+//			List<Profile> profiles = this.getProfilesForSystem(system);
+//			for (int i = 0; i < profiles.size(); i++) {
+//				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
+//			}
 			
-			List<Model> variants = this.getVariantModelsForSystem(system);
-			for (int i = 0; i < variants.size(); i++) {
-				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
-			}
+			getVariantModelsForSystem(system);
+//			List<Model> variants = this.getVariantModelsForSystem(system);
+//			for (int i = 0; i < variants.size(); i++) {
+//				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
+//			}
 			
-			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
-			for (int i = 0; i < patterns.size(); i++) {
-				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
-			}
+			getPatternModelsForSystem(system);
+//			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
+//			for (int i = 0; i < patterns.size(); i++) {
+//				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
+//			}
 			
-			List<FeatureModel> features = this.getFeatureModelsForSystem(system);
-			for (int i = 0; i < features.size(); i++) {
-				modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features.get(i).getName());
-			}
-			
+			getFeatureModelsForSystem(system);
+//			List<FeatureModel> features = this.getFeatureModelsForSystem(system);
+//			for (int i = 0; i < features.size(); i++) {
+//				modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features.get(i).getName());
+//			}
+//			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
