@@ -1,10 +1,13 @@
 package eu.supersede.dynadapt.serviceCompositionEnactor;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -15,11 +18,14 @@ import ptolemy.kernel.util.IllegalActionException;
 import ptolemy.kernel.util.NameDuplicationException;
 import ptolemy.kernel.util.Workspace;
 
-@SuppressWarnings("restriction")
-public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.IEnactor{
+import java.nio.file.Paths;
 
-	private Model umlEnactingModel=null;
+
+@SuppressWarnings("restriction")
+public class ServiceCompositionEnactor implements IEnactor{
 	
+	private Model umlEnactingModel=null;
+
 	public static void main(String[] args) {
 
 		/*
@@ -103,12 +109,10 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		
 		*/
 		
-		
-		
-		
-		
+
 		
 		ServiceCompositionEnactor main_class=new ServiceCompositionEnactor();
+		main_class.injectUMLModelsForValidation();
 		main_class.getEnactmentCode();
         
 	}
@@ -125,11 +129,34 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		   .put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
 		   .put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		
-		//this 3 lines of code are used for testing the Enactor with a uml model to be enacted that is located on the local file system 
+		//Resource res1 = set.getResource(URI.createFileURI("D:/mars_workspace/test/S1.uml"), true);
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test/S2.uml"), true);
-		//ArrayList<Resource> res_list = new ArrayList<Resource>();
-		//res_list.add(res2);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test/SiemensBaseModel.uml"), true);
+
+		/*
+		 * Comment the below lines for setting this.umlEnactingModel, when executing from SUPERSEDE components.
+		 * They are just used for testing the UML models locally  
+		 */		
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test-Srdjo/S2.uml"), true);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test-Srdjo/S2_unavailable.uml"), true);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable_variant1.uml"), true);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/SiemensBaseModel_32bd5fab-9aa7-481c-b1a0-10ea63a5b8a3.uml"), true);
+		
+		//String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
+		//String res2_path=umlModelsPath+"/umlmodels-validation/S2_unavailable_variant1.uml";
+		//Resource res2 = set.getResource(URI.createFileURI(res2_path), true);
+		//Model umlModel = (Model)EcoreUtil.getObjectByType(res2.getContents(), UMLPackage.Literals.MODEL);
+		//this.umlEnactingModel=umlModel;
+		
+		
+		/*
+		 * How to get the activity diagram from the Resource
+		 */
+		//Resource res=res_list.get(i);
+		//ModelImpl root=(ModelImpl)res.getContents().get(0);
+		//ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
+		
+		
 		
 		/**Load the model (this is also working but the approach above is used)
 		 * 
@@ -169,9 +196,10 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
                     e.printStackTrace();
 		}
 		
-		CURLGenerator CURLcode = new CURLGenerator();
-		
+		//CURLGenerator CURLcode = new CURLGenerator();
+				
 		ActivityImpl activity=(ActivityImpl)this.umlEnactingModel.getPackagedElements().get(0);
+		
 		List <ActivityNode> activity_nodes=activity.getNodes();
 		//CURLcode.analyze(activity, activity_nodes);
 		//CURLcode.inject();
@@ -183,14 +211,126 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		
 				
 	}
+	
+	
+	public String injectUMLModelsForValidation() {
+		
+		// TODO Auto-generated method stub
+		/** getting a UML resource (activity diagram from which the enactment code is generated)
+		 * 
+		 */
+		ResourceSet set = new ResourceSetImpl();
+		set.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+		set.getResourceFactoryRegistry().getExtensionToFactoryMap()
+		   .put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+		   .put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		//Resource res1 = set.getResource(URI.createFileURI("D:/mars_workspace/test/S1.uml"), true);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test/S2.uml"), true);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test/SiemensBaseModel.uml"), true);
 
-	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
+		/*
+		 * Comment the below 4 lines when executing from SUPERSEDE components.
+		 * They are just used for testing the UML models locally  
+		 */		
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test-Srdjo/S2.uml"), true);
+
+		
+		//Resource res2_1 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test-Srdjo/S2_unavailable5.uml"), true);
+		//Resource res2_2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test-Srdjo/S2_unavailable10.uml"), true);
+		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/SiemensBaseModel_32bd5fab-9aa7-481c-b1a0-10ea63a5b8a3.uml"), true);
+
+		//Resource res2_1 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable5.uml"), true);
+		//Resource res2_2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable10.uml"), true);
+
+		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
+		String res2_1_path=umlModelsPath+"/umlmodels-validation/S2_unavailable5.uml";
+		String res2_2_path=umlModelsPath+"/umlmodels-validation/S2_unavailable10.uml";
+		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
+		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
+
+		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
+		List<Model> uml_models_to_inject=new ArrayList<Model>();
+		uml_models_to_inject.add(umlModel_1);
+		uml_models_to_inject.add(umlModel_2);
+		
+		/*
+		 * How to get the activity diagram from the Resource
+		 */
+		//Resource res=res_list.get(i);
+		//ModelImpl root=(ModelImpl)res.getContents().get(0);
+		//ActivityImpl activity=(ActivityImpl)root.getPackagedElements().get(0);
+		
+		
+		
+		/**Load the model (this is also working but the approach above is used)
+		 * 
+		 */
+//		URI modelUri = URI.createFileURI("D:/mars_workspace/test/model.uml");
+//		ResourceSet modelSet = new ResourceSetImpl();
+//		modelSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+//		modelSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+//		modelSet.createResource(modelUri);
+//		Resource modelResource = modelSet.getResource(modelUri, true);
+//		Model model = (Model)EcoreUtil.getObjectByType(modelResource.getContents(), UMLPackage.Literals.MODEL);
+
+		
+				
+		/** Load the profile
+		 *  
+		 */
+//		URI profileUri = URI.createFileURI("D:/mars_workspace/Supersede-Profile/model.profile.uml");
+//		ResourceSet profileSet = new ResourceSetImpl();
+//		profileSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+//		profileSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+//		profileSet.createResource(profileUri);
+//		Resource profileResource = profileSet.getResource(profileUri, true);
+//		Profile profile = (Profile)EcoreUtil.getObjectByType(profileResource.getContents(), UMLPackage.Literals.PROFILE);
+//		Profile sopraProfile = (Profile)profile.getOwnedMember("RootElement");
+//		Stereotype Stereotype1 = (Stereotype)profile.getPackagedElements().get(0);
+//		Stereotype Stereotype2 = (Stereotype)profile.getPackagedElements().get(1);
+
+		PtolemyGenerator ptolemyModel = null;
+		try {
+                    ptolemyModel = new PtolemyGenerator(new Workspace());
+		} catch (IllegalActionException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+		} catch (NameDuplicationException e) {
+		    // TODO Auto-generated catch block
+                    e.printStackTrace();
+		}
+		
+		//CURLGenerator CURLcode = new CURLGenerator();
+		for(int i=0;i<uml_models_to_inject.size();i++)
+		{		
+			ActivityImpl activity=(ActivityImpl)uml_models_to_inject.get(i).getPackagedElements().get(0);
+			List <ActivityNode> activity_nodes=activity.getNodes();
+			//CURLcode.analyze(activity, activity_nodes);
+			//CURLcode.inject();
+			ptolemyModel.analyze(activity, activity_nodes);
+			ptolemyModel.inject();
+		}
+						
+		return "";
+		
+				
+	}
+	
+	
+
+	public void enactAdaptedModel(Model adaptedModel) throws Exception {
+		// TODO Auto-generated method stub
 		this.umlEnactingModel=adaptedModel;
+		this.injectUMLModelsForValidation();
 		this.getEnactmentCode();
+		
 	}
 
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
-		enactAdaptedModel(adaptedModel, demo);
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
