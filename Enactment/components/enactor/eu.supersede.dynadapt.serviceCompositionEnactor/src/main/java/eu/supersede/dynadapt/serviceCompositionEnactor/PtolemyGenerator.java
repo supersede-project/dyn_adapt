@@ -13,6 +13,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -42,6 +44,7 @@ import ptolemy.actor.lib.gui.Display;
 import ptolemy.actor.lib.Recorder;
 
 public class PtolemyGenerator extends TypedCompositeActor {
+	private final Logger log = LogManager.getLogger(this.getClass());
 
     /** the two lists are used for saving which nodes from the activity diagram correspond 
      * to which ptolemy actors
@@ -497,9 +500,9 @@ public class PtolemyGenerator extends TypedCompositeActor {
                            (conn.getInputStream())));
    
            String output;
-           System.out.println("Injecting the Ptolemy model - output from Server .... \n");
+           log.debug("Injecting the Ptolemy model - output from Server .... \n");
            while ((output = br.readLine()) != null) {
-                   System.out.println(output);
+                   log.debug(output);
            }
    
            conn.disconnect();

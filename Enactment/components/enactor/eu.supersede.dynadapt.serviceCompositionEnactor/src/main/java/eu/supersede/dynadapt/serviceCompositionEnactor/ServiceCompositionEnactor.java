@@ -3,6 +3,8 @@ package eu.supersede.dynadapt.serviceCompositionEnactor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -23,7 +25,7 @@ import java.nio.file.Paths;
 
 @SuppressWarnings("restriction")
 public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.IEnactor{
-	
+	private final Logger log = LogManager.getLogger(this.getClass());
 	private Model umlEnactingModel=null;
 
 	public static void main(String[] args) {
@@ -318,19 +320,15 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 				
 	}
 	
-	
-
-	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
-		// TODO Auto-generated method stub
+	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
+		log.debug("Enacting model: " + adaptedModel.getName());
 		this.umlEnactingModel=adaptedModel;
 		this.injectUMLModelsForValidation();
 		this.getEnactmentCode();
-		
 	}
 
 	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		enactAdaptedModel (adaptedModel, demo);		
 	}
 
 }
