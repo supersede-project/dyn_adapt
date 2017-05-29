@@ -1,0 +1,53 @@
+grammar eu.supersede.dynadapt.dsl.Aspect with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.eclipse.org/viatra/query/patternlanguage/PatternLanguage" as pattern
+import "http://zcu.cz/yafmt/model/fm" as fm
+
+generate aspect "http://www.supersede.eu/dynadapt/dsl/Aspect"
+
+Aspect:
+	"aspect" name = ID "{"
+		"feature" feature = [fm::Feature | QualifiedName] 
+		("," "advice" advice = [uml::Model | QualifiedName])?
+		"," "pointcuts" "{" pointcuts += Pointcut ("," pointcuts += Pointcut)* "}"
+		"," "compositions" "{" compositions += Composition ("," compositions += Composition)* "}"
+	"}"
+	;
+	
+Pointcut:
+	"pointcut" name = ID "{"
+		"pattern" pattern = [pattern::Pattern | QualifiedName]
+		("," "role" role = [uml::Stereotype | QualifiedName])?
+	"}"
+;
+
+Composition:
+	"composition" name = ID "{"
+		"feature_enabled" feature_enabled = EBOOLEAN
+		("," "jointpointRole" jointpointRole = [uml::Stereotype | QualifiedName])?
+		("," "adviceRole" advice = [uml::Stereotype | QualifiedName])?
+		"," "action" action = ActionOptionType
+	"}"
+;
+
+
+ActionOptionType:
+	Action | UpdateValue	
+;
+
+UpdateValue:
+	'update value' value = STRING
+;
+	
+Action:
+	ADD='add' | DELETE='delete' | REPLACE='replace' | UPDATE ='update'
+;
+	
+QualifiedName:
+  ID (=>'.' ID)*;
+
+terminal EBOOLEAN returns ecore::EBooleanObject:
+	'true' | 'false'
+;

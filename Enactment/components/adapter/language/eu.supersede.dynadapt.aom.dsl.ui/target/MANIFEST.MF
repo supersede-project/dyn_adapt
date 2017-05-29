@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl.ui; singleton:=true
+Export-Package: eu.supersede.dynadapt.dsl.ui.internal,eu.supersede.dyn
+ adapt.dsl.ui.contentassist,eu.supersede.dynadapt.dsl.ui.quickfix,eu.s
+ upersede.dynadapt.dsl.ui.contentassist.antlr,eu.supersede.dynadapt.ds
+ l.ui.contentassist.antlr.internal
+Bundle-Name: eu.supersede.dynadapt.aom.dsl.ui
+Bundle-Version: 1.0.0.201704051344
+Require-Bundle: eu.supersede.dynadapt.aom.dsl,org.eclipse.xtext.ui,org
+ .eclipse.xtext.ui.shared,org.eclipse.xtext.ui.codetemplates.ui,org.ec
+ lipse.ui.editors;bundle-version="3.5.0",org.eclipse.ui.ide;bundle-ver
+ sion="3.5.0",org.eclipse.ui,org.eclipse.compare,org.eclipse.xtext.bui
+ lder,org.eclipse.xtend.lib;resolution:=optional,org.eclipse.xtext.xba
+ se.lib,org.eclipse.xtext.common.types.ui;bundle-version="2.9.1"
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Activator: eu.supersede.dynadapt.dsl.ui.internal.AspectActivato
+ r
+Bundle-Vendor: Supersede Project
+Import-Package: org.apache.log4j
+
