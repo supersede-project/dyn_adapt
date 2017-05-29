@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 
 
 @SuppressWarnings("restriction")
-public class ServiceCompositionEnactor implements IEnactor{
+public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.IEnactor{
 	
 	private Model umlEnactingModel=null;
 
@@ -320,7 +320,7 @@ public class ServiceCompositionEnactor implements IEnactor{
 	
 	
 
-	public void enactAdaptedModel(Model adaptedModel) throws Exception {
+	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
 		// TODO Auto-generated method stub
 		this.umlEnactingModel=adaptedModel;
 		this.injectUMLModelsForValidation();
@@ -328,7 +328,7 @@ public class ServiceCompositionEnactor implements IEnactor{
 		
 	}
 
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
