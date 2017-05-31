@@ -1,9 +1,11 @@
 package eu.supersede.dynadapt.adapter.dashboard.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,8 +20,11 @@ public class Adaptation {
 	private String name;
     private Timestamp computation_timestamp;
     private double rank;
+    
+    @OneToMany(mappedBy="adaptation")
+    private List<Action> actions;
 
-    public Adaptation()
+	public Adaptation()
     {
     }
     
@@ -53,6 +58,14 @@ public class Adaptation {
 
 	public void setRank(double rank) {
 		this.rank = rank;
+	}
+	
+	public List<Action> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<Action> actions) {
+		this.actions = actions;
 	}
 
 }
