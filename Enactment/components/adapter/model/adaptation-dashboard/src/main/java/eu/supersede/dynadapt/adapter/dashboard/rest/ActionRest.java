@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import eu.supersede.dynadapt.adapter.dashboard.jpa.AdaptationsJpa;
-import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
+import eu.supersede.dynadapt.adapter.dashboard.jpa.ActionsJpa;
+import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 
 @RestController
-@RequestMapping("/adaptation")
-public class AdaptationRest
+@RequestMapping("/action")
+public class ActionRest
 {
     @Autowired
-    AdaptationsJpa adaptations;
+    ActionsJpa actions;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Adaptation> getAdaptations()
+    public List<Action> getActions()
     {
-    	return adaptations.findAll();
+    	return actions.findAll();
     }
 }
