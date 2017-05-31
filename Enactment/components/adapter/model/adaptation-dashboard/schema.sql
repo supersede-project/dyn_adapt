@@ -1,19 +1,30 @@
-DROP TABLE public.adaptations;
+DROP TABLE IF EXISTS public.enactments;
+DROP TABLE IF EXISTS public.actions;
+DROP TABLE IF EXISTS public.adaptations;
 
 CREATE TABLE adaptations (
-	adaptation_id bigint NOT NULL,
-	name text NOT NULL UNIQUE,
-	feature_id text NOT NULL,
-	enabled boolean NOT NULL,
-	description text NOT NULL,
+	fc_id text NOT NULL,
+	name text NOT NULL,
 	computation_timestamp timestamp NOT NULL,
 	rank real NOT NULL,
-	enacted boolean NOT NULL,
-	enacted_timestamp timestamp,
-	result boolean default false, 
-	enacted_time time
+	PRIMARY KEY (fc_id)
 );
 
-ALTER TABLE ONLY adaptations
-    ADD CONSTRAINT adaptations_primary_key PRIMARY KEY (adaptation_id);
-	
+CREATE TABLE actions (
+	fc_id text NOT NULL,
+	action_id text NOT NULL,
+	name text NOT NULL,
+	description text NOT NULL,
+	enabled boolean NOT NULL,
+	PRIMARY KEY (fc_id,action_id),
+	FOREIGN KEY (fc_id) REFERENCES adaptations(fc_id)
+);
+
+CREATE TABLE enactments (
+	fc_id text NOT NULL,
+	enactment_request_time timestamp NOT NULL,
+	enactment_completion_time time NOT NULL,
+	result boolean NOT NULL,
+	PRIMARY KEY (fc_id),
+	FOREIGN KEY (fc_id) REFERENCES adaptations(fc_id)
+);	

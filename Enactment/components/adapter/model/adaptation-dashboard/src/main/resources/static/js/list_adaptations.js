@@ -63,7 +63,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			width: '100%',
 			pageable: true,
 			autoheight: true,
-			autorowheight: true,
+			autorowheight: false,
 			source: dataAdapter,
 			columnsresize: true,
 			selectionmode: 'checkbox',
