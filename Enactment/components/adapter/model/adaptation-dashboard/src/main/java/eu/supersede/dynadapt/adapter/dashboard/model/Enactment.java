@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,11 +18,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Enactment {
 
 	@Id
-    private String fc_id;
-	private Timestamp enactment_request_timestamp;
+	private String fc_id;
+	private Timestamp enactment_request_time;
 	private Time enactment_completion_time;
 	private boolean result;
 	
+	@MapsId
 	@ManyToOne
 	@JoinColumn(name = "fc_id")
 	private Adaptation adaptation;
@@ -29,21 +31,13 @@ public class Enactment {
 	public Enactment()
     {
     }
-	
-	public String getFc_id() {
-		return fc_id;
-	}
-
-	public void setFc_id(String fc_id) {
-		this.fc_id = fc_id;
-	}
 
 	public Timestamp getEnactment_request_timestamp() {
-		return enactment_request_timestamp;
+		return enactment_request_time;
 	}
 
 	public void setEnactment_request_timestamp(Timestamp enactment_request_timestamp) {
-		this.enactment_request_timestamp = enactment_request_timestamp;
+		this.enactment_request_time = enactment_request_timestamp;
 	}
 
 	public Time getEnactment_completion_time() {

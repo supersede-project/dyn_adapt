@@ -16,7 +16,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 //    $scope.getAdaptations();
 	
 	$http({
-		url: "adaptation-dashboard/adaptation",
+		url: "adaptation-dashboard/enactment",
 		method: 'GET'
 	}).success(function (data, status) {
 		var localData = [];
@@ -24,18 +24,11 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 		for(var i = 0; i < data.length; i++)
 		{
 			var row = {};
-			row['name'] = data[i]['name'];
-			row['feature_id'] = data[i]['feature_id'];
-			row['enabled'] = data[i]['enabled'];
-			row['description'] = data[i]['description'];
-			var date = new Date(data[i]['enacted_timestamp']);
-			row['enacted_timestamp'] = date.toUTCString();
-			var result = data[i]['result'];
-			if (result == true) row['result'] = "SUCCESS";
-			else row['result'] = "FAILURE";
-			//var time = new Date(data[i]['enacted_time']);
-			row['enacted_time'] = data[i]['enacted_time'];
-			
+			row['fc_id'] = data[i]['fc_id'];			
+			var date = new Date(data[i]['enactment_request_time']);
+			row['enactment_request_time'] = date.toUTCString();
+			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
+			row['result'] = data[i]['result'];
 			
 			localData.push(row);
 		}
@@ -45,15 +38,12 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 		{
 			datatype: "json",
 			datafields: [
-				{ name: 'name', type: 'string' },
-				{ name: 'feature_id', type: 'string' },
-				{ name: 'enabled', type: 'string' },
-				{ name: 'description', type: 'string' },
-				{ name: 'enacted_timestamp', type: 'string' },
-				{ name: 'result', type: 'string' },
-				{ name: 'enacted_time', type: 'string' }
+				{ name: 'fc_id', type: 'string' },
+				{ name: 'enactment_request_time', type: 'string' },
+				{ name: 'enactment_completion_time', type: 'string' },
+				{ name: 'result', type: 'string' }
 			],
-			id: 'adaptationId',
+			id: 'fc_id',
 			localdata: localData
 		};
 		var dataAdapter = new $.jqx.dataAdapter(source);
@@ -68,18 +58,15 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Name', datafield: 'name' },
-				{ text: 'Feature Id', datafield: 'feature_id' },
-				{ text: 'Enabled', datafield: 'enabled' },
-				{ text: 'Description', datafield: 'description' },
-				{ text: 'Enactment timestamp', datafield: 'enacted_timestamp' },
+			    { text: 'Feature Id', datafield: 'fc_id' },
+			    { text: 'Enactment request time', datafield: 'enactment_request_time'},
+			    { text: 'Enactment completion time', datafield: 'enactment_completion_time'},
 				{ text: 'Result', datafield: 'result', 
 					cellsRenderer: function (row, columnDataField, value) {
-						if (value == 'SUCCESS') var color = 'green';
+						if (value == 'true') var color = 'green';
 						else var color = 'red';
 						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';margin-top: 4px; margin-bottom: 4px;">' + value + '</div>';
-					} },
-				{ text: 'Enactment time', datafield: 'enacted_time' }
+					} }
 			],
 			ready: function()
 			{

@@ -11,7 +11,7 @@ import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
 
 @RestController
-@RequestMapping("/adaptation")
+@RequestMapping("/enactment")
 public class EnactmentRest
 {
     @Autowired
