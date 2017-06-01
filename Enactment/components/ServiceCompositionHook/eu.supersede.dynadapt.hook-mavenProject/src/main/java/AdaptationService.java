@@ -70,15 +70,55 @@ public class AdaptationService {
 			    
 			        //Srdjan's version with ptolemy .xml file
 			        String newResponse =processSteps_ptolemy(url,req);
-			        res.body(newResponse);
+			        
+			        //Srdjan: added when the service called within a composite service is one from the spark adaptation services
+			        //in that case the response has the substrings like \" instead of only a single quote which is the problem for parsing from JavaScript engine
+			        String replacedResponse = newResponse.replaceAll("\\\\\"", "\"");
+			        String newResponseReturn="";
+			        if(replacedResponse.compareTo(newResponse)!=0)
+			        {
+			        	newResponseReturn = replacedResponse.substring(1, replacedResponse.length()-1);
+			        	res.body(newResponseReturn);
+			        }
+			        else
+			        {
+			        	res.body(newResponse);
+			        }
 			}
 			else
 			{
 				res.body(Util.sendGet(url));
 			}
+			
+			//for the validation purpose (make a service unavailable 5% of the time)
+			if(url.contains("unavailable5"))
+			{
+				//Random numbers from the range 0..99 is generated
+			    Random randomGenerator = new Random();
+			    int randomInt = randomGenerator.nextInt(100);
+			    if(randomInt<5) 
+			    {
+			    	res.status(500);
+			    	res.body("Service is unavailable at the moment!");
+			    }
+			    
+			}
+			//for the validation purpose (make a service unavailable 10% of the time)
+			if(url.contains("unavailable10"))
+			{
+				//Random numbers from the range 0..99 is generated
+			    Random randomGenerator = new Random();
+			    int randomInt = randomGenerator.nextInt(100);
+			    if(randomInt<10) 
+			    {
+			    	res.status(500);
+			    	res.body("Service is unavailable at the moment!");
+			    }
+			    
+			}
+		    
 			return res.body();						
 		});
-
 		
 		// POST
 		post("/relay/*", (req, res) -> {
@@ -157,59 +197,60 @@ public class AdaptationService {
 
 	//service adaptation using ptolemy workflow software (.xml files that represents the adaptation model are saved as adaptations and then executed in ptolemy)
 	public static String processSteps_ptolemy(String url, Request req) throws Exception
+    {
+    File file=null;  
+    String reqRes=null;
+    synchronized(url)
         {
-	    File file=null;  
-	    String reqRes=null;
-	    synchronized(url)
-            {
-	        String adaptation = adaptations.get(url);
-	        
-	        //creating a contemporary File from an XML String representing the adaptation
-	        try {
-	            file = new File("test1.txt");
-	            FileWriter fileWriter = new FileWriter(file);
-	            fileWriter.write(adaptation);
-	            fileWriter.flush();
-	            fileWriter.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	          
-	        //geting the name of the Recorder actor from the executed xml file in order to query it for the output results
-                String ptolemyRecorder=ReadXML.getRecorderName(file);
-                
-                MoMLSimpleApplication2 runPtolemy=null;
-                try {
-                    //running an xml file in ptolemy
-                    runPtolemy=new MoMLSimpleApplication2(adaptation,ptolemyRecorder);
-                } catch (Throwable e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                
-                //getting the final result that is saved in the Recorder element from running the file
-                if(runPtolemy!=null)
-                {
-                    reqRes=runPtolemy.getFinalResult();
-                    //this is added for updating the executed MOML file in the adaptation list: the reason is because after execution some parameters can be updated and need to be saved if they are used in the next execution
-                    String new_Moml_file = runPtolemy.getExecutedMOMLModel();
-                    adaptations.put(url, new_Moml_file);
-                    
-                }
-               
-            }
-	    
-	    //deleting a contemporary file
-	    
-	    if(file != null) 
-	    {  
-	        file.delete();
-	    }
-	    
-	    
-	    return reqRes;
+        String adaptation = adaptations.get(url);
+        
+        //creating a contemporary File from an XML String representing the adaptation
+        try {
+        	Random randomGenerator = new Random();
+		    int randomInt = randomGenerator.nextInt(1000);
+            file = new File("test-"+randomInt+".txt");
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(adaptation);
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-	
+          
+        //geting the name of the Recorder actor from the executed xml file in order to query it for the output results
+            String ptolemyRecorder=ReadXML.getRecorderName(file);
+            
+            MoMLSimpleApplication2 runPtolemy=null;
+            try {
+                //running an xml file in ptolemy
+                runPtolemy=new MoMLSimpleApplication2(adaptation,ptolemyRecorder);
+            } catch (Throwable e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+            //getting the final result that is saved in the Recorder element from running the file
+            if(runPtolemy!=null)
+            {
+                reqRes=runPtolemy.getFinalResult();
+                //this is added for updating the executed MOML file in the adaptation list: the reason is because after execution some parameters can be updated and need to be saved if they are used in the next execution
+                String new_Moml_file = runPtolemy.getExecutedMOMLModel();
+                adaptations.put(url, new_Moml_file);
+                
+            }
+           
+        }
+    
+    //deleting a contemporary file
+    
+    if(file != null) 
+    {  
+        file.delete();
+    }
+    
+    
+    return reqRes;
+    }
 	
 	//service adaptation using "steps" keyword in the cURL command (made by Tudor)
 	public static String processSteps(String url, Request req) throws Exception

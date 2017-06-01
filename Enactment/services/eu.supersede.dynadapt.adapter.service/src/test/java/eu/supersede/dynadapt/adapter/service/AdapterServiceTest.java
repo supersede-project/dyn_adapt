@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
@@ -14,7 +15,8 @@ public class AdapterServiceTest {
 	
 	@Before
 	public void setup() throws Exception{
-		service = new AdapterService();
+		boolean demo = true;
+		service = new AdapterService(demo);
 	}
 	
 	@Test
@@ -23,7 +25,7 @@ public class AdapterServiceTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
+			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -34,11 +36,25 @@ public class AdapterServiceTest {
 	}
 	
 	@Test
+	public void testAtosHSKDualVMHighLowAdaptation() {
+		try {			
+			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
+			service.enactAdaptationDecisionActions(
+					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Ignore @Test
 	public void testBatchAtosHighHSKAdaptation() throws Exception{
 		int numberRuns = 2;
 		
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-		String featureConfigurationId = "SmartPlatformFC_HSK_HighLoad";
+		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 		
 		for (int i=0; i<numberRuns; i++){
 			service.enactAdaptationDecisionActions(

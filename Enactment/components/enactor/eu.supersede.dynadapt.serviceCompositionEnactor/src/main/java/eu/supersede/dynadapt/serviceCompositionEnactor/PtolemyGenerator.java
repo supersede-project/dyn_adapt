@@ -13,6 +13,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -42,6 +44,7 @@ import ptolemy.actor.lib.gui.Display;
 import ptolemy.actor.lib.Recorder;
 
 public class PtolemyGenerator extends TypedCompositeActor {
+	private final Logger log = LogManager.getLogger(this.getClass());
 
     /** the two lists are used for saving which nodes from the activity diagram correspond 
      * to which ptolemy actors
@@ -370,19 +373,16 @@ public class PtolemyGenerator extends TypedCompositeActor {
         /** setting the endpoint of the service being composed from other services
          * 
          */
-        if (this.serviceEndpointSet==false)
+        List <Stereotype> activityStereotypes=activity.getAppliedStereotypes();
+        if(activityStereotypes.size()!=0)
         {
-            List <Stereotype> activityStereotypes=activity.getAppliedStereotypes();
-            if(activityStereotypes.size()!=0)
+            if(activityStereotypes.get(0).getName().equals("Service"))
             {
-                if(activityStereotypes.get(0).getName().equals("Service"))
-                {
-                    Stereotype service_stereotype=activityStereotypes.get(0);
-                    this.setServiceEndpoint(activity.getValue(service_stereotype, "endpoint").toString());
-                }
+                Stereotype service_stereotype=activityStereotypes.get(0);
+                this.setServiceEndpoint(activity.getValue(service_stereotype, "endpoint").toString());
             }
-            this.serviceEndpointSet=true;
         }
+           
 
         
         List<ActivityNode> activity_nodes_backup = new ArrayList <ActivityNode>(); 
@@ -404,26 +404,30 @@ public class PtolemyGenerator extends TypedCompositeActor {
         while(activity_nodes_backup.size()>0)
         {
             List <Stereotype> service_stereotypes=activity_nodes_backup.get(0).getAppliedStereotypes();
+            
             if(service_stereotypes.size()!=0)
             {
-                if(service_stereotypes.get(0).getName().equals("Service"))
-                {
-                    Stereotype service_stereotype=service_stereotypes.get(0);
-                    this.addActors(activity_nodes_backup.get(0), "Service", activity_nodes_backup.get(0).getValue(service_stereotype, "endpoint").toString());
-                    
-                }
-                else if (service_stereotypes.get(0).getName().equals("Callback"))
-                {
-                    Stereotype service_stereotype=service_stereotypes.get(0);
-                    this.addActors(activity_nodes_backup.get(0), "Callback", activity_nodes_backup.get(0).getValue(service_stereotype, "function").toString());
-                    
-                }
-                //this else is added in case that element has some other stereotype that is not Service or Callback (e.g. <<Jointpoint>> in SUPERSEDE)
-                else
-                {
-                    this.addActors(activity_nodes_backup.get(0), "","");
-                    
-                }
+            	for(int i=0;i<service_stereotypes.size();i++)
+            	{
+	                if(service_stereotypes.get(i).getName().equals("Service"))
+	                {
+	                    Stereotype service_stereotype=service_stereotypes.get(i);
+	                    this.addActors(activity_nodes_backup.get(0), "Service", activity_nodes_backup.get(0).getValue(service_stereotype, "endpoint").toString());
+	                    
+	                }
+	                else if (service_stereotypes.get(i).getName().equals("Callback"))
+	                {
+	                    Stereotype service_stereotype=service_stereotypes.get(i);
+	                    this.addActors(activity_nodes_backup.get(0), "Callback", activity_nodes_backup.get(0).getValue(service_stereotype, "function").toString());
+	                    
+	                }
+	                //this else is added in case that element has some other stereotype that is not Service or Callback (e.g. <<Jointpoint>> in SUPERSEDE)
+	                else
+	                {
+	                    this.addActors(activity_nodes_backup.get(0), "","");
+	                    
+	                }
+            	}
             
             }
             else
@@ -496,9 +500,9 @@ public class PtolemyGenerator extends TypedCompositeActor {
                            (conn.getInputStream())));
    
            String output;
-           System.out.println("Output from Server .... \n");
+           log.debug("Injecting the Ptolemy model - output from Server .... \n");
            while ((output = br.readLine()) != null) {
-                   System.out.println(output);
+                   log.debug(output);
            }
    
            conn.disconnect();

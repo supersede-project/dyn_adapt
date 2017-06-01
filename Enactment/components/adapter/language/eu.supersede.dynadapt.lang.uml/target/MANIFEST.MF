@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: eu.supersede.dynadapt.lang.uml
+Export-Package: eu.supersede.dynadapt.lang.uml
+Bundle-Name: Xtext support for UML
+Bundle-Version: 1.0.0.201704051344
+Require-Bundle: org.eclipse.xtext,org.objectweb.asm;bundle-version="[5
+ .0.1,6.0.0)";resolution:=optional,org.eclipse.uml2.uml.resources
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Supersede Project
+

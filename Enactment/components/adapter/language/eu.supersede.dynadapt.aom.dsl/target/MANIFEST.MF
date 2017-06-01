@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: eu.supersede.dynadapt.aom.dsl;singleton:=true
+Export-Package: eu.supersede.dynadapt.dsl,eu.supersede.dynadapt.dsl.as
+ pect,eu.supersede.dynadapt.dsl.aspect.impl,eu.supersede.dynadapt.dsl.
+ aspect.util,eu.supersede.dynadapt.dsl.formatting,eu.supersede.dynadap
+ t.dsl.generator,eu.supersede.dynadapt.dsl.parser.antlr,eu.supersede.d
+ ynadapt.dsl.parser.antlr.internal,eu.supersede.dynadapt.dsl.scoping,e
+ u.supersede.dynadapt.dsl.serializer,eu.supersede.dynadapt.dsl.service
+ s,eu.supersede.dynadapt.dsl.validation
+Bundle-Name: eu.supersede.dynadapt.aom.dsl
+Bundle-Version: 1.0.0.201704051344
+Require-Bundle: org.eclipse.xtext,org.eclipse.xtext.xbase,org.eclipse.
+ xtext.generator;bundle-version="2.9.1",org.eclipse.equinox.common;bun
+ dle-version="3.5.0",org.eclipse.uml2.codegen.ecore;bundle-version="2.
+ 1.2",cz.zcu.yafmt.model;bundle-version="0.3.0",org.eclipse.viatra.que
+ ry.patternlanguage;bundle-version="1.2.1",org.eclipse.emf.ecore,org.e
+ clipse.xtext.xbase.lib,org.antlr.runtime,org.eclipse.xtext.util,org.e
+ clipse.xtend.lib,org.eclipse.emf.common,org.eclipse.xtext.common.type
+ s,org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=option
+ al,eu.supersede.dynadapt.aom.dsl.extensionpoint;bundle-version="1.0.0
+ ",org.eclipse.uml2.uml;bundle-version="5.1.0"
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Supersede Project
+Import-Package: org.apache.log4j
+

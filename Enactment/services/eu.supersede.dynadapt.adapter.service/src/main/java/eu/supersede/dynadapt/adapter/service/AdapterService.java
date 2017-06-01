@@ -41,14 +41,23 @@ public class AdapterService {
 	URL url = null;
 	
 	public AdapterService() throws Exception{
-		setUp();
+		log.debug("Starting Adapter Service in production mode");
+		setUp(false);
 	}
 	
-	private void setUp() throws Exception {
+	public AdapterService(boolean demo) throws Exception{
+		if (demo)
+			log.debug("Starting Adapter Service in demo mode");
+		else
+			log.debug("Starting Adapter Service in production mode");
+		setUp(demo);
+	}
+	
+	private void setUp(boolean demo) throws Exception {
 		setupPlatform();		
 		mm = new ModelManager();
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
-		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 	}
 
 	private void setupPlatform() {

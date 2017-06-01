@@ -26,8 +26,9 @@ param (
 #Password is taken from command line upon invocation
 Connect-VIServer -Server medialab13.atosresearch.eu -User root -Password $password
 
+[comment Disable when Hypervisor hotplug is supported /]
 #Stoping vm with name: [vmName/]
-Stop-VM -VM "[vmName/]" -Confirm:$false
+#Stop-VM -VM "[vmName/]" -Confirm:$false
 
 [let vmCores : Integer = anInstanceSpecification.vmCores()]
 #Setting vm cores to [vmCores/]
@@ -39,8 +40,10 @@ Get-VM "[vmName/]" | Set-VM -NumCpu [vmCores/] -Confirm:$false
 Get-VM "[vmName/]" | Set-VM -MemoryGB [vmMemory/] -Confirm:$false
 [/let]
 
-#Starting vm with name: [vmName/]
-Start-VM -VM "[vmName/]" -Confirm:$false
+[comment Disable when Hypervisor hotplug is supported /]
+#Starting vm with name: [vmName/] only if it is not already started
+Get-VM "[vmName/]" | ?{$_.PowerState -eq "PoweredOff"} | Start-VM -Confirm:$false
+
 [/let]
 [/file]
 [/template]

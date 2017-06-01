@@ -1,0 +1,116 @@
+2017-04-07 16:19:44 INFO  org.eclipse.emf.mwe.utils.StandaloneSetup:242 - Registering platform uri '/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model'
+2017-04-07 16:19:44 WARN  org.eclipse.emf.mwe.utils.StandaloneSetup:392 - Skipping conflicting project gradle at 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository/gradle/wrapper/gradle-wrapper.jar!/' and using 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.featuremodel/gradle/wrapper/gradle-wrapper.jar!/' instead.
+2017-04-07 16:19:44 WARN  org.eclipse.emf.mwe.utils.StandaloneSetup:392 - Skipping conflicting project gradle at 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.featuremodel/gradle/wrapper/gradle-wrapper.jar!/' and using 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository.manager.service/gradle/wrapper/gradle-wrapper.jar!/' instead.
+2017-04-07 16:19:44 WARN  org.eclipse.emf.mwe.utils.StandaloneSetup:392 - Skipping conflicting project eu.supersede.if.api at 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository/lib/eu.supersede.if.api-0.3.0-SNAPSHOT.jar!/' and using 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/lib/eu.supersede.if.api-0.3.0-SNAPSHOT.jar!/' instead.
+2017-04-07 16:19:54 DEBUG eu.supersede.dynadapt.adapter.Adapter:98 - Adapter set up
+2017-04-07 16:19:54 DEBUG eu.supersede.dynadapt.adapter.Adapter:98 - Adapter set up
+2017-04-07 16:19:55 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_management> Enabled
+2017-04-07 16:19:55 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_management> Enabled
+2017-04-07 16:20:16 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:16 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:17 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:17 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:18 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:18 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:19 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:20 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:20:20 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_management
+2017-04-07 16:20:20 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_management
+2017-04-07 16:20:20 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_compositions> Enabled
+2017-04-07 16:20:20 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_compositions> Enabled
+2017-04-07 16:20:25 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_compositions
+2017-04-07 16:20:25 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_compositions
+2017-04-07 16:20:25 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_2400930721> Enabled
+2017-04-07 16:20:25 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_2400930721> Enabled
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 1 adaptations for feature: f_2400930721
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 1 adaptations for feature: f_2400930721
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:179 - 	Aspect name: sc2
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:179 - 	Aspect name: sc2
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:188 - 	Role: Joinpoint
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:188 - 	Role: Joinpoint
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:193 - 	Matching Element: org.eclipse.uml2.uml.internal.impl.CallBehaviorActionImpl@7cf66cf9 (name: GetMteorologicalData, visibility: <unset>) (isLeaf: false) (isLocallyReentrant: false) (isSynchronous: true)
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:193 - 	Matching Element: org.eclipse.uml2.uml.internal.impl.CallBehaviorActionImpl@7cf66cf9 (name: GetMteorologicalData, visibility: <unset>) (isLeaf: false) (isLocallyReentrant: false) (isSynchronous: true)
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS2
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS2
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS5
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS5
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:80 - Destroying GetMteorologicalData
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:80 - Destroying GetMteorologicalData
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041791> Enabled
+2017-04-07 16:20:29 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041791> Enabled
+2017-04-07 16:20:33 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041791
+2017-04-07 16:20:33 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041791
+2017-04-07 16:20:33 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041792> Enabled
+2017-04-07 16:20:33 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041792> Enabled
+2017-04-07 16:20:37 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041792
+2017-04-07 16:20:37 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041792
+2017-04-07 16:20:37 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_characteristics> Enabled
+2017-04-07 16:20:37 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_characteristics> Enabled
+2017-04-07 16:20:41 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_characteristics
+2017-04-07 16:20:41 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_characteristics
+2017-04-07 16:20:41 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <c2> Enabled
+2017-04-07 16:20:41 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <c2> Enabled
+2017-04-07 16:20:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: c2
+2017-04-07 16:20:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: c2
+2017-04-07 16:20:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:253 - Saved updated model in repository/models/adapted/SiemensBaseModel.uml
+2017-04-07 16:20:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:253 - Saved updated model in repository/models/adapted/SiemensBaseModel.uml
+2017-04-07 16:20:46 DEBUG eu.supersede.dynadapt.modelrepository.repositoryaccess.GenericModelRepository:228 - deleting temporary directory: /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/./repository/5553330347086005089
+2017-04-07 16:20:46 DEBUG eu.supersede.dynadapt.modelrepository.repositoryaccess.GenericModelRepository:228 - deleting temporary directory: /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/./repository/5553330347086005089
+2017-04-07 16:20:46 DEBUG eu.supersede.dynadapt.model.ModelManager:137 - deleting temporary directory: /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/4916921565605133959
+2017-04-07 16:20:46 DEBUG eu.supersede.dynadapt.model.ModelManager:137 - deleting temporary directory: /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/4916921565605133959
+2017-04-07 16:25:34 INFO  org.eclipse.emf.mwe.utils.StandaloneSetup:242 - Registering platform uri '/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model'
+2017-04-07 16:25:34 WARN  org.eclipse.emf.mwe.utils.StandaloneSetup:392 - Skipping conflicting project gradle at 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository/gradle/wrapper/gradle-wrapper.jar!/' and using 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.featuremodel/gradle/wrapper/gradle-wrapper.jar!/' instead.
+2017-04-07 16:25:34 WARN  org.eclipse.emf.mwe.utils.StandaloneSetup:392 - Skipping conflicting project gradle at 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.featuremodel/gradle/wrapper/gradle-wrapper.jar!/' and using 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository.manager.service/gradle/wrapper/gradle-wrapper.jar!/' instead.
+2017-04-07 16:25:34 WARN  org.eclipse.emf.mwe.utils.StandaloneSetup:392 - Skipping conflicting project eu.supersede.if.api at 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.modelrepository/lib/eu.supersede.if.api-0.3.0-SNAPSHOT.jar!/' and using 'archive:file:/home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/adapter/model/eu.supersede.dynadapt.adapter/lib/eu.supersede.if.api-0.3.0-SNAPSHOT.jar!/' instead.
+2017-04-07 16:25:44 DEBUG eu.supersede.dynadapt.adapter.Adapter:98 - Adapter set up
+2017-04-07 16:25:44 DEBUG eu.supersede.dynadapt.adapter.Adapter:98 - Adapter set up
+2017-04-07 16:25:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_management> Enabled
+2017-04-07 16:25:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_management> Enabled
+2017-04-07 16:26:07 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:08 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:08 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:09 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:10 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:11 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:12 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:12 INFO  org.eclipse.xtext.linking.impl.ImportedNamesAdapter:105 - getElements should be called with a QualifiedName during linking.
+2017-04-07 16:26:12 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_management
+2017-04-07 16:26:12 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_management
+2017-04-07 16:26:12 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_compositions> Enabled
+2017-04-07 16:26:12 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_compositions> Enabled
+2017-04-07 16:26:19 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_compositions
+2017-04-07 16:26:19 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_compositions
+2017-04-07 16:26:19 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_2400930721> Enabled
+2017-04-07 16:26:19 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_2400930721> Enabled
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 1 adaptations for feature: f_2400930721
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 1 adaptations for feature: f_2400930721
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:179 - 	Aspect name: sc2
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:179 - 	Aspect name: sc2
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:188 - 	Role: Joinpoint
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:188 - 	Role: Joinpoint
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:193 - 	Matching Element: org.eclipse.uml2.uml.internal.impl.CallBehaviorActionImpl@3458be63 (name: GetMteorologicalData, visibility: <unset>) (isLeaf: false) (isLocallyReentrant: false) (isSynchronous: true)
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:193 - 	Matching Element: org.eclipse.uml2.uml.internal.impl.CallBehaviorActionImpl@3458be63 (name: GetMteorologicalData, visibility: <unset>) (isLeaf: false) (isLocallyReentrant: false) (isSynchronous: true)
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS2
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS2
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS5
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:101 - Appending ServiceS5
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:80 - Destroying GetMteorologicalData
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.modeladapter.ComposableOpaqueAction:80 - Destroying GetMteorologicalData
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041791> Enabled
+2017-04-07 16:26:26 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041791> Enabled
+2017-04-07 16:26:31 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041791
+2017-04-07 16:26:31 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041791
+2017-04-07 16:26:31 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041792> Enabled
+2017-04-07 16:26:31 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <f_6363041792> Enabled
+2017-04-07 16:26:36 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041792
+2017-04-07 16:26:36 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: f_6363041792
+2017-04-07 16:26:36 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_characteristics> Enabled
+2017-04-07 16:26:36 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <service_characteristics> Enabled
+2017-04-07 16:26:40 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_characteristics
+2017-04-07 16:26:40 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: service_characteristics
+2017-04-07 16:26:40 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <c2> Enabled
+2017-04-07 16:26:40 DEBUG eu.supersede.dynadapt.adapter.Adapter:174 - Feature <c2> Enabled
+2017-04-07 16:26:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: c2
+2017-04-07 16:26:45 DEBUG eu.supersede.dynadapt.adapter.Adapter:176 - Found 0 adaptations for feature: c2
+2017-04-07 16:27:37 DEBUG eu.supersede.dynadapt.adapter.Adapter:253 - Saved updated model in repository/models/adapted/SiemensBaseModel.uml
+2017-04-07 16:27:37 DEBUG eu.supersede.dynadapt.adapter.Adapter:253 - Saved updated model in repository/models/adapted/SiemensBaseModel.uml

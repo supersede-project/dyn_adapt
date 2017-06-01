@@ -66,7 +66,7 @@ public class ModelAdapter implements IModelAdapter {
 		// Notified if variantElement cannot be found in variant model. In this
 		// case, adaptation cannot be applied
 		if (variantElement == null) {
-			System.err.println("Role " + adviceRole.getName() + " could not be found in variant model: "
+			log.debug("Role " + adviceRole.getName() + " could not be found in variant model: "
 					+ usingVariantModel.getName());
 			return null;
 		}

@@ -55,9 +55,9 @@ public class ModelRepositoryMapping{
 		atosHskBaseModel.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath + 
 				"/models/base/atos_smart_base_model.uml");
 		atosHskFeatureConfiguration.put(ResourceTimestamp.CURRENT, ModelRepositoryResolver.repositoryRelativePath +
-				"/features/configurations/SmartPlatformFC_HSK_LowLoad.yafc");
+				"/features/configurations/SmartPlatformFC_HSK_SingleVM_LowLoad.yafc");
 		atosHskFeatureConfiguration.put(ResourceTimestamp.NEWEST, ModelRepositoryResolver.repositoryRelativePath +
-				"/features/configurations/SmartPlatformFC_HSK_HighLoad.yafc");
+				"/features/configurations/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 		atosHskMapping.put(ResourceType.BASE, atosHskBaseModel);
 		atosHskMapping.put(ResourceType.FEATURE_CONFIGURATION, atosHskFeatureConfiguration);
 		

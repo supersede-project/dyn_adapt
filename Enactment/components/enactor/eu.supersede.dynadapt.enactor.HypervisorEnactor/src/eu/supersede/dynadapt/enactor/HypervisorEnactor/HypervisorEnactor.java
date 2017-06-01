@@ -3,7 +3,6 @@ package eu.supersede.dynadapt.enactor.HypervisorEnactor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -14,9 +13,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -26,21 +23,9 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.InstanceValue;
-import org.eclipse.uml2.uml.LiteralInteger;
-import org.eclipse.uml2.uml.LiteralReal;
-import org.eclipse.uml2.uml.LiteralString;
-import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.Slot;
-import org.eclipse.uml2.uml.ValueSpecification;
 import org.junit.Assert;
 
 import eu.supersede.dynadapt.enactor.IEnactor;
@@ -135,7 +120,7 @@ public class HypervisorEnactor implements IEnactor{
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
 		//Compute model differences
 		log.debug("Comparing base and adapted models");
 		Map<DiffType,Set<Element>> diffElements = mc.computeDifferencesBetweenModels (adaptedModel, originalModel);
@@ -150,16 +135,16 @@ public class HypervisorEnactor implements IEnactor{
 		
 		//Invoke enactment artifacts in Hypervisor Hook
 		log.debug("Enacting hypervisor scripts");
-		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts);
+		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts, demo);
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel) throws Exception {
+	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
 		//Enact adapted Model
 		List<Path> enactmentArfifacts = createEnactmentArtefactsForAdaptedModel(adaptedModel);
 		
 		//Invoke enactment artifacts in Hypervisor Hook
-		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts);
+		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts, demo);
 	}
 	
 	private Properties loadHypervisorHookProperties() throws IOException{
@@ -168,12 +153,13 @@ public class HypervisorEnactor implements IEnactor{
 		return properties;
 	}
 	
-	private void invokeEnactmentArtefactsInHypervisorHook(List<Path> enactmentArfifacts) throws Exception {
+	private void invokeEnactmentArtefactsInHypervisorHook(List<Path> enactmentArfifacts, boolean demo) throws Exception {
 		
 		for (Path script: enactmentArfifacts){
 			log.info("Enacting Hypervisor script: " + script);
 			
-			if (simulated_execution){
+			//Simulating enactment whenever demo is true (set in test) and if not, whenever simulated_execution is true (set by configuration)
+			if (demo || simulated_execution){ 
 				configureScriptForSimulation (script);
 			}
 			

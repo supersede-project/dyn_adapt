@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='osgi.bundle' id='eu.supersede.dynadapt.aom.dsl.resources' version='1.0.0.201704051344'>
+    <properties size='5'>
+      <property name='artifact.size' value='39512'/>
+      <property name='download.size' value='39512'/>
+      <property name='maven-groupId' value='eu.supersede.dynadapt'/>
+      <property name='maven-artifactId' value='eu.supersede.dynadapt.aom.dsl.resources'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+    </properties>
+  </artifact>
+</artifacts>
