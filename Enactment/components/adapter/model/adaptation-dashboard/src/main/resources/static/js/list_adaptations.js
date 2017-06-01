@@ -30,6 +30,23 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
 			row['result'] = data[i]['result'];
 			
+			var actions = [];
+			
+			for(var j = 0; j < data[i]['adaptation']['actions'].length; j++) {
+				var action = {};
+				console.log(data[i]['adaptation']['actions'][j]);
+				/*action['action_id'] = data[i]['adaptation']['actions'][j]['ac_id'];
+				action['action_name'] = data[i]['adaptation']['actions'][j]['name'];
+				action['action_description'] = data[i]['adaptation']['actions'][j]['description'];
+				action['action_enabled'] = data[i]['adaptation']['actions'][j]['enabled'];*/
+				//console.log(action);
+				actions.push(data[i]['adaptation']['actions'][j]);
+			}
+			
+			row['actions'] = actions;
+			
+			console.log(row);
+						
 			localData.push(row);
 		}
 		
@@ -41,8 +58,13 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 				{ name: 'fc_id', type: 'string' },
 				{ name: 'enactment_request_time', type: 'string' },
 				{ name: 'enactment_completion_time', type: 'string' },
-				{ name: 'result', type: 'string' }
+				{ name: 'result', type: 'string' },
+				{ name: 'actions', type: 'array' }
 			],
+			hierarchy:
+		    {
+		        root: 'actions'
+		    },
 			id: 'fc_id',
 			localdata: localData
 		};
@@ -59,13 +81,23 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Feature Id', datafield: 'fc_id' },
+			    { text: 'Action Id', datafield: 'actions',
+			    	cellsRenderer: function (row, columnDataField, value) {
+			    		return "HOLA";
+					} },
 			    { text: 'Enactment request time', datafield: 'enactment_request_time'},
 			    { text: 'Enactment completion time', datafield: 'enactment_completion_time'},
 				{ text: 'Result', datafield: 'result', 
 					cellsRenderer: function (row, columnDataField, value) {
-						if (value == 'true') var color = 'green';
-						else var color = 'red';
-						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';margin-top: 4px; margin-bottom: 4px;">' + value + '</div>';
+						if (value) {
+							var color = 'green';
+							var text = 'SUCCESS'
+						}
+						else {
+							var color = 'red';
+							var text = 'FAILURE';
+						}
+						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
 					} }
 			],
 			ready: function()

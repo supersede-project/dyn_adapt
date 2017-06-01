@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "adaptations")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Adaptation {
-	 
+	 	
 	@Id
     private String fc_id;
 	private String name;
