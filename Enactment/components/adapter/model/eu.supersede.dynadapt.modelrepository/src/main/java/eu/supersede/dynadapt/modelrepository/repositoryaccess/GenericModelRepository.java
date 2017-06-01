@@ -185,7 +185,7 @@ public abstract class GenericModelRepository {
 					//Path path = Paths.get(dModel.eResource().getURI().toString().replace("file:" + originalRepoPath, ""));
 					
 					// We make use of the URI.createFileURI method the backslash (Windows file separator)
-					String dRelativePath = URI.createFileURI(path.getParent().toString()).toString();
+					String dRelativePath = URI.createFileURI(path.getParent().toString()).toString().replace("file:", "");
 					String fileName = path.getFileName().toString();
 					ModelType dType = getModelType(dModel);
 					ModelMetadata dependMetadata = createModelMetadata(metadata, dType, dRelativePath, fileName);
