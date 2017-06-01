@@ -171,8 +171,10 @@ public class Adapter implements IAdapter {
 			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
 			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
 			
-			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
-					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
+//			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
+//					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
+			
+			FeatureConfiguration newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
 	
 			doEnactment(system, null, newFeatureConfig);
 
