@@ -30,22 +30,18 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
 			row['result'] = data[i]['result'];
 			
-			var actions = [];
+			row['action_ids'] = [];
+			row['action_names'] = [];
+			row['action_descriptions'] = [];
+			row['action_enableds'] = [];
 			
 			for(var j = 0; j < data[i]['adaptation']['actions'].length; j++) {
-				var action = {};
-				console.log(data[i]['adaptation']['actions'][j]);
-				/*action['action_id'] = data[i]['adaptation']['actions'][j]['ac_id'];
-				action['action_name'] = data[i]['adaptation']['actions'][j]['name'];
-				action['action_description'] = data[i]['adaptation']['actions'][j]['description'];
-				action['action_enabled'] = data[i]['adaptation']['actions'][j]['enabled'];*/
-				//console.log(action);
-				actions.push(data[i]['adaptation']['actions'][j]);
+				
+				row['action_ids'].push(data[i]['adaptation']['actions'][j]['ac_id']);
+				row['action_names'].push(data[i]['adaptation']['actions'][j]['name']);
+				row['action_descriptions'].push(data[i]['adaptation']['actions'][j]['description']);
+				row['action_enableds'].push(data[i]['adaptation']['actions'][j]['enabled']);
 			}
-			
-			row['actions'] = actions;
-			
-			console.log(row);
 						
 			localData.push(row);
 		}
@@ -59,7 +55,10 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 				{ name: 'enactment_request_time', type: 'string' },
 				{ name: 'enactment_completion_time', type: 'string' },
 				{ name: 'result', type: 'string' },
-				{ name: 'actions', type: 'array' }
+				{ name: 'action_ids', type: 'array' },
+				{ name: 'action_names', type: 'array' },
+				{ name: 'action_descriptions', type: 'array' },
+				{ name: 'action_enableds', type: 'array' }
 			],
 			hierarchy:
 		    {
@@ -69,21 +68,41 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			localdata: localData
 		};
 		var dataAdapter = new $.jqx.dataAdapter(source);
-		
+				
 		$scope.gridSettings =
 		{
 			width: '100%',
 			pageable: true,
 			autoheight: true,
-			autorowheight: false,
+			autorowheight: true,
 			source: dataAdapter,
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Feature Id', datafield: 'fc_id' },
-			    { text: 'Action Id', datafield: 'actions',
+			    { text: 'Action id', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		return "HOLA";
+			    		var text = value[0];
+			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
+			    		return '<div class="jqx-grid-cell-left-align" style="margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+					} },
+				{ text: 'Action name', datafield: 'action_names',
+			    	cellsRenderer: function (row, columnDataField, value) {
+			    		var text = value[0];
+			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
+			    		return '<div class="jqx-grid-cell-left-align" style="margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+					} },
+				{ text: 'Action description', datafield: 'action_descriptions',
+			    	cellsRenderer: function (row, columnDataField, value) {
+			    		var text = value[0];
+			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
+			    		return '<div class="jqx-grid-cell-left-align" style="color:margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+					} },
+				{ text: 'Action enabled', datafield: 'action_enableds',
+			    	cellsRenderer: function (row, columnDataField, value) {
+			    		var text = value[0];
+			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
+			    		return '<div class="jqx-grid-cell-left-align" style="color:margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
 					} },
 			    { text: 'Enactment request time', datafield: 'enactment_request_time'},
 			    { text: 'Enactment completion time', datafield: 'enactment_completion_time'},
