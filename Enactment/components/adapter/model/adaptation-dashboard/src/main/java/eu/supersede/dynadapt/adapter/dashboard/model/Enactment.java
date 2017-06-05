@@ -21,6 +21,7 @@ import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
 public class Enactment {
 	
 	@Id
+	@JsonIgnore
 	private String fc_id;
 	private Timestamp enactment_request_time;
 	private Time enactment_completion_time;
@@ -28,7 +29,6 @@ public class Enactment {
 	
 	@MapsId
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "fc_id")
 	private Adaptation adaptation;
 	
