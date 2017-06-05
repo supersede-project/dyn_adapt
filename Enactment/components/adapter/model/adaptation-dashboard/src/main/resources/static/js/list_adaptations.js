@@ -79,34 +79,50 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Feature Id', datafield: 'fc_id' },
-			    { text: 'Action id', datafield: 'action_ids',
+			    { text: 'Feature Id', align: 'center', datafield: 'fc_id' , width: 80},
+			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var text = value[0];
-			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
-			    		return '<div class="jqx-grid-cell-left-align" style="margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+			    		var grid = '<table style="height:100%; width:100%">';
+			    		for (var i = 0; i < value.length; i++) {
+			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    		}
+			    		grid += '</table>'
+			    		return grid;
 					} },
-				{ text: 'Action name', datafield: 'action_names',
+				{ text: 'Action name', columngroup: 'Actions', align: 'center', datafield: 'action_names',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var text = value[0];
-			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
-			    		return '<div class="jqx-grid-cell-left-align" style="margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+			    		var grid = '<table style="height:100%; width:100%">';
+			    		for (var i = 0; i < value.length; i++) {
+			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    		}
+			    		grid += '</table>'
+			    		return grid;
 					} },
-				{ text: 'Action description', datafield: 'action_descriptions',
+				{ text: 'Action description', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var text = value[0];
-			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
-			    		return '<div class="jqx-grid-cell-left-align" style="color:margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+			    		var grid = '<table style="height:100%; width:100%">';
+			    		for (var i = 0; i < value.length; i++) {
+			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    		}
+			    		grid += '</table>'
+			    		return grid;
 					} },
-				{ text: 'Action enabled', datafield: 'action_enableds',
+				{ text: 'Action enabled', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var text = value[0];
-			    		for (var i = 1; i < value.length; i++) text += '<br\>' + value[i];
-			    		return '<div class="jqx-grid-cell-left-align" style="color:margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+			    		var grid = '<table style="height:100%; width:100%">';
+			    		for (var i = 0; i < value.length; i++) {
+			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    		}
+			    		grid += '</table>'
+			    		return grid;
 					} },
-			    { text: 'Enactment request time', datafield: 'enactment_request_time'},
-			    { text: 'Enactment completion time', datafield: 'enactment_completion_time'},
-				{ text: 'Result', datafield: 'result', 
+			    { text: 'Enactment request time', align: 'center', datafield: 'enactment_request_time', width: 240},
+			    { text: 'Enactment completion time', align: 'center', datafield: 'enactment_completion_time', width: 200},
+				{ text: 'Result', align: 'center', datafield: 'result', width: 70,  
 					cellsRenderer: function (row, columnDataField, value) {
 						if (value) {
 							var color = 'green';
@@ -119,6 +135,10 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
 					} }
 			],
+			columngroups: 
+                [
+                  { text: 'Actions', align: 'center', name: 'Actions' }
+                ],
 			ready: function()
 			{
 				$('#btnEnact').jqxButton({ disabled: true });
