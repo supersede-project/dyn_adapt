@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
@@ -27,6 +28,7 @@ public class Enactment {
 	
 	@MapsId
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "fc_id")
 	private Adaptation adaptation;
 	
