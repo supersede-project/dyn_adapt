@@ -19,6 +19,7 @@ public class EnactmentRest
 {
     @Autowired
     EnactmentsJpa enactments;
+    AdaptationsJpa adaptations;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Enactment> getEnactments()
@@ -36,6 +37,14 @@ public class EnactmentRest
     public void deleteEnactment(@PathVariable("id") String id)
     {
     	enactments.delete(id);
+    }
+    
+    @RequestMapping(value = "", method = RequestMethod.POST )
+    public Enactment addEnactment(Enactment enactment)
+    {
+    	Adaptation a = adaptations.findOne(enactment.getFc_id());
+    	enactment.setAdaptation(a);
+    	return enactments.save(enactment);
     }
     
 }

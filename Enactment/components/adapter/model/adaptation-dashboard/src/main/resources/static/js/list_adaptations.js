@@ -24,7 +24,8 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 		for(var i = 0; i < data.length; i++)
 		{
 			var row = {};
-			row['fc_id'] = data[i]['fc_id'];			
+			console.log(data[i]);
+			row['fc_id'] = data[i]['adaptation']['fc_id'];			
 			row['enactment_request_time'] = data[i]['enactment_request_time'];
 			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
 			row['result'] = data[i]['result'];

@@ -20,7 +20,6 @@ public class AdaptationRest
 {
     @Autowired
     AdaptationsJpa adaptations;
-    EnactmentsJpa enactments;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Adaptation> getAdaptations()
@@ -44,14 +43,6 @@ public class AdaptationRest
     public Adaptation addAdaptation(Adaptation adaptation)
     {
     	return adaptations.save(adaptation);
-    }
-    
-    @RequestMapping(value = "/{id}/enact", method = RequestMethod.POST, consumes = "application/json")
-    public Enactment enactAdaptation(Enactment enactment)
-    {
-    	Adaptation a = adaptations.findOne(enactment.getFc_id());
-    	enactment.setAdaptation(a);
-    	return enactments.save(enactment);
     }
     
 }
