@@ -10,7 +10,7 @@
         </slot>
         <slot xmi:id="_7dRewATWEeeo4rafDiNNWw">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_SasTcOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralInteger" xmi:id="_dwpoYATXEeeo4rafDiNNWw" value="3"/>
+          <value xmi:type="uml:LiteralInteger" xmi:id="_dwpoYATXEeeo4rafDiNNWw" value="1"/>
         </slot>
         <slot xmi:id="_7sauAATWEeeo4rafDiNNWw">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_U8Y0IOlREea6tPfvbkvCTg"/>
