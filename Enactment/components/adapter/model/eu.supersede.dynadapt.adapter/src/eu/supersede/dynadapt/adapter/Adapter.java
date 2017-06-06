@@ -298,7 +298,8 @@ public class Adapter implements IAdapter {
 					}
 				}
 				Model variant = aspect.getAdvice();
-				if (variant != null) log.debug("\tVariant: " + variant.getName());
+
+				log.debug("\tVariant: " + (variant!=null?variant.getName():""));
 								
 				for (Composition c : aspect.getCompositions()) {
 					log.debug("\tComposition " + c.getName());
