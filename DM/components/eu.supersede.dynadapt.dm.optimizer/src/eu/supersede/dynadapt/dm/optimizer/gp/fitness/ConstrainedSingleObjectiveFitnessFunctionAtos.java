@@ -153,9 +153,12 @@ public class ConstrainedSingleObjectiveFitnessFunctionAtos extends AbstractFitne
 	private double computeFitness (double totalCores, double totalMemory){
 		final double ART = Parameters.CONSTRAINT_THRESHOLD; // = 5 seconds
 //		final double C1 = 10, C2 = 1, C3 = 0, C4 = 1, C5 = 1;
-		double threads = Parameters.ATOS_HSK_CONST1 / ART;
-		double minimumCores = Parameters.ATOS_HSK_CONST2 * threads + Parameters.ATOS_HSK_CONST3;
-		double minimumMemory = Parameters.ATOS_HSK_CONST4 * threads + Parameters.ATOS_HSK_CONST5;
+		double threads = Parameters.ATOS_HSK_CONST1 / ART; //40 ms (normal), 1 sec (anormal)
+		//Normal ART (40ms, 100ms) up to 500 thread - 1 core, 1GB RAM
+		//Abnormal ART (~1000 ms) - 1000 thread - 2 cores, 2GB RAM
+		
+		double minimumCores = Parameters.ATOS_HSK_CONST2 * threads + Parameters.ATOS_HSK_CONST3; //C3=0, C2, 1 core = 500 threads, 2 cores = 1000 threads
+		double minimumMemory = Parameters.ATOS_HSK_CONST4 * threads + Parameters.ATOS_HSK_CONST5; //C5=0, C4, 1GB = 500 threads, 2 Gb = 1000 threads
 		if (totalCores < minimumCores || totalMemory < minimumMemory){
 			// invalid individual
 			return Double.MAX_VALUE;
