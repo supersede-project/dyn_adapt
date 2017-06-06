@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/eu.supersede.dynadapt.adapter/repository/patterns/eu/supersede/dynadapt/usecases/health/health.vql
+ * Generated from platform:/resource/eu.supersede.dynadapt.adapter/repository/patterns.old/eu/supersede/dynadapt/usecases/health/health.vql
  */
 package eu.supersede.dynadapt.usecases.health.util;
 

@@ -2,7 +2,7 @@ aspect timeslottwitter {
 	feature MonitoringSystem.MonitoringSystem.Social_Networks.Twitter.timeSlot,
 	pointcuts{	
 		pointcut Twitter{
-			pattern patterns.twitterTimeSlot,
+			pattern eu.supersede.dynadapt.usecases.patterns.twitterTimeSlot,
 			role ADM.Joinpoint
 		}
 	},
