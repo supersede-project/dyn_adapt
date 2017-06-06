@@ -3,7 +3,7 @@ aspect atos_smart_hsk_high_load {
 	advice atos_smart_hsk_vm2a_high,
 	pointcuts{
 		pointcut HSK_VM{
-			pattern eu.supersede.dynadapt.usecases.atos.patterns.VMInstancesContainingHSKServices,
+			pattern eu.supersede.dynadapt.usecases.patterns.VMInstancesContainingHSKServices,
 			role ADM.Joinpoint
 		}
 	},
