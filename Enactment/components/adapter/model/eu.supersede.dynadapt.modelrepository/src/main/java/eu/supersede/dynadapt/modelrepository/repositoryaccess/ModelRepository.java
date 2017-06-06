@@ -22,7 +22,7 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
 import java.io.File;
-import java.io.FilenameFilter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -30,6 +30,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -43,11 +44,11 @@ import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
+import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
-import eu.supersede.dynadapt.model.IModelManager;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
-import eu.supersede.integration.api.adaptation.types.GenericModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -60,23 +61,78 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	private final static Logger log = LogManager.getLogger(ModelRepository.class);
 	
 	private String repository;
+	private URI uri;
 	private URL url;
 
 	public ModelRepository(String repository, String repositoryRelativePath, ModelManager modelManager) throws Exception {
 		super(repositoryRelativePath);
+
+		//FIXME To remove repository as a variable and make all the class use "repositoryURI"
 		this.repository = repository;
+//		this.uri = addSegments(URI.createURI(repository), this.repositoryRelativePath);
+		this.uri = URI.createURI(repository);
+
+		// FIXME To use "repositoryURI" rather than "url"
 		String userdir = System.getProperty("user.dir");
-		Path path = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		Path path = FileSystems.getDefault().getPath(userdir, repositoryRelativePath);
 		this.url = new URL (path.toUri().toURL().toString()); //URL regenerated from textual representation, otherwise it does not work.
 		this.modelManager = modelManager;
 	}
 	
-	public ModelRepository(String repository, URL url, ModelManager modelManager) throws MalformedURLException {
+	public ModelRepository(String repository, URL url, ModelManager modelManager) throws IOException {
 		this.repository = repository;
+		this.uri = URI.createURI(repository);
 		this.url = url;
 		this.modelManager = modelManager;
 	}
 
+	/**
+	 * To be modified by specializing classes to have a different temporal folder strategy.
+	 * The method should ensure the folder exists and it is valid. 
+	 * @param path the temporal folder path
+	 * @return the path for the repository's temporary folder
+	 * @throws IOException 
+	 */
+	protected Path getTemporaryDirectory(Path path) throws IOException {
+		return createTemporaryDirectory(path, true);
+	}
+	
+	/**
+	 * This method adds string path segments into a URI 
+	 * @param uri to add the segments
+	 * @param segments the list of string path segments
+	 * @return the new uri
+	 */
+	private URI addSegments(URI uri, String... segments) {
+		URI result = uri;
+		// Cleaning the last segment in case it is empty, due to a conversion from a string ending in "/"
+		if (result.hasTrailingPathSeparator()) {
+			result = result.trimSegments(1);
+		}
+		// Breaking down segments into individual path items before adding them to the URI as segments 
+		for (String arg : segments) {
+			Path path = Paths.get(arg);
+			Iterator<Path> paths = path.iterator();
+			while (paths.hasNext()) {
+				Path segment = paths.next();
+				result = result.appendSegment(segment.toString());
+			}
+	    }
+		return result;
+	}
+	
+	/**
+	 * To be modified by specializing classes to have a different model load strategy.
+	 * @param relativePath
+	 * @param fileName
+	 * @param clazz class of the model root element
+	 * @return model root element
+	 */
+	protected <T extends EObject> T loadModel(String relativePath, String fileName, Class<T> clazz) {
+		URI uri = addSegments(this.uri, relativePath, fileName);
+		return modelManager.loadModel(uri.toString(), clazz);
+	}
+	
 	/**
 	 * This method returns a list of aspect models linked to an specific
 	 * featureSUPERSEDE given the featureSUPERSEDE id and the models' location
@@ -88,15 +144,13 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	public List<Aspect> getAspectModels(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		List<Aspect> aspects = new ArrayList<Aspect>();
 
-		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
+		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
 
-//		IAdaptationParser ap = loadModels(modelsLocation);
-		loadModels(modelsLocation);
+		IAdaptationParser ap = loadModels(modelsLocation);
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
-//				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
-				Aspect a = getAspectModelFromPath(repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					aspects.add(a);
 				}
@@ -105,39 +159,38 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return aspects;
 	}
 	
+	/**
+	 * TODO Take away the modelsLocation parameter; if we get them from model
+	 * repository this is not requiered.
+	 * @param system
+	 * @param featureSUPERSEDEId
+	 * @param modelsLocation
+	 * @return
+	 */
 	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureSUPERSEDEId, Map<String, String> modelsLocation) {
+		List<Aspect> aspects = new ArrayList<Aspect>();
 		
 		log.debug("Loading adaptability models' dependencies from repository...");
-		loadModelsFromRepository (system, modelsLocation);
+		IAdaptationParser ap = loadModelsFromRepository (system, modelsLocation);
 		log.debug("Adaptability models' dependencies loaded");
-		List<Aspect> aspects = new ArrayList<Aspect>();
+
 		try {
 			AdaptabilityModel modelMetadata = new AdaptabilityModel();
 			modelMetadata.setFeatureId(featureSUPERSEDEId);
 			modelMetadata.setSystemId(system);
 			
 			log.debug("Loading adaptability models from " + system + " with feature " + featureSUPERSEDEId + "...");
-			aspects = this.getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
+			aspects = getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
 			log.debug("Adaptability models loaded");
+			// FIXME This should not be necessary as there is parse logic that were not called in the previous call
+			for (int i = 0; i < aspects.size(); i++) {
+				getAspectModel(ap, aspects.get(i).eResource().getURI().toString());
+			}
+			log.debug("Adaptability models parsed");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		/*File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
-
-//		IAdaptationParser ap = loadModels(modelsLocation);
-		loadModels(modelsLocation);
-
-		if (aspectsFiles != null) {
-			for (int i = 0; i < aspectsFiles.length; i++) {
-//				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
-				Aspect a = getAspectModelFromPath(repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
-				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
-					aspects.add(a);
-				}
-			}
-		}*/
 		return aspects;
 	}
 	
@@ -155,16 +208,14 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	public List<URI> getAspectModelsURIs(String featureSUPERSEDEId, Map<String, String> modelsLocation) {
 		List<URI> uris = new ArrayList<URI>();
 
-		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"), "aspect");
+		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
 
-//		IAdaptationParser ap = loadModels(modelsLocation);
-		loadModels(modelsLocation);
+		IAdaptationParser ap = loadModels(modelsLocation);
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
 				String aspectModelPath = repository + modelsLocation.get("aspects") + aspectsFiles[i].getName();
-//				Aspect a = getAspectModel(ap, aspectModelPath);
-				Aspect a = getAspectModelFromPath(aspectModelPath);
+				Aspect a = getAspectModel(ap, aspectModelPath);
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					uris.add(URI.createURI(aspectModelPath));
 				}
@@ -173,83 +224,81 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return uris;
 	}
 
-	private IModelManager loadModels(Map<String, String> modelsLocation) {
-//		IAdaptationParser parser = new AdaptationParser(modelManager);
+	private IAdaptationParser loadModels(Map<String, String> modelsLocation) {
+		IAdaptationParser parser = new AdaptationParser(modelManager);
 
-		File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
+		File[] variants = getFiles(modelsLocation.get("variants")); //FIXME only uml models should be included
 		for (int i = 0; i < variants.length; i++) {
-//			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
-			modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants[i].getName());
+			parser.loadUMLResource(repository + modelsLocation.get("variants") + variants[i].getName());
 		}
-
-		File[] profiles = getFiles(modelsLocation.get("profiles"), "uml");
+		
+		File[] profiles = getFiles(modelsLocation.get("profiles"));
 		for (int i = 0; i < profiles.length; i++) {
-//			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
-			modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles[i].getName());
+			parser.loadProfileResource(repository + modelsLocation.get("profiles") + profiles[i].getName());
 		}
 
-		File[] patterns = getFiles(modelsLocation.get("patterns"), "vql");
+		File[] patterns = getFiles(modelsLocation.get("patterns"));
 		for (int i = 0; i < patterns.length; i++) {
-//			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
-			modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns[i].getName());
+			parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns[i].getName());
 		}
 
-
-		File[] features = getFiles(modelsLocation.get("features"), "yafm");
+		File[] features = getFiles(modelsLocation.get("features"));
 		for (int i = 0; i < features.length; i++) {
-//			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
-			modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features[i].getName());
+			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
 		}
 
-		//return parser;
-		return modelManager;
+		return parser;
 	}
 	
-	private IModelManager loadModelsFromRepository(ModelSystem system, Map<String, String> modelsLocation) {
-//		IAdaptationParser parser = new AdaptationParser(modelManager);
-
-		//File[] variants = getFiles(modelsLocation.get("variants"), "uml"); //FIXME only uml models should be included
+	private IAdaptationParser loadModelsFromRepository(ModelSystem system, Map<String, String> modelsLocation) {
+		IAdaptationParser parser = new AdaptationParser(modelManager);
 		
 		try {
-			getProfilesForSystem(system);
-//			List<Profile> profiles = this.getProfilesForSystem(system);
-//			for (int i = 0; i < profiles.size(); i++) {
+			
+//			getProfilesForSystem(system);
+			List<Profile> profiles = this.getProfilesForSystem(system);
+			for (int i = 0; i < profiles.size(); i++) {
 //				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
-//			}
+//				parser.loadProfileResource(repository + modelsLocation.get("profiles") + variants.get(i).getName());
+				parser.loadProfileResource(profiles.get(i).eResource().getURI().toString());
+			}
 			
-			getVariantModelsForSystem(system);
-//			List<Model> variants = this.getVariantModelsForSystem(system);
-//			for (int i = 0; i < variants.size(); i++) {
+//			getVariantModelsForSystem(system);
+			List<Model> variants = this.getVariantModelsForSystem(system);
+			for (int i = 0; i < variants.size(); i++) {
 //				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
-//			}
-			
-			getPatternModelsForSystem(system);
-//			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
-//			for (int i = 0; i < patterns.size(); i++) {
+//				parser.loadUMLResource(repository + modelsLocation.get("variants") + profiles.get(i).getName());
+				parser.loadUMLResource(variants.get(i).eResource().getURI().toString());
+			}
+						
+//			getPatternModelsForSystem(system);
+			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
+			for (int i = 0; i < patterns.size(); i++) {
 //				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
-//			}
+//				parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns.get(i).get.getName());
+				parser.loadPatternResource(patterns.get(i).eResource().getURI().toString());
+			}
 			
-			getFeatureModelsForSystem(system);
-//			List<FeatureModel> features = this.getFeatureModelsForSystem(system);
-//			for (int i = 0; i < features.size(); i++) {
-//				modelManager.loadFeatureModel(repository + modelsLocation.get("features") + features.get(i).getName());
-//			}
-//			
+//			getFeatureModelsForSystem(system);
+			List<FeatureModel> features = this.getFeatureModelsForSystem(system);
+			for (int i = 0; i < features.size(); i++) {
+//				modelManager.loadFeatureModel(repository + "repository/" + modelsLocation.get("features") + features.get(i).getName());
+//				parser.loadFeatureResource(repository + modelsLocation.get("features") + features.get(i).getName());
+				parser.loadFeatureResource(features.get(i).eResource().getURI().toString());
+			}	
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error loading adaptability model's dependencies from repository", e);
 		}
-
-		//return parser;
-		return modelManager;
+		return parser;
 	}
 	
-//	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
-	private Aspect getAspectModelFromPath(String aspectModelPath) {
-//		return parser.parseAdaptationModel(aspectModelPath); //Do not use: this approach gives problems with relative paths
-		return modelManager.loadAspectModel(aspectModelPath);
+	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
+		return parser.parseAdaptationModel(aspectModelPath); //Do not use: this approach gives problems with relative paths
+//		return modelManager.loadAspectModel(aspectModelPath);
 	}
 	
-	private File[] getFiles(String folderPath, final String extension) {
+	private File[] getFiles(String folderPath) {
 		/*
 		 * Models in class path
 		 */
@@ -263,7 +312,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 			e1.printStackTrace();
 		}
 		
-		File[] files = null;
 		File folder = null;
 
 		try {
@@ -271,30 +319,9 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		// create new filename filter
-        FilenameFilter fileNameFilter = new FilenameFilter() {
-  
-           @Override
-           public boolean accept(File dir, String name) {
-              if(name.lastIndexOf('.')>0)
-              {
-                 // get last index for '.' char
-                 int lastIndex = name.lastIndexOf('.');
-                 
-                 // get extension
-                 String str = name.substring(lastIndex);
-                 
-                 // match path name extension
-                 if(str.equals("." + extension))
-                 {
-                    return true;
-                 }
-              }
-              return false;
-           }
-        };
-        
-		return files = folder.listFiles(fileNameFilter);
+
+		File[] files = folder.listFiles();
+		return files;
 	}
 
 	//IModelRepository implementation

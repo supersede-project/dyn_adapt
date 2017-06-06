@@ -1,7 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.junit.Assert;
 
@@ -42,28 +41,35 @@ import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public abstract class GenericModelRepository {
-	private final static Logger log = LogManager.getLogger(GenericModelRepository.class);
+	protected final static Logger log = LogManager.getLogger(GenericModelRepository.class);
 	protected ModelManager modelManager;
-	private ModelRepositoryProxy<?, ?> proxy;
-	private Path temp = null;
+	protected ModelRepositoryProxy<?, ?> proxy;
+	protected Path temp;
+	protected String repositoryRelativePath;
 	
-	protected GenericModelRepository(){
-		
+	protected GenericModelRepository () throws IOException {
+		this("");
 	}
 	
 	protected GenericModelRepository (String repositoryRelativePath) throws IOException{
-		proxy = new ModelRepositoryProxy<Object, Object>();
-		
-		//Create temporary folder
 		String userdir = System.getProperty("user.dir");
-		Path path = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
-		temp = createTemporaryDirectory(path);
-		//Shutdown hook to clean up temporary folder
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-		    public void run() {
-		        removeTemporaryDirectory();
-		    }
-		});
+		this.proxy = new ModelRepositoryProxy<Object, Object>();
+		//Path path = FileSystems.getDefault().getPath(repository, repositoryRelativePath);
+		Path path = Paths.get(userdir, repositoryRelativePath);
+		this.temp = getTemporaryDirectory(path);
+		Path relativePath = temp.subpath(Paths.get(userdir).getNameCount(), temp.getNameCount());
+		this.repositoryRelativePath = relativePath.toString();
+	}
+	
+	/**
+	 * To be modified by specializing classes to have a different temporal folder strategy.
+	 * The method should ensure the folder exists and it is valid. 
+	 * @param path the temporal folder path
+	 * @return the path for the repository's temporary folder
+	 * @throws IOException 
+	 */
+	protected Path getTemporaryDirectory(Path path) throws IOException {
+		return createTemporaryDirectory(path, true);
 	}
 	
 	/**
@@ -118,22 +124,12 @@ public abstract class GenericModelRepository {
 		}
 	}
 	
-	public abstract ModelType getModelType(EObject model);
-	
 	/**
-	 * FIXME Implement factory method.
-	 * @param model
+	 * Factory method to allow specializing classes to define model type logic
+	 * @param model whose type is needed
 	 * @return the type of the model
 	 */
-	/*protected ModelType getModelType(EObject model) {
-		if (model instanceof Model) {
-			return ModelType.BaseModel;
-		}
-		else if (model instanceof Profile) {
-			return ModelType.ProfileModel;
-		}
-		return null;
-	}*/
+	public abstract ModelType getModelType(EObject model);
 		
 	/**
 	 * Returns the list of resources references by a given model's resource
@@ -283,11 +279,9 @@ public abstract class GenericModelRepository {
 		List<T> dependencies = new ArrayList<T>();
 		@SuppressWarnings("unchecked")
 		S result = (S) proxy.getModelInstance(modelId.getModelType(), modelId.getNumber());
-		//Assert.assertNotNull("Retrieved null model", result);
 		if (result == null) {
 			return null;
 		}	
-		
 		
 		@SuppressWarnings("unchecked")
 		List<IModelId> dependIds = (List<IModelId>)result.getValue("dependencies");
@@ -316,13 +310,13 @@ public abstract class GenericModelRepository {
 	protected <T extends EObject, S extends IModel> T getModel(String id, ModelType type, Class<T> modelClass) throws Exception {
 		@SuppressWarnings("unchecked")
 		S result = (S) proxy.getModelInstance(type, id);
-		//Assert.assertNotNull("Retrieved null model", result);
 		if (result == null) {
 			return null;
 		}					
+		//TODO Abilitate again this line of code when we give support to all models in getDependencies()
 		// Loading the models this model depends on
-		ITypedModelId modelId = new TypedModelId(type, id);
-		getDependencies(modelId);
+//		ITypedModelId modelId = new TypedModelId(type, id);
+//		getDependencies(modelId);
 		
 		// Store model in temporary local folder of the repository
 		String fileName = (String) result.getValue("name") ;
@@ -334,8 +328,20 @@ public abstract class GenericModelRepository {
 		saveModelFromString(modelContent, path);
 		log.debug("Model " + fileName + " recovered from repository proxy");
 		
-		//Use ModelManager to retrieve the model
-		return modelManager.loadModel(path.toString(), modelClass);
+		// Model retrieval
+		return loadModel((String)result.getValue("relativePath"), fileName, modelClass);
+	}
+	
+	/**
+	 * Factory method to allow speciallying classes to define the model load strategy.
+	 * @param relativePath
+	 * @param fileName
+	 * @param clazz class of the model root element
+	 * @return model root element
+	 */
+	protected <T extends EObject> T loadModel(String relativePath, String fileName, Class<T> clazz) {
+		Path path = Paths.get(temp.toString(), relativePath, fileName);
+		return modelManager.loadModel(path.toString(), clazz);
 	}
 	
 	protected <T extends EObject, S extends IModel> List<T> getModelsOfTypeForSystemWithStatus(ModelType modelType, ModelSystem system, Status status, Class<T> modelClass) throws Exception {
@@ -481,16 +487,36 @@ public abstract class GenericModelRepository {
 		return new String(Files.readAllBytes(path));
 	}
 	
-	private Path createTemporaryDirectory(Path repository) throws IOException{
-		if (!Files.exists(repository)){
-			Files.createDirectory(repository);
+	/**
+	 * It ensures that the repository folder exists and set it up as a temporal folder.
+	 * @param repository path of the folder
+	 * @param unique true when the uniqueness of the folder must be ensured by using a suffix in its name
+	 * @return the path of the temporal folder
+	 * @throws IOException
+	 */
+	protected Path createTemporaryDirectory(Path repository, boolean unique) throws IOException{
+		File outputFile = new File(repository.toString());
+		if (!outputFile.exists()) {
+			outputFile.mkdirs();
 		}
-		Path temp = Files.createTempDirectory(repository, "");
-		Assert.assertNotNull("There was a problem creating a temporary directory", temp);
+		Path temp = repository;
+		if (unique) {
+			temp = Files.createTempDirectory(repository, "");
+			Assert.assertNotNull("There was a problem creating a temporary directory", temp);
+		}
+		//Shutdown hook to clean up temporary folder
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+		    public void run() {
+		        removeTemporaryDirectory();
+		    }
+		});
 		return temp;
 	}
-	
-	private void removeTemporaryDirectory() {
+
+	/**
+	 * It ensures the temporal folder is deleted.
+	 */
+	protected void removeTemporaryDirectory() {
 		try {
         	if (temp != null){
 				Files.walkFileTree(temp, new SimpleFileVisitor<Path>() { 
@@ -531,6 +557,4 @@ public abstract class GenericModelRepository {
 			e.printStackTrace();
 		}
 	}
-
-	
 }
