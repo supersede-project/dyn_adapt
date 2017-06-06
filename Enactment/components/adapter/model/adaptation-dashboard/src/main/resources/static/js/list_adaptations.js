@@ -76,8 +76,8 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			autoheight: true,
 			autorowheight: true,
 			source: dataAdapter,
-			columnsresize: true,
-			selectionmode: 'checkbox',
+			columnsresize: false,
+			//selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Feature Id', align: 'center', datafield: 'fc_id' , width: 80},
 			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
@@ -85,7 +85,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			    		var grid = '<table style="height:100%; width:100%">';
 			    		for (var i = 0; i < value.length; i++) {
 			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
@@ -95,7 +95,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			    		var grid = '<table style="height:100%; width:100%">';
 			    		for (var i = 0; i < value.length; i++) {
 			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
@@ -105,7 +105,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			    		var grid = '<table style="height:100%; width:100%">';
 			    		for (var i = 0; i < value.length; i++) {
 			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
@@ -115,7 +115,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			    		var grid = '<table style="height:100%; width:100%">';
 			    		for (var i = 0; i < value.length; i++) {
 			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #AAAAAA;">' + value[i] + '<tr><td>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;

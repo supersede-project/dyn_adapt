@@ -21,7 +21,6 @@ import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
 public class Enactment {
 	
 	@Id
-	@JsonIgnore
 	private String fc_id;
 	private Timestamp enactment_request_time;
 	private Time enactment_completion_time;
