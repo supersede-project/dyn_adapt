@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import eu.supersede.dynadapt.adapter.dashboard.jpa.ActionsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.jpa.AdaptationsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
+import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
 
@@ -20,6 +22,7 @@ public class AdaptationRest
 {
     @Autowired
     AdaptationsJpa adaptations;
+    ActionsJpa actions;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Adaptation> getAdaptations()
@@ -36,6 +39,8 @@ public class AdaptationRest
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE )
     public void deleteAdaptation(@PathVariable("id") String id)
     {
+    	List<Action> actionList = adaptations.findOne(id).getActions();
+    	for (Action a : actionList) actions.delete(a);
     	adaptations.delete(id);
     }
     
