@@ -246,8 +246,8 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		//Resource res2_2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable10.uml"), true);
 
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-		String res2_1_path=umlModelsPath+"/umlmodels-validation/S2_unavailable5.uml";
-		String res2_2_path=umlModelsPath+"/umlmodels-validation/S2_unavailable10.uml";
+		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable5.uml";
+		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable10.uml";
 		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
 		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
 
