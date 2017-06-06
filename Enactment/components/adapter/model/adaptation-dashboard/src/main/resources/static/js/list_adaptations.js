@@ -25,8 +25,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 		{
 			var row = {};
 			row['fc_id'] = data[i]['fc_id'];			
-			var date = new Date(data[i]['enactment_request_time']);
-			row['enactment_request_time'] = date.toUTCString();
+			row['enactment_request_time'] = data[i]['enactment_request_time'];
 			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
 			row['result'] = data[i]['result'];
 			
@@ -132,7 +131,8 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 							var color = 'red';
 							var text = 'FAILURE';
 						}
-						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';margin-top: 4px; margin-bottom: 4px;">' + text + '</div>';
+						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';'
+						+ 'height: 100%; display: flex; align-items: center;">' + text + '</div>';
 					} }
 			],
 			columngroups: 

@@ -2,6 +2,7 @@ package eu.supersede.dynadapt.adapter.dashboard.model;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -43,16 +44,16 @@ public class Enactment {
 		this.fc_id = fc_id;
 	}
 
-	public Timestamp getEnactment_request_time() {
-		return enactment_request_time;
+	public String getEnactment_request_time() {
+		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(enactment_request_time);
 	}
 
 	public void setEnactment_request_time(Timestamp enactment_request_timestamp) {
 		this.enactment_request_time = enactment_request_timestamp;
 	}
 
-	public Time getEnactment_completion_time() {
-		return enactment_completion_time;
+	public String getEnactment_completion_time() {
+		return new SimpleDateFormat("mm:ss.SSS").format(enactment_completion_time);
 	}
 
 	public void setEnactment_completion_time(Time enactment_completion_time) {

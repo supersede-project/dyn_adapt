@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.adapter.dashboard.model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -46,8 +47,8 @@ public class Adaptation {
 		this.name = name;
 	}
 
-	public Timestamp getComputation_timestamp() {
-		return computation_timestamp;
+	public String getComputation_timestamp() {
+		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(computation_timestamp);
 	}
 
 	public void setComputation_timestamp(Timestamp computation_timestamp) {
