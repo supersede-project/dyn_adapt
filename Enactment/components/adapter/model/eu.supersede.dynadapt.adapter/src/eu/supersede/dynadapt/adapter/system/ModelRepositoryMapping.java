@@ -11,6 +11,7 @@ import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 // TODO Store models locally within Adapter execution. Resolve them
+@Deprecated
 public class ModelRepositoryMapping{
 	public static URI getModelURI (ModelSystem system, RepositoryMetadata type) throws EnactmentException{
 		switch (system) {

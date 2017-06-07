@@ -71,7 +71,7 @@ public class AspectDSLTest {
 		parser.loadUMLResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_base_model.uml");
 		parser.loadProfileResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/adm.profile.uml");
 		parser.loadPatternResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_queries.vql");
-		parser.loadFeatureResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/AtosUCFeatureModel.yafm");
+		parser.loadFeatureModelResource("platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/AtosUCFeatureModel.yafm");
 		
 		Aspect adaptation = parser.parseAdaptationModel(aspectModelPath);
 		

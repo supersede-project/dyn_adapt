@@ -44,7 +44,6 @@ public class SiemensEnactAdapterTest {
 	String featureModelPath;
 	String localPath;
 	String repositoryRelativePath;
-	String repositoryResolverPath;
 	String platformRelativePath;
 	Map<String, String> modelsLocation;
 
@@ -68,7 +67,6 @@ public class SiemensEnactAdapterTest {
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/FeatureModel-S1c_dm.yafm";
 		repositoryRelativePath = "./repository";
-		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -85,7 +83,7 @@ public class SiemensEnactAdapterTest {
 	@Test
 	public void testSiemensUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
 			adapter.enactAdaptationDecisionActionsForFC(
 					ModelSystem.Siemens, featureConfigurationId);

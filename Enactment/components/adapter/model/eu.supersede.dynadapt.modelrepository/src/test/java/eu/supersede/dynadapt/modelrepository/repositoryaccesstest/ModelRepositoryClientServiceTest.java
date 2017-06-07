@@ -49,7 +49,7 @@ public class ModelRepositoryClientServiceTest {
 	
 	@Test
 	public void getAspectModels() throws Exception {
-		List<Aspect> aspects = mr.getAspectModelsFromRepository(ModelSystem.MonitoringReconfiguration, "timeSlot_twitter", modelsLocation);
+		List<Aspect> aspects = mr.getAspectModelsFromRepository(ModelSystem.MonitoringReconfiguration, "timeSlot_twitter");
 		System.out.println("Found " + aspects.size() + " aspect models");
 		for (Aspect a : aspects) {
 			System.out.println(a.getName() + " with feature " + a.getFeature().getId());

@@ -8,6 +8,7 @@ import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
+@Deprecated
 public class ModelRepositoryResolver {
 	static String repositoryRelativePath;
 	private ModelManager mm = null;

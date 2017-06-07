@@ -25,7 +25,8 @@ public class AdapterServiceTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+//			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+			String featureConfigurationId = null;
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -54,7 +55,8 @@ public class AdapterServiceTest {
 		int numberRuns = 2;
 		
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+//		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+		String featureConfigurationId = null;
 		
 		for (int i=0; i<numberRuns; i++){
 			service.enactAdaptationDecisionActions(

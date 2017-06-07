@@ -39,7 +39,6 @@ public class SiemensAdapterTest {
 	String featureModelPath;
 	String localPath;
 	String repositoryRelativePath;
-	String repositoryResolverPath;
 	String platformRelativePath;
 	Map<String, String> modelsLocation;
 
@@ -63,7 +62,6 @@ public class SiemensAdapterTest {
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/FeatureModel-S1c.yafm";
 		repositoryRelativePath = "./repository";
-		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -79,7 +77,7 @@ public class SiemensAdapterTest {
 	
 	@Test
 	public void testSiemensGetAspectModelsFromRepository() {
-		List<Aspect> aspects = mr.getAspectModelsFromRepository(ModelSystem.Siemens, "c4", null);
+		List<Aspect> aspects = mr.getAspectModelsFromRepository(ModelSystem.Siemens, "c4");
 		assertNotNull("List of aspects is null", aspects);
 		assertNotEquals("List of aspects is empty", 0, aspects.size());
 		Aspect aspect = aspects.get(0);
@@ -97,7 +95,7 @@ public class SiemensAdapterTest {
 	@Test
 	public void testSiemensUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			String[] adaptationDecisionActionIds = new String[]{"c4"};
 			String featureConfigurationId = "FeatureModel-S1c_dm_optimized";
 			adapter.enactAdaptationDecisionActions(

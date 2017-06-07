@@ -38,6 +38,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
@@ -60,23 +61,20 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 	private final static Logger log = LogManager.getLogger(ModelRepository.class);
 	
-	private String repository;
 	private URI uri;
 	private URL url;
 
 	public ModelRepository(String repository, String repositoryRelativePath, ModelManager modelManager) throws Exception {
-		super(repositoryRelativePath);
+		super(repository, repositoryRelativePath);
 
-		//FIXME To remove repository as a variable and make all the class use "repositoryURI"
-		this.repository = repository;
-//		this.uri = addSegments(URI.createURI(repository), this.repositoryRelativePath);
 		this.uri = URI.createURI(repository);
 
 		// FIXME To use "repositoryURI" rather than "url"
 		String userdir = System.getProperty("user.dir");
-		Path path = FileSystems.getDefault().getPath(userdir, repositoryRelativePath);
+		Path path = FileSystems.getDefault().getPath(userdir, this.repositoryRelativePath);
 		this.url = new URL (path.toUri().toURL().toString()); //URL regenerated from textual representation, otherwise it does not work.
 		this.modelManager = modelManager;
+		this.parser = new AdaptationParser(modelManager);
 	}
 	
 	public ModelRepository(String repository, URL url, ModelManager modelManager) throws IOException {
@@ -84,6 +82,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		this.uri = URI.createURI(repository);
 		this.url = url;
 		this.modelManager = modelManager;
+		this.parser = new AdaptationParser(modelManager);
 	}
 
 	/**
@@ -95,6 +94,32 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	 */
 	protected Path getTemporaryDirectory(Path path) throws IOException {
 		return createTemporaryDirectory(path, true);
+	}
+	
+	/**
+	 * Factory method to allow specializing classes to define the model load strategy.
+	 * @param relativePath
+	 * @param fileName
+	 * @param clazz class of the model root element
+	 * @return model root element
+	 */
+	protected <T extends EObject> T loadModel(String relativePath, String fileName, Class<T> clazz) {
+		String path = repository + "/" + relativePath + "/" + fileName;
+		
+		if (clazz == Profile.class)
+			return (T) parser.loadProfileResource(path.toString());
+		else if (clazz == Model.class)
+			return (T) parser.loadUMLResource(path.toString());
+		else if (clazz == PatternModel.class)
+			return (T) parser.loadPatternResource(path.toString());
+		else if (clazz == FeatureModel.class)
+			return (T) parser.loadFeatureModelResource(path.toString());
+		else if (clazz == FeatureConfiguration.class)
+			return (T) parser.loadFeatureConfigurationResource(path.toString());
+		else if (clazz == Aspect.class)
+			return (T) parser.loadAspectResource(path.toString());
+		else
+			return null;
 	}
 	
 	/**
@@ -122,18 +147,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	}
 	
 	/**
-	 * To be modified by specializing classes to have a different model load strategy.
-	 * @param relativePath
-	 * @param fileName
-	 * @param clazz class of the model root element
-	 * @return model root element
-	 */
-	protected <T extends EObject> T loadModel(String relativePath, String fileName, Class<T> clazz) {
-		URI uri = addSegments(this.uri, relativePath, fileName);
-		return modelManager.loadModel(uri.toString(), clazz);
-	}
-	
-	/**
 	 * This method returns a list of aspect models linked to an specific
 	 * featureSUPERSEDE given the featureSUPERSEDE id and the models' location
 	 * required for loading the aspects
@@ -146,11 +159,12 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
 
-		IAdaptationParser ap = loadModels(modelsLocation);
+		loadModels(modelsLocation);
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
-				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+//				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
+				Aspect a = getAspectModelFromPath(repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					aspects.add(a);
 				}
@@ -167,27 +181,32 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	 * @param modelsLocation
 	 * @return
 	 */
-	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureSUPERSEDEId, Map<String, String> modelsLocation) {
+	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureId) {
 		List<Aspect> aspects = new ArrayList<Aspect>();
 		
 		log.debug("Loading adaptability models' dependencies from repository...");
-		IAdaptationParser ap = loadModelsFromRepository (system, modelsLocation);
+		loadModelsFromRepository (system);
+		
 		log.debug("Adaptability models' dependencies loaded");
 
 		try {
 			AdaptabilityModel modelMetadata = new AdaptabilityModel();
-			modelMetadata.setFeatureId(featureSUPERSEDEId);
+			modelMetadata.setFeatureId(featureId);
 			modelMetadata.setSystemId(system);
 			
-			log.debug("Loading adaptability models from " + system + " with feature " + featureSUPERSEDEId + "...");
-			aspects = getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
+			log.debug("Loading adaptability models from " + system + " with feature " + featureId + "...");
+			List<Aspect> loadedAspects = getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
 			log.debug("Adaptability models loaded");
-			// FIXME This should not be necessary as there is parse logic that were not called in the previous call
-			for (int i = 0; i < aspects.size(); i++) {
-				getAspectModel(ap, aspects.get(i).eResource().getURI().toString());
-			}
-			log.debug("Adaptability models parsed");
 			
+			log.debug("Filtering adaptability models referencing feature: " + featureId);
+			for (Aspect aspect: loadedAspects){
+				EcoreUtil.resolveAll(aspect);
+				
+				if (aspect.getFeature().getId().equalsIgnoreCase(featureId)) {
+					aspects.add(aspect);
+				}
+			}
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -210,12 +229,13 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 		File[] aspectsFiles = getFiles(modelsLocation.get("aspects"));
 
-		IAdaptationParser ap = loadModels(modelsLocation);
+		loadModels(modelsLocation);
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
 				String aspectModelPath = repository + modelsLocation.get("aspects") + aspectsFiles[i].getName();
-				Aspect a = getAspectModel(ap, aspectModelPath);
+//				Aspect a = getAspectModel(ap, aspectModelPath);
+				Aspect a = getAspectModelFromPath(aspectModelPath);
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					uris.add(URI.createURI(aspectModelPath));
 				}
@@ -224,7 +244,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return uris;
 	}
 
-	private IAdaptationParser loadModels(Map<String, String> modelsLocation) {
+	private void loadModels(Map<String, String> modelsLocation) {
 		IAdaptationParser parser = new AdaptationParser(modelManager);
 
 		File[] variants = getFiles(modelsLocation.get("variants")); //FIXME only uml models should be included
@@ -244,58 +264,36 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 		File[] features = getFiles(modelsLocation.get("features"));
 		for (int i = 0; i < features.length; i++) {
-			parser.loadFeatureResource(repository + modelsLocation.get("features") + features[i].getName());
+			parser.loadFeatureModelResource(repository + modelsLocation.get("features") + features[i].getName());
 		}
 
-		return parser;
 	}
 	
-	private IAdaptationParser loadModelsFromRepository(ModelSystem system, Map<String, String> modelsLocation) {
-		IAdaptationParser parser = new AdaptationParser(modelManager);
+	
+	//Retrieve models from remote repositoy and store them in the local temporal repository
+	public void loadModelsFromRepository(ModelSystem system) {
 		
 		try {
 			
-//			getProfilesForSystem(system);
-			List<Profile> profiles = this.getProfilesForSystem(system);
-			for (int i = 0; i < profiles.size(); i++) {
-//				modelManager.loadProfile(repository + modelsLocation.get("profiles") + profiles.get(i).getName());
-//				parser.loadProfileResource(repository + modelsLocation.get("profiles") + variants.get(i).getName());
-				parser.loadProfileResource(profiles.get(i).eResource().getURI().toString());
-			}
+			this.getProfilesForSystem(system);
 			
-//			getVariantModelsForSystem(system);
-			List<Model> variants = this.getVariantModelsForSystem(system);
-			for (int i = 0; i < variants.size(); i++) {
-//				modelManager.loadUMLModel(repository + modelsLocation.get("variants") + variants.get(i).getName());
-//				parser.loadUMLResource(repository + modelsLocation.get("variants") + profiles.get(i).getName());
-				parser.loadUMLResource(variants.get(i).eResource().getURI().toString());
-			}
+			this.getVariantModelsForSystem(system);
 						
-//			getPatternModelsForSystem(system);
-			List<PatternModel> patterns = this.getPatternModelsForSystem(system);
-			for (int i = 0; i < patterns.size(); i++) {
-//				modelManager.loadPatternModel(repository + modelsLocation.get("patterns") + patterns.get(i).getPackageName());
-//				parser.loadPatternResource(repository + modelsLocation.get("patterns") + patterns.get(i).get.getName());
-				parser.loadPatternResource(patterns.get(i).eResource().getURI().toString());
-			}
+			this.getPatternModelsForSystem(system);
 			
-//			getFeatureModelsForSystem(system);
-			List<FeatureModel> features = this.getFeatureModelsForSystem(system);
-			for (int i = 0; i < features.size(); i++) {
-//				modelManager.loadFeatureModel(repository + "repository/" + modelsLocation.get("features") + features.get(i).getName());
-//				parser.loadFeatureResource(repository + modelsLocation.get("features") + features.get(i).getName());
-				parser.loadFeatureResource(features.get(i).eResource().getURI().toString());
-			}	
+			this.getFeatureModelsForSystem(system);
+						
+			this.getAspectModelsForSystem(system);
 			
 		} catch (Exception e) {
 			log.error("Error loading adaptability model's dependencies from repository", e);
 		}
-		return parser;
 	}
 	
-	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
-		return parser.parseAdaptationModel(aspectModelPath); //Do not use: this approach gives problems with relative paths
-//		return modelManager.loadAspectModel(aspectModelPath);
+//	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
+	private Aspect getAspectModelFromPath(String aspectModelPath) {
+//		return parser.parseAdaptationModel(aspectModelPath); //Do not use: this approach gives problems with relative paths
+		return modelManager.loadAspectModel(aspectModelPath);
 	}
 	
 	private File[] getFiles(String folderPath) {

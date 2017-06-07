@@ -51,11 +51,6 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import cz.zcu.yafmt.model.fm.Group;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
-import eu.supersede.dynadapt.adapter.system.ModelRepositoryMapping;
-import eu.supersede.dynadapt.adapter.system.ModelRepositoryResolver;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
@@ -67,6 +62,7 @@ import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
 
 public class Adapter implements IAdapter {
 	private final static Logger log = LogManager.getLogger(Adapter.class);
@@ -75,7 +71,6 @@ public class Adapter implements IAdapter {
 	private ModelManager mm;
 	private ModelQuery mq;
 	private ModelAdapter ma;
-	private ModelRepositoryResolver mrr;
 
 	private Map<String, String> modelsLocation;
 	
@@ -85,21 +80,16 @@ public class Adapter implements IAdapter {
 	private String repositoryRelativePath;
 	private boolean demo = false;
 
-	// FIXME: Currently two ResourceSets are managed, one by ModelManager,
-	// another one by AdaptationParser
-	// FIXME: Manage a single ResourceSet
-
-	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryResolverPath, String repositoryRelativePath) throws Exception {
-		this (mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, false);
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath) throws Exception {
+		this (mr, mm, modelsLocation, repositoryRelativePath, false);
 	}
 	
-	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryResolverPath, String repositoryRelativePath, boolean demo) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath, boolean demo) throws Exception {
 		this.mr = mr;
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
 		this.modelsLocation = modelsLocation;
-		this.mrr = new ModelRepositoryResolver(mm, repositoryResolverPath);
 		this.repositoryRelativePath = repositoryRelativePath;
 		this.demo = demo;
 		log.debug("Adapter set up");
@@ -117,22 +107,8 @@ public class Adapter implements IAdapter {
 	public void enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId) throws EnactmentException {
 		try {
-
-			kpiComputerAdapter.startComputingKPI();
-			
-			//FIXME Before FCs computed by DM are stored in the model repository and FC is retrieved by id
-			//We use FC id as name of latest computed one, to override default, located in standard local repository
-//			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
-//			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
-//			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
-			
-//			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
-//					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
-						
-			FeatureConfiguration newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
-			
-			doEnactment(system, adaptationDecisionActionIds, newFeatureConfig);
-			
+		
+			doEnactment(system, adaptationDecisionActionIds, featureConfigurationId, null);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,13 +120,8 @@ public class Adapter implements IAdapter {
 	public void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationAsString) throws EnactmentException {
 		try {
-			
-			//FIXME Read feature configuration from string
-//			FeatureConfiguration newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-			FeatureConfiguration newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
-			Assert.assertNotNull("Passed feature configuration could not be loaded", newFeatureConfig);
-			
-			doEnactment(system, adaptationDecisionActionIds, newFeatureConfig);
+						
+			doEnactment(system, adaptationDecisionActionIds, null, featureConfigurationAsString);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,17 +134,8 @@ public class Adapter implements IAdapter {
 			String featureConfigurationId) throws EnactmentException {
 		
 		try {
-						
-			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
-			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
-			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
-			
-//			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
-//					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
-			
-			FeatureConfiguration newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
-	
-			doEnactment(system, null, newFeatureConfig);
+				
+			doEnactment(system, null, featureConfigurationId, null);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -182,26 +144,30 @@ public class Adapter implements IAdapter {
 		
 	};
 
-
 	private void doEnactment(ModelSystem system, List<String> adaptationDecisionActionIds,
-			FeatureConfiguration newFeatureConfig) throws EnactmentException, Exception, IOException {
+			String featureConfigurationId, String featureConfigurationAsString) throws EnactmentException, Exception, IOException {
+				
+		kpiComputerAdapter.startComputingKPI();		
 		
-		// TODO Get BaseModel, original feature configuration and new
-		// feature configuration (by id) from Model Repository
-		// FIXME Provisional: using ModelRepositoryResolver (ModelManager)
-		// to simulate their retrieval given a systemId
+		//Preload Models from remote repository in temporal one
+		mr.loadModelsFromRepository(system);
 		
-		kpiComputerAdapter.startComputingKPI();
+		FeatureConfiguration newFeatureConfig = null;
+		
+		if (featureConfigurationId == null && featureConfigurationAsString!=null){
+			//Read feature configuration from string
+			newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+			Assert.assertNotNull("Passed feature configuration could not be loaded: ", featureConfigurationAsString);
+		}else if (featureConfigurationId == null){
+			newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
+		}else{
+			newFeatureConfig = mr.getFeatureConfigurationModel(featureConfigurationId);
+		}
 
-		// NOTE: The correct way to load models so that the ModelManager resolve dependencies is to use "platform:/resource/..." URIs
-		// as this is done for Model Repository Resolver, using the repositoryResolverPath passed in the Adapter initialization
-//		Model baseModel = mrr.getModelForSystem(system,
-//				new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT));
 		Model baseModel = mr.getLastBaseModelForSystem(system);
 		mm.setTargetModel(baseModel);
 		
-		FeatureConfiguration originalFeatureConfig = mrr.getConfigurationForSystem(system,
-				new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.CURRENT));
+		FeatureConfiguration originalFeatureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);
 		
 		//Only leaf selections are included
 		List<Selection> changedSelections = diffFeatureConfigurations(originalFeatureConfig, newFeatureConfig);
@@ -224,7 +190,7 @@ public class Adapter implements IAdapter {
 		kpiComputerAdapter.reportComputedKPI();
 
 		if (model != null){
-			//NOTE dapted model must be placed in same folder level as base model, otherwise referenced models (i.e. profiles) are not resolved.
+			//NOTE adapted model must be placed in same folder level as base model, otherwise referenced models (i.e. profiles) are not resolved.
 			//Current configuration stores the adapted model in ./models/adapted, so profiles are correctly resolved.
 			String suri = repositoryRelativePath + "/" + modelsLocation.get("adapted") + model.getName() + ".uml";
 			URI uri = URI.createFileURI(suri);
@@ -271,12 +237,14 @@ public class Adapter implements IAdapter {
 			boolean featureEnabled = selection.isEnabled();
 
 			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled ? " Enabled" : " Disabled"));
-			List<Aspect> aspects = mr.getAspectModelsFromRepository(modelSystem, feature.getId(), modelsLocation);
+//			List<Aspect> aspects = mr.getAspectModelsFromRepository(modelSystem, feature.getId());
+			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
+			
 			log.debug("Found " + aspects.size() + " adaptations for feature: " + feature.getId());
 
 			for (Aspect aspect : aspects) {
 				
-				EcoreUtil.resolveAll(aspect);
+//				EcoreUtil.resolveAll(aspect);
 				
 				log.debug("\tAspect name: " + aspect.getName());
 				Stereotype role = null;
@@ -389,13 +357,6 @@ public class Adapter implements IAdapter {
 		}
 
 		return selections;
-	}
-
-	private List<Selection> getSelections(FeatureConfiguration featureConfig) {
-		FeatureModel fm = featureConfig.getFeatureModelCopy();
-		Feature root = fm.getRoot();
-
-		return selectionsInFeature(root, featureConfig);
 	}
 
 	private boolean selectionExistsInList(Selection s1, List<Selection> list) {

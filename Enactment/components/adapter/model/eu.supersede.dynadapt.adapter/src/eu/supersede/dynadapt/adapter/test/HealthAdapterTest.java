@@ -56,7 +56,7 @@ public class HealthAdapterTest {
 	@Test
 	public void testAuthenticatedHealthUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
@@ -78,7 +78,7 @@ public class HealthAdapterTest {
 			mm = new ModelManager(); //Base Model loaded here
 			mr = new ModelRepository(repository,repositoryRelativePath, mm);
 			
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
 			
 			//Current runtime base model
 			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.BASE, ResourceTimestamp.CURRENT);

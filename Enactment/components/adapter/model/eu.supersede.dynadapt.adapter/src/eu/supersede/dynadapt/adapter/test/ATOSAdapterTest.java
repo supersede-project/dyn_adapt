@@ -41,7 +41,6 @@ public class ATOSAdapterTest {
 	String newFeatureConfigPath;
 	String featureModelPath;
 	String repositoryRelativePath;
-	String repositoryResolverPath;
 	String platformRelativePath;
 	
 	Map<String, String> modelsLocation;
@@ -56,7 +55,7 @@ public class ATOSAdapterTest {
 	public void testAtosUCAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"cms_optimal_configuration", "cms_standard_configuration"};
@@ -110,7 +109,6 @@ public class ATOSAdapterTest {
 		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/AtosOverloadedCMSCapacityConfiguration.yafc";
 		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/AtosUCFeatureModel_CMS_Capacity.yafm";
 		repositoryRelativePath = "./repository";
-		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);

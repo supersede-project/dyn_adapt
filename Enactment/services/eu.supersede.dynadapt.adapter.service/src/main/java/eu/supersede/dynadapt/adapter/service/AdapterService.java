@@ -29,7 +29,7 @@ public class AdapterService {
 	private final static Logger log = LogManager.getLogger(AdapterService.class);
 	String repository;
 	String repositoryRelativePath;
-	String repositoryResolverPath;
+//	String repositoryResolverPath;
 	String platformRelativePath;
 	
 	Map<String, String> modelsLocation;
@@ -57,7 +57,7 @@ public class AdapterService {
 		setupPlatform();		
 		mm = new ModelManager();
 		mr = new ModelRepository(repository,repositoryRelativePath, mm);
-		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 	}
 
 	private void setupPlatform() {
@@ -67,7 +67,6 @@ public class AdapterService {
 		//These relative paths are compatible for standalone execution within eu.supersede.dynadapt.adapter.service project
 		//and within $TOMCAT/bin, provided above project is copied within $TOMCAT folder
 		repositoryRelativePath = "../eu.supersede.dynadapt.adapter.service/repository";
-		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository";
 		platformRelativePath = "../";
 		
 		new StandaloneSetup().setPlatformUri(platformRelativePath);

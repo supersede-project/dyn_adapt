@@ -29,7 +29,6 @@ public class AtosSmartPlatformHSKAdapterTest {
 	
 	String repository;
 	String repositoryRelativePath;
-	String repositoryResolverPath;
 	String platformRelativePath;
 	
 	Map<String, String> modelsLocation;
@@ -44,9 +43,10 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHighHSKAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+//			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 			
@@ -61,7 +61,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testBatchAtosHighHSKAdaptation() throws Exception{
 		int numberRuns = 2;
 		boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-		adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
 		
@@ -80,7 +80,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHugeHSKAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 									
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
 			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighMediumLoad";
@@ -97,7 +97,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHSKDualVMHighLowAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 									
 			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
 			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
@@ -114,7 +114,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHighHSKAdaptationSpecificActionsTakenFCfromString() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 			String sFcUri = fcUri.toString();
@@ -134,7 +134,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHighHSKAdaptationTakenFCfromString() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{};
 			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
 			String sFcUri = fcUri.toString();
@@ -160,7 +160,6 @@ public class AtosSmartPlatformHSKAdapterTest {
 	private void setupPlatform() {
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		repositoryRelativePath = "./repository";
-		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);

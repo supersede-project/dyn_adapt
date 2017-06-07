@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 
@@ -33,5 +34,7 @@ public interface IAdaptationParser {
 	public Model loadUMLResource (String path);
 	public Profile loadProfileResource (String path);
 	public PatternModel loadPatternResource (String path);
-	public FeatureModel loadFeatureResource (String path);
+	public FeatureModel loadFeatureModelResource (String path);
+	public FeatureConfiguration loadFeatureConfigurationResource (String path);
+	public Aspect loadAspectResource (String path);
 }

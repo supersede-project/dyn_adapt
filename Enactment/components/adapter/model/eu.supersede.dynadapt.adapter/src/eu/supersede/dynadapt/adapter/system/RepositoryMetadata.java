@@ -2,6 +2,7 @@ package eu.supersede.dynadapt.adapter.system;
 
 import java.net.URI;
 
+@Deprecated
 public class RepositoryMetadata {
 	ResourceType type;
 	ResourceTimestamp timestamp;

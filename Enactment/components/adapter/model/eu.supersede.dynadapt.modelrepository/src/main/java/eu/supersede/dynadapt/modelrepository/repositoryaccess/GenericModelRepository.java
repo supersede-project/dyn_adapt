@@ -11,8 +11,10 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.log4j.LogManager;
@@ -23,9 +25,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.junit.Assert;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.adaptation.types.GenericModel;
@@ -43,15 +51,17 @@ import eu.supersede.integration.api.adaptation.types.TypedModelId;
 public abstract class GenericModelRepository {
 	protected final static Logger log = LogManager.getLogger(GenericModelRepository.class);
 	protected ModelManager modelManager;
+	protected IAdaptationParser parser;
 	protected ModelRepositoryProxy<?, ?> proxy;
 	protected Path temp;
 	protected String repositoryRelativePath;
+	protected String repository;
 	
 	protected GenericModelRepository () throws IOException {
-		this("");
+		this(null, null);
 	}
 	
-	protected GenericModelRepository (String repositoryRelativePath) throws IOException{
+	protected GenericModelRepository (String repository, String repositoryRelativePath) throws IOException{
 		String userdir = System.getProperty("user.dir");
 		this.proxy = new ModelRepositoryProxy<Object, Object>();
 		//Path path = FileSystems.getDefault().getPath(repository, repositoryRelativePath);
@@ -59,6 +69,7 @@ public abstract class GenericModelRepository {
 		this.temp = getTemporaryDirectory(path);
 		Path relativePath = temp.subpath(Paths.get(userdir).getNameCount(), temp.getNameCount());
 		this.repositoryRelativePath = relativePath.toString();
+		this.repository = repository + temp.getFileName() + "/";
 	}
 	
 	/**
@@ -278,26 +289,26 @@ public abstract class GenericModelRepository {
 	 * @return The list of the dependencies' root objects
 	 * @throws Exception
 	 */
-	protected <T extends EObject, S extends IModel> List<T> getDependencies(ITypedModelId modelId) throws Exception {
-		List<T> dependencies = new ArrayList<T>();
-		@SuppressWarnings("unchecked")
-		S result = (S) proxy.getModelInstance(modelId.getModelType(), modelId.getNumber());
-		if (result == null) {
-			return null;
-		}	
-		
-		@SuppressWarnings("unchecked")
-		List<IModelId> dependIds = (List<IModelId>)result.getValue("dependencies");
-		for (IModelId dependId : dependIds) {
-			if (dependId instanceof ITypedModelId) {
-				ITypedModelId typedModelId = (ITypedModelId)dependId;
-				@SuppressWarnings("unchecked")
-				T dependency = (T)getModel(typedModelId.getNumber(), typedModelId.getModelType(), EObject.class);
-				dependencies.add(dependency);
-			}
-		}	
-		return dependencies;
-	}
+//	protected <T extends EObject, S extends IModel> List<T> getDependencies(ITypedModelId modelId) throws Exception {
+//		List<T> dependencies = new ArrayList<T>();
+//		@SuppressWarnings("unchecked")
+//		S result = (S) proxy.getModelInstance(modelId.getModelType(), modelId.getNumber());
+//		if (result == null) {
+//			return null;
+//		}	
+//		
+//		@SuppressWarnings("unchecked")
+//		List<IModelId> dependIds = (List<IModelId>)result.getValue("dependencies");
+//		for (IModelId dependId : dependIds) {
+//			if (dependId instanceof ITypedModelId) {
+//				ITypedModelId typedModelId = (ITypedModelId)dependId;
+//				@SuppressWarnings("unchecked")
+//				T dependency = (T)getModel(typedModelId.getNumber(), typedModelId.getModelType(), EObject.class);
+//				dependencies.add(dependency);
+//			}
+//		}	
+//		return dependencies;
+//	}
 	
 	/**
 	 * Loads from the repository the root object of a given model stored in the repository
@@ -332,7 +343,36 @@ public abstract class GenericModelRepository {
 		log.debug("Model " + fileName + " recovered from repository proxy");
 		
 		// Model retrieval
+		
 		return loadModel((String)result.getValue("relativePath"), fileName, modelClass);
+	}
+	
+	/**
+	 * Downloads from the repository the model and stores it in the temporal local repository
+	 * FIXME Do no re-load the model if the model was previously loaded and has not changed
+	 *  - implement a cache
+	 * 	- make use of id and timestamp
+	 * @param id Number of the model (with respect to its type)
+	 * @param type Type of the model
+	 * @param modelClass Class of the object to return
+	 * @throws Exception
+	 */
+	protected <T extends EObject, S extends IModel> void downloadModel(String id, ModelType type, Class<T> modelClass) throws Exception {
+		@SuppressWarnings("unchecked")
+		S result = (S) proxy.getModelInstance(type, id);
+		if (result == null) {
+			return;
+		}					
+		
+		// Store model in temporary local folder of the repository
+		String fileName = (String) result.getValue("name") ;
+		Path path = Paths.get(temp.toString(), (String)result.getValue("relativePath"), fileName);
+		String modelContent = (String) result.getValue ("modelContent"); // For XML-based models, replacing ' by "
+		modelContent = modelContent.replace("'","\"");
+		//FIXME escape \" char
+		modelContent = modelContent.replace("(\"", "('").replace("\")", "')").replace("\",", "',");
+		saveModelFromString(modelContent, path);
+		log.debug("Model " + fileName + " recovered from repository proxy");
 	}
 	
 	/**
@@ -343,11 +383,12 @@ public abstract class GenericModelRepository {
 	 * @return model root element
 	 */
 	protected <T extends EObject> T loadModel(String relativePath, String fileName, Class<T> clazz) {
-		Path path = Paths.get(temp.toString(), relativePath, fileName);
-		return modelManager.loadModel(path.toString(), clazz);
+		//Implemented by specialized subclasses
+		return null;
 	}
 	
-	protected <T extends EObject, S extends IModel> List<T> getModelsOfTypeForSystemWithStatus(ModelType modelType, ModelSystem system, Status status, Class<T> modelClass) throws Exception {
+	protected <T extends EObject, S extends IModel> List<T> getModelsOfTypeForSystemWithStatus(
+			ModelType modelType, ModelSystem system, Status status, Class<T> modelClass) throws Exception {
 		@SuppressWarnings("unchecked")
 		List<S> metadata = (List<S>) proxy.getModelInstances(modelType, system, status);
 		List<T> results = new ArrayList<>();
@@ -357,15 +398,18 @@ public abstract class GenericModelRepository {
 				log.error ("Model repository return a model with null identifier and metadatum: " + metadatum);
 				continue;
 			}
-			T model = getModel (id, modelType, modelClass);
-			if (model == null){
-				log.error ("Model repository return a null model for identifier: " + id);
-				continue;
-			}
-			String s = metadatum.getValue("name").toString();
-			if (model.eClass().getEStructuralFeature("name") != null ) model.eSet(model.eClass().getEStructuralFeature("name"), s);
-			else ((PatternModel) model).setPackageName(s);
-			results.add (model);
+//			T model = getModel (id, modelType, modelClass);
+			downloadModel (id, modelType, modelClass);
+//			if (model == null){
+//				log.error ("Model repository return a null model for identifier: " + id);
+//				continue;
+//			}
+//			String s = metadatum.getValue("name").toString();
+//			if (model.eClass().getEStructuralFeature("name") != null ) 
+//				model.eSet(model.eClass().getEStructuralFeature("name"), s);
+//			else 
+//				((PatternModel) model).setPackageName(s);
+//			results.add (model);
 		}
 		return results;
 	}
