@@ -237,15 +237,11 @@ public class Adapter implements IAdapter {
 			boolean featureEnabled = selection.isEnabled();
 
 			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled ? " Enabled" : " Disabled"));
-//			List<Aspect> aspects = mr.getAspectModelsFromRepository(modelSystem, feature.getId());
 			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
 			
 			log.debug("Found " + aspects.size() + " adaptations for feature: " + feature.getId());
 
-			for (Aspect aspect : aspects) {
-				
-//				EcoreUtil.resolveAll(aspect);
-				
+			for (Aspect aspect : aspects) {				
 				log.debug("\tAspect name: " + aspect.getName());
 				Stereotype role = null;
 				List<Pointcut> pointcuts = aspect.getPointcuts();
@@ -256,7 +252,6 @@ public class Adapter implements IAdapter {
 					role = p.getRole();
 					matchingElements.put(role, new ArrayList<>());
 					log.debug("\tRole: " + role.getName());
-					//FIXME matching elements (elements stereotyped with jointpoint must be found in cloned model, not in baseModel
 					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
 					for (IPatternMatch i : matches) {
 						Element e = (Element) i.get(0);
@@ -384,24 +379,6 @@ public class Adapter implements IAdapter {
 		}
 		
 		return result;
-	}
-
-	private List<Selection> selectionsInFeature(Feature feature,
-			FeatureConfiguration featureConfig) {
-		List<Selection> selections = new ArrayList<>();
-		selections.addAll(featureConfig.getSelectionsById(feature.getId()));
-
-		for (Feature child : feature.getFeatures()) {
-			selections.addAll(selectionsInFeature(child, featureConfig));
-		}
-
-		for (Group group : feature.getGroups()) {
-			for (Feature childInGroup : group.getFeatures()) {
-				selections.addAll(
-						selectionsInFeature(childInGroup, featureConfig));
-			}
-		}
-		return selections;
 	}
 
 	protected void save(Model model, org.eclipse.emf.common.util.URI uri) {

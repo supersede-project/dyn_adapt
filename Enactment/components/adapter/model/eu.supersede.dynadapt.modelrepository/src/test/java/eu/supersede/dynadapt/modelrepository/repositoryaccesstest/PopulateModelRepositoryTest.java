@@ -54,6 +54,7 @@ import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
 import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
 import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
@@ -81,6 +82,7 @@ public class PopulateModelRepositoryTest {
 
 	ModelRepository mr = null;
 	ModelManager mm = null;
+	PopulateRepositoryManager prm = null;
 
 	IFeatureConfigLAO fcLAO = null;
 
@@ -98,6 +100,7 @@ public class PopulateModelRepositoryTest {
 		url = getClass().getResource("/");
 		mm = new ModelManager(false);
 		mr = new ModelRepository(repository, repositoryRelativePath, mm);
+		prm = new PopulateRepositoryManager (mm, mr);
 		
 		//Clean-up repository
 		cleanUpRepository();
@@ -123,95 +126,96 @@ public class PopulateModelRepositoryTest {
 	private void populateAtosModels() throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		
 
 		//BaseModel
-		populateModel(
+		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/base", "atos_smart_base_model.uml"), 
 			"Yosu", ModelSystem.Atos_HSK, Status.Enacted, "models/base", Model.class, ModelType.BaseModel, BaseModel.class);
 		
 		//Profile
-		populateModel(
+		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
 			"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/profiles", Profile.class, ModelType.ProfileModel, ProfileModel.class);
 		
 		//Variants
-		populateModel(
+		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_high.uml"), 
 			"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_low.uml"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_medium.uml"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_high.uml"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_low.uml"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
 		
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_medium.uml"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
 
 		//Feature Model
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/models", "SmartPlatformFM_HSK.yafm"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "features/models", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 
 		//Feature Configurations
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_SingleVM_LowLoad.yafc"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Enacted, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_SingleVM_HighLoad.yafc"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
-		populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_LowLoad_optimized.yafc"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+//		prm.populateModel(
+//				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_LowLoad_optimized.yafc"), 
+//				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		//Patterns
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "atos_query_patterns.vql"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
 
 		//Adaptability models
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_high_load.aspect"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_low_load.aspect"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_medium_load.aspect"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_high_load.aspect"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_low_load.aspect"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
-		populateModel(
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_medium_load.aspect"), 
 				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
@@ -222,285 +226,14 @@ public class PopulateModelRepositoryTest {
 		String userdir = System.getProperty("user.dir");
 		Path path = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 		
-		populateModels(path, "models/base", "uml", Model.class, ModelType.BaseModel, BaseModel.class);
-		populateModels(path, "models/profiles", "uml", Profile.class, ModelType.ProfileModel, ProfileModel.class);
-		populateModels(path, "models/variants", "uml", Model.class, ModelType.VariantModel, VariantModel.class);
-		populateModels(path, "features/models", "yafm", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-		populateModels(path, "features/configurations", "yafc", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		populateModels(path, "adaptability_models", "aspect", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		prm.populateModels(path, "models/base", "uml", Model.class, ModelType.BaseModel, BaseModel.class);
+		prm.populateModels(path, "models/profiles", "uml", Profile.class, ModelType.ProfileModel, ProfileModel.class);
+		prm.populateModels(path, "models/variants", "uml", Model.class, ModelType.VariantModel, VariantModel.class);
+		prm.populateModels(path, "features/models", "yafm", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		prm.populateModels(path, "features/configurations", "yafc", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		prm.populateModels(path, "adaptability_models", "aspect", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		//FIXME add other system patterns
-		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
-	}
-
-//	private void populateBaseModels(Path path, String repositorySubFolder, String extension) throws IOException, Exception {
-//		//Store Base Models. Read all models in folder, for each
-//		Path baseModelsFolder = Paths.get(path.toString(), repositorySubFolder);
-//		Map<Path, BasicFileAttributes> models = getFiles (baseModelsFolder, extension);
-//		for (Path file: models.keySet()){
-//			//Load Model
-//			Model model = mm.loadModel(file.toString(), Model.class);
-//			
-//			//Create metadata
-//			ModelMetadata metadata = createModelMetadata(new BaseModel(), file, models.get(file));
-//			
-//			//Store model in repository
-//			mr.storeBaseModel(model, metadata);
-//		}
-//	}
-	
-	private <T extends EObject, S extends IModel> void populateModels(
-			Path path, String repositorySubFolder, String fileExtension, Class<T> modelClass, ModelType modelType, Class<S> instanceMetadataType) throws IOException, Exception {
-		Path baseModelsFolder = Paths.get(path.toString(), repositorySubFolder);
-		Map<Path, BasicFileAttributes> models = getFiles (baseModelsFolder, fileExtension);
-		for (Path file: models.keySet()){
-			//Load Model
-			T model = mm.loadModel(file.toString(), modelClass);
-			
-			//FIXME get Aspect Feature Id
-			HashMap<String,String> customMetadata = new HashMap<>();
-			if (modelClass == Aspect.class ) customMetadata.put("featureId", ((Aspect) model).getFeature().getId());
-			
-			//Create metadata
-			S instanceMetadata = instanceMetadataType.newInstance();
-			ModelMetadata metadata = createModelMetadata(instanceMetadata, file, models.get(file), fileExtension, repositorySubFolder, modelType, customMetadata);
-			
-			//Store model in repository
-			mr.storeModel(model, modelType, metadata, path.toRealPath().toString());
-			
-			System.out.println("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
-		}
-	}
-	
-	private <T extends EObject, S extends IModel> void populateModel(
-			Path modelPath, String author, ModelSystem system, Status status, String relativePath, Class<T> modelClass, ModelType modelType, Class<S> instanceMetadataType) throws IOException, Exception {
-		
-		//Load Model
-		T model = mm.loadModel(modelPath.toString(), modelClass);
-		
-		//FIXME get Aspect Feature Id
-		HashMap<String,String> customMetadata = new HashMap<>();
-		if (modelClass == Aspect.class) customMetadata.put("featureId", ((Aspect) model).getFeature().getId());
-		
-		//Create metadata
-		S instanceMetadata = instanceMetadataType.newInstance();
-		BasicFileAttributes attributes = Files.readAttributes(modelPath, BasicFileAttributes.class);
-		ModelMetadata metadata = createModelMetadata(instanceMetadata, modelPath.getFileName().toString(), author, attributes, system, relativePath, modelType, 
-			 status, customMetadata);
-		//Store model in repository
-		mr.storeModel(model, modelType, metadata, relativePath);
-		
-		System.out.println("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
-
-	}
-	
-	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, Path file, BasicFileAttributes attributes, 
-			String fileExtension, String relativePath, ModelType modelType, HashMap<String,String> customMetadata) throws Exception {
-		ModelMetadata metadata = new ModelMetadata();
-		metadata.setSender("ModelRepositoryInitialization");
-		metadata.setTimeStamp(Calendar.getInstance().getTime());
-		metadata.setModelInstances(createModelMetadataInstances(instanceMetadata, file, attributes, fileExtension, relativePath, modelType, customMetadata));
-		
-		return metadata;
-	}
-	
-	private <T extends IModel> List<IModel> createModelMetadataInstances(T metadata, Path file, BasicFileAttributes attributes, 
-			String fileExtension, String relativePath, ModelType modelType, HashMap<String,String> customMetadata) throws Exception {
-		List<IModel> modelInstances = new ArrayList<>();
-		modelInstances.add(metadata);
-
-		metadata.setValue("name", getFileName(file));
-		metadata.setValue("authorId", getAuthorForModel (file));
-		Calendar creationDateCalendar = Calendar.getInstance();
-		creationDateCalendar.setTimeInMillis(attributes.creationTime().toMillis());
-		metadata.setValue("creationDate", creationDateCalendar.getTime());
-		Calendar lastModificationCalendar = Calendar.getInstance();
-		lastModificationCalendar.setTimeInMillis(attributes.lastModifiedTime().toMillis());
-		metadata.setValue("lastModificationDate", lastModificationCalendar.getTime());
-		metadata.setValue("systemId", getModelSystemForModel(file));
-		metadata.setValue("relativePath", relativePath);
-//		System.out.println(repositoryRelativePath + relativePath);
-//		metadata.setValue ("fileExtension", "." + fileExtension);
-
-		switch (modelType) {
-			case BaseModel:
-				metadata.setValue("fileExtension", ModelType.BaseModel.getExtension());
-				metadata.setValue("status", Status.Enacted.toString());
-				break;
-			case VariantModel:
-				metadata.setValue("fileExtension", ModelType.VariantModel.getExtension());
-				break;
-			case ProfileModel:
-				metadata.setValue("fileExtension", ModelType.ProfileModel.getExtension());
-				break;
-			case FeatureModel:
-				metadata.setValue("fileExtension", ModelType.FeatureModel.getExtension());
-				break;
-			case FeatureConfiguration:
-				metadata.setValue("fileExtension", ModelType.FeatureConfiguration.getExtension());
-				metadata.setValue("status", Status.Computed.toString());
-				break;
-			case AdaptabilityModel:
-				metadata.setValue("fileExtension", ModelType.AdaptabilityModel.getExtension());
-				metadata.setValue("featureId", customMetadata.get("featureId"));
-				break;
-			case PatternModel:
-				metadata.setValue("fileExtension", ModelType.PatternModel.getExtension());
-				break;
-			default:
-				log.error("Not a valid model type");
-		}
-		
-		return modelInstances;
-	}
-	
-	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, String name, String author,
-			BasicFileAttributes attributes, ModelSystem system, String relativePath, ModelType modelType, 
-			Status status, HashMap<String,String> customMetadata) throws Exception {
-		ModelMetadata metadata = new ModelMetadata();
-		metadata.setSender("ModelRepositoryInitialization");
-		metadata.setTimeStamp(Calendar.getInstance().getTime());
-		metadata.setModelInstances(
-			createModelMetadataInstances(instanceMetadata, name, author, attributes, system, relativePath, modelType, status, customMetadata));
-		
-		return metadata;
-	}
-	
-	
-	private <T extends IModel> List<IModel> createModelMetadataInstances(T metadata, String name, String author,
-			BasicFileAttributes attributes, ModelSystem system, String relativePath, ModelType modelType, 
-			Status status, HashMap<String,String> customMetadata) throws Exception {
-		List<IModel> modelInstances = new ArrayList<>();
-		modelInstances.add(metadata);
-
-		metadata.setValue("name", name);
-		metadata.setValue("authorId", author);
-		Calendar creationDateCalendar = Calendar.getInstance();
-		creationDateCalendar.setTimeInMillis(attributes.creationTime().toMillis());
-		metadata.setValue("creationDate", creationDateCalendar.getTime());
-		Calendar lastModificationCalendar = Calendar.getInstance();
-		lastModificationCalendar.setTimeInMillis(attributes.lastModifiedTime().toMillis());
-		metadata.setValue("lastModificationDate", lastModificationCalendar.getTime());
-		metadata.setValue("systemId", system);
-		metadata.setValue("relativePath", relativePath);
-
-		switch (modelType) {
-			case BaseModel:
-				metadata.setValue("fileExtension", ModelType.BaseModel.getExtension());
-				metadata.setValue("status", status.toString());
-				break;
-			case VariantModel:
-				metadata.setValue("fileExtension", ModelType.VariantModel.getExtension());
-				break;
-			case ProfileModel:
-				metadata.setValue("fileExtension", ModelType.ProfileModel.getExtension());
-				break;
-			case FeatureModel:
-				metadata.setValue("fileExtension", ModelType.FeatureModel.getExtension());
-				break;
-			case FeatureConfiguration:
-				metadata.setValue("fileExtension", ModelType.FeatureConfiguration.getExtension());
-				metadata.setValue("status", status.toString());
-				break;
-			case AdaptabilityModel:
-				metadata.setValue("fileExtension", ModelType.AdaptabilityModel.getExtension());
-				metadata.setValue("featureId", customMetadata.get("featureId"));
-				break;
-			case PatternModel:
-				metadata.setValue("fileExtension", ModelType.PatternModel.getExtension());
-				break;
-			default:
-				log.error("Not a valid model type");
-		}
-		
-		return modelInstances;
-	}
-
-	private String getFileName(Path file) {
-		return file.getFileName().getName(file.getFileName().getNameCount()-1).toString();
-	}
-	
-	private ModelSystem getModelSystemForModel(Path file) {
-		// Use heuristic knowledge of file name to set the model system
-		if (getFileName(file).toLowerCase().contains("adm")){
-			return ModelSystem.Supersede;
-		}else if (getFileName(file).toLowerCase().contains("monitoring") ||
-			 	  getFileName(file).toLowerCase().contains("twitter")){
-			return ModelSystem.MonitoringReconfiguration;
-		}else if (getFileName(file).toLowerCase().contains("health") ||
-			      getFileName(file).toLowerCase().contains("authentication")){
-			return ModelSystem.Health;
-		}else if (getFileName(file).toLowerCase().contains("smart") ||
-				  getFileName(file).toLowerCase().contains("hsk")) {
-			return ModelSystem.Atos_HSK;
-		}else if (getFileName(file).toLowerCase().contains("atos") ||
-				  getFileName(file).toLowerCase().contains("cms")){
-			return ModelSystem.Atos;
-		}else if (getFileName(file).toLowerCase().contains("siemens") ||
-				  getFileName(file).toLowerCase().contains("composition") ||
-				  getFileName(file).toLowerCase().contains("s1") ||
-				  getFileName(file).toLowerCase().contains("s2")){
-			return ModelSystem.Siemens;
-		}else{
-			return ModelSystem.Supersede;
-		}
-	}
-
-	private String getAuthorForModel(Path file) {
-		// Use heuristic knowledge of file name to set the owner
-		if (getFileName(file).toLowerCase().contains("adm")){
-			return "Supersede";
-		}else if (getFileName(file).toLowerCase().contains("atos") ||
-				  getFileName(file).toLowerCase().contains("cms") ||
-				  getFileName(file).toLowerCase().contains("smart")){
-			return "Yosu";
-		}else if (getFileName(file).toLowerCase().contains("siemens") ||
-				  getFileName(file).toLowerCase().contains("basemodel") ||
-				  getFileName(file).toLowerCase().contains("composition") ||
-				  getFileName(file).toLowerCase().contains("s1")){
-			return "Srdjan";
-		}else if (getFileName(file).toLowerCase().contains("health") ||
-			      getFileName(file).toLowerCase().contains("authentication")){
-			return "Yosu";
-		}else if (getFileName(file).toLowerCase().contains("monitoring") ||
-			 	  getFileName(file).toLowerCase().contains("twitter")){
-			return "Edith";
-		}else{
-			return "Supersede";
-		}
-	}
-
-	private String serializeDate (Date date){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-	    return dateFormat.format(date);
-	}
-	
-	private String serializeDate (FileTime time){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-	    return dateFormat.format(time.toMillis());
-	}
-
-	/**
-	 * List files located within path that have extension
-	 * @param path
-	 * @param extension
-	 * @return
-	 */
-	Map<Path, BasicFileAttributes> getFiles (Path path, final String extension){
-		final Map<Path, BasicFileAttributes> files=new HashMap<>();
-		try {
-		    Files.walkFileTree(path, new SimpleFileVisitor<Path>(){
-		     @Override
-		     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-		          if(!attrs.isDirectory() && file.getFileName().toString().endsWith(extension)){
-		               files.put(file, attrs);
-		          }
-		          return FileVisitResult.CONTINUE;
-		      }
-		     });
-		 } catch (IOException e) {
-		      e.printStackTrace();
-		 }
-		return files;
+		prm.populateModels(path, "patterns/eu/supersede/dynadapt/usecases/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
 	}
 
 }

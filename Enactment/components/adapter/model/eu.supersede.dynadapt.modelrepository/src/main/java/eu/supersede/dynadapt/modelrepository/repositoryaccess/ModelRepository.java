@@ -61,13 +61,10 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 	private final static Logger log = LogManager.getLogger(ModelRepository.class);
 	
-	private URI uri;
 	private URL url;
 
 	public ModelRepository(String repository, String repositoryRelativePath, ModelManager modelManager) throws Exception {
 		super(repository, repositoryRelativePath);
-
-		this.uri = URI.createURI(repository);
 
 		// FIXME To use "repositoryURI" rather than "url"
 		String userdir = System.getProperty("user.dir");
@@ -79,7 +76,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	
 	public ModelRepository(String repository, URL url, ModelManager modelManager) throws IOException {
 		this.repository = repository;
-		this.uri = URI.createURI(repository);
 		this.url = url;
 		this.modelManager = modelManager;
 		this.parser = new AdaptationParser(modelManager);
@@ -123,30 +119,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	}
 	
 	/**
-	 * This method adds string path segments into a URI 
-	 * @param uri to add the segments
-	 * @param segments the list of string path segments
-	 * @return the new uri
-	 */
-	private URI addSegments(URI uri, String... segments) {
-		URI result = uri;
-		// Cleaning the last segment in case it is empty, due to a conversion from a string ending in "/"
-		if (result.hasTrailingPathSeparator()) {
-			result = result.trimSegments(1);
-		}
-		// Breaking down segments into individual path items before adding them to the URI as segments 
-		for (String arg : segments) {
-			Path path = Paths.get(arg);
-			Iterator<Path> paths = path.iterator();
-			while (paths.hasNext()) {
-				Path segment = paths.next();
-				result = result.appendSegment(segment.toString());
-			}
-	    }
-		return result;
-	}
-	
-	/**
 	 * This method returns a list of aspect models linked to an specific
 	 * featureSUPERSEDE given the featureSUPERSEDE id and the models' location
 	 * required for loading the aspects
@@ -163,7 +135,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
-//				Aspect a = getAspectModel(ap, repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
 				Aspect a = getAspectModelFromPath(repository + modelsLocation.get("aspects") + aspectsFiles[i].getName());
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					aspects.add(a);
@@ -173,45 +144,45 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		return aspects;
 	}
 	
-	/**
-	 * TODO Take away the modelsLocation parameter; if we get them from model
-	 * repository this is not requiered.
-	 * @param system
-	 * @param featureSUPERSEDEId
-	 * @param modelsLocation
-	 * @return
-	 */
-	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureId) {
-		List<Aspect> aspects = new ArrayList<Aspect>();
-		
-		log.debug("Loading adaptability models' dependencies from repository...");
-		loadModelsFromRepository (system);
-		
-		log.debug("Adaptability models' dependencies loaded");
-
-		try {
-			AdaptabilityModel modelMetadata = new AdaptabilityModel();
-			modelMetadata.setFeatureId(featureId);
-			modelMetadata.setSystemId(system);
-			
-			log.debug("Loading adaptability models from " + system + " with feature " + featureId + "...");
-			List<Aspect> loadedAspects = getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
-			log.debug("Adaptability models loaded");
-			
-			log.debug("Filtering adaptability models referencing feature: " + featureId);
-			for (Aspect aspect: loadedAspects){
-				EcoreUtil.resolveAll(aspect);
-				
-				if (aspect.getFeature().getId().equalsIgnoreCase(featureId)) {
-					aspects.add(aspect);
-				}
-			}
-						
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return aspects;
-	}
+//	/**
+//	 * TODO Take away the modelsLocation parameter; if we get them from model
+//	 * repository this is not requiered.
+//	 * @param system
+//	 * @param featureSUPERSEDEId
+//	 * @param modelsLocation
+//	 * @return
+//	 */
+//	public List<Aspect> getAspectModelsFromRepository(ModelSystem system, String featureId) {
+//		List<Aspect> aspects = new ArrayList<Aspect>();
+//		
+//		log.debug("Loading adaptability models' dependencies from repository...");
+//		loadModelsFromRepository (system);
+//		
+//		log.debug("Adaptability models' dependencies loaded");
+//
+//		try {
+//			AdaptabilityModel modelMetadata = new AdaptabilityModel();
+//			modelMetadata.setFeatureId(featureId);
+//			modelMetadata.setSystemId(system);
+//			
+//			log.debug("Loading adaptability models from " + system + " with feature " + featureId + "...");
+//			List<Aspect> loadedAspects = getModelsFromMetadata(ModelType.AdaptabilityModel, modelMetadata, Aspect.class);
+//			log.debug("Adaptability models loaded");
+//			
+//			log.debug("Filtering adaptability models referencing feature: " + featureId);
+//			for (Aspect aspect: loadedAspects){
+//				EcoreUtil.resolveAll(aspect);
+//				
+//				if (aspect.getFeature().getId().equalsIgnoreCase(featureId)) {
+//					aspects.add(aspect);
+//				}
+//			}
+//						
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return aspects;
+//	}
 	
 	/**
 	 * This method returns a list of aspect models URIs linked to an specific
@@ -234,7 +205,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		if (aspectsFiles != null) {
 			for (int i = 0; i < aspectsFiles.length; i++) {
 				String aspectModelPath = repository + modelsLocation.get("aspects") + aspectsFiles[i].getName();
-//				Aspect a = getAspectModel(ap, aspectModelPath);
 				Aspect a = getAspectModelFromPath(aspectModelPath);
 				if (a.getFeature().getId().equalsIgnoreCase(featureSUPERSEDEId)) {
 					uris.add(URI.createURI(aspectModelPath));
@@ -290,9 +260,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		}
 	}
 	
-//	private Aspect getAspectModel(IAdaptationParser parser, String aspectModelPath) {
 	private Aspect getAspectModelFromPath(String aspectModelPath) {
-//		return parser.parseAdaptationModel(aspectModelPath); //Do not use: this approach gives problems with relative paths
 		return modelManager.loadAspectModel(aspectModelPath);
 	}
 	
@@ -300,7 +268,6 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		/*
 		 * Models in class path
 		 */
-//		URL uriFolder = this.url.getClass().getResource("/" + folderPath);
 
 		URL uriFolder = null;
 		

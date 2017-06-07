@@ -77,7 +77,8 @@ public class SiemensAdapterTest {
 	
 	@Test
 	public void testSiemensGetAspectModelsFromRepository() {
-		List<Aspect> aspects = mr.getAspectModelsFromRepository(ModelSystem.Siemens, "c4");
+		mr.loadModelsFromRepository(ModelSystem.Siemens);
+		List<Aspect> aspects = mr.getAspectModels("c4", modelsLocation);
 		assertNotNull("List of aspects is null", aspects);
 		assertNotEquals("List of aspects is empty", 0, aspects.size());
 		Aspect aspect = aspects.get(0);

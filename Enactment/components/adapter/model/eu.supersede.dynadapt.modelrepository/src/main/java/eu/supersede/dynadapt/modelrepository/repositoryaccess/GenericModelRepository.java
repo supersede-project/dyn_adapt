@@ -327,10 +327,6 @@ public abstract class GenericModelRepository {
 		if (result == null) {
 			return null;
 		}					
-		//TODO Abilitate again this line of code when we give support to all models in getDependencies()
-		// Loading the models this model depends on
-//		ITypedModelId modelId = new TypedModelId(type, id);
-//		getDependencies(modelId);
 		
 		// Store model in temporary local folder of the repository
 		String fileName = (String) result.getValue("name") ;
