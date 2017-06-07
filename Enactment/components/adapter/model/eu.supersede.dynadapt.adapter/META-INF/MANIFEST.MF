@@ -6,14 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: lib/log4j-1.2.17.jar,
  .
 Export-Package: eu.supersede.dynadapt.adapter,
- eu.supersede.dynadapt.usecases.atos.patterns,
- eu.supersede.dynadapt.usecases.atos.patterns.util,
  eu.supersede.dynadapt.usecases.health,
  eu.supersede.dynadapt.usecases.health.util,
  eu.supersede.dynadapt.usecases.patterns,
- eu.supersede.dynadapt.usecases.patterns.util,
- patterns,
- patterns.util
+ eu.supersede.dynadapt.usecases.patterns.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.11.1",
  org.eclipse.emf.ecore;bundle-version="2.11.2",
