@@ -214,8 +214,11 @@ public abstract class GenericModelRepository {
 		S modelInstanceMetadata = (S)metadata.getModelInstances().get(0);	
 		
 		//  Updating dependencies in model's meta-data
-		List<IModelId> dependencies = storeDependencies(model, type, metadata, originalRepoPath);
-		modelInstanceMetadata.setValue("dependencies", dependencies);
+		// FIXME This code is not working. Ignoring dependencies by the moment.
+		// Dependencies are managed populating correctly the repository and retrieving all model for a given system
+		// in correct order.
+//		List<IModelId> dependencies = storeDependencies(model, type, metadata, originalRepoPath);
+//		modelInstanceMetadata.setValue("dependencies", dependencies);
 		
 		// Store model in temporary local folder of the repository
 		Path path = Paths.get(temp.toString(), (String)modelInstanceMetadata.getValue("relativePath"), 

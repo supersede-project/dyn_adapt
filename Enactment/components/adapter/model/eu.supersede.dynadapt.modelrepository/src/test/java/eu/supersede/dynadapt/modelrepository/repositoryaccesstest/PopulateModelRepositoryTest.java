@@ -66,7 +66,6 @@ import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.PatternModel;
 import eu.supersede.integration.api.adaptation.types.ProfileModel;
 import eu.supersede.integration.api.adaptation.types.Status;
-import eu.supersede.integration.api.adaptation.types.TypedModelId;
 import eu.supersede.integration.api.adaptation.types.VariantModel;
 
 public class PopulateModelRepositoryTest {
@@ -111,6 +110,11 @@ public class PopulateModelRepositoryTest {
 
 	
 	@Test
+	public void testCleanUp() throws Exception {
+		log.debug ("Repository cleaned up");
+	}
+	
+	@Test
 	public void testPopulateRepository() throws Exception {
 //		populateRepository();
 		populateAtosModels();
@@ -120,10 +124,97 @@ public class PopulateModelRepositoryTest {
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 
+		//BaseModel
 		populateModel(
 			Paths.get(repositoryPath.toString(), "models/base", "atos_smart_base_model.uml"), 
-			"Atos", ModelSystem.Atos_HSK, Status.Enacted, "models/base", Model.class, ModelType.BaseModel, BaseModel.class);
+			"Yosu", ModelSystem.Atos_HSK, Status.Enacted, "models/base", Model.class, ModelType.BaseModel, BaseModel.class);
 		
+		//Profile
+		populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+			"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/profiles", Profile.class, ModelType.ProfileModel, ProfileModel.class);
+		
+		//Variants
+		populateModel(
+			Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_high.uml"), 
+			"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_low.uml"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_medium.uml"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_high.uml"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_low.uml"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+		
+		populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_medium.uml"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model
+		populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "SmartPlatformFM_HSK.yafm"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "features/models", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+
+		//Feature Configurations
+		populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_SingleVM_LowLoad.yafc"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Enacted, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_SingleVM_HighLoad.yafc"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_LowLoad_optimized.yafc"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		//Patterns
+		populateModel(
+				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "atos_query_patterns.vql"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_high_load.aspect"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_low_load.aspect"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_medium_load.aspect"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_high_load.aspect"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_low_load.aspect"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+
+		populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_medium_load.aspect"), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+
 	}
 
 	private void populateRepository() throws Exception {
@@ -138,11 +229,7 @@ public class PopulateModelRepositoryTest {
 		populateModels(path, "features/configurations", "yafc", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		populateModels(path, "adaptability_models", "aspect", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		//FIXME add other system patterns
-		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/siemens/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
-		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/atos/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
-		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/monitoring/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
-		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/health", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
-
+		populateModels(path, "patterns/eu/supersede/dynadapt/usecases/patterns", "vql", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
 	}
 
 //	private void populateBaseModels(Path path, String repositorySubFolder, String extension) throws IOException, Exception {
@@ -250,7 +337,7 @@ public class PopulateModelRepositoryTest {
 				break;
 			case FeatureConfiguration:
 				metadata.setValue("fileExtension", ModelType.FeatureConfiguration.getExtension());
-				metadata.setValue("status", Status.ComputedByDM.toString());
+				metadata.setValue("status", Status.Computed.toString());
 				break;
 			case AdaptabilityModel:
 				metadata.setValue("fileExtension", ModelType.AdaptabilityModel.getExtension());
@@ -312,7 +399,7 @@ public class PopulateModelRepositoryTest {
 				break;
 			case FeatureConfiguration:
 				metadata.setValue("fileExtension", ModelType.FeatureConfiguration.getExtension());
-				metadata.setValue("status", Status.ComputedByDM.toString());
+				metadata.setValue("status", status.toString());
 				break;
 			case AdaptabilityModel:
 				metadata.setValue("fileExtension", ModelType.AdaptabilityModel.getExtension());
