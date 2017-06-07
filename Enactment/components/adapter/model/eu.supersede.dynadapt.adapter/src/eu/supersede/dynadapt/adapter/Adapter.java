@@ -122,9 +122,9 @@ public class Adapter implements IAdapter {
 			
 			//FIXME Before FCs computed by DM are stored in the model repository and FC is retrieved by id
 			//We use FC id as name of latest computed one, to override default, located in standard local repository
-			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
-			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
-			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
+//			RepositoryMetadata metadata = new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST);
+//			ModelRepositoryMapping.setModelURI(system, metadata, "/features/configurations/" + featureConfigurationId + ".yafc");
+//			log.debug("Using as latest computed FC: " + "/features/configurations/" + featureConfigurationId + ".yafc");
 			
 //			FeatureConfiguration newFeatureConfig = mrr.getConfigurationForSystem(system,
 //					new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));

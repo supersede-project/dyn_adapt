@@ -73,8 +73,8 @@ public class PopulateModelRepositoryTest {
 
 	private final static Logger log = LogManager.getLogger(PopulateModelRepositoryTest.class);
 	
-	String repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-	String repositoryRelativePath = "../eu.supersede.dynadapt.adapter/repository/";
+	String repository = "platform:/resource/eu.supersede.dynadapt.adapter.service/repository/";
+	String repositoryRelativePath = "../../../../services/eu.supersede.dynadapt.adapter.service/repository/";
 
 	Map<String, String> modelsLocation;
 
@@ -112,9 +112,20 @@ public class PopulateModelRepositoryTest {
 	
 	@Test
 	public void testPopulateRepository() throws Exception {
-		populateRepository();
+//		populateRepository();
+		populateAtosModels();
 	}
 	
+	private void populateAtosModels() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+
+		populateModel(
+			Paths.get(repositoryPath.toString(), "models/base", "atos_smart_base_model.uml"), 
+			"Atos", ModelSystem.Atos_HSK, Status.Enacted, "models/base", Model.class, ModelType.BaseModel, BaseModel.class);
+		
+	}
+
 	private void populateRepository() throws Exception {
 		//Read repository folder structure
 		String userdir = System.getProperty("user.dir");
@@ -173,6 +184,28 @@ public class PopulateModelRepositoryTest {
 		}
 	}
 	
+	private <T extends EObject, S extends IModel> void populateModel(
+			Path modelPath, String author, ModelSystem system, Status status, String relativePath, Class<T> modelClass, ModelType modelType, Class<S> instanceMetadataType) throws IOException, Exception {
+		
+		//Load Model
+		T model = mm.loadModel(modelPath.toString(), modelClass);
+		
+		//FIXME get Aspect Feature Id
+		HashMap<String,String> customMetadata = new HashMap<>();
+		if (modelClass == Aspect.class) customMetadata.put("featureId", ((Aspect) model).getFeature().getId());
+		
+		//Create metadata
+		S instanceMetadata = instanceMetadataType.newInstance();
+		BasicFileAttributes attributes = Files.readAttributes(modelPath, BasicFileAttributes.class);
+		ModelMetadata metadata = createModelMetadata(instanceMetadata, modelPath.getFileName().toString(), author, attributes, system, relativePath, modelType, 
+			 status, customMetadata);
+		//Store model in repository
+		mr.storeModel(model, modelType, metadata, relativePath);
+		
+		System.out.println("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
+
+	}
+	
 	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, Path file, BasicFileAttributes attributes, 
 			String fileExtension, String relativePath, ModelType modelType, HashMap<String,String> customMetadata) throws Exception {
 		ModelMetadata metadata = new ModelMetadata();
@@ -204,7 +237,69 @@ public class PopulateModelRepositoryTest {
 		switch (modelType) {
 			case BaseModel:
 				metadata.setValue("fileExtension", ModelType.BaseModel.getExtension());
+				metadata.setValue("status", Status.Enacted.toString());
+				break;
+			case VariantModel:
+				metadata.setValue("fileExtension", ModelType.VariantModel.getExtension());
+				break;
+			case ProfileModel:
+				metadata.setValue("fileExtension", ModelType.ProfileModel.getExtension());
+				break;
+			case FeatureModel:
+				metadata.setValue("fileExtension", ModelType.FeatureModel.getExtension());
+				break;
+			case FeatureConfiguration:
+				metadata.setValue("fileExtension", ModelType.FeatureConfiguration.getExtension());
 				metadata.setValue("status", Status.ComputedByDM.toString());
+				break;
+			case AdaptabilityModel:
+				metadata.setValue("fileExtension", ModelType.AdaptabilityModel.getExtension());
+				metadata.setValue("featureId", customMetadata.get("featureId"));
+				break;
+			case PatternModel:
+				metadata.setValue("fileExtension", ModelType.PatternModel.getExtension());
+				break;
+			default:
+				log.error("Not a valid model type");
+		}
+		
+		return modelInstances;
+	}
+	
+	private <T extends IModel> ModelMetadata createModelMetadata(T instanceMetadata, String name, String author,
+			BasicFileAttributes attributes, ModelSystem system, String relativePath, ModelType modelType, 
+			Status status, HashMap<String,String> customMetadata) throws Exception {
+		ModelMetadata metadata = new ModelMetadata();
+		metadata.setSender("ModelRepositoryInitialization");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
+		metadata.setModelInstances(
+			createModelMetadataInstances(instanceMetadata, name, author, attributes, system, relativePath, modelType, status, customMetadata));
+		
+		return metadata;
+	}
+	
+	
+	private <T extends IModel> List<IModel> createModelMetadataInstances(T metadata, String name, String author,
+			BasicFileAttributes attributes, ModelSystem system, String relativePath, ModelType modelType, 
+			Status status, HashMap<String,String> customMetadata) throws Exception {
+		List<IModel> modelInstances = new ArrayList<>();
+		modelInstances.add(metadata);
+
+		metadata.setValue("name", name);
+		metadata.setValue("authorId", author);
+		Calendar creationDateCalendar = Calendar.getInstance();
+		creationDateCalendar.setTimeInMillis(attributes.creationTime().toMillis());
+		metadata.setValue("creationDate", creationDateCalendar.getTime());
+		Calendar lastModificationCalendar = Calendar.getInstance();
+		lastModificationCalendar.setTimeInMillis(attributes.lastModifiedTime().toMillis());
+		metadata.setValue("lastModificationDate", lastModificationCalendar.getTime());
+		metadata.setValue("systemId", system);
+		metadata.setValue("relativePath", relativePath);
+
+		switch (modelType) {
+			case BaseModel:
+				metadata.setValue("fileExtension", ModelType.BaseModel.getExtension());
+				metadata.setValue("status", status.toString());
 				break;
 			case VariantModel:
 				metadata.setValue("fileExtension", ModelType.VariantModel.getExtension());
