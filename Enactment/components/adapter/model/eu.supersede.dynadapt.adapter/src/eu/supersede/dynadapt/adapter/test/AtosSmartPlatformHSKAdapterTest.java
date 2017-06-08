@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.adapter.test;
 
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -50,7 +51,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-//			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+			uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
@@ -68,7 +69,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 		boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-//		String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+		uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 		String featureConfigurationId = null;
 		
 		for (int i=0; i<numberRuns; i++){
@@ -89,16 +90,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 									
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
-//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighMediumLoad";
-			//Load model and store it in ModelRepository as the latest ComputedModel for Atos_HSK system
-			String userdir = System.getProperty("user.dir");
-			Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
-			PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
-			prm.populateModel(
-					Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc"), 
-					"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", 
-					FeatureConfiguration.class, ModelType.FeatureConfiguration, 
-					eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
+			uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc");
 		
 			String featureConfigurationId = null;
 			
@@ -118,7 +110,10 @@ public class AtosSmartPlatformHSKAdapterTest {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 									
 			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
-			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
+			uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc");
+			
+			String featureConfigurationId = null;
+			
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -134,11 +129,25 @@ public class AtosSmartPlatformHSKAdapterTest {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
-			String sFcUri = fcUri.toString();
-			sFcUri = sFcUri.substring(sFcUri.indexOf('/',sFcUri.indexOf('/') + 1) + 1);
-			Path fcPath = Paths.get(platformRelativePath, sFcUri);
-			String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+			String featureConfigurationAsString = readFCfromFile("/features/configurations/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+			adapter.enactAdaptationDecisionActionsInFCasString(
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	
+	@Test
+	public void testAtosHighHSKAdaptationTakenFCfromString() {
+		try {
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
+			String[] adaptationDecisionActionIds = new String[]{};
+			String featureConfigurationAsString = readFCfromFile("/features/configurations/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 			adapter.enactAdaptationDecisionActionsInFCasString(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
 		} catch (EnactmentException e) {
@@ -148,24 +157,25 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 	
-	@Test
-	public void testAtosHighHSKAdaptationTakenFCfromString() {
-		try {
-			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
-			String[] adaptationDecisionActionIds = new String[]{};
-			URI fcUri = ModelRepositoryMapping.getModelURI (ModelSystem.Atos_HSK, new RepositoryMetadata(ResourceType.FEATURE_CONFIGURATION, ResourceTimestamp.NEWEST));
-			String sFcUri = fcUri.toString();
-			sFcUri = sFcUri.substring(sFcUri.indexOf('/',sFcUri.indexOf('/') + 1) + 1);
-			Path fcPath = Paths.get(platformRelativePath, sFcUri);
-			String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-			adapter.enactAdaptationDecisionActionsInFCasString(
-					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
-		} catch (EnactmentException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private String readFCfromFile(String filePath) throws EnactmentException, IOException {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		
+		Path fcPath = Paths.get(repositoryPath.toString(), filePath);
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		return featureConfigurationAsString;
+	}
+	
+	private void uploadLatestComputedFC(String fcName) throws IOException, Exception {
+		//Load model and store it in ModelRepository as the latest ComputedModel for Atos_HSK system
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", fcName), 
+				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", 
+				FeatureConfiguration.class, ModelType.FeatureConfiguration, 
+				eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
 	}
 	
 	@Before
