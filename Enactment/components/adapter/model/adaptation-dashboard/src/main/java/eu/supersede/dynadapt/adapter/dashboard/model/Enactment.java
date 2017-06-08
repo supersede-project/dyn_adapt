@@ -19,7 +19,7 @@ import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
 @Entity
 @Table(name = "enactments")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Enactment extends Adaptation{
+public class Enactment {
 	
 	@Id
 	private String fc_id;

@@ -2,6 +2,8 @@ package eu.supersede.dynadapt.adapter.dashboard.rest;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
