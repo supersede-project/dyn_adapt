@@ -78,7 +78,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columnsresize: false,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Feature Id', align: 'center', datafield: 'fc_id' , width: 80},
+			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 80},
 			    { text: 'Name', align: 'center', datafield: 'name', width: 80},
 			    { text: 'Computation Timestamp', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    { text: 'Rank', align: 'center', datafield: 'rank', width: 100},
@@ -159,7 +159,20 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		$scope.createWidget = true;
 		
 		$scope.enactSuggestedAdaptations = function() {
-			
+			/*$http({
+	            url: "adaptation-dashboard/enactment",
+	            method: 'POST',
+	            data: {  
+	                "fc_id":"FC_2",
+	                "enactment_request_time":"2017/05/31 17:00:00",
+	                "enactment_completion_time":"00:05.329",
+	                "result":true,
+	          }
+	        }).success(function(data) {
+	        	alert("Created adaptation");
+		    }).error(function(err) {
+		    	console.log(err);
+		    });*/
 		}
 		
 		$scope.deleteSuggestedAdaptations = function() {

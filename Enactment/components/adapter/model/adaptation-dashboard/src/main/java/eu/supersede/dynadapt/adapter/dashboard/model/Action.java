@@ -46,6 +46,14 @@ public class Action implements Serializable {
 	public void setAc_id(String ac_id) {
 		this.action_id = ac_id;
 	}
+	
+	public String getFc_id() {
+		return fc_id;
+	}
+
+	public void setFc_id(String fc_id) {
+		this.fc_id = fc_id;
+	}
 
 	public String getName() {
 		return name;

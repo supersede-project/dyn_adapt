@@ -1,10 +1,14 @@
 package eu.supersede.dynadapt.adapter.dashboard.model;
 
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +27,7 @@ public class Adaptation {
     private Timestamp computation_timestamp;
     private double rank;
     
-    @OneToMany(mappedBy="adaptation")
+    @OneToMany(mappedBy="adaptation", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Action> actions;
 
@@ -51,8 +55,16 @@ public class Adaptation {
 		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(computation_timestamp);
 	}
 
-	public void setComputation_timestamp(Timestamp computation_timestamp) {
-		this.computation_timestamp = computation_timestamp;
+	public void setComputation_timestamp(String computation_timestamp) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    Date parsedDate;
+		try {
+			parsedDate = dateFormat.parse(computation_timestamp);
+			Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+			this.computation_timestamp = timestamp;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getRank() {

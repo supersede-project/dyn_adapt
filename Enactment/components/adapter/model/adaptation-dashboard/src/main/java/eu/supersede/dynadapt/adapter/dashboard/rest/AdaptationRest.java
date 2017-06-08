@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -53,8 +54,9 @@ public class AdaptationRest
     }
     
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
-    public Adaptation addAdaptation(Adaptation adaptation)
+    public Adaptation addAdaptation(@RequestBody Adaptation adaptation)
     {
+    	for (Action a : adaptation.getActions()) a.setFc_id(adaptation.getFc_id());
     	return adaptations.save(adaptation);
     }
     

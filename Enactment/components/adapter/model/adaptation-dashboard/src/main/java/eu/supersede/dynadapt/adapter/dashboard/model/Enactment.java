@@ -2,7 +2,9 @@ package eu.supersede.dynadapt.adapter.dashboard.model;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -48,16 +50,32 @@ public class Enactment {
 		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(enactment_request_time);
 	}
 
-	public void setEnactment_request_time(Timestamp enactment_request_timestamp) {
-		this.enactment_request_time = enactment_request_timestamp;
+	public void setEnactment_request_time(String enactment_request_time) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    Date parsedDate;
+		try {
+			parsedDate = dateFormat.parse(enactment_request_time);
+			Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+			this.enactment_request_time = timestamp;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getEnactment_completion_time() {
 		return new SimpleDateFormat("mm:ss.SSS").format(enactment_completion_time);
 	}
 
-	public void setEnactment_completion_time(Time enactment_completion_time) {
-		this.enactment_completion_time = enactment_completion_time;
+	public void setEnactment_completion_time(String enactment_completion_time) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss.SSS");
+	    Date parsedDate;
+		try {
+			parsedDate = dateFormat.parse(enactment_completion_time);
+			Time timestamp = new java.sql.Time(parsedDate.getTime());
+			this.enactment_completion_time = timestamp;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean isResult() {
