@@ -58,7 +58,7 @@ public class PopulateRepositoryManager {
 			//Store model in repository
 			mr.storeModel(model, modelType, metadata, path.toRealPath().toString());
 			
-			System.out.println("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
+			log.debug("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class PopulateRepositoryManager {
 		//Store model in repository
 		mr.storeModel(model, modelType, metadata, relativePath);
 		
-		System.out.println("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
+		log.debug("Stored " + metadata.getModelInstances().get(0).getValue("name") + " model");
 
 	}
 	

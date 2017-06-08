@@ -407,6 +407,7 @@ public abstract class GenericModelRepository {
 //				((PatternModel) model).setPackageName(s);
 //			results.add (model);
 		}
+		// FIXME la lista siempre se devuelve vacía
 		return results;
 	}
 	

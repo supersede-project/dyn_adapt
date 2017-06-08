@@ -22,27 +22,15 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccesstest;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -60,8 +48,6 @@ import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
 import eu.supersede.integration.api.adaptation.types.FeatureConfiguration;
 import eu.supersede.integration.api.adaptation.types.FeatureModel;
-import eu.supersede.integration.api.adaptation.types.IModel;
-import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.PatternModel;
@@ -70,6 +56,10 @@ import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.adaptation.types.VariantModel;
 
 public class PopulateModelRepositoryTest {
+
+	private static final String ATOS_HSK_MODELS_AUTHOR = "Yosu";
+
+	private static final String SIEMENS_MODELS_AUTHOR = "Orlando";
 
 	private final static Logger log = LogManager.getLogger(PopulateModelRepositoryTest.class);
 	
@@ -95,6 +85,7 @@ public class PopulateModelRepositoryTest {
 		modelsLocation.put("profiles", "models/profiles/");
 		modelsLocation.put("patterns", "patterns/");
 		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("configurations", "features/configurations/");
 
 		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 		url = getClass().getResource("/");
@@ -106,8 +97,10 @@ public class PopulateModelRepositoryTest {
 		cleanUpRepository();
 	}
 
+	/**
+	 * To remove all models from remote model repository
+	 */
 	private void cleanUpRepository() {
-		//Remove all repository models
 		mr.cleanUpRepository();
 	}
 
@@ -121,106 +114,196 @@ public class PopulateModelRepositoryTest {
 	public void testPopulateRepository() throws Exception {
 //		populateRepository();
 		populateAtosModels();
+		populateSiemenesModels();
 	}
 	
 	private void populateAtosModels() throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 		
-
+		log.debug("Loading " + ModelSystem.Atos_HSK.toString());
+		
 		//BaseModel
 		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/base", "atos_smart_base_model.uml"), 
-			"Yosu", ModelSystem.Atos_HSK, Status.Enacted, "models/base", Model.class, ModelType.BaseModel, BaseModel.class);
+			ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Enacted, "models/base", Model.class,
+			ModelType.BaseModel, BaseModel.class);
 		
 		//Profile
 		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
-			"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/profiles", Profile.class, ModelType.ProfileModel, ProfileModel.class);
+			ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
 		
 		//Variants
 		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_high.uml"), 
-			"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+			ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class,
+			ModelType.VariantModel, VariantModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_low.uml"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2a_medium.uml"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_high.uml"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_low.uml"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "models/variants", "atos_smart_hsk_vm2b_medium.uml"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class, ModelType.VariantModel, VariantModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 
 		//Feature Model
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/models", "SmartPlatformFM_HSK.yafm"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "features/models", cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 
 		//Feature Configurations
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_SingleVM_LowLoad.yafc"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Enacted, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_SingleVM_HighLoad.yafc"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 //		prm.populateModel(
 //				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_LowLoad_optimized.yafc"), 
-//				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+//				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
+//				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		//Patterns
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "atos_query_patterns.vql"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns", org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
 
 		//Adaptability models
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_high_load.aspect"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_low_load.aspect"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2a_medium_load.aspect"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_high_load.aspect"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_low_load.aspect"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "atos_smart_hsk_vm2b_medium_load.aspect"), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class, ModelType.AdaptabilityModel, AdaptabilityModel.class);
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
+		log.debug(ModelSystem.Atos_HSK.toString() + " models loaded");	
 	}
 
+	private void populateSiemenesModels() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+
+		log.debug("Loading " + ModelSystem.Siemens.toString());
+		
+		//BaseModel
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/base", "BaseModel-S2.uml"),
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "models/base", Model.class,
+			ModelType.BaseModel, BaseModel.class);
+		
+		//Profiles
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "model.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		//Variants
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/variants", "S2.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
+			ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-S1c_dm.yafm"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "features/models",
+			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-S1c.yafm"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "features/models",
+			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
+		//Feature Configurations
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureModel-S1c_dm.yafc"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "features/configurations",
+			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureModel-S1c_dm_optimized.yafc"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Computed, "features/configurations",
+			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		//Patterns
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "siemens_queries.vql"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+			org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2.aspect"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
+			ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		log.debug(ModelSystem.Siemens.toString() + " models loaded");	
+	}
+	
 	private void populateRepository() throws Exception {
 		//Read repository folder structure
 		String userdir = System.getProperty("user.dir");

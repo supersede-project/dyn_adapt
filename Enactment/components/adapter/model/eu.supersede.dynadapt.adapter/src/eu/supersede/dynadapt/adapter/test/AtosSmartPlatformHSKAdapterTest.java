@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -20,10 +19,6 @@ import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
-import eu.supersede.dynadapt.adapter.system.ModelRepositoryMapping;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
-import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
@@ -33,6 +28,7 @@ import eu.supersede.integration.api.adaptation.types.Status;
 
 public class AtosSmartPlatformHSKAdapterTest {
 	
+	private static final String MODELS_AUTHOR = "Yosu";
 	String repository;
 	String repositoryRelativePath;
 	String platformRelativePath;
@@ -139,8 +135,6 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 
-
-	
 	@Test
 	public void testAtosHighHSKAdaptationTakenFCfromString() {
 		try {
@@ -157,6 +151,13 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 	
+	/**
+	 * To get the serialization string of a given configuration model
+	 * @param filePath the name of the feature configuration file, relative to the model repository folder.
+	 * @return
+	 * @throws EnactmentException
+	 * @throws IOException
+	 */
 	private String readFCfromFile(String filePath) throws EnactmentException, IOException {
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
@@ -166,15 +167,24 @@ public class AtosSmartPlatformHSKAdapterTest {
 		return featureConfigurationAsString;
 	}
 	
+	/** 
+	 * Load a given configuration model as the latest ComputedModel for Siemens system,
+	 * simulating it is the result of the last decision-making optimization update
+	 * @param fcName the name of the feature configuration file
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	private void uploadLatestComputedFC(String fcName) throws IOException, Exception {
-		//Load model and store it in ModelRepository as the latest ComputedModel for Atos_HSK system
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", fcName), 
-				"Yosu", ModelSystem.Atos_HSK, Status.Computed, "features/configurations", 
-				FeatureConfiguration.class, ModelType.FeatureConfiguration, 
+				MODELS_AUTHOR,
+				ModelSystem.Atos_HSK, Status.Computed,
+				modelsLocation.get("configurations"), 
+				FeatureConfiguration.class,
+				ModelType.FeatureConfiguration, 
 				eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
 	}
 	
@@ -182,7 +192,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void setUp() throws Exception {
 		setupPlatform();		
 		mm = new ModelManager(); 
-		mr = new ModelRepository(repository,repositoryRelativePath, mm);
+		mr = new ModelRepository(repository, repositoryRelativePath, mm);
 	}
 
 	private void setupPlatform() {
@@ -198,6 +208,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 		modelsLocation.put("profiles", "models/profiles/");
 		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/patterns/");
 		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("configurations", "features/configurations/");
 		modelsLocation.put("adapted", "models/adapted/");
 	}
 
