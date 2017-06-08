@@ -21,6 +21,7 @@ public class EnactmentRest
 {
     @Autowired
     EnactmentsJpa enactments;
+    @Autowired
     AdaptationsJpa adaptations;
 
     @RequestMapping(value = "", method = RequestMethod.GET)

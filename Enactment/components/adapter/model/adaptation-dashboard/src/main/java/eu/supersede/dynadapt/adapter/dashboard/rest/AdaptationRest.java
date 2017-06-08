@@ -22,7 +22,10 @@ public class AdaptationRest
 {
     @Autowired
     AdaptationsJpa adaptations;
+    @Autowired
     ActionsJpa actions;
+    @Autowired
+    EnactmentsJpa enactments;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Adaptation> getAdaptations()
@@ -39,8 +42,13 @@ public class AdaptationRest
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE )
     public void deleteAdaptation(@PathVariable("id") String id)
     {
-    	List<Action> actionList = adaptations.findOne(id).getActions();
-    	for (Action a : actionList) actions.delete(a);
+    	Adaptation adaptation = adaptations.findOne(id);
+    	List<Action> actionList = adaptation.getActions();
+    	for (Action a : actionList) {
+    		actions.delete(a);
+    	}
+    	Enactment enactment = enactments.findOne(id);
+    	if (enactment != null) enactments.delete(enactment);
     	adaptations.delete(id);
     }
     

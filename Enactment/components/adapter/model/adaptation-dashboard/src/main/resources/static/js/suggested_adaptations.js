@@ -1,6 +1,6 @@
 var app = angular.module('w5app');
 
-app.controllerProvider.register('list_adaptations', function($scope, $http) {
+app.controllerProvider.register('suggested_adaptations', function($scope, $http) {
 	
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
@@ -16,7 +16,7 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 //    $scope.getAdaptations();
 	
 	$http({
-		url: "adaptation-dashboard/enactment",
+		url: "adaptation-dashboard/adaptation",
 		method: 'GET'
 	}).success(function (data, status) {
 		var localData = [];
@@ -24,23 +24,22 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 		for(var i = 0; i < data.length; i++)
 		{
 			var row = {};
-			console.log(data[i]);
-			row['fc_id'] = data[i]['adaptation']['fc_id'];			
-			row['enactment_request_time'] = data[i]['enactment_request_time'];
-			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
-			row['result'] = data[i]['result'];
+			row['fc_id'] = data[i]['fc_id'];			
+			row['name'] = data[i]['name'];
+			row['computation_timestamp'] = data[i]['computation_timestamp'];
+			row['rank'] = data[i]['rank'];
 			
 			row['action_ids'] = [];
 			row['action_names'] = [];
 			row['action_descriptions'] = [];
 			row['action_enableds'] = [];
 			
-			for(var j = 0; j < data[i]['adaptation']['actions'].length; j++) {
+			for(var j = 0; j < data[i]['actions'].length; j++) {
 				
-				row['action_ids'].push(data[i]['adaptation']['actions'][j]['ac_id']);
-				row['action_names'].push(data[i]['adaptation']['actions'][j]['name']);
-				row['action_descriptions'].push(data[i]['adaptation']['actions'][j]['description']);
-				row['action_enableds'].push(data[i]['adaptation']['actions'][j]['enabled']);
+				row['action_ids'].push(data[i]['actions'][j]['ac_id']);
+				row['action_names'].push(data[i]['actions'][j]['name']);
+				row['action_descriptions'].push(data[i]['actions'][j]['description']);
+				row['action_enableds'].push(data[i]['actions'][j]['enabled']);
 			}
 						
 			localData.push(row);
@@ -52,9 +51,9 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			datatype: "json",
 			datafields: [
 				{ name: 'fc_id', type: 'string' },
-				{ name: 'enactment_request_time', type: 'string' },
-				{ name: 'enactment_completion_time', type: 'string' },
-				{ name: 'result', type: 'string' },
+				{ name: 'name', type: 'string' },
+				{ name: 'computation_timestamp', type: 'string' },
+				{ name: 'rank', type: 'string' },
 				{ name: 'action_ids', type: 'array' },
 				{ name: 'action_names', type: 'array' },
 				{ name: 'action_descriptions', type: 'array' },
@@ -77,9 +76,12 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			autorowheight: true,
 			source: dataAdapter,
 			columnsresize: false,
-			//selectionmode: 'checkbox',
+			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Feature Id', align: 'center', datafield: 'fc_id' , width: 80},
+			    { text: 'Name', align: 'center', datafield: 'name', width: 80},
+			    { text: 'Computation Timestamp', align: 'center', datafield: 'computation_timestamp', width: 180},
+			    { text: 'Rank', align: 'center', datafield: 'rank', width: 100},
 			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="height:100%; width:100%">';
@@ -119,21 +121,6 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			    		}
 			    		grid += '</table>'
 			    		return grid;
-					} },
-			    { text: 'Enactment request time', align: 'center', datafield: 'enactment_request_time', width: 240},
-			    { text: 'Enactment completion time', align: 'center', datafield: 'enactment_completion_time', width: 200},
-				{ text: 'Result', align: 'center', datafield: 'result', width: 70,  
-					cellsRenderer: function (row, columnDataField, value) {
-						if (value) {
-							var color = 'green';
-							var text = 'SUCCESS'
-						}
-						else {
-							var color = 'red';
-							var text = 'FAILURE';
-						}
-						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';'
-						+ 'height: 100%; display: flex; align-items: center;">' + text + '</div>';
 					} }
 			],
 			columngroups: 
@@ -170,6 +157,27 @@ app.controllerProvider.register('list_adaptations', function($scope, $http) {
 			}
 		};
 		$scope.createWidget = true;
+		
+		$scope.enactSuggestedAdaptations = function() {
+			
+		}
+		
+		$scope.deleteSuggestedAdaptations = function() {
+			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
+			for(var index in indexes ) {
+				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
+				 $http({
+		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
+		            method: 'DELETE'
+		        }).success(function(data) {
+		        	alert("Adaptation " + row_data['fc_id'] + " deleted successfully");
+		        	$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
+			    }).error(function(err) {
+			    	console.log(err);
+			    });
+			}
+		}
+
 	 }).error(function (data, status) {
 		 alert(status);
 	 });

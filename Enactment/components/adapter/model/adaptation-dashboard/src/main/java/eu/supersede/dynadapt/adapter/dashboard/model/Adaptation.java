@@ -55,8 +55,8 @@ public class Adaptation {
 		this.computation_timestamp = computation_timestamp;
 	}
 
-	public double getRank() {
-		return rank;
+	public String getRank() {
+		return String.format("%.5f", rank);
 	}
 
 	public void setRank(double rank) {

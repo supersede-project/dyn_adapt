@@ -1,0 +1,8 @@
+<script src="adaptation-dashboard/js/suggested_adaptations.js"></script>
+<div ng-controller="suggested_adaptations">
+	<h1>Suggested Adaptations</h1>
+	<jqx-grid id="jqxGrid" jqx-create="createWidget" jqx-settings="gridSettings"></jqx-grid>
+	<br>
+	<jqx-button id="btnEnact" ng-click="enactSuggestedAdaptations()">Enact</jqx-button>
+	<jqx-button id="btnDelete" ng-click="deleteSuggestedAdaptations()">Delete</jqx-button>
+</div>
