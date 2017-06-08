@@ -303,13 +303,13 @@ public class ModuleLoader {
 			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.SEARCH_BUDGET = 5;
-		Parameters.POPULATION_SIZE = 150;
+		Parameters.SEARCH_BUDGET = 5; //00000;
+		Parameters.POPULATION_SIZE = 50;
 		
 		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
 		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		int depth = 15;
-		double probRecursive = 0.005;
+		double probRecursive = 0.05;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		String optimalConfiguration = "";
 		if (multiObjective){
