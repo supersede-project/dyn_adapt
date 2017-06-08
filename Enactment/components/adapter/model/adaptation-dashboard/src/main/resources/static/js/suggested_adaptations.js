@@ -78,7 +78,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columnsresize: false,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 80},
+			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
 			    { text: 'Name', align: 'center', datafield: 'name', width: 80},
 			    { text: 'Computation Timestamp', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    { text: 'Rank', align: 'center', datafield: 'rank', width: 100},

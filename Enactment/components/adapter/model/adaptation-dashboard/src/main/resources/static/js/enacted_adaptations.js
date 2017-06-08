@@ -78,7 +78,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			columnsresize: false,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 80},
+			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
 			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="height:100%; width:100%">';
