@@ -175,6 +175,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		        	alert("Enacted adaptation " + data['fc_id']);
 			    }).error(function(err) {
 			    	console.log(err);
+			    	alert(err['message']);
 			    });
 			}
 		}
@@ -190,6 +191,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		        	alert("Adaptation deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
+			    	alert(err['message']);
 			    });
 		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}

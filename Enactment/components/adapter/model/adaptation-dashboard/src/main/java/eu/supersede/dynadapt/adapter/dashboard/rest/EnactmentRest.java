@@ -49,12 +49,14 @@ public class EnactmentRest
     }
     
     @RequestMapping(value = "", method = RequestMethod.POST )
-    public Enactment addEnactment(@RequestBody Enactment enactment)
+    public Enactment addEnactment(@RequestBody Enactment enactment) throws Exception
     {
     	Timestamp initTime = new Timestamp(System.currentTimeMillis());
     	enactment.setEnactment_request_time(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(initTime));
     	
 		Adaptation adaptation = adaptations.findOne(enactment.getFc_id());
+		Enactment enactmentExists = enactments.findOne(enactment.getFc_id());
+		if (enactmentExists != null) throw new Exception("This adaptation has already been enacted");
     	
     	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
     	List<String> actionIds = new ArrayList<>();
@@ -63,7 +65,7 @@ public class EnactmentRest
     	
     	try {
     		
-    		//FIXME uncomment when ready
+    		//FIXME uncomment when ready to test
 			//boolean result = proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
 			boolean result = true;
 			
