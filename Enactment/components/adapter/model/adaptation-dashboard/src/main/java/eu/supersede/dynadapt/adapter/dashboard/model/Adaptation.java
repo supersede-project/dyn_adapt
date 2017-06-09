@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+
 @Entity
 @Table(name = "adaptations")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -26,6 +28,7 @@ public class Adaptation {
 	private String name;
     private Timestamp computation_timestamp;
     private double rank;
+    private ModelSystem model_system;
     
     @OneToMany(mappedBy="adaptation", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -81,6 +84,14 @@ public class Adaptation {
 
 	public void setActions(List<Action> actions) {
 		this.actions = actions;
+	}
+	
+	public ModelSystem getModel_system() {
+		return model_system;
+	}
+	
+	public void setModel_system(ModelSystem modelSystem) {
+		this.model_system = modelSystem;
 	}
 
 }

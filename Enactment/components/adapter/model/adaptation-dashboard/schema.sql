@@ -7,6 +7,7 @@ CREATE TABLE adaptations (
 	name text NOT NULL,
 	computation_timestamp timestamp NOT NULL,
 	rank real NOT NULL,
+	model_system int NOT NULL,
 	PRIMARY KEY (fc_id)
 );
 

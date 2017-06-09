@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.adapter.dashboard.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.dynadapt.adapter.dashboard.jpa.AdaptationsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
+import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
+import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 @RequestMapping("/enactment")
@@ -46,8 +50,17 @@ public class EnactmentRest
     @RequestMapping(value = "", method = RequestMethod.POST )
     public Enactment addEnactment(@RequestBody Enactment enactment)
     {
-    	Adaptation a = adaptations.findOne(enactment.getFc_id());
-    	enactment.setAdaptation(a);
+    	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
+    	List<String> actionIds = new ArrayList<>();
+    	for (Action a : enactment.getAdaptation().getActions()) actionIds.add(a.getAc_id());
+    	try {
+			Adaptation a = adaptations.findOne(enactment.getFc_id());
+			boolean result = proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
+			enactment.setResult(result);
+	    	enactment.setAdaptation(a);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	return enactments.save(enactment);
     }
     

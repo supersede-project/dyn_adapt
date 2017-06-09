@@ -28,6 +28,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			row['name'] = data[i]['name'];
 			row['computation_timestamp'] = data[i]['computation_timestamp'];
 			row['rank'] = data[i]['rank'];
+			row['model_system'] = data[i]['model_system'];
 			
 			row['action_ids'] = [];
 			row['action_names'] = [];
@@ -54,6 +55,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				{ name: 'name', type: 'string' },
 				{ name: 'computation_timestamp', type: 'string' },
 				{ name: 'rank', type: 'string' },
+				{ name: 'model_system', type: 'string'},
 				{ name: 'action_ids', type: 'array' },
 				{ name: 'action_names', type: 'array' },
 				{ name: 'action_descriptions', type: 'array' },
@@ -81,7 +83,8 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
 			    { text: 'Name', align: 'center', datafield: 'name', width: 80},
 			    { text: 'Computation Timestamp', align: 'center', datafield: 'computation_timestamp', width: 180},
-			    { text: 'Rank', align: 'center', datafield: 'rank', width: 100},
+			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
+			    { text: 'Model System', align: 'center', datafield: 'model_system', width: 190},
 			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="height:100%; width:100%">';
@@ -159,20 +162,29 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		$scope.createWidget = true;
 		
 		$scope.enactSuggestedAdaptations = function() {
-			/*$http({
-	            url: "adaptation-dashboard/enactment",
+			$http({
+	            url: "adaptation-dashboard/adaptation",
 	            method: 'POST',
-	            data: {  
-	                "fc_id":"FC_2",
-	                "enactment_request_time":"2017/05/31 17:00:00",
-	                "enactment_completion_time":"00:05.329",
-	                "result":true,
-	          }
+	            data: {
+	                "fc_id": "FC_4",
+	                "name": "Feature1",
+	                "computation_timestamp": "2017/05/31 16:00:00",
+	                "rank": 0.898400009,
+	                "model_system": "Siemens",
+	                "actions": [
+	                    {
+	                        "name": "Action1",
+	                        "description": "Description of Action1",
+	                        "enabled": true,
+	                        "ac_id": "AC_1"
+	                    }
+	                ]
+	            }
 	        }).success(function(data) {
 	        	alert("Created adaptation");
 		    }).error(function(err) {
 		    	console.log(err);
-		    });*/
+		    });
 		}
 		
 		$scope.deleteSuggestedAdaptations = function() {

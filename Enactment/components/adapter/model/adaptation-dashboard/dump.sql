@@ -2,20 +2,23 @@ INSERT INTO adaptations VALUES (
 'FC_1',
 'Feature1',
 '2017-05-31 12:00:00.000',
-'0.89840'
+'0.89840',
+1
 );
 
 INSERT INTO adaptations VALUES (
 'FC_2',
 'Feature2',
 '2017-05-31 13:00:00.000',
-'0.94840'
+'0.94840',
+3
 );
 INSERT INTO adaptations VALUES (
 'FC_3',
 'Feature3',
 '2017-05-31 14:00:00.000',
-'0.99840'
+'0.99840',
+4
 );
 INSERT INTO actions VALUES (
 'FC_1',
