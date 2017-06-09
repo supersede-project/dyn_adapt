@@ -1,11 +1,9 @@
 package eu.supersede.dynadapt.adapter.dashboard.model;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
