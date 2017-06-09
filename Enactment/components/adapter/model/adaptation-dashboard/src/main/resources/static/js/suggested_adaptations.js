@@ -162,29 +162,21 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		$scope.createWidget = true;
 		
 		$scope.enactSuggestedAdaptations = function() {
-			/*$http({
-	            url: "adaptation-dashboard/adaptation",
-	            method: 'POST',
-	            data: {
-	                "fc_id": "FC_4",
-	                "name": "Feature1",
-	                "computation_timestamp": "2017/05/31 16:00:00",
-	                "rank": 0.898400009,
-	                "model_system": "Siemens",
-	                "actions": [
-	                    {
-	                        "name": "Action1",
-	                        "description": "Description of Action1",
-	                        "enabled": true,
-	                        "ac_id": "AC_1"
-	                    }
-	                ]
-	            }
-	        }).success(function(data) {
-	        	alert("Created adaptation");
-		    }).error(function(err) {
-		    	console.log(err);
-		    });*/
+			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
+			for(var index in indexes ) {
+				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
+				$http({
+		            url: "adaptation-dashboard/enactment",
+		            method: 'POST',
+		            data: {
+		                "fc_id": row_data['fc_id']
+		            }
+		        }).success(function(data) {
+		        	alert("Enacted adaptation " + data['fc_id']);
+			    }).error(function(err) {
+			    	console.log(err);
+			    });
+			}
 		}
 		
 		$scope.deleteSuggestedAdaptations = function() {
@@ -195,11 +187,11 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
-		        	alert("Adaptation " + row_data['fc_id'] + " deleted successfully");
-		        	$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
+		        	alert("Adaptation deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
 			    });
+		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
 

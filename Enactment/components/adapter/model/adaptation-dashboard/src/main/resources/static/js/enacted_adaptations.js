@@ -174,11 +174,11 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 		            url: "adaptation-dashboard/enactment/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
-		        	alert("Enactment "+ row_data['fc_id'] + " deleted successfully");
-		        	$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
+		        	alert("Enactment deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
 			    });
+		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
 		
