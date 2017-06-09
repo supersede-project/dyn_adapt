@@ -162,7 +162,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		$scope.createWidget = true;
 		
 		$scope.enactSuggestedAdaptations = function() {
-			$http({
+			/*$http({
 	            url: "adaptation-dashboard/adaptation",
 	            method: 'POST',
 	            data: {
@@ -184,7 +184,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 	        	alert("Created adaptation");
 		    }).error(function(err) {
 		    	console.log(err);
-		    });
+		    });*/
 		}
 		
 		$scope.deleteSuggestedAdaptations = function() {
