@@ -18,4 +18,4 @@ Dynamic Adaptation and Personalization Decision Making and Enactment framework i
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](images/european.union.logo.png)</center>
+![Project funded by the European Union](images/european.union.logo.png)
