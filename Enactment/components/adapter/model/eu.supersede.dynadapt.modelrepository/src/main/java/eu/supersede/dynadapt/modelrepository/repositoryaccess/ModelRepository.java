@@ -383,7 +383,7 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 
 	@Override
 	public FeatureConfiguration getLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
-		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.ComputedByDM, FeatureConfiguration.class);
+		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Computed, FeatureConfiguration.class);
 	}
 
 	@Override

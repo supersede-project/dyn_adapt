@@ -144,8 +144,10 @@ public class ModuleLoader {
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 		
-		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
-		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
+		FMSerializer fms = new FMSerializer();
+		
+		fms.serializeFMToArtifactsInFolder(fmURI, temp);
+		fms.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
 		//Serializer saves model in a file with name <FM_name>.bnf, not in a file with name <FM_File_name.bnf>
 		//so name needs to be retrieved from FM.getModelName

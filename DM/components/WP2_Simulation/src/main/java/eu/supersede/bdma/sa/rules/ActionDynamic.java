@@ -28,7 +28,7 @@ public class ActionDynamic {
         alert.setTenant(ModelSystem.Atos_HSK);
 
         List<Condition> conditions = Lists.newArrayList();
-        conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 10.0));
+        conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
         // response_time: quality attribute
         // 10.0: threshold
 
@@ -58,8 +58,8 @@ public class ActionDynamic {
 
     public static void sendAlert() throws Exception {
         TopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC,true);
-        //publisher.publishTextMesssageInTopic(new Gson().toJson(createAtosHSKAlert()));
-        publisher.publishTextMesssageInTopic(new Gson().toJson(createSiemensAlert()));
+        publisher.publishTextMesssageInTopic(new Gson().toJson(createAtosHSKAlert()));
+        //publisher.publishTextMesssageInTopic(new Gson().toJson(createSiemensAlert()));
         publisher.closeTopicConnection();
     }
 }
