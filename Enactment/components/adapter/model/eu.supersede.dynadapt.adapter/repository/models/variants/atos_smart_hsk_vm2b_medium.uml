@@ -28,7 +28,7 @@
         </slot>
         <slot xmi:id="_KwWMMBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_PWe7kOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralString" xmi:id="_edY-kBL5Eee755surl-vag" value="OVP BO_2"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_edY-kBL5Eee755surl-vag" value="OVP BO2"/>
         </slot>
         <slot xmi:id="_LSEZMBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_ZefGUOlREea6tPfvbkvCTg"/>

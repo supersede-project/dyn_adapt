@@ -29,11 +29,11 @@
         </slot>
         <slot xmi:id="_HF1HkCTnEeeh8IEHb3wZ9g">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_U8Y0IOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralReal" xmi:id="_27kqACTnEeeh8IEHb3wZ9g" value="1.0"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_27kqACTnEeeh8IEHb3wZ9g" value="1.5"/>
         </slot>
         <slot xmi:id="_FtgpwCTnEeeh8IEHb3wZ9g">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_PWe7kOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralString" xmi:id="_qbU1gCTnEeeh8IEHb3wZ9g" value="OVP BO_2"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_qbU1gCTnEeeh8IEHb3wZ9g" value="OVP BO2"/>
         </slot>
         <slot xmi:id="_ITXRsCTnEeeh8IEHb3wZ9g">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_ZefGUOlREea6tPfvbkvCTg"/>
