@@ -18,6 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.arjuna.common.logging.commonI18NLogger;
+
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
