@@ -18,6 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.arjuna.common.logging.commonI18NLogger;
+
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
@@ -33,7 +35,10 @@ import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.Condition;
+import eu.supersede.integration.api.adaptation.types.DataID;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.Operator;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
@@ -110,6 +115,11 @@ public class ModuleLoader {
     {		
 		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
+		
+		//Check Alert for Atos HSK. Inject RT is case it is missing.
+		if (alert.getTenant()==ModelSystem.Atos_HSK && !alert.getConditions().stream().anyMatch(
+				c->c.getIdMonitoredData().getNameQualityMonitored().equals("response_time")))
+			alert.getConditions().add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
 		
 		// collect the parameters for the optimizer		
 		//Generate grammar and attribute_metadata.json from fmURI
