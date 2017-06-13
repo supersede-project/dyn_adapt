@@ -45,11 +45,13 @@ public class AdapterServiceTest {
 	}
 	
 	@Test
-	public void testAtosHSKDualVMHighLowAdaptation() {
+	public void testAtosHSKDualVMAdaptation() {
 		try {			
+			//High-Low
 			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
 			uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc", ModelSystem.Atos_HSK);			
 			String featureConfigurationId = null;
+
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {

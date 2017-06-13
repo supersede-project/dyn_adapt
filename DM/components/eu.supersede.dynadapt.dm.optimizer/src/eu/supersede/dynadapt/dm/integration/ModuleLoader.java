@@ -31,6 +31,7 @@ import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
+import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -144,8 +145,10 @@ public class ModuleLoader {
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 		
-		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
-		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
+		FMSerializer fms = new FMSerializer();
+		
+		fms.serializeFMToArtifactsInFolder(fmURI, temp);
+		fms.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
 		//Serializer saves model in a file with name <FM_name>.bnf, not in a file with name <FM_File_name.bnf>
 		//so name needs to be retrieved from FM.getModelName
@@ -185,6 +188,15 @@ public class ModuleLoader {
 		kpiComputer.reportComputedKPI();
 		
 		//TODO Store optimal computed FCs onto the ModelRepository
+		//TODO Populate metadata, status=Computed
+		//String idFc = mr.storeFeatureConfigurationModel(featureConf, fcMetadata);
+		
+		//TODO Notify FC to Dashboard.
+		//TODO Create Adaptation using computed FC, and for actions (e.g. changing features) use Adapter method
+		//to compare computed FC with last enacted FC.
+//		Adaptation adaptation = new Adaptation();
+		//TODO Populate adaptation
+		//adaptationDashboardProxy.addAdaptation(adaptation);
 		
 		//Send FC to Adapter;
 		Path fcPath = Paths.get(newConfig);
@@ -192,8 +204,10 @@ public class ModuleLoader {
 		
 		boolean processEnactment = Boolean.valueOf(
 				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
+		//TODO Change Adapter invocation to use FC id: idFc
 		if (processEnactment)
 			proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
+//			proxy.enactAdaptationDecisionActionsForFC(system, idFc);
 		
 		//Remove temporary file
 		boolean removeTemp = Boolean.valueOf(

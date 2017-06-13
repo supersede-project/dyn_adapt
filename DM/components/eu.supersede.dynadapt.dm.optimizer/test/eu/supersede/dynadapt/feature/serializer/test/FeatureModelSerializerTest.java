@@ -43,7 +43,7 @@ public class FeatureModelSerializerTest {
 		// NOTE: Edit this absolute paths before testing
 		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";
-		FMSerializer.serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class FeatureModelSerializerTest {
 		String absoluteFMModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";
-		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
 	
 	@Test
@@ -65,8 +65,8 @@ public class FeatureModelSerializerTest {
 		String absoluteFMModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFM_HSK.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";;
-		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
-		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ public class FeatureModelSerializerTest {
 		String absoluteFMModelPath = 
 				"/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
 		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/siemens/";
-		FMSerializer.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
-		FMSerializer.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
 }
