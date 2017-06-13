@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_LowLoad" version="1.0.0">
-  <featureModel href="SmartPlatformFM_HSK.yafm#/"/>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_Low2_BLoad" version="1.0.0">
+  <featureModel href="../models/SmartPlatformFM_HSK.yafm#/"/>
   <featureModelCopy name="SmartPlatformFM" version="1.0.0" description="">
     <rootFeature id="smartplatform" name="SmartPlatform" description="" lower="1" upper="1">
       <attribute id="a_1176535340" name="cores" type="integer" description="# cores assigned to this VM. Sum over VMx Configuration.cores attributes for all configurations &lt;= Physical Configuration.cores" qualityAttribute="true" defaultValue="1" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
@@ -149,12 +149,12 @@
             <selection id="hsk"/>
           </selection>
           <selection id="vm2_a_configuration">
-            <selection id="highloadconfigurationinvm2_a">
-              <attributeValue xsi:type="fc:integer" id="a_56020701" value="1"/>
-              <attributeValue xsi:type="fc:double" id="a_192569596" value="3.0"/>
-              <attributeValue xsi:type="fc:double" id="a_1963815222" value="50.0"/>
-              <attributeValue xsi:type="fc:double" id="a_555057018" value="5.0"/>
-              <attributeValue xsi:type="fc:double" id="a_486046333" value="5.0"/>
+            <selection id="mediumloadconfigurationinvm2_a">
+              <attributeValue xsi:type="fc:integer" id="a_300656348" value="1"/>
+              <attributeValue xsi:type="fc:double" id="a_1558743766" value="2.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1664397167" value="20.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1611730961" value="5.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1357486360" value="5.0"/>
             </selection>
           </selection>
         </selection>
@@ -164,12 +164,12 @@
             <selection id="hsk_7201"/>
           </selection>
           <selection id="vm2_b_configuration">
-            <selection id="mediumloadconfigurationinvm2_b">
-              <attributeValue xsi:type="fc:integer" id="a_1320858704" value="1"/>
-              <attributeValue xsi:type="fc:double" id="a_633960292" value="2.0"/>
-              <attributeValue xsi:type="fc:double" id="a_293511434" value="50.0"/>
-              <attributeValue xsi:type="fc:double" id="a_71167518" value="5.0"/>
-              <attributeValue xsi:type="fc:double" id="a_2067090082" value="5.0"/>
+            <selection id="lowloadconfigurationinvm2_b">
+              <attributeValue xsi:type="fc:integer" id="a_1360460815" value="1"/>
+              <attributeValue xsi:type="fc:double" id="a_1933072983" value="1.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1048738917" value="20.0"/>
+              <attributeValue xsi:type="fc:double" id="a_574582260" value="5.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1970617905" value="5.0"/>
             </selection>
           </selection>
         </selection>

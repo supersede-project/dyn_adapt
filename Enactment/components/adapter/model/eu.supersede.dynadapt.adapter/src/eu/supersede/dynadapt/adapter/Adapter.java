@@ -61,11 +61,15 @@ import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.dashboad.types.Enactment;
+import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
+import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 
 public class Adapter implements IAdapter {
 	private final static Logger log = LogManager.getLogger(Adapter.class);
+	protected AdaptationDashboardProxy  adaptationDashboardProxy;
 
 	private ModelRepository mr;
 	private ModelManager mm;
@@ -92,6 +96,7 @@ public class Adapter implements IAdapter {
 		this.modelsLocation = modelsLocation;
 		this.repositoryRelativePath = repositoryRelativePath;
 		this.demo = demo;
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		log.debug("Adapter set up");
 	}
 
@@ -208,11 +213,21 @@ public class Adapter implements IAdapter {
 			
 			//TODO Store adapted model as current base model in Model Repository
 			log.debug("Storing adapted model as current based model in ModelRepository");
+			//TODO Populate metadata, status=Enacted
 			//mr.storeBaseModel(model, bmMetadata);
 			
 			//TODO Store new feature configuration model as current current feature configuration in Model Repository
 			log.debug("Storing FC model as current FC model in ModelRepository");
+			//TODO Populate metadata, status=Enacted
 			//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
+			
+			//TODO Notify to dashboard the enactment of the FC
+//			Enactment enactment = new Enactment();
+//			enactment.setFc_id(featureConfigurationId);
+//			//TODO Populate Enactment data
+//			adaptationDashboardProxy.addEnactment(enactment);
+			
+			//TODO Notify to dashboard in case of failure
 			
 			//TODO Notified back to DM that adaptation actions have been enacted
 			log.debug("Notifing back to DM that adaptation actions have been enacted");

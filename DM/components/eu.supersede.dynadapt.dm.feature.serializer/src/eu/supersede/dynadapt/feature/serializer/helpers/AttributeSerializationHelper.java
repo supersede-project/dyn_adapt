@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttributeSerializationHelper {
-	public static List<String> serializedAttributes = new ArrayList<>();
-	public static List<String> serializedAttributeValues = new ArrayList<>();
+	public  List<String> serializedAttributes = new ArrayList<>();
+	public  List<String> serializedAttributeValues = new ArrayList<>();
 
 	public boolean attributeHasBeenSerialized(String attributeName) {
 		boolean alreadySerialized = serializedAttributes.contains(attributeName);
