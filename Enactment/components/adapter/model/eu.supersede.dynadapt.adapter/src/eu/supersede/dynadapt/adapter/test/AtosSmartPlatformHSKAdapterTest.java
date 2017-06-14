@@ -47,8 +47,9 @@ public class AtosSmartPlatformHSKAdapterTest {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-			String featureConfigurationId = null;
+//			uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+//			String featureConfigurationId = null;
+			String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 			
@@ -171,14 +172,15 @@ public class AtosSmartPlatformHSKAdapterTest {
 	 * Load a given configuration model as the latest ComputedModel for Siemens system,
 	 * simulating it is the result of the last decision-making optimization update
 	 * @param fcName the name of the feature configuration file
+	 * @return the id of the new model in the model repository
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	private void uploadLatestComputedFC(String fcName) throws IOException, Exception {
+	private String uploadLatestComputedFC(String fcName) throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
-		prm.populateModel(
+		String modelId = prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", fcName), 
 				MODELS_AUTHOR,
 				ModelSystem.Atos_HSK, Status.Computed,
@@ -186,6 +188,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 				FeatureConfiguration.class,
 				ModelType.FeatureConfiguration, 
 				eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
+		return modelId;
 	}
 	
 	@Before

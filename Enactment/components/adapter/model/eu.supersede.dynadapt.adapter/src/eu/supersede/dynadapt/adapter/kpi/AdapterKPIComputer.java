@@ -20,6 +20,14 @@ public class AdapterKPIComputer {
 		this.name = name;
 	}
 	
+	public Date getInitialProcessingTime() {
+		return initialProcessingTime;
+	}
+
+	public Date getFinalProcessingTime() {
+		return finalProcessingTime;
+	}
+	
 	public void stopComputingKPI() {
 		finalProcessingTime = Calendar.getInstance().getTime();
 		long processTime = finalProcessingTime.getTime() - initialProcessingTime.getTime();
