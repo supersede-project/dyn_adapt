@@ -167,10 +167,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
 				$http({
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
-		            method: 'POST',
-		            data: {
-		                "fc_id": row_data['fc_id']
-		            }
+		            method: 'POST'
 		        }).success(function(data) {
 		        	alert("Enacted adaptation " + data['fc_id']);
 			    }).error(function(err) {
