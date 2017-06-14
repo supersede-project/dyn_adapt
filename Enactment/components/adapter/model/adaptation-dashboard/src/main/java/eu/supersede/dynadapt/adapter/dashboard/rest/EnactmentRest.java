@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.dynadapt.adapter.dashboard.jpa.ActionsJpa;
@@ -49,37 +50,39 @@ public class EnactmentRest
     }
     
     @RequestMapping(value = "", method = RequestMethod.POST )
-    public Enactment addEnactment(@RequestBody Enactment enactment) throws Exception
+    public Enactment addEnactment(@RequestBody Enactment enactment,
+    		@RequestParam(value="applyEnactment", defaultValue="false") boolean applyEnactment) throws Exception
     {
-    	Timestamp initTime = new Timestamp(System.currentTimeMillis());
-    	enactment.setEnactment_request_time(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(initTime));
     	
-		Adaptation adaptation = adaptations.findOne(enactment.getFc_id());
+    	Adaptation adaptation = adaptations.findOne(enactment.getFc_id());
+    	enactment.setAdaptation(adaptation);
+    	
 		Enactment enactmentExists = enactments.findOne(enactment.getFc_id());
 		if (enactmentExists != null) throw new Exception("This adaptation has already been enacted");
+    	
+    	if (applyEnactment) enactAdaptation(enactment);
+
+    	return enactments.save(enactment);
+    }
+
+	private void enactAdaptation(Enactment enactment) {
+		Timestamp initTime = new Timestamp(System.currentTimeMillis());
+    	enactment.setEnactment_request_time(initTime);
     	
     	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
     	List<String> actionIds = new ArrayList<>();
     	
-    	for (Action a : adaptation.getActions()) actionIds.add(a.getAc_id());
+    	for (Action a : enactment.getAdaptation().getActions()) actionIds.add(a.getAc_id());
     	
-    	try {
-    		
-    		//FIXME uncomment when ready to test
-			//boolean result = proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
-			boolean result = true;
-			
-			Timestamp endTime = new Timestamp(System.currentTimeMillis());
-			Time time = new Time(endTime.getTime() - initTime.getTime());
-			enactment.setEnactment_completion_time(new SimpleDateFormat("mm:ss.SSS").format(time));
-			
-			enactment.setResult(result);
-	    	enactment.setAdaptation(adaptation);
-	    	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	return enactments.save(enactment);
-    }
+    	//FIXME uncomment when ready to test
+		//boolean result = proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
+		boolean result = true;
+		
+		Timestamp endTime = new Timestamp(System.currentTimeMillis());
+		Timestamp time = new Timestamp(endTime.getTime() - initTime.getTime());
+		enactment.setEnactment_completion_time(time);
+		enactment.setResult(result);
+    	
+	}
     
 }

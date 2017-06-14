@@ -166,7 +166,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			for(var index in indexes ) {
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
 				$http({
-		            url: "adaptation-dashboard/enactment",
+		            url: "adaptation-dashboard/enactment?applyEnactment=true",
 		            method: 'POST',
 		            data: {
 		                "fc_id": row_data['fc_id']
