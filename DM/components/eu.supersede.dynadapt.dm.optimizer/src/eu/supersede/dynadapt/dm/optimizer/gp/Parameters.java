@@ -151,12 +151,12 @@ public class Parameters {
 	
 	
 	// parameters specific to ATOS HSK Scenario
-	public static double ATOS_HSK_CONST1 = 10;
-	public static double ATOS_HSK_CONST2 = 1.5;
-	public static double ATOS_HSK_CONST3 = 0;
-	public static double ATOS_HSK_CONST4 = 1.5;
-	public static double ATOS_HSK_CONST5 = 1;
-	public static double ATOS_HSK_CONST6 = 1000;
+	public static double ATOS_HSK_CONST1 = 648; //10;
+	public static double ATOS_HSK_CONST2 = 322; //1.5;
+	public static double ATOS_HSK_CONST3 = 0.001; //500; //0;
+	public static double ATOS_HSK_CONST4 = 0.1; //500; //1.5;
+	public static double ATOS_HSK_CONST5 = 0.0025; //1;
+	public static double ATOS_HSK_CONST6 = 0.002; //1000;
 	
 	public void loadFromFile(String parametersFile){
 		

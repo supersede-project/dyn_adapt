@@ -3,6 +3,8 @@ package eu.supersede.dynadapt.serviceCompositionEnactor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -22,8 +24,8 @@ import java.nio.file.Paths;
 
 
 @SuppressWarnings("restriction")
-public class ServiceCompositionEnactor implements IEnactor{
-	
+public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.IEnactor{
+	private final Logger log = LogManager.getLogger(this.getClass());
 	private Model umlEnactingModel=null;
 
 	public static void main(String[] args) {
@@ -249,9 +251,8 @@ public class ServiceCompositionEnactor implements IEnactor{
 		//Resource res2_2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable10.uml"), true);
 
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-		String res2_1_path=umlModelsPath+"/umlmodels-validation/S2_unavailable5.uml";
-		String res2_2_path=umlModelsPath+"/umlmodels-validation/S2_unavailable10.uml";
-		//String res2_3_path_initial_variant=umlModelsPath+"/umlmodels-validation/S2_unavailable_variant1.uml";
+		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable5.uml";
+		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable10.uml";
 		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
 		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
 		//Resource res2_3_initial_variant = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
@@ -327,19 +328,15 @@ public class ServiceCompositionEnactor implements IEnactor{
 				
 	}
 	
-	
-
-	public void enactAdaptedModel(Model adaptedModel) throws Exception {
-		// TODO Auto-generated method stub
+	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
+		log.debug("Enacting model: " + adaptedModel.getName());
 		this.umlEnactingModel=adaptedModel;
 		this.injectUMLModelsForValidation();
 		this.getEnactmentCode();
-		
 	}
 
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
+		enactAdaptedModel (adaptedModel, demo);		
 	}
 
 }

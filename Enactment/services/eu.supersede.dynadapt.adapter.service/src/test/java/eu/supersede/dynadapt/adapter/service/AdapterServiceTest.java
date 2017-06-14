@@ -36,10 +36,20 @@ public class AdapterServiceTest {
 	}
 	
 	@Test
-	public void testAtosHSKDualVMHighLowAdaptation() {
+	public void testAtosHSKDualVMAdaptation() {
 		try {			
+			//High-Low
 			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
 			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
+			
+			//Medium-Low
+//			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","mediumloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_MediumLowLoad";
+			
+			//Low-Low
+//			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_LowLowLoad";
+			
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {

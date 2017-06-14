@@ -121,17 +121,17 @@
         <children xmi:type="notation:Shape" xmi:id="_CjCo0OlSEea6tPfvbkvCTg" type="ExecutionEnvironment_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_CjDP4OlSEea6tPfvbkvCTg" type="ExecutionEnvironment_NameLabel_CCN"/>
           <element xmi:type="uml:ExecutionEnvironment" href="atos_smart_base_model.uml#_CjAMkOlSEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CjCo0elSEea6tPfvbkvCTg" x="16" y="13" width="291" height="144"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CjCo0elSEea6tPfvbkvCTg" x="16" y="13" width="548" height="178"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_LMyF0OlSEea6tPfvbkvCTg" type="ExecutionEnvironment_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_LMyF0ulSEea6tPfvbkvCTg" type="ExecutionEnvironment_NameLabel_CCN"/>
           <element xmi:type="uml:ExecutionEnvironment" href="atos_smart_base_model.uml#_LMvCgOlSEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LMyF0elSEea6tPfvbkvCTg" x="15" y="172" width="292" height="155"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LMyF0elSEea6tPfvbkvCTg" x="17" y="221" width="550" height="175"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_TNbigOlSEea6tPfvbkvCTg" type="ExecutionEnvironment_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_TNbigulSEea6tPfvbkvCTg" type="ExecutionEnvironment_NameLabel_CCN"/>
           <element xmi:type="uml:ExecutionEnvironment" href="atos_smart_base_model.uml#_TNYfMOlSEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TNbigelSEea6tPfvbkvCTg" x="16" y="339" width="289" height="159"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TNbigelSEea6tPfvbkvCTg" x="16" y="417" width="553" height="166"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_xjBLcOlTEea6tPfvbkvCTg" type="Artifact_Shape">
           <children xmi:type="notation:DecorationNode" xmi:id="_xjEOwOlTEea6tPfvbkvCTg" type="Artifact_NameLabel"/>
@@ -143,7 +143,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xjEOxelTEea6tPfvbkvCTg"/>
           </children>
           <element xmi:type="uml:Artifact" href="atos_smart_base_model.uml#_Jdp1EOlTEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xjBLcelTEea6tPfvbkvCTg" x="37" y="74" width="100" height="55"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xjBLcelTEea6tPfvbkvCTg" x="63" y="85"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_u-zFwOlUEea6tPfvbkvCTg" type="Artifact_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_u-zs0OlUEea6tPfvbkvCTg" type="Artifact_NameLabel_CCN"/>
@@ -155,7 +155,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u-zs1elUEea6tPfvbkvCTg"/>
           </children>
           <element xmi:type="uml:Artifact" href="atos_smart_base_model.uml#_u-vbYOlUEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u-zFwelUEea6tPfvbkvCTg" x="170" y="75" width="101" height="54"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u-zFwelUEea6tPfvbkvCTg" x="344" y="84"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_PefrQOlVEea6tPfvbkvCTg" type="Artifact_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_PefrQulVEea6tPfvbkvCTg" type="Artifact_NameLabel_CCN"/>
@@ -167,7 +167,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PefrR-lVEea6tPfvbkvCTg"/>
           </children>
           <element xmi:type="uml:Artifact" href="atos_smart_base_model.uml#_PeaywOlVEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PefrQelVEea6tPfvbkvCTg" x="35" y="239" width="103" height="58"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PefrQelVEea6tPfvbkvCTg" x="74" y="297"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_c7qbAOlVEea6tPfvbkvCTg" type="Artifact_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_c7rCEOlVEea6tPfvbkvCTg" type="Artifact_NameLabel_CCN"/>
@@ -179,7 +179,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c7rCFelVEea6tPfvbkvCTg"/>
           </children>
           <element xmi:type="uml:Artifact" href="atos_smart_base_model.uml#_c7ligOlVEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c7qbAelVEea6tPfvbkvCTg" x="171" y="240" width="99" height="56"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_c7qbAelVEea6tPfvbkvCTg" x="344" y="297"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_1WJz8OlVEea6tPfvbkvCTg" type="Artifact_Shape_CCN">
           <children xmi:type="notation:DecorationNode" xmi:id="_1WJz8ulVEea6tPfvbkvCTg" type="Artifact_NameLabel_CCN"/>
@@ -191,33 +191,33 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1WJz9-lVEea6tPfvbkvCTg"/>
           </children>
           <element xmi:type="uml:Artifact" href="atos_smart_base_model.uml#_1WEUYOlVEea6tPfvbkvCTg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1WJz8elVEea6tPfvbkvCTg" x="109" y="407" width="93" height="59"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1WJz8elVEea6tPfvbkvCTg" x="217" y="492"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_49Mv8ulREea6tPfvbkvCTg"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_49Mv8-lREea6tPfvbkvCTg" x="-111" y="-39" width="135" height="115"/>
       </children>
       <element xmi:type="uml:Node" href="atos_smart_base_model.uml#_49JFkOlREea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_49Lh0elREea6tPfvbkvCTg" x="12" y="7" width="364" height="563"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_49Lh0elREea6tPfvbkvCTg" x="113" y="21" width="629" height="641"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_mCaf8OlcEea6tPfvbkvCTg" type="NamedElement_DefaultShape">
       <children xmi:type="notation:DecorationNode" xmi:id="_mCbuEOlcEea6tPfvbkvCTg" type="NamedElement_NameLabel"/>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_G9vOUOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mCaf8elcEea6tPfvbkvCTg" x="408" y="7"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mCaf8elcEea6tPfvbkvCTg" x="827" y="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_nL8T0OlcEea6tPfvbkvCTg" type="NamedElement_DefaultShape">
       <children xmi:type="notation:DecorationNode" xmi:id="_nL8T0ulcEea6tPfvbkvCTg" type="NamedElement_NameLabel"/>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_NQEvEOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nL8T0elcEea6tPfvbkvCTg" x="425" y="118"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nL8T0elcEea6tPfvbkvCTg" x="826" y="144"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_o0PuYOlcEea6tPfvbkvCTg" type="NamedElement_DefaultShape">
       <children xmi:type="notation:DecorationNode" xmi:id="_o0PuYulcEea6tPfvbkvCTg" type="NamedElement_NameLabel"/>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_RRR6sOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o0PuYelcEea6tPfvbkvCTg" x="421" y="266"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o0PuYelcEea6tPfvbkvCTg" x="823" y="335"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_ppdfIOlcEea6tPfvbkvCTg" type="NamedElement_DefaultShape">
       <children xmi:type="notation:DecorationNode" xmi:id="_ppdfIulcEea6tPfvbkvCTg" type="NamedElement_NameLabel"/>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_VIrqEOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ppdfIelcEea6tPfvbkvCTg" x="421" y="433"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ppdfIelcEea6tPfvbkvCTg" x="826" y="542"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_0QUxIelREea6tPfvbkvCTg" name="diagram_compatibility_version" stringValue="1.2.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_0QUxIulREea6tPfvbkvCTg"/>
@@ -232,43 +232,39 @@
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_rO06cOlcEea6tPfvbkvCTg" type="Manifestation_StereotypeLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_sRJTEOlcEea6tPfvbkvCTg" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_rO06celcEea6tPfvbkvCTg" x="-10" y="33"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rO06celcEea6tPfvbkvCTg" x="-36" y="18"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_rO0TYelcEea6tPfvbkvCTg"/>
       <element xmi:type="uml:Manifestation" href="atos_smart_base_model.uml#_rOxQEOlcEea6tPfvbkvCTg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rO0TYulcEea6tPfvbkvCTg" points="[742, 56, -643984, -643984]$[799, 56, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rPH1YOlcEea6tPfvbkvCTg" id="(1.0,0.05328596802841918)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rPH1YelcEea6tPfvbkvCTg" id="(0.0,0.62)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rPH1YOlcEea6tPfvbkvCTg" id="(1.0,0.054602184087363496)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rPH1YelcEea6tPfvbkvCTg" id="(0.0,0.68)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_tRMa0OlcEea6tPfvbkvCTg" type="Manifestation_Edge" source="_CjCo0OlSEea6tPfvbkvCTg" target="_nL8T0OlcEea6tPfvbkvCTg">
       <children xmi:type="notation:DecorationNode" xmi:id="_tRMa0-lcEea6tPfvbkvCTg" type="Manifestation_NameLabel">
-        <styles xmi:type="notation:BooleanValueStyle" xmi:id="__Vvt0EBuEeeFAY4vuCHi5A" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_tRMa1OlcEea6tPfvbkvCTg" x="1" y="59"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_tRMa1OlcEea6tPfvbkvCTg" y="60"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_tRMa1elcEea6tPfvbkvCTg" type="Manifestation_StereotypeLabel">
-        <styles xmi:type="notation:BooleanValueStyle" xmi:id="__V_lcEBuEeeFAY4vuCHi5A" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_tRMa1ulcEea6tPfvbkvCTg" x="1" y="29"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_tRMa1ulcEea6tPfvbkvCTg" y="30"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_tRMa0elcEea6tPfvbkvCTg"/>
       <element xmi:type="uml:Manifestation" href="atos_smart_base_model.uml#_tRLMsOlcEea6tPfvbkvCTg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tRMa0ulcEea6tPfvbkvCTg" points="[682, 171, -643984, -643984]$[826, 171, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tRk1UOlcEea6tPfvbkvCTg" id="(1.0,0.5833333333333334)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tRk1UOlcEea6tPfvbkvCTg" id="(1.0,0.5439143479028179)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tRk1UelcEea6tPfvbkvCTg" id="(0.0,0.54)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_ubj8MOlcEea6tPfvbkvCTg" type="Manifestation_Edge" source="_LMyF0OlSEea6tPfvbkvCTg" target="_o0PuYOlcEea6tPfvbkvCTg">
       <children xmi:type="notation:DecorationNode" xmi:id="_ubj8M-lcEea6tPfvbkvCTg" type="Manifestation_NameLabel">
-        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_QnIykEBuEeeFAY4vuCHi5A" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ubj8NOlcEea6tPfvbkvCTg" y="60"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_ubj8NelcEea6tPfvbkvCTg" type="Manifestation_StereotypeLabel">
-        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_Qnk3cEBuEeeFAY4vuCHi5A" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ubj8NulcEea6tPfvbkvCTg" y="30"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ubj8MelcEea6tPfvbkvCTg"/>
       <element xmi:type="uml:Manifestation" href="atos_smart_base_model.uml#_ubiuEOlcEea6tPfvbkvCTg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ubj8MulcEea6tPfvbkvCTg" points="[685, 364, -643984, -643984]$[823, 364, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ub4FQOlcEea6tPfvbkvCTg" id="(1.0,0.4645161290322581)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ub4FQelcEea6tPfvbkvCTg" id="(0.0,0.52)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ub4FQOlcEea6tPfvbkvCTg" id="(1.0,0.4671012482662968)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ub4FQelcEea6tPfvbkvCTg" id="(0.0,0.58)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_5wvrwOlcEea6tPfvbkvCTg" type="Manifestation_Edge" source="_TNbigOlSEea6tPfvbkvCTg" target="_ppdfIOlcEea6tPfvbkvCTg">
       <children xmi:type="notation:DecorationNode" xmi:id="_5wvrw-lcEea6tPfvbkvCTg" type="Manifestation_NameLabel">
@@ -282,8 +278,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_5wvrwelcEea6tPfvbkvCTg"/>
       <element xmi:type="uml:Manifestation" href="atos_smart_base_model.uml#_5wudoOlcEea6tPfvbkvCTg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5wvrwulcEea6tPfvbkvCTg" points="[687, 556, -643984, -643984]$[830, 556, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5yJZ8OlcEea6tPfvbkvCTg" id="(1.0,0.4591194968553459)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5yJZ8elcEea6tPfvbkvCTg" id="(0.0,0.56)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5yJZ8OlcEea6tPfvbkvCTg" id="(1.0,0.463855421686747)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5yJZ8elcEea6tPfvbkvCTg" id="(0.0,0.28)"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_TqIroOldEea6tPfvbkvCTg" type="PapyrusUMLClassDiagram" name="SMART Platform (Services)" measurementUnit="Pixel">
@@ -303,7 +299,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZXUQ5uldEea6tPfvbkvCTg"/>
       </children>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_G9vOUOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZXTCweldEea6tPfvbkvCTg" x="216" y="75"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZXTCweldEea6tPfvbkvCTg" x="150" y="72"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_bW90cOldEea6tPfvbkvCTg" type="InstanceSpecification_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_bW-bgOldEea6tPfvbkvCTg" type="InstanceSpecification_NameLabel"/>

@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin>
-  <extension id="eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns" id="eu.supersede.dynadapt.usecases.atos.patterns.Atos_query_patterns">
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.nodeArtifacts"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.artifactManifestations"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.instanceSpecificationsAsManifestationsOfNodeArtifacts"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSInstances"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSConfigurationInstances"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.InstanceSpecificationLink"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.InstanceOfInstanceSpecificationLink"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.CMSInstanceToConfigurationLink"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.HSKExecutionEnvironments"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.VMInstancesContainingHSKServices"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.VirtualExecutionEnvContainingAComponent"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.atos.patterns.HSKVirtualExecutionEnvironments"/>
+  <extension id="eu.supersede.dynadapt.usecases.patterns.Atos_query_patterns" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.patterns.Atos_query_patterns" id="eu.supersede.dynadapt.usecases.patterns.Atos_query_patterns">
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.nodeArtifacts"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.artifactManifestations"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.instanceSpecificationsAsManifestationsOfNodeArtifacts"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.CMSInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.CMSConfigurationInstances"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.InstanceSpecificationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.InstanceOfInstanceSpecificationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.CMSInstanceToConfigurationLink"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.HSKExecutionEnvironments"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.VMInstancesContainingHSKServices"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.VirtualExecutionEnvContainingAComponent"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.HSKVirtualExecutionEnvironments"/>
     </group>
   </extension>
-  <extension id="eu.supersede.dynadapt.usecases.health.Health" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.health.Health" id="eu.supersede.dynadapt.usecases.health.Health">
-      <query-specification fqn="eu.supersede.dynadapt.usecases.health.authenticated_system"/>
-      <query-specification fqn="eu.supersede.dynadapt.usecases.health.authenticated_user"/>
+  <extension id="eu.supersede.dynadapt.usecases.patterns.Monitoring_reconfiguration_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.patterns.Monitoring_reconfiguration_queries" id="eu.supersede.dynadapt.usecases.patterns.Monitoring_reconfiguration_queries">
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.classes"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.classGeneralizations"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.instances"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.realizations"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.monitors"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.twitterTimeSlot"/>
     </group>
   </extension>
-  <extension id="patterns.Monitoring_reconfiguration_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:patterns.Monitoring_reconfiguration_queries" id="patterns.Monitoring_reconfiguration_queries">
-      <query-specification fqn="patterns.classes"/>
-      <query-specification fqn="patterns.classGeneralizations"/>
-      <query-specification fqn="patterns.instances"/>
-      <query-specification fqn="patterns.realizations"/>
-      <query-specification fqn="patterns.monitors"/>
-      <query-specification fqn="patterns.twitterTimeSlot"/>
-      <query-specification fqn="patterns.GetMeteorologicalDataServices"/>
+  <extension id="eu.supersede.dynadapt.usecases.patterns.Siemens_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:eu.supersede.dynadapt.usecases.patterns.Siemens_queries" id="eu.supersede.dynadapt.usecases.patterns.Siemens_queries">
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.GetMeteorologicalDataServices"/>
     </group>
   </extension>
 </plugin>

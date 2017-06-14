@@ -99,8 +99,18 @@ public class AtosSmartPlatformHSKAdapterTest {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryResolverPath, repositoryRelativePath, demo);
 									
-			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
-			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
+			//High-Low
+//			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
+			
+			//Medium-Low
+//			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","mediumloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_MediumLowLoad";
+			
+			//Low-Low
+			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_LowLowLoad";
+			
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -169,7 +179,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/patterns/");
 		modelsLocation.put("features", "features/models/");
 		modelsLocation.put("adapted", "models/adapted/");
 	}

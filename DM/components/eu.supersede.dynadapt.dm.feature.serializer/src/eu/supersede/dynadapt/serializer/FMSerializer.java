@@ -33,14 +33,11 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import cz.zcu.yafmt.model.fc.impl.FeatureConfigurationImpl;
-import cz.zcu.yafmt.model.fm.Attribute;
-import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
-import cz.zcu.yafmt.model.fm.util.FeatureModelUtil;
 
 public class FMSerializer {
-	private static List<String> arguments = new ArrayList<String>();
-	private static ResourceSet resultSet;
+	private List<String> arguments = new ArrayList<String>();
+	private ResourceSet resultSet;
 	
 	/**
 	 * Serializes an input feature model, as YAFMT FM instance, 
@@ -49,7 +46,7 @@ public class FMSerializer {
 	 * @param absolutetargetFolderPath absolute path location for folder where to place generated artefacts
 	 * @throws IOException
 	 */
-	public static void serializeFMToArtifactsInFolder (String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
+	public void serializeFMToArtifactsInFolder (String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
 		resultSet = new ResourceSetImpl();
 		URI modelURI = URI.createFileURI(absoluteFMModelPath);
 		File targetFolder = new File (absoluteTargetFolderPath);
@@ -58,7 +55,7 @@ public class FMSerializer {
 		generator.doGenerate(new BasicMonitor());
 	}
 	
-	public static void serializeFCToArtifactsInFolder (String absoluteFCModelPath, String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
+	public void serializeFCToArtifactsInFolder (String absoluteFCModelPath, String absoluteFMModelPath, String absoluteTargetFolderPath) throws IOException{
 		resultSet = new ResourceSetImpl();
 		URI fcURI = URI.createFileURI(absoluteFCModelPath);
 		File targetFolder = new File (absoluteTargetFolderPath);
@@ -77,7 +74,7 @@ public class FMSerializer {
 		generator.doGenerate(new BasicMonitor());
 	}
 
-	private static Resource loadModel(URI uri) {
+	private  Resource loadModel(URI uri) {
 		Resource resource;
 		try {
 			resource = resultSet.getResource(uri, true);
@@ -90,7 +87,7 @@ public class FMSerializer {
 		return resource;
 	}
 	
-	private static <T extends EObject> T loadModel(URI uri, Class<T> clazz) {
+	private <T extends EObject> T loadModel(URI uri, Class<T> clazz) {
 		Resource resource = null;
 		try {
 			resource = loadModel(uri);

@@ -33,7 +33,10 @@ import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.Condition;
+import eu.supersede.integration.api.adaptation.types.DataID;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.Operator;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
@@ -111,6 +114,11 @@ public class ModuleLoader {
 		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
 		
+		//Check Alert for Atos HSK. Inject RT is case it is missing.
+		if (alert.getTenant()==ModelSystem.Atos_HSK && !alert.getConditions().stream().anyMatch(
+				c->c.getIdMonitoredData().getNameQualityMonitored().equals("response_time")))
+			alert.getConditions().add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
+		
 		// collect the parameters for the optimizer		
 		//Generate grammar and attribute_metadata.json from fmURI
 		//Inject  attribute_metadata.json in Parameters.ATTRIBUTE_Metadata
@@ -144,8 +152,10 @@ public class ModuleLoader {
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 		
-		FMSerializer.serializeFMToArtifactsInFolder(fmURI, temp);
-		FMSerializer.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
+		FMSerializer fms = new FMSerializer();
+		
+		fms.serializeFMToArtifactsInFolder(fmURI, temp);
+		fms.serializeFCToArtifactsInFolder(fcURI, fmURI, temp);
 		
 		//Serializer saves model in a file with name <FM_name>.bnf, not in a file with name <FM_File_name.bnf>
 		//so name needs to be retrieved from FM.getModelName
@@ -303,13 +313,13 @@ public class ModuleLoader {
 			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.SEARCH_BUDGET = 5;
-		Parameters.POPULATION_SIZE = 150;
+		Parameters.SEARCH_BUDGET = 5; //00000;
+		Parameters.POPULATION_SIZE = 50;
 		
 		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
 		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		int depth = 15;
-		double probRecursive = 0.005;
+		double probRecursive = 0.05;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		String optimalConfiguration = "";
 		if (multiObjective){

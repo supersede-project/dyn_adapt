@@ -20,7 +20,7 @@
         <classifier xmi:type="uml:Class" href="../base/atos_smart_base_model.uml#_MmaAoOlREea6tPfvbkvCTg"/>
         <slot xmi:id="_JwcOYBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_SasTcOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralInteger" xmi:id="_puxWwBL6Eee755surl-vag" value="2"/>
+          <value xmi:type="uml:LiteralInteger" xmi:id="_puxWwBL6Eee755surl-vag" value="1"/>
         </slot>
         <slot xmi:id="_KQXEkBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_U8Y0IOlREea6tPfvbkvCTg"/>
@@ -28,7 +28,7 @@
         </slot>
         <slot xmi:id="_KwWMMBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_PWe7kOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralString" xmi:id="_edY-kBL5Eee755surl-vag" value="OVP BO_2"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_edY-kBL5Eee755surl-vag" value="OVP BO2"/>
         </slot>
         <slot xmi:id="_LSEZMBL5Eee755surl-vag">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_ZefGUOlREea6tPfvbkvCTg"/>
