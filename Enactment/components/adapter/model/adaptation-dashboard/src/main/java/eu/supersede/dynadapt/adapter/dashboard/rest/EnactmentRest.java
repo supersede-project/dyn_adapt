@@ -55,34 +55,13 @@ public class EnactmentRest
     {
     	
     	Adaptation adaptation = adaptations.findOne(enactment.getFc_id());
+    	if (adaptation == null) throw new Exception ("There is no suggested adaptation for " + enactment.getFc_id());
     	enactment.setAdaptation(adaptation);
     	
 		Enactment enactmentExists = enactments.findOne(enactment.getFc_id());
 		if (enactmentExists != null) throw new Exception("This adaptation has already been enacted");
     	
-    	if (applyEnactment) enactAdaptation(enactment);
-
     	return enactments.save(enactment);
     }
-
-	private void enactAdaptation(Enactment enactment) {
-		Timestamp initTime = new Timestamp(System.currentTimeMillis());
-    	enactment.setEnactment_request_time(initTime);
-    	
-    	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
-    	List<String> actionIds = new ArrayList<>();
-    	
-    	for (Action a : enactment.getAdaptation().getActions()) actionIds.add(a.getAc_id());
-    	
-    	//FIXME uncomment when ready to test
-		//boolean result = proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
-		boolean result = true;
-		
-		Timestamp endTime = new Timestamp(System.currentTimeMillis());
-		Timestamp time = new Timestamp(endTime.getTime() - initTime.getTime());
-		enactment.setEnactment_completion_time(time);
-		enactment.setResult(result);
-    	
-	}
     
 }
