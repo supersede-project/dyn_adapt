@@ -169,7 +169,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
 		            method: 'POST'
 		        }).success(function(data) {
-		        	alert("Enacted adaptation " + data['fc_id']);
+		        	alert("Enacted adaptation");
 			    }).error(function(err) {
 			    	console.log(err);
 			    	alert(err['message']);

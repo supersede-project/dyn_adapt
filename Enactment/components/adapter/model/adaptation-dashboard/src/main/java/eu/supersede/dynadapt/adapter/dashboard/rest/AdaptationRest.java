@@ -68,7 +68,7 @@ public class AdaptationRest
     	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
     	List<String> actionIds = new ArrayList<>();
     	
-    	for (Action a : enactments.findOne(id).getAdaptation().getActions()) actionIds.add(a.getAc_id());
+    	for (Action a : adaptations.findOne(id).getActions()) actionIds.add(a.getAc_id());
     	
     	//FIXME uncomment when ready to test
 		//proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
