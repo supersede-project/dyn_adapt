@@ -46,6 +46,13 @@ public class AdaptationService {
 	    ERROR_NULL // will throw an error if resReq is null	     
 	}
 	
+	//these static variables are just used for manipulating the availability of services used in the "availability scenario"
+	static int unavailable5=0;
+	static int unavailable10=0;
+	static int number_of_times_good=5;
+	static int number_of_times_bad=5;
+	static final String currentPtolemyWorkflow="currentPtolemyWorkflow.xml"; 
+	
 	public static void main(String[] args) throws ScriptException, FileNotFoundException {
 		
 		/*
@@ -96,12 +103,19 @@ public class AdaptationService {
 				//Random numbers from the range 0..99 is generated
 			    Random randomGenerator = new Random();
 			    int randomInt = randomGenerator.nextInt(100);
-			    if(randomInt<5) 
+			    unavailable5++;
+			    if(randomInt<5 && unavailable5<=number_of_times_good) 
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
 			    }
-			    
+			    else if(randomInt<40 && (unavailable5<=number_of_times_good+number_of_times_bad && unavailable5>number_of_times_good))
+			    {
+			    	res.status(500);
+			    	res.body("Service is unavailable at the moment!");	
+			    }
+
+			    if(unavailable5>number_of_times_good+number_of_times_bad) unavailable5=0;
 			}
 			//for the validation purpose (make a service unavailable 10% of the time)
 			if(url.contains("unavailable10"))
@@ -109,11 +123,19 @@ public class AdaptationService {
 				//Random numbers from the range 0..99 is generated
 			    Random randomGenerator = new Random();
 			    int randomInt = randomGenerator.nextInt(100);
-			    if(randomInt<10) 
+			    unavailable10++;
+			    if(randomInt<10 && unavailable10<=number_of_times_good) 
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
 			    }
+			    else if(randomInt<40 && (unavailable10<=number_of_times_good+number_of_times_bad && unavailable10>number_of_times_good))
+			    {
+			    	res.status(500);
+			    	res.body("Service is unavailable at the moment!");	
+			    }
+
+			    if(unavailable10>number_of_times_good+number_of_times_bad) unavailable10=0;
 			    
 			}
 		    
@@ -198,7 +220,13 @@ public class AdaptationService {
 	//service adaptation using ptolemy workflow software (.xml files that represents the adaptation model are saved as adaptations and then executed in ptolemy)
 	public static String processSteps_ptolemy(String url, Request req) throws Exception
     {
-    File file=null;  
+	
+	File file=new File (currentPtolemyWorkflow);
+	// if file doesnt exists, then create it
+	if (!file.exists()) {
+		file.createNewFile();
+	}
+	
     String reqRes=null;
     synchronized(url)
         {
@@ -208,17 +236,17 @@ public class AdaptationService {
         try {
         	Random randomGenerator = new Random();
 		    int randomInt = randomGenerator.nextInt(1000);
-            file = new File("test-"+randomInt+".txt");
-            FileWriter fileWriter = new FileWriter(file);
+            //file = new File("test-"+randomInt+".txt");
+            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
             fileWriter.write(adaptation);
             fileWriter.flush();
-            fileWriter.close();
+            if(fileWriter!=null) fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
           
         //geting the name of the Recorder actor from the executed xml file in order to query it for the output results
-            String ptolemyRecorder=ReadXML.getRecorderName(file);
+            String ptolemyRecorder=ReadXML.getRecorderName(file.getAbsoluteFile());
             
             MoMLSimpleApplication2 runPtolemy=null;
             try {
@@ -241,13 +269,13 @@ public class AdaptationService {
            
         }
     
-    //deleting a contemporary file
     
-    if(file != null) 
+    //deleting a contemporary file    
+/*    if(file != null) 
     {  
         file.delete();
     }
-    
+*/    
     
     return reqRes;
     }

@@ -141,12 +141,17 @@ public class ServiceCompositionEnactor implements IEnactor{
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/test-Srdjo/S2_unavailable.uml"), true);
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable_variant1.uml"), true);
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/SiemensBaseModel_32bd5fab-9aa7-481c-b1a0-10ea63a5b8a3.uml"), true);
+	
+		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
+		String res2_3_path_initial_variant=umlModelsPath+"/umlmodels-validation/S2_unavailable_variant1.uml";
+		Resource res2 = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
+		
 		
 		//String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
 		//String res2_path=umlModelsPath+"/umlmodels-validation/S2_unavailable_variant1.uml";
 		//Resource res2 = set.getResource(URI.createFileURI(res2_path), true);
-		//Model umlModel = (Model)EcoreUtil.getObjectByType(res2.getContents(), UMLPackage.Literals.MODEL);
-		//this.umlEnactingModel=umlModel;
+		Model umlModel = (Model)EcoreUtil.getObjectByType(res2.getContents(), UMLPackage.Literals.MODEL);
+		this.umlEnactingModel=umlModel;
 		
 		
 		/*
@@ -246,14 +251,18 @@ public class ServiceCompositionEnactor implements IEnactor{
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
 		String res2_1_path=umlModelsPath+"/umlmodels-validation/S2_unavailable5.uml";
 		String res2_2_path=umlModelsPath+"/umlmodels-validation/S2_unavailable10.uml";
+		//String res2_3_path_initial_variant=umlModelsPath+"/umlmodels-validation/S2_unavailable_variant1.uml";
 		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
 		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
+		//Resource res2_3_initial_variant = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 
 		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
 		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
+		//Model umlModel_3_initial_variant = (Model)EcoreUtil.getObjectByType(res2_3_initial_variant.getContents(), UMLPackage.Literals.MODEL);
 		List<Model> uml_models_to_inject=new ArrayList<Model>();
 		uml_models_to_inject.add(umlModel_1);
 		uml_models_to_inject.add(umlModel_2);
+		//uml_models_to_inject.add(umlModel_3_initial_variant);
 		
 		/*
 		 * How to get the activity diagram from the Resource
