@@ -49,8 +49,8 @@ public class AdaptationService {
 	//these static variables are just used for manipulating the availability of services used in the "availability scenario"
 	static int unavailable5=0;
 	static int unavailable10=0;
-	static int number_of_times_good=5;
-	static int number_of_times_bad=5;
+	static int number_of_times_good=20;
+	static int number_of_times_bad=20;
 	static final String currentPtolemyWorkflow="currentPtolemyWorkflow.xml"; 
 	
 	public static void main(String[] args) throws ScriptException, FileNotFoundException {
