@@ -145,7 +145,7 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/SiemensBaseModel_32bd5fab-9aa7-481c-b1a0-10ea63a5b8a3.uml"), true);
 	
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-		String res2_3_path_initial_variant=umlModelsPath+"/umlmodels-validation/S2_unavailable_variant1.uml";
+		String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable_variant1.uml";
 		Resource res2 = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 		
 		
