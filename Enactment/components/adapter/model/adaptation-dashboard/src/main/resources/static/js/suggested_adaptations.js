@@ -77,7 +77,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			autoheight: true,
 			autorowheight: true,
 			source: dataAdapter,
-			columnsresize: false,
+			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
@@ -164,6 +164,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		$scope.enactSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
 			for(var index in indexes ) {
+				console.log(index);
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
 				$http({
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
@@ -179,18 +180,18 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
-			for(var index in indexes ) {
-				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
+			for(var i = indexes.length-1; i >= 0; --i) {
+				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[i]);
 				 $http({
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
-		        	alert("Adaptation deleted successfully");
+		        	console.log("Adaptation deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
 			    	alert(err['message']);
 			    });
-		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
+				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
 
