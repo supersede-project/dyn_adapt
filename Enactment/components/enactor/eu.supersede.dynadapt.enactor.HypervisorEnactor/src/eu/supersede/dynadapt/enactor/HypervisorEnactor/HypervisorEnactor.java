@@ -169,7 +169,7 @@ public class HypervisorEnactor implements IEnactor{
 						" " + supersede_account_user + "@" + supersede_platform_host + ":powershell_scripts/ > " + script + ".log 2>&1";
 				executeCommand(uploadCommand);
 				log.debug("Uploaded script in " + supersede_platform_host + " with result: " + 
-					readFile(Paths.get(script.toString() + ".log")));
+					readFile(Paths.get(script.toString())));
 			}
 			
 			//Execute script
@@ -177,7 +177,7 @@ public class HypervisorEnactor implements IEnactor{
 		
 			executeCommand(scriptCommand);
 			log.info("Executed script " + script.getFileName() + " with result: " + 
-				readFile(Paths.get(script.toString() + ".log")));
+				readFile(Paths.get(script.toString())));
 		}
 	}
 	
