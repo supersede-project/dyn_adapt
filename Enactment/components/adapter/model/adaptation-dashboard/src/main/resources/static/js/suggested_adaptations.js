@@ -163,6 +163,8 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		
 		$scope.enactSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
+			var count = 0;
+			var lim = indexes.length;
 			for(var index in indexes ) {
 				console.log(index);
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
@@ -170,26 +172,32 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
 		            method: 'POST'
 		        }).success(function(data) {
-		        	alert("Enacted adaptation");
+		        	console.log("Enacted adaptation");
+		        	++count;
+		        	if (count == lim) alert("Adaptation/s enacted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
-			    	alert(err['message']);
+			    	alert("There was an internal error");
 			    });
 			}
 		}
 		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
-			for(var i = indexes.length-1; i >= 0; --i) {
+			var count = 0;
+			var lim = indexes.length;
+			for(var i = lim-1; i >= 0; --i) {
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[i]);
 				 $http({
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
 		        	console.log("Adaptation deleted successfully");
+		        	++count;
+		        	if (count == lim) alert("Adaptation/s deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
-			    	alert(err['message']);
+			    	alert("There was an internal error");
 			    });
 				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}

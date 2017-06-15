@@ -168,15 +168,20 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
-			for(var i = indexes.length-1; i >= 0; --i ) {
+			var count = 0;
+			var lim = indexes.length;
+			for(var i = lim-1; i >= 0; --i ) {
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[i]);
 				 $http({
 		            url: "adaptation-dashboard/enactment/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
 		        	console.log("Enactment deleted successfully");
+		        	++count;
+		        	if (count == lim) alert("Enactment/s deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
+			    	alert("There was an internal error");
 			    });
 		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
