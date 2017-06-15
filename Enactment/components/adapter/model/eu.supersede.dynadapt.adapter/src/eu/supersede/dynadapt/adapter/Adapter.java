@@ -24,12 +24,15 @@ package eu.supersede.dynadapt.adapter;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import org.apache.log4j.LogManager;
@@ -209,14 +212,15 @@ public class Adapter implements IAdapter {
 		kpiComputerAdapter.reportComputedKPI();
 		
 		// ADAPTED MODEL ENACTMENT
-		EnactmentException ee = null;		
+		EnactmentException ee = null;	
+		String uploadedFeatureConfigurationId = null;
 		if (model != null) {
 			//NOTE adapted model must be placed in same folder level as base model, otherwise referenced models (i.e. profiles) are not resolved.
 			//Current configuration stores the adapted model in ./models/adapted, so profiles are correctly resolved.
 			String suri = repositoryRelativePath + "/" + modelsLocation.get("adapted") + model.getName() + ".uml";
 			URI uri = URI.createFileURI(suri);
-			String suffix = "_" + UUID.randomUUID() + ".uml";
-			uri = mm.saveModel(model.eResource(), uri, suffix);
+			String adaptation_suffix = "_" + UUID.randomUUID();
+			uri = mm.saveModel(model.eResource(), uri, adaptation_suffix + ".uml");
 			log.debug("Saved updated model in " + uri);
 		
 			//Ask Enactor to enact adapted model
@@ -229,16 +233,17 @@ public class Adapter implements IAdapter {
 				log.debug("Storing adapted model as current based model in ModelRepository...");
 				//TODO Populate metadata, status=Enacted
 				//mr.storeBaseModel(model, bmMetadata);
-				String adaptedModelFileName =  model.getName().concat(suffix);
+				String adaptedModelFileName =  model.getName().concat(adaptation_suffix + ".uml");
 				String uploadedAdaptedModelId = uploadLatestAdaptedModel(model, adaptedModelFileName, system);
 				
 				//TODO Store new feature configuration model as current current feature configuration in Repository
 				log.debug("Storing FC model as current FC model in ModelRepository...");
 				//TODO Populate metadata, status=Enacted
 				//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
-				String featureConfigurationFileName = "SmartPlatformFC_HSK_SingleVM_HighLoad.yafc";
-				String uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig,
-						featureConfigurationFileName, system);
+				// FIXME The name of the persisting model file must be  
+				//String featureConfigurationFileName = "SmartPlatformFC_HSK_SingleVM_HighLoad.yafc";
+				String featureConfigurationFileName = newFeatureConfig.getName().concat(adaptation_suffix + ".yafc");
+				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
 			}
 			catch (Exception e) {
 				ee = new EnactmentException(e);
@@ -248,7 +253,8 @@ public class Adapter implements IAdapter {
 			kpiComputerEnactor.reportComputedKPI();
 		
 			//TODO Recover the adaptation corresponding to the latest feature configuration
-			String adaptationId = featureConfigurationId != null ? featureConfigurationId : DEFAULT_ADAPTATION_ID; 
+			String adaptationId = featureConfigurationId != null ? featureConfigurationId : 
+				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : "FCS_1"; 
 			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
 			if (adaptation == null) {
 				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");
@@ -382,17 +388,37 @@ public class Adapter implements IAdapter {
 	 * Create an {@link Enactment} object related to the adaptation whose id which is passed as parameter.
 	 * @param fc_id id of the {@link Adaptation} whose enactment is required
 	 * @param status true when the enactment was sucessful, false otherwise
-	 * @param inititialTime is the enactment process initiation time
+	 * @param initialTime is the enactment process initiation time
 	 * @param finalTime is the enactment process finalization time
 	 * @return the {@link Enactment}
 	 */
-	protected Enactment createEnactment(String fc_id, boolean status, Date inititialTime, Date finalTime) {
+	protected Enactment createEnactment(String fc_id, boolean status, Date initialTime, Date finalTime) {
+		
+//		String dateFormat = "mm:ss.SSS";
+//	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+//		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+	    Long duration = finalTime.getTime() - initialTime.getTime();	    
+	    
+// 		calendar.setTimeInMillis(duration);    
+//	    Date durationDate = calendar.getTime();
+//	    int hours = durationDate.getHours();
+
+	    Date durationDate = new Date(duration);
+//	    duration2.setTime(duration);
+//	    duration2.setTime(duration);
+	    SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SS");//dd/MM/yyyy
+	    String durationString = df.format(durationDate);
+	    
+//        return simpleDateFormat.format(calendar.getTime());
+	    
+		
+		
 		Enactment enactment = new Enactment();
 		enactment.setFc_id(fc_id);
 //		enactment.setEnactment_completion_time(Calendar.getInstance().getTime());
 //		enactment.setEnactment_request_time(Calendar.getInstance().getTime());
-		enactment.setEnactment_request_time(inititialTime);	
-		enactment.setEnactment_completion_time(finalTime);
+		enactment.setEnactment_request_time(initialTime);	
+		enactment.setEnactment_completion_time(durationDate);
 		enactment.setResult(status);
 		return enactment;
 	}
