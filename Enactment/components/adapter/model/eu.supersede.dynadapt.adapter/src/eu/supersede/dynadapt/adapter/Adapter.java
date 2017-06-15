@@ -26,13 +26,11 @@ package eu.supersede.dynadapt.adapter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.UUID;
 
 import org.apache.log4j.LogManager;
@@ -394,24 +392,11 @@ public class Adapter implements IAdapter {
 	 */
 	protected Enactment createEnactment(String fc_id, boolean status, Date initialTime, Date finalTime) {
 		
-//		String dateFormat = "mm:ss.SSS";
-//	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
-//		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 	    Long duration = finalTime.getTime() - initialTime.getTime();	    
-	    
-// 		calendar.setTimeInMillis(duration);    
-//	    Date durationDate = calendar.getTime();
-//	    int hours = durationDate.getHours();
-
 	    Date durationDate = new Date(duration);
-//	    duration2.setTime(duration);
-//	    duration2.setTime(duration);
 	    SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SS");//dd/MM/yyyy
-	    String durationString = df.format(durationDate);
-	    
-//        return simpleDateFormat.format(calendar.getTime());
-	    
-		
+	    String durationDateString = df.format(durationDate);
+	    log.info("The enactment completion time was " + durationDateString);
 		
 		Enactment enactment = new Enactment();
 		enactment.setFc_id(fc_id);
