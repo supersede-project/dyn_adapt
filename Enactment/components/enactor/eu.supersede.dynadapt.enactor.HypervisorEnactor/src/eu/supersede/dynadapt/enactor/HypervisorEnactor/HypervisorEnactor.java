@@ -198,7 +198,7 @@ public class HypervisorEnactor implements IEnactor{
 				script.getFileName() + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
 		}else{
 			scriptCommand = "powershell -File " + 
-				script + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
+				script + " -password " + hypervisor_account_passwd + " > " + script + ".log 2>&1";
 		}
 		return scriptCommand;
 	}
