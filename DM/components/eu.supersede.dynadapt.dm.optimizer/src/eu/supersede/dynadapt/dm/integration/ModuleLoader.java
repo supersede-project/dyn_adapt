@@ -1,7 +1,6 @@
 package eu.supersede.dynadapt.dm.integration;
 
 import java.io.File;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
@@ -29,8 +29,11 @@ import eu.supersede.dynadapt.dm.optimizer.kpi.OptimizerKPIComputer;
 import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
+import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
+import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
+import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.Condition;
@@ -45,6 +48,8 @@ import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
 public class ModuleLoader {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private AdapterProxy<?, ?> proxy;
+	private AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
+	
 	//Configuration
 	DMOptimizationConfiguration config;
 	//KPI Computer
@@ -53,8 +58,9 @@ public class ModuleLoader {
 	//@Autowired
 	//private RequirementsJpa requirementsTable;
 
-	public ModuleLoader() {
+	public ModuleLoader() throws Exception {
 		proxy = new AdapterProxy<Object, Object>();
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 	}
 
 	@PostConstruct
@@ -109,7 +115,7 @@ public class ModuleLoader {
 			}} ).start();
 	}
 
-	private void handleAlert(Alert alert) throws Exception
+	public void handleAlert(Alert alert) throws Exception
     {		
 		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
@@ -187,10 +193,12 @@ public class ModuleLoader {
 		selectedFeatureIds.removeAll(Arrays.asList(null,""));
 		
 		//Generate FC
-		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = 
+		cz.zcu.yafmt.model.fc.FeatureConfiguration newFeatureConf = 
 				new FeatureConfigurationBuilder().buildFeatureConfiguration(fm, selectedFeatureIds);
 		String newConfig = temp + getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
-		new ModelManager().saveFC(featureConf, org.eclipse.emf.common.util.URI.createFileURI(newConfig));
+
+		//FIXME Shouldn't we use the model manager object created above?
+		new ModelManager().saveFC(newFeatureConf, org.eclipse.emf.common.util.URI.createFileURI(newConfig));
 		
 		kpiComputer.stopComputingKPI();
 		kpiComputer.reportComputedKPI();
@@ -199,12 +207,34 @@ public class ModuleLoader {
 
 		//TODO Populate metadata, status=Computed
 		//String idFc = mr.storeFeatureConfigurationModel(featureConf, fcMetadata);
+		String idFc = "FC_4";
 		
 		//TODO Notify FC to Dashboard.
-		//TODO Create Adaptation using computed FC, and for actions (e.g. changing features) use Adapter method
-		//to compare computed FC with last enacted FC.
-//		Adaptation adaptation = new Adaptation();
+		
+		//TODO Use Adapter method to compare computed FC with last enacted FC.
+		// Select features that have suffered change. Only leaf selections are included
+		// Get currently enacted FeatureConfiguration
+		String featureConfURIString = org.eclipse.emf.common.util.URI.createFileURI(fcURI).toString();
+		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = mm.loadFC(featureConfURIString);
+		log.info("Currently enacted feature configuration loaded from " + featureConfURIString);
+		
+		List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(featureConf, newFeatureConf);
+//		List<Selection> changedSelections = new ArrayList<Selection>();
+		
 		//TODO Populate adaptation
+		Adaptation adaptation = DashboardNotificationFactory.createAdaptation(idFc,
+				newFeatureConf.getName(),
+				system,
+				changedSelections, 
+				kpiComputer.getInitialProcessingTime());
+		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+		if (adaptation != null) {
+			log.info("Sending Adaptation " + idFc + " report to dashboard");
+		}
+		else {
+			log.error("There was an error notifying Adaptation " + idFc + " to the dashboard");
+		}
+		
 		//adaptationDashboardProxy.addAdaptation(adaptation);
 		
 		//Send FC to Adapter;

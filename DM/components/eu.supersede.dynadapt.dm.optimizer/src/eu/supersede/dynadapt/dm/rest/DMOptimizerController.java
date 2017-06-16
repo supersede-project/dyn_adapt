@@ -9,7 +9,11 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 public class DMOptimizerController {
-	ModuleLoader ml = new ModuleLoader();
+	ModuleLoader ml;
+	
+	public DMOptimizerController () throws Exception {
+		this.ml = new ModuleLoader();
+	}
 	
 	@RequestMapping("/optimize")
 	public FeatureConfiguration optimize (

@@ -12,6 +12,14 @@ public class OptimizerKPIComputer {
 	private Date initialProcessingTime = null;
 	private Date finalProcessingTime = null;
 	
+	public Date getInitialProcessingTime() {
+		return initialProcessingTime;
+	}
+
+	public Date getFinalProcessingTime() {
+		return finalProcessingTime;
+	}
+
 	public void stopComputingKPI() {
 		finalProcessingTime = Calendar.getInstance().getTime();
 	}

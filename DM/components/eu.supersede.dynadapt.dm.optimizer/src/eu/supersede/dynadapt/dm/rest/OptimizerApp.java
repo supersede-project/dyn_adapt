@@ -13,7 +13,13 @@ public class OptimizerApp {
         SpringApplication.run(OptimizerApp.class, args);
         
         //Listening sent Adaptation Alerts
-        ModuleLoader m = new ModuleLoader();
-		m.init();
+        ModuleLoader m;
+		try {
+			m = new ModuleLoader();
+			m.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
