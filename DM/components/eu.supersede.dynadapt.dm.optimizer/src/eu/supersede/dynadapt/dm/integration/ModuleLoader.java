@@ -1,7 +1,6 @@
 package eu.supersede.dynadapt.dm.integration;
 
 import java.io.File;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,7 +30,6 @@ import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
-import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -107,7 +105,7 @@ public class ModuleLoader {
 			}} ).start();
 	}
 
-	private void handleAlert(Alert alert) throws Exception
+	public void handleAlert(Alert alert) throws Exception
     {		
 		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
@@ -136,12 +134,15 @@ public class ModuleLoader {
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
 		kpiComputer.startComputingKPI();
 		
+		int i = 0;
+		
 		//Resolving relative URIs to execution directory
-		fmURI = System.getProperty("user.dir") + "/" + fmURI;
+//		fmURI = System.getProperty("user.dir") + "/" + fmURI;
 		fcURI = System.getProperty("user.dir") + "/" + fcURI;
 		
 		//Creating temporary folder for serialized models
-		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
+//		Path path = Paths.get (new URI("file://" + getFolder(fmURI)));
+		Path path = Paths.get (System.getProperty("user.dir"), getFolder(fmURI));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 		
