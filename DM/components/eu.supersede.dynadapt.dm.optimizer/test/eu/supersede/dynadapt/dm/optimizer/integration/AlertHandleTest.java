@@ -1,4 +1,4 @@
-package eu.supersede.dynadapt.dm.integration;
+package eu.supersede.dynadapt.dm.optimizer.integration;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -6,13 +6,14 @@ import java.util.List;
 
 import org.junit.Test;
 
+import eu.supersede.dynadapt.dm.integration.ModuleLoader;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.DataID;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.Operator;
 
-public class ModuleLoaderTest {
+public class AlertHandleTest {
 
 	@Test
 	public void SiemenesOptimizationTest() throws Exception {
