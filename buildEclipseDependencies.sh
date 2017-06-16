@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 echo -e "\nBuilding Supersede YAFMT plugins...\n"
 cd  Maven/cz.zcu.yafmt/releng/cz.zcu.yafmt.configuration/ && ./installPom.sh
 cd ../../ && mvn clean install
@@ -23,3 +24,5 @@ else
   echo "There are problems compiling Supersede dynamic adaptation plugins" >&2
   exit 1
 fi
+
+
