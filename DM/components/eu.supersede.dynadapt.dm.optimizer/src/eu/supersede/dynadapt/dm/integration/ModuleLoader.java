@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.dm.integration;
 
 import java.io.File;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,7 +33,10 @@ import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import eu.supersede.dynadapt.serializer.FMSerializer;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.Condition;
+import eu.supersede.integration.api.adaptation.types.DataID;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.Operator;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
@@ -105,10 +109,15 @@ public class ModuleLoader {
 			}} ).start();
 	}
 
-	public void handleAlert(Alert alert) throws Exception
+	private void handleAlert(Alert alert) throws Exception
     {		
 		log.debug("Handling alert: " + alert.getId() + ", " + alert.getApplicationId() + ", "
                 + alert.getTenant() + ", " + alert.getTimestamp());
+		
+		//Check Alert for Atos HSK. Inject RT is case it is missing.
+		if (alert.getTenant()==ModelSystem.Atos_HSK && !alert.getConditions().stream().anyMatch(
+				c->c.getIdMonitoredData().getNameQualityMonitored().equals("response_time")))
+			alert.getConditions().add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
 		
 		// collect the parameters for the optimizer		
 		//Generate grammar and attribute_metadata.json from fmURI
@@ -133,8 +142,6 @@ public class ModuleLoader {
 
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
 		kpiComputer.startComputingKPI();
-		
-		int i = 0;
 		
 		//Resolving relative URIs to execution directory
 //		fmURI = System.getProperty("user.dir") + "/" + fmURI;
@@ -189,6 +196,7 @@ public class ModuleLoader {
 		kpiComputer.reportComputedKPI();
 		
 		//TODO Store optimal computed FCs onto the ModelRepository
+
 		//TODO Populate metadata, status=Computed
 		//String idFc = mr.storeFeatureConfigurationModel(featureConf, fcMetadata);
 		
@@ -205,10 +213,8 @@ public class ModuleLoader {
 		
 		boolean processEnactment = Boolean.valueOf(
 				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
-		//TODO Change Adapter invocation to use FC id: idFc
 		if (processEnactment)
 			proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
-//			proxy.enactAdaptationDecisionActionsForFC(system, idFc);
 		
 		//Remove temporary file
 		boolean removeTemp = Boolean.valueOf(
@@ -318,13 +324,13 @@ public class ModuleLoader {
 			Parameters.FEATURE_ATTRIBUTE_PATH = qualityAttributePath;
 		
 		Parameters.BUDGET_TYPE = BudgetType.MAX_TIME;
-		Parameters.SEARCH_BUDGET = 5;
-		Parameters.POPULATION_SIZE = 150;
+		Parameters.SEARCH_BUDGET = 5; //00000;
+		Parameters.POPULATION_SIZE = 50;
 		
 		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
 		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		int depth = 15;
-		double probRecursive = 0.005;
+		double probRecursive = 0.05;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		String optimalConfiguration = "";
 		if (multiObjective){
