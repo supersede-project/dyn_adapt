@@ -22,10 +22,6 @@
  */
 package eu.supersede.dynadapt.dm.optimizer.gp.mo.algorithm;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,7 +36,6 @@ import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.ChromosomeFactory;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.ConstrainedMultiObjectiveFitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.FitnessFunction;
-import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.MultiObjectiveFitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.operators.MultiObjectiveTournamentSelection;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.operators.SelectionFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.operators.CrossoverFunction;

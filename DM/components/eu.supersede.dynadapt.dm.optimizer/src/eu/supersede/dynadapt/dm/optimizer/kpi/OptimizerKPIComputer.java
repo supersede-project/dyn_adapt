@@ -27,7 +27,7 @@ public class OptimizerKPIComputer {
 	public void reportComputedKPI() {
 		if (initialProcessingTime != null && finalProcessingTime != null){
 			long processTime = finalProcessingTime.getTime() - initialProcessingTime.getTime();
-			log.info("Enactment KPI: Adaptation Enactment Time: " + processTime + " miliseconds");
+			log.info("Optimization KPI: Configuration Optimization Time: " + processTime + " miliseconds");
 		}else{
 			
 		}

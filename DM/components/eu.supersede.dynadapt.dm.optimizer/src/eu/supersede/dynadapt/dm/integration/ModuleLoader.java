@@ -1,13 +1,16 @@
 package eu.supersede.dynadapt.dm.integration;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
@@ -28,6 +31,8 @@ import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.optimizer.kpi.OptimizerKPIComputer;
 import eu.supersede.dynadapt.dm.rest.FeatureConfiguration;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
+import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
+import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
@@ -39,7 +44,9 @@ import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.DataID;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.Operator;
+import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
@@ -49,6 +56,13 @@ public class ModuleLoader {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private AdapterProxy<?, ?> proxy;
 	private AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
+	
+	private ModelRepository mr;
+	private eu.supersede.dynadapt.model.ModelManager mm;
+	private static final String MODELS_AUTHOR = "Optimizer";
+	private String repository;
+	private String repositoryRelativePath;
+	private Map<String, String> modelsLocation;
 	
 	//Configuration
 	DMOptimizationConfiguration config;
@@ -60,7 +74,22 @@ public class ModuleLoader {
 
 	public ModuleLoader() throws Exception {
 		proxy = new AdapterProxy<Object, Object>();
+		
+		//FIXME Take credentials to a properties file
 		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		this.mm = new eu.supersede.dynadapt.model.ModelManager();
+		
+		String repositoryPath = Paths.get(System.getProperty("user.dir"), "/repository").toString().concat("/");
+		this.repository = org.eclipse.emf.common.util.URI.createFileURI(repositoryPath).toString();
+		this.repositoryRelativePath = "./repository";		
+		//FIXME We shoul use platform URI instead, but dependencies to import StandaloneSetup cannot be resolved
+		//String platformRelativePath = "../";
+		//new StandaloneSetup().setPlatformUri(platformRelativePath);
+		
+		this.mr = new ModelRepository(repository, repositoryRelativePath, mm);
+		modelsLocation = new HashMap<String, String>();
+		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("configurations", "features/configurations/");
 	}
 
 	@PostConstruct
@@ -173,7 +202,7 @@ public class ModuleLoader {
 		setTenant(system);
 		Parameters.ATTRIBUTE_METADATA = temp + "/"  + fm.getName() + ".json";
 		String qualityAttributePath = temp;
-		String currentConfig = temp + getFileNameOfPath(fcURI).replace ("yafc", "conf");
+		String currentConfig = Paths.get(temp, getFileNameOfPath(fcURI).replace ("yafc", "conf")).toString();
 		
 		Boolean multiObjective = Boolean.valueOf(
 				DMOptimizationConfiguration.getProperty("multiobjective"));
@@ -184,61 +213,42 @@ public class ModuleLoader {
 				multiObjective);
 
 		log.debug("Computed optimal configuration: " + optimalConfig);
+				
+		//Generate a YAMFT Feature Configuration from optimalConfig. Return this FC
 		FeatureConfiguration fc = new FeatureConfiguration(optimalConfig);
-		
-		//Generate a YAMFT FeatureConfiguration from optimalConfig. Return this FC
 		List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(fc.getOptimalConfig().split("\\s+")));
-		
-		//Remove empty entries
-		selectedFeatureIds.removeAll(Arrays.asList(null,""));
-		
-		//Generate FC
-		cz.zcu.yafmt.model.fc.FeatureConfiguration newFeatureConf = 
+		selectedFeatureIds.removeAll(Arrays.asList(null,"")); //Remove empty entries
+		cz.zcu.yafmt.model.fc.FeatureConfiguration newFeatureConfig = 
 				new FeatureConfigurationBuilder().buildFeatureConfiguration(fm, selectedFeatureIds);
-		String newConfig = temp + getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
-
+		String newFeatureConfigFileName = getFileNameOfPath(fcURI).replace (".yafc", "_optimized.yafc");
+		String newFeatureConfigPath = Paths.get(temp, newFeatureConfigFileName).toString();
 		//FIXME Shouldn't we use the model manager object created above?
-		new ModelManager().saveFC(newFeatureConf, org.eclipse.emf.common.util.URI.createFileURI(newConfig));
+		new ModelManager().saveFC(newFeatureConfig, org.eclipse.emf.common.util.URI.createFileURI(newFeatureConfigPath));
 		
 		kpiComputer.stopComputingKPI();
 		kpiComputer.reportComputedKPI();
 		
-		//TODO Store optimal computed FCs onto the ModelRepository
-
-		//TODO Populate metadata, status=Computed
-		//String idFc = mr.storeFeatureConfigurationModel(featureConf, fcMetadata);
-		String idFc = "FC_4";
+		// Upload the YAMFT Fature Configuration to the ModelRepository 
+		String newFeatureConfigId = uploadLatestComputedFC(newFeatureConfig, newFeatureConfigFileName, system); // Populate metadata, status=Computed
+		log.info("New optimal feature configuration " + newFeatureConfigId + " uploaded to repository");			
 		
-		//TODO Notify FC to Dashboard.
-		
-		//TODO Use Adapter method to compare computed FC with last enacted FC.
-		// Select features that have suffered change. Only leaf selections are included
-		// Get currently enacted FeatureConfiguration
-		String featureConfURIString = org.eclipse.emf.common.util.URI.createFileURI(fcURI).toString();
-		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConf = mm.loadFC(featureConfURIString);
-		log.info("Currently enacted feature configuration loaded from " + featureConfURIString);
-		
-		List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(featureConf, newFeatureConf);
-//		List<Selection> changedSelections = new ArrayList<Selection>();
-		
-		//TODO Populate adaptation
-		Adaptation adaptation = DashboardNotificationFactory.createAdaptation(idFc,
-				newFeatureConf.getName(),
+		// Load currently enacted Feature Configuration
+		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);		
+		log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
+	
+		// Notify Adaptation to the Dashboard 
+		List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(featureConfig, newFeatureConfig);
+		Adaptation adaptation = DashboardNotificationFactory.createAdaptation(newFeatureConfigId,
+				newFeatureConfig.getName(),
 				system,
 				changedSelections, 
 				kpiComputer.getInitialProcessingTime());
 		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
-		if (adaptation != null) {
-			log.info("Sending Adaptation " + idFc + " report to dashboard");
-		}
-		else {
-			log.error("There was an error notifying Adaptation " + idFc + " to the dashboard");
-		}
+		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		
-		//adaptationDashboardProxy.addAdaptation(adaptation);
-		
-		//Send FC to Adapter;
-		Path fcPath = Paths.get(newConfig);
+		// Send FC to Adapter;
+		// FIXME This should not be neccessary in the last version
+		Path fcPath = Paths.get(newFeatureConfigPath);
 		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
 		
 		boolean processEnactment = Boolean.valueOf(
@@ -256,6 +266,35 @@ public class ModuleLoader {
 		}
 		
 		return fc;
+	}
+	
+	/** 
+	 * FIXME Take this method to PopulateRepositoryManager as it is duplicated in Adapter and
+	 * Adapter's tests!!!
+	 * Load the latest computed FeatureConfiguration for the given system.
+	 * @param fc the latest {@link FeatureConfiguration} model
+	 * @param fcName the name of the feature configuration file
+	 * @param system the system owner of the adated model
+	 * @return the id of the uploaded model in the model repository
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	protected String uploadLatestComputedFC(cz.zcu.yafmt.model.fc.FeatureConfiguration fc,
+			String fcName, ModelSystem system) throws IOException, Exception {
+//		String userdir = System.getProperty("user.dir");
+//		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
+		String modelId = prm.populateModel(
+//				Paths.get(repositoryPath.toString(), "features/configurations", fcName), 
+				fc,
+				fcName,
+				MODELS_AUTHOR,
+				system, Status.Computed,
+				modelsLocation.get("configurations"), 
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class,
+				ModelType.FeatureConfiguration, 
+				eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
+		return modelId;
 	}
 	
 	private void setTenant(ModelSystem tenant){
@@ -336,7 +375,7 @@ public class ModuleLoader {
 	
 	private String getFileNameOfPath(String path) {
 		// Return the file name in path
-		return path.substring(path.lastIndexOf('/'));
+		return path.substring(path.lastIndexOf('/')+1);
 	}
 	
 	private String doOptimization(String modelURI, String currentConfig, String qualityAttributePath, String alertAttribute, Double alertThresholdValue, boolean multiObjective) {
