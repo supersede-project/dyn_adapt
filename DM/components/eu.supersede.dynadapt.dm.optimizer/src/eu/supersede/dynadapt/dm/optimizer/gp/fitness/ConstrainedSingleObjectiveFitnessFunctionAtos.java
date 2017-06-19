@@ -60,14 +60,19 @@ public class ConstrainedSingleObjectiveFitnessFunctionAtos extends AbstractFitne
 //		String alertAttribute = "art";
 //		double overallConstraint = 0d;
 		
-		double physicalCores = configurationLoader.getFeatureAttributeMetadata().get(coresAttribute).getMaximumValue();
-		double physicalMemory = configurationLoader.getFeatureAttributeMetadata().get(memoryAttribute).getMaximumValue();
+		double physicalCores = 0; //configurationLoader.getFeatureAttributeMetadata().get(coresAttribute).getMaximumValue();
+		double physicalMemory = 0; //configurationLoader.getFeatureAttributeMetadata().get(memoryAttribute).getMaximumValue();
 		
 		for (Properties attributes : attributesOfAllFeatures){
 			if (attributes == null || attributes.isEmpty()){
 				// no quality attributes for some features
 				continue;
 			}
+			
+			// physical resources (upper hard limit)
+			physicalCores += configurationLoader.getFeatureAttributeMetadata().get(coresAttribute).getMaximumValue();
+			physicalMemory += configurationLoader.getFeatureAttributeMetadata().get(memoryAttribute).getMaximumValue();
+			
 			double cores = Double.parseDouble(attributes.getProperty(coresAttribute));
 //			FeatureAttributeMetadata costAttributeMetadata1 = featureAttributeMetadata.get(costAttribute1);
 //			double minimum = costAttributeMetadata1.getMinimumValue();
@@ -153,12 +158,12 @@ public class ConstrainedSingleObjectiveFitnessFunctionAtos extends AbstractFitne
 	private double computeFitness (double totalCores, double totalMemory){
 		final double ART = Parameters.CONSTRAINT_THRESHOLD; // = 5 seconds
 //		final double C1 = 10, C2 = 1, C3 = 0, C4 = 1, C5 = 1;
-		double threads = Parameters.ATOS_HSK_CONST1 / ART; //40 ms (normal), 1 sec (anormal)
+		double threads = Parameters.ATOS_HSK_CONST1 * ART + Parameters.ATOS_HSK_CONST2; //40 ms (normal), 1 sec (anormal)
 		//Normal ART (40ms, 100ms) up to 500 thread - 1 core, 1GB RAM
 		//Abnormal ART (~1000 ms) - 1000 thread - 2 cores, 2GB RAM
 		
-		double minimumCores = Parameters.ATOS_HSK_CONST2 * threads + Parameters.ATOS_HSK_CONST3; //C3=0, C2, 1 core = 500 threads, 2 cores = 1000 threads
-		double minimumMemory = Parameters.ATOS_HSK_CONST4 * threads + Parameters.ATOS_HSK_CONST5; //C5=0, C4, 1GB = 500 threads, 2 Gb = 1000 threads
+		double minimumCores = Math.ceil(Parameters.ATOS_HSK_CONST3 + Parameters.ATOS_HSK_CONST6 * threads); //Math.ceil(threads / Parameters.ATOS_HSK_CONST3); // + Parameters.ATOS_HSK_CONST4; //C3=0, C2, 1 core = 500 threads, 2 cores = 1000 threads
+		double minimumMemory = Math.ceil(Parameters.ATOS_HSK_CONST4 + Parameters.ATOS_HSK_CONST5 * threads); // + Parameters.ATOS_HSK_CONST6; //C5=0, C4, 1GB = 500 threads, 2 Gb = 1000 threads
 		if (totalCores < minimumCores || totalMemory < minimumMemory){
 			// invalid individual
 			return Double.MAX_VALUE;
@@ -172,15 +177,17 @@ public class ConstrainedSingleObjectiveFitnessFunctionAtos extends AbstractFitne
 	 */
 	@Override
 	public boolean isFinished(Chromosome chromosome) {
-		if (violatesConstraint(chromosome)){
-			return false;
-		}else{
-			if (isMaximizationFunction()){
-				return (currentConfigurationFitness < chromosome.getFitness());
-			} else{
-				return (currentConfigurationFitness > chromosome.getFitness());
-			}
-		}
+		// FIXME for now let the search go till the end. handle better!!
+		return false;
+//		if (violatesConstraint(chromosome)){
+//			return false;
+//		}else{
+//			if (isMaximizationFunction()){
+//				return (currentConfigurationFitness < chromosome.getFitness());
+//			} else{
+//				return (currentConfigurationFitness > chromosome.getFitness());
+//			}
+//		}
 	}
 	
 	@Override
