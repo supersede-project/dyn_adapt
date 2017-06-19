@@ -75,6 +75,10 @@ public class PopulateModelRepositoryTest {
 	PopulateRepositoryManager prm = null;
 
 	IFeatureConfigLAO fcLAO = null;
+	
+	public static void main (String[] args){
+		//Ignored, added to permit the creation of an executable Java for tests
+	}
 
 	@Before
 	public void setUp() throws Exception {
