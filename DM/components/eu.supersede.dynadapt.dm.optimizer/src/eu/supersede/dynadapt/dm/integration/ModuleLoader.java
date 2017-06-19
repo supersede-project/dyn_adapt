@@ -239,7 +239,7 @@ public class ModuleLoader {
 		// Notify Adaptation to the Dashboard 
 		List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(featureConfig, newFeatureConfig);
 		Adaptation adaptation = DashboardNotificationFactory.createAdaptation(newFeatureConfigId,
-				newFeatureConfig.getName(),
+				String.format("%s %s", system.toString(), newFeatureConfigId),
 				system,
 				changedSelections, 
 				kpiComputer.getInitialProcessingTime());
