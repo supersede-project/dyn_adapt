@@ -26,7 +26,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			var row = {};
 			row['fc_id'] = data[i]['adaptation']['fc_id'];			
 			row['enactment_request_time'] = data[i]['enactment_request_time'];
-			row['enactment_completion_time'] = data[i]['enactment_completion_time'];
+			row['enactment_completion_time'] = data[i]['enactment_completion_time']
 			row['result'] = data[i]['result'];
 			
 			row['action_ids'] = [];
@@ -75,7 +75,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			autoheight: true,
 			autorowheight: true,
 			source: dataAdapter,
-			columnsresize: false,
+			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
@@ -168,15 +168,20 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
-			for(var index in indexes ) {
-				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
+			var count = 0;
+			var lim = indexes.length;
+			for(var i = lim-1; i >= 0; --i ) {
+				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[i]);
 				 $http({
 		            url: "adaptation-dashboard/enactment/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
-		        	alert("Enactment deleted successfully");
+		        	console.log("Enactment deleted successfully");
+		        	++count;
+		        	if (count == lim) alert("Enactment/s deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
+			    	alert("There was an internal error");
 			    });
 		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}

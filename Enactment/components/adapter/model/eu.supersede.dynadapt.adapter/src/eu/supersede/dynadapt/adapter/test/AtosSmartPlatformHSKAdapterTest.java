@@ -47,8 +47,6 @@ public class AtosSmartPlatformHSKAdapterTest {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-//			uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-//			String featureConfigurationId = null;
 			String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
@@ -66,14 +64,11 @@ public class AtosSmartPlatformHSKAdapterTest {
 		boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 		adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 		String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-		uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-		String featureConfigurationId = null;
-		
+		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 		for (int i=0; i<numberRuns; i++){
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
-		}
-		
+		}	
 		((Adapter)adapter).kpiComputerAdapter.reportComputedKPITimeSeries();
 		((Adapter)adapter).kpiComputerEnactor.reportComputedKPITimeSeries();
 	}
@@ -84,13 +79,9 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHugeHSKAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
-									
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);									
 			String[] adaptationDecisionActionIds = new String[]{"mediumloadconfigurationinvm2_b"};
-			uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc");
-		
-			String featureConfigurationId = null;
-			
+			String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc");		
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -104,13 +95,19 @@ public class AtosSmartPlatformHSKAdapterTest {
 	public void testAtosHSKDualVMHighLowAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
-									
-			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
-			uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc");
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);									
+			//High-Low
+//			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","highloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_HighLowLoad";
 			
-			String featureConfigurationId = null;
+			//Medium-Low
+//			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_a","mediumloadconfigurationinvm2_a","lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_MediumLowLoad";
 			
+			//Low-Low
+			String[] adaptationDecisionActionIds = new String[]{"lowloadconfigurationinvm2_b"}; //adding and deleting different configuration options
+//			String featureConfigurationId = "SmartPlatformFC_HSK_DualVM_LowLowLoad";
+			String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_DualVM_LowLowLoad.yafc");		
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {

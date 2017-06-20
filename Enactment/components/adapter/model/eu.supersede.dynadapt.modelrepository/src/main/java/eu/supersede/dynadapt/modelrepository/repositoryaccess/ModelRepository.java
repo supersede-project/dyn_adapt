@@ -28,9 +28,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +36,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
@@ -49,7 +46,6 @@ import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.ModelManager;
-import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -74,11 +70,19 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 		this.parser = new AdaptationParser(modelManager);
 	}
 	
+	public ModelRepository(String repository, String repositoryRelativePath) throws Exception {
+		this(repository, repositoryRelativePath, new ModelManager());
+	}
+	
 	public ModelRepository(String repository, URL url, ModelManager modelManager) throws IOException {
 		this.repository = repository;
 		this.url = url;
 		this.modelManager = modelManager;
 		this.parser = new AdaptationParser(modelManager);
+	}
+	
+	public ModelRepository(String repository, URL url) throws Exception {
+		this(repository, url, new ModelManager());
 	}
 
 	/**

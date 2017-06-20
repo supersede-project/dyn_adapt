@@ -77,7 +77,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			autoheight: true,
 			autorowheight: true,
 			source: dataAdapter,
-			columnsresize: false,
+			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
@@ -163,37 +163,43 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		
 		$scope.enactSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
+			var count = 0;
+			var lim = indexes.length;
 			for(var index in indexes ) {
+				console.log(index);
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
 				$http({
-		            url: "adaptation-dashboard/enactment",
-		            method: 'POST',
-		            data: {
-		                "fc_id": row_data['fc_id']
-		            }
+		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
+		            method: 'POST'
 		        }).success(function(data) {
-		        	alert("Enacted adaptation " + data['fc_id']);
+		        	console.log("Enacted adaptation");
+		        	++count;
+		        	if (count == lim) alert("Adaptation/s enacted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
-			    	alert(err['message']);
+			    	alert("There was an internal error");
 			    });
 			}
 		}
 		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
-			for(var index in indexes ) {
-				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
+			var count = 0;
+			var lim = indexes.length;
+			for(var i = lim-1; i >= 0; --i) {
+				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[i]);
 				 $http({
 		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
 		            method: 'DELETE'
 		        }).success(function(data) {
-		        	alert("Adaptation deleted successfully");
+		        	console.log("Adaptation deleted successfully");
+		        	++count;
+		        	if (count == lim) alert("Adaptation/s deleted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
-			    	alert(err['message']);
+			    	alert("There was an internal error");
 			    });
-		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
+				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
 

@@ -150,7 +150,7 @@
           </selection>
           <selection id="vm2_a_configuration">
             <selection id="highloadconfigurationinvm2_a">
-              <attributeValue xsi:type="fc:integer" id="a_56020701" value="1"/>
+              <attributeValue xsi:type="fc:integer" id="a_56020701" value="3"/>
               <attributeValue xsi:type="fc:double" id="a_192569596" value="3.0"/>
               <attributeValue xsi:type="fc:double" id="a_1963815222" value="50.0"/>
               <attributeValue xsi:type="fc:double" id="a_555057018" value="5.0"/>
