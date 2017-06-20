@@ -107,7 +107,6 @@ public class Adapter implements IAdapter {
 		this.repositoryRelativePath = repositoryRelativePath;
 		this.demo = demo;
 		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
-//		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("wp_admin", "9jqUuNrZ", "atos");
 		log.debug("Adapter set up");
 	}
 
