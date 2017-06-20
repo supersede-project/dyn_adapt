@@ -254,7 +254,7 @@ public class ModuleLoader {
 		boolean processEnactment = Boolean.valueOf(
 				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
 		if (processEnactment)
-			proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
+			proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
 		
 		//Remove temporary file
 		boolean removeTemp = Boolean.valueOf(
