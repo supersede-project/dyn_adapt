@@ -250,7 +250,7 @@ public class Adapter implements IAdapter {
 			if (adaptation == null) {
 				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");
 				adaptation = createAdaptation(adaptationId,
-						newFeatureConfig.getName(),
+						String.format("%s %s", system.toString(), featureConfigurationId),
 						system,
 						changedSelections, 
 						kpiComputerAdapter.getInitialProcessingTime());
