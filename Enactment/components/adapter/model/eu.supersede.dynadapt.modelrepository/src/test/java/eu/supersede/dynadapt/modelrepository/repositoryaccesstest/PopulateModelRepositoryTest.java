@@ -193,15 +193,25 @@ public class PopulateModelRepositoryTest {
 //				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc"), 
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighMediumLoad.yafc"), 
 				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_HighLowLoad.yafc"), 
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_LowLowLoad.yafc"), 
 				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "SmartPlatformFC_HSK_DualVM_MediumLowLoad.yafc"), 
+				ATOS_HSK_MODELS_AUTHOR, ModelSystem.Atos_HSK, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
 		//Patterns
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "atos_query_patterns.vql"), 
