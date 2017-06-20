@@ -136,7 +136,7 @@
           </selection>
           <selection id="vm3_configuration">
             <selection id="lowloadconfigurationinvm3">
-              <attributeValue xsi:type="fc:double" id="a_1601343105" value="20.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1601343105" value="50.0"/>
               <attributeValue xsi:type="fc:double" id="a_751696459" value="5.0"/>
               <attributeValue xsi:type="fc:double" id="a_1070019319" value="5.0"/>
             </selection>

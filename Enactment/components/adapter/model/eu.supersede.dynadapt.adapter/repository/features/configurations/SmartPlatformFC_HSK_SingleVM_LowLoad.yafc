@@ -151,7 +151,7 @@
           <selection id="vm2_a_configuration">
             <selection id="lowloadconfigurationinvm2_a">
               <attributeValue xsi:type="fc:integer" id="a_100299600" value="1"/>
-              <attributeValue xsi:type="fc:double" id="a_2097492018" value="1.0"/>
+              <attributeValue xsi:type="fc:double" id="a_2097492018" value="2.0"/>
               <attributeValue xsi:type="fc:double" id="a_1782820732" value="20.0"/>
               <attributeValue xsi:type="fc:double" id="a_1581965707" value="5.0"/>
               <attributeValue xsi:type="fc:double" id="a_1863976004" value="5.0"/>

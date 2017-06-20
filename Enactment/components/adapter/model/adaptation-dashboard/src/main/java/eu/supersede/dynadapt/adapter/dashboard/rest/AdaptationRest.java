@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.adapter.dashboard.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
+import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 
 @RestController
 @RequestMapping("/adaptation")
@@ -58,6 +60,18 @@ public class AdaptationRest
     {
     	for (Action a : adaptation.getActions()) a.setFc_id(adaptation.getFc_id());
     	return adaptations.save(adaptation);
+    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public void enactAdaptation(@PathVariable("id") String id)
+    {
+    	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
+    	List<String> actionIds = new ArrayList<>();
+    	
+    	for (Action a : adaptations.findOne(id).getActions()) actionIds.add(a.getAc_id());
+    	
+    	//FIXME uncomment when ready to test
+		//proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
     }
     
 }

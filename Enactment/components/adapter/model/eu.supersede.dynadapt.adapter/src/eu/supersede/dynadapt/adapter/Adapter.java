@@ -79,7 +79,7 @@ public class Adapter implements IAdapter {
 	private static final String DEFAULT_ADAPTATION_ID = "FC_1";
 	private static final String MODELS_AUTHOR = "Adapter";
 	private final static Logger log = LogManager.getLogger(Adapter.class);
-	protected AdaptationDashboardProxy adaptationDashboardProxy;
+	protected AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
 
 	private ModelRepository mr;
 	private ModelManager mm;
@@ -107,7 +107,6 @@ public class Adapter implements IAdapter {
 		this.repositoryRelativePath = repositoryRelativePath;
 		this.demo = demo;
 		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
-//		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("wp_admin", "9jqUuNrZ", "atos");
 		log.debug("Adapter set up");
 	}
 
@@ -227,21 +226,15 @@ public class Adapter implements IAdapter {
 				log.debug("Invoking enactor for system " + system);	
 				EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
 
-				//TODO Store adapted model as current base model in Model Repository
-				log.debug("Storing adapted model as current based model in ModelRepository...");
-				//TODO Populate metadata, status=Enacted
-				//mr.storeBaseModel(model, bmMetadata);
-				String adaptedModelFileName =  model.getName().concat(adaptation_suffix + ".uml");
-				String uploadedAdaptedModelId = uploadLatestAdaptedModel(model, adaptedModelFileName, system);
+				//TODO Store adapted model as current base model in model repository. Just decomment after the demo!
+//				log.debug("Storing adapted model as current based model in ModelRepository...");
+//				String adaptedModelFileName =  model.getName().concat(adaptation_suffix + ".uml");
+//				String uploadedAdaptedModelId = uploadLatestAdaptedModel(model, adaptedModelFileName, system);
 				
-				//TODO Store new feature configuration model as current current feature configuration in Repository
-				log.debug("Storing FC model as current FC model in ModelRepository...");
-				//TODO Populate metadata, status=Enacted
-				//mr.storeFeatureConfigurationModel(newFeatureConfig, fcMetadata);
-				// FIXME The name of the persisting model file must be  
-				//String featureConfigurationFileName = "SmartPlatformFC_HSK_SingleVM_HighLoad.yafc";
-				String featureConfigurationFileName = newFeatureConfig.getName().concat(adaptation_suffix + ".yafc");
-				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
+				//TODO Store new feature configuration as adapted in model repository. Just decomment after the demo!
+//				log.debug("Storing FC model as current FC model in ModelRepository...");
+//				String featureConfigurationFileName = newFeatureConfig.getName().concat(adaptation_suffix + ".yafc");
+//				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
 			}
 			catch (Exception e) {
 				ee = new EnactmentException(e);
@@ -252,7 +245,7 @@ public class Adapter implements IAdapter {
 		
 			//TODO Recover the adaptation corresponding to the latest feature configuration
 			String adaptationId = featureConfigurationId != null ? featureConfigurationId : 
-				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : "FCS_1"; 
+				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : DEFAULT_ADAPTATION_ID; 
 			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
 			if (adaptation == null) {
 				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");

@@ -14,7 +14,7 @@
         </slot>
         <slot xmi:id="_7sauAATWEeeo4rafDiNNWw">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_U8Y0IOlREea6tPfvbkvCTg"/>
-          <value xmi:type="uml:LiteralReal" xmi:id="_fm3jIATXEeeo4rafDiNNWw" value="3.0"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_fm3jIATXEeeo4rafDiNNWw" value="2.5"/>
         </slot>
         <slot xmi:id="_78XOgATWEeeo4rafDiNNWw">
           <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_ZefGUOlREea6tPfvbkvCTg"/>
