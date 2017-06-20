@@ -175,6 +175,7 @@ public class HypervisorEnactor implements IEnactor{
 			//Execute script
 			String scriptCommand = getScriptCommand(remoteConnection, script);
 		
+			log.info ("Executing command: " + scriptCommand);
 			executeCommand(scriptCommand);
 			log.info("Executed script " + script.getFileName() + " with result: " + 
 				readFile(Paths.get(script.toString() + ".log")));
@@ -197,7 +198,7 @@ public class HypervisorEnactor implements IEnactor{
 				script.getFileName() + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
 		}else{
 			scriptCommand = "powershell -File " + 
-				script + " -password " + hypervisor_account_passwd + "\" > " + script + ".log 2>&1";
+				script + " -password " + hypervisor_account_passwd + " > " + script + ".log 2>&1";
 		}
 		return scriptCommand;
 	}
