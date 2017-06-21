@@ -1,6 +1,6 @@
 aspect sc4 {
 	feature FeatureModel.Service_management.SC4,
-	advice S2,
+	advice S2_variant2,
 	pointcuts{	
 		pointcut GMDService{
 			pattern eu.supersede.dynadapt.usecases.patterns.GetMeteorologicalDataServices,
