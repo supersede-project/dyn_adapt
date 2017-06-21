@@ -146,6 +146,7 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 	
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
 		String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable_variant1.uml";
+		System.out.println("Enacting model: " + res2_3_path_initial_variant);
 		Resource res2 = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 		
 		
