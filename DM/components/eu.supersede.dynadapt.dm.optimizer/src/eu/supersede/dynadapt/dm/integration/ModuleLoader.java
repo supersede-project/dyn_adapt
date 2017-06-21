@@ -119,6 +119,13 @@ public class ModuleLoader {
 				c->c.getIdMonitoredData().getNameQualityMonitored().equals("response_time")))
 			alert.getConditions().add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
 		
+		//Check Alert for Siemens. Inject RT is case it is missing.
+		if (alert.getTenant()==ModelSystem.Siemens && !alert.getConditions().stream().anyMatch(
+				c->c.getIdMonitoredData().getNameQualityMonitored().equals("response_time"))){
+			alert.getConditions().clear();
+			alert.getConditions().add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 10.0));
+		}
+		
 		// collect the parameters for the optimizer		
 		//Generate grammar and attribute_metadata.json from fmURI
 		//Inject  attribute_metadata.json in Parameters.ATTRIBUTE_Metadata
