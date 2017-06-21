@@ -44,7 +44,7 @@ import ptolemy.actor.lib.gui.Display;
 import ptolemy.actor.lib.Recorder;
 
 public class PtolemyGenerator extends TypedCompositeActor {
-	private final jdk.internal.instrumentation.Logger log = LogManager.getLogger(this.getClass());
+	private final Logger log = LogManager.getLogger(this.getClass());
 
     /** the two lists are used for saving which nodes from the activity diagram correspond 
      * to which ptolemy actors
