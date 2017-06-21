@@ -44,7 +44,7 @@ import ptolemy.actor.lib.gui.Display;
 import ptolemy.actor.lib.Recorder;
 
 public class PtolemyGenerator extends TypedCompositeActor {
-	private final Logger log = LogManager.getLogger(this.getClass());
+	private final jdk.internal.instrumentation.Logger log = LogManager.getLogger(this.getClass());
 
     /** the two lists are used for saving which nodes from the activity diagram correspond 
      * to which ptolemy actors
@@ -480,6 +480,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
            String encodedString = URLEncoder.encode(this.XMLPtolemyModel, "UTF-8");
            String URLString = this.serviceEndpoint.substring(1, this.serviceEndpoint.length()-1);
            URL url = new URL(URLString);
+           log.debug("Opening connection with server: " + url);
            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
            conn.setDoOutput(true);
            conn.setRequestMethod("POST");
