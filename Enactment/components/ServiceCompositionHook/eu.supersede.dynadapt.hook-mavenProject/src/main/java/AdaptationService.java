@@ -49,8 +49,8 @@ public class AdaptationService {
 	//these static variables are just used for manipulating the availability of services used in the "availability scenario"
 	static int unavailable5=0;
 	static int unavailable10=0;
-	static int number_of_times_good=10;
-	static int number_of_times_bad=10;
+	static int number_of_times_good=20;
+	static int number_of_times_bad=20;
 	static final String currentPtolemyWorkflow="currentPtolemyWorkflow.xml"; 
 	
 	public static void main(String[] args) throws ScriptException, FileNotFoundException {
@@ -109,7 +109,7 @@ public class AdaptationService {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
 			    }
-			    else if(randomInt<40 && (unavailable5<=number_of_times_good+number_of_times_bad && unavailable5>number_of_times_good))
+			    else if(randomInt<60 && (unavailable5<=number_of_times_good+number_of_times_bad && unavailable5>number_of_times_good))
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");	
