@@ -159,6 +159,7 @@ public class Adapter implements IAdapter {
 		
 	};
 
+	//FIXME Divide this method in two: adaptModel(), enactModel() 
 	private void doEnactment(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId, String featureConfigurationAsString) throws EnactmentException, Exception, IOException {
 				
@@ -208,19 +209,19 @@ public class Adapter implements IAdapter {
 		kpiComputerAdapter.stopComputingKPI();
 		kpiComputerAdapter.reportComputedKPI();
 		
-		// ADAPTED MODEL ENACTMENT
+		// BASE MODEL ENACTMENT
 		EnactmentException ee = null;	
 		String uploadedFeatureConfigurationId = null;
 		if (model != null) {
-			//NOTE adapted model must be placed in same folder level as base model, otherwise referenced models (i.e. profiles) are not resolved.
-			//Current configuration stores the adapted model in ./models/adapted, so profiles are correctly resolved.
+			// NOTE adapted model must be placed in a folder at the same level as the base model's folder
+			// otherwise referenced models (e.g., profiles) are not resolved.
 			String suri = repositoryRelativePath + "/" + modelsLocation.get("adapted") + model.getName() + ".uml";
 			URI uri = URI.createFileURI(suri);
 			String adaptation_suffix = "_" + UUID.randomUUID();
 			uri = mm.saveModel(model.eResource(), uri, adaptation_suffix + ".uml");
 			log.debug("Saved updated model in " + uri);
 		
-			//Ask Enactor to enact adapted model
+			// Ask Enactor to enact adapted model
 			kpiComputerEnactor.startComputingKPI();
 			try {
 				log.debug("Invoking enactor for system " + system);	
@@ -243,7 +244,7 @@ public class Adapter implements IAdapter {
 			kpiComputerEnactor.stopComputingKPI();
 			kpiComputerEnactor.reportComputedKPI();
 		
-			//TODO Recover the adaptation corresponding to the latest feature configuration
+			// Recover the adaptation corresponding to the latest feature configuration
 			String adaptationId = featureConfigurationId != null ? featureConfigurationId : 
 				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : DEFAULT_ADAPTATION_ID; 
 			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
@@ -257,22 +258,20 @@ public class Adapter implements IAdapter {
 				adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 			}
 			
-			//TODO Notify to dashboard the enactment of the FC
+			// Notify dashboard the enactment of the FC
+			//TODO Do we need to report more data to dashboard in case of failure?
 			Enactment enactment = createEnactment(adaptationId,
 					ee == null, 
 					kpiComputerAdapter.getInitialProcessingTime(),
 					kpiComputerEnactor.getFinalProcessingTime());
-//			enactment.setFc_id(featureConfigurationId);
-			//TODO Populate Enactment data
+			// Populate Enactment data
 			adaptationDashboardProxy.addEnactment(enactment);
 			
-			//TODO Notify to dashboard in case of failure
-			
-			//TODO Notified back to DM that adaptation actions have been enacted
+			//TODO Notify DM that adaptation actions have been enacted
 			log.debug("Notifing back to DM that adaptation actions have been enacted");
 		} 
 		if ((model == null) || !(ee == null)) {
-			//TODO Notified back to DM that adaptation actions have not been enacted
+			//TODO Notify DM that adaptation actions have not been enacted
 			log.debug("Notifing back to DM that adaptation actions have not been enacted");
 			throw ee;
 		}
