@@ -480,6 +480,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
            String encodedString = URLEncoder.encode(this.XMLPtolemyModel, "UTF-8");
            String URLString = this.serviceEndpoint.substring(1, this.serviceEndpoint.length()-1);
            URL url = new URL(URLString);
+           log.debug("Opening connection with server: " + url);
            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
            conn.setDoOutput(true);
            conn.setRequestMethod("POST");

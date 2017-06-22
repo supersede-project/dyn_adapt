@@ -100,7 +100,7 @@ public class AdaptationService {
 			//for the validation purpose (make a service unavailable 5% of the time)
 			if(url.contains("unavailable5"))
 			{
-				//Random numbers from the range 0..99 is generated
+			    //Random numbers from the range 0..99 is generated
 			    Random randomGenerator = new Random();
 			    int randomInt = randomGenerator.nextInt(100);
 			    unavailable5++;
@@ -109,7 +109,7 @@ public class AdaptationService {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
 			    }
-			    else if(randomInt<40 && (unavailable5<=number_of_times_good+number_of_times_bad && unavailable5>number_of_times_good))
+			    else if(randomInt<60 && (unavailable5<=number_of_times_good+number_of_times_bad && unavailable5>number_of_times_good))
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");	
@@ -120,23 +120,15 @@ public class AdaptationService {
 			//for the validation purpose (make a service unavailable 10% of the time)
 			if(url.contains("unavailable10"))
 			{
-				//Random numbers from the range 0..99 is generated
+			    //Random numbers from the range 0..99 is generated
 			    Random randomGenerator = new Random();
 			    int randomInt = randomGenerator.nextInt(100);
 			    unavailable10++;
-			    if(randomInt<10 && unavailable10<=number_of_times_good) 
+			    if(randomInt<10) 
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
 			    }
-			    else if(randomInt<40 && (unavailable10<=number_of_times_good+number_of_times_bad && unavailable10>number_of_times_good))
-			    {
-			    	res.status(500);
-			    	res.body("Service is unavailable at the moment!");	
-			    }
-
-			    if(unavailable10>number_of_times_good+number_of_times_bad) unavailable10=0;
-			    
 			}
 		    
 			return res.body();						

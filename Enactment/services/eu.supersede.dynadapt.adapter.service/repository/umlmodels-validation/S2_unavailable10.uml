@@ -48,7 +48,7 @@
       <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
   </uml:Model>
-  <GetMeteorologicalData:Service xmi:id="_hSJTMEIiEeeARqO5grQuCQ" base_Activity="_YklK8H52Eeac2-gti3SYOg" endpoint="&quot;http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/geonames-countryCode/unavailable10&quot;"/>
+  <GetMeteorologicalData:Service xmi:id="_hSJTMEIiEeeARqO5grQuCQ" base_Activity="_YklK8H52Eeac2-gti3SYOg" endpoint="&quot;http://supersede.es.atos.net:4567/adapt/https://nike.erd.siemens.at/supersede/geonames-countryCode/unavailable10&quot;"/>
   <ADM:Joinpoint xmi:id="_nIHBAEIiEeeARqO5grQuCQ" base_RedefinableElement="_fZqzcH52Eeac2-gti3SYOg" base_NamedElement="_fZqzcH52Eeac2-gti3SYOg"/>
   <GetMeteorologicalData:Service xmi:id="_nIcYMEIiEeeARqO5grQuCQ" base_OpaqueAction="_fZqzcH52Eeac2-gti3SYOg" endpoint="&quot;http://api.geonames.org/countryInfoJSON?lang=en&amp;country=DE&amp;username=srdjan.stevanetic&quot;"/>
 </xmi:XMI>
