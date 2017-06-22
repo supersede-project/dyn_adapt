@@ -27,10 +27,7 @@ public class DatabaseConnection {
 		Properties prop = new Properties();
 		InputStream input = getClass().getResourceAsStream("config.properties");
 		if (input == null) {
-<<<<<<< HEAD
-=======
 			logger.debug("Properties file - ERROR (not found)");
->>>>>>> multimodel-saver-loader
 			throw new FileNotFoundException("The properties file was not found");
 		}
 		prop.load(input);

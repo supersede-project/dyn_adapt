@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,38 +33,10 @@ public class DatabaseController implements IDatabaseController {
 		contentFileManager = new ContentFileManager(modelStoragePath);
 	}
 
-<<<<<<< HEAD
-	public List<IModel> getAllModels(String type) throws Exception {
-		
-		List<IModel> modelList = new ArrayList<IModel>();
-		
-		Class classObject = Class.forName(packageRoute + type);
-		
-		Statement stm = con.createStatement();
-		ResultSet rs = stm.executeQuery("SELECT * FROM " + type);
-		ResultSetMetaData rsmd = rs.getMetaData();
-		
-		while (rs.next()) {
-			IModel model = (IModel) classObject.newInstance();
-			for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-				String name = rsmd.getColumnName(i);
-				if (!name.equals("filePath")) {
-					if (name.equals("creationDate") || name.equals("lastModificationDate")) {
-						model.setValue(name, rs.getTimestamp(name));
-					}
-					else model.setValue(name, rs.getString(name));
-				}
-			}
-			modelList.add(model);
-		}
-			
-		return modelList;
-=======
 	@Override
 	public List<IModel> getAllModels(ModelType type) throws Exception {
 		String query = "SELECT * FROM " + type;  
 		return queryModels(type, query);
->>>>>>> multimodel-saver-loader
 	}
 
 	@Override
@@ -143,18 +114,6 @@ public class DatabaseController implements IDatabaseController {
 		ResultSet rs = null;
 		IModel model = null;
 		
-<<<<<<< HEAD
-		if (!rs.next()) throw new Exception("There is no " + type + " with this id");
-		
-		for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
-			if (!rsmd.getColumnName(i).equals("filePath")) {
-				String name = rsmd.getColumnName(i);
-				if (name.equals("creationDate") || name.equals("lastModificationDate")) {
-					model.setValue(name, rs.getTimestamp(name));
-				}
-				else model.setValue(name, rs.getString(name));
-			}
-=======
 		try {
 			
 			Map<String,String> properties = new HashMap<>();
@@ -198,7 +157,6 @@ public class DatabaseController implements IDatabaseController {
 			stm.close();
 			rs.close();
 			dbConn.closeConnection();
->>>>>>> multimodel-saver-loader
 		}
 
 		return model;
