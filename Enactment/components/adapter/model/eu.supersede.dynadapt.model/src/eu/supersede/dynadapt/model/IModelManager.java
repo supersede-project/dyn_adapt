@@ -32,6 +32,7 @@ import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dsl.aspect.Aspect;
 
 public interface IModelManager {
 
@@ -57,7 +58,10 @@ public interface IModelManager {
 	 * Returns the associated UML base target model
 	 * @return the associated UML base target model
 	 */
-	Resource getTargetModel();
+	Model getTargetModel();
+	Resource getTargetModelAsResource();
+	void setTargetModel (Model model);
+	void setTargetResource (Resource resource);
 
 	/**
 	 * @throws IOException 
@@ -67,7 +71,7 @@ public interface IModelManager {
 	 * @param suffixe
 	 * @throws  
 	 */
-	URI saveModel(Resource modelResource, URI outputModelURI, String suffixe) throws IOException;
+	URI saveModel(Resource modelResource, URI outputModelURI, String suffixe) throws Exception;
 
 	/**
 	 * Saves a copy of associated target model adding given suffixe to the original target model name
@@ -75,14 +79,14 @@ public interface IModelManager {
 	 * @return locator for saved model
 	 * @throws IOException
 	 */
-	URI saveTargetModel(String suffixe) throws IOException;
+	URI saveTargetModel(String suffixe) throws Exception;
 	
 	/**
 	 * Saves a associated target model replacing original file
 	 * @return locator for saved model
 	 * @throws IOException
 	 */
-	URI saveTargetModel() throws IOException;
+	URI saveTargetModel() throws Exception;
 	
 //	/**
 //	 * Regiser given model into the ModelManager resource set
@@ -102,10 +106,15 @@ public interface IModelManager {
 	 */
 
 	<T extends EObject> T loadModel(URI uri, Class<T> clazz);
+	<T extends EObject> T loadModel(String path, Class<T> clazz);
 	
-	public Model loadUMLModel(String modelPath);
-	public PatternModel loadPatternModel(String patternPath);
-	public FeatureModel loadFeatureModel(String fmPath);
-	public FeatureConfiguration loadFeatureConfiguration(String fcPath);
+	Model loadUMLModel(String modelPath);
+	PatternModel loadPatternModel(String patternPath);
+	FeatureModel loadFeatureModel(String fmPath);
+	FeatureConfiguration loadFeatureConfiguration(String fcPath);
+	ResourceSet getResourceSet();
+	Aspect loadAspectModel(String path);
+	Aspect loadAspectModel(URI uri);
 
+	URI saveModelInTemporaryFolder(Model model, String suffixe) throws Exception;
 }

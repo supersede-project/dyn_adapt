@@ -1,0 +1,12 @@
+[comment encoding = UTF-8 /]
+[module main('http://zcu.cz/yafmt/model/fc', 'http://zcu.cz/yafmt/model/fm')/]
+[import eu::supersede::dynadapt::configuration::serializer::files::serializeEnabledFeature/]
+[import eu::supersede::dynadapt::configuration::serializer::files::serializeQualityAttributesOfEnabledFeature/]
+
+[template public mainFeatureConfiguration(aFeatureConfiguration : FeatureConfiguration)]
+	
+	[comment @main /]
+	[aFeatureConfiguration.fcEnabledFeaturesSerializer()/]
+	[aFeatureConfiguration.serializeQualityAttributesOfEnabledFeatureConfiguration()/]
+	
+[/template]

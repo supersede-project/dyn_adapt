@@ -1,112 +1,574 @@
+/*******************************************************************************
+ * Copyright (c) 2016 Universitat Politécnica de Catalunya (UPC), ATOS Spain S.A
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ * 	Quim Motger (UPC) - main development
+ *  Yosu Gorroñogoitia (Atos)
+ * 	
+ * Initially developed in the context of SUPERSEDE EU project
+ * www.supersede.eu
+ *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
+
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
+import org.junit.Assert;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
-import eu.supersede.dynadapt.modeladapter.ModelAdapter;
-import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
+import cz.zcu.yafmt.model.fm.Group;
+import eu.supersede.dynadapt.adapter.exception.EnactmentException;
+import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
 import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
-import eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.dsl.aspect.Composition;
 import eu.supersede.dynadapt.dsl.aspect.Pointcut;
+import eu.supersede.dynadapt.dsl.aspect.impl.UpdateValueImpl;
+import eu.supersede.dynadapt.enactor.factory.EnactorFactory;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.ModelQuery;
+import eu.supersede.dynadapt.modeladapter.ModelAdapter;
+import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
+import eu.supersede.integration.api.adaptation.dashboad.types.Action;
+import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
+import eu.supersede.integration.api.adaptation.dashboad.types.Enactment;
+import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
+import eu.supersede.integration.api.adaptation.types.BaseModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.Status;
 
 public class Adapter implements IAdapter {
+
+	private static final double DEFAULT_ADAPTATION_RANK = 1.0;
+	private static final String DEFAULT_ADAPTATION_ID = "FC_1";
+	private static final String MODELS_AUTHOR = "Adapter";
+	private final static Logger log = LogManager.getLogger(Adapter.class);
+	protected AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
+
+	private ModelRepository mr;
+	private ModelManager mm;
+	private ModelQuery mq;
+	private ModelAdapter ma;
+
+	private Map<String, String> modelsLocation;
 	
-	ModelRepository mr;
-	AdaptationParser parser;
-	ModelManager mm;
-	ModelQuery mq;
-	ModelAdapter ma;
+	public AdapterKPIComputer kpiComputerAdapter = new AdapterKPIComputer("Enactment KPI: Adapter Enactment Time");
+	public AdapterKPIComputer kpiComputerEnactor = new AdapterKPIComputer("Enactment KPI: Enactor Enactment Time");
 	
-	Map<String, String> modelsLocation;
+	private String repositoryRelativePath;
+	private boolean demo = false;
+
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath) throws Exception {
+		this (mr, mm, modelsLocation, repositoryRelativePath, false);
+	}
 	
-	String repository = "platform:/resource/eu.supersede.monitor.reconfiguration.models/models/";
-	
-	public Adapter(ModelRepository mr, ModelManager mm) throws Exception {
+	public Adapter(ModelRepository mr, ModelManager mm, Map<String, String> modelsLocation, String repositoryRelativePath, boolean demo) throws Exception {
 		this.mr = mr;
-		this.parser = new AdaptationParser();
 		this.ma = new ModelAdapter(mm);
 		this.mm = mm;
 		this.mq = new ModelQuery(mm);
-		modelsLocation = new HashMap<String, String>();
-		modelsLocation.put("aspects", "adaptability_models/");
-		modelsLocation.put("variants", "uml_models/variants/");
-		modelsLocation.put("base", "uml_models/base/");
-		modelsLocation.put("profiles", "uml_models/profiles/");
-		modelsLocation.put("patterns", "patterns/");
-		modelsLocation.put("features", "features/models/");
+		this.modelsLocation = modelsLocation;
+		this.repositoryRelativePath = repositoryRelativePath;
+		this.demo = demo;
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		log.debug("Adapter set up");
 	}
 
 	@Override
-	public Model adapt(FeatureModel variability, Aspect adaptationModel, Model baseModel) throws Exception {
-		
-		List<Feature> features = listFeatures(variability.getRoot(), adaptationModel.getFeature().getId());
-		
-		Model model = null;
-		
-		for (Feature f : features) {
-			System.out.println("Feature ID: " + f.getId());
-			List<Aspect> aspects = mr.getAspectModels(f.getId(), modelsLocation);
-			System.out.println("Adaptations for feature: " + aspects.size());
-			for (Aspect a : aspects) {
-				System.out.println("	Aspect name: " + a.getName());
-				Stereotype role = null;
-				List<Pointcut> pointcuts = a.getPointcuts();
-				
-				HashMap<Stereotype, List<Element>> elements = new HashMap<>();
-				
-				for (Pointcut p : pointcuts) {
-					role = p.getRole();
-					elements.put(role, new ArrayList<>());
-					System.out.println("		Role: " + role.getName());
-					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern()); 
-					for (IPatternMatch i : matches) {
-						Element e = (Element) i.get(0);
-						System.out.println("			Element: " + e);
-						elements.get(role).add(e);
-					}
-				}
-				Model variant = a.getAdvice();
-				
-				//Select composition
-				Composition c = a.getCompositions().get(0);
-				
-				ActionOptionType actionOptionType = c.getAction();
-				if (actionOptionType instanceof UpdateValueImpl) {
-					String value = actionOptionType.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
-					model = ma.applyUpdateCompositionDirective(baseModel, elements, value);
-				} else {
-					model = ma.applyCompositionDirective(a.getCompositions().get(0), baseModel, elements, c.getAdvice(), variant);
-				}
-
-			}
-		}
-			
-		return model;
-		
+	public void enactAdaptationDecisionAction(ModelSystem system, String adaptationDecisionActionId,
+			String featureConfigurationId) throws EnactmentException {
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		adaptationDecisionActionIds.add (adaptationDecisionActionId);
+		enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
 	}
 
-	private List<Feature> listFeatures(Feature root, String featureId) {
-		List<Feature> features = new ArrayList<>();
-		if (root.getId().equals(featureId)) features.add(root);
-		if (root.getFeatures().size() > 0) 
-			for (Feature f : root.getFeatures()) features.addAll(listFeatures(f, featureId));
-		return features;
+	@Override
+	public void enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
+			String featureConfigurationId) throws EnactmentException {
+		try {
+		
+			doEnactment(system, adaptationDecisionActionIds, featureConfigurationId, null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+	}
+	
+	@Override
+	public void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
+			String featureConfigurationAsString) throws EnactmentException {
+		try {
+						
+			doEnactment(system, adaptationDecisionActionIds, null, featureConfigurationAsString);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+	}
+	
+	@Override
+	public void enactAdaptationDecisionActionsForFC(ModelSystem system, 
+			String featureConfigurationId) throws EnactmentException {
+		
+		try {
+				
+			doEnactment(system, null, featureConfigurationId, null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+		
+	};
+
+	//FIXME Divide this method in two: adaptModel(), enactModel() 
+	private void doEnactment(ModelSystem system, List<String> adaptationDecisionActionIds,
+			String featureConfigurationId, String featureConfigurationAsString) throws EnactmentException, Exception, IOException {
+				
+		kpiComputerAdapter.startComputingKPI();		
+		
+		//Preload Models from remote repository in temporal one
+		mr.loadModelsFromRepository(system);
+		
+		FeatureConfiguration newFeatureConfig = null;
+		
+		if (featureConfigurationId == null && featureConfigurationAsString!=null){
+			//Read feature configuration from string
+			newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+			Assert.assertNotNull("Passed feature configuration could not be loaded: ", featureConfigurationAsString);
+		}
+		else if (featureConfigurationId == null){
+			newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
+		}
+		else{
+			newFeatureConfig = mr.getFeatureConfigurationModel(featureConfigurationId);
+		}
+
+		// Get currently enacted BaseModel
+		Model baseModel = mr.getLastBaseModelForSystem(system);
+		mm.setTargetModel(baseModel);
+		
+		// Get currently enacted FeatureConfiguration
+		FeatureConfiguration originalFeatureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);
+		
+		// Select features that have suffered change. Only leaf selections are included
+		List<Selection> changedSelections = diffFeatureConfigurations(originalFeatureConfig, newFeatureConfig);
+
+		// Filter out changedSelections not included in adaptationDecisionActionIds
+		if (adaptationDecisionActionIds!=null && !adaptationDecisionActionIds.isEmpty()){
+			List<Selection> droppedSelections = new ArrayList<>();
+			for (Selection s: changedSelections){
+				if (!adaptationDecisionActionIds.contains(s.getId())){
+					log.debug("Selection " + s.getId() + " not required for enactment. Dropped from list of changed selections");
+					droppedSelections.add (s);
+				}
+			}
+			changedSelections.removeAll(droppedSelections);
+		}
+
+		// BASE MODEL ADAPTATION
+		Model model = adapt(system, changedSelections, baseModel);
+		kpiComputerAdapter.stopComputingKPI();
+		kpiComputerAdapter.reportComputedKPI();
+		
+		// BASE MODEL ENACTMENT
+		EnactmentException ee = null;	
+		String uploadedFeatureConfigurationId = null;
+		if (model != null) {
+			// NOTE adapted model must be placed in a folder at the same level as the base model's folder
+			// otherwise referenced models (e.g., profiles) are not resolved.
+			String suri = repositoryRelativePath + "/" + modelsLocation.get("adapted") + model.getName() + ".uml";
+			URI uri = URI.createFileURI(suri);
+			String adaptation_suffix = "_" + UUID.randomUUID();
+			uri = mm.saveModel(model.eResource(), uri, adaptation_suffix + ".uml");
+			log.debug("Saved updated model in " + uri);
+		
+			// Ask Enactor to enact adapted model
+			kpiComputerEnactor.startComputingKPI();
+			try {
+				log.debug("Invoking enactor for system " + system);	
+				EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
+
+				//TODO Store adapted model as current base model in model repository. Just decomment after the demo!
+//				log.debug("Storing adapted model as current based model in ModelRepository...");
+//				String adaptedModelFileName =  model.getName().concat(adaptation_suffix + ".uml");
+//				String uploadedAdaptedModelId = uploadLatestAdaptedModel(model, adaptedModelFileName, system);
+				
+				//TODO Store new feature configuration as adapted in model repository. Just decomment after the demo!
+//				log.debug("Storing FC model as current FC model in ModelRepository...");
+//				String featureConfigurationFileName = newFeatureConfig.getName().concat(adaptation_suffix + ".yafc");
+//				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
+			}
+			catch (Exception e) {
+				ee = new EnactmentException(e);
+			}
+			
+			kpiComputerEnactor.stopComputingKPI();
+			kpiComputerEnactor.reportComputedKPI();
+		
+			// Recover the adaptation corresponding to the latest feature configuration
+			String adaptationId = featureConfigurationId != null ? featureConfigurationId : 
+				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : DEFAULT_ADAPTATION_ID; 
+			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
+			if (adaptation == null) {
+				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");
+				adaptation = createAdaptation(adaptationId,
+						String.format("%s %s", system.toString(), featureConfigurationId),
+						system,
+						changedSelections, 
+						kpiComputerAdapter.getInitialProcessingTime());
+				adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+			}
+			
+			// Notify dashboard the enactment of the FC
+			//TODO Do we need to report more data to dashboard in case of failure?
+			Enactment enactment = createEnactment(adaptationId,
+					ee == null, 
+					kpiComputerAdapter.getInitialProcessingTime(),
+					kpiComputerEnactor.getFinalProcessingTime());
+			// Populate Enactment data
+			adaptationDashboardProxy.addEnactment(enactment);
+			
+			//TODO Notify DM that adaptation actions have been enacted
+			log.debug("Notifing back to DM that adaptation actions have been enacted");
+		} 
+		if ((model == null) || !(ee == null)) {
+			//TODO Notify DM that adaptation actions have not been enacted
+			log.debug("Notifing back to DM that adaptation actions have not been enacted");
+			throw ee;
+		}
+	}
+	
+	/** 
+	 * Load the latest adapted base model for the given system.
+	 * @param am the latest adapted base {@link Model}
+	 * @param amName the name of the adapted mdel file
+	 * @param system the system owner of the adated model
+	 * @return the id of the uploaded model in the model repository
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	protected String uploadLatestAdaptedModel(Model am, String amName, ModelSystem system) throws IOException, Exception {
+//		String userdir = System.getProperty("user.dir");
+//		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
+		String modelId = prm.populateModel(
+//				Paths.get(repositoryPath.toString(), "models/adapted", amName), 
+				am,
+				amName,
+				MODELS_AUTHOR,
+				system, Status.Enacted,
+				modelsLocation.get("adapted"), 
+				Model.class,
+				ModelType.BaseModel, 
+				BaseModel.class);
+		return modelId;
+	}
+	
+	/** 
+	 * Load the latest computed FeatureConfiguration for the given system.
+	 * @param fc the latest {@link FeatureConfiguration} model
+	 * @param fcName the name of the feature configuration file
+	 * @param system the system owner of the adated model
+	 * @return the id of the uploaded model in the model repository
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	protected String uploadLatestComputedFC(FeatureConfiguration fc, String fcName, ModelSystem system) throws IOException, Exception {
+//		String userdir = System.getProperty("user.dir");
+//		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
+		String modelId = prm.populateModel(
+//				Paths.get(repositoryPath.toString(), "features/configurations", fcName), 
+				fc,
+				fcName,
+				MODELS_AUTHOR,
+				system, Status.Computed,
+				modelsLocation.get("configurations"), 
+				FeatureConfiguration.class,
+				ModelType.FeatureConfiguration, 
+				eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
+		return modelId;
+	}
+	
+	/**
+	 * Create an {@link Adaptation} object related to the latest feature configuration id which is
+	 * passed as parameter.
+	 * @param fc_id id of the {@link Adaptation} whose enactment is required
+	 * @param name of the adaptation
+	 * @param system the {@link ModelSystem} the new adaptation belongs to
+	 * @param features the list of features that have changed in the latest feature configuration
+	 * @param inititialTime is the enactment process initiation time
+	 * @return the {@link Enactment}
+	 */
+	protected Adaptation createAdaptation(String fc_id, String name, ModelSystem system, List<Selection> features, Date inititialTime) {
+		Adaptation adaptation = new Adaptation();
+		adaptation.setFc_id(fc_id);
+//		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
+		adaptation.setComputation_timestamp(inititialTime);
+		adaptation.setModel_system(system);
+		adaptation.setName(name);
+		adaptation.setRank(DEFAULT_ADAPTATION_RANK);
+		adaptation.getActions().addAll(createAction(features));
+		return adaptation;
+	}
+	
+	/**
+	 * TODO This is a dummy implementation of the action description
+	 * @param features the list of features that have changed in the latest feature configuration
+	 * @return the list of enactment {@link Action}
+	 */
+	protected List<Action> createAction(List<Selection> features) {
+		List<Action> actions = new ArrayList<Action>();		
+		for (Selection feature : features) {
+			Action action = new Action ();
+//			action.setAction_id("vm2_b_high");
+//			action.setDescription("Medium load configuration for HSK service");
+//			action.setName("VM2_B_HighConfiguration");
+//			action.setEnabled(true);
+			action.setAction_id(feature.getId());
+			String description = feature.getDescription() != null ? feature.getDescription() : "N/A";
+			action.setDescription(description);
+			action.setName(feature.getName());
+			action.setEnabled(feature.isEnabled());			
+			actions.add(action);
+		}
+		return actions;
+	}
+	
+	/**
+	 * Create an {@link Enactment} object related to the adaptation whose id which is passed as parameter.
+	 * @param fc_id id of the {@link Adaptation} whose enactment is required
+	 * @param status true when the enactment was sucessful, false otherwise
+	 * @param initialTime is the enactment process initiation time
+	 * @param finalTime is the enactment process finalization time
+	 * @return the {@link Enactment}
+	 */
+	protected Enactment createEnactment(String fc_id, boolean status, Date initialTime, Date finalTime) {
+		
+	    Long duration = finalTime.getTime() - initialTime.getTime();	    
+	    Date durationDate = new Date(duration);
+	    SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SS");//dd/MM/yyyy
+	    String durationDateString = df.format(durationDate);
+	    log.info("The enactment completion time was " + durationDateString);
+		
+		Enactment enactment = new Enactment();
+		enactment.setFc_id(fc_id);
+//		enactment.setEnactment_completion_time(Calendar.getInstance().getTime());
+//		enactment.setEnactment_request_time(Calendar.getInstance().getTime());
+		enactment.setEnactment_request_time(initialTime);	
+		enactment.setEnactment_completion_time(durationDate);
+		enactment.setResult(status);
+		return enactment;
+	}
+	
+	private Model adapt(ModelSystem modelSystem, List<Selection> selections, Model baseModel) throws Exception {
+
+		Model model = null;
+		//Clone base model
+		Model clonnedModel = (Model) EcoreUtil.copy( baseModel );
+		//Create a model manager targeting cloned model
+		ModelManager clonedModelManager = new ModelManager(clonnedModel, mm.getTargetModelAsResource().getURI());
+		//Create modelQuery targeting cloned Model
+		this.mq = new ModelQuery(clonedModelManager);
+
+		for (Selection selection : selections) {
+			Feature feature = selection.getFeature();
+			boolean featureEnabled = selection.isEnabled();
+
+			log.debug("Feature <" + feature.getId() + ">" + (featureEnabled ? " Enabled" : " Disabled"));
+			List<Aspect> aspects = mr.getAspectModels(feature.getId(), modelsLocation);
+			
+			log.debug("Found " + aspects.size() + " adaptations for feature: " + feature.getId());
+
+			for (Aspect aspect : aspects) {				
+				log.debug("\tAspect name: " + aspect.getName());
+				Stereotype role = null;
+				List<Pointcut> pointcuts = aspect.getPointcuts();
+
+				HashMap<Stereotype, List<Element>> matchingElements = new HashMap<>();
+
+				for (Pointcut p : pointcuts) {
+					role = p.getRole();
+					matchingElements.put(role, new ArrayList<>());
+					log.debug("\tRole: " + role.getName());
+					Collection<? extends IPatternMatch> matches = mq.query(p.getPattern());
+					for (IPatternMatch i : matches) {
+						Element e = (Element) i.get(0);
+						log.debug("\tMatching Element: " + e);
+						log.debug("\tApplicable stereotypes: " + e.getApplicableStereotypes().size());
+						matchingElements.get(role).add(e);
+					}
+				}
+				Model variant = aspect.getAdvice();
+				log.debug("\tVariant: " + (variant!=null?variant.getName():"Null Variant - Not provided"));
+								
+				for (Composition c : aspect.getCompositions()) {
+					log.debug("\tComposition " + c.getName());
+					boolean compositionEnabled = c.getFeature_enabled();
+					if (featureEnabled == compositionEnabled) {
+						ActionOptionType actionOptionType = c.getAction();
+						if (actionOptionType instanceof UpdateValueImpl) {
+							String value = actionOptionType
+									.eGet(actionOptionType.eClass().getEStructuralFeature("value")).toString();
+							model = ma.applyUpdateCompositionDirective(clonnedModel, matchingElements, value);
+						} else {
+							model = ma.applyCompositionDirective(c.getAction(), clonnedModel, matchingElements,
+									c.getAdvice(), variant);
+						}
+					}
+				}
+			}
+		}
+
+		return model;
+
+	}
+
+	//Calculate leaf selection changes among provided feature configurations
+	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig,
+			FeatureConfiguration newFeatureConfig) {
+		FeatureModel fm = originalFeatureConfig.getFeatureModelCopy();
+		Feature root = fm.getRoot();
+
+		return diffFeatureConfigurationsInFeature(root, originalFeatureConfig, newFeatureConfig);
+	}
+	
+	private List<Selection> diffFeatureConfigurationsInFeature(Feature feature,
+			FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {
+		
+		List<Selection> selections = new ArrayList<Selection>();
+		
+		//Only computes differences for leaf features
+		if (isLeafFeature(feature)){
+			selections = diffFeatureConfigurationsInFeature(feature.getId(), originalFeatureConfig,
+				newFeatureConfig);
+		}
+
+		for (Feature child : feature.getFeatures()) {
+			selections.addAll(diffFeatureConfigurationsInFeature(child, originalFeatureConfig, newFeatureConfig));
+		}
+
+		for (Group group : feature.getGroups()) {
+			for (Feature childInGroup : group.getFeatures()) {
+				selections.addAll(
+						diffFeatureConfigurationsInFeature(childInGroup, originalFeatureConfig, newFeatureConfig));
+			}
+		}
+		return selections;
+	}
+
+	private boolean isLeafFeature(Feature feature) {
+		return feature.getFeatures().isEmpty() && feature.getGroups().isEmpty();
+	}
+
+	private List<Selection> diffFeatureConfigurationsInFeature(String featureId,
+			FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {
+		List<Selection> selections = new ArrayList<Selection>();
+
+		List<Selection> originalSelections = originalFeatureConfig.getSelectionsById(featureId);
+		List<Selection> newSelections = newFeatureConfig.getSelectionsById(featureId);
+
+		for (Selection s1 : originalSelections) {
+			if (!selectionExistsInList(s1, newSelections)) {
+				s1.setEnabled(false);
+				selections.add(s1);
+			}
+		}
+
+		for (Selection s1 : newSelections) {
+			if (!selectionExistsInList(s1, originalSelections)) {
+				selections.add(s1);
+			}
+		}
+		
+		/**
+		 * Monitoring UC testing
+		 */
+		for (Selection s1 : originalSelections) {
+			if (selectionIsModified(s1, newSelections)) {
+				selections.add(s1);
+			}
+		}
+
+		return selections;
+	}
+
+	private boolean selectionExistsInList(Selection s1, List<Selection> list) {
+		boolean result = false;
+
+		for (Selection s : list) {
+			if (s.getId().equals(s1.getId())) {
+				result = true;
+				break;
+			}
+		}
+
+		return result;
+	}
+	
+	private boolean selectionIsModified(Selection s1, List<Selection> list) {
+		boolean result = false;
+		
+		for (Selection s : list) {
+			if (s.getId().equals(s1.getId()) && s.getValues().size() > 0) {
+				if ( !s.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value"))
+						.equals( s1.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value")))) result = true;
+				break;
+			}
+		}
+		
+		return result;
+	}
+
+	protected void save(Model model, org.eclipse.emf.common.util.URI uri) {
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+		// UMLResourcesUtil.init(resourceSet);
+		Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(model);
+		try {
+			resource.save(null); // no save options needed
+		} catch (IOException ioe) {
+		}
 	}
 
 }

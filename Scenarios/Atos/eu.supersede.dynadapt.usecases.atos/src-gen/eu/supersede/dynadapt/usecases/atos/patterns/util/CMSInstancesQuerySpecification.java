@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns.util;
 
 import com.google.common.collect.Sets;
@@ -14,6 +17,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
@@ -24,6 +30,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Expressio
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -59,6 +66,11 @@ public final class CMSInstancesQuerySpecification extends BaseGeneratedEMFQueryS
   }
   
   @Override
+  public CMSInstancesMatcher instantiate() throws ViatraQueryException {
+    return CMSInstancesMatcher.create();
+  }
+  
+  @Override
   public CMSInstancesMatch newEmptyMatch() {
     return CMSInstancesMatch.newEmptyMatch();
   }
@@ -90,12 +102,16 @@ public final class CMSInstancesQuerySpecification extends BaseGeneratedEMFQueryS
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static CMSInstancesQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pInstance = new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pInstance);
     
     @Override
     public String getFullyQualifiedName() {
@@ -109,13 +125,12 @@ public final class CMSInstancesQuerySpecification extends BaseGeneratedEMFQueryS
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -125,7 +140,7 @@ public final class CMSInstancesQuerySpecification extends BaseGeneratedEMFQueryS
       		PVariable var_classifier = body.getOrCreateVariableByName("classifier");
       		PVariable var_name = body.getOrCreateVariableByName("name");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_instance, "instance")
+      		   new ExportedParameter(body, var_instance, parameter_pInstance)
       		));
       		// 	find instanceSpecificationsAsManifestationsOfNodeArtifacts(_, instance)
       		new PositivePatternCall(body, new FlatTuple(var___0_, var_instance), InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification.instance().getInternalQueryRepresentation());
@@ -141,24 +156,22 @@ public final class CMSInstancesQuerySpecification extends BaseGeneratedEMFQueryS
       		new Equality(body, var__virtual_1_, var_name);
       		// 		check (		name.equals("CMS")	)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
-      		                            
-      		                            @Override
-      		                            public String getShortDescription() {
-      		                                return "Expression evaluation from pattern CMSInstances";
-      		                            }
       		
-      		                            @Override
-      		                            public Iterable<String> getInputParameterNames() {
-      		                                return Arrays.asList("name");
-      		                            }
+      		    @Override
+      		    public String getShortDescription() {
+      		        return "Expression evaluation from pattern CMSInstances";
+      		    }
+      		    
+      		    @Override
+      		    public Iterable<String> getInputParameterNames() {
+      		        return Arrays.asList("name");}
       		
-      		                            @Override
-      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
-      		                                    java.lang.String name = (java.lang.String) provider.getValue("name");
-      		                                    return evaluateExpression_1_1(name);
-      		                                }
-      		
-      		                        },  null); 
+      		    @Override
+      		    public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		        String name = (String) provider.getValue("name");
+      		        return evaluateExpression_1_1(name);
+      		    }
+      		},  null); 
       		bodies.add(body);
       	}
       	// to silence compiler error

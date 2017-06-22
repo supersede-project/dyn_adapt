@@ -1,0 +1,17 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.supersede.dynadapt</groupId>
+    <artifactId>eu.supersede.dynadapt.releng</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>eu.supersede.dynadapt</groupId>
+        <artifactId>eu.supersede.dynadapt.root</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>eu.supersede.dynadapt.update</module>
+    </modules>
+</project>

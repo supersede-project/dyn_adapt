@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/cz.zcu.yafmt.clang.bcl.feature_0.3.0.qualifier.jar" id="cz.zcu.yafmt.clang.bcl.feature" version="0.3.0.qualifier">
+      <category name="yafmt"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.ui.editors.fc.feature_0.3.0.qualifier.jar" id="cz.zcu.yafmt.ui.editors.fc.feature" version="0.3.0.qualifier">
+      <category name="yafmt"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.ui.editors.fm.feature_0.3.0.qualifier.jar" id="cz.zcu.yafmt.ui.editors.fm.feature" version="0.3.0.qualifier">
+      <category name="yafmt"/>
+   </feature>
+   <feature url="features/cz.zcu.yafmt.ui.views.fm.feature_0.3.0.qualifier.jar" id="cz.zcu.yafmt.ui.views.fm.feature" version="0.3.0.qualifier">
+      <category name="yafmt"/>
+   </feature>
+   <category-def name="yafmt" label="YAFMT"/>
+</site>

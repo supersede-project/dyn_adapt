@@ -56,6 +56,15 @@ public class ModelManager {
 	}
 	
 	/** 
+	 * Loads a feature configuration identified by its file system path
+	 * @param fcPath file system path defining the location of the feature configuration
+	 * @return
+	 */
+	public FeatureConfiguration loadFC (String fcPath){
+		return loadModel(URI.createURI(fcPath), FeatureConfiguration.class);
+	}
+	
+	/** 
 	 * Saves a given feature configuration into the location defined by URI
 	 * @param fc feature model to save
 	 * @param fcURI URI describing the location of the saved model

@@ -1,0 +1,17 @@
+aspect sc4 {
+	feature FeatureModel.Service_management.SC4,
+	advice S2_variant2,
+	pointcuts{	
+		pointcut GMDService{
+			pattern eu.supersede.dynadapt.usecases.patterns.GetMeteorologicalDataServices,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition replaceGMDServiceBySC4{
+			feature_enabled true,
+			adviceRole ADM.Joinpoint,
+			action replace
+		}
+	}
+}

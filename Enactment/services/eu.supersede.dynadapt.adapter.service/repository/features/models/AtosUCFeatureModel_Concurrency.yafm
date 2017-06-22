@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="AtosUCFeatureModel" version="1.0.0" description="">
+  <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModel_Concurrency" lower="1" upper="1">
+    <feature id="smart_platform" name="Smart Platform" lower="0" upper="1">
+      <feature id="behaviour" name="Behaviour" lower="1" upper="1">
+        <feature id="concurrency" name="Concurrency" lower="0" upper="1">
+          <group lower="1" upper="1">
+            <feature id="low_concurrency" name="Low Concurrency" lower="0" upper="1">
+              <attribute id="duration" name="average_duration" type="double" defaultValue="2" minRangeValue="1" maxRangeValue="4">
+                <comment>unit=seconds</comment>
+              </attribute>
+              <attribute id="a_1342994313" name="average_concurrent_users" type="integer" defaultValue="1000000" minRangeValue="0" maxRangeValue="2000000">
+                <comment>unit=#users</comment>
+              </attribute>
+            </feature>
+            <feature id="average_concurrency" name="Average Concurrency" lower="0" upper="1">
+              <attribute id="a_1817185456" name="average_duration" type="double" defaultValue="2" minRangeValue="1" maxRangeValue="4">
+                <comment>unit=seconds</comment>
+              </attribute>
+              <attribute id="a_1010072638" name="average_concurrent_users" type="integer" defaultValue="3000000" minRangeValue="2000000" maxRangeValue="3000000">
+                <comment>unit=#users</comment>
+              </attribute>
+            </feature>
+            <feature id="high_concurrency" name="High Concurrency" lower="0" upper="1">
+              <attribute id="a_604995701" name="average_duration" type="double" defaultValue="5" minRangeValue="4" maxRangeValue="6">
+                <comment>unit=seconds</comment>
+              </attribute>
+              <attribute id="a_738944109" name="average_concurrent_users" type="integer" defaultValue="5000000" minRangeValue="4000000" maxRangeValue="6000000">
+                <comment>unit=#users</comment>
+              </attribute>
+            </feature>
+          </group>
+        </feature>
+      </feature>
+      <feature id="infrastructure" name="Infrastructure" lower="1" upper="1">
+        <feature id="vm_configurations" name="VM Configurations" lower="1" upper="1">
+          <feature id="hsk_configuration" name="HSK Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="hsk_optimal_configuration" name="HSK_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_29902074" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1605826203" name="memory" type="double" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=gigabytes</comment>
+                </attribute>
+                <attribute id="a_1034723842" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=Gb</comment>
+                </attribute>
+                <attribute id="a_1920764702" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Mbps</comment>
+                </attribute>
+              </feature>
+              <feature id="hsk_standard_configuration" name="HSK_Standard_Configuration" lower="0" upper="1">
+                <attribute id="number_cores" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="memory" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=gigabytes</comment>
+                </attribute>
+                <attribute id="storage" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Gb</comment>
+                </attribute>
+                <attribute id="bandwidth" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Mbps</comment>
+                </attribute>
+              </feature>
+            </group>
+          </feature>
+          <feature id="lb_configuration" name="LB Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="lb_optimal_configuration" name="LB_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_1770208397" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_788664747" name="memory" type="double" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=gigabytes</comment>
+                </attribute>
+                <attribute id="a_3323496" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Gb</comment>
+                </attribute>
+                <attribute id="a_1422878792" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Mbps</comment>
+                </attribute>
+              </feature>
+              <feature id="lb_standard_configuration" name="LB_Standard_Configuration" lower="0" upper="1">
+                <attribute id="a_2117129726" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_1152865514" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=gigabytes</comment>
+                </attribute>
+                <attribute id="a_1906249887" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Gb</comment>
+                </attribute>
+                <attribute id="a_1429160399" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Mbps</comment>
+                </attribute>
+              </feature>
+            </group>
+          </feature>
+          <feature id="sga_configuration" name="SGA Configuration" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="sga_standard_configuration" name="SGA_Standard_Configuration" lower="0" upper="1">
+                <attribute id="a_489688453" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_870342316" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=gigabytes</comment>
+                </attribute>
+                <attribute id="a_1943704051" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Gb</comment>
+                </attribute>
+                <attribute id="a_386358561" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Mbps</comment>
+                </attribute>
+              </feature>
+              <feature id="sga_optimal_configuration" name="SGA_Optimal_Configuration" lower="0" upper="1">
+                <attribute id="a_1116084945" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                <attribute id="a_973097227" name="memory" type="double" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=gigabytes</comment>
+                </attribute>
+                <attribute id="a_896633346" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Gb</comment>
+                </attribute>
+                <attribute id="a_1967483184" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                  <comment>unit=Mbps</comment>
+                </attribute>
+              </feature>
+            </group>
+          </feature>
+        </feature>
+        <feature id="nodes" name="Nodes" lower="1" upper="1">
+          <feature id="data_centers" name="Data Centers" lower="1" upper="1">
+            <feature id="dc1" name="DC1" lower="1" upper="1">
+              <attribute id="a_942174481" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_1040542835" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=celsius degrees</comment>
+              </attribute>
+              <attribute id="a_985459650" name="bandwith" type="double" description="" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_221035660" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <feature id="sga" name="SGA" lower="1" upper="-1">
+                <attribute id="a_224280311" name="name" type="string"/>
+                <attribute id="a_1451159970" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_510465660" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_885281544" name="bandwith" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_960654815" name="VMConfiguration" type="string" defaultValue="SGA_Standard_Configuration"/>
+              </feature>
+            </feature>
+          </feature>
+          <feature id="load_balancers" name="Load Balancers" lower="1" upper="1">
+            <feature id="lbnode1" name="LBNode1" lower="1" upper="1">
+              <attribute id="a_1644548477" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_643309707" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=celsius degrees</comment>
+              </attribute>
+              <attribute id="a_1783049222" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_13166753" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <feature id="lb" name="LB" lower="1" upper="-1">
+                <attribute id="a_63710985" name="name" type="string"/>
+                <attribute id="a_512052611" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_909214805" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_1353093373" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="lb_vmconfiguration" name="VMConfiguration" type="string" defaultValue="LB_Standard_Configuration"/>
+                <attribute id="a_71057980" name="hsk" type="string"/>
+              </feature>
+            </feature>
+          </feature>
+          <feature id="handshakes" name="Handshakes" lower="1" upper="1">
+            <feature id="hsknode1" name="HSKNode1" lower="1" upper="1">
+              <attribute id="a_1041090282" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_1124394929" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=celsius degrees</comment>
+              </attribute>
+              <attribute id="a_82407481" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_402248714" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <feature id="hsk" name="HSK" lower="1" upper="-1">
+                <attribute id="a_1183336673" name="name" type="string"/>
+                <attribute id="a_304948751" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_1339648302" name="memory" type="double" description="" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_1234897471" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="hsk_vmconfiguration" name="VMConfiguration" type="string" defaultValue="HSK_Standard_Configuration"/>
+                <attribute id="a_2082488607" name="lb" type="string"/>
+              </feature>
+            </feature>
+          </feature>
+        </feature>
+      </feature>
+    </feature>
+  </rootFeature>
+  <constraint value="hsk implies hsk_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies lb_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="sga implies sga_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="concurrency implies (sga and hsk and lb)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="hsk implies lb" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  <constraint value="lb implies hsk" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+</fm:featureModel>

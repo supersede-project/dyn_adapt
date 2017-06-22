@@ -1,0 +1,3058 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="fmGrammarSerializer" nsURI="eu::supersede::dynadapt::feature::serializer::files::fmGrammarSerializer" startHeaderPosition="29" endHeaderPosition="342">
+    <input>
+      <takesTypesFrom href="http://zcu.cz/yafmt/model/fm#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="serializeFMGrammar" visibility="Public">
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="mtl:LetBlock">
+            <body xsi:type="mtl:TemplateInvocation" definition="/0/feature">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <argument xsi:type="ocl.ecore:VariableExp" name="rootFeature" referredVariable="/0/serializeFMGrammar/%/%/%/rootFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </argument>
+              <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              </argument>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <letVariable name="rootFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              <initExpression xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="aFeatureModel" referredVariable="/0/serializeFMGrammar/aFeatureModel">
+                  <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//FeatureModel/root"/>
+              </initExpression>
+            </letVariable>
+          </body>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="aFeatureModel" referredVariable="/0/serializeFMGrammar/aFeatureModel">
+                  <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//FeatureModel/root"/>
+              </source>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsUndefined"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+          </ifExpr>
+        </body>
+        <fileUrl xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeatureModel" referredVariable="/0/serializeFMGrammar/aFeatureModel">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//FeatureModel/name"/>
+          </source>
+          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".bnf">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <parameter name="aFeatureModel">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="feature" visibility="Public">
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+        </body>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= "/>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/andGroupList">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;|&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/optional"/>
+          </ifExpr>
+        </body>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/feature">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/feature/%/%.7/aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+            <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <loopVariable name="aChildFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/features"/>
+          </iterSet>
+        </body>
+        <ifExpr xsi:type="mtl:QueryInvocation" definition="/0/hasANDGroup">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </argument>
+        </ifExpr>
+        <else>
+          <body xsi:type="mtl:IfBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&lt;"/>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+            </body>
+            <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </argument>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= &lt;"/>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;&#x9;|&#xA;"/>
+            <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/mandatory"/>
+                </source>
+                <argument xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="mtl:QueryInvocation" definition="/0/hasChildren">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                    <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                      <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                    </argument>
+                  </source>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+              </source>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+            </ifExpr>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= &quot;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;"/>
+        </else>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_or>::= &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="> &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_or>&#xA;&#x9;| &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= "/>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/orGroupList">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <body xsi:type="mtl:ForBlock">
+            <body xsi:type="mtl:TemplateInvocation" definition="/0/feature">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <argument xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/feature/%/%.10/%.13/aChildFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </argument>
+              <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              </argument>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <loopVariable name="aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </loopVariable>
+            <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+                </source>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Group/features"/>
+            </iterSet>
+          </body>
+          <ifExpr xsi:type="mtl:QueryInvocation" definition="/0/hasORGroup">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </ifExpr>
+        </elseIf>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= "/>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/xorGroupList">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <body xsi:type="mtl:ForBlock">
+            <body xsi:type="mtl:TemplateInvocation" definition="/0/feature">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <argument xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/feature/%/%.11/%.5/aChildFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </argument>
+              <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="true">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              </argument>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <loopVariable name="aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </loopVariable>
+            <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+                </source>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Group/features"/>
+            </iterSet>
+          </body>
+          <ifExpr xsi:type="mtl:QueryInvocation" definition="/0/hasXORGroup">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </ifExpr>
+        </elseIf>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="> &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;&#x9;| &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= &quot;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;"/>
+          <ifExpr xsi:type="mtl:QueryInvocation" definition="/0/hasMultipleMultiplicity">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </ifExpr>
+        </elseIf>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">::= &quot;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/feature/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;"/>
+          <ifExpr xsi:type="ocl.ecore:VariableExp" name="belongsToXORGroup" referredVariable="/0/feature/belongsToXORGroup">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          </ifExpr>
+        </elseIf>
+      </body>
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <parameter name="belongsToXORGroup">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+      </parameter>
+      <post xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/trim">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/14">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </source>
+      </post>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="andGroupList" visibility="Public">
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/andGroupList/%/%/aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/andGroupList/%/%/aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="> "/>
+          <loopVariable name="aChildFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/andGroupList/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/features"/>
+          </iterSet>
+        </body>
+        <ifExpr xsi:type="mtl:QueryInvocation" definition="/0/hasANDGroup">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/andGroupList/aFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </argument>
+        </ifExpr>
+      </body>
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="orGroupList" visibility="Public">
+      <body xsi:type="mtl:LetBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="firstFeature" referredVariable="/0/orGroupList/%/firstFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+        </body>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="firstFeature" referredVariable="/0/orGroupList/%/firstFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;| &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/orGroupList/%/%.4/aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/groupType">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/orGroupList/%/%.4/aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;"/>
+          <loopVariable name="aChildFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:OperationCallExp" eType="/21/Set(Feature)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/orGroupList/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+                </source>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Group/features"/>
+            </source>
+            <argument xsi:type="ocl.ecore:VariableExp" name="firstFeature" referredVariable="/0/orGroupList/%/firstFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/excluding"/>
+          </iterSet>
+        </body>
+        <letVariable name="firstFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          <initExpression xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/orGroupList/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+                </source>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Group/features"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </initExpression>
+        </letVariable>
+      </body>
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <post xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/trim">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/79">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </source>
+      </post>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="xorGroupList" visibility="Public">
+      <body xsi:type="mtl:LetBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="firstFeature" referredVariable="/0/xorGroupList/%/firstFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;| &lt;"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aChildFeature" referredVariable="/0/xorGroupList/%/%.3/aChildFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/id"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=">&#xA;"/>
+          <loopVariable name="aChildFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:OperationCallExp" eType="/21/Set(Feature)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/xorGroupList/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+                </source>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Group/features"/>
+            </source>
+            <argument xsi:type="ocl.ecore:VariableExp" name="firstFeature" referredVariable="/0/xorGroupList/%/firstFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/excluding"/>
+          </iterSet>
+        </body>
+        <letVariable name="firstFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          <initExpression xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/xorGroupList/aFeature">
+                    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+                </source>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Group/features"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </initExpression>
+        </letVariable>
+      </body>
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <post xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/trim">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/93">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </source>
+      </post>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="groupType" visibility="Public">
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="mtl:LetBlock">
+          <body xsi:type="mtl:IfBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_or"/>
+            <ifExpr xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aGroup" referredVariable="/0/groupType/%/%/aGroup">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Group/or"/>
+            </ifExpr>
+          </body>
+          <letVariable name="aGroup">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+            <initExpression xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+                <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/groupType/aFeature">
+                  <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+              </source>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+            </initExpression>
+          </letVariable>
+        </body>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/groupType/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+        </ifExpr>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_opt"/>
+          <ifExpr xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/groupType/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/optional"/>
+          </ifExpr>
+        </elseIf>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_plus"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/groupType/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/upper"/>
+            </source>
+            <argument xsi:type="ocl.ecore:IntegerLiteralExp" integerSymbol="1">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E"/>
+          </ifExpr>
+        </elseIf>
+      </body>
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="hasANDGroup" visibility="Public">
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasANDGroup/aFeature">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/features"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+        </source>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="hasORGroup" visibility="Public">
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasORGroup/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasORGroup/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Group/or"/>
+        </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="hasXORGroup" visibility="Public">
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasXORGroup/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasXORGroup/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Group/xor"/>
+        </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="hasMultipleMultiplicity" visibility="Public">
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasMultipleMultiplicity/aFeature">
+            <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/upper"/>
+        </source>
+        <argument xsi:type="ocl.ecore:IntegerLiteralExp" integerSymbol="1">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+        </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="hasChildren" visibility="Public">
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasChildren/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/features"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+        </source>
+        <argument xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Group)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasChildren/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/groups"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+        </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/or"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="hasOptionalChildren" visibility="Public">
+      <parameter name="aFeature">
+        <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <source xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/21/OrderedSet(Feature)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/21/OrderedSet(Feature)">
+              <source xsi:type="ocl.ecore:VariableExp" name="aFeature" referredVariable="/0/hasOptionalChildren/aFeature">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://zcu.cz/yafmt/model/fm#//Feature/features"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/hasOptionalChildren/%/%/select/temp1">
+                <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://zcu.cz/yafmt/model/fm#//Feature/mandatory"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp1">
+              <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+            </iterator>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty"/>
+        </source>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not"/>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+      <eOperations name="trim">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="serializeFMGrammar">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/serializeFMGrammar"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeatureModel">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="feature">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/feature"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+        <eParameters name="belongsToXORGroup">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="andGroupList">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/andGroupList"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="orGroupList">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/orGroupList"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="xorGroupList">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/xorGroupList"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="groupType">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/groupType"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasANDGroup">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/hasANDGroup"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasORGroup">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/hasORGroup"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasXORGroup">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/hasXORGroup"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasMultipleMultiplicity">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/hasMultipleMultiplicity"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasChildren">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/hasChildren"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasOptionalChildren">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/hasOptionalChildren"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="aFeature">
+          <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="fm_FeatureModel_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="fm_Feature_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//FeatureModel"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Feature)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Group)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Feature)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Group"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://zcu.cz/yafmt/model/fm#//Feature"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/serializeFMGrammar">
+      <details key="start" value="91"/>
+      <details key="end" value="378"/>
+      <details key="line" value="4"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/serializeFMGrammar/%">
+      <details key="start" value="158"/>
+      <details key="end" value="366"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/serializeFMGrammar/%/%">
+      <details key="start" value="217"/>
+      <details key="end" value="358"/>
+      <details key="line" value="6"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/serializeFMGrammar/%/%/%">
+      <details key="start" value="265"/>
+      <details key="end" value="352"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/serializeFMGrammar/%/%/%/%">
+      <details key="start" value="315"/>
+      <details key="end" value="342"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/serializeFMGrammar/%/%/%/%/rootFeature">
+      <details key="start" value="323"/>
+      <details key="end" value="334"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/serializeFMGrammar/%/%/%/%/%">
+      <details key="start" value="336"/>
+      <details key="end" value="341"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/serializeFMGrammar/%/%/%/%.1">
+      <details key="start" value="344"/>
+      <details key="end" value="345"/>
+      <details key="line" value="9"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/serializeFMGrammar/%/%/%/rootFeature">
+      <details key="start" value="270"/>
+      <details key="end" value="312"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/serializeFMGrammar/%/%/%/rootFeature/%">
+      <details key="start" value="295"/>
+      <details key="end" value="313"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/serializeFMGrammar/%/%/%/rootFeature/%/aFeatureModel">
+      <details key="start" value="295"/>
+      <details key="end" value="308"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/serializeFMGrammar/%/%/%.1">
+      <details key="start" value="221"/>
+      <details key="end" value="262"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/serializeFMGrammar/%/%/%.1/%">
+      <details key="start" value="226"/>
+      <details key="end" value="261"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/serializeFMGrammar/%/%/%.1/%/%">
+      <details key="start" value="226"/>
+      <details key="end" value="244"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/serializeFMGrammar/%/%/%.1/%/%/aFeatureModel">
+      <details key="start" value="226"/>
+      <details key="end" value="239"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/serializeFMGrammar/%/%.1">
+      <details key="start" value="165"/>
+      <details key="end" value="198"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/serializeFMGrammar/%/%.1/%">
+      <details key="start" value="165"/>
+      <details key="end" value="183"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/serializeFMGrammar/%/%.1/%/aFeatureModel">
+      <details key="start" value="165"/>
+      <details key="end" value="178"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/serializeFMGrammar/%/%.1/%.1">
+      <details key="start" value="191"/>
+      <details key="end" value="197"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/serializeFMGrammar/%/%.2">
+      <details key="start" value="207"/>
+      <details key="end" value="214"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/serializeFMGrammar/aFeatureModel">
+      <details key="start" value="127"/>
+      <details key="end" value="155"/>
+      <details key="line" value="4"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/feature">
+      <details key="start" value="380"/>
+      <details key="end" value="1600"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/feature/%">
+      <details key="start" value="469"/>
+      <details key="end" value="1588"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/feature/%/%">
+      <details key="start" value="499"/>
+      <details key="end" value="500"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/feature/%/%.1">
+      <details key="start" value="501"/>
+      <details key="end" value="512"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/feature/%/%.1/aFeature">
+      <details key="start" value="501"/>
+      <details key="end" value="509"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/feature/%/%.2">
+      <details key="start" value="515"/>
+      <details key="end" value="534"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/feature/%/%.2/aFeature">
+      <details key="start" value="525"/>
+      <details key="end" value="533"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/feature/%/%.3">
+      <details key="start" value="536"/>
+      <details key="end" value="541"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/feature/%/%.4">
+      <details key="start" value="542"/>
+      <details key="end" value="564"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/feature/%/%.4/aFeature">
+      <details key="start" value="555"/>
+      <details key="end" value="563"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/feature/%/%.5">
+      <details key="start" value="566"/>
+      <details key="end" value="567"/>
+      <details key="line" value="17"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/feature/%/%.6">
+      <details key="start" value="567"/>
+      <details key="end" value="600"/>
+      <details key="line" value="17"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/feature/%/%.6/%">
+      <details key="start" value="592"/>
+      <details key="end" value="595"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/feature/%/%.6/%.1">
+      <details key="start" value="571"/>
+      <details key="end" value="590"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/feature/%/%.6/%.1/aFeature">
+      <details key="start" value="572"/>
+      <details key="end" value="580"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/feature/%/%.7">
+      <details key="start" value="601"/>
+      <details key="end" value="692"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/feature/%/%.7/%">
+      <details key="start" value="654"/>
+      <details key="end" value="683"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/feature/%/%.7/%/aChildFeature">
+      <details key="start" value="662"/>
+      <details key="end" value="675"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/feature/%/%.7/%/%">
+      <details key="start" value="677"/>
+      <details key="end" value="682"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/feature/%/%.7/%.1">
+      <details key="start" value="685"/>
+      <details key="end" value="686"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/feature/%/%.7/aChildFeature">
+      <details key="start" value="607"/>
+      <details key="end" value="630"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/feature/%/%.7/%.2">
+      <details key="start" value="633"/>
+      <details key="end" value="650"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/feature/%/%.7/%.2/aFeature">
+      <details key="start" value="633"/>
+      <details key="end" value="641"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/feature/%/%.8">
+      <details key="start" value="473"/>
+      <details key="end" value="497"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/feature/%/%.8/aFeature">
+      <details key="start" value="474"/>
+      <details key="end" value="482"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/feature/%/%.9">
+      <details key="start" value="1408"/>
+      <details key="end" value="1583"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/feature/%/%.9/%">
+      <details key="start" value="1415"/>
+      <details key="end" value="1546"/>
+      <details key="line" value="37"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/feature/%/%.9/%/%">
+      <details key="start" value="1478"/>
+      <details key="end" value="1480"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/feature/%/%.9/%/%.1">
+      <details key="start" value="1481"/>
+      <details key="end" value="1492"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/feature/%/%.9/%/%.1/aFeature">
+      <details key="start" value="1481"/>
+      <details key="end" value="1489"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/feature/%/%.9/%/%.2">
+      <details key="start" value="1495"/>
+      <details key="end" value="1514"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/feature/%/%.9/%/%.2/aFeature">
+      <details key="start" value="1505"/>
+      <details key="end" value="1513"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/feature/%/%.9/%/%.3">
+      <details key="start" value="1516"/>
+      <details key="end" value="1522"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/feature/%/%.9/%/%.4">
+      <details key="start" value="1523"/>
+      <details key="end" value="1534"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/feature/%/%.9/%/%.4/aFeature">
+      <details key="start" value="1523"/>
+      <details key="end" value="1531"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/feature/%/%.9/%/%.5">
+      <details key="start" value="1536"/>
+      <details key="end" value="1541"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/feature/%/%.9/%/%.6">
+      <details key="start" value="1419"/>
+      <details key="end" value="1476"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/feature/%/%.9/%/%.6/%">
+      <details key="start" value="1424"/>
+      <details key="end" value="1475"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/feature/%/%.9/%/%.6/%/%">
+      <details key="start" value="1425"/>
+      <details key="end" value="1443"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/feature/%/%.9/%/%.6/%/%/aFeature">
+      <details key="start" value="1425"/>
+      <details key="end" value="1433"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/feature/%/%.9/%/%.6/%/%.1">
+      <details key="start" value="1448"/>
+      <details key="end" value="1474"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/feature/%/%.9/%/%.6/%/%.1/%">
+      <details key="start" value="1452"/>
+      <details key="end" value="1474"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/feature/%/%.9/%/%.6/%/%.1/%/aFeature">
+      <details key="start" value="1452"/>
+      <details key="end" value="1460"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/feature/%/%.9/%.1">
+      <details key="start" value="1547"/>
+      <details key="end" value="1548"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/feature/%/%.9/%.2">
+      <details key="start" value="1549"/>
+      <details key="end" value="1560"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/feature/%/%.9/%.2/aFeature">
+      <details key="start" value="1549"/>
+      <details key="end" value="1557"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/feature/%/%.9/%.3">
+      <details key="start" value="1562"/>
+      <details key="end" value="1568"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/feature/%/%.9/%.4">
+      <details key="start" value="1569"/>
+      <details key="end" value="1580"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/feature/%/%.9/%.4/aFeature">
+      <details key="start" value="1569"/>
+      <details key="end" value="1577"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/feature/%/%.9/%.5">
+      <details key="start" value="1582"/>
+      <details key="end" value="1583"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/feature/%/%.10">
+      <details key="start" value="692"/>
+      <details key="end" value="957"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/feature/%/%.10/%">
+      <details key="start" value="725"/>
+      <details key="end" value="726"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/feature/%/%.10/%.1">
+      <details key="start" value="727"/>
+      <details key="end" value="738"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/feature/%/%.10/%.1/aFeature">
+      <details key="start" value="727"/>
+      <details key="end" value="735"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/feature/%/%.10/%.2">
+      <details key="start" value="740"/>
+      <details key="end" value="749"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/feature/%/%.10/%.3">
+      <details key="start" value="750"/>
+      <details key="end" value="761"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/feature/%/%.10/%.3/aFeature">
+      <details key="start" value="750"/>
+      <details key="end" value="758"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/feature/%/%.10/%.4">
+      <details key="start" value="763"/>
+      <details key="end" value="766"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/feature/%/%.10/%.5">
+      <details key="start" value="767"/>
+      <details key="end" value="778"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/feature/%/%.10/%.5/aFeature">
+      <details key="start" value="767"/>
+      <details key="end" value="775"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/feature/%/%.10/%.6">
+      <details key="start" value="780"/>
+      <details key="end" value="789"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.82" references="/0/feature/%/%.10/%.7">
+      <details key="start" value="790"/>
+      <details key="end" value="801"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.83" references="/0/feature/%/%.10/%.7/aFeature">
+      <details key="start" value="790"/>
+      <details key="end" value="798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.84" references="/0/feature/%/%.10/%.8">
+      <details key="start" value="803"/>
+      <details key="end" value="806"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.85" references="/0/feature/%/%.10/%.9">
+      <details key="start" value="807"/>
+      <details key="end" value="818"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.86" references="/0/feature/%/%.10/%.9/aFeature">
+      <details key="start" value="807"/>
+      <details key="end" value="815"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.87" references="/0/feature/%/%.10/%.10">
+      <details key="start" value="820"/>
+      <details key="end" value="825"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.88" references="/0/feature/%/%.10/%.11">
+      <details key="start" value="826"/>
+      <details key="end" value="847"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.89" references="/0/feature/%/%.10/%.11/aFeature">
+      <details key="start" value="838"/>
+      <details key="end" value="846"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.90" references="/0/feature/%/%.10/%.12">
+      <details key="start" value="849"/>
+      <details key="end" value="850"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.91" references="/0/feature/%/%.10/%.13">
+      <details key="start" value="850"/>
+      <details key="end" value="957"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.92" references="/0/feature/%/%.10/%.13/%">
+      <details key="start" value="919"/>
+      <details key="end" value="948"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.93" references="/0/feature/%/%.10/%.13/%/aChildFeature">
+      <details key="start" value="927"/>
+      <details key="end" value="940"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.94" references="/0/feature/%/%.10/%.13/%/%">
+      <details key="start" value="942"/>
+      <details key="end" value="947"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.95" references="/0/feature/%/%.10/%.13/%.1">
+      <details key="start" value="950"/>
+      <details key="end" value="951"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.96" references="/0/feature/%/%.10/%.13/aChildFeature">
+      <details key="start" value="856"/>
+      <details key="end" value="879"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.97" references="/0/feature/%/%.10/%.13/%.2">
+      <details key="start" value="882"/>
+      <details key="end" value="915"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.98" references="/0/feature/%/%.10/%.13/%.2/%">
+      <details key="start" value="882"/>
+      <details key="end" value="906"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.99" references="/0/feature/%/%.10/%.13/%.2/%/%">
+      <details key="start" value="882"/>
+      <details key="end" value="897"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.100" references="/0/feature/%/%.10/%.13/%.2/%/%/aFeature">
+      <details key="start" value="882"/>
+      <details key="end" value="890"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.101" references="/0/feature/%/%.10/%.14">
+      <details key="start" value="700"/>
+      <details key="end" value="723"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.102" references="/0/feature/%/%.10/%.14/aFeature">
+      <details key="start" value="701"/>
+      <details key="end" value="709"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.103" references="/0/feature/%/%.11">
+      <details key="start" value="957"/>
+      <details key="end" value="1143"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.104" references="/0/feature/%/%.11/%">
+      <details key="start" value="991"/>
+      <details key="end" value="992"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.105" references="/0/feature/%/%.11/%.1">
+      <details key="start" value="993"/>
+      <details key="end" value="1004"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.106" references="/0/feature/%/%.11/%.1/aFeature">
+      <details key="start" value="993"/>
+      <details key="end" value="1001"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.107" references="/0/feature/%/%.11/%.2">
+      <details key="start" value="1006"/>
+      <details key="end" value="1011"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.108" references="/0/feature/%/%.11/%.3">
+      <details key="start" value="1012"/>
+      <details key="end" value="1034"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.109" references="/0/feature/%/%.11/%.3/aFeature">
+      <details key="start" value="1025"/>
+      <details key="end" value="1033"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.110" references="/0/feature/%/%.11/%.4">
+      <details key="start" value="1036"/>
+      <details key="end" value="1037"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.111" references="/0/feature/%/%.11/%.5">
+      <details key="start" value="1037"/>
+      <details key="end" value="1143"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.112" references="/0/feature/%/%.11/%.5/%">
+      <details key="start" value="1106"/>
+      <details key="end" value="1134"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.113" references="/0/feature/%/%.11/%.5/%/aChildFeature">
+      <details key="start" value="1114"/>
+      <details key="end" value="1127"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.114" references="/0/feature/%/%.11/%.5/%/%">
+      <details key="start" value="1129"/>
+      <details key="end" value="1133"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.115" references="/0/feature/%/%.11/%.5/%.1">
+      <details key="start" value="1136"/>
+      <details key="end" value="1137"/>
+      <details key="line" value="32"/>
+    </eAnnotations>
+    <eAnnotations source="positions.116" references="/0/feature/%/%.11/%.5/aChildFeature">
+      <details key="start" value="1043"/>
+      <details key="end" value="1066"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.117" references="/0/feature/%/%.11/%.5/%.2">
+      <details key="start" value="1069"/>
+      <details key="end" value="1102"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.118" references="/0/feature/%/%.11/%.5/%.2/%">
+      <details key="start" value="1069"/>
+      <details key="end" value="1093"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.119" references="/0/feature/%/%.11/%.5/%.2/%/%">
+      <details key="start" value="1069"/>
+      <details key="end" value="1084"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.120" references="/0/feature/%/%.11/%.5/%.2/%/%/aFeature">
+      <details key="start" value="1069"/>
+      <details key="end" value="1077"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.121" references="/0/feature/%/%.11/%.6">
+      <details key="start" value="965"/>
+      <details key="end" value="989"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.122" references="/0/feature/%/%.11/%.6/aFeature">
+      <details key="start" value="966"/>
+      <details key="end" value="974"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.123" references="/0/feature/%/%.12">
+      <details key="start" value="1143"/>
+      <details key="end" value="1343"/>
+      <details key="line" value="32"/>
+    </eAnnotations>
+    <eAnnotations source="positions.124" references="/0/feature/%/%.12/%">
+      <details key="start" value="1189"/>
+      <details key="end" value="1190"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.125" references="/0/feature/%/%.12/%.1">
+      <details key="start" value="1191"/>
+      <details key="end" value="1202"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.126" references="/0/feature/%/%.12/%.1/aFeature">
+      <details key="start" value="1191"/>
+      <details key="end" value="1199"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.127" references="/0/feature/%/%.12/%.2">
+      <details key="start" value="1205"/>
+      <details key="end" value="1224"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.128" references="/0/feature/%/%.12/%.2/aFeature">
+      <details key="start" value="1215"/>
+      <details key="end" value="1223"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.129" references="/0/feature/%/%.12/%.3">
+      <details key="start" value="1226"/>
+      <details key="end" value="1232"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.130" references="/0/feature/%/%.12/%.4">
+      <details key="start" value="1233"/>
+      <details key="end" value="1244"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.131" references="/0/feature/%/%.12/%.4/aFeature">
+      <details key="start" value="1233"/>
+      <details key="end" value="1241"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.132" references="/0/feature/%/%.12/%.5">
+      <details key="start" value="1246"/>
+      <details key="end" value="1249"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.133" references="/0/feature/%/%.12/%.6">
+      <details key="start" value="1250"/>
+      <details key="end" value="1261"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.134" references="/0/feature/%/%.12/%.6/aFeature">
+      <details key="start" value="1250"/>
+      <details key="end" value="1258"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.135" references="/0/feature/%/%.12/%.7">
+      <details key="start" value="1264"/>
+      <details key="end" value="1283"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.136" references="/0/feature/%/%.12/%.7/aFeature">
+      <details key="start" value="1274"/>
+      <details key="end" value="1282"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.137" references="/0/feature/%/%.12/%.8">
+      <details key="start" value="1285"/>
+      <details key="end" value="1291"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.138" references="/0/feature/%/%.12/%.9">
+      <details key="start" value="1292"/>
+      <details key="end" value="1303"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.139" references="/0/feature/%/%.12/%.9/aFeature">
+      <details key="start" value="1292"/>
+      <details key="end" value="1300"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.140" references="/0/feature/%/%.12/%.10">
+      <details key="start" value="1305"/>
+      <details key="end" value="1308"/>
+      <details key="line" value="34"/>
+    </eAnnotations>
+    <eAnnotations source="positions.141" references="/0/feature/%/%.12/%.11">
+      <details key="start" value="1309"/>
+      <details key="end" value="1320"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.142" references="/0/feature/%/%.12/%.11/aFeature">
+      <details key="start" value="1309"/>
+      <details key="end" value="1317"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.143" references="/0/feature/%/%.12/%.12">
+      <details key="start" value="1322"/>
+      <details key="end" value="1328"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.144" references="/0/feature/%/%.12/%.13">
+      <details key="start" value="1329"/>
+      <details key="end" value="1340"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.145" references="/0/feature/%/%.12/%.13/aFeature">
+      <details key="start" value="1329"/>
+      <details key="end" value="1337"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.146" references="/0/feature/%/%.12/%.14">
+      <details key="start" value="1342"/>
+      <details key="end" value="1343"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.147" references="/0/feature/%/%.12/%.15">
+      <details key="start" value="1151"/>
+      <details key="end" value="1187"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.148" references="/0/feature/%/%.12/%.15/aFeature">
+      <details key="start" value="1152"/>
+      <details key="end" value="1160"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.149" references="/0/feature/%/%.13">
+      <details key="start" value="1343"/>
+      <details key="end" value="1408"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.150" references="/0/feature/%/%.13/%">
+      <details key="start" value="1372"/>
+      <details key="end" value="1373"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.151" references="/0/feature/%/%.13/%.1">
+      <details key="start" value="1374"/>
+      <details key="end" value="1385"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.152" references="/0/feature/%/%.13/%.1/aFeature">
+      <details key="start" value="1374"/>
+      <details key="end" value="1382"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.153" references="/0/feature/%/%.13/%.2">
+      <details key="start" value="1387"/>
+      <details key="end" value="1393"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.154" references="/0/feature/%/%.13/%.3">
+      <details key="start" value="1394"/>
+      <details key="end" value="1405"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.155" references="/0/feature/%/%.13/%.3/aFeature">
+      <details key="start" value="1394"/>
+      <details key="end" value="1402"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.156" references="/0/feature/%/%.13/%.4">
+      <details key="start" value="1407"/>
+      <details key="end" value="1408"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.157" references="/0/feature/%/%.13/belongsToXORGroup">
+      <details key="start" value="1351"/>
+      <details key="end" value="1370"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.158" references="/0/feature/aFeature">
+      <details key="start" value="406"/>
+      <details key="end" value="424"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.159" references="/0/feature/belongsToXORGroup">
+      <details key="start" value="426"/>
+      <details key="end" value="453"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.160" references="/0/feature/%.1">
+      <details key="start" value="460"/>
+      <details key="end" value="466"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.161" references="/0/feature/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.162" references="/0/andGroupList">
+      <details key="start" value="1602"/>
+      <details key="end" value="1803"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+    <eAnnotations source="positions.163" references="/0/andGroupList/%">
+      <details key="start" value="1654"/>
+      <details key="end" value="1791"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.164" references="/0/andGroupList/%/%">
+      <details key="start" value="1680"/>
+      <details key="end" value="1786"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.165" references="/0/andGroupList/%/%/%">
+      <details key="start" value="1731"/>
+      <details key="end" value="1732"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.166" references="/0/andGroupList/%/%/%.1">
+      <details key="start" value="1733"/>
+      <details key="end" value="1749"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.167" references="/0/andGroupList/%/%/%.1/aChildFeature">
+      <details key="start" value="1733"/>
+      <details key="end" value="1746"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.168" references="/0/andGroupList/%/%/%.2">
+      <details key="start" value="1752"/>
+      <details key="end" value="1776"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.169" references="/0/andGroupList/%/%/%.2/aChildFeature">
+      <details key="start" value="1762"/>
+      <details key="end" value="1775"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.170" references="/0/andGroupList/%/%/%.3">
+      <details key="start" value="1778"/>
+      <details key="end" value="1780"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.171" references="/0/andGroupList/%/%/aChildFeature">
+      <details key="start" value="1686"/>
+      <details key="end" value="1709"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.172" references="/0/andGroupList/%/%/%.4">
+      <details key="start" value="1712"/>
+      <details key="end" value="1729"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.173" references="/0/andGroupList/%/%/%.4/aFeature">
+      <details key="start" value="1712"/>
+      <details key="end" value="1720"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.174" references="/0/andGroupList/%/%.1">
+      <details key="start" value="1658"/>
+      <details key="end" value="1679"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.175" references="/0/andGroupList/%/%.1/aFeature">
+      <details key="start" value="1670"/>
+      <details key="end" value="1678"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.176" references="/0/andGroupList/aFeature">
+      <details key="start" value="1633"/>
+      <details key="end" value="1651"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+    <eAnnotations source="positions.177" references="/0/orGroupList">
+      <details key="start" value="1805"/>
+      <details key="end" value="2161"/>
+      <details key="line" value="48"/>
+    </eAnnotations>
+    <eAnnotations source="positions.178" references="/0/orGroupList/%">
+      <details key="start" value="1869"/>
+      <details key="end" value="2149"/>
+      <details key="line" value="49"/>
+    </eAnnotations>
+    <eAnnotations source="positions.179" references="/0/orGroupList/%/%">
+      <details key="start" value="1943"/>
+      <details key="end" value="1944"/>
+      <details key="line" value="50"/>
+    </eAnnotations>
+    <eAnnotations source="positions.180" references="/0/orGroupList/%/%.1">
+      <details key="start" value="1945"/>
+      <details key="end" value="1960"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.181" references="/0/orGroupList/%/%.1/firstFeature">
+      <details key="start" value="1945"/>
+      <details key="end" value="1957"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.182" references="/0/orGroupList/%/%.2">
+      <details key="start" value="1963"/>
+      <details key="end" value="1986"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.183" references="/0/orGroupList/%/%.2/firstFeature">
+      <details key="start" value="1973"/>
+      <details key="end" value="1985"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.184" references="/0/orGroupList/%/%.3">
+      <details key="start" value="1988"/>
+      <details key="end" value="1990"/>
+      <details key="line" value="50"/>
+    </eAnnotations>
+    <eAnnotations source="positions.185" references="/0/orGroupList/%/%.4">
+      <details key="start" value="1990"/>
+      <details key="end" value="2142"/>
+      <details key="line" value="51"/>
+    </eAnnotations>
+    <eAnnotations source="positions.186" references="/0/orGroupList/%/%.4/%">
+      <details key="start" value="2084"/>
+      <details key="end" value="2088"/>
+      <details key="line" value="51"/>
+    </eAnnotations>
+    <eAnnotations source="positions.187" references="/0/orGroupList/%/%.4/%.1">
+      <details key="start" value="2089"/>
+      <details key="end" value="2105"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.188" references="/0/orGroupList/%/%.4/%.1/aChildFeature">
+      <details key="start" value="2089"/>
+      <details key="end" value="2102"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.189" references="/0/orGroupList/%/%.4/%.2">
+      <details key="start" value="2108"/>
+      <details key="end" value="2132"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.190" references="/0/orGroupList/%/%.4/%.2/aChildFeature">
+      <details key="start" value="2118"/>
+      <details key="end" value="2131"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.191" references="/0/orGroupList/%/%.4/%.3">
+      <details key="start" value="2134"/>
+      <details key="end" value="2136"/>
+      <details key="line" value="52"/>
+    </eAnnotations>
+    <eAnnotations source="positions.192" references="/0/orGroupList/%/%.4/aChildFeature">
+      <details key="start" value="1996"/>
+      <details key="end" value="2019"/>
+      <details key="line" value="51"/>
+    </eAnnotations>
+    <eAnnotations source="positions.193" references="/0/orGroupList/%/%.4/%.4">
+      <details key="start" value="2022"/>
+      <details key="end" value="2080"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.194" references="/0/orGroupList/%/%.4/%.4/%">
+      <details key="start" value="2022"/>
+      <details key="end" value="2055"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.195" references="/0/orGroupList/%/%.4/%.4/%/%">
+      <details key="start" value="2022"/>
+      <details key="end" value="2046"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.196" references="/0/orGroupList/%/%.4/%.4/%/%/%">
+      <details key="start" value="2022"/>
+      <details key="end" value="2037"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.197" references="/0/orGroupList/%/%.4/%.4/%/%/%/aFeature">
+      <details key="start" value="2022"/>
+      <details key="end" value="2030"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.198" references="/0/orGroupList/%/%.4/%.4/firstFeature">
+      <details key="start" value="2067"/>
+      <details key="end" value="2079"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.199" references="/0/orGroupList/%/firstFeature">
+      <details key="start" value="1874"/>
+      <details key="end" value="1941"/>
+      <details key="line" value="49"/>
+    </eAnnotations>
+    <eAnnotations source="positions.200" references="/0/orGroupList/%/firstFeature/%">
+      <details key="start" value="1900"/>
+      <details key="end" value="1942"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.201" references="/0/orGroupList/%/firstFeature/%/%">
+      <details key="start" value="1900"/>
+      <details key="end" value="1933"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.202" references="/0/orGroupList/%/firstFeature/%/%/%">
+      <details key="start" value="1900"/>
+      <details key="end" value="1924"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.203" references="/0/orGroupList/%/firstFeature/%/%/%/%">
+      <details key="start" value="1900"/>
+      <details key="end" value="1915"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.204" references="/0/orGroupList/%/firstFeature/%/%/%/%/aFeature">
+      <details key="start" value="1900"/>
+      <details key="end" value="1908"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.205" references="/0/orGroupList/aFeature">
+      <details key="start" value="1835"/>
+      <details key="end" value="1853"/>
+      <details key="line" value="48"/>
+    </eAnnotations>
+    <eAnnotations source="positions.206" references="/0/orGroupList/%.1">
+      <details key="start" value="1860"/>
+      <details key="end" value="1866"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.207" references="/0/orGroupList/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.208" references="/0/xorGroupList">
+      <details key="start" value="2163"/>
+      <details key="end" value="2466"/>
+      <details key="line" value="57"/>
+    </eAnnotations>
+    <eAnnotations source="positions.209" references="/0/xorGroupList/%">
+      <details key="start" value="2228"/>
+      <details key="end" value="2454"/>
+      <details key="line" value="58"/>
+    </eAnnotations>
+    <eAnnotations source="positions.210" references="/0/xorGroupList/%/%">
+      <details key="start" value="2302"/>
+      <details key="end" value="2303"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.211" references="/0/xorGroupList/%/%.1">
+      <details key="start" value="2304"/>
+      <details key="end" value="2319"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.212" references="/0/xorGroupList/%/%.1/firstFeature">
+      <details key="start" value="2304"/>
+      <details key="end" value="2316"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.213" references="/0/xorGroupList/%/%.2">
+      <details key="start" value="2321"/>
+      <details key="end" value="2323"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.214" references="/0/xorGroupList/%/%.3">
+      <details key="start" value="2323"/>
+      <details key="end" value="2447"/>
+      <details key="line" value="60"/>
+    </eAnnotations>
+    <eAnnotations source="positions.215" references="/0/xorGroupList/%/%.3/%">
+      <details key="start" value="2416"/>
+      <details key="end" value="2420"/>
+      <details key="line" value="61"/>
+    </eAnnotations>
+    <eAnnotations source="positions.216" references="/0/xorGroupList/%/%.3/%.1">
+      <details key="start" value="2421"/>
+      <details key="end" value="2437"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.217" references="/0/xorGroupList/%/%.3/%.1/aChildFeature">
+      <details key="start" value="2421"/>
+      <details key="end" value="2434"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.218" references="/0/xorGroupList/%/%.3/%.2">
+      <details key="start" value="2439"/>
+      <details key="end" value="2441"/>
+      <details key="line" value="61"/>
+    </eAnnotations>
+    <eAnnotations source="positions.219" references="/0/xorGroupList/%/%.3/aChildFeature">
+      <details key="start" value="2329"/>
+      <details key="end" value="2352"/>
+      <details key="line" value="60"/>
+    </eAnnotations>
+    <eAnnotations source="positions.220" references="/0/xorGroupList/%/%.3/%.3">
+      <details key="start" value="2355"/>
+      <details key="end" value="2413"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.221" references="/0/xorGroupList/%/%.3/%.3/%">
+      <details key="start" value="2355"/>
+      <details key="end" value="2388"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.222" references="/0/xorGroupList/%/%.3/%.3/%/%">
+      <details key="start" value="2355"/>
+      <details key="end" value="2379"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.223" references="/0/xorGroupList/%/%.3/%.3/%/%/%">
+      <details key="start" value="2355"/>
+      <details key="end" value="2370"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.224" references="/0/xorGroupList/%/%.3/%.3/%/%/%/aFeature">
+      <details key="start" value="2355"/>
+      <details key="end" value="2363"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.225" references="/0/xorGroupList/%/%.3/%.3/firstFeature">
+      <details key="start" value="2400"/>
+      <details key="end" value="2412"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.226" references="/0/xorGroupList/%/firstFeature">
+      <details key="start" value="2233"/>
+      <details key="end" value="2300"/>
+      <details key="line" value="58"/>
+    </eAnnotations>
+    <eAnnotations source="positions.227" references="/0/xorGroupList/%/firstFeature/%">
+      <details key="start" value="2259"/>
+      <details key="end" value="2301"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.228" references="/0/xorGroupList/%/firstFeature/%/%">
+      <details key="start" value="2259"/>
+      <details key="end" value="2292"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.229" references="/0/xorGroupList/%/firstFeature/%/%/%">
+      <details key="start" value="2259"/>
+      <details key="end" value="2283"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.230" references="/0/xorGroupList/%/firstFeature/%/%/%/%">
+      <details key="start" value="2259"/>
+      <details key="end" value="2274"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.231" references="/0/xorGroupList/%/firstFeature/%/%/%/%/aFeature">
+      <details key="start" value="2259"/>
+      <details key="end" value="2267"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.232" references="/0/xorGroupList/aFeature">
+      <details key="start" value="2194"/>
+      <details key="end" value="2212"/>
+      <details key="line" value="57"/>
+    </eAnnotations>
+    <eAnnotations source="positions.233" references="/0/xorGroupList/%.1">
+      <details key="start" value="2219"/>
+      <details key="end" value="2225"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.234" references="/0/xorGroupList/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.235" references="/0/groupType">
+      <details key="start" value="2468"/>
+      <details key="end" value="2714"/>
+      <details key="line" value="66"/>
+    </eAnnotations>
+    <eAnnotations source="positions.236" references="/0/groupType/%">
+      <details key="start" value="2516"/>
+      <details key="end" value="2702"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.237" references="/0/groupType/%/%">
+      <details key="start" value="2553"/>
+      <details key="end" value="2631"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.238" references="/0/groupType/%/%/%">
+      <details key="start" value="2600"/>
+      <details key="end" value="2625"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.239" references="/0/groupType/%/%/%/%">
+      <details key="start" value="2617"/>
+      <details key="end" value="2620"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.240" references="/0/groupType/%/%/%/%.1">
+      <details key="start" value="2604"/>
+      <details key="end" value="2616"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.241" references="/0/groupType/%/%/%/%.1/aGroup">
+      <details key="start" value="2605"/>
+      <details key="end" value="2611"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.242" references="/0/groupType/%/%/aGroup">
+      <details key="start" value="2558"/>
+      <details key="end" value="2599"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.243" references="/0/groupType/%/%/aGroup/%">
+      <details key="start" value="2576"/>
+      <details key="end" value="2600"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.244" references="/0/groupType/%/%/aGroup/%/%">
+      <details key="start" value="2576"/>
+      <details key="end" value="2591"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.245" references="/0/groupType/%/%/aGroup/%/%/aFeature">
+      <details key="start" value="2576"/>
+      <details key="end" value="2584"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.246" references="/0/groupType/%/%.1">
+      <details key="start" value="2520"/>
+      <details key="end" value="2552"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.247" references="/0/groupType/%/%.1/%">
+      <details key="start" value="2524"/>
+      <details key="end" value="2552"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.248" references="/0/groupType/%/%.1/%/%">
+      <details key="start" value="2525"/>
+      <details key="end" value="2540"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.249" references="/0/groupType/%/%.1/%/%/aFeature">
+      <details key="start" value="2525"/>
+      <details key="end" value="2533"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.250" references="/0/groupType/%/%.2">
+      <details key="start" value="2631"/>
+      <details key="end" value="2663"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.251" references="/0/groupType/%/%.2/%">
+      <details key="start" value="2659"/>
+      <details key="end" value="2663"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.252" references="/0/groupType/%/%.2/%.1">
+      <details key="start" value="2639"/>
+      <details key="end" value="2658"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.253" references="/0/groupType/%/%.2/%.1/aFeature">
+      <details key="start" value="2640"/>
+      <details key="end" value="2648"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.254" references="/0/groupType/%/%.3">
+      <details key="start" value="2663"/>
+      <details key="end" value="2697"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.255" references="/0/groupType/%/%.3/%">
+      <details key="start" value="2692"/>
+      <details key="end" value="2697"/>
+      <details key="line" value="67"/>
+    </eAnnotations>
+    <eAnnotations source="positions.256" references="/0/groupType/%/%.3/%.1">
+      <details key="start" value="2671"/>
+      <details key="end" value="2691"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.257" references="/0/groupType/%/%.3/%.1/%">
+      <details key="start" value="2672"/>
+      <details key="end" value="2686"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.258" references="/0/groupType/%/%.3/%.1/%/aFeature">
+      <details key="start" value="2672"/>
+      <details key="end" value="2680"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.259" references="/0/groupType/%/%.3/%.1/%.1">
+      <details key="start" value="2689"/>
+      <details key="end" value="2690"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.260" references="/0/groupType/aFeature">
+      <details key="start" value="2495"/>
+      <details key="end" value="2513"/>
+      <details key="line" value="66"/>
+    </eAnnotations>
+    <eAnnotations source="positions.261" references="/0/hasANDGroup">
+      <details key="start" value="2716"/>
+      <details key="end" value="2811"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.262" references="/0/hasANDGroup/aFeature">
+      <details key="start" value="2742"/>
+      <details key="end" value="2760"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.263" references="/0/hasANDGroup/%">
+      <details key="start" value="2774"/>
+      <details key="end" value="2808"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.264" references="/0/hasANDGroup/%/%">
+      <details key="start" value="2778"/>
+      <details key="end" value="2808"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.265" references="/0/hasANDGroup/%/%/%">
+      <details key="start" value="2779"/>
+      <details key="end" value="2796"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.266" references="/0/hasANDGroup/%/%/%/aFeature">
+      <details key="start" value="2779"/>
+      <details key="end" value="2787"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.267" references="/0/hasORGroup">
+      <details key="start" value="2812"/>
+      <details key="end" value="2937"/>
+      <details key="line" value="71"/>
+    </eAnnotations>
+    <eAnnotations source="positions.268" references="/0/hasORGroup/aFeature">
+      <details key="start" value="2837"/>
+      <details key="end" value="2855"/>
+      <details key="line" value="71"/>
+    </eAnnotations>
+    <eAnnotations source="positions.269" references="/0/hasORGroup/%">
+      <details key="start" value="2869"/>
+      <details key="end" value="2934"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.270" references="/0/hasORGroup/%/%">
+      <details key="start" value="2869"/>
+      <details key="end" value="2901"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.271" references="/0/hasORGroup/%/%/%">
+      <details key="start" value="2873"/>
+      <details key="end" value="2901"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.272" references="/0/hasORGroup/%/%/%/%">
+      <details key="start" value="2874"/>
+      <details key="end" value="2889"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.273" references="/0/hasORGroup/%/%/%/%/aFeature">
+      <details key="start" value="2874"/>
+      <details key="end" value="2882"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.274" references="/0/hasORGroup/%/%.1">
+      <details key="start" value="2906"/>
+      <details key="end" value="2934"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.275" references="/0/hasORGroup/%/%.1/%">
+      <details key="start" value="2906"/>
+      <details key="end" value="2930"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.276" references="/0/hasORGroup/%/%.1/%/%">
+      <details key="start" value="2906"/>
+      <details key="end" value="2921"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.277" references="/0/hasORGroup/%/%.1/%/%/aFeature">
+      <details key="start" value="2906"/>
+      <details key="end" value="2914"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.278" references="/0/hasXORGroup">
+      <details key="start" value="2938"/>
+      <details key="end" value="3065"/>
+      <details key="line" value="72"/>
+    </eAnnotations>
+    <eAnnotations source="positions.279" references="/0/hasXORGroup/aFeature">
+      <details key="start" value="2964"/>
+      <details key="end" value="2982"/>
+      <details key="line" value="72"/>
+    </eAnnotations>
+    <eAnnotations source="positions.280" references="/0/hasXORGroup/%">
+      <details key="start" value="2996"/>
+      <details key="end" value="3062"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.281" references="/0/hasXORGroup/%/%">
+      <details key="start" value="2996"/>
+      <details key="end" value="3028"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.282" references="/0/hasXORGroup/%/%/%">
+      <details key="start" value="3000"/>
+      <details key="end" value="3028"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.283" references="/0/hasXORGroup/%/%/%/%">
+      <details key="start" value="3001"/>
+      <details key="end" value="3016"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.284" references="/0/hasXORGroup/%/%/%/%/aFeature">
+      <details key="start" value="3001"/>
+      <details key="end" value="3009"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.285" references="/0/hasXORGroup/%/%.1">
+      <details key="start" value="3033"/>
+      <details key="end" value="3062"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.286" references="/0/hasXORGroup/%/%.1/%">
+      <details key="start" value="3033"/>
+      <details key="end" value="3057"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.287" references="/0/hasXORGroup/%/%.1/%/%">
+      <details key="start" value="3033"/>
+      <details key="end" value="3048"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.288" references="/0/hasXORGroup/%/%.1/%/%/aFeature">
+      <details key="start" value="3033"/>
+      <details key="end" value="3041"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.289" references="/0/hasMultipleMultiplicity">
+      <details key="start" value="3066"/>
+      <details key="end" value="3157"/>
+      <details key="line" value="73"/>
+    </eAnnotations>
+    <eAnnotations source="positions.290" references="/0/hasMultipleMultiplicity/aFeature">
+      <details key="start" value="3104"/>
+      <details key="end" value="3122"/>
+      <details key="line" value="73"/>
+    </eAnnotations>
+    <eAnnotations source="positions.291" references="/0/hasMultipleMultiplicity/%">
+      <details key="start" value="3136"/>
+      <details key="end" value="3154"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.292" references="/0/hasMultipleMultiplicity/%/%">
+      <details key="start" value="3136"/>
+      <details key="end" value="3150"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.293" references="/0/hasMultipleMultiplicity/%/%/aFeature">
+      <details key="start" value="3136"/>
+      <details key="end" value="3144"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.294" references="/0/hasMultipleMultiplicity/%/%.1">
+      <details key="start" value="3153"/>
+      <details key="end" value="3154"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.295" references="/0/hasChildren">
+      <details key="start" value="3158"/>
+      <details key="end" value="3289"/>
+      <details key="line" value="74"/>
+    </eAnnotations>
+    <eAnnotations source="positions.296" references="/0/hasChildren/aFeature">
+      <details key="start" value="3184"/>
+      <details key="end" value="3202"/>
+      <details key="line" value="74"/>
+    </eAnnotations>
+    <eAnnotations source="positions.297" references="/0/hasChildren/%">
+      <details key="start" value="3216"/>
+      <details key="end" value="3286"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.298" references="/0/hasChildren/%/%">
+      <details key="start" value="3216"/>
+      <details key="end" value="3250"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.299" references="/0/hasChildren/%/%/%">
+      <details key="start" value="3220"/>
+      <details key="end" value="3250"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.300" references="/0/hasChildren/%/%/%/%">
+      <details key="start" value="3221"/>
+      <details key="end" value="3238"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.301" references="/0/hasChildren/%/%/%/%/aFeature">
+      <details key="start" value="3221"/>
+      <details key="end" value="3229"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.302" references="/0/hasChildren/%/%.1">
+      <details key="start" value="3254"/>
+      <details key="end" value="3286"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.303" references="/0/hasChildren/%/%.1/%">
+      <details key="start" value="3258"/>
+      <details key="end" value="3286"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.304" references="/0/hasChildren/%/%.1/%/%">
+      <details key="start" value="3259"/>
+      <details key="end" value="3274"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.305" references="/0/hasChildren/%/%.1/%/%/aFeature">
+      <details key="start" value="3259"/>
+      <details key="end" value="3267"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.306" references="/0/hasOptionalChildren">
+      <details key="start" value="3290"/>
+      <details key="end" value="3412"/>
+      <details key="line" value="75"/>
+    </eAnnotations>
+    <eAnnotations source="positions.307" references="/0/hasOptionalChildren/aFeature">
+      <details key="start" value="3324"/>
+      <details key="end" value="3342"/>
+      <details key="line" value="75"/>
+    </eAnnotations>
+    <eAnnotations source="positions.308" references="/0/hasOptionalChildren/%">
+      <details key="start" value="3356"/>
+      <details key="end" value="3409"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.309" references="/0/hasOptionalChildren/%/%">
+      <details key="start" value="3360"/>
+      <details key="end" value="3409"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.310" references="/0/hasOptionalChildren/%/%/select">
+      <details key="start" value="3361"/>
+      <details key="end" value="3397"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.311" references="/0/hasOptionalChildren/%/%/select/%">
+      <details key="start" value="3361"/>
+      <details key="end" value="3378"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.312" references="/0/hasOptionalChildren/%/%/select/%/aFeature">
+      <details key="start" value="3361"/>
+      <details key="end" value="3369"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.313" references="/0/hasOptionalChildren/%/%/select/%.1">
+      <details key="start" value="3387"/>
+      <details key="end" value="3396"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.314" references="/0/hasOptionalChildren/%/%/select/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.315" references="/0/hasOptionalChildren/%/%/select/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

@@ -23,6 +23,8 @@
 
 package eu.supersede.dynadapt.featuremodel.fm;
 
+import java.io.IOException;
+
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 
 import cz.zcu.yafmt.model.fm.FeatureModel;
@@ -35,9 +37,9 @@ public class FeatureModelDAO implements IFeatureModelDAO {
 	}
 	
 	@Override
-	public FeatureModel loadFeatureModel(String featureModelPath) {
+	public FeatureModel loadFeatureModel(String featureModelPath) throws IOException {
 		new StandaloneSetup().setPlatformUri("../");
-		return (new ModelManager()).loadFeatureModel(featureModelPath);
+		return (new ModelManager(false)).loadFeatureModel(featureModelPath);
 	}
 
 }

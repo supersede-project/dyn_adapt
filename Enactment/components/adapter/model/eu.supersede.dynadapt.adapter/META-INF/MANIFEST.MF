@@ -1,11 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Adapter
-Bundle-SymbolicName: eu.supersede.monitor.reconfiguration.adapter
+Bundle-SymbolicName: eu.supersede.dynadapt.adapter;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: adapter.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Bundle-ClassPath: lib/log4j-1.2.17.jar,
+ .
+Export-Package: eu.supersede.dynadapt.adapter,
+ eu.supersede.dynadapt.usecases.patterns,
+ eu.supersede.dynadapt.usecases.patterns.util
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.11.1",
  org.eclipse.emf.ecore;bundle-version="2.11.2",
  org.eclipse.viatra.query.runtime;bundle-version="1.2.1",
@@ -13,16 +16,14 @@ Require-Bundle: org.eclipse.ui,
  eu.supersede.dynadapt.modelrepository;bundle-version="1.0.0",
  eu.supersede.dynadapt.aom.dsl.parser;bundle-version="1.0.0",
  eu.supersede.dynadapt.aom.dsl;bundle-version="1.0.0",
- eu.supersede.dynadapt.featuremodel;bundle-version="1.0.0"
+ eu.supersede.dynadapt.model;bundle-version="1.0.0",
+ cz.zcu.yafmt.model;bundle-version="0.3.0",
+ org.eclipse.uml2.uml;bundle-version="5.1.2",
+ eu.supersede.dynadapt.featuremodel;bundle-version="1.0.0",
+ org.eclipse.emf.mwe.utils;bundle-version="1.3.20",
+ eu.supersede.dynadapt.enactor.EnactorFactory;bundle-version="1.0.0",
+ eu.supersede.dynadapt.enactor.Enactor,
+ com.google.guava;bundle-version="15.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ActivationPolicy: lazy
-Import-Package: cz.zcu.yafmt.model.fm,
- eu.supersede.dynadapt.dsl.aspect,
- eu.supersede.dynadapt.dsl.parser.antlr,
- eu.supersede.dynadapt.dsl.ui.contentassist.antlr,
- org.eclipse.emf.mwe.utils,
- org.eclipse.uml2.uml,
- org.eclipse.uml2.uml.resources.util,
- org.eclipse.viatra.query.patternlanguage.patternLanguage,
- org.eclipse.viatra.query.runtime.exception,
+Import-Package: org.eclipse.viatra.query.patternlanguage.patternLanguage,
  org.junit;version="4.12.0"

@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
+<<<<<<< HEAD
 import java.sql.Timestamp;
 
 public class AdaptabilityModel extends IModel {
@@ -56,17 +57,17 @@ public class AdaptabilityModel extends IModel {
 	public void setSystemId(String systemId) {
 		this.systemId = systemId;
 	}
+=======
+public class AdaptabilityModel extends GenericModel {
+	
+	private String featureId;
+
+>>>>>>> multimodel-saver-loader
 	public String getFeatureId() {
 		return featureId;
 	}
 	public void setFeatureId(String featureId) {
 		this.featureId = featureId;
-	}
-	public String getModelContent() {
-		return modelContent;
-	}
-	public void setModelContent(String modelContent) {
-		this.modelContent = modelContent;
 	}
 
 }

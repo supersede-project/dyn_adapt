@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns.util;
 
 import eu.supersede.dynadapt.usecases.atos.patterns.CMSInstancesMatch;

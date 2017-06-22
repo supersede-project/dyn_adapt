@@ -20,15 +20,103 @@
 package eu.supersede.dynadapt.dm.optimizer.gp;
 
 public class Parameters {
+	// tenant
+	public enum Tenants{
+		ATOS, SIEMENS, SENERCON
+	}
 	
-	public static String INPUT_DIR = "input/refsq17/monitoring/feedbackreconfig/";
-	public static String OUTPUT_DIR = "output/refsq17/monitoring/feedbackreconfig/";
+	public enum Applications{
+		DYNAMIC_ADAPTATION, MONITORING, FEEDBACK_GATHERING
+	}
 	
-	// feature model parameters
-	public static String GRAMMAR_FILE = INPUT_DIR + "grammar/FeedbackGatheringConfig.bnf";
-	public static String FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
-	public static String CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
-	public static String ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+	public static Applications APPLICATION = Applications.DYNAMIC_ADAPTATION;
+	public static Tenants TENANT = Tenants.ATOS;
+	
+	private static String ATOS_INPUT_DIR = "input/atos_hsk/";
+	private static String ATOS_OUTPUT_DIR = "output/atos/";
+	private static String SIEMENS_INPUT_DIR = "serialization/siemens/";
+	private static String SIEMENS_OUTPUT_DIR = "output/siemens/";
+	
+	private static String FEEDBACK_INPUT_DIR = "input/refsq17/monitoring/feedbackreconfig/";
+	private static String FEEDBACK_OUTPUT_DIR = "output/refsq17/monitoring/feedbackreconfig/";
+	
+	
+	public static String INPUT_DIR = ATOS_INPUT_DIR;
+	public static String OUTPUT_DIR = ATOS_OUTPUT_DIR;  
+	
+	// feature model parameters - these values are for the ATOS HSK scenario (for testing purposes), they need to be changed in case another scenario is being tested
+	public static String GRAMMAR_FILE = INPUT_DIR + "SmartPlatformFM.bnf";
+	public static String FEATURE_ATTRIBUTE_PATH = INPUT_DIR;
+	public static String CURRENT_CONFIGURATION = INPUT_DIR + "SmartPlatformFC_HSK_LowLoad.conf";
+	public static String ATTRIBUTE_METADATA = INPUT_DIR + "SmartPlatformFM.json";
+	
+//	static{
+//		switch (APPLICATION){
+//		case DYNAMIC_ADAPTATION:
+//			switch (TENANT){
+//			case ATOS:
+//				INPUT_DIR = ATOS_INPUT_DIR;
+//				OUTPUT_DIR = ATOS_OUTPUT_DIR;
+//				
+//				GRAMMAR_FILE = INPUT_DIR + "SmartPlatformFM.bnf";
+//				FEATURE_ATTRIBUTE_PATH = INPUT_DIR; // + "attribute_values/";
+//				CURRENT_CONFIGURATION = INPUT_DIR + "SmartPlatformFC_HSK_LowLoad.conf";
+//				ATTRIBUTE_METADATA = INPUT_DIR + "SmartPlatformFM.json";
+//				
+//				break;
+//			case SIEMENS:
+//				INPUT_DIR = SIEMENS_INPUT_DIR;
+//				OUTPUT_DIR = SIEMENS_OUTPUT_DIR;
+//				
+//				GRAMMAR_FILE = INPUT_DIR + "FeatureModel.bnf";
+//				FEATURE_ATTRIBUTE_PATH = INPUT_DIR; // + "attribute_values/";
+//				CURRENT_CONFIGURATION = INPUT_DIR + "FeatureModel-S1c_dm.conf";
+//				ATTRIBUTE_METADATA = INPUT_DIR + "FeatureModel.json";
+//				
+//				break;
+//			}
+//			break;
+//			
+//		case FEEDBACK_GATHERING: //TODO: Create a directory different for tenance 
+//			switch (TENANT){
+//			case ATOS:
+//				INPUT_DIR = FEEDBACK_INPUT_DIR;
+//				OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
+//				
+//				GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
+//				FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+//				CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+//				ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+//				
+//				break;
+//			case SIEMENS:
+//				INPUT_DIR = FEEDBACK_INPUT_DIR;
+//				OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
+//				
+//				GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
+//				FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+//				CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+//				ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+//				
+//				break;
+//			case SENERCON:
+//				INPUT_DIR = FEEDBACK_INPUT_DIR;
+//				OUTPUT_DIR = FEEDBACK_OUTPUT_DIR;
+//				
+//				GRAMMAR_FILE = INPUT_DIR + "/grammar/FeedbackGatheringConfig.bnf";
+//				FEATURE_ATTRIBUTE_PATH = INPUT_DIR + "attribute_values/";
+//				CURRENT_CONFIGURATION = INPUT_DIR + "current.conf";
+//				ATTRIBUTE_METADATA = INPUT_DIR + "attribute.metadata.json";
+//				
+//				break;
+//			}
+//			
+//			break;
+//		case MONITORING: //TODO: Complete for monitoring 
+//			break;
+//		}
+//	}
+	
 	
 	
 	// Metaheuristic algorithm parameters
@@ -36,9 +124,11 @@ public class Parameters {
 	public static Long RANDOM_SEED = null;
 	public static int TOURNAMENT_SIZE = 2;
 	public static int ELITE = 1;
-	public static int POPULATION_SIZE = 10;
+	public static int POPULATION_SIZE = 4;
 	public static double MUTATION_RATE = 0.2;
 	public static double CROSSOVER_RATE = 0.8;
+	
+	public static int MAX_DUPLICATE_TRIALS = 10;
 	
 	public enum BudgetType{
 		MAX_TIME, MAX_FITNESS
@@ -49,7 +139,24 @@ public class Parameters {
 	public static int NUM_OBJECTIVES = 2;
 	public static int NUM_CONSTRAINTS = 1;
 
-	public static double CONSTRAINT_THRESHOLD = 10;
+	public static double CONSTRAINT_THRESHOLD = 20; //Average Response Time
+//	public static double SOFT_CONSTRAINT_THRESHOLD = 4;
+//	public static double CONSTRAINT_VIOLATION_PENALTY = 20; //CONSTRAINT_THRESHOLD;
+	
+	public static String ALERT_ATTRIBUTE = "response_time";
+//	public static double CONSTRAINT_THRESHOLD_SIEMENS = 0.15;
+	
+//	public static String ALERT_ATTRIBUTE_FEEDBACK = "response_time";
+//	public static double CONSTRAINT_THRESHOLD_FEEDBACK = 0.95;
+	
+	
+	// parameters specific to ATOS HSK Scenario
+	public static double ATOS_HSK_CONST1 = 648; //10;
+	public static double ATOS_HSK_CONST2 = 322; //1.5;
+	public static double ATOS_HSK_CONST3 = 0.001; //500; //0;
+	public static double ATOS_HSK_CONST4 = 0.1; //500; //1.5;
+	public static double ATOS_HSK_CONST5 = 0.0025; //1;
+	public static double ATOS_HSK_CONST6 = 0.002; //1000;
 	
 	public void loadFromFile(String parametersFile){
 		

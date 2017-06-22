@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeatureModel" version="1.0.0" description="Supersede feature model">
+  <rootFeature id="service_management" name="Service_management" lower="1" upper="1">
+    <feature id="service_compositions" name="Service_Compositions" lower="1" upper="1">
+      <group lower="1" upper="1">
+        <feature id="f_2400930722" name="SC3" lower="0" upper="1">
+          <attribute id="a_10990017152" name="characteristics" type="string" defaultValue="C6"/>
+          <feature id="f_6363041793" name="SI3" lower="0" upper="1">
+            <attribute id="a_21175369743" name="name" type="string"/>
+            <attribute id="a_15192136983" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice3"/>
+            <attribute id="a_805206343" name="type" type="string" defaultValue="Format conversion"/>
+          </feature>
+          <feature id="f_6363041794" name="SI4" lower="0" upper="1">
+            <attribute id="a_21175369744" name="name" type="string"/>
+            <attribute id="a_15192136984" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice4"/>
+            <attribute id="a_805206344" name="type" type="string" defaultValue="Data quality evaluation"/>
+          </feature>
+          <feature id="f_6363041795" name="SI5" lower="0" upper="1">
+            <attribute id="a_21175369745" name="name" type="string"/>
+            <attribute id="a_15192136985" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice5"/>
+            <attribute id="a_805206345" name="type" type="string" defaultValue="Format conversion"/>
+          </feature>
+        </feature>
+        <feature id="f_2400930726" name="SC4" lower="0" upper="1">
+          <attribute id="a_10990017156" name="characteristics" type="string" defaultValue="C8"/>
+          <feature id="f_6363041796" name="SI3" lower="0" upper="1">
+            <attribute id="a_21175369746" name="name" type="string"/>
+            <attribute id="a_15192136986" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice3"/>
+            <attribute id="a_805206346" name="type" type="string"/>
+          </feature>
+        </feature>
+        <feature id="f_2400930721" name="SC2" lower="0" upper="1">
+          <attribute id="a_10990017151" name="characteristics" type="string" defaultValue="C7"/>
+          <feature id="f_6363041791" name="SI2" lower="0" upper="1">
+            <attribute id="a_21175369741" name="name" type="string"/>
+            <attribute id="a_15192136981" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice2"/>
+            <attribute id="a_805206341" name="type" type="string" defaultValue="Meteorology"/>
+          </feature>
+          <feature id="f_6363041792" name="SI5" lower="0" upper="1">
+            <attribute id="a_21175369742" name="name" type="string"/>
+            <attribute id="a_15192136982" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice5"/>
+            <attribute id="a_805206342" name="type" type="string" defaultValue="Format conversion"/>
+          </feature>
+        </feature>
+        <feature id="f_240093072" name="SC1" lower="0" upper="1">
+          <attribute id="a_1099001715" name="characteristics" type="string" defaultValue="C6"/>
+          <feature id="f_636304179" name="SI1" lower="0" upper="1">
+            <attribute id="a_2117536974" name="name" type="string"/>
+            <attribute id="a_1519213698" name="endpoint" type="string" defaultValue="http://localhost:8080/foo/mywebservice1"/>
+            <attribute id="a_80520634" name="type" type="string" defaultValue="Meteorology"/>
+          </feature>
+        </feature>
+      </group>
+    </feature>
+    <feature id="service_characteristics" name="Service_characteristics" lower="1" upper="-1">
+      <group lower="1" upper="-1">
+        <feature id="c1" name="C1" lower="0" upper="1">
+          <attribute id="a_2028453997" name="availability" type="double" defaultValue="0.95"/>
+          <attribute id="a_1234415761" name="response time" type="double" defaultValue="0.1"/>
+          <attribute id="a_380800399" name="price" type="double" defaultValue="0.5"/>
+          <attribute id="a_739079409" name="output format" type="string" defaultValue="F1"/>
+          <attribute id="a_215210148" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_1119853421" name="data quality" type="boolean" defaultValue="yes"/>
+        </feature>
+        <feature id="c2" name="C2" lower="0" upper="1">
+          <attribute id="a_20284539971" name="availability" type="double" defaultValue="0.90"/>
+          <attribute id="a_12344157611" name="response time" type="double" defaultValue="0.05"/>
+          <attribute id="a_3808003991" name="price" type="double" defaultValue="0.4"/>
+          <attribute id="a_7390794091" name="output format" type="string" defaultValue="F2"/>
+          <attribute id="a_2152101481" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534211" name="data quality" type="boolean" defaultValue="yes"/>
+        </feature>
+        <feature id="c3" name="C3" lower="0" upper="1">
+          <attribute id="a_20284539972" name="availability" type="double" defaultValue="0.99"/>
+          <attribute id="a_12344157612" name="response time" type="double" defaultValue="0.1"/>
+          <attribute id="a_3808003992" name="price" type="double" defaultValue="0.06"/>
+          <attribute id="a_7390794092" name="output format" type="string" defaultValue="F3"/>
+          <attribute id="a_2152101482" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534212" name="data quality" type="boolean" defaultValue="no"/>
+        </feature>
+        <feature id="c4" name="C4" lower="0" upper="1">
+          <attribute id="a_20284539973" name="availability" type="double" defaultValue="0.99"/>
+          <attribute id="a_12344157613" name="response time" type="double" defaultValue="0.01"/>
+          <attribute id="a_3808003993" name="price" type="double" defaultValue="0.05"/>
+          <attribute id="a_7390794093" name="output format" type="string" defaultValue="F3"/>
+          <attribute id="a_2152101483" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534213" name="data quality" type="boolean" defaultValue="yes"/>
+        </feature>
+        <feature id="c5" name="C5" lower="0" upper="1">
+          <attribute id="a_20284539974" name="availability" type="double" defaultValue="0.99"/>
+          <attribute id="a_12344157614" name="response time" type="double" defaultValue="0.02"/>
+          <attribute id="a_3808003994" name="price" type="double" defaultValue="0.05"/>
+          <attribute id="a_7390794094" name="output format" type="string" defaultValue="F1"/>
+          <attribute id="a_2152101484" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534214" name="data quality" type="boolean" defaultValue="no"/>
+        </feature>
+        <feature id="c6" name="C6" lower="0" upper="1">
+          <attribute id="a_20284539975" name="availability" type="double" defaultValue="0.90"/>
+          <attribute id="a_12344157615" name="response time" type="double" defaultValue="0.05"/>
+          <attribute id="a_3808003995" name="price" type="double" defaultValue="0.15"/>
+          <attribute id="a_7390794095" name="output format" type="string" defaultValue="F1"/>
+          <attribute id="a_2152101485" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534215" name="data quality" type="boolean" defaultValue="yes"/>
+        </feature>
+        <feature id="c7" name="C7" lower="0" upper="1">
+          <attribute id="a_20284539976" name="availability" type="double" defaultValue="0.95"/>
+          <attribute id="a_12344157616" name="response time" type="double"/>
+          <attribute id="a_3808003996" name="price" type="double"/>
+          <attribute id="a_7390794096" name="output format" type="string" defaultValue="F1"/>
+          <attribute id="a_2152101486" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534216" name="data quality" type="boolean" defaultValue="yes"/>
+        </feature>
+        <feature id="c8" name="C8" lower="0" upper="1">
+          <attribute id="a_20284539977" name="availability" type="double" defaultValue="0.99"/>
+          <attribute id="a_12344157617" name="response time" type="double"/>
+          <attribute id="a_3808003997" name="price" type="double"/>
+          <attribute id="a_7390794097" name="output format" type="string" defaultValue="F3"/>
+          <attribute id="a_2152101487" name="input format" type="string" defaultValue=""/>
+          <attribute id="a_11198534217" name="data quality" type="boolean" defaultValue="no"/>
+        </feature>
+      </group>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

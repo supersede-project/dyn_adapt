@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns.util;
 
 import com.google.common.collect.Sets;
@@ -13,12 +16,16 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -54,6 +61,11 @@ public final class InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpe
   }
   
   @Override
+  public InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher instantiate() throws ViatraQueryException {
+    return InstanceSpecificationsAsManifestationsOfNodeArtifactsMatcher.create();
+  }
+  
+  @Override
   public InstanceSpecificationsAsManifestationsOfNodeArtifactsMatch newEmptyMatch() {
     return InstanceSpecificationsAsManifestationsOfNodeArtifactsMatch.newEmptyMatch();
   }
@@ -85,12 +97,18 @@ public final class InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpe
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternalSneaky();
-      return null;					
+      return null;
     }
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    
+    private final PParameter parameter_pArtifact = new PParameter("artifact", "org.eclipse.uml2.uml.Artifact", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pInstance = new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pArtifact, parameter_pInstance);
     
     @Override
     public String getFullyQualifiedName() {
@@ -104,14 +122,12 @@ public final class InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpe
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("artifact", "org.eclipse.uml2.uml.Artifact", null),
-      			 new PParameter("instance", "org.eclipse.uml2.uml.InstanceSpecification", null)
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -119,8 +135,8 @@ public final class InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpe
       		PVariable var_artifact = body.getOrCreateVariableByName("artifact");
       		PVariable var_instance = body.getOrCreateVariableByName("instance");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_artifact, "artifact"),
-      		   new ExportedParameter(body, var_instance, "instance")
+      		   new ExportedParameter(body, var_artifact, parameter_pArtifact),
+      		   new ExportedParameter(body, var_instance, parameter_pInstance)
       		));
       		// 	find artifactManifestations(artifact, instance)
       		new PositivePatternCall(body, new FlatTuple(var_artifact, var_instance), ArtifactManifestationsQuerySpecification.instance().getInternalQueryRepresentation());

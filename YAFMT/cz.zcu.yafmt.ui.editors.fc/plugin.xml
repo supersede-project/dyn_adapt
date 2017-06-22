@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="cz.zcu.yafmt.ui.editors.fc.FeatureConfigurationEditor"
+            contributorClass="cz.zcu.yafmt.ui.editors.fc.FeatureConfigurationEditorActionBarContributor"
+            extensions="yafc"
+            icon="icons/fc-file.png"
+            id="cz.zcu.yafmt.ui.editors.fc.FeatureConfigurationEditor"
+            name="Feature Configuration Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="cz.zcu.yafmt.ui.wizards"
+            name="YAFMT">
+      </category>
+      <wizard
+            category="cz.zcu.yafmt.ui.wizards"
+            class="cz.zcu.yafmt.ui.editors.fc.wizards.NewFeatureConfigurationWizard"
+            icon="icons/fc-file-new.png"
+            id="cz.zcu.yafmt.ui.editors.fc.wizards.NewFeatureConfigurationWizard"
+            name="New Feature Configuration">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="cz.zcu.yafmt.ui.editors.fc.actions.SelectFeaturesAction"
+            name="Select Features">
+      </command>
+      <command
+            id="cz.zcu.yafmt.ui.editors.fc.actions.DeselectFeaturesAction"
+            name="Deselect Features">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fc.actions.SelectFeaturesAction"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+S">
+      </key>
+      <key
+            commandId="cz.zcu.yafmt.ui.editors.fc.actions.DeselectFeaturesAction"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ALT+D">
+      </key>
+   </extension>
+
+</plugin>

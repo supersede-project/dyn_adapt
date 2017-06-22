@@ -1,0 +1,80 @@
+2017-03-31 08:43:28 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.openTopicConnection(46) - Open topic connection with Message Broker
+2017-03-31 08:43:29 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(52) - Publishing on the Topic analysis.event.dm.adaptation.topic
+2017-03-31 08:43:29 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(57) - Publishing message Body:
+{"id":"id1490942608896","applicationId":"feedback","timestamp":1481717773760,"tenant":"atos","conditions":[{"idMonitoredData":{"nameComponent":"Tool","nameQualityMonitored":"response_time"},"operator":"GEq","value":10.0}]}
+JMS Correlation ID: null
+JMS timestamp: 1490942609206
+JMS expiration: 0
+JMS priority: 4
+JMS delivery mode: 2
+JMS reply to: null
+JMS Redelivered: false
+JMS Destination: topic://amq.topic/analysis.event.dm.adaptation.topic/?routingkey='analysis.event.dm.adaptation.topic'&exclusive='true'&autodelete='true'
+JMS Type: null
+JMS MessageID: ID:818b46a3-1a7b-304f-bd33-29531d3b2eeb
+JMS Content-Type: text/plain
+AMQ message number: -1
+Properties:
+	JMS_QPID_DESTTYPE = 2
+
+2017-03-31 08:43:29 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.closeTopicConnection(65) - Close topic connection with Message Broker
+2017-03-31 08:50:22 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.openTopicConnection(46) - Open topic connection with Message Broker
+2017-03-31 08:50:23 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(52) - Publishing on the Topic analysis.event.dm.adaptation.topic
+2017-03-31 08:50:23 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(57) - Publishing message Body:
+{"id":"id1490943023026","applicationId":"feedback","timestamp":1481717773760,"tenant":"atos","conditions":[{"idMonitoredData":{"nameComponent":"Tool","nameQualityMonitored":"response_time"},"operator":"GEq","value":10.0}]}
+JMS Correlation ID: null
+JMS timestamp: 1490943023200
+JMS expiration: 0
+JMS priority: 4
+JMS delivery mode: 2
+JMS reply to: null
+JMS Redelivered: false
+JMS Destination: topic://amq.topic/analysis.event.dm.adaptation.topic/?routingkey='analysis.event.dm.adaptation.topic'&exclusive='true'&autodelete='true'
+JMS Type: null
+JMS MessageID: ID:cadaeccb-8322-326d-9aa6-17a1ff12a6a2
+JMS Content-Type: text/plain
+AMQ message number: -1
+Properties:
+	JMS_QPID_DESTTYPE = 2
+
+2017-03-31 08:50:23 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.closeTopicConnection(65) - Close topic connection with Message Broker
+2017-03-31 09:49:26 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.openTopicConnection(46) - Open topic connection with Message Broker
+2017-03-31 09:49:26 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(52) - Publishing on the Topic analysis.event.dm.adaptation.topic
+2017-03-31 09:49:26 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(57) - Publishing message Body:
+{"id":"id1490946566135","applicationId":"feedback","timestamp":1481717773760,"tenant":"atos","conditions":[{"idMonitoredData":{"nameComponent":"Tool","nameQualityMonitored":"response_time"},"operator":"GEq","value":10.0}]}
+JMS Correlation ID: null
+JMS timestamp: 1490946566344
+JMS expiration: 0
+JMS priority: 4
+JMS delivery mode: 2
+JMS reply to: null
+JMS Redelivered: false
+JMS Destination: topic://amq.topic/analysis.event.dm.adaptation.topic/?routingkey='analysis.event.dm.adaptation.topic'&exclusive='true'&autodelete='true'
+JMS Type: null
+JMS MessageID: ID:c4a2caba-4cd0-3cbc-a326-65598aaeb284
+JMS Content-Type: text/plain
+AMQ message number: -1
+Properties:
+	JMS_QPID_DESTTYPE = 2
+
+2017-03-31 09:49:26 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.closeTopicConnection(65) - Close topic connection with Message Broker
+2017-03-31 10:34:12 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.openTopicConnection(46) - Open topic connection with Message Broker
+2017-03-31 10:34:13 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(52) - Publishing on the Topic analysis.event.dm.adaptation.topic
+2017-03-31 10:34:13 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.publishTextMesssageInTopic(57) - Publishing message Body:
+{"id":"id1490949252982","applicationId":"feedback","timestamp":1481717773760,"tenant":"atos","conditions":[{"idMonitoredData":{"nameComponent":"Tool","nameQualityMonitored":"response_time"},"operator":"GEq","value":10.0}]}
+JMS Correlation ID: null
+JMS timestamp: 1490949253199
+JMS expiration: 0
+JMS priority: 4
+JMS delivery mode: 2
+JMS reply to: null
+JMS Redelivered: false
+JMS Destination: topic://amq.topic/analysis.event.dm.adaptation.topic/?routingkey='analysis.event.dm.adaptation.topic'&exclusive='true'&autodelete='true'
+JMS Type: null
+JMS MessageID: ID:3186a528-4387-35c7-ad48-c6d1209d47cd
+JMS Content-Type: text/plain
+AMQ message number: -1
+Properties:
+	JMS_QPID_DESTTYPE = 2
+
+2017-03-31 10:34:13 [main] DEBUG e.s.i.api.pubsub.TopicPublisher.closeTopicConnection(65) - Close topic connection with Message Broker

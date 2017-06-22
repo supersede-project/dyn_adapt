@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -37,7 +37,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
-import eu.supersede.dynadapt.dm.optimizer.gp.fitness.SingleObjectiveFitnessFunction;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata.Aggregators;
 
 public class ConfigurationLoader {
@@ -81,6 +80,8 @@ public class ConfigurationLoader {
 			Map<String, Object> map = jsonObject.toMap();
 			for (Entry<String, Object> entry : map.entrySet()){
 				String attributeName = entry.getKey();
+				// trim away the namespace prefix from the attribute name
+				attributeName = attributeName.substring(attributeName.lastIndexOf(".")+1);
 				
 				Map<Object, Object> valueMap = (Map<Object, Object>)entry.getValue();
 
@@ -131,11 +132,12 @@ public class ConfigurationLoader {
 			try {
 				attributes.load(new FileReader(configurationPath + File.separator + feature + ".properties"));
 				// save in cache
-				featureAttributes.put(feature, attributes);
+//				featureAttributes.put(feature, attributes);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println("probably the feature: " + feature + " does not have quality attributes associated.");
+//				e.printStackTrace();
 			}
+			featureAttributes.put(feature, attributes);
 		}
 		return attributes;
 	}

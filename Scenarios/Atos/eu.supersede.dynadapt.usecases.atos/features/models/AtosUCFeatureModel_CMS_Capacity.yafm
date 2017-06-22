@@ -10,7 +10,7 @@
                 <attribute id="duration" name="memory_threshold" type="double" description="" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="50" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
                   <comment>unit=percentage</comment>
                 </attribute>
-                <attribute id="a_1342994313" name="cpu_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="50" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <attribute id="a_1342994313" name="cpu_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="50" weight="1.0" minimize="true" objectiveFunctionAggregator="max" alert="true">
                   <comment>unit=percentage</comment>
                 </attribute>
                 <attribute id="a_1266231972" name="service" type="string"/>
@@ -19,7 +19,7 @@
                 <attribute id="a_1817185456" name="memory_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="50" maxRangeValue="80" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
                   <comment>unit=percentage</comment>
                 </attribute>
-                <attribute id="a_1010072638" name="cpu_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="50" maxRangeValue="75" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <attribute id="a_1010072638" name="cpu_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="50" maxRangeValue="75" weight="1.0" minimize="true" objectiveFunctionAggregator="max" alert="true">
                   <comment>unit=percentage</comment>
                 </attribute>
                 <attribute id="a_395850680" name="service" type="string"/>
@@ -28,7 +28,7 @@
                 <attribute id="a_604995701" name="memory_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="80" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
                   <comment>unit=percentage</comment>
                 </attribute>
-                <attribute id="a_738944109" name="cpu_threshold" type="integer" qualityAttribute="true" defaultValue="" minRangeValue="75" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <attribute id="a_738944109" name="cpu_threshold" type="integer" qualityAttribute="true" defaultValue="" minRangeValue="75" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max" alert="true">
                   <comment>unit=percentage</comment>
                 </attribute>
                 <attribute id="a_1362481689" name="service" type="string"/>
@@ -74,7 +74,7 @@
               <attribute id="a_942174481" name="cpu_overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
                 <comment>unit=percentage</comment>
               </attribute>
-              <attribute id="a_1040542835" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+              <attribute id="a_1040542835" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max" alert="true">
                 <comment>unit=celsius degrees</comment>
               </attribute>
               <attribute id="a_985459650" name="bandwith" type="double" description="" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">

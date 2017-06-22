@@ -74,6 +74,7 @@ public class ModelRepositoryControllerTest {
      * the \"\ character properly by changing it to \'\
      * @throws Exception
      */
+<<<<<<< HEAD
     @Test
     public void createAndGetBaseModel() throws Exception {
     	File f = new File("");
@@ -105,11 +106,44 @@ public class ModelRepositoryControllerTest {
 				.andExpect(status().isCreated());
     }
     
+=======
+>>>>>>> multimodel-saver-loader
     /*@Test
+    public void createAndGetBaseModel() throws Exception {
+    	File f = new File("");
+		List<String> lines = Files.readAllLines(Paths.get(f.getAbsolutePath() + "/src/test/java/eu/supersede/dynadapt/modelrepository/manager/service/MonitoringSystemBaseModel.uml"), StandardCharsets.UTF_8);
+		String content = "";
+		for (String s : lines) content += s + "\n";
+		content = content.replace("\"","'");
+		
+		JsonArray array = new JsonArray();
+		JsonObject model = new JsonObject();
+		model.addProperty("name", "googleplay_api_googleplay_tool");
+        model.addProperty("authorId", "service-test");
+        model.addProperty("creationDate", "2016-10-13 12:54:21.0");
+        model.addProperty("lastModificationDate", "2016-10-20 16:22:01.0");
+        model.addProperty("fileExtension", ".aspect");
+        model.addProperty("systemId", "MonitoringReconfiguration");
+        model.addProperty("featureId", "GooglePlay");
+        model.addProperty("modelContent", content);
+        array.add(model);
+        
+		JsonObject json = new JsonObject();
+		json.addProperty("sender", "Adapter");
+		json.addProperty("timeStamp", "2016-10-20T20:10:30:201");
+		json.add("modelInstances", array);
+		
+		mockMvc.perform(post("/models/AdaptabilityModel")
+				.content(json.toString())
+				.contentType(contentType))
+				.andExpect(status().isCreated());
+    }*/
+    
+    @Test
     public void listModels() throws Exception {
     	mockMvc.perform(get("/models/AdaptabilityModel"))
     			.andExpect(status().isOk());
-    }*/
+    }
     
     /*@Test
     public void getModel() throws Exception {

@@ -40,3 +40,40 @@ pattern CMSConfigurationInstances (configuration){
 		name.equals("CMS_Configuration")
 	);
 }
+
+pattern InstanceSpecificationLink (link) {
+	InstanceSpecification.classifier (link, classifier);
+	Association (classifier);
+}
+
+pattern InstanceOfInstanceSpecificationLink (link, instance){
+	find InstanceSpecificationLink(link);
+	InstanceSpecification.slot (link, slot);
+	Slot.value (slot,value);
+	InstanceValue.instance (value, instance);
+}
+
+pattern CMSInstanceToConfigurationLink (link, instance){
+	find InstanceSpecificationLink(link);
+	InstanceSpecification.slot (link, slot);
+	Slot.value (slot,value);
+	InstanceValue.instance (value, instance);
+	InstanceSpecification.name (instance, name);
+	check (
+		name.equals("CMS Instance")
+	);
+}
+
+pattern HSKExecutionEnvironments(execEnv : ExecutionEnvironment) {
+	ExecutionEnvironment.nestedClassifier (execEnv, artifact);
+	Artifact.name (artifact, name);
+	check (
+		name.contains("HSK")
+	);
+}
+
+pattern VMInstancesContainingHSKServices (instance : InstanceSpecification){
+	find HSKExecutionEnvironments(execEnv);
+	Manifestation.client (manifestation, execEnv);
+	Manifestation.supplier (manifestation, instance);
+}

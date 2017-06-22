@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="SmartPlatformFM" version="1.0.0">
+  <rootFeature id="smartplatform" name="SmartPlatform" lower="1" upper="1">
+    <feature id="physicalserver" name="PhysicalServer" lower="1" upper="1">
+      <feature id="virtualization" name="Virtualization" lower="1" upper="1">
+        <feature id="vm1" name="VM1" lower="1" upper="1">
+          <attribute id="a_1942060137" name="name" type="string"/>
+          <feature id="services" name="Services" lower="1" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="cms" name="CMS" lower="0" upper="1"/>
+              <feature id="dss" name="DSS" lower="0" upper="1"/>
+            </group>
+          </feature>
+          <feature id="configuration" name="Configuration" lower="1" upper="1">
+            <attribute id="a_514195977" name="cores" type="integer"/>
+            <attribute id="a_168455123" name="memory" type="integer"/>
+            <attribute id="a_949483085" name="storage" type="integer"/>
+          </feature>
+        </feature>
+        <feature id="vm2" name="VM2" lower="1" upper="1">
+          <attribute id="a_206757797" name="name" type="string"/>
+          <feature id="services_13890" name="Services" lower="1" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="cre" name="CRE" lower="0" upper="1"/>
+              <feature id="hsk" name="HSK" lower="0" upper="1"/>
+            </group>
+          </feature>
+          <feature id="configuration_16909" name="Configuration" lower="1" upper="1">
+            <attribute id="a_300656348" name="cores" type="integer"/>
+            <attribute id="a_1558743766" name="memory" type="integer"/>
+            <attribute id="a_1664397167" name="storage" type="integer"/>
+          </feature>
+        </feature>
+        <feature id="vm3" name="VM3" lower="1" upper="1">
+          <attribute id="a_959179604" name="name" type="string"/>
+          <feature id="services_13093" name="Services" lower="1" upper="1">
+            <feature id="hap" name="HAP" lower="0" upper="1"/>
+          </feature>
+          <feature id="configuration_25890" name="Configuration" lower="1" upper="1">
+            <attribute id="a_1427868854" name="cores" type="integer"/>
+            <attribute id="a_351682435" name="memory" type="integer"/>
+            <attribute id="a_1601343105" name="storage" type="integer"/>
+          </feature>
+        </feature>
+      </feature>
+      <feature id="physicalconfiguration" name="PhysicalConfiguration" lower="1" upper="1">
+        <attribute id="a_1912204655" name="cores" type="integer"/>
+        <attribute id="a_903746155" name="memory" type="integer"/>
+        <attribute id="a_741824766" name="storage" type="integer"/>
+      </feature>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

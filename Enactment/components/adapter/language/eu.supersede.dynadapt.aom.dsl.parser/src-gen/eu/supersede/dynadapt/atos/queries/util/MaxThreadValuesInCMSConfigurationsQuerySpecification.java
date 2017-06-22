@@ -1,22 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A, Universitat Politécnica de Catalunya (UPC)
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 /**
  * Generated from platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_queries.vql
  */
@@ -36,6 +17,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
@@ -46,6 +30,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Expressio
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -78,6 +63,11 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
   @Override
   protected MaxThreadValuesInCMSConfigurationsMatcher instantiate(final ViatraQueryEngine engine) throws ViatraQueryException {
     return MaxThreadValuesInCMSConfigurationsMatcher.on(engine);
+  }
+  
+  @Override
+  public MaxThreadValuesInCMSConfigurationsMatcher instantiate() throws ViatraQueryException {
+    return MaxThreadValuesInCMSConfigurationsMatcher.create();
   }
   
   @Override
@@ -119,6 +109,14 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static MaxThreadValuesInCMSConfigurationsQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
+    private final PParameter parameter_pConfiguration = new PParameter("configuration", "org.eclipse.uml2.uml.InstanceSpecification", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pName = new PParameter("name", "java.lang.String", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pValue = new PParameter("value", "java.lang.Integer", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pConfiguration, parameter_pName, parameter_pValue);
+    
     @Override
     public String getFullyQualifiedName() {
       return "eu.supersede.dynadapt.atos.queries.maxThreadValuesInCMSConfigurations";
@@ -131,15 +129,12 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("configuration", "org.eclipse.uml2.uml.InstanceSpecification"),
-      			 new PParameter("name", "java.lang.String"),
-      			 new PParameter("value", "java.lang.Integer")
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -151,9 +146,9 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
       		PVariable var_feature = body.getOrCreateVariableByName("feature");
       		PVariable var_integer = body.getOrCreateVariableByName("integer");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_configuration, "configuration"),
-      		   new ExportedParameter(body, var_name, "name"),
-      		   new ExportedParameter(body, var_value, "value")
+      		   new ExportedParameter(body, var_configuration, parameter_pConfiguration),
+      		   new ExportedParameter(body, var_name, parameter_pName),
+      		   new ExportedParameter(body, var_value, parameter_pValue)
       		));
       		// 	find CMSConfigurationInstances(configuration)
       		new PositivePatternCall(body, new FlatTuple(var_configuration), CMSConfigurationInstancesQuerySpecification.instance().getInternalQueryRepresentation());
@@ -184,24 +179,22 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
       		new Equality(body, var__virtual_4_, var_value);
       		// 	check (		name.equals("max_threads")	)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
-      		                            
-      		                            @Override
-      		                            public String getShortDescription() {
-      		                                return "Expression evaluation from pattern maxThreadValuesInCMSConfigurations";
-      		                            }
       		
-      		                            @Override
-      		                            public Iterable<String> getInputParameterNames() {
-      		                                return Arrays.asList("name");
-      		                            }
+      		    @Override
+      		    public String getShortDescription() {
+      		        return "Expression evaluation from pattern maxThreadValuesInCMSConfigurations";
+      		    }
+      		    
+      		    @Override
+      		    public Iterable<String> getInputParameterNames() {
+      		        return Arrays.asList("name");}
       		
-      		                            @Override
-      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
-      		                                    java.lang.String name = (java.lang.String) provider.getValue("name");
-      		                                    return evaluateExpression_1_1(name);
-      		                                }
-      		
-      		                        },  null); 
+      		    @Override
+      		    public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		        String name = (String) provider.getValue("name");
+      		        return evaluateExpression_1_1(name);
+      		    }
+      		},  null); 
       		bodies.add(body);
       	}
       	// to silence compiler error

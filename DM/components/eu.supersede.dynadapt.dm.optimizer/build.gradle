@@ -1,0 +1,92 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+version = '0.0.2-SNAPSHOT'
+group = 'eu.supersede'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+
+}
+
+jar {
+    baseName = 'dm-optimizer'
+    version =  '0.1.0'
+}
+
+war {
+    baseName = 'dm-optimizer-rest-service'
+    version = '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {url 'http://repo.spring.io/milestone' }
+    maven {url 'http://172.28.16.213:8082/artifactory/libs-snapshot-local/'}
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+
+// tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+    testCompile("junit:junit")
+
+
+    compile('org.json:json:20160810')
+
+    compile files('lib/gplib-1.0-SNAPSHOT.jar')
+
+    //compile("org.springframework.boot:spring-boot-starter-web")
+    //testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+//eclipse {
+//    classpath {
+//         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+//         containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+//    }
+//}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
+
+springBoot {
+  mainClass = "eu.supersede.dynadapt.dm.rest.OptimizerApp"
+}

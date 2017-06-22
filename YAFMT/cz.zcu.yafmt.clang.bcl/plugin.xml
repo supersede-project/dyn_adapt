@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://zcu.cz/yafmt/clang/bcl" 
+       class = "cz.zcu.yafmt.clang.bcl.model.ModelPackage"
+       genModel = "cz/zcu/yafmt/clang/bcl/BooleanConstraintLanguage.genmodel" /> 
+	
+  </extension>
+  <extension
+        point="cz.zcu.yafmt.clang">
+     <language
+           class="cz.zcu.yafmt.clang.bcl.BooleanConstraintLanguage"
+           id="cz.zcu.yafmt.clang.BooleanConstraintLanguage"
+           name="Boolean Constraint Language"
+           shortName="BoolCL">
+     </language>
+  </extension>
+
+
+</plugin>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_04nLEOlPEea6tPfvbkvCTg" name="Atos_Smart_Platform_(Adapted)" visibility="public" URI="">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_1AAMgOlPEea6tPfvbkvCTg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_VNwGYOlQEea6tPfvbkvCTg" name="Components">
+    <packagedElement xmi:type="uml:Component" xmi:id="_IMAuYOlQEea6tPfvbkvCTg" name="CMS"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_LcdygOlQEea6tPfvbkvCTg" name="CRE"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_J9Ki8OlQEea6tPfvbkvCTg" name="DSS"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_Nh2xsOlQEea6tPfvbkvCTg" name="HAP"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_MlJR0OlQEea6tPfvbkvCTg" name="HSK"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kTJ_QOlQEea6tPfvbkvCTg" name="PhysicalServerConfiguration">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_pT_b4OlQEea6tPfvbkvCTg" name="memory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rrQ1QOlQEea6tPfvbkvCTg" name="storage">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uwPCIOlQEea6tPfvbkvCTg" name="cores">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_MmaAoOlREea6tPfvbkvCTg" name="VMConfiguration">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PWe7kOlREea6tPfvbkvCTg" name="vm_name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_SasTcOlREea6tPfvbkvCTg" name="cores">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_U8Y0IOlREea6tPfvbkvCTg" name="memory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ZefGUOlREea6tPfvbkvCTg" name="storage">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_dqxVwATKEeeo4rafDiNNWw" name="root_size">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_fTGlgATKEeeo4rafDiNNWw" name="ovp_size" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_H08YkOlYEea6tPfvbkvCTg" name="Physical Server">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_e-ZncOlYEea6tPfvbkvCTg" name="conf" type="_kTJ_QOlQEea6tPfvbkvCTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_hySIgOlREea6tPfvbkvCTg" name="Player"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_JbMksOlYEea6tPfvbkvCTg" name="VM">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_tKIGUOlYEea6tPfvbkvCTg" name="conf" type="_MmaAoOlREea6tPfvbkvCTg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_FzsL4ATKEeeo4rafDiNNWw" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_msAbEOlSEea6tPfvbkvCTg" name="Instances">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_3wDK4OlSEea6tPfvbkvCTg" name="CMS Instance" classifier="_IMAuYOlQEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_TJo8wOlUEea6tPfvbkvCTg" name="CRE Instance" classifier="_LcdygOlQEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ZrijgOlUEea6tPfvbkvCTg" name="DSS Instance" classifier="_J9Ki8OlQEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_eB3qkOlUEea6tPfvbkvCTg" name="HAP Instance" classifier="_Nh2xsOlQEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_nbgTcOlUEea6tPfvbkvCTg" name="HSK Instance" classifier="_MlJR0OlQEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_G9vOUOlZEea6tPfvbkvCTg" name="SmartPhysicalServer" classifier="_H08YkOlYEea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_9TEDUOlZEea6tPfvbkvCTg" definingFeature="_e-ZncOlYEea6tPfvbkvCTg">
+        <value xmi:type="uml:InstanceValue" xmi:id="_DU97YOlaEea6tPfvbkvCTg" instance="_YfCh4OlZEea6tPfvbkvCTg"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_NQEvEOlZEea6tPfvbkvCTg" name="OVP PRT VM1" classifier="_JbMksOlYEea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_RQ0LMOlaEea6tPfvbkvCTg" definingFeature="_tKIGUOlYEea6tPfvbkvCTg">
+        <value xmi:type="uml:InstanceValue" xmi:id="_VgMVsOlaEea6tPfvbkvCTg" instance="_j4KWQOlZEea6tPfvbkvCTg"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_LzKToATNEeeo4rafDiNNWw" definingFeature="_FzsL4ATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralString" xmi:id="_Vzo6EATNEeeo4rafDiNNWw" value="OVP PRT"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_RRR6sOlZEea6tPfvbkvCTg" name="OVP BO VM2_A" classifier="_JbMksOlYEea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_W3s7MOlaEea6tPfvbkvCTg" definingFeature="_tKIGUOlYEea6tPfvbkvCTg">
+        <value xmi:type="uml:InstanceValue" xmi:id="_azBhQOlaEea6tPfvbkvCTg" instance="_X9kBsATSEeeo4rafDiNNWw"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_OFXm0ATNEeeo4rafDiNNWw" definingFeature="_FzsL4ATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralString" xmi:id="_ZDCOQATNEeeo4rafDiNNWw" value="OVP BO"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_VIrqEOlZEea6tPfvbkvCTg" name="OVP HAP VM3" classifier="_JbMksOlYEea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_cs7pMOlaEea6tPfvbkvCTg" definingFeature="_tKIGUOlYEea6tPfvbkvCTg">
+        <value xmi:type="uml:InstanceValue" xmi:id="_hBAGcOlaEea6tPfvbkvCTg" instance="_pFCq0OlZEea6tPfvbkvCTg"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_QEsaQATNEeeo4rafDiNNWw" definingFeature="_FzsL4ATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralString" xmi:id="_asuv8ATNEeeo4rafDiNNWw" value="OVP HAP"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_YfCh4OlZEea6tPfvbkvCTg" name="SmartPhysicalServerConf" classifier="_kTJ_QOlQEea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_pBzUIOlaEea6tPfvbkvCTg" definingFeature="_pT_b4OlQEea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_tyrCIOlaEea6tPfvbkvCTg" name="Gb" value="16"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_uyUhQOlaEea6tPfvbkvCTg" definingFeature="_rrQ1QOlQEea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_ynI2sOlaEea6tPfvbkvCTg" name="Gb" value="1024"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_4SXUIOlaEea6tPfvbkvCTg" definingFeature="_uwPCIOlQEea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_7oe7YOlaEea6tPfvbkvCTg" name="num" value="4"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_j4KWQOlZEea6tPfvbkvCTg" name="MediumLoadConfigurationInPRTVM1" classifier="_MmaAoOlREea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_i8kbQOlaEea6tPfvbkvCTg" definingFeature="_PWe7kOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralString" xmi:id="_nVF6sOlaEea6tPfvbkvCTg" name="name" value="OVP PRT"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_CNWWkOlbEea6tPfvbkvCTg" definingFeature="_SasTcOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_F59LMOlbEea6tPfvbkvCTg" name="num" value="2"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_IIwlEOlbEea6tPfvbkvCTg" definingFeature="_U8Y0IOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_OBvKoOlbEea6tPfvbkvCTg" name="Gb" value="4"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_TidBMOlbEea6tPfvbkvCTg" definingFeature="_ZefGUOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_WxbeoOlbEea6tPfvbkvCTg" name="Gb" value="200"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_gTk5IATMEeeo4rafDiNNWw" definingFeature="_dqxVwATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralReal" xmi:id="_evL4wATNEeeo4rafDiNNWw" value="5.0"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_iVlNIATMEeeo4rafDiNNWw" definingFeature="_fTGlgATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralReal" xmi:id="_iBy5AATNEeeo4rafDiNNWw" value="100.0"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_pFCq0OlZEea6tPfvbkvCTg" name="LowLoadConfigurationInHAPVM3" classifier="_MmaAoOlREea6tPfvbkvCTg">
+      <slot xmi:type="uml:Slot" xmi:id="_w1oAUOlbEea6tPfvbkvCTg" definingFeature="_PWe7kOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralString" xmi:id="_z5zjAOlbEea6tPfvbkvCTg" name="name" value="OVP HAP"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_2RjdgOlbEea6tPfvbkvCTg" definingFeature="_SasTcOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_5ix9sOlbEea6tPfvbkvCTg" name="num" value="1"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_8pFnUOlbEea6tPfvbkvCTg" definingFeature="_U8Y0IOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="__OCQUOlbEea6tPfvbkvCTg" name="Gb" value="1"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="__2U_YOlbEea6tPfvbkvCTg" definingFeature="_ZefGUOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_DMaxcOlcEea6tPfvbkvCTg" name="Gb" value="10"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_m5_McATMEeeo4rafDiNNWw" definingFeature="_dqxVwATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralReal" xmi:id="_r-FGgATOEeeo4rafDiNNWw" value="5.0"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_nMIFUATMEeeo4rafDiNNWw" definingFeature="_fTGlgATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralReal" xmi:id="_tMGY0ATOEeeo4rafDiNNWw" value="5.0"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_X9kBsATSEeeo4rafDiNNWw" name="HighLoadConfigurationBOInVM2_A">
+      <slot xmi:type="uml:Slot" xmi:id="_imE4gATSEeeo4rafDiNNWw" definingFeature="_PWe7kOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralString" xmi:id="_w1Zd8ATSEeeo4rafDiNNWw" value="OVP BO"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_i4gFQATSEeeo4rafDiNNWw" definingFeature="_SasTcOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_0Kr-wATSEeeo4rafDiNNWw" value="3"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_jIPKYATSEeeo4rafDiNNWw" definingFeature="_U8Y0IOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralReal" xmi:id="_1PMIsATSEeeo4rafDiNNWw" value="3.0"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_jY3nYATSEeeo4rafDiNNWw" definingFeature="_ZefGUOlREea6tPfvbkvCTg">
+        <value xmi:type="uml:LiteralReal" xmi:id="_6BvRsATSEeeo4rafDiNNWw" value="50.0"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_jrmWIATSEeeo4rafDiNNWw" definingFeature="_dqxVwATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralReal" xmi:id="_7aDvgATSEeeo4rafDiNNWw" value="5.0"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_kOMF0ATSEeeo4rafDiNNWw" definingFeature="_fTGlgATKEeeo4rafDiNNWw">
+        <value xmi:type="uml:LiteralReal" xmi:id="_E2AFgATTEeeo4rafDiNNWw" value="5.0"/>
+      </slot>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_uUpncOlSEea6tPfvbkvCTg" name="Nodes">
+    <packagedElement xmi:type="uml:Node" xmi:id="_49JFkOlREea6tPfvbkvCTg" name="Smart Platform">
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_CjAMkOlSEea6tPfvbkvCTg" name="Virtual Execution Environment 1">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_Jdp1EOlTEea6tPfvbkvCTg" name="CMS Service" fileName="CMS.war">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_anCX4OlTEea6tPfvbkvCTg" supplier="_IMAuYOlQEea6tPfvbkvCTg _3wDK4OlSEea6tPfvbkvCTg" utilizedElement="_3wDK4OlSEea6tPfvbkvCTg"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_u-vbYOlUEea6tPfvbkvCTg" name="DSS Service" fileName="DSS.site">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_6BSi0OlUEea6tPfvbkvCTg" supplier="_ZrijgOlUEea6tPfvbkvCTg" utilizedElement="_ZrijgOlUEea6tPfvbkvCTg"/>
+        </nestedClassifier>
+      </nestedNode>
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_LMvCgOlSEea6tPfvbkvCTg" name="Virtual Execution Environment 2">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_PeaywOlVEea6tPfvbkvCTg" name="CRE Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_wiOK4OlVEea6tPfvbkvCTg" supplier="_TJo8wOlUEea6tPfvbkvCTg" utilizedElement="_TJo8wOlUEea6tPfvbkvCTg"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_c7ligOlVEea6tPfvbkvCTg" name="HSK Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_0VfoMOlVEea6tPfvbkvCTg" supplier="_nbgTcOlUEea6tPfvbkvCTg" utilizedElement="_nbgTcOlUEea6tPfvbkvCTg"/>
+        </nestedClassifier>
+      </nestedNode>
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_TNYfMOlSEea6tPfvbkvCTg" name="Virtual Execution Environment 3">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_1WEUYOlVEea6tPfvbkvCTg" name="HAP Service" fileName="">
+          <manifestation xmi:type="uml:Manifestation" xmi:id="_7MQEoOlVEea6tPfvbkvCTg" supplier="_eB3qkOlUEea6tPfvbkvCTg" utilizedElement="_eB3qkOlUEea6tPfvbkvCTg"/>
+        </nestedClassifier>
+      </nestedNode>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_W3ktcOlcEea6tPfvbkvCTg" name="Relationships">
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_tRLMsOlcEea6tPfvbkvCTg" client="_CjAMkOlSEea6tPfvbkvCTg" supplier="_NQEvEOlZEea6tPfvbkvCTg" utilizedElement="_NQEvEOlZEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_ubiuEOlcEea6tPfvbkvCTg" client="_LMvCgOlSEea6tPfvbkvCTg" supplier="_RRR6sOlZEea6tPfvbkvCTg" utilizedElement="_RRR6sOlZEea6tPfvbkvCTg"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_5wudoOlcEea6tPfvbkvCTg" client="_TNYfMOlSEea6tPfvbkvCTg" supplier="_VIrqEOlZEea6tPfvbkvCTg" utilizedElement="_VIrqEOlZEea6tPfvbkvCTg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Manifestation" xmi:id="_rOxQEOlcEea6tPfvbkvCTg" client="_49JFkOlREea6tPfvbkvCTg" supplier="_G9vOUOlZEea6tPfvbkvCTg" utilizedElement="_G9vOUOlZEea6tPfvbkvCTg"/>
+</uml:Model>

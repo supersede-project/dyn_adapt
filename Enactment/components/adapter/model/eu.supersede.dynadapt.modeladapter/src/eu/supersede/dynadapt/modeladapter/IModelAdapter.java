@@ -22,19 +22,28 @@
 package eu.supersede.dynadapt.modeladapter;
 
 import org.eclipse.uml2.uml.Model;
+
+import java.util.HashMap;
+import java.util.List;
+
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
-import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.Stereotype;
+
+import eu.supersede.dynadapt.dsl.aspect.ActionOptionType;
 
 public interface IModelAdapter {
 	
-	public Model applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
+	public Model applyCompositionDirective(ActionOptionType actionOptionType, Model inBaseModel,
+			HashMap<Stereotype, List<Element>> elements, Stereotype adviceRole, Model usingVariantModel)
+			throws Exception;
 	
-	public Model applyDeleteComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
+//	public Model applyAddComposition(Composable composable, Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
+//	
+//	public Model applyDeleteComposition(Composable composable, Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
+//	
+//	public Model applyReplaceComposition(Composable composable, Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
 	
-	public Model applyReplaceComposition(Model inBaseModel, Element jointpointBaseModelElement, Model usingVariantModel, Element jointpointVariantModelElement) throws Exception;
-	
-	public Model applyModifyValueComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) throws Exception;
+	public Model applyUpdateComposition(Model inBaseModel, Slot jointpointBaseModelSlot, String newValue) throws Exception;
 
 }

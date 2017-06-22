@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
+<<<<<<< HEAD
 import java.sql.Timestamp;
 
 public class VariantModel extends IModel {
@@ -61,5 +62,8 @@ public class VariantModel extends IModel {
 	public void setModelContent(String modelContent) {
 		this.modelContent = modelContent;
 	}
+=======
+public class VariantModel extends GenericModel {
+>>>>>>> multimodel-saver-loader
 	
 }

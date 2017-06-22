@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link cz.zcu.yafmt.model.fm.Attribute#getWeight <em>Weight</em>}</li>
  *   <li>{@link cz.zcu.yafmt.model.fm.Attribute#isMinimize <em>Minimize</em>}</li>
  *   <li>{@link cz.zcu.yafmt.model.fm.Attribute#getObjectiveFunctionAggregator <em>Objective Function Aggregator</em>}</li>
+ *   <li>{@link cz.zcu.yafmt.model.fm.Attribute#isAlert <em>Alert</em>}</li>
  * </ul>
  *
  * @see cz.zcu.yafmt.model.fm.FeatureModelPackage#getAttribute()
@@ -324,6 +325,32 @@ public interface Attribute extends EObject {
 	 * @generated
 	 */
 	void setObjectiveFunctionAggregator(ObjectiveFunctionType value);
+
+				/**
+	 * Returns the value of the '<em><b>Alert</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Alert</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Alert</em>' attribute.
+	 * @see #setAlert(boolean)
+	 * @see cz.zcu.yafmt.model.fm.FeatureModelPackage#getAttribute_Alert()
+	 * @model
+	 * @generated
+	 */
+	boolean isAlert();
+
+				/**
+	 * Sets the value of the '{@link cz.zcu.yafmt.model.fm.Attribute#isAlert <em>Alert</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Alert</em>' attribute.
+	 * @see #isAlert()
+	 * @generated
+	 */
+	void setAlert(boolean value);
 
 				/**
 	 * Returns the value of the '<em><b>Quality Attribute</b></em>' attribute.

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping/>
+  <mapping value="653 15 283 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root"/>
+  </mapping>
+  <mapping value="725 135 138 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="351 255 99 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="354 375 91 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="64 615 213 107">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="292 615 213 107">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="520 615 213 107">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="1095 255 127 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="954 375 158 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="952 495 160 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="793 615 227 129">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="1035 615 235 129">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="1374 375 90 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.1"/>
+  </mapping>
+  <mapping value="1357 495 122 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.1/@features.0"/>
+  </mapping>
+  <mapping value="1329 615 178 129">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="1322 834 190 151">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.1/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="336 495 126 30">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="375 503 45 45">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.0/@features.0/@features.0/@groups.0"/>
+  </mapping>
+  <mapping value="1007 503 45 45">
+    <key href="AtosUCFeatureModel_CMS_Capacity.yafm#//@root/@features.0/@features.1/@features.0/@features.0/@groups.0"/>
+  </mapping>
+</layout:LayoutData>

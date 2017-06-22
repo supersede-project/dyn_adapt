@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="eu.supersede.dynadapt.aom.dsl.feature"
+      label="SUPERSEDE AOM Adaptability Model Editor"
+      version="1.0.0.qualifier"
+      provider-name="SUPERSEDE Consortium">
+
+   <description url="http://www.example.com/description">
+      SUPERSEDE Editor (based on Xtext) for adaptability models (AOM DSL)
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      @Copyright SUPERSEDE Consortium 2016
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      Release under Eclipse Public License v1.0 EPL
+https://www.eclipse.org/legal/epl-v10.html
+   </license>
+
+   <url>
+      <discovery label="SUPERSEDE Project Web Site" url="https://www.supersede.eu/"/>
+   </url>
+
+   <plugin
+         id="eu.supersede.dynadapt.aom.dsl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.aom.dsl.extensionpoint"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.aom.dsl.resources"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.aom.dsl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.aom.dsl.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.lang.uml"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.lang.uml.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.lang.yafmt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.supersede.dynadapt.lang.yafmt.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="cz.zcu.yafmt.model.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

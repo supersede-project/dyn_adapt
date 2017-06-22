@@ -4,9 +4,7 @@
     <packagedElement xmi:type="uml:Component" xmi:id="_RiDhECMpEeaAV7iIHwGF1A" name="SGA">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_PL7mIyNIEeaAV7iIHwGF1A" name="conf" type="_liLE0CNHEeaAV7iIHwGF1A" association="_PL7mICNIEeaAV7iIHwGF1A"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_NSuZ4CMpEeaAV7iIHwGF1A" name="CMS">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_f3gcUCMsEeaAV7iIHwGF1A" name="conf" type="_bPtx0CMsEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_NSuZ4CMpEeaAV7iIHwGF1A" name="CMS"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_bPtx0CMsEeaAV7iIHwGF1A" name="CMS_Configuration">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_m_l5UCMsEeaAV7iIHwGF1A" name="url">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -59,7 +57,7 @@
     <packagedElement xmi:type="uml:Component" xmi:id="_TRQ04CMpEeaAV7iIHwGF1A" name="MIP"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_ovmOoCM9EeaAV7iIHwGF1A" name="Instances">
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_UdT0cCMtEeaAV7iIHwGF1A" name="CMS Default Configuration Instance" classifier="_bPtx0CMsEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_UdT0cCMtEeaAV7iIHwGF1A" name="CMS Default Configuration" classifier="_bPtx0CMsEeaAV7iIHwGF1A">
       <slot xmi:type="uml:Slot" xmi:id="_fV_3cCM8EeaAV7iIHwGF1A" definingFeature="_m_l5UCMsEeaAV7iIHwGF1A">
         <value xmi:type="uml:LiteralString" xmi:id="_mBmMwCM8EeaAV7iIHwGF1A" name="Default_CMS_URL" value="http://www.atos.smart.eu/cms"/>
       </slot>
@@ -122,9 +120,9 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_tm_6EyNLEeaAV7iIHwGF1A" name="InstanceValue1" type="_R___UCM_EeaAV7iIHwGF1A" instance="_BwvsACNLEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IIwmsCM6EeaAV7iIHwGF1A" name="CMS  Instance" classifier="_NSuZ4CMpEeaAV7iIHwGF1A">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IIwmsCM6EeaAV7iIHwGF1A" name="CMS Instance" classifier="_NSuZ4CMpEeaAV7iIHwGF1A">
       <slot xmi:type="uml:Slot" xmi:id="_NBB9MCM6EeaAV7iIHwGF1A" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
-        <value xmi:type="uml:InstanceValue" xmi:id="_NBB9MSM6EeaAV7iIHwGF1A" name="InstanceValue1" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_NBB9MSM6EeaAV7iIHwGF1A" name="default cms configuration instance" type="_bPtx0CMsEeaAV7iIHwGF1A" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_huroQCNLEeaAV7iIHwGF1A" name="DC VM Instance" classifier="_6fi60CNAEeaAV7iIHwGF1A">
@@ -161,7 +159,10 @@
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_6yTGQIS9EeaUVtHvx6A39w" name="InstanceSpecificationLink_CMS_Instance_to_Default_Configuration_Instance" classifier="_f3XSYCMsEeaAV7iIHwGF1A">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7Hi9gIS9EeaUVtHvx6A39w" source="InstanceEnd" references="_UdT0cCMtEeaAV7iIHwGF1A _IIwmsCM6EeaAV7iIHwGF1A"/>
       <slot xmi:type="uml:Slot" xmi:id="_7HjkkIS9EeaUVtHvx6A39w" definingFeature="_f3hDYCMsEeaAV7iIHwGF1A">
-        <value xmi:type="uml:InstanceValue" xmi:id="_7HjkkYS9EeaUVtHvx6A39w" name="InstanceValue1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_7HjkkYS9EeaUVtHvx6A39w" name="cms1" type="_NSuZ4CMpEeaAV7iIHwGF1A" instance="_IIwmsCM6EeaAV7iIHwGF1A"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_KUDZ0KtTEeaRNLzEGZd_uA" definingFeature="_f3gcUCMsEeaAV7iIHwGF1A">
+        <value xmi:type="uml:InstanceValue" xmi:id="_gs-joKtTEeaRNLzEGZd_uA" name="default conf" instance="_UdT0cCMtEeaAV7iIHwGF1A"/>
       </slot>
     </packagedElement>
   </packagedElement>
@@ -243,6 +244,7 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f3fOMSMsEeaAV7iIHwGF1A" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_f3hDYCMsEeaAV7iIHwGF1A" name="cms" type="_NSuZ4CMpEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_f3gcUCMsEeaAV7iIHwGF1A" name="conf" type="_bPtx0CMsEeaAV7iIHwGF1A" association="_f3XSYCMsEeaAV7iIHwGF1A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_smRkQCNIEeaAV7iIHwGF1A" memberEnd="_smSLUiNIEeaAV7iIHwGF1A _smSLUyNIEeaAV7iIHwGF1A">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_smSLUCNIEeaAV7iIHwGF1A" source="org.eclipse.papyrus">

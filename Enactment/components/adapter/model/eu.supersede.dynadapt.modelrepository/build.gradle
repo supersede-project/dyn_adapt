@@ -40,5 +40,4 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.eclipse.viatra/org.eclipse.viatra.query.patternlanguage
 	compile group: 'org.eclipse.viatra', name: 'org.eclipse.viatra.query.patternlanguage', version: '1.4.0'
-	
 }

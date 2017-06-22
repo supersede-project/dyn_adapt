@@ -1,3 +1,6 @@
+/**
+ * Generated from platform:/resource/eu.supersede.dynadapt.usecases.atos/src/eu/supersede/dynadapt/usecases/atos/patterns/atos_query_patterns.vql
+ */
 package eu.supersede.dynadapt.usecases.atos.patterns;
 
 import eu.supersede.dynadapt.usecases.atos.patterns.ArtifactManifestationsMatch;
@@ -53,10 +56,19 @@ public class ArtifactManifestationsMatcher extends BaseMatcher<ArtifactManifesta
     // check if matcher already exists
     ArtifactManifestationsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = new ArtifactManifestationsMatcher(engine);
-    	// do not have to "put" it into engine.matchers, reportMatcherInitialized() will take care of it
+    	matcher = (ArtifactManifestationsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
+  }
+  
+  /**
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
+   * 
+   */
+  public static ArtifactManifestationsMatcher create() throws ViatraQueryException {
+    return new ArtifactManifestationsMatcher();
   }
   
   private final static int POSITION_ARTIFACT = 0;
@@ -73,8 +85,8 @@ public class ArtifactManifestationsMatcher extends BaseMatcher<ArtifactManifesta
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private ArtifactManifestationsMatcher(final ViatraQueryEngine engine) throws ViatraQueryException {
-    super(engine, querySpecification());
+  private ArtifactManifestationsMatcher() throws ViatraQueryException {
+    super(querySpecification());
   }
   
   /**

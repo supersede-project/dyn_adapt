@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="YAFMT"
+            id="cz.zcu.yafmt.ui.views">
+      </category>
+      <view
+            name="Feature Model Visualizer"
+            icon="icons/fm-visualizer.png"
+            category="cz.zcu.yafmt.ui.views"
+            class="cz.zcu.yafmt.ui.views.fm.FeatureModelVisualizer"
+            id="cz.zcu.yafmt.ui.views.fm.FeatureModelVisualizer">
+      </view>
+   </extension>
+
+</plugin>

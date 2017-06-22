@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="cz.zcu.yafmt.clang" name="YAFMT Constraint Language" schema="schema/cz.zcu.yafmt.clang.exsd"/>
+   <extension-point id="cz.zcu.yafmt.clang.ui" name="YAFMT Constraint Language Editing Support" schema="schema/cz.zcu.yafmt.clang.ui.exsd"/>
+   <extension
+         point="cz.zcu.yafmt.clang">
+      <language
+            class="cz.zcu.yafmt.clang.sample.SampleConstraintLanguage"
+            id="cz.zcu.yafmt.clang.SampleConstraintLanguage"
+            name="Sample Constraint Language"
+            shortName="SamCL">
+      </language>
+   </extension>
+
+</plugin>

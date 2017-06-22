@@ -1,22 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A, Universitat Politécnica de Catalunya (UPC)
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 /**
  * Generated from platform:/resource/eu.supersede.dynadapt.aom.dsl.parser/models/atos_queries.vql
  */
@@ -35,12 +16,16 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 
@@ -73,6 +58,11 @@ public final class NodeArtifactsQuerySpecification extends BaseGeneratedEMFQuery
   @Override
   protected NodeArtifactsMatcher instantiate(final ViatraQueryEngine engine) throws ViatraQueryException {
     return NodeArtifactsMatcher.on(engine);
+  }
+  
+  @Override
+  public NodeArtifactsMatcher instantiate() throws ViatraQueryException {
+    return NodeArtifactsMatcher.create();
   }
   
   @Override
@@ -114,6 +104,12 @@ public final class NodeArtifactsQuerySpecification extends BaseGeneratedEMFQuery
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static NodeArtifactsQuerySpecification.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
+    private final PParameter parameter_pNode = new PParameter("node", "org.eclipse.uml2.uml.Node", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final PParameter parameter_pArtifact = new PParameter("artifact", "org.eclipse.uml2.uml.Artifact", (IInputKey)null, PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pNode, parameter_pArtifact);
+    
     @Override
     public String getFullyQualifiedName() {
       return "eu.supersede.dynadapt.atos.queries.nodeArtifacts";
@@ -126,14 +122,12 @@ public final class NodeArtifactsQuerySpecification extends BaseGeneratedEMFQuery
     
     @Override
     public List<PParameter> getParameters() {
-      return Arrays.asList(
-      			 new PParameter("node", "org.eclipse.uml2.uml.Node"),
-      			 new PParameter("artifact", "org.eclipse.uml2.uml.Artifact")
-      			);
+      return parameters;
     }
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
       	{
@@ -142,8 +136,8 @@ public final class NodeArtifactsQuerySpecification extends BaseGeneratedEMFQuery
       		PVariable var_artifact = body.getOrCreateVariableByName("artifact");
       		PVariable var__name = body.getOrCreateVariableByName("_name");
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_node, "node"),
-      		   new ExportedParameter(body, var_artifact, "artifact")
+      		   new ExportedParameter(body, var_node, parameter_pNode),
+      		   new ExportedParameter(body, var_artifact, parameter_pArtifact)
       		));
       		// 	Node.nestedClassifier (node, artifact)
       		new TypeConstraint(body, new FlatTuple(var_node), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Node")));

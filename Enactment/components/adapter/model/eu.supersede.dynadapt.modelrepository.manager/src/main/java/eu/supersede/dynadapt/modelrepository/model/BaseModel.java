@@ -1,5 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
+<<<<<<< HEAD
 import java.sql.Timestamp;
 
 public class BaseModel extends IModel {
@@ -56,17 +57,17 @@ public class BaseModel extends IModel {
 	public void setSystemId(String systemId) {
 		this.systemId = systemId;
 	}
+=======
+public class BaseModel extends GenericModel {
+	
+	private String status;
+
+>>>>>>> multimodel-saver-loader
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public String getModelContent() {
-		return modelContent;
-	}
-	public void setModelContent(String modelContent) {
-		this.modelContent = modelContent;
 	}
 
 }

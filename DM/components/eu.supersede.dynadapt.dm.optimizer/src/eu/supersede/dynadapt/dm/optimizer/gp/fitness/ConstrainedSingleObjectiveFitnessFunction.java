@@ -25,10 +25,11 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata;
 
-public class ConstrainedSingleObjectiveFitnessFunction extends SingleObjectiveFitnessFunction{
+public class ConstrainedSingleObjectiveFitnessFunction extends AbstractFitnessFunction{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ConstrainedSingleObjectiveFitnessFunction.class);
 
@@ -46,7 +47,7 @@ public class ConstrainedSingleObjectiveFitnessFunction extends SingleObjectiveFi
 		List<Properties> attributesOfAllFeatures =  configurationLoader.loadAttributes(features);
 		
 		// create and initialize
-		String costAttribute = "memory_consumption";
+		String costAttribute = "price";
 		double overallCost = 0d;
 		String valueAttribute = "availability";
 		double overallValue = 1d;
@@ -55,6 +56,10 @@ public class ConstrainedSingleObjectiveFitnessFunction extends SingleObjectiveFi
 		double overallConstraint = 0d;
 		
 		for (Properties attributes : attributesOfAllFeatures){
+			if (attributes == null){
+				// no quality attributes for some features
+				continue;
+			}
 			double cost = Double.parseDouble(attributes.getProperty(costAttribute));
 			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(costAttribute);
 			double minimum = costAttributeMetadata.getMinimumValue();
@@ -85,7 +90,7 @@ public class ConstrainedSingleObjectiveFitnessFunction extends SingleObjectiveFi
 	 */
 	@Override
 	public boolean isFinished(Chromosome chromosome) {
-		if (chromosome.violatesConstraint()){
+		if (violatesConstraint(chromosome)){
 			return false;
 		}else{
 			if (isMaximizationFunction()){
@@ -96,4 +101,12 @@ public class ConstrainedSingleObjectiveFitnessFunction extends SingleObjectiveFi
 		}
 	}
 	
+	@Override
+	public boolean violatesConstraint (Chromosome chromosome){
+		if (chromosome.getOverallConstraint() > Parameters.CONSTRAINT_THRESHOLD){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
