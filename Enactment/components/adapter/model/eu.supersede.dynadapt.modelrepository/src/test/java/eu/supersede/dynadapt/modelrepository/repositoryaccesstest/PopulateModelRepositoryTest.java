@@ -287,7 +287,7 @@ public class PopulateModelRepositoryTest {
 				ModelType.VariantModel, VariantModel.class);
 		
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "models/variants", "S2_unavailable_variant1.uml"), 
+				Paths.get(repositoryPath.toString(), "models/variants", "S2_unavailable_variant2.uml"), 
 				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
 				ModelType.VariantModel, VariantModel.class);
 
