@@ -1,11 +1,6 @@
 package eu.supersede.dynadapt.modelrepository.manager.service;
 
-<<<<<<< HEAD
-import java.io.IOException;
-import java.io.StringWriter;
-=======
 import java.sql.Timestamp;
->>>>>>> multimodel-saver-loader
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,22 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import eu.supersede.dynadapt.modelrepository.manager.Manager;
-=======
 import eu.supersede.dynadapt.modelrepository.manager.Manager;
 import eu.supersede.dynadapt.modelrepository.manager.enums.ModelType;
 import eu.supersede.dynadapt.modelrepository.model.AdaptabilityModel;
 import eu.supersede.dynadapt.modelrepository.model.BaseModel;
 import eu.supersede.dynadapt.modelrepository.model.FeatureConfiguration;
 import eu.supersede.dynadapt.modelrepository.model.FeatureModel;
->>>>>>> multimodel-saver-loader
 import eu.supersede.dynadapt.modelrepository.model.IModel;
 import eu.supersede.dynadapt.modelrepository.model.PatternModel;
 import eu.supersede.dynadapt.modelrepository.model.ProfileModel;
@@ -102,37 +87,6 @@ public class ModelManagerController {
 
 	@RequestMapping(value="/{modelType}", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-<<<<<<< HEAD
-	public String createModel(@PathVariable String modelType, @RequestBody String input) {
-		JsonObject jsonObject = (new JsonParser()).parse(input).getAsJsonObject();
-		ObjectMapper mapper = new ObjectMapper();
-		Class classObject;
-		try {
-			classObject = Class.forName(packageRoute + modelType);
-		} catch (ClassNotFoundException e) {
-			throw new ResourceNotFoundException();
-		}
-		JsonArray array = jsonObject.get("modelInstances").getAsJsonArray();
-		List<IModel> models = new ArrayList<>();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		mapper.setDateFormat(format);
-		for (int i = 0; i < array.size(); ++i) {
-			JsonObject jsonModel = array.get(i).getAsJsonObject();
-			try {
-				IModel model = (IModel) mapper.readValue(jsonModel.toString(), classObject);
-				models.add(model);
-			} catch (IOException e) {
-				throw new UnprocessableEntityException();
-			}
-		}
-		try {
-			manager.createModels(modelType, models);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, models);
-			return writer.toString();
-		} catch (Exception e) {
-			throw new UnprocessableEntityException();
-=======
 	public String createModel(@PathVariable String modelType, @RequestBody String input) throws Exception {
 		JSONObject jsonObject = new JSONObject(input);
 		JSONArray array = jsonObject.getJSONArray("modelInstances");
@@ -146,7 +100,6 @@ public class ModelManagerController {
 		JSONArray modelsArray = new JSONArray();
 		for (IModel model : models) {
 			modelsArray.put(model.toJson());
->>>>>>> multimodel-saver-loader
 		}
 		return modelsArray.toString();
 		
@@ -158,29 +111,12 @@ public class ModelManagerController {
 		String response = "";
 		IModel model;
 		try {
-<<<<<<< HEAD
-			model = manager.getModel(modelType, modelId);
-		} catch (Exception e) {
-			throw new ResourceNotFoundException();
-		}
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			mapper.setDateFormat(format);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, model);
-			response = writer.toString();
-		} catch (Exception e) {
-			throw new UnprocessableEntityException();
-		}
-=======
 			model = manager.getModel(ModelType.valueOf(modelType), modelId);
 			response = model.toJson().toString();
 		} catch (NoSuchElementException e) {
 			logger.error("There is no " + modelType + " with id " + modelId);
 			throw new ResourceNotFoundException();
 		} 
->>>>>>> multimodel-saver-loader
 		return response;
 	}
 	
@@ -190,18 +126,6 @@ public class ModelManagerController {
 			@RequestBody String input) throws Exception {
 		JSONObject jsonObject = new JSONObject(input);
 		try {
-<<<<<<< HEAD
-			IModel model = manager.updateModel(modelType, modelId, propertySet);
-			ObjectMapper mapper = new ObjectMapper();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-			mapper.setDateFormat(format);
-			StringWriter writer = new StringWriter();
-			mapper.writeValue(writer, model);
-			return writer.toString();
-		} catch (Exception e) {
-			throw new UnprocessableEntityException();
-		}
-=======
 			IModel updateModel = jsonToModel(jsonObject.getJSONObject("values"), ModelType.valueOf(modelType));
 			IModel model = manager.updateModel(ModelType.valueOf(modelType), modelId, updateModel);
 			return model.toJson().toString();
@@ -209,29 +133,10 @@ public class ModelManagerController {
 			logger.error("There is no " + modelType + " with id " + modelId);
 			throw new ResourceNotFoundException();
 		} 
->>>>>>> multimodel-saver-loader
 	}
 	
 	@RequestMapping(value="/{modelType}/{modelId}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-<<<<<<< HEAD
-	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) {
-		try {
-			manager.deleteModel(modelType, modelId);
-		} catch (Exception e) {
-			throw new ResourceNotFoundException();
-		}
-	}
-	
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	public class ResourceNotFoundException extends RuntimeException {
-	    
-	}
-	
-	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public class UnprocessableEntityException extends RuntimeException {
-	    
-=======
 	public void deleteModel(@PathVariable String modelType, @PathVariable String modelId) throws Exception {
 		try {
 			manager.deleteModel(ModelType.valueOf(modelType), modelId);
@@ -280,7 +185,6 @@ public class ModelManagerController {
 		}
 		if (!model.validateFields()) throw new Exception("Missing mandatory fields");
 		return model;
->>>>>>> multimodel-saver-loader
 	}
 
 }

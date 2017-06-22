@@ -42,9 +42,6 @@ public abstract class IModel {
 			}
 		} 
 		f.setAccessible(true);
-<<<<<<< HEAD
-		return f.get(this).toString();
-=======
 		return f.get(this);
 		
 	}
@@ -74,7 +71,6 @@ public abstract class IModel {
 	
 	public JSONObject toJson() throws IllegalAccessException {
 		JSONObject json = new JSONObject();
->>>>>>> multimodel-saver-loader
 		
 		List<Field> fields = getFields();
 		for (Field f: fields) {
