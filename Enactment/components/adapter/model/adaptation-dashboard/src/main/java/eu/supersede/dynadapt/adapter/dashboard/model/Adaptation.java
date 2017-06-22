@@ -60,8 +60,9 @@ public class Adaptation {
 		this.computation_timestamp = computation_timestamp;
 	}
 
-	public String getRank() {
-		return String.format("%.5f", rank);
+	public double getRank() {
+		//return String.format("%.5f", rank);
+		return rank;
 	}
 
 	public void setRank(double rank) {
