@@ -1,6 +1,5 @@
 package eu.supersede.dynadapt.adapter.dashboard.model;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
