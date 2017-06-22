@@ -58,8 +58,8 @@ public class ActionDynamic {
 
     public static void sendAlert() throws Exception {
         TopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC,true);
-        publisher.publishTextMesssageInTopic(new Gson().toJson(createAtosHSKAlert()));
-        //publisher.publishTextMesssageInTopic(new Gson().toJson(createSiemensAlert()));
+//        publisher.publishTextMesssageInTopic(new Gson().toJson(createAtosHSKAlert()));
+        publisher.publishTextMesssageInTopic(new Gson().toJson(createSiemensAlert()));
         publisher.closeTopicConnection();
     }
 }
