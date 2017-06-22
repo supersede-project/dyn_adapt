@@ -280,6 +280,16 @@ public class PopulateModelRepositoryTest {
 			Paths.get(repositoryPath.toString(), "models/variants", "S2.uml"), 
 			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
 			ModelType.VariantModel, VariantModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "S2_unavailable_variant1.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "S2_unavailable_variant1.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 
 		//Feature Model
 		prm.populateModel(
@@ -314,6 +324,16 @@ public class PopulateModelRepositoryTest {
 			Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2.aspect"), 
 			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
 			ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2_SC2.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2_SC3.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		
 		log.debug(ModelSystem.Siemens.toString() + " models loaded");	
 	}
