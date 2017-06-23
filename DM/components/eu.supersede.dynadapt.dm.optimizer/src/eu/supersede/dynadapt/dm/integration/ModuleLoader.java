@@ -76,7 +76,8 @@ public class ModuleLoader {
 		proxy = new AdapterProxy<Object, Object>();
 		
 		//FIXME Take credentials to a properties file
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		//FIXME To avoid FE session expires, create the proxy upon the reception of the alarm
+		//this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		this.mm = new eu.supersede.dynadapt.model.ModelManager();
 		
 		String repositoryPath = Paths.get(System.getProperty("user.dir"), "/repository").toString().concat("/");
@@ -177,6 +178,9 @@ public class ModuleLoader {
 		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
 		Double alertThresholdValue = alert.getConditions().get(0).getValue();
 		ModelSystem system = alert.getTenant();
+		
+		//Registering dashboard proxy to initialize Front-end session
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
 		processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
 		

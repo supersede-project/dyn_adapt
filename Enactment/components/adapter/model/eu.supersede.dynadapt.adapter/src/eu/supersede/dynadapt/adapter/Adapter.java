@@ -106,7 +106,8 @@ public class Adapter implements IAdapter {
 		this.modelsLocation = modelsLocation;
 		this.repositoryRelativePath = repositoryRelativePath;
 		this.demo = demo;
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		//FIXME To avoid FE session expires, create the proxy upon the reception of the alarm
+		//this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		log.debug("Adapter set up");
 	}
 
@@ -162,7 +163,10 @@ public class Adapter implements IAdapter {
 	//FIXME Divide this method in two: adaptModel(), enactModel() 
 	private void doEnactment(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId, String featureConfigurationAsString) throws EnactmentException, Exception, IOException {
-				
+		
+		//Registering dashboard proxy to initialize Front-end session
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		
 		kpiComputerAdapter.startComputingKPI();		
 		
 		//Preload Models from remote repository in temporal one
