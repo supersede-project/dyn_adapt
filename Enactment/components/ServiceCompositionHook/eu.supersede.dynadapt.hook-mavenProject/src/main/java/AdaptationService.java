@@ -124,7 +124,7 @@ public class AdaptationService {
 			    Random randomGenerator = new Random();
 			    int randomInt = randomGenerator.nextInt(100);
 			    unavailable10++;
-			    if(randomInt<10) 
+			    if(randomInt<0) 
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
