@@ -121,19 +121,24 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 					} },
 			    { text: 'Enactment request time', align: 'center', datafield: 'enactment_request_time', width: 200},
 			    { text: 'Enactment completion time', align: 'center', datafield: 'enactment_completion_time', width: 200},
-				{ text: 'Result', align: 'center', datafield: 'result', width: 70,  
+				{ text: 'Result', align: 'center', datafield: 'result', width: 70,
 					cellsRenderer: function (row, columnDataField, value) {
 						console.log(row);
+						
 						if (value) {
 							var color = 'green';
-							var text = 'SUCCESS'
+							var text = 'SUCCESS';
+							var img = './jqx/styles/images/check_black.png';
 						}
 						else {
 							var color = 'red';
 							var text = 'FAILURE';
+							var img = './jqx/styles/images/close_black.png';
 						}
-						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';'
-						+ 'display: flex; align-items: center;vertical-align: middle; margin-top:20%;">' + text + '</div>';
+						return '<img style= width: 60 height: 30 align: center; src="'+img+'"/> ';
+						//'<div class="jqx-grid-cell-left-align" style="color:' + color + ';'
+						//+ 'display: flex; align-items: center;vertical-align: middle; margin-top:20%;">' + text + '</div>'
+						
 					} }
 			],
 			columngroups: 

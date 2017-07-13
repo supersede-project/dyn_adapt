@@ -34,7 +34,7 @@ app.controllerProvider.register('configuration', function($scope, $http) {
     	datatype: "json",
 		datafields: [
 			{ name: 'component', type: 'string' },
-			{ name: 'supervision', type: 'string' }
+			{ name: 'supervision', type: 'string'}
 		],
 		id: 'configurationId',
 		localdata: data
@@ -57,16 +57,15 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 		source: dataAdapter,
 		columnsresize: true,
 		selectionmode: 'checkbox',
+		theme: 'light',
 		columns: [
-		    { text: 'Component', datafield: 'component' },
-			{ text: 'Supervision', datafield: 'supervision',
-				
-			}
+		    { text: '<b>Component</b>', datafield: 'component' },
+			{ text: '<b>Supervision</b>', datafield: 'supervision'} //TODO differentiate values
 		],
 		ready: function()
 		{
 			// Row selection event binding
-			$('#jqxGrid').bind('rowselect', function(event)  {
+			$('#jqxGrid').on('rowselect', function(event)  { //bind() deprecated
 				
 				var current_index = event.args.rowindex;
 
@@ -105,7 +104,7 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 			});
 			
 			//Row unselect event binding
-			$('#jqxGrid').bind('rowunselect', function(event)  {
+			$('#jqxGrid').on('rowunselect', function(event)  { //bind() deprecated
 				var current_index = event.args.rowindex;
 				var datarow = $('#jqxGrid').jqxGrid('getrowdata', current_index);
 				
@@ -127,23 +126,23 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 	$("#rbtnAutomatic").jqxRadioButton({ width: 200, height: 25 });
 	
 	
-	 $("#rbtnSupervised").bind('checked', function (event) {
+	 $("#rbtnSupervised").on('checked', function (event) {//bind() deprecated
 		 $('#supervision').show();
      });
-     $("#rbtnAutomatic").bind('checked', function (event) {
+     $("#rbtnAutomatic").on('checked', function (event) {//bind() deprecated
     	 $('#supervision').hide();
      });
      
      $('#btnEnable').jqxButton({ disabled: true });
 	 $('#btnDisable').jqxButton({ disabled: true });
 	 
-	 $("#btnEnable").bind('click', function (event) {
+	 $("#btnEnable").on('click', function (event) {//bind() deprecated
 		 var keys = Object.keys(selectedRows);
 		 for (var i=0; i < keys.length; i++){
 			 $("#jqxGrid").jqxGrid('setcellvalue', keys[i], "supervision", "Enabled");
 		 }
      });
-     $("#btnDisable").bind('click', function (event) {
+     $("#btnDisable").on('click', function (event) {//bind() deprecated
     	 var keys = Object.keys(selectedRows);
 		 for (var i=0; i < keys.length; i++){
 			 $("#jqxGrid").jqxGrid('setcellvalue', keys[i], "supervision", "Disabled");

@@ -80,12 +80,12 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
-			    { text: 'Name', align: 'center', datafield: 'name', width: 80},
-			    { text: 'Computation Timestamp', align: 'center', datafield: 'computation_timestamp', width: 180},
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id' , width: 110},
+			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
+			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
-			    { text: 'Model System', align: 'center', datafield: 'model_system', width: 190},
-			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+			    { text: '<b>Model System</b>', align: 'center', datafield: 'model_system', width: 190},
+			    { text: '<b>Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -95,7 +95,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action name', columngroup: 'Actions', align: 'center', datafield: 'action_names',
+				{ text: '<b>Action name</b>', columngroup: 'Actions', align: 'center', datafield: 'action_names',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -105,7 +105,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action description', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
+				{ text: '<b>Action description</b>', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -115,7 +115,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action enabled', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
+				{ text: '<b>Action enabled</b>', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -124,11 +124,11 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		}
 			    		grid += '</table>'
 			    		return grid;
-					} }
+					} }  //TODO differentiate values
 			],
 			columngroups: 
                 [
-                  { text: 'Actions', align: 'center', name: 'Actions' }
+                  { text: '<b>Actions</b>', align: 'center', name: 'Actions' }
                 ],
 			ready: function()
 			{
