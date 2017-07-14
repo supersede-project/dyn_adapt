@@ -116,15 +116,38 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		return grid;
 					} },
 				{ text: '<b>Action enabled</b>', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
-			    	cellsRenderer: function (row, columnDataField, value) {
+					cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    			//painting borders
+			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">';
+			    				
+			    			//checkbox
+			    			if(value[i]==true){
+			    				grid += '<div style="height: 25px;"><input type="checkbox" checked="checked" disabled="disabled"></div></td></tr>';
+			    			}
+			    			else
+			    				grid += '<div style="height: 25px;"><input type="checkbox" disabled="disabled"></div></td></tr>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
-					} }  //TODO differentiate values
+					}
+						
+						
+						
+						/*cellsRenderer: function (row, columnDataField, value) {
+			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
+			    		var colorV= 'green';
+			    		var colorF= 'red;'
+			    		for (var i = 0; i < value.length; i++) {
+			    			if (value[i]==false) grid += '<tr><td><div style="height: 25px; color: '+colorF+'">' + value[i] + '</div></td></tr>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px; color:'+colorV+'">' + value[i] + '</div></td></tr>';
+			    		}
+			    		grid += '</table>'
+			    		return grid;
+					} }*/
+				}
 			],
 			columngroups: 
                 [

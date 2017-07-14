@@ -110,15 +110,23 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			    		return grid;
 					} },
 				{ text: 'Action enabled', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
-			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
-			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
-			    		}
-			    		grid += '</table>'
-			    		return grid;
-					} },
+						cellsRenderer: function (row, columnDataField, value) {
+				    		var grid = '<table style="width:100%;%table-layout: fixed;">';
+				    		for (var i = 0; i < value.length; i++) {
+				    			//painting borders
+				    			if (i == 0) grid += '<tr><td><div style="height: 25px;">';
+				    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">';
+				    				
+				    			//checkbox
+				    			if(value[i]==true){
+				    				grid += '<div style="height: 25px;"><input type="checkbox" checked="checked" disabled="disabled"></div></td></tr>';
+				    			}
+				    			else
+				    				grid += '<div style="height: 25px;"><input type="checkbox" disabled="disabled"></div></td></tr>';
+				    		}
+				    		grid += '</table>'
+				    		return grid;
+						} },
 			    { text: 'Enactment request time', align: 'center', datafield: 'enactment_request_time', width: 200},
 			    { text: 'Enactment completion time', align: 'center', datafield: 'enactment_completion_time', width: 200},
 				{ text: 'Result', align: 'center', datafield: 'result', width: 70,
@@ -126,13 +134,13 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 						console.log(row);
 						
 						if (value) {
-							var color = 'green';
-							var text = 'SUCCESS';
+							//var color = 'green';
+							//var text = 'SUCCESS';
 							var img = './jqx/styles/images/check_black.png';
 						}
 						else {
-							var color = 'red';
-							var text = 'FAILURE';
+							//var color = 'red';
+							//var text = 'FAILURE';
 							var img = './jqx/styles/images/close_black.png';
 						}
 						return '<img style= width: 60 height: 30 align: center; src="'+img+'"/> ';

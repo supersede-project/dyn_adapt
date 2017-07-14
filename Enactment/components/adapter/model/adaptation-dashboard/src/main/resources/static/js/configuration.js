@@ -60,7 +60,19 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 		theme: 'light',
 		columns: [
 		    { text: '<b>Component</b>', datafield: 'component' },
-			{ text: '<b>Supervision</b>', datafield: 'supervision'} //TODO differentiate values
+			{ text: '<b>Supervision</b>', datafield: 'supervision',
+		    
+		    //TODO differentiate values??
+		    cellsRenderer: function (row, columnDataField, value) {
+			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
+			    		var colorV= 'green';
+			    		var colorF= 'red;'
+			    		if (value== "Enabled") grid += '<tr><td><div style="height: 25px; color: '+colorV+'">' + value + '</div></td></tr>';
+			    		else grid += '<tr><td><div style="height: 25px; color:'+colorF+'">' + value + '</div></td></tr>';
+			    		grid += '</table>'
+			    		return grid;
+				}
+			}
 		],
 		ready: function()
 		{
