@@ -62,8 +62,8 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 		    { text: '<b>Component</b>', datafield: 'component' },
 			{ text: '<b>Supervision</b>', datafield: 'supervision',
 		    
-		    //TODO differentiate values??
-		    cellsRenderer: function (row, columnDataField, value) {
+		    //TODO differentiate values??-- only put color to different values (red-Disabled, green-Enabled) change?
+		    /*cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		var colorV= 'green';
 			    		var colorF= 'red;'
@@ -71,7 +71,7 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 			    		else grid += '<tr><td><div style="height: 25px; color:'+colorF+'">' + value + '</div></td></tr>';
 			    		grid += '</table>'
 			    		return grid;
-				}
+				}*/
 			}
 		],
 		ready: function()

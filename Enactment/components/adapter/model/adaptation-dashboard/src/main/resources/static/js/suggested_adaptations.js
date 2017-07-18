@@ -1,6 +1,6 @@
 var app = angular.module('w5app');
 
-app.controllerProvider.register('suggested_adaptations', function($scope, $http) {
+app.controllerProvider.register('suggested_adaptations', function($scope, $http, $location) {
 	
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
@@ -80,7 +80,14 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id' , width: 110},
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110 
+			    	/*cellsRenderer: function (row, columnDataField, value) {
+			    		var grid= '<div style="width:100%; height:100%"><jqx-button style="width:100%" id="btnAdId"  ng-click="goToEnactedAdaptation()">';
+			    		for (var i = 0; i < value.length; i++) {
+			    			grid+=''+value[i]+'</jqx-button></div>';
+			    		}
+			    		return grid;
+			    	}*/ },
 			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
 			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
@@ -133,20 +140,6 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		grid += '</table>'
 			    		return grid;
 					}
-						
-						
-						
-						/*cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
-			    		var colorV= 'green';
-			    		var colorF= 'red;'
-			    		for (var i = 0; i < value.length; i++) {
-			    			if (value[i]==false) grid += '<tr><td><div style="height: 25px; color: '+colorF+'">' + value[i] + '</div></td></tr>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px; color:'+colorV+'">' + value[i] + '</div></td></tr>';
-			    		}
-			    		grid += '</table>'
-			    		return grid;
-					} }*/
 				}
 			],
 			columngroups: 
@@ -158,8 +151,12 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				$('#btnEnact').jqxButton({ disabled: true });
 				$('#btnDelete').jqxButton({ disabled: true });
 				
-				var selectedRows = {};
+				$('#btnAdId').jqxButton({ disabled: false});
 				
+				
+				var selectedRows={};			
+		
+		
 				$('#jqxGrid').bind('rowselect', function(event)  {
 					var current_index = event.args.rowindex;
 					var datarow = $('#jqxGrid').jqxGrid('getrowdata', current_index);
@@ -224,6 +221,28 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    });
 				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
+		}
+		
+		
+		
+		$scope.goToEnactedAdaptation = function() {
+		
+			alert("Button clicked");
+			$location.path('/adaptation-dashboard/enacted_adaptations');
+			window.location.reload();
+
+			/* check if adaptation is enabled
+			var data = $('#').jqxGrid('getrowdata', indexes[i]);
+			$http({
+	            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
+	            method: 'GET'
+	        }).success(function(data) {
+	        	alert("Enacted Adpatation"+data);
+		    }).error(function(err) {
+		    	alert("There was an internal error");
+		    });
+		    */
+			
 		}
 
 	 }).error(function (data, status) {
