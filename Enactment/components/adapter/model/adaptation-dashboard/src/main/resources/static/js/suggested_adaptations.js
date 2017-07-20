@@ -80,14 +80,29 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110 
-			    	/*cellsRenderer: function (row, columnDataField, value) {
-			    		var grid= '<div style="width:100%; height:100%"><jqx-button style="width:100%" id="btnAdId"  ng-click="goToEnactedAdaptation()">';
-			    		for (var i = 0; i < value.length; i++) {
-			    			grid+=''+value[i]+'</jqx-button></div>';
-			    		}
-			    		return grid;
-			    	}*/ },
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
+			    	cellsRenderer: function (row, columnDataField, value){
+			    			$http({
+					            url: "adaptation-dashboard/enactment/"+value,
+					            method: 'GET'
+					        }).success(function(data) {
+					        	var grid="";
+					        	if(data['fc_id']== value){
+					        		//alert("conseguido"+data['fc_id']);
+					        		grid+= '<div><b>' + value + '</b></div>';
+					        	}
+					        	return grid;
+						    }).error(function(err) {
+						    	alert("There was an internal error");
+						    });
+			    	}	
+					 
+				/*
+				alert("");
+				$location.path('/adaptation-dashboard/enacted_adaptations');
+				window.location.reload();
+				*/
+			    },
 			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
 			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
@@ -223,29 +238,11 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			}
 		}
 		
-		
-		
-		$scope.goToEnactedAdaptation = function() {
-		
-			alert("Button clicked");
-			$location.path('/adaptation-dashboard/enacted_adaptations');
-			window.location.reload();
 
-			/* check if adaptation is enabled
-			var data = $('#').jqxGrid('getrowdata', indexes[i]);
-			$http({
-	            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
-	            method: 'GET'
-	        }).success(function(data) {
-	        	alert("Enacted Adpatation"+data);
-		    }).error(function(err) {
-		    	alert("There was an internal error");
-		    });
-		    */
-			
-		}
+	
 
 	 }).error(function (data, status) {
 		 alert(status);
 	 });
 });
+
