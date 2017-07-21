@@ -1,6 +1,6 @@
 var app = angular.module('w5app');
 
-app.controllerProvider.register('suggested_adaptations', function($scope, $http, $location) {
+app.controllerProvider.register('suggested_adaptations', function($scope, $http) { //$location??--changing to another page(try enacted)
 	
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
@@ -82,19 +82,28 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			columns: [
 			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
 			    	cellsRenderer: function (row, columnDataField, value){
+			    		
+			    		var grid='<table>';
+			    		//var html;
+			    		//var format;
 			    			$http({
 					            url: "adaptation-dashboard/enactment/"+value,
 					            method: 'GET'
 					        }).success(function(data) {
-					        	var grid="";
 					        	if(data['fc_id']== value){
 					        		//alert("conseguido"+data['fc_id']);
-					        		grid+= '<div><b>' + value + '</b></div>';
+					        		//grid +='<a id="linkId" href="#/adaptation-dashboard/enacted_adaptations">'+value+'</a>'; //show text in link format
+					        		grid +='<div><b>'+value+'<b></div></table>'; //show text in link format
+
+					        		//format ={target: '"#/adaptation-dashboard/enacted_adaptations"'};
+					        		//html= $.jqx.dataFormat.formatlink(value, format);
 					        	}
-					        	return grid;
+					        	
 						    }).error(function(err) {
 						    	alert("There was an internal error");
 						    });
+			    			
+			    			return grid;
 			    	}	
 					 
 				/*
@@ -166,9 +175,6 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 				$('#btnEnact').jqxButton({ disabled: true });
 				$('#btnDelete').jqxButton({ disabled: true });
 				
-				$('#btnAdId').jqxButton({ disabled: false});
-				
-				
 				var selectedRows={};			
 		
 		
@@ -194,6 +200,8 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 				});
 			}
 		};
+		
+		
 		$scope.createWidget = true;
 		
 		$scope.enactSuggestedAdaptations = function() {
