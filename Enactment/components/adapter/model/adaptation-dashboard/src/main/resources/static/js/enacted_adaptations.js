@@ -74,6 +74,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			pageable: true,
 			autoheight: true,
 			autorowheight: true,
+			altrows: true,
 			source: dataAdapter,
 			columnsresize: true,
 			selectionmode: 'checkbox',

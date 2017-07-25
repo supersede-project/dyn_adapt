@@ -53,11 +53,11 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 		width: '100%',
 		pageable: true,
 		autoheight: true,
+		altrows: true,
 		autorowheight: true,
 		source: dataAdapter,
 		columnsresize: true,
 		selectionmode: 'checkbox',
-		theme: 'light',
 		columns: [
 		    { text: '<b>Component</b>', datafield: 'component' },
 			{ text: '<b>Supervision</b>', datafield: 'supervision',

@@ -1,6 +1,6 @@
 var app = angular.module('w5app');
 
-app.controllerProvider.register('suggested_adaptations', function($scope, $http) { //$location??--changing to another page(try enacted)
+app.controllerProvider.register('suggested_adaptations', function($scope, $http, $location) { //$location??--changing to another page(try enacted)
 	
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
@@ -75,6 +75,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			width: '100%',
 			pageable: true,
 			autoheight: true,
+			altrows: true,
 			autorowheight: true,
 			source: dataAdapter,
 			columnsresize: true,
@@ -82,31 +83,32 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columns: [
 			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
 			    	cellsRenderer: function (row, columnDataField, value){
-			    		
-			    		var grid='<table>';
-			    		//var html;
-			    		//var format;
-			    			$http({
-					            url: "adaptation-dashboard/enactment/"+value,
-					            method: 'GET'
-					        }).success(function(data) {
-					        	if(data['fc_id']== value){
-					        		//alert("conseguido"+data['fc_id']);
-					        		//grid +='<a id="linkId" href="#/adaptation-dashboard/enacted_adaptations">'+value+'</a>'; //show text in link format
-					        		grid +='<div><b>'+value+'<b></div></table>'; //show text in link format
+			    		var html='';
+			    		html= '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations">'+value+'</a>';
 
-					        		//format ={target: '"#/adaptation-dashboard/enacted_adaptations"'};
-					        		//html= $.jqx.dataFormat.formatlink(value, format);
-					        	}
-					        	
-						    }).error(function(err) {
-						    	alert("There was an internal error");
-						    });
+			    		/*$http({
+				            url: "adaptation-dashboard/enactment/"+value,
+				            method: 'GET'
+				        }).success(function(data) {
+				        	if (data['fc_id']== value){
+				        		//alert("Adaptation: "+data['fc_id']+" is in the Enacted Adaptation Table");
+				        	}
+				        	else{
+					        	$('link').bind('click', function(e){
+					        	       e.preventDefault();
+					        	})
+				        	}
+
+					    }).error(function(err) {
+					    	alert("There was an internal error trying to locate the Adaptation");
+					    });*/
 			    			
-			    			return grid;
+			    			return html;
 			    	}	
 					 
 				/*
+				format ={target: ''};
+				html= '<link href= "#/adaptation-dashboard/enacted_adaptations"/>';
 				alert("");
 				$location.path('/adaptation-dashboard/enacted_adaptations');
 				window.location.reload();
@@ -168,10 +170,13 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			],
 			columngroups: 
                 [
-                  { text: '<b>Actions</b>', align: 'center', name: 'Actions' }
+                  { text: '<b>Actions</b>', align: 'center', name: 'Actions' 
+                	  
+                  }
                 ],
 			ready: function()
 			{
+				
 				$('#btnEnact').jqxButton({ disabled: true });
 				$('#btnDelete').jqxButton({ disabled: true });
 				
@@ -199,6 +204,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 					
 				});
 			}
+			
 		};
 		
 		
@@ -247,6 +253,12 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		}
 		
 
+		$scope.EnactadAdaptation = function() {
+			$location.path('/adaptation-dashboard/enacted_adaptations');
+			window.location.reload();
+		}
+		
+		
 	
 
 	 }).error(function (data, status) {
