@@ -1,6 +1,7 @@
 var app = angular.module('w5app');
 
-app.controllerProvider.register('suggested_adaptations', function($scope, $http, $location) { //$location??--changing to another page(try enacted)
+app.controllerProvider.register('suggested_adaptations', function($scope, $http) { //$location??--changing to another page(try enacted)--
+																					//UPDATE-> not used if html element LINK added
 	
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
@@ -69,7 +70,77 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			localdata: localData
 		};
 		var dataAdapter = new $.jqx.dataAdapter(source);
-				
+		
+		
+		
+		// create nested grid for Actions for each Adaptation
+        var initrowdetails = function (index, parentElement, gridElement, record) {
+            var id = record.uid.toString();
+            var grid = $($(parentElement).children()[0]);
+            
+            if (grid != null) {
+                grid.jqxGrid({
+                    source: dataAdapter,
+                    columns: [
+        			    { text: '<b>Action id' ,columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+        			    	cellsRenderer: function (row, columnDataField, value) {
+        			    		var grid = '<table style="width:100%;table-layout: fixed;">';
+        			    		for (var i = 0; i < value.length; i++) {
+        			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+        			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+        			    		}
+        			    		grid += '</table>'
+        			    		return grid;
+        					} },
+        				{ text: '<b>Action name</b>', columngroup: 'Actions', align: 'center', datafield: 'action_names',
+        			    	cellsRenderer: function (row, columnDataField, value) {
+        			    		var grid = '<table style="width:100%;table-layout: fixed;">';
+        			    		for (var i = 0; i < value.length; i++) {
+        			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+        			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+        			    		}
+        			    		grid += '</table>'
+        			    		return grid;
+        					} },
+        				{ text: '<b>Action description</b>',columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
+        			    	cellsRenderer: function (row, columnDataField, value) {
+        			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
+        			    		for (var i = 0; i < value.length; i++) {
+        			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+        			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+        			    		}
+        			    		grid += '</table>'
+        			    		return grid;
+        					} },
+        				{ text: '<b>Action enabled</b>',columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
+        					cellsRenderer: function (row, columnDataField, value) {
+        			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
+        			    		for (var i = 0; i < value.length; i++) {
+        			    			//painting borders
+        			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">';
+        			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">';
+        			    				
+        			    			//checkbox
+        			    			if(value[i]==true){
+        			    				grid += '<div style="height: 25px;"><input type="checkbox" checked="checked" disabled="disabled"></div></td></tr>';
+        			    			}
+        			    			else
+        			    				grid += '<div style="height: 25px;"><input type="checkbox" disabled="disabled"></div></td></tr>';
+        			    		}
+        			    		grid += '</table>'
+        			    		return grid;
+        					}
+        				}
+        			],
+       				columngroups: 
+       				[
+                      { text: '<b>Actions</b>', align: 'center', name: 'Actions'}
+                    ],
+                });
+            }
+        }
+        
+        //create original grid
 		$scope.gridSettings =
 		{
 			width: '100%',
@@ -80,32 +151,21 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			source: dataAdapter,
 			columnsresize: true,
 			selectionmode: 'checkbox',
-			columns: [
+			rowdetails: true,
+			initrowdetails: initrowdetails,
+			rowdetailstemplate: { rowdetails: "<div id='grid' style='margin: 10px;'></div>", rowdetailsheight:50},
+			ready: function () {
+                $("#jqxgrid").jqxGrid('showrowdetails', 1);
+            },
+            columns: [
 			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
-			    	cellsRenderer: function (row, columnDataField, value){
-			    		var html='';
-			    		html= '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations">'+value+'</a>';
-
-			    		/*$http({
-				            url: "adaptation-dashboard/enactment/"+value,
-				            method: 'GET'
-				        }).success(function(data) {
-				        	if (data['fc_id']== value){
-				        		//alert("Adaptation: "+data['fc_id']+" is in the Enacted Adaptation Table");
-				        	}
-				        	else{
-					        	$('link').bind('click', function(e){
-					        	       e.preventDefault();
-					        	})
-				        	}
-
-					    }).error(function(err) {
-					    	alert("There was an internal error trying to locate the Adaptation");
-					    });*/
-			    			
-			    			return html;
-			    	}	
-					 
+			    	cellsRenderer: function (row, columnfield, value, defaulthtml, columnproperties){
+			    		return '<a href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
+			    		
+			    		//return isEnacted(value);  -> $http.get is ASYNC no return
+			    		//TODO: way to return html sentence through async function
+			    	}
+			      		
 				/*
 				format ={target: ''};
 				html= '<link href= "#/adaptation-dashboard/enacted_adaptations"/>';
@@ -117,9 +177,10 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
 			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
-			    { text: '<b>Model System</b>', align: 'center', datafield: 'model_system', width: 190},
-			    { text: '<b>Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+			    { text: '<b>Model System</b>', align: 'center', datafield: 'model_system', width: 190}/*,
+			    { text: '<b>Action id' ,columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
+			    		console.log("row: "+row+" columnData: "+columnDataField+" value: "+value);
 			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
 			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
@@ -138,7 +199,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: '<b>Action description</b>', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
+				{ text: '<b>Action description</b>',columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -148,7 +209,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: '<b>Action enabled</b>', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
+				{ text: '<b>Action enabled</b>',columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
 					cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -170,9 +231,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 			],
 			columngroups: 
                 [
-                  { text: '<b>Actions</b>', align: 'center', name: 'Actions' 
-                	  
-                  }
+                  { text: '<b>Actions</b>', align: 'center', name: 'Actions'}*/
                 ],
 			ready: function()
 			{
@@ -204,11 +263,38 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 					
 				});
 			}
-			
+		
 		};
 		
-		
 		$scope.createWidget = true;
+
+		//TODO:figure out how to return html code w/ this function
+		var isEnacted=function(value){
+			
+    		$.get("adaptation-dashboard/enactment/"+value, function(data,status){
+    		console.log(data.fc_id, status);
+    		var html;
+    		
+	    		if (status=="success"){
+	    			console.log("isEnacted-> value: "+value+"; data: "+data.fc_id);
+	    			
+	    			if(data.fc_id==value)
+	    				html='<a href= "#/adaptation-dashboard/enacted_adaptations">'+value+'</a>';
+	    			else
+	    				html='<text>aaaa</text>';
+	    			
+	    			console.log("html: "+html);
+	    		}
+	    		else{
+	    			html= '<b>ERROR</b>';
+	    			console.log("html: "+html);
+	    		}
+	    		console.log("html: "+html)
+	    		//async function-> cannot return value
+    		});
+		}
+		
+		
 		
 		$scope.enactSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
@@ -251,14 +337,8 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http,
 				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
-		
+			
 
-		$scope.EnactadAdaptation = function() {
-			$location.path('/adaptation-dashboard/enacted_adaptations');
-			window.location.reload();
-		}
-		
-		
 	
 
 	 }).error(function (data, status) {
