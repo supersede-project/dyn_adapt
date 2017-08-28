@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.dm.integration.ModuleLoader;
@@ -16,6 +17,7 @@ import eu.supersede.integration.api.adaptation.types.Operator;
 public class AlertHandleTest {
 
 	@Test
+	@Ignore
 	public void SiemenesOptimizationTest() throws Exception {
 		ModuleLoader optimizer = new ModuleLoader();
 		Alert alert = createSiemensAlert();
@@ -23,6 +25,7 @@ public class AlertHandleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void AtosHSKOptimizationTest() throws Exception {
 		ModuleLoader optimizer = new ModuleLoader();
 		Alert alert = createAtosHSKAlert();
