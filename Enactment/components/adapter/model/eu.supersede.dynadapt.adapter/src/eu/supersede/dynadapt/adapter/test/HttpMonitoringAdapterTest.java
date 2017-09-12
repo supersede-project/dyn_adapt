@@ -19,7 +19,7 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class HttpMonitoringAdapterTest {
 	
-	private final static Logger log = LogManager.getLogger(HttpMonitorAdapterTest.class);
+	private final static Logger log = LogManager.getLogger(HttpMonitoringAdapterTest.class);
 	
 	private String baseModelPath;
 	private String repository;

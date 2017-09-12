@@ -152,12 +152,12 @@ public class PopulateModelRepositoryTest {
 		//Feature Configurations
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigDefault.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "features/configurations",
+				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Computed, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "features/configurations",
+				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Enacted, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		//Patterns
