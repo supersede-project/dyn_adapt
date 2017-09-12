@@ -17,7 +17,7 @@ import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
-public class HttpMonitorAdapterTest {
+public class HttpMonitoringAdapterTest {
 	
 	private final static Logger log = LogManager.getLogger(HttpMonitorAdapterTest.class);
 	
@@ -72,7 +72,6 @@ public class HttpMonitorAdapterTest {
 			String featureConfigurationId = "HttpMonitoringSystemConfigHighTimeslot";
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.MonitoringReconfiguration, adaptationDecisionActionId, featureConfigurationId);
-			
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
