@@ -40,3 +40,10 @@ pattern twitterTimeSlot(slot) {
 	check(name.equals("timeSlot"));
 	check(instanceName.equals("SocialNetworks"));
 }
+
+pattern httpTimeSlot(slot) {
+	Slot.definingFeature.name(slot, name);
+	Slot.owningInstance.classifier.name(slot, instanceName);
+	check(name.equals("timeSlot"));
+	check(instanceName.equals("QoS"));
+}
