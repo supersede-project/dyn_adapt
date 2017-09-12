@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_yYG-gJepEeet2rpbr-vMrQ" name="RootElement">
+  <packagedElement xmi:type="uml:Class" xmi:id="_EicoAJeqEeet2rpbr-vMrQ" name="MonitoringSystemConfiguration">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_EicoAZeqEeet2rpbr-vMrQ" name="timeStamp">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_EicoApeqEeet2rpbr-vMrQ" name="configSender">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_EicoA5eqEeet2rpbr-vMrQ" name="monConfigProfiles" type="_Eid2IJeqEeet2rpbr-vMrQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EicoBJeqEeet2rpbr-vMrQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EicoBZeqEeet2rpbr-vMrQ" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Eid2IJeqEeet2rpbr-vMrQ" name="AMonitorConfiguration" visibility="private" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Eid2IZeqEeet2rpbr-vMrQ" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Eid2IpeqEeet2rpbr-vMrQ" name="toolName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Eid2I5eqEeet2rpbr-vMrQ" name="state">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Eid2JJeqEeet2rpbr-vMrQ" name="timeSlot">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Eid2JZeqEeet2rpbr-vMrQ" name="kafkaEndpoint">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Eid2JpeqEeet2rpbr-vMrQ" name="kafkaTopic">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <qualifier xmi:type="uml:Property" xmi:id="_Eid2J5eqEeet2rpbr-vMrQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_Eid2KJeqEeet2rpbr-vMrQ" client="_EiedMJeqEeet2rpbr-vMrQ" supplier="_EicoAJeqEeet2rpbr-vMrQ"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_EiedMJeqEeet2rpbr-vMrQ" name="MonitoringSystemConfiguration">
+    <slot xmi:type="uml:Slot" xmi:id="_EiedMZeqEeet2rpbr-vMrQ" definingFeature="_EicoAZeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_EiedMpeqEeet2rpbr-vMrQ" name="timeStamp" value="Sat June 08 02:16:57 2016"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_EiedM5eqEeet2rpbr-vMrQ" definingFeature="_EicoApeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_EiedNJeqEeet2rpbr-vMrQ" name="configSender" value="WP4"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_EiedNZeqEeet2rpbr-vMrQ" visibility="public" memberEnd="_EiedOZeqEeet2rpbr-vMrQ _EiedOJeqEeet2rpbr-vMrQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EiedNpeqEeet2rpbr-vMrQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EiedN5eqEeet2rpbr-vMrQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_EiedOJeqEeet2rpbr-vMrQ" name="monitoringsystem" type="_EicoAJeqEeet2rpbr-vMrQ" association="_EiedNZeqEeet2rpbr-vMrQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_EiedOZeqEeet2rpbr-vMrQ" name="monitor" type="_Eid2IJeqEeet2rpbr-vMrQ" aggregation="composite" association="_EiedNZeqEeet2rpbr-vMrQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EiedOpeqEeet2rpbr-vMrQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EiedO5eqEeet2rpbr-vMrQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KOjPMJeqEeet2rpbr-vMrQ" name="HttpMonitor">
+    <generalization xmi:type="uml:Generalization" xmi:id="_NxmfMJeqEeet2rpbr-vMrQ" general="_Eid2IJeqEeet2rpbr-vMrQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_V8HCgJeqEeet2rpbr-vMrQ" name="url" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zINJQJeqEeet2rpbr-vMrQ" name="HttpMonitorConfiguration">
+    <slot xmi:type="uml:Slot" xmi:id="_MGhA8JerEeet2rpbr-vMrQ" definingFeature="_Eid2IpeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_XEJMIJerEeet2rpbr-vMrQ" name="toolName" value="ApacheHttp"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_f22X4JerEeet2rpbr-vMrQ" definingFeature="_Eid2JZeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_vVFngJerEeet2rpbr-vMrQ" name="kafkaEndpoint" value="http://localhost:9092/"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_v7s7kJerEeet2rpbr-vMrQ" definingFeature="_Eid2JpeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_zutTIJerEeet2rpbr-vMrQ" name="kafkaTopic" value="http-kafka-topic"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_1pY3IJerEeet2rpbr-vMrQ" definingFeature="_Eid2IZeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_4WjA8JerEeet2rpbr-vMrQ" name="id" value="1"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_6NwaMJerEeet2rpbr-vMrQ" definingFeature="_Eid2JJeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_9DGPoJerEeet2rpbr-vMrQ" name="timeSlot" value="10"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_-kS8oJerEeet2rpbr-vMrQ" definingFeature="_V8HCgJeqEeet2rpbr-vMrQ">
+      <value xmi:type="uml:LiteralString" xmi:id="_BU3m0JesEeet2rpbr-vMrQ" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_DeyWIJerEeet2rpbr-vMrQ" client="_zINJQJeqEeet2rpbr-vMrQ" supplier="_KOjPMJeqEeet2rpbr-vMrQ"/>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8AJ20JepEeet2rpbr-vMrQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8AOvUJepEeet2rpbr-vMrQ" source="PapyrusVersion">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8AOvUZepEeet2rpbr-vMrQ" key="Version" value="0.1.1"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8AOvUpepEeet2rpbr-vMrQ" key="Comment" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8AOvU5epEeet2rpbr-vMrQ" key="Copyright" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8AOvVJepEeet2rpbr-vMrQ" key="Date" value="2016-07-19"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8AOvVZepEeet2rpbr-vMrQ" key="Author" value=""/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8ALE8JepEeet2rpbr-vMrQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="/eu.supersede.dynadapt.adapter/repository/models/profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="/eu.supersede.dynadapt.adapter/repository/models/profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+  </profileApplication>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_bWAfYJeqEeet2rpbr-vMrQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bWBGcJeqEeet2rpbr-vMrQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>

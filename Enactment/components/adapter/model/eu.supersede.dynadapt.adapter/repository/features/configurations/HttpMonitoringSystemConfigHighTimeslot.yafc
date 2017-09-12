@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="HttpMonitoringSystemConfigHighTimeslot" version="1.0.0">
+  <featureModel href="../models/HttpMonitoringSystemFeatureModel.yafm#/"/>
+  <featureModelCopy name="HttpMonitoringSystemFeatureModel" version="1.0.0">
+    <rootFeature id="httpmonitoringsystem" name="HttpMonitoringSystem" lower="1" upper="1">
+      <feature id="qos" name="QoS" lower="1" upper="1">
+        <feature id="httpmonitor" name="HttpMonitor" lower="1" upper="1">
+          <feature id="timeslot" name="timeSlot" lower="1" upper="1">
+            <attribute id="timeslot_at" name="timeSlot" type="integer"/>
+          </feature>
+          <feature id="f_313774068" name="url" lower="1" upper="1"/>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="httpmonitoringsystem">
+    <selection id="qos">
+      <selection id="httpmonitor">
+        <selection id="timeslot">
+          <attributeValue xsi:type="fc:integer" id="timeslot_at" value="30"/>
+        </selection>
+        <selection id="f_313774068"/>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>
