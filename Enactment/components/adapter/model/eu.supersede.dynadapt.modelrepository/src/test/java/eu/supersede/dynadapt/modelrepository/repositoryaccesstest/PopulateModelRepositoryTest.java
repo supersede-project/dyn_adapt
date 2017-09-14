@@ -121,10 +121,10 @@ public class PopulateModelRepositoryTest {
 //		populateRepository();
 		populateAtosModels();
 		populateSiemenesModels();
-		populateMonitoringModels();
+		populateSiemensMonitoringModels();
 	}
 	
-	private void populateMonitoringModels() throws Exception {
+	private void populateSiemensMonitoringModels() throws Exception {
 		
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
@@ -134,42 +134,42 @@ public class PopulateModelRepositoryTest {
 		//BaseModel
 		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModel.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Enacted, "models/base", Model.class,
+			MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Enacted, "models/base", Model.class,
 			ModelType.BaseModel, BaseModel.class);
 		
 		//Profile
 		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "models/profiles", Profile.class,
+			MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Designed, "models/profiles", Profile.class,
 			ModelType.ProfileModel, ProfileModel.class);
 
 		//Feature Model
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemFeatureModel.yafm"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "features/models",
+				MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Designed, "features/models",
 				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 
 		//Feature Configurations
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigDefault.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Computed, "features/configurations",
+				MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Computed, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Enacted, "features/configurations",
+				MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Enacted, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		//Patterns
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "monitoring_reconfiguration_queries.vql"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
 				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
 
 		//Adaptability models
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "timeslot_http_monitor.aspect"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "adaptability_models", Aspect.class,
+				MONITORING_MODELS_AUTHOR, ModelSystem.SiemensMonitoring, Status.Designed, "adaptability_models", Aspect.class,
 				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 
 		log.debug(ModelSystem.MonitoringReconfiguration.toString() + " models loaded");
