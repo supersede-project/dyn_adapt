@@ -69,9 +69,8 @@ public class HttpMonitoringAdapterTest {
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 
 			String adaptationDecisionActionId = "timeslot";
-			String featureConfigurationId = "HttpMonitoringSystemConfigHighTimeslot";
 			adapter.enactAdaptationDecisionAction(
-					ModelSystem.SiemensMonitoring, adaptationDecisionActionId, featureConfigurationId);
+					ModelSystem.MonitoringReconfiguration, adaptationDecisionActionId, null);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
