@@ -58,7 +58,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zINJQJeqEeet2rpbr-vMrQ" name="HttpMonitorConfiguration">
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zINJQJeqEeet2rpbr-vMrQ" name="HttpMonitorConfiguration" classifier="_KOjPMJeqEeet2rpbr-vMrQ">
     <slot xmi:type="uml:Slot" xmi:id="_MGhA8JerEeet2rpbr-vMrQ" definingFeature="_Eid2IpeqEeet2rpbr-vMrQ">
       <value xmi:type="uml:LiteralString" xmi:id="_XEJMIJerEeet2rpbr-vMrQ" name="toolName" value="ApacheHttp"/>
     </slot>

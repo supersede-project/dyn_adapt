@@ -45,5 +45,5 @@ pattern httpTimeSlot(slot) {
 	Slot.definingFeature.name(slot, name);
 	Slot.owningInstance.classifier.name(slot, instanceName);
 	check(name.equals("timeSlot"));
-	check(instanceName.equals("QoS"));
+	check(instanceName.equals("HttpMonitor"));
 }

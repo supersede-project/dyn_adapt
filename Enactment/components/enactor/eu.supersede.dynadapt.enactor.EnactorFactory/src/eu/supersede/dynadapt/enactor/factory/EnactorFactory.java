@@ -6,6 +6,7 @@ import eu.supersede.dynadapt.enactor.HypervisorEnactor.HypervisorEnactor;
 import eu.supersede.dynadapt.serviceCompositionEnactor.ServiceCompositionEnactor;
 import eu.supersede.dynadapt.enactor.IEnactor;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.monitor.reconfiguration.enactor.MonitoringEnactor;
 
 
 public class EnactorFactory {
@@ -16,9 +17,10 @@ public class EnactorFactory {
 			return new HypervisorEnactor();
 		case Siemens:
 			return new ServiceCompositionEnactor();
+		case SiemensMonitoring:
+			return new MonitoringEnactor();
 		case MonitoringReconfiguration:
-			//Ask Edith to provide Siemens Enactor
-			throw new UnsupportedOperationException();
+			return new MonitoringEnactor();
 		case FeedbackGatheringReconfiguration:
 			//Ask Denisse to provide Siemens Enactor
 			throw new UnsupportedOperationException();
