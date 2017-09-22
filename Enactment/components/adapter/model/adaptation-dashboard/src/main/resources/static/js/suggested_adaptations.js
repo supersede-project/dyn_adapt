@@ -97,7 +97,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			altrows: true,
 			autorowheight: true,
 			source: dataAdapter,
-			columnsresize: true,
+			//columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
@@ -111,23 +111,12 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    			    //get all Adaptation ids (stored one per row) in all the grid's pages
 			    			    //when clicking on the link show only the page that contains the enacted adaptation with that id
 			    				
-			    				//$.get("#/adaptation-dashboard/enacted_adaptations.html", null, function(text){
-			    				    //console.log(text);//$(text).find('#jqxGrid'));
-			    				//});
 			    				
-			    				
-			    				//showing link only for those that are
-			    				//return '<a href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
+			    				//showing link only for those that are in encted adaptations table
+			    				return '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
 			    		}
-			    	}
 
-				/*
-				format ={target: ''};
-				html= '<link href= "#/adaptation-dashboard/enacted_adaptations"/>';
-				alert("");
-				$location.path('/adaptation-dashboard/enacted_adaptations');
-				window.location.reload();
-				*/
+			    	}
 			    },
 			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
 			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},

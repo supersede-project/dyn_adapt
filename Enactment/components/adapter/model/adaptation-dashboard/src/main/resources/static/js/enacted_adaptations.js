@@ -76,7 +76,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			autorowheight: true,
 			altrows: true,
 			source: dataAdapter,
-			columnsresize: true,
+			//columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
@@ -181,6 +181,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			}
 		};
 		
+		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
 			var count = 0;
@@ -201,6 +202,8 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
+		
+
 		
 		$scope.createWidget = true;
 	 }).error(function (data, status) {
