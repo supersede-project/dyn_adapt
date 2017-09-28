@@ -284,42 +284,42 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.patternlanguage</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.patternlanguage.emf</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.matchers</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.base</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.rete</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.base.itc</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.viatra.query.runtime.rete.recipes</artifactId>
-        <version>1.5.2.201703171608</version>
+        <version>1.6.1.201708020823</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
