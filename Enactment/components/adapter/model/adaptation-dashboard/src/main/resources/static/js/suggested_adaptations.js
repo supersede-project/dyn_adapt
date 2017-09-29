@@ -20,6 +20,8 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		url: "adaptation-dashboard/adaptation",
 		method: 'GET'
 	}).success(function (data, status) {
+		console.log(data);
+		
 		var localData = [];
 		
 		for(var i = 0; i < data.length; i++)
@@ -43,7 +45,6 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				row['action_descriptions'].push(data[i]['actions'][j]['description']);
 				row['action_enableds'].push(data[i]['actions'][j]['enabled']);
 				
-				console.log(data);
 			}
 						
 			localData.push(row);
@@ -74,7 +75,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		//1st end of the link(Suggested_Adaptations)
 		//trying to retrieve data stored in Enacted_Adaptation table to subData
 		 $http({
-           url: "adaptation-dashboard/enactment/",
+           url: "adaptation-dashboard/enactment",
            method: 'GET'
        }).success(function(data) {
           var subData= [];
@@ -82,7 +83,6 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
           for(var i = 0; i < data.length; i++)
   		{
   			subData.push(data[i]['fc_id']);
-  			console.log(subData);
   		}
   	
     	   
@@ -97,7 +97,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			altrows: true,
 			autorowheight: true,
 			source: dataAdapter,
-			//columnsresize: true,
+			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
 			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
@@ -220,7 +220,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				console.log(index);
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
 				$http({
-		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
+		            url: "adaptation-dashboard/adaptation/enact/" + row_data['fc_id'],
 		            method: 'POST'
 		        }).success(function(data) {
 		        	console.log("Enacted adaptation");

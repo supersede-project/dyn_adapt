@@ -76,11 +76,11 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			autorowheight: true,
 			altrows: true,
 			source: dataAdapter,
-			//columnsresize: true,
+			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
-			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id' , width: 110},
+			    { text: '<b>Action id</b>', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -90,7 +90,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action name', columngroup: 'Actions', align: 'center', datafield: 'action_names',
+				{ text: '<b>Action name</b>', columngroup: 'Actions', align: 'center', datafield: 'action_names',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -100,7 +100,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action description', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
+				{ text: '<b>Action description</b>', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -110,7 +110,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action enabled', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
+				{ text: '<b>Action enabled</b>', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
 						cellsRenderer: function (row, columnDataField, value) {
 				    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 				    		for (var i = 0; i < value.length; i++) {
@@ -128,9 +128,9 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 				    		grid += '</table>'
 				    		return grid;
 						} },
-			    { text: 'Enactment request time', align: 'center', datafield: 'enactment_request_time', width: 200},
-			    { text: 'Enactment completion time', align: 'center', datafield: 'enactment_completion_time', width: 200},
-				{ text: 'Result', align: 'center', datafield: 'result', width: 70,
+			    { text: '<b>Enactment request time</b>', align: 'center', datafield: 'enactment_request_time', width: 200},
+			    { text: '<b>Enactment completion time</b>', align: 'center', datafield: 'enactment_completion_time', width: 200},
+				{ text: '<b>Result</b>', align: 'center', datafield: 'result', width: 70,
 					cellsRenderer: function (row, columnDataField, value) {
 						console.log(row);
 						
@@ -152,7 +152,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			],
 			columngroups: 
                 [
-                  { text: 'Actions', align: 'center', name: 'Actions' }
+                  { text: '<b>Actions</b>', align: 'center', name: 'Actions' }
                 ],
 			ready: function()
 			{

@@ -61,7 +61,7 @@ public class AdaptationRest
     	return adaptations.save(adaptation);
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/enact/{id}", method = RequestMethod.POST) 
     public void enactAdaptation(@PathVariable("id") String id)
     {
     	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
@@ -71,6 +71,25 @@ public class AdaptationRest
     	
     	//FIXME uncomment when ready to test
 		//proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
+    }
+    
+    //--------------------ELENA's MODIFICATION
+    
+ 
+    @RequestMapping(value= "/configuration/{conf}", method = RequestMethod.POST) //GET 
+    public void addConfiguration(@PathVariable String conf) //same name
+    {	
+    	//Adaptation.setConfiguration(conf); ???
+    	//DM api?
+    	
+    	//AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
+    	//List<String> actionIds = new ArrayList<>();
+    	
+    	//for (Action a : adaptations.findOne(id).getActions()) actionIds.add(a.getAc_id());
+    	
+    	//FIXME uncomment when ready to test
+		//proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
+
     }
     
 }

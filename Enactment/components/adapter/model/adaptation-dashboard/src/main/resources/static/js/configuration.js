@@ -137,17 +137,28 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 	//////////////////////////////////////////////////////////
     //////////////////// Radio & Buttons /////////////////////
     //////////////////////////////////////////////////////////
+	
+	//Radio 
 	$("#rbtnSupervised").jqxRadioButton({ width: 200, height: 25 });
 	$("#rbtnAutomatic").jqxRadioButton({ width: 200, height: 25 });
+	var config="";
 	
 	
 	 $("#rbtnSupervised").on('checked', function (event) {//bind() deprecated
-		 $('#supervision').show();
+		 //$('#supervision').show();
+		 $('#typeConf').val('Configuration type: Supervised');
+		 config="supervised";
      });
+	 
      $("#rbtnAutomatic").on('checked', function (event) {//bind() deprecated
-    	 $('#supervision').hide();
+    	 //$('#supervision').hide();
+    	 $('#typeConf').val('Configuration type: Automated');
+    	 config="automated";
      });
      
+     
+     
+     //Buttons
      $('#btnEnable').jqxButton({ disabled: true });
 	 $('#btnDisable').jqxButton({ disabled: true });
 	 
@@ -163,8 +174,23 @@ app.controllerProvider.register('configuration', function($scope, $http) {
 			 $("#jqxGrid").jqxGrid('setcellvalue', keys[i], "supervision", "Disabled");
 		 }
      });
-	 
-	 
+     
+	 //When click on radioButton
+     $scope.adaptations = function() {
+    	 console.log(config);
+
+    	 $http({
+	            url: "adaptation-dashboard/adaptation/configuration/" + config,
+	            method: 'POST' //'GET'
+	        }).success(function(data) {
+		        	//console.log(data);
+			}).error(function(err) {
+			    	console.log(err);
+			    	alert("There was an internal error");
+			});
+		}
+     
+     
      
  	 //////////////////////////////////////////////////////////
      //////////////////// Page Initialization /////////////////
@@ -173,4 +199,9 @@ app.controllerProvider.register('configuration', function($scope, $http) {
      $('#supervision').hide();
      //Automatic configuration is selected by default
      $("#rbtnAutomatic").jqxRadioButton('check');
+     config="automated";
+     
+     
+
+		
 });
