@@ -58,7 +58,7 @@ public class HttpMonitoringAdapterTest {
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/atos/patterns/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/patterns/");
 		modelsLocation.put("features", "features/models/");
 	}
 	
@@ -70,7 +70,7 @@ public class HttpMonitoringAdapterTest {
 
 			String adaptationDecisionActionId = "timeslot";
 			adapter.enactAdaptationDecisionAction(
-					ModelSystem.MonitoringReconfiguration, adaptationDecisionActionId, null);
+					ModelSystem.AtosMonitoring, adaptationDecisionActionId, null);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

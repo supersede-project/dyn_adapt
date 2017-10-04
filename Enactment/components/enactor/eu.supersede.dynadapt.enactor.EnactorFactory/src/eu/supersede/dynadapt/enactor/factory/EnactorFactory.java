@@ -19,6 +19,8 @@ public class EnactorFactory {
 			return new ServiceCompositionEnactor();
 		case SiemensMonitoring:
 			return new MonitoringEnactor();
+		case AtosMonitoring:
+			return new MonitoringEnactor();
 		case MonitoringReconfiguration:
 			return new MonitoringEnactor();
 		case FeedbackGatheringReconfiguration:
