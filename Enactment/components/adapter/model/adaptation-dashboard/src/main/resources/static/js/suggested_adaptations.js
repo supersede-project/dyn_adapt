@@ -17,7 +17,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 //    $scope.getAdaptations();
 	
 	$http({
-		url: "adaptation-dashboard/adaptation",
+		url: "adaptation-dashboard/adaptation/suggested",
 		method: 'GET'
 	}).success(function (data, status) {
 		console.log(data);
@@ -74,16 +74,16 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		 
 		//1st end of the link(Suggested_Adaptations)
 		//trying to retrieve data stored in Enacted_Adaptation table to subData
-		 $http({
-           url: "adaptation-dashboard/enactment",
-           method: 'GET'
-       }).success(function(data) {
-          var subData= [];
-          
-          for(var i = 0; i < data.length; i++)
-  		{
-  			subData.push(data[i]['fc_id']);
-  		}
+//		 $http({
+//           url: "adaptation-dashboard/enactment",
+//           method: 'GET'
+//       }).success(function(data) {
+//          var subData= [];
+//          
+//          for(var i = 0; i < data.length; i++)
+//  		{
+//  			subData.push(data[i]['fc_id']);
+//  		}
   	
     	   
 	            
@@ -100,23 +100,21 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110,
-			    	cellsRenderer: function (row, columnfield, value, defaulthtml, columnproperties){
-			    		for (var i=0; i< subData.length; i++){ //comparing each adaptation to see if it is in the enacted table
-			    			if(value == subData[i])
-			    				
-			    			    
-			    			    //TODO: 2nd end of the link(Enacted_Adaptation)
-			    			    //get grid from Enactment_Adaptation page
-			    			    //get all Adaptation ids (stored one per row) in all the grid's pages
-			    			    //when clicking on the link show only the page that contains the enacted adaptation with that id
-			    				
-			    				
-			    				//showing link only for those that are in encted adaptations table
-			    				return '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
-			    		}
-
-			    	}
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110
+//			    	cellsRenderer: function (row, columnfield, value, defaulthtml, columnproperties){
+//			    		for (var i=0; i< subData.length; i++){ //comparing each adaptation to see if it is in the enacted table
+//			    			if(value == subData[i]){
+//			    			    //TODO: 2nd end of the link(Enacted_Adaptation)
+//			    			    //get grid from Enactment_Adaptation page
+//			    			    //get all Adaptation ids (stored one per row) in all the grid's pages
+//			    			    //when clicking on the link show only the page that contains the enacted adaptation with that id
+//			    				
+//			    				//showing link only for those that are in enacted adaptations table
+//			    				return '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
+//			    			}
+//			    		}
+//
+//			    	}
 			    },
 			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
 			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
@@ -191,7 +189,9 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 					var datarow = $('#jqxGrid').jqxGrid('getrowdata', current_index);
 					
 					selectedRows[current_index] = datarow;
-					$('#btnEnact').jqxButton({ disabled: false });
+					if (top.config =="supervised"){
+						$('#btnEnact').jqxButton({ disabled: false });
+					}
 					$('#btnDelete').jqxButton({ disabled: false });
 				});
 				$('#jqxGrid').bind('rowunselect', function(event)  {
@@ -255,10 +255,10 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		}
 			
 
-		//FOR ENACTMENTS
-       }).error(function(err) {
-           console.log(err);
-       });
+//		//FOR ENACTMENTS
+//       }).error(function(err) {
+//           console.log(err);
+//       });
 	
 
 		 //FOR ADAPTATIONS
@@ -266,4 +266,4 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		 alert(status);
 	 });
 });
-
+//# sourceURL=suggested_adaptations.js

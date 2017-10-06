@@ -16,7 +16,9 @@ import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
+import eu.supersede.integration.api.adaptation.proxies.AdaptationConfigurationProxy;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
+import eu.supersede.integration.api.adaptation.types.AdaptationMode;
 
 @RestController
 @RequestMapping("/adaptation")
@@ -33,6 +35,23 @@ public class AdaptationRest
     public List<Adaptation> getAdaptations()
     {
     	return adaptations.findAll();
+    }
+    
+    @RequestMapping(value = "/suggested", method = RequestMethod.GET)
+    public List<Adaptation> getSuggestedAdaptations()
+    {
+    	//Returning only adaptations that having been enacted
+    	List<Adaptation> adapts = adaptations.findAll();
+    	
+    	List<Adaptation> result = new ArrayList<>();
+    	
+    	for (Adaptation ad: adapts){
+    		if (enactments.findOne(ad.getFc_id()) == null){
+    			result.add(ad);
+    		}
+    	}
+    	
+    	return result;
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET )
@@ -62,34 +81,42 @@ public class AdaptationRest
     }
     
     @RequestMapping(value = "/enact/{id}", method = RequestMethod.POST) 
-    public void enactAdaptation(@PathVariable("id") String id)
+    public void enactAdaptation(@PathVariable("id") String id) throws Exception
     {
     	AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
     	List<String> actionIds = new ArrayList<>();
     	
-    	for (Action a : adaptations.findOne(id).getActions()) actionIds.add(a.getAc_id());
+    	Adaptation adaptation = adaptations.findOne(id);
+    	if (adaptation == null){
+    		throw new Exception ("Adaptation not found");
+    	}
+    	
+    	for (Action a : adaptation.getActions()) actionIds.add(a.getAc_id());
     	
     	//FIXME uncomment when ready to test
-		//proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
+    	
+		proxy.enactAdaptationDecisionActions(adaptation.getModel_system(), actionIds, adaptation.getFc_id());
     }
     
-    //--------------------ELENA's MODIFICATION
-    
  
-    @RequestMapping(value= "/configuration/{conf}", method = RequestMethod.POST) //GET 
-    public void addConfiguration(@PathVariable String conf) //same name
+    @RequestMapping(value= "/configuration/{conf}", method = RequestMethod.POST)
+    public void setConfiguration(@PathVariable String conf) throws Exception 
     {	
-    	//Adaptation.setConfiguration(conf); ???
-    	//DM api?
-    	
-    	//AdapterProxy<?,?> proxy = new AdapterProxy<Object, Object>();
-    	//List<String> actionIds = new ArrayList<>();
-    	
-    	//for (Action a : adaptations.findOne(id).getActions()) actionIds.add(a.getAc_id());
-    	
-    	//FIXME uncomment when ready to test
-		//proxy.enactAdaptationDecisionActions(a.getModel_system(), actionIds, enactment.getFc_id());
+    	System.out.println("New adaptation configuration: " + conf);
+    	AdaptationConfigurationProxy<?, ?> proxy = new AdaptationConfigurationProxy<Object, Object>();
 
+		proxy.setAdaptationConfigurationMode(AdaptationMode.valueOf(conf.toUpperCase()));
+
+    }
+    
+    @RequestMapping(value= "/configuration", method = RequestMethod.GET) 
+    public AdaptationMode getConfiguration() throws Exception 
+    {	
+    	System.out.println("Requested to get the adaptation configuration mode");
+    	AdaptationConfigurationProxy<?, ?> proxy = new AdaptationConfigurationProxy<Object, Object>();
+    	String conf = null;
+		AdaptationMode mode = proxy.getAdaptationConfigurationMode();
+		return mode;
     }
     
 }
