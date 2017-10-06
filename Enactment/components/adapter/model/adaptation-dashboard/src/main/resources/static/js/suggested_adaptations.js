@@ -1,20 +1,6 @@
 var app = angular.module('w5app');
 
 app.controllerProvider.register('suggested_adaptations', function($scope, $http) {
-																				
-	
-//    $scope.adaptations = "";
-//    $scope.getAdaptations = function() {
-//        $http({
-//            url: "adaptation-app/adaptation",
-//            method: 'GET'
-//        }).success(function(data) {
-//            $scope.adaptations = data;//.firstName + " " + data.lastName;
-//	            }).error(function(err) {
-//	                console.log(err);
-//	            });
-//    };
-//    $scope.getAdaptations();
 	
 	$http({
 		url: "adaptation-dashboard/adaptation/suggested",
@@ -72,26 +58,10 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		};
 		var dataAdapter = new $.jqx.dataAdapter(source, { autoBind: true });
 		 
-		//1st end of the link(Suggested_Adaptations)
-		//trying to retrieve data stored in Enacted_Adaptation table to subData
-//		 $http({
-//           url: "adaptation-dashboard/enactment",
-//           method: 'GET'
-//       }).success(function(data) {
-//          var subData= [];
-//          
-//          for(var i = 0; i < data.length; i++)
-//  		{
-//  			subData.push(data[i]['fc_id']);
-//  		}
-  	
-    	   
-	            
-		
         //create original grid
 		$scope.gridSettings =
 		{
-			autowidth: true,
+			width: '100%',
 			pageable: true,
 			autoheight: true,
 			altrows: true,
@@ -100,22 +70,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110
-//			    	cellsRenderer: function (row, columnfield, value, defaulthtml, columnproperties){
-//			    		for (var i=0; i< subData.length; i++){ //comparing each adaptation to see if it is in the enacted table
-//			    			if(value == subData[i]){
-//			    			    //TODO: 2nd end of the link(Enacted_Adaptation)
-//			    			    //get grid from Enactment_Adaptation page
-//			    			    //get all Adaptation ids (stored one per row) in all the grid's pages
-//			    			    //when clicking on the link show only the page that contains the enacted adaptation with that id
-//			    				
-//			    				//showing link only for those that are in enacted adaptations table
-//			    				return '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
-//			    			}
-//			    		}
-//
-//			    	}
-			    },
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110},
 			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
 			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
@@ -228,7 +183,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 		        	if (count == lim) alert("Adaptation/s enacted successfully");
 			    }).error(function(err) {
 			    	console.log(err);
-			    	alert("There was an internal error");
+			    	alert(err['message']);
 			    });
 			}
 		}
@@ -253,13 +208,6 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
-			
-
-//		//FOR ENACTMENTS
-//       }).error(function(err) {
-//           console.log(err);
-//       });
-	
 
 		 //FOR ADAPTATIONS
 	 }).error(function (data, status) {

@@ -92,10 +92,10 @@ public class AdaptationRest
     	}
     	
     	for (Action a : adaptation.getActions()) actionIds.add(a.getAc_id());
-    	
-    	//FIXME uncomment when ready to test
-    	
-		proxy.enactAdaptationDecisionActions(adaptation.getModel_system(), actionIds, adaptation.getFc_id());
+    	    	
+		if (!proxy.enactAdaptationDecisionActions(adaptation.getModel_system(), actionIds, adaptation.getFc_id())){
+			throw new Exception("Adaptation: " + id + " could not be enacted. Check backend service log"); 
+		}
     }
     
  
@@ -106,7 +106,6 @@ public class AdaptationRest
     	AdaptationConfigurationProxy<?, ?> proxy = new AdaptationConfigurationProxy<Object, Object>();
 
 		proxy.setAdaptationConfigurationMode(AdaptationMode.valueOf(conf.toUpperCase()));
-
     }
     
     @RequestMapping(value= "/configuration", method = RequestMethod.GET) 
@@ -114,7 +113,6 @@ public class AdaptationRest
     {	
     	System.out.println("Requested to get the adaptation configuration mode");
     	AdaptationConfigurationProxy<?, ?> proxy = new AdaptationConfigurationProxy<Object, Object>();
-    	String conf = null;
 		AdaptationMode mode = proxy.getAdaptationConfigurationMode();
 		return mode;
     }
