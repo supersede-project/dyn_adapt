@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.dynadapt.dm.integration.ModuleLoader;
+import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
@@ -13,6 +14,8 @@ public class DMOptimizerController {
 	
 	public DMOptimizerController () throws Exception {
 		this.ml = new ModuleLoader();
+		//Registering dashboard proxy to initialize Front-end session
+		ml.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 	}
 	
 	@RequestMapping("/optimize")
