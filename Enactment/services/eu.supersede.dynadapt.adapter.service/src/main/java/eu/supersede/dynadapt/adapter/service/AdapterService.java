@@ -89,12 +89,16 @@ public class AdapterService {
 	//@RequestMapping(value="/adaptationDecisionAction/{adaptationDecisionActionId}/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionAction(@PathVariable String systemId, @PathVariable String adaptationDecisionActionId,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
+		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
+		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionAction(ModelSystem.valueOf(systemId), adaptationDecisionActionId, featureConfigurationId);
 	}
 
 	@RequestMapping(value="/adaptationDecisionActions/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
+		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
+		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionActions(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationId);
 	}
 	
@@ -115,6 +119,8 @@ public class AdapterService {
 
 	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException {
+		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
+		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
 	

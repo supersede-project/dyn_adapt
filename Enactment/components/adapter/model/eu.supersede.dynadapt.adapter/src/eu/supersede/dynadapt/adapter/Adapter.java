@@ -242,6 +242,7 @@ public class Adapter implements IAdapter {
 //				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				ee = new EnactmentException(e);
 			}
 			
