@@ -223,7 +223,7 @@ public class ModelRepositoryTest {
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
-		Map<String, String> values = new HashMap<>();
+		Map<String, Object> values = new HashMap<>();
 		values.put("authorId", "yosu");
 		values.put("featureId", "GooglePlay_API");
 		mum.setValues(values);
@@ -236,7 +236,7 @@ public class ModelRepositoryTest {
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
-		Map<String, String> values = new HashMap<>();
+		Map<String, Object> values = new HashMap<>();
 		values.put("authorId", "burak");
 		values.put("status", "adapted");
 		mum.setValues(values);
