@@ -19,6 +19,7 @@ import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
+import eu.supersede.dynadapt.adapter.service.configuration.AdapterServiceConfiguration;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -41,8 +42,7 @@ public class AdapterService {
 	URL url = null;
 	
 	public AdapterService() throws Exception{
-		log.debug("Starting Adapter Service in production mode");
-		setUp(false);
+		this (AdapterServiceConfiguration.getDemoMode());
 	}
 	
 	public AdapterService(boolean demo) throws Exception{
