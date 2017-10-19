@@ -278,7 +278,8 @@ public class Adapter implements IAdapter {
 		if ((model == null) || !(ee == null)) {
 			//TODO Notify DM that adaptation actions have not been enacted
 			log.debug("Notifing back to DM that adaptation actions have not been enacted");
-			throw ee;
+			if (ee != null) throw ee;
+			if (model == null) throw new EnactmentException ("Adaptation model was not computed");
 		}
 	}
 	
