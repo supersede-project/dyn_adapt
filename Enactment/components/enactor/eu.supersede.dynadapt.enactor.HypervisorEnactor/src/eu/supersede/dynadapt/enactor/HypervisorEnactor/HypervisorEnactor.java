@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import eu.supersede.dynadapt.enactor.IEnactor;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.compare.DiffType;
@@ -329,6 +330,12 @@ public class HypervisorEnactor implements IEnactor{
 		Path temp = Files.createTempDirectory(folder, "");
 		Assert.assertNotNull("There was a problem creating a temporary directory", temp);
 		return temp;
+	}
+
+	@Override
+	public void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo) {
+		// TODO Auto-generated method stub
+		// Ignore: Hypervisor enactor does not directly enact a FC
 	}
 	
 //	private URI createTemporaryURI (String surl){

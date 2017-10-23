@@ -5,3 +5,4 @@ Bundle-SymbolicName: eu.supersede.dynadapt.enactor.Enactor
 Bundle-Version: 1.0.0.qualifier
 Export-Package: eu.supersede.dynadapt.enactor
 Require-Bundle: org.eclipse.uml2.uml;bundle-version="5.2.2"
+Import-Package: cz.zcu.yafmt.model.fc

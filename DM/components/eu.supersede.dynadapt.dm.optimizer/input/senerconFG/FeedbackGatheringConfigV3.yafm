@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
   <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <attribute id="a_1276632471" name="diskC" type="double" qualityAttribute="true"/>
+    <attribute id="a_635774458" name="quality" type="double" qualityAttribute="true"/>
     <feature id="mechanism" name="Mechanism" lower="1" upper="1">
       <feature id="attachment" name="Attachment" lower="1" upper="1">
         <group lower="1" upper="1">
