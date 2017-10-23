@@ -26,6 +26,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata;
@@ -80,6 +81,15 @@ public abstract class AbstractFitnessFunction implements FitnessFunction {
 //			List<String> features = Arrays.asList(chromosome.toString().split(" "));
 			
 			double[] result = calculate(chromosome.toFeatureList());
+			
+			//If the individual violates the constraint the fitness is changed to a not optimal value
+			if(result[1] > Parameters.CONSTRAINT_THRESHOLD){
+				if(isMaximizationFunction()){
+					result[0] = 0;
+				}else{
+					result[0] = Double.MAX_VALUE;
+				}				
+			}
 			
 			chromosome.setFitness(result[0]);
 			chromosome.setOverallConstraint(result[1]);

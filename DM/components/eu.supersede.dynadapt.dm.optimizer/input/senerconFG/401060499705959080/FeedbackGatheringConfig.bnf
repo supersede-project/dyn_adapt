@@ -1,0 +1,20 @@
+<feedbackconfiguration>::= <mechanism> 
+<mechanism>::= <attachment> <screenshot> <audio> 
+<attachment>::= <lowattachment>
+	| <mediumattachment>
+	| <highattachment>
+<lowattachment>::= "lowattachment"
+<mediumattachment>::= "mediumattachment"
+<highattachment>::= "highattachment"
+<screenshot>::= <lowscreen>
+	| <mediumscreen>
+	| <highscreen>
+<lowscreen>::= "lowscreen"
+<mediumscreen>::= "mediumscreen"
+<highscreen>::= "highscreen"
+<audio>::= <highaudio>
+	| <mediumaudio>
+	| <lowaudio>
+<highaudio>::= "highaudio"
+<mediumaudio>::= "mediumaudio"
+<lowaudio>::= "lowaudio"

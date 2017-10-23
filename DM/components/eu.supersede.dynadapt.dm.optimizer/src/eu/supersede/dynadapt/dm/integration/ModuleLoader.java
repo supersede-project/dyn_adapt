@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
+import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.naming.NamingException;
 
 import org.slf4j.Logger;
@@ -320,6 +321,18 @@ public class ModuleLoader {
 		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; 
 			break;
+		case SenerconFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SENERCON;
+			break;
+		case SiemensFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SIEMENS;
+			break;
+		case AtosFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			break;
 		}
 	}
 	
@@ -346,7 +359,22 @@ public class ModuleLoader {
 			uri = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
 			break;
 		case Senercon:
-			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
+			Parameters.TENANT= Parameters.Tenants.SENERCON;break;
+		case SenerconFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SENERCON;
+			uri = "input/senerconFG/FeedbackGatheringConfigV3.yafm";
+			break;
+		case SiemensFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SIEMENS;
+			uri = "input/siemensFG/FeedbackGatheringConfigV2.yafm";
+			break;
+		case AtosFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/atosFG/FeedbackGatheringConfigV2.yafm";
+			break;
 		}
 		
 		return uri;
@@ -376,6 +404,21 @@ public class ModuleLoader {
 			break;	
 		case Senercon:
 			Parameters.TENANT= Parameters.Tenants.SENERCON; break;
+		case SenerconFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SENERCON;
+			uri = "input/senerconFG/FeedbackGatheringConfigV3.yafc";
+			break;
+		case SiemensFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SIEMENS;
+			uri = "input/siemensFG/FeedbackGatheringConfigV2.yafc";
+			break;
+		case AtosFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/atosFG/FeedbackGatheringConfigV2.yafc";
+			break;
 		}
 		return uri;
 	} 
@@ -407,12 +450,13 @@ public class ModuleLoader {
 		Parameters.SEARCH_BUDGET = 5; //00000;
 		Parameters.POPULATION_SIZE = 50;
 		
-		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;
+		Parameters.CONSTRAINT_THRESHOLD = alertThresholdValue;// This value is not normalized 
 		Parameters.ALERT_ATTRIBUTE = alertAttribute;
 		int depth = 15;
 		double probRecursive = 0.05;
 		List<String> currentConfiguration = ConfigurationLoader.loadCurrentConfiguration();
 		String optimalConfiguration = "";
+		//multiObjective = true;
 		if (multiObjective){
 			ConstrainedNSGAII nsgaii = new ConstrainedNSGAII(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 			List<Chromosome> solutions = nsgaii.generateSolution();
