@@ -33,4 +33,5 @@ public interface IAdapter {
 	void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
 		String featureConfigurationAsString) throws EnactmentException;
 	void enactAdaptationDecisionActionsForFC (ModelSystem system, String featureConfigurationId) throws EnactmentException;
+	void enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws EnactmentException;
 }

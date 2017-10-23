@@ -89,6 +89,11 @@
     	<artifactId>eu.supersede.dynadapt.enactor.Enactor</artifactId>
     	<version>1.0.0-SNAPSHOT</version>
     </dependency>
+    <dependency>
+        <groupId>cz.zcu.yafmt</groupId>
+        <artifactId>cz.zcu.yafmt.model</artifactId>
+        <version>0.3.0-SNAPSHOT</version>
+     </dependency>
 	<!-- SUPERSEDE Dynamic Adaptation -->
 
 	<dependency>
