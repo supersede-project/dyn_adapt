@@ -119,6 +119,7 @@ public class PopulateModelRepositoryTest {
 //		populateRepository();
 		populateAtosModels();
 		populateSiemenesModels();
+		populateFGReconfigurationModels();
 	}
 	
 	private void populateAtosModels() throws IOException, Exception {
@@ -336,6 +337,42 @@ public class PopulateModelRepositoryTest {
 				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		
 		log.debug(ModelSystem.Siemens.toString() + " models loaded");	
+	}
+	
+	private void populateFGReconfigurationModels() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+
+		log.debug("Loading " + ModelSystem.FeedbackGatheringReconfiguration.toString());
+		
+		//BaseModel
+		
+		
+		//Profiles
+		
+
+		//Variants
+		
+
+		//Feature Model
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/models", "FeedbackGatheringConfigV3.yafm"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.FeedbackGatheringReconfiguration, Status.Designed, "features/models",
+			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
+		//Feature Configurations
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV3.yafc"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.FeedbackGatheringReconfiguration, Status.Enacted, "features/configurations",
+			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		//Patterns
+		
+
+		//Adaptability models
+		
+		
+		log.debug(ModelSystem.FeedbackGatheringReconfiguration.toString() + " models loaded");	
 	}
 	
 	private void populateRepository() throws Exception {
