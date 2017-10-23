@@ -56,7 +56,7 @@ import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
 public class ModuleLoader {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private AdapterProxy<?, ?> proxy;
-	private AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
+	public AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
 	
 	private ModelRepository mr;
 	private eu.supersede.dynadapt.model.ModelManager mm;
