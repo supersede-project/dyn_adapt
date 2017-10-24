@@ -219,7 +219,7 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.xtext</artifactId>
-        <version>2.12.0.v20170518-0959</version>
+        <version>2.13.0.v20171020-0708</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -254,12 +254,12 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>com.google.guava</artifactId>
-        <version>15.0.0.v201403281430</version>
+        <version>21.0.0.v20170206-1425</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.xtext.util</artifactId>
-        <version>2.12.0.v20170518-0959</version>
+        <version>2.13.0.v20171020-0708</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -329,7 +329,7 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.xtext.common.types</artifactId>
-        <version>2.12.0.v20170519-0752</version>
+        <version>2.13.0.v20171020-0717</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
@@ -339,7 +339,7 @@
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
         <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-        <version>2.12.0.v20170518-0757</version>
+        <version>2.13.0.v20171020-0659</version>
      </dependency>
      <dependency>
         <groupId>p2.osgi.bundle</groupId>
