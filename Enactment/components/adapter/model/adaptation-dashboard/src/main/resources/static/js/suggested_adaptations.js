@@ -1,6 +1,7 @@
 var app = angular.module('w5app');
 
 app.controllerProvider.register('suggested_adaptations', function($scope, $http) {
+																				
 	
 //    $scope.adaptations = "";
 //    $scope.getAdaptations = function() {
@@ -16,9 +17,11 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 //    $scope.getAdaptations();
 	
 	$http({
-		url: "adaptation-dashboard/adaptation",
+		url: "adaptation-dashboard/adaptation/suggested",
 		method: 'GET'
 	}).success(function (data, status) {
+		console.log(data);
+		
 		var localData = [];
 		
 		for(var i = 0; i < data.length; i++)
@@ -41,6 +44,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				row['action_names'].push(data[i]['actions'][j]['name']);
 				row['action_descriptions'].push(data[i]['actions'][j]['description']);
 				row['action_enableds'].push(data[i]['actions'][j]['enabled']);
+				
 			}
 						
 			localData.push(row);
@@ -61,31 +65,73 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				{ name: 'action_descriptions', type: 'array' },
 				{ name: 'action_enableds', type: 'array' }
 			],
-			hierarchy:
-		    {
-		        root: 'actions'
-		    },
+		    
+			root: 'actions',
 			id: 'fc_id',
 			localdata: localData
 		};
-		var dataAdapter = new $.jqx.dataAdapter(source);
-				
+		var dataAdapter = new $.jqx.dataAdapter(source, { autoBind: true });
+		 
+		//1st end of the link(Suggested_Adaptations)
+		//trying to retrieve data stored in Enacted_Adaptation table to subData
+//		 $http({
+//           url: "adaptation-dashboard/enactment",
+//           method: 'GET'
+//       }).success(function(data) {
+//          var subData= [];
+//          
+//          for(var i = 0; i < data.length; i++)
+//  		{
+//  			subData.push(data[i]['fc_id']);
+//  		}
+  	
+    	   
+	            
+		
+        //create original grid
 		$scope.gridSettings =
 		{
-			width: '100%',
+			autowidth: true,
 			pageable: true,
 			autoheight: true,
+			altrows: true,
 			autorowheight: true,
 			source: dataAdapter,
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
-			    { text: 'Name', align: 'center', datafield: 'name', width: 80},
-			    { text: 'Computation Timestamp', align: 'center', datafield: 'computation_timestamp', width: 180},
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id', width: 110
+//			    	cellsRenderer: function (row, columnfield, value, defaulthtml, columnproperties){
+//			    		for (var i=0; i< subData.length; i++){ //comparing each adaptation to see if it is in the enacted table
+//			    			if(value == subData[i]){
+//			    			    //TODO: 2nd end of the link(Enacted_Adaptation)
+//			    			    //get grid from Enactment_Adaptation page
+//			    			    //get all Adaptation ids (stored one per row) in all the grid's pages
+//			    			    //when clicking on the link show only the page that contains the enacted adaptation with that id
+//			    				
+//			    				//showing link only for those that are in enacted adaptations table
+//			    				return '<a id="link" href= "#/adaptation-dashboard/enacted_adaptations"><b>'+value+'</b></a>';
+//			    			}
+//			    		}
+//
+//			    	}
+			    },
+			    { text: '<b>Name</b>', align: 'center', datafield: 'name', width: 80},
+			    { text: '<b>Computation Timestamp</b>', align: 'center', datafield: 'computation_timestamp', width: 180},
 			    //{ text: 'Rank', align: 'center', datafield: 'rank', width: 100},
-			    { text: 'Model System', align: 'center', datafield: 'model_system', width: 190},
-			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+			    { text: '<b>Model System</b>', align: 'center', datafield: 'model_system', width: 190},
+			    { text: '<b>Action id' ,columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+			    	cellsRenderer: function (row, columnDataField, value) {
+			    		console.log("row: "+row+" columnData: "+columnDataField+" value: "+value);
+			    		var grid = '<table style="width:100%;table-layout: fixed;">';
+			    		for (var i = 0; i < value.length; i++) {
+			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    		}
+			    		grid += '</table>'
+			    		return grid;
+					} },
+				{ text: '<b>Action name</b>', columngroup: 'Actions', align: 'center', datafield: 'action_names',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -95,17 +141,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action name', columngroup: 'Actions', align: 'center', datafield: 'action_names',
-			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="width:100%;table-layout: fixed;">';
-			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
-			    		}
-			    		grid += '</table>'
-			    		return grid;
-					} },
-				{ text: 'Action description', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
+				{ text: '<b>Action description</b>',columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
 			    	cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
@@ -115,34 +151,47 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action enabled', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
-			    	cellsRenderer: function (row, columnDataField, value) {
+				{ text: '<b>Action enabled</b>',columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
+					cellsRenderer: function (row, columnDataField, value) {
 			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    			//painting borders
+			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">';
+			    				
+			    			//checkbox
+			    			if(value[i]==true){
+			    				grid += '<div style="height: 25px;"><input type="checkbox" checked="checked" disabled="disabled"></div></td></tr>';
+			    			}
+			    			else
+			    				grid += '<div style="height: 25px;"><input type="checkbox" disabled="disabled"></div></td></tr>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
-					} }
+					}
+				}
 			],
 			columngroups: 
                 [
-                  { text: 'Actions', align: 'center', name: 'Actions' }
+                  { text: '<b>Actions</b>', align: 'center', name: 'Actions'}
                 ],
 			ready: function()
 			{
+				
 				$('#btnEnact').jqxButton({ disabled: true });
 				$('#btnDelete').jqxButton({ disabled: true });
 				
-				var selectedRows = {};
-				
+				var selectedRows={};			
+		
+		
 				$('#jqxGrid').bind('rowselect', function(event)  {
 					var current_index = event.args.rowindex;
 					var datarow = $('#jqxGrid').jqxGrid('getrowdata', current_index);
 					
 					selectedRows[current_index] = datarow;
-					$('#btnEnact').jqxButton({ disabled: false });
+					if (top.config =="supervised"){
+						$('#btnEnact').jqxButton({ disabled: false });
+					}
 					$('#btnDelete').jqxButton({ disabled: false });
 				});
 				$('#jqxGrid').bind('rowunselect', function(event)  {
@@ -158,7 +207,9 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 					
 				});
 			}
+		
 		};
+		
 		$scope.createWidget = true;
 		
 		$scope.enactSuggestedAdaptations = function() {
@@ -169,7 +220,7 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				console.log(index);
 				var row_data = $('#jqxGrid').jqxGrid('getrowdata', indexes[index]);
 				$http({
-		            url: "adaptation-dashboard/adaptation/" + row_data['fc_id'],
+		            url: "adaptation-dashboard/adaptation/enact/" + row_data['fc_id'],
 		            method: 'POST'
 		        }).success(function(data) {
 		        	console.log("Enacted adaptation");
@@ -202,8 +253,17 @@ app.controllerProvider.register('suggested_adaptations', function($scope, $http)
 				$('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
+			
 
+//		//FOR ENACTMENTS
+//       }).error(function(err) {
+//           console.log(err);
+//       });
+	
+
+		 //FOR ADAPTATIONS
 	 }).error(function (data, status) {
 		 alert(status);
 	 });
 });
+//# sourceURL=suggested_adaptations.js
