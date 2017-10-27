@@ -19,6 +19,7 @@ import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.IAdapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.dynadapt.adapter.kpi.AdapterKPIComputer;
+import eu.supersede.dynadapt.adapter.service.configuration.AdapterServiceConfiguration;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -41,8 +42,7 @@ public class AdapterService {
 	URL url = null;
 	
 	public AdapterService() throws Exception{
-		log.debug("Starting Adapter Service in production mode");
-		setUp(false);
+		this (AdapterServiceConfiguration.getDemoMode());
 	}
 	
 	public AdapterService(boolean demo) throws Exception{
@@ -89,12 +89,16 @@ public class AdapterService {
 	//@RequestMapping(value="/adaptationDecisionAction/{adaptationDecisionActionId}/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionAction(@PathVariable String systemId, @PathVariable String adaptationDecisionActionId,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
+		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
+		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionAction(ModelSystem.valueOf(systemId), adaptationDecisionActionId, featureConfigurationId);
 	}
 
 	@RequestMapping(value="/adaptationDecisionActions/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
+		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
+		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionActions(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationId);
 	}
 	
@@ -115,6 +119,8 @@ public class AdapterService {
 
 	@RequestMapping(value="/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method=RequestMethod.POST)
 	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException {
+		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
+		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
 	

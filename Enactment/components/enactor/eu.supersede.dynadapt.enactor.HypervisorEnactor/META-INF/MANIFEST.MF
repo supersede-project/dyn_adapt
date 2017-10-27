@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Import-Package: eu.supersede.dynadapt.model,
+Import-Package: cz.zcu.yafmt.model.fc,
+ eu.supersede.dynadapt.model,
  org.apache.log4j
 Export-Package: eu.supersede.dynadapt.enactor.HypervisorEnactor
 

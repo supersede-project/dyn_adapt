@@ -118,6 +118,18 @@ public class Adapter implements IAdapter {
 		adaptationDecisionActionIds.add (adaptationDecisionActionId);
 		enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
 	}
+	
+	@Override
+	public void enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws EnactmentException {
+		try {
+			
+			doEnactmentWithEnactor(system, featureConfigurationId, null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EnactmentException(e);
+		}
+	}
 
 	@Override
 	public void enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
@@ -242,6 +254,7 @@ public class Adapter implements IAdapter {
 //				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				ee = new EnactmentException(e);
 			}
 			
@@ -277,7 +290,92 @@ public class Adapter implements IAdapter {
 		if ((model == null) || !(ee == null)) {
 			//TODO Notify DM that adaptation actions have not been enacted
 			log.debug("Notifing back to DM that adaptation actions have not been enacted");
-			throw ee;
+			if (ee != null) throw ee;
+			if (model == null) throw new EnactmentException ("Adaptation model was not computed");
+		}
+	}
+	
+	private void doEnactmentWithEnactor(ModelSystem system, String featureConfigurationId, String featureConfigurationAsString) 
+			throws EnactmentException, Exception, IOException {
+		
+		//Registering dashboard proxy to initialize Front-end session
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		
+		kpiComputerAdapter.startComputingKPI();		
+		
+		//Preload Models from remote repository in temporal one
+		mr.loadModelsFromRepository(system);
+		
+		FeatureConfiguration newFeatureConfig = null;
+		
+		if (featureConfigurationId == null && featureConfigurationAsString!=null){
+			//Read feature configuration from string
+			newFeatureConfig = mr.readModelFromString(featureConfigurationAsString, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+			Assert.assertNotNull("Passed feature configuration could not be loaded: ", featureConfigurationAsString);
+		}
+		else if (featureConfigurationId == null){
+			newFeatureConfig = mr.getLastComputedFeatureConfigurationForSystem(system);
+		}
+		else{
+			newFeatureConfig = mr.getFeatureConfigurationModel(featureConfigurationId);
+		}
+		
+		// Get currently enacted FeatureConfiguration
+		FeatureConfiguration originalFeatureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);
+		
+		kpiComputerAdapter.stopComputingKPI();
+		kpiComputerAdapter.reportComputedKPI();
+		
+		// BASE MODEL ENACTMENT
+		EnactmentException ee = null;	
+		String uploadedFeatureConfigurationId = null;
+		if (newFeatureConfig != null) {
+		
+			// Ask Enactor to enact the new Feature Configuration
+			kpiComputerEnactor.startComputingKPI();
+			try {
+				log.debug("Invoking enactor for system " + system);	
+				EnactorFactory.getEnactorForSystem(system).enactFeatureConfiguration(newFeatureConfig, demo);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				ee = new EnactmentException(e);
+			}
+			
+			kpiComputerEnactor.stopComputingKPI();
+			kpiComputerEnactor.reportComputedKPI();
+		
+			// Recover the adaptation corresponding to the latest feature configuration
+			String adaptationId = featureConfigurationId != null ? featureConfigurationId : 
+				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : DEFAULT_ADAPTATION_ID; 
+			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
+			if (adaptation == null) {
+				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");
+				List<Selection> changedSelections = new ArrayList<Selection>();
+				adaptation = createAdaptation(adaptationId,
+						String.format("%s %s", system.toString(), featureConfigurationId),
+						system,
+						changedSelections , 
+						kpiComputerAdapter.getInitialProcessingTime());
+				adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+			}
+			
+			// Notify dashboard the enactment of the FC
+			Enactment enactment = createEnactment(adaptationId,
+					ee == null, 
+					kpiComputerAdapter.getInitialProcessingTime(),
+					kpiComputerEnactor.getFinalProcessingTime());
+			// Populate Enactment data
+			adaptationDashboardProxy.addEnactment(enactment);
+			
+			//TODO Notify DM that adaptation actions have been enacted
+			log.debug("Notifing back to DM that adaptation actions have been enacted");
+		} 
+		if ((newFeatureConfig == null) || !(ee == null)) {
+			//TODO Notify DM that adaptation actions have not been enacted
+			log.debug("Notifing back to DM that adaptation actions have not been enacted");
+			if (ee != null) throw ee;
+			if (newFeatureConfig == null) throw new EnactmentException ("There was not found the computed feature configuration to be enacted");
 		}
 	}
 	
