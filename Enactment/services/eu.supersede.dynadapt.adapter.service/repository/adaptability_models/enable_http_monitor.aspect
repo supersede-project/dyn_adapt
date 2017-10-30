@@ -1,0 +1,22 @@
+aspect enable_http {
+	feature FeatureModel.HttpMonitoringSystem.QoS.HttpMonitor.MonitoringConfiguration,
+	advice HttpConf,
+	pointcuts{	
+		pointcut Http{
+			pattern eu.supersede.dynadapt.usecases.patterns.httpConf,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition EnableConf{
+			feature_enabled false,
+			adviceRole ADM.Joinpoint,
+			action add
+		},
+		composition DisableConf{
+			feature_enabled true,
+			adviceRole ADM.Joinpoint,
+			action delete
+		}
+	}
+}

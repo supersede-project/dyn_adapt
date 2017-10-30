@@ -9,7 +9,7 @@
   <mapping value="421 44 120 30">
     <key href="HttpMonitoringSystemEnableFeatureModel.yafm#//@root/@features.0/@features.0"/>
   </mapping>
-  <mapping value="582 -7 212 171">
+  <mapping value="582 -7 212 95">
     <key href="HttpMonitoringSystemEnableFeatureModel.yafm#//@root/@features.0/@features.0/@features.0"/>
   </mapping>
 </layout:LayoutData>

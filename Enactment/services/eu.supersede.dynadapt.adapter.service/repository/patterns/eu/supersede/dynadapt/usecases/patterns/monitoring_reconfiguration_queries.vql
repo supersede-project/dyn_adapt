@@ -34,6 +34,11 @@ pattern monitors(client, supplier, generalization) {
 
 }
 
+pattern httpConf(class) {
+	Class.name(class, name);
+	check(name.equals("HttpMonitor"));
+}
+
 pattern twitterTimeSlot(slot) {
 	Slot.definingFeature.name(slot, name);
 	Slot.owningInstance.classifier.name(slot, instanceName);
