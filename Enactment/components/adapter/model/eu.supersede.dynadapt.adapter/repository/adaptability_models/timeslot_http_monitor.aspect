@@ -1,5 +1,5 @@
 aspect timeslot_http {
-	feature HttpMonitoringSystemFeatureModel.HttpMonitoringSystem.QoS.HttpMonitor.timeSlot,
+	feature HttpMonitoringSystemTimeslotFeatureModel.HttpMonitoringSystem.QoS.HttpMonitor.Low_timeSlot,
 	pointcuts{	
 		pointcut Http{
 			pattern eu.supersede.dynadapt.usecases.patterns.httpTimeSlot,
