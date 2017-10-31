@@ -36,10 +36,19 @@
       <slot xmi:type="uml:Slot" xmi:id="_D277O74dEeeTe87ONvFCCA" definingFeature="_D277P74dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_D277PL4dEeeTe87ONvFCCA" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
       </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_Hm9VkL4wEeeTe87ONvFCCA" definingFeature="_DWLc4L4wEeeTe87ONvFCCA">
+        <value xmi:type="uml:LiteralString" xmi:id="_Hm9Vkb4wEeeTe87ONvFCCA" name="method" value="GET"/>
+      </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_D277Pb4dEeeTe87ONvFCCA" name="HttpMonitor">
       <generalization xmi:type="uml:Generalization" xmi:id="_D277Pr4dEeeTe87ONvFCCA" general="_D27UIL4dEeeTe87ONvFCCA"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_D277P74dEeeTe87ONvFCCA" name="url" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <qualifier xmi:type="uml:Property" xmi:id="__ygh0L4vEeeTe87ONvFCCA" name="url" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </qualifier>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_DWLc4L4wEeeTe87ONvFCCA" name="method">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
     </packagedElement>

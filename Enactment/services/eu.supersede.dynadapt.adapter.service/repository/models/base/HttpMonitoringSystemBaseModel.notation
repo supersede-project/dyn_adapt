@@ -126,6 +126,10 @@
         <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_V8HCgJeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_V8VsAZeqEeet2rpbr-vMrQ"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_3OMXYL4vEeeTe87ONvFCCA" type="Property_ClassAttributeLabel">
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_3Nl6cL4vEeeTe87ONvFCCA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_3OMXYb4vEeeTe87ONvFCCA"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_KOpV0ZeqEeet2rpbr-vMrQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_KOpV0peqEeet2rpbr-vMrQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_KOpV05eqEeet2rpbr-vMrQ"/>
@@ -144,7 +148,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KOpV3peqEeet2rpbr-vMrQ"/>
     </children>
     <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModel.uml#_KOjPMJeqEeet2rpbr-vMrQ"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KOm5kZeqEeet2rpbr-vMrQ" x="489" y="238" width="134" height="87"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KOm5kZeqEeet2rpbr-vMrQ" x="489" y="238" width="162" height="116"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_zIOXYJeqEeet2rpbr-vMrQ" type="InstanceSpecification_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_zIO-cJeqEeet2rpbr-vMrQ" type="InstanceSpecification_NameLabel"/>
@@ -176,13 +180,17 @@
         <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_-kS8oJerEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_-kaRYZerEeet2rpbr-vMrQ"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_qNW-UL4vEeeTe87ONvFCCA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_qNWXQL4vEeeTe87ONvFCCA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qNW-Ub4vEeeTe87ONvFCCA"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_zIO-dJeqEeet2rpbr-vMrQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_zIO-dZeqEeet2rpbr-vMrQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_zIO-dpeqEeet2rpbr-vMrQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zIO-d5eqEeet2rpbr-vMrQ"/>
     </children>
     <element xmi:type="uml:InstanceSpecification" href="HttpMonitoringSystemBaseModel.uml#_zINJQJeqEeet2rpbr-vMrQ"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zIOXYZeqEeet2rpbr-vMrQ" x="687" y="231"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zIOXYZeqEeet2rpbr-vMrQ" x="687" y="231" height="138"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_7-HPcZepEeet2rpbr-vMrQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_7-HPcpepEeet2rpbr-vMrQ"/>

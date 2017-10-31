@@ -10,8 +10,16 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_D29JVr4dEeeTe87ONvFCCA" key="collapsed" value="true"/>
       </eAnnotations>
       <children xmi:type="notation:Shape" xmi:id="_D29JV74dEeeTe87ONvFCCA" type="Property_ClassAttributeLabel">
+        <children xmi:type="notation:Shape" xmi:id="__yhI4L4vEeeTe87ONvFCCA" type="Property_ClassAttributeLabel">
+          <element xmi:type="uml:Property" href="HttpAddConf.uml#__ygh0L4vEeeTe87ONvFCCA"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="__yhI4b4vEeeTe87ONvFCCA"/>
+        </children>
         <element xmi:type="uml:Property" href="HttpAddConf.uml#_D277P74dEeeTe87ONvFCCA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_D29JWL4dEeeTe87ONvFCCA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_DWSxoL4wEeeTe87ONvFCCA" type="Property_ClassAttributeLabel">
+        <element xmi:type="uml:Property" href="HttpAddConf.uml#_DWLc4L4wEeeTe87ONvFCCA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_DWSxob4wEeeTe87ONvFCCA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_D29JWb4dEeeTe87ONvFCCA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_D29JWr4dEeeTe87ONvFCCA"/>
@@ -31,7 +39,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D29JZr4dEeeTe87ONvFCCA"/>
     </children>
     <element xmi:type="uml:Class" href="HttpAddConf.uml#_D277Pb4dEeeTe87ONvFCCA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D29Jar4dEeeTe87ONvFCCA" x="499" y="248" width="134" height="87"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D29Jar4dEeeTe87ONvFCCA" x="499" y="248" width="134" height="121"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_D29wYL4dEeeTe87ONvFCCA" type="InstanceSpecification_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_D29wYb4dEeeTe87ONvFCCA" type="InstanceSpecification_NameLabel"/>
@@ -55,13 +63,17 @@
         <element xmi:type="uml:Slot" href="HttpAddConf.uml#_D277O74dEeeTe87ONvFCCA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_D29wcL4dEeeTe87ONvFCCA"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_Hm98oL4wEeeTe87ONvFCCA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpAddConf.uml#_Hm9VkL4wEeeTe87ONvFCCA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Hm98ob4wEeeTe87ONvFCCA"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_D29wcb4dEeeTe87ONvFCCA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_D29wcr4dEeeTe87ONvFCCA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_D29wc74dEeeTe87ONvFCCA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D29wdL4dEeeTe87ONvFCCA"/>
     </children>
     <element xmi:type="uml:InstanceSpecification" href="HttpAddConf.uml#_D277ML4dEeeTe87ONvFCCA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D29weL4dEeeTe87ONvFCCA" x="697" y="241"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D29weL4dEeeTe87ONvFCCA" x="697" y="241" height="115"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_D2-Xgb4dEeeTe87ONvFCCA" type="Class_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_D2-Xgr4dEeeTe87ONvFCCA" type="Class_NameLabel"/>

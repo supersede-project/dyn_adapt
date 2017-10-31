@@ -52,9 +52,12 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EiedO5eqEeet2rpbr-vMrQ" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KOjPMJeqEeet2rpbr-vMrQ" name="HttpMonitor">
+  <packagedElement xmi:type="uml:Class" xmi:id="_KOjPMJeqEeet2rpbr-vMrQ" name="QoS">
     <generalization xmi:type="uml:Generalization" xmi:id="_NxmfMJeqEeet2rpbr-vMrQ" general="_Eid2IJeqEeet2rpbr-vMrQ"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_V8HCgJeqEeet2rpbr-vMrQ" name="url" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_3Nl6cL4vEeeTe87ONvFCCA" name="method">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
@@ -76,6 +79,9 @@
     </slot>
     <slot xmi:type="uml:Slot" xmi:id="_-kS8oJerEeet2rpbr-vMrQ" definingFeature="_V8HCgJeqEeet2rpbr-vMrQ">
       <value xmi:type="uml:LiteralString" xmi:id="_BU3m0JesEeet2rpbr-vMrQ" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_qNWXQL4vEeeTe87ONvFCCA" definingFeature="_3Nl6cL4vEeeTe87ONvFCCA">
+      <value xmi:type="uml:LiteralString" xmi:id="_qNWXQb4vEeeTe87ONvFCCA" name="method" value="GET"/>
     </slot>
   </packagedElement>
   <packagedElement xmi:type="uml:Realization" xmi:id="_DeyWIJerEeet2rpbr-vMrQ" client="_zINJQJeqEeet2rpbr-vMrQ" supplier="_KOjPMJeqEeet2rpbr-vMrQ"/>
