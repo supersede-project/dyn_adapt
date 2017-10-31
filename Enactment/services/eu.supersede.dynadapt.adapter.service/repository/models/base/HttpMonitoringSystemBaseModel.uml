@@ -65,9 +65,6 @@
     <slot xmi:type="uml:Slot" xmi:id="_MGhA8JerEeet2rpbr-vMrQ" definingFeature="_Eid2IpeqEeet2rpbr-vMrQ">
       <value xmi:type="uml:LiteralString" xmi:id="_XEJMIJerEeet2rpbr-vMrQ" name="toolName" value="ApacheHttp"/>
     </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_f22X4JerEeet2rpbr-vMrQ" definingFeature="_Eid2JZeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralString" xmi:id="_vVFngJerEeet2rpbr-vMrQ" name="kafkaEndpoint" value="http://localhost:9092/"/>
-    </slot>
     <slot xmi:type="uml:Slot" xmi:id="_v7s7kJerEeet2rpbr-vMrQ" definingFeature="_Eid2JpeqEeet2rpbr-vMrQ">
       <value xmi:type="uml:LiteralString" xmi:id="_zutTIJerEeet2rpbr-vMrQ" name="kafkaTopic" value="http-kafka-topic"/>
     </slot>

@@ -160,10 +160,6 @@
         <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_MGhA8JerEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_MGvDYZerEeet2rpbr-vMrQ"/>
       </children>
-      <children xmi:type="notation:Shape" xmi:id="_f2_h0JerEeet2rpbr-vMrQ" type="Slot_SlotLabel">
-        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_f22X4JerEeet2rpbr-vMrQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_f2_h0ZerEeet2rpbr-vMrQ"/>
-      </children>
       <children xmi:type="notation:Shape" xmi:id="_v71ecJerEeet2rpbr-vMrQ" type="Slot_SlotLabel">
         <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_v7s7kJerEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_v71ecZerEeet2rpbr-vMrQ"/>
