@@ -47,10 +47,6 @@
         <element xmi:type="uml:Slot" href="HttpAddConf.uml#_D277Nb4dEeeTe87ONvFCCA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_D29war4dEeeTe87ONvFCCA"/>
       </children>
-      <children xmi:type="notation:Shape" xmi:id="_D29wa74dEeeTe87ONvFCCA" type="Slot_SlotLabel">
-        <element xmi:type="uml:Slot" href="HttpAddConf.uml#_D277N74dEeeTe87ONvFCCA"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_D29wbL4dEeeTe87ONvFCCA"/>
-      </children>
       <children xmi:type="notation:Shape" xmi:id="_D29wbb4dEeeTe87ONvFCCA" type="Slot_SlotLabel">
         <element xmi:type="uml:Slot" href="HttpAddConf.uml#_D277Ob4dEeeTe87ONvFCCA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_D29wbr4dEeeTe87ONvFCCA"/>
