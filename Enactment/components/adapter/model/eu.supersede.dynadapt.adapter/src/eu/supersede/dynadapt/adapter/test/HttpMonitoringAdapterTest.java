@@ -23,9 +23,6 @@ public class HttpMonitoringAdapterTest {
 	
 	private String baseModelPath;
 	private String repository;
-	private String originalFeatureConfigPath;
-	private String newFeatureConfigPath;
-	private String featureModelPath;
 	private String repositoryRelativePath;
 	private String platformRelativePath;
 	
@@ -46,9 +43,6 @@ public class HttpMonitoringAdapterTest {
 	private void setupPlatform() {
 		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/HttpMonitoringSystemBaseModel.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
-		originalFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HttpMonitoringSystemConfigDefault.yafc";
-		newFeatureConfigPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/configurations/HttpMonitoringSystemConfigHighTimeslot.yafc";
-		featureModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/features/models/HttpMonitoringSystemFeatureModel.yafm";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 
@@ -68,7 +62,8 @@ public class HttpMonitoringAdapterTest {
 			boolean demo = true;
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 
-			String adaptationDecisionActionId = "timeslot";
+			//String adaptationDecisionActionId = "low_timeslot";
+			String adaptationDecisionActionId = "f_873247801";
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.AtosMonitoring, adaptationDecisionActionId, null);
 		} catch (EnactmentException e) {

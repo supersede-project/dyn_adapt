@@ -72,7 +72,7 @@
       <value xmi:type="uml:LiteralString" xmi:id="_4WjA8JerEeet2rpbr-vMrQ" name="id" value="1"/>
     </slot>
     <slot xmi:type="uml:Slot" xmi:id="_6NwaMJerEeet2rpbr-vMrQ" definingFeature="_Eid2JJeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralInteger" xmi:id="_9DGPoJerEeet2rpbr-vMrQ" name="timeSlot" value="10"/>
+      <value xmi:type="uml:LiteralInteger" xmi:id="_9DGPoJerEeet2rpbr-vMrQ" name="timeSlot" value="100"/>
     </slot>
     <slot xmi:type="uml:Slot" xmi:id="_-kS8oJerEeet2rpbr-vMrQ" definingFeature="_V8HCgJeqEeet2rpbr-vMrQ">
       <value xmi:type="uml:LiteralString" xmi:id="_BU3m0JesEeet2rpbr-vMrQ" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
