@@ -62,8 +62,8 @@ public class HttpMonitoringAdapterTest {
 			boolean demo = true;
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 
-			//String adaptationDecisionActionId = "low_timeslot";
-			String adaptationDecisionActionId = "f_873247801";
+			String adaptationDecisionActionId = "low_timeslot";
+			//String adaptationDecisionActionId = "f_873247801";
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.AtosMonitoring, adaptationDecisionActionId, null);
 		} catch (EnactmentException e) {
