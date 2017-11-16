@@ -38,9 +38,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
-import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
-import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
+//import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigDAO;
+//import eu.supersede.dynadapt.featuremodel.fc.FeatureConfigLAO;
+//import eu.supersede.dynadapt.featuremodel.fc.IFeatureConfigLAO;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
@@ -60,6 +60,8 @@ public class PopulateModelRepositoryTest {
 	private static final String ATOS_HSK_MODELS_AUTHOR = "Yosu";
 
 	private static final String SIEMENS_MODELS_AUTHOR = "Orlando";
+	
+	private static final String MONITORING_MODELS_AUTHOR = "Quim";
 
 	private final static Logger log = LogManager.getLogger(PopulateModelRepositoryTest.class);
 	
@@ -74,7 +76,7 @@ public class PopulateModelRepositoryTest {
 	ModelManager mm = null;
 	PopulateRepositoryManager prm = null;
 
-	IFeatureConfigLAO fcLAO = null;
+	//IFeatureConfigLAO fcLAO = null;
 	
 	public static void main (String[] args){
 		//Ignored, added to permit the creation of an executable Java for tests
@@ -91,7 +93,7 @@ public class PopulateModelRepositoryTest {
 		modelsLocation.put("features", "features/models/");
 		modelsLocation.put("configurations", "features/configurations/");
 
-		fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
+		//fcLAO = new FeatureConfigLAO(new FeatureConfigDAO());
 		url = getClass().getResource("/");
 		mm = new ModelManager(false);
 		mr = new ModelRepository(repository, repositoryRelativePath, mm);
@@ -119,9 +121,89 @@ public class PopulateModelRepositoryTest {
 //		populateRepository();
 		populateAtosModels();
 		populateSiemenesModels();
+		populateAtosMonitoringModels();
 		populateFGReconfigurationModels();
 	}
 	
+	private void populateAtosMonitoringModels() throws Exception {
+		
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		
+		log.debug("Loading " + ModelSystem.AtosMonitoring.toString());
+		
+		//BaseModel
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModel.uml"), 
+			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "models/base", Model.class,
+			ModelType.BaseModel, BaseModel.class);
+		
+		//Profile
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+		
+		//Variant FIXME used for avoid null error
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/variants", "HttpAddConf.uml"), 
+			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/variants", Model.class,
+			ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
+		/*prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemEnableFeatureModel.yafm"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+*/
+		//Feature Configurations
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigLowTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		/*prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigDisabled.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigEnabled.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+*/
+		//Patterns
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "monitoring_reconfiguration_queries.vql"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "timeslot_http_monitor.aspect"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		/*prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "enable_http_monitor.aspect"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);*/
+		
+
+		log.debug(ModelSystem.AtosMonitoring.toString() + " models loaded");
+		
+	}
+
 	private void populateAtosModels() throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);

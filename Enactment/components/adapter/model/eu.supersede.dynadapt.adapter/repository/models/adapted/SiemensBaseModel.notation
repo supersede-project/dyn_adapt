@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_VcxsUDVsEeeW99brvXH17A" type="PapyrusUMLActivityDiagram" name="Activity Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_VcyTYDVsEeeW99brvXH17A" type="Activity_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_VcyTYTVsEeeW99brvXH17A" type="Activity_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VcyTYjVsEeeW99brvXH17A" type="Activity_KeywordLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_VcyTYzVsEeeW99brvXH17A" type="Activity_ParameterCompartment">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VcyTZDVsEeeW99brvXH17A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VcyTZTVsEeeW99brvXH17A"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VcyTZjVsEeeW99brvXH17A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_VcyTZzVsEeeW99brvXH17A" type="Activity_PreconditionCompartment">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VcyTaDVsEeeW99brvXH17A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VcyTaTVsEeeW99brvXH17A"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VcyTajVsEeeW99brvXH17A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_VcyTazVsEeeW99brvXH17A" type="Activity_PostconditionCompartment">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VcyTbDVsEeeW99brvXH17A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VcyTbTVsEeeW99brvXH17A"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VcyTbjVsEeeW99brvXH17A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_VcyTbzVsEeeW99brvXH17A" type="Activity_ActivityNodeCompartment">
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VcyTcDVsEeeW99brvXH17A"/>
+    </children>
+    <element xmi:type="uml:Activity" href="SiemensBaseModel.uml#_VcAQQDVsEeeW99brvXH17A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VcyTcTVsEeeW99brvXH17A"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_VcyTcjVsEeeW99brvXH17A" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_VcyTczVsEeeW99brvXH17A"/>
+  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_VcyTdDVsEeeW99brvXH17A">
+    <owner xmi:type="uml:Model" href="SiemensBaseModel.uml#_z19mMDVJEee16uUXeUzO8g"/>
+  </styles>
+  <element xmi:type="uml:Activity" href="SiemensBaseModel.uml#_VcAQQDVsEeeW99brvXH17A"/>
+</notation:Diagram>
