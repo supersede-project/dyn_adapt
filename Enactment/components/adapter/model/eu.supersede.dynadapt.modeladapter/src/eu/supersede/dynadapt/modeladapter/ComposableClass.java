@@ -168,10 +168,6 @@ class ComposableClass extends ComposableImpl implements Composable {
 					generalizationToAdd.getGeneral(), inClass.getNearestPackage(), baseJointpoints));
 		}
 	}
-	
-	private void createRealizationInClass(Realization r, Element toElement, Element createdElement) {
-		if (true) {}
-	}
 
 	// Add to classBase all operations in classVariant (but not already existing
 	// in classVariant)
