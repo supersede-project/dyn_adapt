@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Enactor
+Bundle-SymbolicName: eu.supersede.monitor.reconfiguration.enactor
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: eu.supersede.dynadapt.enactor.Enactor,
+ org.apache.log4j,
+ eu.supersede.dynadapt.model,
+ eu.supersede.monitor.reconfiguration.executor,
+ com.google.gson,
+ org.eclipse.emf.common,
+ org.eclipse.uml2.uml,
+ eu.supersede.reconfiguration.enactor.uml2json
+Export-Package: eu.supersede.monitor.reconfiguration.enactor
