@@ -13,3 +13,4 @@ Require-Bundle: eu.supersede.dynadapt.enactor.Enactor,
  org.eclipse.uml2.uml,
  eu.supersede.reconfiguration.enactor.uml2json
 Export-Package: eu.supersede.monitor.reconfiguration.enactor
+Import-Package: cz.zcu.yafmt.model.fc

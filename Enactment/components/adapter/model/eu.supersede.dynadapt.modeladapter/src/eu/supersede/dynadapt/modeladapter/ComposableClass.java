@@ -112,7 +112,8 @@ class ComposableClass extends ComposableImpl implements Composable {
 				if (!ModelAdapterUtilities.elementMatchesInModel(model, (PackageableElement) e)) {
 					Element createdElement = addElementToModel(model, (PackageableElement) e);
 
-					createRealizationInClass((Realization) r, toElement, createdElement);
+					//FIXME: missing method, previous implementation did nothing.
+//					createRealizationInClass((Realization) r, toElement, createdElement);
 				}
 			}
 		}
