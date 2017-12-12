@@ -98,7 +98,7 @@ public class AdapterService {
 	public void enactAdaptationDecisionActions(@PathVariable String systemId, @RequestParam (value="adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
 		log.debug ("featureConfigurationId: " + (featureConfigurationId == null?"Null pointer": featureConfigurationId));
-		if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
+		//if (featureConfigurationId.equals("null")) featureConfigurationId = null; 
 		adapter.enactAdaptationDecisionActions(ModelSystem.valueOf(systemId), adaptationDecisionActionIds, featureConfigurationId);
 	}
 	
