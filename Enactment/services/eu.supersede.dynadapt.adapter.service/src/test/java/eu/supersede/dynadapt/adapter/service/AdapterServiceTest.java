@@ -62,13 +62,13 @@ public class AdapterServiceTest {
 	}
 	
 	
-	@Ignore @Test
+	@Test
 	public void testAtosHSKUCAdaptation() {
 		try {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = "SmartPlatformFC_HSK_SingleVM_HighLoad";
+			String featureConfigurationId = "620";
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
