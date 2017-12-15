@@ -36,33 +36,33 @@
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.core.jobs/3.8.0.v20160509-0411/org.eclipse.core.jobs-3.8.0.v20160509-0411.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.core.resources/3.11.1.v20161107-2032/org.eclipse.core.resources-3.11.1.v20161107-2032.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.osgi/3.11.3.v20170209-1843/org.eclipse.osgi-3.11.3.v20170209-1843.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext/2.10.0.v201605250459/org.eclipse.xtext-2.10.0.v201605250459.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext/2.13.0.v20171020-0708/org.eclipse.xtext-2.13.0.v20171020-0708.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.uml2.uml.resources/5.2.0.v20170227-0935/org.eclipse.uml2.uml.resources-5.2.0.v20170227-0935.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.uml2.uml/5.2.3.v20170227-0935/org.eclipse.uml2.uml-5.2.3.v20170227-0935.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.uml2.common/2.1.0.v20170227-0935/org.eclipse.uml2.common-2.1.0.v20170227-0935.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.uml2.types/2.0.0.v20170227-0935/org.eclipse.uml2.types-2.0.0.v20170227-0935.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.uml2.uml.profile.standard/1.0.100.v20170227-0935/org.eclipse.uml2.uml.profile.standard-1.0.100.v20170227-0935.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.mapping.ecore2xml/2.9.0.v20160526-0356/org.eclipse.emf.mapping.ecore2xml-2.9.0.v20160526-0356.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/com.google.guava/15.0.0.v201403281430/com.google.guava-15.0.0.v201403281430.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.util/2.10.0.v201605250459/org.eclipse.xtext.util-2.10.0.v201605250459.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/com.google.guava/21.0.0.v20170206-1425/com.google.guava-21.0.0.v20170206-1425.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.util/2.13.0.v20171020-0708/org.eclipse.xtext.util-2.13.0.v20171020-0708.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/com.google.inject/3.0.0.v201605172100/com.google.inject-3.0.0.v201605172100.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/inject/extensions/guice-multibindings/3.0/guice-multibindings-3.0.jar" sourcepath="M2_REPO/com/google/inject/extensions/guice-multibindings/3.0/guice-multibindings-3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/inject/guice/3.0/guice-3.0.jar" sourcepath="M2_REPO/com/google/inject/guice/3.0/guice-3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/javax.inject/1.0.0.v20091030/javax.inject-1.0.0.v20091030.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.mwe2.runtime/2.9.0.v201605261103/org.eclipse.emf.mwe2.runtime-2.9.0.v201605261103.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.patternlanguage/1.5.2.201703171608/org.eclipse.viatra.query.patternlanguage-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.patternlanguage.emf/1.5.2.201703171608/org.eclipse.viatra.query.patternlanguage.emf-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.matchers/1.5.2.201703171608/org.eclipse.viatra.query.runtime.matchers-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime/1.5.2.201703171608/org.eclipse.viatra.query.runtime-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.base/1.5.2.201703171608/org.eclipse.viatra.query.runtime.base-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.rete/1.5.2.201703171608/org.eclipse.viatra.query.runtime.rete-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.base.itc/1.5.2.201703171608/org.eclipse.viatra.query.runtime.base.itc-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.rete.recipes/1.5.2.201703171608/org.eclipse.viatra.query.runtime.rete.recipes-1.5.2.201703171608.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.xbase/2.11.0.v20170131-1210/org.eclipse.xtext.xbase-2.11.0.v20170131-1210.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.common.types/2.10.0.v201605250459/org.eclipse.xtext.common.types-2.10.0.v201605250459.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.patternlanguage/1.6.1.201708020823/org.eclipse.viatra.query.patternlanguage-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.patternlanguage.emf/1.6.1.201708020823/org.eclipse.viatra.query.patternlanguage.emf-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.matchers/1.6.1.201708020823/org.eclipse.viatra.query.runtime.matchers-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime/1.6.1.201708020823/org.eclipse.viatra.query.runtime-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.base/1.6.1.201708020823/org.eclipse.viatra.query.runtime.base-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.rete/1.6.1.201708020823/org.eclipse.viatra.query.runtime.rete-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.base.itc/1.6.1.201708020823/org.eclipse.viatra.query.runtime.base.itc-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.viatra.query.runtime.rete.recipes/1.6.1.201708020823/org.eclipse.viatra.query.runtime.rete.recipes-1.6.1.201708020823.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.xbase/2.12.0.v20170519-0752/org.eclipse.xtext.xbase-2.12.0.v20170519-0752.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.common.types/2.13.0.v20171020-0717/org.eclipse.xtext.common.types-2.13.0.v20171020-0717.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.antlr.runtime/3.2.0.v201101311130/org.antlr.runtime-3.2.0.v201101311130.jar"/>
-  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.xbase.lib/2.10.0.v201605250459/org.eclipse.xtext.xbase.lib-2.10.0.v201605250459.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.xbase.lib/2.13.0.v20171020-0659/org.eclipse.xtext.xbase.lib-2.13.0.v20171020-0659.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.codegen.ecore/2.12.0.v20160526-0356/org.eclipse.emf.codegen.ecore-2.12.0.v20160526-0356.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.objectweb.asm/5.1.0.v20160914-0701/org.objectweb.asm-5.1.0.v20160914-0701.jar"/>
   <classpathentry kind="var" path="M2_REPO/cz/zcu/yafmt/cz.zcu.yafmt.model/0.3.0-SNAPSHOT/cz.zcu.yafmt.model-0.3.0-SNAPSHOT.jar"/>

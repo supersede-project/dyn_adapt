@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
@@ -29,13 +30,12 @@ import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class AdapterServiceTest {
-	AdapterService service;
+	private static AdapterService service;
 	private static AdaptationDashboardProxy <Object, Object> adaptationProxy;
 	private static ModelRepositoryProxy<?, ?> modelRepositoryProxy;
-	private String repository = "./repository";
 	
-	@Before
-	public void setup() throws Exception{
+	@BeforeClass
+	public static void setup() throws Exception{
 		boolean demo = true;
 		service = new AdapterService(demo);
 		adaptationProxy = new AdaptationDashboardProxy<Object, Object>("adaptation", "adaptation", "atos");
@@ -57,18 +57,16 @@ public class AdapterServiceTest {
 		List<String> adaptationDecisionActionIds = new ArrayList<>();
 		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
 		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-		featureConfigurationId = null;
 		service.enactAdaptationDecisionActions(system.toString(), adaptationDecisionActionIds, featureConfigurationId);
 	}
 	
-	
-	@Test
+	@Ignore @Test
 	public void testAtosHSKUCAdaptation() {
 		try {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
-			String featureConfigurationId = "620";
+			String featureConfigurationId = "661";
 			service.enactAdaptationDecisionActions(
 					ModelSystem.Atos_HSK.toString(), Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -196,8 +194,8 @@ public class AdapterServiceTest {
 	private String getFeatureConfigurationContent(String fcName) throws IOException {
 		File f = new File("");
 		List<String> lines = Files.readAllLines(
-			Paths.get(f.getAbsolutePath() + "/" + repository +
-				"/features/configurations/" + fcName), StandardCharsets.UTF_8);
+			Paths.get(f.getAbsolutePath() + 
+				"/repository/features/configurations/" + fcName), StandardCharsets.UTF_8);
 		String content = "";
 		for (String s : lines) content += s + "\n";
 		return content;
