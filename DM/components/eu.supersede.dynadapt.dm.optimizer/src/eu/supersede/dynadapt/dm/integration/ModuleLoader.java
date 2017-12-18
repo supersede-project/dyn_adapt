@@ -179,16 +179,17 @@ public class ModuleLoader {
 		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
 		Double alertThresholdValue = alert.getConditions().get(0).getValue();
 		ModelSystem system = alert.getTenant();
-		
-		//Registering dashboard proxy to initialize Front-end session
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
-		
+				
 		processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
 		
     }
 
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
 		kpiComputer.startComputingKPI();
+		
+		//Registering dashboard proxy to initialize Front-end session
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+
 		
 		//Resolving relative URIs to execution directory
 //		fmURI = System.getProperty("user.dir") + "/" + fmURI;
