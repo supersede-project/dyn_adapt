@@ -146,10 +146,10 @@ public class Adapter implements IAdapter {
 	
 	@Override
 	public void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
-			String featureConfigurationAsString) throws EnactmentException {
+			String featureConfigurationAsString, String featureConfigurationId) throws EnactmentException {
 		try {
 						
-			doEnactment(system, adaptationDecisionActionIds, null, featureConfigurationAsString);
+			doEnactment(system, adaptationDecisionActionIds, featureConfigurationId, featureConfigurationAsString);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -227,7 +227,6 @@ public class Adapter implements IAdapter {
 		
 		// BASE MODEL ENACTMENT
 		EnactmentException ee = null;	
-		String uploadedFeatureConfigurationId = null;
 		if (model != null) {
 			// NOTE adapted model must be placed in a folder at the same level as the base model's folder
 			// otherwise referenced models (e.g., profiles) are not resolved.
@@ -242,16 +241,6 @@ public class Adapter implements IAdapter {
 			try {
 				log.debug("Invoking enactor for system " + system);	
 				EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
-
-				//TODO Store adapted model as current base model in model repository. Just decomment after the demo!
-//				log.debug("Storing adapted model as current based model in ModelRepository...");
-//				String adaptedModelFileName =  model.getName().concat(adaptation_suffix + ".uml");
-//				String uploadedAdaptedModelId = uploadLatestAdaptedModel(model, adaptedModelFileName, system);
-				
-				//TODO Store new feature configuration as adapted in model repository. Just decomment after the demo!
-//				log.debug("Storing FC model as current FC model in ModelRepository...");
-//				String featureConfigurationFileName = newFeatureConfig.getName().concat(adaptation_suffix + ".yafc");
-//				uploadedFeatureConfigurationId = uploadLatestComputedFC(newFeatureConfig, featureConfigurationFileName, system);
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -262,8 +251,7 @@ public class Adapter implements IAdapter {
 			kpiComputerEnactor.reportComputedKPI();
 		
 			// Recover the adaptation corresponding to the latest feature configuration
-			String adaptationId = featureConfigurationId != null ? featureConfigurationId : 
-				uploadedFeatureConfigurationId != null ? uploadedFeatureConfigurationId : DEFAULT_ADAPTATION_ID; 
+			String adaptationId = featureConfigurationId;
 			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
 			if (adaptation == null) {
 				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");

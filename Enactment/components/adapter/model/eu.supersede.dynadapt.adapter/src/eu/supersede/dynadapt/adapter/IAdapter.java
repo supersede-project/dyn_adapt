@@ -31,7 +31,7 @@ public interface IAdapter {
 	void enactAdaptationDecisionAction (ModelSystem system, String adaptationDecisionActionId, String featureConfigurationId) throws EnactmentException;
 	void enactAdaptationDecisionActions (ModelSystem system, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws EnactmentException;
 	void enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
-		String featureConfigurationAsString) throws EnactmentException;
+		String featureConfigurationAsString, String featureConfigurationId) throws EnactmentException;
 	void enactAdaptationDecisionActionsForFC (ModelSystem system, String featureConfigurationId) throws EnactmentException;
 	void enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws EnactmentException;
 }
