@@ -41,7 +41,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 
 	URL url = null;
 	
-	@Test
+	@Ignore @Test
 	public void testAtosHighHSKAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
@@ -75,7 +75,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 	
 	
 	
-	@Test
+	@Ignore @Test
 	public void testAtosHugeHSKAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
@@ -91,7 +91,7 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testAtosHSKDualVMHighLowAdaptation() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
@@ -117,15 +117,16 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testAtosHighHSKAdaptationSpecificActionsTakenFCfromString() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"highloadconfigurationinvm2_a", "lowloadconfigurationinvm2_a"};
 			String featureConfigurationAsString = readFCfromFile("/features/configurations/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+			String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 			adapter.enactAdaptationDecisionActionsInFCasString(
-					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString, featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -133,15 +134,16 @@ public class AtosSmartPlatformHSKAdapterTest {
 		}
 	}
 
-	@Test
+	@Ignore @Test
 	public void testAtosHighHSKAdaptationTakenFCfromString() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{};
 			String featureConfigurationAsString = readFCfromFile("/features/configurations/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+			String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 			adapter.enactAdaptationDecisionActionsInFCasString(
-					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
+					ModelSystem.Atos_HSK, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString, featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

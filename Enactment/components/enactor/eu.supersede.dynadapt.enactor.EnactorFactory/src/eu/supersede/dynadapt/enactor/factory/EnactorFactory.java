@@ -24,7 +24,7 @@ public class EnactorFactory {
 		case MonitoringReconfiguration:
 			return new MonitoringEnactor();
 		case FeedbackGatheringReconfiguration:
-			//Ask Denisse to provide Siemens Enactor
+			//Ask Denisse to provide FG Enactor
 			throw new UnsupportedOperationException();
 		default:
 			throw new UnsupportedOperationException();

@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
@@ -66,15 +67,16 @@ public class SiemensAdapterTest {
 	 * CONTENT OF ".adapter.service//repository/features/configurations", TO BRING THE FEATURE CONFIGURATION
 	 * MODEL CALLED "FeatureModel-S1c_dm_optimized.yafc"
 	 */
-	@Test
+	@Ignore @Test
 	public void testSiemenesUCAdaptationSpecificActionsTakenFCfromString() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			String[] adaptationDecisionActionIds = new String[]{"c4"};
 			String featureConfigurationAsString = readFCfromFile("/features/configurations/FeatureModel-S1c_dm_optimized.yafc");
+			String featureConfigurationId = null;
 			adapter.enactAdaptationDecisionActionsInFCasString(
-					ModelSystem.Siemens, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString);
+					ModelSystem.Siemens, Arrays.asList(adaptationDecisionActionIds), featureConfigurationAsString, featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

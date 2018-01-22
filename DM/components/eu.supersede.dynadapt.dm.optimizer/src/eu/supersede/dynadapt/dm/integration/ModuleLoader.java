@@ -191,6 +191,7 @@ public class ModuleLoader {
 		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
 		Double alertThresholdValue = alert.getConditions().get(0).getValue();
 		ModelSystem system = alert.getTenant();
+		
 		// According to the type of alert (if alert contains actions, it is deterministic): 
 		boolean deterministicAlert = (alert.getActionAttributes()!=null) || (alert.getActionFeatures()!=null);
 		
@@ -306,6 +307,10 @@ public class ModuleLoader {
 
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
 		kpiComputer.startComputingKPI();
+		
+		//Registering dashboard proxy to initialize Front-end session
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+
 		
 		//Resolving relative URIs to execution directory
 //		fmURI = System.getProperty("user.dir") + "/" + fmURI;

@@ -441,15 +441,4 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		this.getEnactmentCode();
 	}
 
-	@Override
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
-		enactAdaptedModel (adaptedModel, demo);		
-	}
-	
-	@Override
-	public void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo) {
-		// TODO Auto-generated method stub
-		// Ignore: Hypervisor enactor does not directly enact a FC
-	}
-
 }

@@ -9,7 +9,7 @@
   <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/ws/rs/jsr311-api/1.0/jsr311-api-1.0.jar" sourcepath="M2_REPO/javax/ws/rs/jsr311-api/1.0/jsr311-api-1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/jms/jms/1.1/jms-1.1.jar"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
   <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.adapter/1.0.0-SNAPSHOT/eu.supersede.dynadapt.adapter-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.modelrepository/1.0.0-SNAPSHOT/eu.supersede.dynadapt.modelrepository-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.model/1.0.0-SNAPSHOT/eu.supersede.dynadapt.model-1.0.0-SNAPSHOT.jar"/>

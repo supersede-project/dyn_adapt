@@ -71,6 +71,7 @@ public class ModelManager implements IModelManager {
 	private void initCache (){
 		//Setting up cache
 		if (cache){
+			log.debug("Activating cache");
 			//Model Cache
 			modelCache = CacheBuilder.newBuilder()
 		            .maximumSize(1000)
@@ -105,6 +106,7 @@ public class ModelManager implements IModelManager {
 	
 	private Optional<Model> getUMLModel(String modelPath) {
 		//TODO Use cache
+		log.debug ("Retrieving model from path " + modelPath);
 		Model model = null;
 		if (modelPath.startsWith("http")){
 			model = resourceSet.loadModel(downloadModel(modelPath), Model.class);

@@ -332,16 +332,4 @@ public class HypervisorEnactor implements IEnactor{
 		return temp;
 	}
 
-	@Override
-	public void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo) {
-		// TODO Auto-generated method stub
-		// Ignore: Hypervisor enactor does not directly enact a FC
-	}
-	
-//	private URI createTemporaryURI (String surl){
-//		Path file = Paths.get(temp.toString(), surl);
-//		return URI.createURI(file.toString());
-//	}
-
-
 }

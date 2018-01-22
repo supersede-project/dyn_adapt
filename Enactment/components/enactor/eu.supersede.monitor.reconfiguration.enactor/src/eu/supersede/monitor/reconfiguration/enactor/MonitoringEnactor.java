@@ -143,14 +143,7 @@ public class MonitoringEnactor implements IEnactor {
 
 	@Override
 	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo) {
-		// TODO Auto-generated method stub
-		
+		// Ignored
 	}
 
 }
