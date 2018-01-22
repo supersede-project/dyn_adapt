@@ -14,12 +14,22 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
-import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.naming.NamingException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.FeatureModel;
@@ -41,6 +51,8 @@ import eu.supersede.dynadapt.serializer.FMSerializer;
 import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
+import eu.supersede.integration.api.adaptation.types.ActionOnAttribute;
+import eu.supersede.integration.api.adaptation.types.ActionOnFeature;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.DataID;
@@ -179,13 +191,119 @@ public class ModuleLoader {
 		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
 		Double alertThresholdValue = alert.getConditions().get(0).getValue();
 		ModelSystem system = alert.getTenant();
+		// According to the type of alert (if alert contains actions, it is deterministic): 
+		boolean deterministicAlert = (alert.getActionAttributes()!=null) || (alert.getActionFeatures()!=null);
 		
 		//Registering dashboard proxy to initialize Front-end session
 		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
-		processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
+		if(!deterministicAlert){
+			//if tenant is feedback gathering, we read the other conditions
+			if(system == ModelSystem.SenerconFG || system == ModelSystem.SiemensFG || system == ModelSystem.AtosFG){
+				for(Condition cond: alert.getConditions()){
+					switch (cond.getIdMonitoredData().getNameQualityMonitored()){
+					case "attachment": 
+						Parameters.FG_DISKC_ATTACHMENT = cond.getValue();
+						break;
+					case "screenshot": 
+						Parameters.FG_DISKC_SCREENSHOT = cond.getValue();
+						break;
+					case "audio": 
+						Parameters.FG_DISKC_AUDIO = cond.getValue();
+						break;
+					}
+				}
+			}
+			// non-deterministic alert: optimizer
+			processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
+		}
+		else {
+			// deterministic alert: dispatcher
+			processDeterministic(system, fmURI, fcURI, alert.getActionFeatures(), alert.getActionAttributes());
+		}
 		
     }
+	
+	public void processDeterministic(ModelSystem system, String fmURI, String fcURI, 
+			List<ActionOnFeature> features, 
+			List<ActionOnAttribute> attributes) throws Exception
+	{
+		kpiComputer.startComputingKPI();
+		
+		//Read feature configuration file
+		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+        Document doc = docBuilder.parse (new File(fcURI));
+
+        //doc.getDocumentElement().normalize();
+        //System.out.println ("Root element of the doc is " + doc.getDocumentElement().getNodeName());
+
+        Node nodeT = doc.getElementsByTagName("rootSelection").item(0);
+        
+        //XPath xpath = XPathFactory.newInstance().newXPath();
+        NodeList nodes = null;
+        String nodePath = "";
+        
+		//Update the attributes
+        for(ActionOnAttribute action : attributes){
+        	String id[] = action.getID().split(".");
+        	String  idAction = id[id.length-1];
+
+        	if(id.length > 1){
+            	for(int i=0; i<id.length-2; i++){
+            		Element e = (Element) nodeT;
+            		nodes = e.getElementsByTagName("selection");
+            		for(int j=0; j< nodes.getLength(); j++){
+            			Node attribute = nodes.item(j).getAttributes().getNamedItem("id");
+                		if (attribute.getNodeValue().equals(id[i])){
+                			nodeT = nodes.item(j);
+                			break;
+                		}
+            		}
+            	}
+        	}
+        	
+        	Element e = (Element) nodeT;
+        	nodes = e.getElementsByTagName("attributeValue");
+        	for(int j=0; j< nodes.getLength(); j++){
+    			Node attribute = nodes.item(j).getAttributes().getNamedItem("id");
+        		if (attribute.getNodeValue().equals(idAction)){
+        			nodeT = nodes.item(j);
+        			break;
+        		}
+    		}
+        	
+         	switch(action.getTypeaction()){
+	        	case decrease: 
+	        		break;
+	        	case increase: 
+	        		break;
+	        	case divide: 
+	        		break;
+	        	case multiply: 
+	        		break;
+	        	case update: 
+	        		nodeT.getAttributes().getNamedItem("value").setNodeValue(Double.toString(action.getValue()));
+	        		break;
+        	}
+         	
+         	Path path = Paths.get (System.getProperty("user.dir"), getFolder(fmURI));
+    		Path temporaryFolder = Files.createTempDirectory(path, "");
+    		String temp = temporaryFolder.toString();
+    		
+         	Transformer xformer = TransformerFactory.newInstance().newTransformer();
+         	xformer.transform(new DOMSource(doc), new StreamResult(new File(Paths.get(temp, getFileNameOfPath(fcURI).replace ("yafc", "conf")).toString())));
+        	
+        }
+		//Update the features
+		
+		kpiComputer.stopComputingKPI();
+		kpiComputer.reportComputedKPI();
+		
+		// Call the WP4
+		
+	}
+	
 
 	public FeatureConfiguration processOptimization(ModelSystem system, String fmURI, String fcURI, String alertAttribute, Double alertThresholdValue) throws Exception {
 		kpiComputer.startComputingKPI();
@@ -363,17 +481,17 @@ public class ModuleLoader {
 		case SenerconFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
 			Parameters.TENANT = Parameters.Tenants.SENERCON;
-			uri = "input/senerconFG/FeedbackGatheringConfigV3.yafm";
+			uri = "input/senerconFG/FeedbackGatheringConfigV5.yafm";
 			break;
 		case SiemensFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
 			Parameters.TENANT = Parameters.Tenants.SIEMENS;
-			uri = "input/siemensFG/FeedbackGatheringConfigV2.yafm";
+			uri = "input/siemensFG/FeedbackGatheringConfigCategory.yafm";
 			break;
 		case AtosFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			uri = "input/atosFG/FeedbackGatheringConfigV2.yafm";
+			uri = "input/atosFG/FeedbackGatheringConfigV5.yafm";
 			break;
 		}
 		
@@ -407,17 +525,17 @@ public class ModuleLoader {
 		case SenerconFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
 			Parameters.TENANT = Parameters.Tenants.SENERCON;
-			uri = "input/senerconFG/FeedbackGatheringConfigV3.yafc";
+			uri = "input/senerconFG/FeedbackGatheringConfigV5.yafc";
 			break;
 		case SiemensFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
 			Parameters.TENANT = Parameters.Tenants.SIEMENS;
-			uri = "input/siemensFG/FeedbackGatheringConfigV2.yafc";
+			uri = "input/siemensFG/FeedbackGatheringConfigCategory.yafc";
 			break;
 		case AtosFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			uri = "input/atosFG/FeedbackGatheringConfigV2.yafc";
+			uri = "input/atosFG/FeedbackGatheringConfigV5.yafc";
 			break;
 		}
 		return uri;
@@ -469,6 +587,7 @@ public class ModuleLoader {
 			SteadyStateGP gp = new SteadyStateGP(Parameters.GRAMMAR_FILE, depth, probRecursive, currentConfiguration);
 			List<eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome> solutions = gp.generateSolution();
 			eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome solution = solutions.get(0);
+
 			log.debug(solution.getConfiguration().toString());
 			optimalConfiguration = solution.getConfiguration().toString();
 		}

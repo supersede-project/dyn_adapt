@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringConfigCategory" version="1.0.0">
+  <featureModel href="FeedbackGatheringConfigCategory.yafm#/"/>
+  <featureModelCopy name="FeedbackGatheringConfigCategory" version="1.0.0">
+    <rootFeature id="feedbackgatheringconfigcategory" name="FeedbackGatheringConfigCategory" lower="1" upper="1">
+      <feature id="category" name="Category" lower="1" upper="1">
+        <feature id="id1" name="id1" lower="1" upper="1">
+          <attribute id="order" name="order" type="integer" defaultValue="1"/>
+        </feature>
+        <feature id="id2" name="id2" lower="1" upper="1">
+          <attribute id="order" name="order" type="integer"/>
+        </feature>
+        <feature id="id3" name="id3" lower="1" upper="1">
+          <attribute id="order" name="order" type="integer"/>
+        </feature>
+        <feature id="id4" name="id4" lower="1" upper="1">
+          <attribute id="order" name="order" type="integer"/>
+        </feature>
+        <feature id="id5" name="id5" lower="1" upper="1">
+          <attribute id="order" name="order" type="integer"/>
+        </feature>
+        <feature id="id6" name="id6" lower="1" upper="1">
+          <attribute id="order" name="order" type="integer"/>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="feedbackgatheringconfigcategory">
+    <selection id="category">
+      <selection id="id1">
+        <attributeValue xsi:type="fc:integer" id="order" value="1"/>
+      </selection>
+      <selection id="id2">
+        <attributeValue xsi:type="fc:integer" id="order" value="2"/>
+      </selection>
+      <selection id="id3">
+        <attributeValue xsi:type="fc:integer" id="order" value="3"/>
+      </selection>
+      <selection id="id4">
+        <attributeValue xsi:type="fc:integer" id="order" value="4"/>
+      </selection>
+      <selection id="id5">
+        <attributeValue xsi:type="fc:integer" id="order" value="5"/>
+      </selection>
+      <selection id="id6">
+        <attributeValue xsi:type="fc:integer" id="order" value="6"/>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

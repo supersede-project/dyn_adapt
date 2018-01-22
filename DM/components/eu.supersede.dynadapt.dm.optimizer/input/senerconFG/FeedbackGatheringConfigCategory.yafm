@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfigCategory" version="1.0.0">
+  <rootFeature id="feedbackgatheringconfigcategory" name="FeedbackGatheringConfigCategory" lower="1" upper="1">
+    <feature id="category" name="Category" lower="1" upper="1">
+      <feature id="id1" name="id1" lower="1" upper="1">
+        <attribute id="order" name="order" type="integer" defaultValue="1"/>
+      </feature>
+      <feature id="id2" name="id2" lower="1" upper="1">
+        <attribute id="order" name="order" type="integer"/>
+      </feature>
+      <feature id="id3" name="id3" lower="1" upper="1">
+        <attribute id="order" name="order" type="integer"/>
+      </feature>
+      <feature id="id4" name="id4" lower="1" upper="1">
+        <attribute id="order" name="order" type="integer"/>
+      </feature>
+      <feature id="id5" name="id5" lower="1" upper="1">
+        <attribute id="order" name="order" type="integer"/>
+      </feature>
+      <feature id="id6" name="id6" lower="1" upper="1">
+        <attribute id="order" name="order" type="integer"/>
+      </feature>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

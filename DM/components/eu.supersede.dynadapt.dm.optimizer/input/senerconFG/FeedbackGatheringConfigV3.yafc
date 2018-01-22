@@ -3,8 +3,13 @@
   <featureModel href="FeedbackGatheringConfigV3.yafm#/"/>
   <featureModelCopy name="FeedbackGatheringConfig" version="1.0.0">
     <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+      <attribute id="diskc" name="diskC" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="18000" weight="1.0" objectiveFunctionAggregator="sum" alert="true"/>
+      <attribute id="quality" name="quality" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
       <feature id="mechanism" name="Mechanism" lower="1" upper="1">
         <feature id="attachment" name="Attachment" lower="1" upper="1">
+          <attribute id="id" name="id" type="string" defaultValue="15"/>
+          <attribute id="type" name="type" type="string" defaultValue="ATTACHMENT_TYPE"/>
+          <attribute id="order" name="order" type="integer" defaultValue="5"/>
           <group lower="1" upper="1">
             <feature id="lowattachment" name="LowAttachment" lower="0" upper="1">
               <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="5000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
@@ -24,6 +29,9 @@
           </group>
         </feature>
         <feature id="screenshot" name="ScreenShot" lower="1" upper="1">
+          <attribute id="id" name="id" type="string" defaultValue="16"/>
+          <attribute id="type" name="type" type="string" defaultValue="SCREENSHOT_TYPE"/>
+          <attribute id="order" name="order" type="integer" defaultValue="3"/>
           <group lower="1" upper="1">
             <feature id="lowscreen" name="LowScreen" lower="0" upper="1">
               <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="5000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
@@ -43,6 +51,9 @@
           </group>
         </feature>
         <feature id="audio" name="Audio" lower="1" upper="1">
+          <attribute id="id" name="id" type="string" defaultValue="17"/>
+          <attribute id="type" name="type" type="string" defaultValue="AUDIO_TYPE"/>
+          <attribute id="order" name="order" type="integer" defaultValue="2"/>
           <group lower="1" upper="1">
             <feature id="highaudio" name="HighAudio" lower="0" upper="1">
               <attribute id="diskc" name="diskC" type="string" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="15000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>

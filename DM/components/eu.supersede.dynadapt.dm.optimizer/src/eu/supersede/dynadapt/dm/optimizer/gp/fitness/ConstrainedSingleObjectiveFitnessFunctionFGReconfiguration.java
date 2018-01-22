@@ -63,23 +63,38 @@ public class ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration  extends
 		
 		String valueAttribute = "quality";
 		aggregateValues.put(valueAttribute, 0d);
+		
+		String mechanism = "";
 				
 		for (Properties attributes : attributesOfAllFeatures){
 			double cost = Double.parseDouble(attributes.getProperty(costAttribute));
 			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(costAttribute);
-			//double minimum = costAttributeMetadata.getMinimumValue();
-			//double maximum = costAttributeMetadata.getMaximumValue();
 			costMinMax[0] = costAttributeMetadata.getMinimumValue();
 			costMinMax[1] = costAttributeMetadata.getMaximumValue();
 			double weight = costAttributeMetadata.getWeight();
 			// normalize to a value in [0, 1]
-			cost = cost / (costMinMax[1] - costMinMax[0]);
+			cost = (cost - costMinMax[0]) / (costMinMax[1] - costMinMax[0]);
 			aggregateValues.put(costAttribute, aggregateValues.get(costAttribute) + cost * weight);
 			
+			// calculate the weight (importance) of the feature for the new configuration
+			switch(attributes.getProperty("mechanism")){
+			case "attachment": 
+				weight = (Parameters.FG_DISKC_ATTACHMENT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
+				weight = 1/weight;
+				break;
+			case "screenshot": 
+				weight = (Parameters.FG_DISKC_SCREENSHOT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
+				weight = 1/weight;
+				break;
+			case "audio": 
+				weight = (Parameters.FG_DISKC_AUDIO - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
+				weight = 1/weight;
+				break;
+			}
 			
 			double value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
 			value = 1d - value; // convert to minimization
-			weight = featureAttributeMetadata.get(valueAttribute).getWeight();
+			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
 			aggregateValues.put(valueAttribute, aggregateValues.get(valueAttribute) + value * weight);
 		}
 		
@@ -87,10 +102,6 @@ public class ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration  extends
 		double[] result = new double[2];
 		result[0] = sumAll(aggregateValues.values()); // fitness value
 		result[1] = aggregateValues.get(Parameters.ALERT_ATTRIBUTE); // constraint value that comes from the alert
-		// normalize the threshold
-		/*if (Parameters.CONSTRAINT_THRESHOLD > features.size() && Parameters.ALERT_ATTRIBUTE.equals(costAttribute)){
-			Parameters.CONSTRAINT_THRESHOLD = Parameters.CONSTRAINT_THRESHOLD / (costMinMax[1] - costMinMax[0]);
-		}*/
 
 		logger.debug("\n Features:" + features + "fitnes value: " + result[0] + " constraint value " + result[1] + " ");
 
