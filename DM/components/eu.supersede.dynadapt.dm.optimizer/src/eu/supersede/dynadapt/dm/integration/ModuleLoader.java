@@ -242,7 +242,6 @@ public class ModuleLoader {
         
         //XPath xpath = XPathFactory.newInstance().newXPath();
         NodeList nodes = null;
-        String nodePath = "";
         
 		//Update the attributes
         for(ActionOnAttribute action : attributes){
