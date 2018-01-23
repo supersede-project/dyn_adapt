@@ -246,7 +246,7 @@ public class ModuleLoader {
         
 		//Update the attributes
         for(ActionOnAttribute action : attributes){
-        	String id[] = action.getID().split(".");
+        	String id[] = action.getId().split(".");
         	String  idAction = id[id.length-1];
 
         	if(id.length > 1){
