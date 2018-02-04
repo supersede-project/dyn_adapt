@@ -214,6 +214,19 @@ public class ModuleLoader {
 						break;
 					}
 				}
+			}else if(system == ModelSystem.MonitoringReconfiguration) {
+				for(Condition cond: alert.getConditions()){
+					switch (cond.getIdMonitoredData().getNameQualityMonitored()){
+					case "timeSlot":
+						Parameters.ALERT_ATTRIBUTE = "timeSlot";
+						Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+						break;
+					case "responseTime": 
+						Parameters.ALERT_ATTRIBUTE = "responseTime";
+						Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+						break;
+					}
+				}
 			}
 			// non-deterministic alert: optimizer
 			processOptimization(system, fmURI, fcURI, alertAttribute, alertThresholdValue);
@@ -338,9 +351,9 @@ public class ModuleLoader {
 		String qualityAttributePath = temp;
 		String currentConfig = Paths.get(temp, getFileNameOfPath(fcURI).replace ("yafc", "conf")).toString();
 		
+		
 		Boolean multiObjective = Boolean.valueOf(
 				DMOptimizationConfiguration.getProperty("multiobjective"));
-		
 		String optimalConfig = doOptimization(modelURI, currentConfig, qualityAttributePath, 
 				alertAttribute, 
 				alertThresholdValue, 
@@ -497,6 +510,11 @@ public class ModuleLoader {
 			Parameters.TENANT = Parameters.Tenants.ATOS;
 			uri = "input/atosFG/FeedbackGatheringConfigV5.yafm";
 			break;
+		case MonitoringReconfiguration:
+			Parameters.APPLICATION = Parameters.Applications.MONITORING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
+			break;
 		}
 		
 		return uri;
@@ -541,6 +559,11 @@ public class ModuleLoader {
 			Parameters.TENANT = Parameters.Tenants.ATOS;
 			uri = "input/atosFG/FeedbackGatheringConfigV5.yafc";
 			break;
+		case MonitoringReconfiguration:
+			Parameters.APPLICATION = Parameters.Applications.MONITORING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";
+			break;	
 		}
 		return uri;
 	} 
