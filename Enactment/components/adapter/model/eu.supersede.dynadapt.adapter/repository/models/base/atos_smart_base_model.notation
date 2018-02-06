@@ -299,7 +299,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZXUQ5uldEea6tPfvbkvCTg"/>
       </children>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_G9vOUOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZXTCweldEea6tPfvbkvCTg" x="150" y="72"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZXTCweldEea6tPfvbkvCTg" x="213" y="74"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_bW90cOldEea6tPfvbkvCTg" type="InstanceSpecification_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_bW-bgOldEea6tPfvbkvCTg" type="InstanceSpecification_NameLabel"/>
@@ -317,7 +317,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bW-bh-ldEea6tPfvbkvCTg"/>
       </children>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_NQEvEOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bW90celdEea6tPfvbkvCTg" x="216" y="234"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bW90celdEea6tPfvbkvCTg" x="212" y="228"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_cmoFgOldEea6tPfvbkvCTg" type="InstanceSpecification_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_cmoFguldEea6tPfvbkvCTg" type="InstanceSpecification_NameLabel"/>
@@ -335,7 +335,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cmosleldEea6tPfvbkvCTg"/>
       </children>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_RRR6sOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cmoFgeldEea6tPfvbkvCTg" x="216" y="376"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cmoFgeldEea6tPfvbkvCTg" x="221" y="374"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_fCKT0OldEea6tPfvbkvCTg" type="InstanceSpecification_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_fCKT0uldEea6tPfvbkvCTg" type="InstanceSpecification_NameLabel"/>
@@ -353,7 +353,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fCKT2eldEea6tPfvbkvCTg"/>
       </children>
       <element xmi:type="uml:InstanceSpecification" href="atos_smart_base_model.uml#_VIrqEOlZEea6tPfvbkvCTg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fCKT0eldEea6tPfvbkvCTg" x="216" y="522"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fCKT0eldEea6tPfvbkvCTg" x="222" y="523"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_TqIroeldEea6tPfvbkvCTg" name="diagram_compatibility_version" stringValue="1.2.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_TqIrouldEea6tPfvbkvCTg"/>

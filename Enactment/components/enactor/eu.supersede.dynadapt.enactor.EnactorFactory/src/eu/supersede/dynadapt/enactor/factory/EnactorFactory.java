@@ -23,7 +23,9 @@ public class EnactorFactory {
 			return new MonitoringEnactor();
 		case MonitoringReconfiguration:
 			return new MonitoringEnactor();
-		case FeedbackGatheringReconfiguration:
+		case AtosFG:
+		case SiemensFG:
+		case SenerconFG:
 			//Ask Denisse to provide FG Enactor
 			throw new UnsupportedOperationException();
 		default:
