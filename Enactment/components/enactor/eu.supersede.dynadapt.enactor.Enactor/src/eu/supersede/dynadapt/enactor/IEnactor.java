@@ -11,7 +11,7 @@ public interface IEnactor {
 	default void enactAdaptedModel (Model adaptedModel, Model originalModel, boolean demo) throws Exception{
 		enactAdaptedModel(adaptedModel, demo);
 	}
-	default void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo){
+	default void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo) throws Exception{
 		throw new UnsupportedOperationException();
 	}
 }
