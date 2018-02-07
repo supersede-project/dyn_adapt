@@ -47,7 +47,11 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 			monitor.getConfiguration().setConfigSender(monitorList.getConfigSender());
 			monitor.getConfiguration().setState("active");
 			log.debug("Generating a reconfiguration for " + monitor.getMonitorType() + " monitor with " + monitor.getMonitorTool() + " tool");
-			MonitoringOrchestratorProxy<?, ?> proxy = new MonitoringOrchestratorProxy<Object, Object>();
+			
+			String user = System.getProperty("fg.admin.user");
+			String password = System.getProperty("fg.admin.passwd");
+			
+			MonitoringOrchestratorProxy<?, ?> proxy = new MonitoringOrchestratorProxy<Object, Object>(user, password);
 			switch (monitor.getOperation()) {
 				case CREATE:
 					log.debug("Create new configuration");
