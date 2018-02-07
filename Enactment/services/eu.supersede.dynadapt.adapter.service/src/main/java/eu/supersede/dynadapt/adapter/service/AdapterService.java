@@ -148,6 +148,15 @@ public class AdapterService {
 			featureConfigurationId = null;
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
+	
+	@RequestMapping(value = "/enactFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method = RequestMethod.POST)
+	public void enactFeatureConfiguration(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException{
+		log.debug("featureConfigurationId: "
+				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
+		if (featureConfigurationId.equals("null"))
+			featureConfigurationId = null;
+		adapter.enactFeatureConfiguration(ModelSystem.valueOf(systemId), featureConfigurationId);
+	}
 
 	public AdapterKPIComputer getEnactorKPIComputer() {
 		return ((Adapter) adapter).kpiComputerEnactor;

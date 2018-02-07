@@ -35,6 +35,7 @@ import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveF
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionAtos;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionSiemens;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.FitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.operators.CrossoverFunction;
@@ -85,6 +86,10 @@ public class StandardGP {
 			//The same case for the 3 uses cases
 			//fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
 			fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration(currentConfiguration);
+			break;
+		case MONITORING:
+			// handles the case of monitor reconfiguration for ATOS
+			fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration(currentConfiguration);
 			break;
 		}
 		

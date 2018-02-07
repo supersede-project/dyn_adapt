@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
+  <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" minRangeValue="0" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+    <attribute id="quality" name="quality" type="double" description="Quality of the information in [0,1]" qualityAttribute="true" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+    <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+    <feature id="mechanism" name="Mechanism" lower="1" upper="1">
+      <feature id="attachment" name="Attachment" lower="1" upper="1">
+        <attribute id="id" name="id" type="string" defaultValue="17"/>
+        <attribute id="type" name="type" type="string" defaultValue="ATTACHMENT_TYPE"/>
+        <attribute id="order" name="order" type="integer" defaultValue="5"/>
+        <group lower="1" upper="1">
+          <feature id="lowattachment" name="LowAttachment" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="15000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="sizefile" name="sizeFile" type="integer" description="Size of the attached file (in KB)" defaultValue="1000" minRangeValue="" maxRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="attachment" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumattachment" name="MediumAttachment" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="8000" minRangeValue="1000" maxRangeValue="15000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="sizefile" name="sizeFile" type="integer" description="Size of the attached file (in KB)" defaultValue="8000" minRangeValue="" maxRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="attachment" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="highattachment" name="HighAttachment" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="15000" minRangeValue="1000" maxRangeValue="15000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="sizefile" name="sizeFile" type="integer" description="Size of the attached file (in KB)" defaultValue="15000" minRangeValue="" maxRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="attachment" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+        </group>
+      </feature>
+      <feature id="screenshot" name="ScreenShot" lower="1" upper="1">
+        <attribute id="id" name="id" type="string" defaultValue="16"/>
+        <attribute id="type" name="type" type="string" defaultValue="SCREENSHOT_TYPE"/>
+        <attribute id="order" name="order" type="integer" defaultValue="3"/>
+        <group lower="1" upper="1">
+          <feature id="lowbasic" name="LowBasic" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="629.02" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="756x852" minRangeValue="" maxRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.2" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="8"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumbasic" name="MediumBasic" description="" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="900" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="1024x900" minRangeValue="" maxRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="a_161199960" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="8"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="highbasic" name="HighBasic" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="1426.86" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="1538x950" minRangeValue="" maxRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.4" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="8"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="hightrue" name="HighTrue" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="4280.57" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="1538x950"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.7" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="24"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumtrue" name="MediumTrue" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="2700" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="1024x900"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="24"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="lowtrue" name="LowTrue" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="1887.05" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="756x852"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.5" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="24" minRangeValue=""/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="highdeep" name="HighDeep" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="8561.13" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="1538x950"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="48"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumdeep" name="MediumDeep" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="5400" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="1024x900"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.9" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitdepth" name="bitDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="48" minRangeValue=""/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="lowdeep" name="LowDeep" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="3774.09" minRangeValue="629.02" maxRangeValue="8561.13" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="resolution" name="resolution" type="string" description="Image resolution  (in pixels x pixels)" defaultValue="756x852"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.8" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bithdepth" name="bithDepth" type="integer" description="Number of bits used to indicate the color of a single pixel (in bit)" defaultValue="48"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="screenshot" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+        </group>
+      </feature>
+      <feature id="audio" name="Audio" lower="1" upper="1">
+        <attribute id="id" name="id" type="string" defaultValue="15"/>
+        <attribute id="type" name="type" type="string" defaultValue="AUDIO_TYPE"/>
+        <attribute id="order" name="order" type="integer" defaultValue="2"/>
+        <group lower="1" upper="1">
+          <feature id="shortcdaudio" name="ShortCDaudio" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="10584" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="60" minRangeValue="0" maxRangeValue="360"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.2" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1411.2" minRangeValue="" maxRangeValue=""/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumcdaudio" name="MediumCDaudio" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="31752" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="180" minRangeValue="0" maxRangeValue="360"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1411.2"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="highcdaudio" name="LongCDaudio" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="63504" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="360" minRangeValue="0" maxRangeValue="360"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.4" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1411.2"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="longdat" name="LongDAT" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="69120" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="360"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.7" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1536"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="shortdat" name="ShortDAT" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="11520" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="60"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.5" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1536"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumdat" name="MediumDAT" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="34560" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="180"/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1536"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="longbwf" name="LongBWF" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="207360" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="360" minRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" defaultValue="4608"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="mediumbwf" name="MediumBWF" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="103680" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="180" minRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" defaultValue="0.9" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="4608" maxRangeValue=""/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+          <feature id="shortbwf" name="ShortBWF" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="34560" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="60" minRangeValue=""/>
+            <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.8" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="4608"/>
+            <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
+          </feature>
+        </group>
+      </feature>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

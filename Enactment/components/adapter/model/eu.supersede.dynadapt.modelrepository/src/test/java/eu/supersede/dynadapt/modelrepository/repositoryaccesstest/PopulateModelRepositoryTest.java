@@ -61,6 +61,8 @@ public class PopulateModelRepositoryTest {
 
 	private static final String SIEMENS_MODELS_AUTHOR = "Orlando";
 	
+	private static final String SENERCON_MODELS_AUTHOR = "Denisse";
+	
 	private static final String MONITORING_MODELS_AUTHOR = "Quim";
 
 	private final static Logger log = LogManager.getLogger(PopulateModelRepositoryTest.class);
@@ -438,14 +440,14 @@ public class PopulateModelRepositoryTest {
 
 		//Feature Model
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/models", "FeedbackGatheringConfigV3.yafm"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.FeedbackGatheringReconfiguration, Status.Designed, "features/models",
+			Paths.get(repositoryPath.toString(), "features/models", "FeedbackGatheringConfigV5.yafm"), 
+			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Designed, "features/models",
 			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 		
 		//Feature Configurations
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV3.yafc"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.FeedbackGatheringReconfiguration, Status.Enacted, "features/configurations",
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV5.yafc"), 
+			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Enacted, "features/configurations",
 			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
 		//Patterns
@@ -454,7 +456,7 @@ public class PopulateModelRepositoryTest {
 		//Adaptability models
 		
 		
-		log.debug(ModelSystem.FeedbackGatheringReconfiguration.toString() + " models loaded");	
+		log.debug(ModelSystem.SenerconFG.toString() + " models loaded");	
 	}
 	
 	private void populateRepository() throws Exception {

@@ -180,7 +180,7 @@ public class ModelRepositoryTest {
 	
 	@Test
 	public void testGetLastEnactedFeatureConfigurationForSystem() throws Exception {
-		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.Atos_HSK);
+		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.SenerconFG);
 		Assert.assertNotNull(fc);
 	}
 	

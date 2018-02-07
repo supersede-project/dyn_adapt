@@ -41,30 +41,26 @@ public class FeatureModelSerializerTest {
 	@Test
 	public void FMSerializerTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
-		String absoluteModelPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";
+		String absoluteModelPath = "./input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
+		String absolutetargetFolderPath = "./serialization";
 		new FMSerializer().serializeFMToArtifactsInFolder(absoluteModelPath, absolutetargetFolderPath);
 	}
 	
 	@Test
 	public void FCSerializerTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
-		String absoluteFCModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fc/FeedbackGatheringConfigCurrent.yafc";
-		String absoluteFMModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";
+		String absoluteFCModelPath = "./input/refsq17/monitoring/feedbackreconfig/fc/FeedbackGatheringConfigCurrent.yafc";
+		String absoluteFMModelPath = "./input/refsq17/monitoring/feedbackreconfig/fm/FeedbackGatheringConfig.yafm";
+		String absolutetargetFolderPath = "./serialization";
 		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
 	
 	@Test
 	public void SerializeAtosHSKTest () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
-		String absoluteFCModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
-		String absoluteFMModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/atos_hsk/SmartPlatformFM_HSK.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization";;
+		String absoluteFCModelPath = "./input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
+		String absoluteFMModelPath = "./input/atos_hsk/SmartPlatformFM_HSK.yafm";
+		String absolutetargetFolderPath = "./serialization";;
 		new FMSerializer().serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
 		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
@@ -72,11 +68,19 @@ public class FeatureModelSerializerTest {
 	@Test
 	public void SerializeSiemens () throws IOException{		
 		// NOTE: Edit this absolute paths before testing
-		String absoluteFCModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafc";
-		String absoluteFMModelPath = 
-				"/home/yosu/Projects/Supersede/Git/dyn_adapt/Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
-		String absolutetargetFolderPath = "/home/yosu/Projects/Supersede/Git/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/siemens/";
+		String absoluteFCModelPath = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafc";
+		String absoluteFMModelPath = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
+		String absolutetargetFolderPath = "./serialization/siemens/";
+		new FMSerializer().serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
+		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+	}
+	
+	@Test
+	public void SerializeMonitorReconfigurationTest () throws IOException{		
+		// NOTE: Edit this absolute paths before testing
+		String absoluteFCModelPath = "./input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";
+		String absoluteFMModelPath = "./input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
+		String absolutetargetFolderPath = "./serialization/httpMR/";;
 		new FMSerializer().serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
 		new FMSerializer().serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}
