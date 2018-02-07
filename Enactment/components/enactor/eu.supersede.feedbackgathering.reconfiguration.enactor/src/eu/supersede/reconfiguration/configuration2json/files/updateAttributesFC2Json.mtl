@@ -1,0 +1,64 @@
+[comment encoding = UTF-8 /]
+[**
+ * /*******************************************************************************
+ * Copyright (c) 2018 FBK
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Denisse Muñante (FBK) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+ */]
+[**
+ * updateAttributesFC2Json: this module creates a json file from a feature configuration 
+ * for this FC, all the attributes of leaf selected features are considered to be update. 
+*/]
+[module updateAttributesFC2Json('http://zcu.cz/yafmt/model/fc')]
+[import eu::supersede::reconfiguration::configuration2json::files::common/]
+
+
+[template public generateJsonfromFC(aFeatureConfiguration : FeatureConfiguration)]
+[file (aFeatureConfiguration.name.concat('.json'), false, 'UTF-8')]
+[ '[' /] 
+[for (oSelection : Selection | aFeatureConfiguration.root.selections)]
+[ oSelection.readTreeSelection()/][if(not oSelection.followingSiblings()->isEmpty() and (oSelection.hasAttributes() or oSelection.hasSubFeatures()))],[/if]
+[/for]
+[ ']' /]
+[/file]
+[/template]
+
+[template public readTreeSelection(aSelection : Selection)]
+[if (aSelection.hasAttributes() or aSelection.hasSubFeatures())]
+{
+[if(aSelection.hasAttributes())]
+[for(oAttribute : AttributeValue | aSelection.values)]
+[if(not oAttribute.attribute.qualityAttribute)]
+"[oAttribute.id/]": "[oAttribute.getValue()/]"[oAttribute.writeComma()/]
+[/if]
+[/for]
+[if(aSelection.hasSubFeatures())],[/if]
+[/if]
+[if(aSelection.hasSubFeatures())]
+"parameters":[ '[' /] {
+"key":"options",
+"value": [ '[' /] 
+[for(oSelection : Selection | aSelection.selections)]
+[oSelection.readTreeSelection()/][if(not oSelection.followingSiblings()->isEmpty() and (oSelection.hasAttributes() or oSelection.hasSubFeatures()))],[/if]
+[/for]
+[ ']' /]
+}[ ']' /]
+[/if]
+}
+[/if]
+[/template]
