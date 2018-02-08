@@ -149,7 +149,7 @@ public class AdapterService {
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
 	
-	@RequestMapping(value = "/enactFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/featureConfiguration/{featureConfigurationId}/system/{systemId}", method = RequestMethod.POST)
 	public void enactFeatureConfiguration(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException{
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
