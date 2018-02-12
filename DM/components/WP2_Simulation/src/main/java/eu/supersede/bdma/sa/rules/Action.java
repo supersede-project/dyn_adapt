@@ -16,9 +16,6 @@ import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicPublisher;
 
 
-/**
- * Created by snadal on 24/01/17.
- */
 public class Action {
 
     private static Alert createAlert() {
@@ -58,7 +55,7 @@ public class Action {
     
 
     public static void sendAlert() throws Exception {
-        TopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC,true);
+        TopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC,true, "development");
         publisher.publishTextMesssageInTopic(new Gson().toJson(createAlert()));
         publisher.closeTopicConnection();
     }

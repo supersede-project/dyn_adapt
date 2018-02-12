@@ -37,7 +37,6 @@ buildscript {
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
-apply plugin: 'eclipse'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -60,11 +59,14 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
 
-    compile("eu.supersede.if:eu.supersede.if.api:0.3.0-SNAPSHOT"){
+    compile("eu.supersede.if:eu.supersede.if.api:0.4.0-SNAPSHOT"){
         changing = true
-        exclude (group: 'com.fasterxml.jackson.core')
     }
 
+
+     //exclude (group: 'com.fasterxml.jackson.core')
+	//compile ('eu.supersede.dynadapt.modelrepository:1.0.0-SNAPSHOT')
+	
     compile 'com.google.guava:guava:21.0'
     compile 'com.google.code.gson:gson:2.8.0'
 
@@ -76,7 +78,8 @@ dependencies {
 
 configurations.all {
     //Avoids conflict: SL4J Multiple bindings were found on the class path
-    exclude group: "org.slf4j", module: "log4j-over-slf4j"
+    //exclude group: "org.slf4j", module: "log4j-over-slf4j"
+    exclude group: "org.slf4j", module: "slf4j-log4j12"
     // check for updates every build
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
@@ -93,9 +96,14 @@ task wrapper(type: Wrapper) {
 
 // Test execution JVM properties
 tasks.withType(Test){
-    systemProperty 'is.admin.user', System.getProperty ('is.admin.user', 'admin@atos.supersede.eu')
-    systemProperty 'is.admin.passwd', System.getProperty ('is.admin.passwd', 'rtgWCyrc')
-    systemProperty 'supersede.if.properties', System.getProperty ('supersede.if.properties', 'if.properties')
+    //systemProperty 'is.admin.user', System.getProperty ('is.admin.user', 'admin@atos.supersede.eu')
+    //systemProperty 'is.admin.passwd', System.getProperty ('is.admin.passwd', 'rtgWCyrc')
+    //systemProperty 'supersede.if.properties', System.getProperty ('supersede.if.properties', 'if.properties')
+    
+    systemProperty 'is.admin.user', System.getProperty ('is.admin.user', 'admin')
+    systemProperty 'is.admin.passwd', System.getProperty ('is.admin.passwd', '$2pRSid#')
+    systemProperty 'supersede.if.properties', System.getProperty ('supersede.if.properties', 'if.development.properties')
+    
 }
 
 // Test execution filter
