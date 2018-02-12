@@ -27,12 +27,14 @@ import java.util.Properties;
 
 import org.junit.Test;
 
+import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.util.ConfigurationLoader;
 
 public class ConfigurationLoaderTest {
 
 	@Test
 	public void testConfigurationLoader() {
+		Parameters.ATTRIBUTE_METADATA = "/data/workspace_supersede2/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/serialization/httpMR/HttpMonitoringSystemFeatureModel.json";
 		ConfigurationLoader configurationLoader = ConfigurationLoader.getInstance();
 		assertNotEquals(configurationLoader, null);
 	}
