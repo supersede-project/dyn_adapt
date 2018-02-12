@@ -6,7 +6,7 @@
     <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
     <feature id="mechanism" name="Mechanism" lower="1" upper="1">
       <feature id="attachment" name="Attachment" lower="1" upper="1">
-        <attribute id="id" name="id" type="string" defaultValue="17"/>
+        <attribute id="id" name="id" type="string" defaultValue="32"/>
         <attribute id="type" name="type" type="string" defaultValue="ATTACHMENT_TYPE"/>
         <attribute id="order" name="order" type="integer" defaultValue="5"/>
         <group lower="1" upper="1">
@@ -31,7 +31,7 @@
         </group>
       </feature>
       <feature id="screenshot" name="ScreenShot" lower="1" upper="1">
-        <attribute id="id" name="id" type="string" defaultValue="16"/>
+        <attribute id="id" name="id" type="string" defaultValue="30"/>
         <attribute id="type" name="type" type="string" defaultValue="SCREENSHOT_TYPE"/>
         <attribute id="order" name="order" type="integer" defaultValue="3"/>
         <group lower="1" upper="1">
@@ -101,9 +101,9 @@
         </group>
       </feature>
       <feature id="audio" name="Audio" lower="1" upper="1">
-        <attribute id="id" name="id" type="string" defaultValue="15"/>
+        <attribute id="id" name="id" type="string" defaultValue="31" minRangeValue=""/>
         <attribute id="type" name="type" type="string" defaultValue="AUDIO_TYPE"/>
-        <attribute id="order" name="order" type="integer" defaultValue="2"/>
+        <attribute id="order" name="order" type="integer" defaultValue="4"/>
         <group lower="1" upper="1">
           <feature id="shortcdaudio" name="ShortCDaudio" lower="0" upper="1">
             <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="10584" minRangeValue="10584" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
