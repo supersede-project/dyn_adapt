@@ -31,6 +31,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cz.zcu.yafmt.model.fc.FeatureConfigurationFactory;
 import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
@@ -78,7 +79,7 @@ public class ModuleLoader {
 	private Map<String, String> modelsLocation;
 	
 	//Configuration
-	DMOptimizationConfiguration config;
+	//DMOptimizationConfiguration config;
 	//KPI Computer
 	private OptimizerKPIComputer kpiComputer = new OptimizerKPIComputer();
 
@@ -233,7 +234,8 @@ public class ModuleLoader {
 		}
 		else {
 			// deterministic alert: dispatcher
-			processDeterministic(system, fmURI, fcURI, alert.getActionFeatures(), alert.getActionAttributes());
+			//processDeterministic(system, fmURI, fcURI, alert.getActionFeatures(), alert.getActionAttributes());
+			new DeterministicHandler(system).handle(fmURI, fcURI, alert.getActionFeatures(), alert.getActionAttributes(), "", 0.0);
 		}
 		
     }
@@ -248,22 +250,22 @@ public class ModuleLoader {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
         Document doc = docBuilder.parse (new File(fcURI));
-
-        //doc.getDocumentElement().normalize();
-        //System.out.println ("Root element of the doc is " + doc.getDocumentElement().getNodeName());
-
-        Node nodeT = doc.getElementsByTagName("rootSelection").item(0);
         
         //XPath xpath = XPathFactory.newInstance().newXPath();
         NodeList nodes = null;
-        
+
+        //Update the features
+
 		//Update the attributes
         for(ActionOnAttribute action : attributes){
-        	String id[] = action.getId().split(".");
+            Node nodeT = doc.getElementsByTagName("rootSelection").item(0);
+
+        	log.info("Action : " + action.getId() );
+        	String[] id = action.getId().split("\\.");
         	String  idAction = id[id.length-1];
 
         	if(id.length > 1){
-            	for(int i=0; i<id.length-2; i++){
+            	for(int i=0; i<id.length-1; i++){
             		Element e = (Element) nodeT;
             		nodes = e.getElementsByTagName("selection");
             		for(int j=0; j< nodes.getLength(); j++){
@@ -296,24 +298,77 @@ public class ModuleLoader {
 	        	case multiply: 
 	        		break;
 	        	case update: 
-	        		nodeT.getAttributes().getNamedItem("value").setNodeValue(Double.toString(action.getValue()));
+	        		switch(nodeT.getAttributes().getNamedItem("xsi:type").getNodeValue()){
+	        		case "fc:string":
+		        		nodeT.getAttributes().getNamedItem("value").setNodeValue(Double.toString(action.getValue()));
+		        		break;
+	        		case "fc:integer":
+	        			nodeT.getAttributes().getNamedItem("value").setNodeValue((Integer.toString((int)action.getValue())));
+		        		break;
+	        		case "fc:double":
+	        			nodeT.getAttributes().getNamedItem("value").setNodeValue(Double.toString(action.getValue()));
+	        			break;
+	        		}
 	        		break;
-        	}
-         	
-         	Path path = Paths.get (System.getProperty("user.dir"), getFolder(fmURI));
-    		Path temporaryFolder = Files.createTempDirectory(path, "");
-    		String temp = temporaryFolder.toString();
-    		
-         	Transformer xformer = TransformerFactory.newInstance().newTransformer();
-         	xformer.transform(new DOMSource(doc), new StreamResult(new File(Paths.get(temp, getFileNameOfPath(fcURI).replace ("yafc", "conf")).toString())));
-        	
+        	}      	
         }
-		//Update the features
+        
+        //Save changes in the temporary folder
+     	Path path = Paths.get (System.getProperty("user.dir"), getFolder(fmURI));
+		Path temporaryFolder = Files.createTempDirectory(path, "");
+		String temp = temporaryFolder.toString();
 		
+     	Transformer xformer = TransformerFactory.newInstance().newTransformer();
+     	String newFeatureConfigFileName = getFileNameOfPath(fcURI).replace (".yafc", "_updated.yafc");
+     	Path pathName = Paths.get(temp, newFeatureConfigFileName);
+     	xformer.transform(new DOMSource(doc), new StreamResult(new File(pathName.toString())));
+		
+     	//Save in the model manager
+     	//new ModelManager().saveFC(newFeatureConfig, org.eclipse.emf.common.util.URI.createFileURI(pathName.toString()));
+     	
 		kpiComputer.stopComputingKPI();
 		kpiComputer.reportComputedKPI();
 		
-		// Call the WP4
+		cz.zcu.yafmt.model.fc.FeatureConfiguration newFeatureConfig = FeatureConfigurationFactory.eINSTANCE.createFeatureConfiguration();
+		//TODO : charge the feature model updated
+		//newFeatureConfig.
+
+		// Upload the YAMFT Fature Configuration to the ModelRepository 
+		String newFeatureConfigId = uploadLatestComputedFC(newFeatureConfig, newFeatureConfigFileName, system); // Populate metadata, status=Computed
+		log.info("New optimal feature configuration " + newFeatureConfigId + " uploaded to repository");			
+		
+		// Load currently enacted Feature Configuration
+		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);		
+		log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
+	
+		// Notify Adaptation to the Dashboard 
+		List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(featureConfig, newFeatureConfig);
+		Adaptation adaptation = DashboardNotificationFactory.createAdaptation(newFeatureConfigId,
+				String.format("%s %s", system.toString(), newFeatureConfigId),
+				system,
+				changedSelections, 
+				kpiComputer.getInitialProcessingTime());
+		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
+		
+		// Send FC to Adapter;
+		// FIXME This should not be neccessary in the last version
+		//Path fcPath = Paths.get(pathName.toString());
+		String featureConfigurationAsString = new String(Files.readAllBytes(pathName));
+		
+		boolean processEnactment = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
+		if (processEnactment)
+			proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+		
+		//Remove temporary file
+		boolean removeTemp = Boolean.valueOf(
+				DMOptimizationConfiguration.getProperty("temp_file.remove_after_computing"));
+		if (removeTemp){
+			//Remove all files within the temporary folder
+			Files.walk(temporaryFolder).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+			Files.deleteIfExists(temporaryFolder);
+		}
 		
 	}
 	
