@@ -181,9 +181,9 @@
     <attributeValue xsi:type="fc:string" id="mechanism" value=""/>
     <selection id="mechanism">
       <selection id="attachment">
-        <attributeValue xsi:type="fc:string" id="id" value=""/>
-        <attributeValue xsi:type="fc:string" id="type" value=""/>
-        <attributeValue xsi:type="fc:integer" id="order" value="0"/>
+        <attributeValue xsi:type="fc:string" id="id" value="32"/>
+        <attributeValue xsi:type="fc:string" id="type" value="ATTACHMENT_TYPE"/>
+        <attributeValue xsi:type="fc:integer" id="order" value="5"/>
         <selection id="mediumattachment">
           <attributeValue xsi:type="fc:double" id="diskc" value="0.0"/>
           <attributeValue xsi:type="fc:integer" id="sizefile" value="0"/>
@@ -192,9 +192,9 @@
         </selection>
       </selection>
       <selection id="screenshot">
-        <attributeValue xsi:type="fc:string" id="id" value=""/>
-        <attributeValue xsi:type="fc:string" id="type" value=""/>
-        <attributeValue xsi:type="fc:integer" id="order" value="0"/>
+        <attributeValue xsi:type="fc:string" id="id" value="30"/>
+        <attributeValue xsi:type="fc:string" id="type" value="SCREENSHOT_TYPE"/>
+        <attributeValue xsi:type="fc:integer" id="order" value="3"/>
         <selection id="mediumtrue">
           <attributeValue xsi:type="fc:double" id="diskc" value="0.0"/>
           <attributeValue xsi:type="fc:string" id="resolution" value=""/>
@@ -204,9 +204,9 @@
         </selection>
       </selection>
       <selection id="audio">
-        <attributeValue xsi:type="fc:string" id="id" value=""/>
-        <attributeValue xsi:type="fc:string" id="type" value=""/>
-        <attributeValue xsi:type="fc:integer" id="order" value="0"/>
+        <attributeValue xsi:type="fc:string" id="id" value="31"/>
+        <attributeValue xsi:type="fc:string" id="type" value="AUDIO_TYPE"/>
+        <attributeValue xsi:type="fc:integer" id="order" value="4"/>
         <selection id="mediumdat">
           <attributeValue xsi:type="fc:double" id="diskc" value="0.0"/>
           <attributeValue xsi:type="fc:integer" id="maxtime" value="0"/>
