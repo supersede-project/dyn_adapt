@@ -444,12 +444,22 @@ public class PopulateModelRepositoryTest {
 			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Designed, "features/models",
 			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "FeedbackGatheringConfigCategory.yafm"), 
+				SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFGcat, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
 		//Feature Configurations
 		prm.populateModel(
 			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV5.yafc"), 
 			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Enacted, "features/configurations",
 			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigCategory.yafc"), 
+				SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFGcat, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
 		//Patterns
 		
 
