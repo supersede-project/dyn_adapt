@@ -36,7 +36,6 @@ public abstract class AbstractHandler {
 	protected AdaptationDashboardProxy<?, ?> adaptationDashboardProxy;
 	protected AdapterProxy<?, ?> proxy;
 	protected ModelSystem system;
-	protected FeatureUtils util;
 	protected String modelAuthor;
 	
 	//Configuration
@@ -59,13 +58,12 @@ public abstract class AbstractHandler {
 		String repositoryRelativePath = "./repository";		
 		mr= new ModelRepository(repository, repositoryRelativePath);
 		mm = new ModelManager();
-		util = new FeatureUtils(mr, mm);
 		modelsLocation = new HashMap<String, String>();
 		modelsLocation.put("features", "features/models/");
 		modelsLocation.put("configurations", "features/configurations/");
 		
 		//Registering dashboard proxy to initialize Front-end session Tenant (TODO?)
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", util.getTenant(this.system));
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", getTenant(this.system));
 		proxy = new AdapterProxy<Object, Object>();		
 		kpiComputer = new OptimizerKPIComputer();
 	}
