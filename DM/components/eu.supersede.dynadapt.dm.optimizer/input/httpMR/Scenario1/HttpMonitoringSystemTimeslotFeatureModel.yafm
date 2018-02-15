@@ -3,19 +3,19 @@
   <rootFeature id="httpmonitoringsystem" name="HttpMonitoringSystem" lower="1" upper="1">
     <attribute id="a_1773266909" name="timeSlot" type="integer" qualityAttribute="true" defaultValue="1000" minRangeValue="10" maxRangeValue="10000" weight="1.0" objectiveFunctionAggregator="sum"/>
     <attribute id="a_1368946713" name="responseTime" type="integer" qualityAttribute="true" defaultValue="99" minRangeValue="1" maxRangeValue="100000" weight="1.0" objectiveFunctionAggregator="sum" alert="true"/>
-    <attribute id="a_1012261390" name="availability" type="double" qualityAttribute="true" defaultValue="100%" minRangeValue="0%" maxRangeValue="100%" weight="1.0" objectiveFunctionAggregator="product"/>
+    <attribute id="a_1012261390" name="availability" type="double" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="product"/>
     <feature id="qos" name="QoS" lower="1" upper="1">
       <feature id="httpmonitor" name="HttpMonitor" lower="1" upper="1">
         <group lower="1" upper="1">
           <feature id="low_timeslot" name="LowTimeSlot" lower="0" upper="1">
             <attribute id="timeslot_at" name="timeSlot" type="integer" defaultValue="30" minRangeValue=""/>
             <attribute id="a_961504395" name="responseTime" type="integer" defaultValue="15000" minRangeValue=""/>
-            <attribute id="a_1710769427" name="availability" type="double" defaultValue="70%"/>
+            <attribute id="a_1710769427" name="availability" type="double" defaultValue="1" minRangeValue="" maxRangeValue=""/>
           </feature>
           <feature id="high_timeslot" name="HighTimeSlot" lower="0" upper="1">
             <attribute id="timeslot_at" name="timeSlot" type="integer" defaultValue="1000" minRangeValue="" maxRangeValue=""/>
             <attribute id="a_321587787" name="responseTime" type="integer" defaultValue="99" minRangeValue="" maxRangeValue=""/>
-            <attribute id="a_2078625014" name="availability" type="double" defaultValue="100%" minRangeValue=""/>
+            <attribute id="a_2078625014" name="availability" type="double" defaultValue="1" minRangeValue="" maxRangeValue=""/>
           </feature>
         </group>
       </feature>
