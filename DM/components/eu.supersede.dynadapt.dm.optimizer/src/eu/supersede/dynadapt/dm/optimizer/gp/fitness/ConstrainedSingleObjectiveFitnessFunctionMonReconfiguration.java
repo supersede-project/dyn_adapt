@@ -90,15 +90,15 @@ public class ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration  extend
 			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
 			aggregateValues.put(valueAttribute, aggregateValues.get(valueAttribute) + value * weight);
 			
-			double value2 = Double.parseDouble(valueAttribute2);
-			FeatureAttributeMetadata value2AttributeMetadata = featureAttributeMetadata.get(valueAttribute2);
-			value2MinMax[0] = valueAttributeMetadata.getMinimumValue();
-			value2MinMax[1] = valueAttributeMetadata.getMaximumValue();
-			weight = value2AttributeMetadata.getWeight();
-			value2 = (value2 - valueMinMax[0]) / (valueMinMax[1] - valueMinMax[0]);
-			value2 = 1d - value2; // convert to minimization ??
-			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
-			aggregateValues.put(valueAttribute2, aggregateValues.get(valueAttribute2) + value2 * weight);
+//			double value2 = Double.parseDouble(valueAttribute2==null?"0":valueAttribute2);
+//			FeatureAttributeMetadata value2AttributeMetadata = featureAttributeMetadata.get(valueAttribute2);
+//			value2MinMax[0] = valueAttributeMetadata.getMinimumValue();
+//			value2MinMax[1] = valueAttributeMetadata.getMaximumValue();
+//			weight = value2AttributeMetadata.getWeight();
+//			value2 = (value2 - valueMinMax[0]) / (valueMinMax[1] - valueMinMax[0]);
+//			value2 = 1d - value2; // convert to minimization ??
+//			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
+//			aggregateValues.put(valueAttribute2, aggregateValues.get(valueAttribute2) + value2 * weight);
 		}
 		
 		// overall aggregate sum of all attribute values

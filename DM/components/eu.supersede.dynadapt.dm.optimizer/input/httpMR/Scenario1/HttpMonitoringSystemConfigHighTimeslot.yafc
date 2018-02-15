@@ -27,7 +27,7 @@
         <selection id="high_timeslot">
           <attributeValue xsi:type="fc:integer" id="timeslot_at" value="1000"/>
           <attributeValue xsi:type="fc:integer" id="a_321587787" value="99"/>
-          <attributeValue xsi:type="fc:string" id="a_2078625014" value="100%"/>
+          <attributeValue xsi:type="fc:string" id="a_2078625014" value="1"/>
         </selection>
       </selection>
     </selection>
