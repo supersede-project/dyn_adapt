@@ -3,6 +3,7 @@ package eu.supersede.dynadapt.poc.feature.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.zcu.yafmt.model.fc.AttributeValue;
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.Feature;
@@ -68,9 +69,7 @@ public class FeatureConfigurationUtility {
 			}
 		}
 		
-		/**
-		 * Monitoring UC testing
-		 */
+		//Detecting changes in selection attributes (values)
 		for (Selection s1 : originalSelections) {
 			if (selectionIsModified(s1, newSelections)) {
 				selections.add(s1);
@@ -98,9 +97,13 @@ public class FeatureConfigurationUtility {
 		
 		for (Selection s : list) {
 			if (s.getId().equals(s1.getId()) && s.getValues().size() > 0) {
-				if ( !s.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value"))
-						.equals( s1.getValues().get(0).eGet(s.getValues().get(0).eClass().getEStructuralFeature("value")))) result = true;
-				break;
+				for (int i=0; i<s.getValues().size(); i++){
+					if ( !s.getValues().get(i).eGet(s.getValues().get(i).eClass().getEStructuralFeature("value"))
+						.equals( s1.getValues().get(i).eGet(s.getValues().get(i).eClass().getEStructuralFeature("value")))){ 
+						result = true;
+						break;
+					}
+				}
 			}
 		}
 		

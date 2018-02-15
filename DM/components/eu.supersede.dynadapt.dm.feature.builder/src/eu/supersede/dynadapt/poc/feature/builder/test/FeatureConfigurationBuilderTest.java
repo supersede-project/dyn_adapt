@@ -29,9 +29,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.Feature;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
+import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureModelUtility;
 import eu.supersede.dynadapt.poc.feature.builder.IFeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
@@ -81,5 +83,29 @@ public class FeatureConfigurationBuilderTest {
 		Assert.assertNotNull(feature);
 		Feature parentFeature = FeatureModelUtility.getParentFeature(feature);
 		Assert.assertNotNull(parentFeature);
+	}
+	
+	@Test
+	public void compareFC(){
+		String fc1Path = "./features/FeedbackGatheringConf.yafc";
+		String fc2Path = "./features/FeedbackGatheringConfMod.yafc";
+
+		FeatureConfiguration fc1 = mm.loadFC(fc1Path);
+		FeatureConfiguration fc2 = mm.loadFC(fc2Path);
+		
+		List<Selection> changes = FeatureConfigurationUtility.diffFeatureConfigurations(fc1, fc2);
+		Assert.assertFalse(changes.isEmpty());
+	}
+	
+	@Test
+	public void compareFC2(){
+		String fc1Path = "./features/FeedbackGatheringConfigCategory.yafc";
+		String fc2Path = "./features/FeedbackGatheringConfigCategory_updated.yafc";
+
+		FeatureConfiguration fc1 = mm.loadFC(fc1Path);
+		FeatureConfiguration fc2 = mm.loadFC(fc2Path);
+		
+		List<Selection> changes = FeatureConfigurationUtility.diffFeatureConfigurations(fc1, fc2);
+		Assert.assertFalse(changes.isEmpty());
 	}
 }

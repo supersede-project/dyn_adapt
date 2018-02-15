@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringConfigCategory" version="1.0.0">
+  <featureModel href="FeedbackGatheringConfigCategory.yafm#/"/>
+  <featureModelCopy name="FeedbackGatheringConfigCategory" version="1.0.0">
+    <rootFeature id="feedbackgatheringconfigcategory" name="FeedbackGatheringConfigCategory" lower="1" upper="1">
+      <feature id="category_type" name="CATEGORY_TYPE" lower="1" upper="1">
+        <attribute id="id" name="id" type="string"/>
+        <attribute id="type" name="type" type="string" defaultValue="CATEGORY_TYPE"/>
+        <attribute id="order" name="order" type="string" defaultValue="2"/>
+        <feature id="id_514" name="514" lower="1" upper="1">
+          <attribute id="key" name="key" type="string" defaultValue="BUG_CATEGORY"/>
+          <attribute id="order" name="order" type="integer" defaultValue="0"/>
+        </feature>
+        <feature id="id_515" name="515" lower="1" upper="1">
+          <attribute id="key" name="key" type="string" defaultValue="FEATURE_REQUEST_CATEGORY"/>
+          <attribute id="order" name="order" type="integer" description="" defaultValue="1"/>
+        </feature>
+        <feature id="id_516" name="516" lower="1" upper="1">
+          <attribute id="key" name="key" type="string" defaultValue="GENERAL_CATEGORY"/>
+          <attribute id="order" name="order" type="integer" description="" defaultValue="2"/>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="feedbackgatheringconfigcategory">
+    <selection id="category_type">
+      <attributeValue xsi:type="fc:string" id="id" value="32"/>
+      <attributeValue xsi:type="fc:string" id="type" value="CATEGORY_TYPE"/>
+      <attributeValue xsi:type="fc:string" id="order" value="2"/>
+      <selection id="id_514">
+        <attributeValue xsi:type="fc:string" id="key" value="BUG_CATEGORY"/>
+        <attributeValue xsi:type="fc:integer" id="order" value="3"/>
+      </selection>
+      <selection id="id_515">
+        <attributeValue xsi:type="fc:string" id="key" value="FEATURE_REQUEST_CATEGORY"/>
+        <attributeValue xsi:type="fc:integer" id="order" value="2"/>
+      </selection>
+      <selection id="id_516">
+        <attributeValue xsi:type="fc:string" id="key" value="GENERAL_CATEGORY"/>
+        <attributeValue xsi:type="fc:integer" id="order" value="1"/>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

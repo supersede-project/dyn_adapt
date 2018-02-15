@@ -75,19 +75,19 @@
           <attributeValue xsi:type="fc:integer" id="a_689581445" value="2"/>
           <attributeValue xsi:type="fc:string" id="a_139048492" value="Rating Mechanism"/>
           <attributeValue xsi:type="fc:string" id="a_683258672" value="rating_icon.jpg"/>
-          <attributeValue xsi:type="fc:integer" id="a_343221669" value="4"/>
+          <attributeValue xsi:type="fc:integer" id="a_343221669" value="1"/>
         </selection>
+      </selection>
+      <selection id="category">
+        <selection id="selectcategory"/>
       </selection>
       <selection id="receiver">
         <selection id="sharewithallhelpdesk">
-          <attributeValue xsi:type="fc:boolean" id="anonymous" value="true"/>
+          <attributeValue xsi:type="fc:boolean" id="anonymous" value="false"/>
         </selection>
       </selection>
       <selection id="presentation">
         <selection id="popup"/>
-      </selection>
-      <selection id="category">
-        <selection id="selectcategory"/>
       </selection>
     </selection>
     <selection id="device">
