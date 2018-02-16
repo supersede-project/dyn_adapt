@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +17,11 @@ import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
+import eu.supersede.fe.security.DatabaseUser;
 import eu.supersede.integration.api.adaptation.proxies.AdaptationConfigurationProxy;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.types.AdaptationMode;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 @RequestMapping("/adaptation")
@@ -38,15 +41,18 @@ public class AdaptationRest
     }
     
     @RequestMapping(value = "/suggested", method = RequestMethod.GET)
-    public List<Adaptation> getSuggestedAdaptations()
+    public List<Adaptation> getSuggestedAdaptations(Authentication authentication)
     {
     	//Returning only adaptations that having been enacted
     	List<Adaptation> adapts = adaptations.findAll();
     	
     	List<Adaptation> result = new ArrayList<>();
+        DatabaseUser currentUser = (DatabaseUser) authentication.getPrincipal();
+        String tenantId = currentUser.getTenantId();
     	
     	for (Adaptation ad: adapts){
-    		if (enactments.findOne(ad.getFc_id()) == null){
+    		if (enactments.findOne(ad.getFc_id()) == null
+    				&& ad.getModel_system().getTenant().toString().equals(tenantId)){
     			result.add(ad);
     		}
     	}
