@@ -12,4 +12,4 @@ else
   echo "$file not found."
 fi
 
-mvn spring-boot:run -Drun.arguments="--server.port=8091,--logging.file=./log/dm-optimizer.log" -Dsupersede.if.properties=if.development.properties -Dis.admin.user=$user -Dis.admin.passwd=$pass
+nohup mvn spring-boot:run -Drun.arguments="--server.port=8091,--logging.file=./log/dm-optimizer.log" -Dsupersede.if.properties=if.development.properties -Dis.admin.user=$user -Dis.admin.passwd=$pass &
