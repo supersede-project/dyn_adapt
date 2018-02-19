@@ -158,6 +158,11 @@ public class PopulateModelRepositoryTest {
 				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
 				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
 		/*prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemEnableFeatureModel.yafm"), 
 				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
@@ -172,6 +177,11 @@ public class PopulateModelRepositoryTest {
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
 				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigLowTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Enacted, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
 		/*prm.populateModel(
