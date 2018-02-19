@@ -116,6 +116,7 @@ public abstract class AbstractHandler {
 		case AtosFG:
 		case AtosFGcat:
 		case AtosMonitoring:
+		case MonitoringReconfiguration:
 			tenant = "atos"; break;
 		}
 		return tenant;
