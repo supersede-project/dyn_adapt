@@ -24,6 +24,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Export-Package: eu.supersede.reconfiguration.configurationProfile,
+Export-Package: eu.supersede.feedbackgathering.reconfiguration.enactor,
+ eu.supersede.reconfiguration.configurationProfile,
  eu.supersede.reconfiguration.updateAttributes
 Import-Package: org.apache.log4j

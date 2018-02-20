@@ -150,7 +150,7 @@ public abstract class AbstractHandler {
 		case AtosFGcat:
 			uri = "input/senerconFG/category/";
 			break;
-		case MonitoringReconfiguration:
+		case AtosMonitoring:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
 			uri = "input/httpMR/Scenario1/";
@@ -185,7 +185,7 @@ public abstract class AbstractHandler {
 		case AtosFGcat:
 			uri = "input/senerconFG/FeedbackGatheringConfigCategory.yafm";
 			break;
-		case MonitoringReconfiguration:
+		case AtosMonitoring:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
 			uri = "input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
@@ -220,7 +220,7 @@ public abstract class AbstractHandler {
 		case AtosFGcat:
 			uri = "input/senerconFG/FeedbackGatheringConfigCategory.yafc";
 			break;
-		case MonitoringReconfiguration:
+		case AtosMonitoring:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
 			uri = "input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";

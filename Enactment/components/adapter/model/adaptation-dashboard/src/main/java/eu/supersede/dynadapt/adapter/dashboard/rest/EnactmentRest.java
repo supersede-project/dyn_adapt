@@ -1,12 +1,10 @@
 package eu.supersede.dynadapt.adapter.dashboard.rest;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +18,7 @@ import eu.supersede.dynadapt.adapter.dashboard.jpa.EnactmentsJpa;
 import eu.supersede.dynadapt.adapter.dashboard.model.Action;
 import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
+import eu.supersede.fe.security.DatabaseUser;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 
 @RestController
@@ -32,9 +31,20 @@ public class EnactmentRest
     AdaptationsJpa adaptations;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Enactment> getEnactments()
+    public List<Enactment> getEnactments(Authentication authentication)
     {
-    	return enactments.findAll();
+    	List<Enactment> list = enactments.findAll();
+    	List<Enactment> result = new ArrayList<>();
+    	DatabaseUser currentUser = (DatabaseUser) authentication.getPrincipal();
+        String tenantId = currentUser.getTenantId();
+
+    	for (Enactment e : list) {
+    		if (e.getAdaptation().getModel_system().getTenant().toString().equals(tenantId)) {
+    			result.add(e);
+    		}
+    	}
+    	
+    	return result;
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET )
