@@ -27,6 +27,7 @@ import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
 import eu.supersede.dynadapt.serializer.FMSerializer;
 import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.AttachedValue;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
@@ -39,16 +40,16 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 
 		//if tenant is feedback gathering, we read the other conditions
 		if(system == ModelSystem.SenerconFG || system == ModelSystem.SiemensFG || system == ModelSystem.AtosFG){
-			for(Condition cond: alert.getConditions()){
-				switch (cond.getIdMonitoredData().getNameQualityMonitored()){
+			for(AttachedValue cond: alert.getAttachedValues()){
+				switch (cond.getIdData()){
 				case "attachment": 
-					Parameters.FG_DISKC_ATTACHMENT = cond.getValue();
+					Parameters.FG_DISKC_ATTACHMENT = Double.parseDouble(cond.getValue());
 					break;
 				case "screenshot": 
-					Parameters.FG_DISKC_SCREENSHOT = cond.getValue();
+					Parameters.FG_DISKC_SCREENSHOT = Double.parseDouble(cond.getValue());
 					break;
 				case "audio": 
-					Parameters.FG_DISKC_AUDIO = cond.getValue();
+					Parameters.FG_DISKC_AUDIO = Double.parseDouble(cond.getValue());
 					break;
 				}
 			}

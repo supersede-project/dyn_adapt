@@ -96,7 +96,13 @@ public class ModuleLoader {
 		ModelSystem system = alert.getTenant();
 		
 		// According to the type of alert (if alert contains actions, it is deterministic): 
-		boolean deterministicAlert = (alert.getActionAttributes()!=null) || (alert.getActionFeatures()!=null);
+		boolean deterministicAlert = false;	
+		if (alert.getActionAttributes()!=null || alert.getActionFeatures()!=null){
+			deterministicAlert = true;
+		}
+		else if(alert.getConditions()==null && alert.getAttachedValues()!=null){
+			deterministicAlert = true;
+		}
 				
 		if(!deterministicAlert){
 			// non-deterministic alert: optimizer
