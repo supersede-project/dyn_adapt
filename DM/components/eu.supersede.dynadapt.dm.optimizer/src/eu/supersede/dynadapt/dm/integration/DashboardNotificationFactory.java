@@ -25,14 +25,17 @@ public class DashboardNotificationFactory {
 	 * @param inititialTime is the enactment process initiation time
 	 * @return the {@link Enactment}
 	 */
-	public static Adaptation createAdaptation(String fc_id, String name, ModelSystem system, List<Selection> features, Date inititialTime) {
+	public static Adaptation createAdaptation(String fc_id, String name, ModelSystem system, 
+			List<Selection> features, 
+			Date inititialTime,
+			boolean update) {
 		Adaptation adaptation = new Adaptation();
 		adaptation.setFc_id(fc_id);
 		adaptation.setComputation_timestamp(inititialTime);
 		adaptation.setModel_system(system);
 		adaptation.setName(name);
 		adaptation.setRank(DEFAULT_ADAPTATION_RANK);
-		adaptation.getActions().addAll(createAction(features));
+		adaptation.getActions().addAll(createAction(features, update));
 		return adaptation;
 	}
 	
@@ -42,12 +45,13 @@ public class DashboardNotificationFactory {
 	 * @param features the list of selected features 
 	 * @return the list of enactment {@link Action}
 	 */
-	public static List<Action> createAction(List<Selection> features) {
+	public static List<Action> createAction(List<Selection> features, boolean update) {
 		List<Action> actions = new ArrayList<Action>();		
 		for (Selection feature : features) {
 			Action action = new Action ();
 			action.setAction_id(feature.getId());
-			String description = feature.getDescription() != null ? feature.getDescription() : DEFAULT_ACTION_DESCRIPTION;
+			String description = feature.getFeature().getDescription() != null ? feature.getFeature().getDescription() : DEFAULT_ACTION_DESCRIPTION;
+			if (update) description = "Update attributes values for " + description;
 			action.setDescription(description);
 			action.setName(feature.getName());
 			action.setEnabled(feature.isEnabled());			

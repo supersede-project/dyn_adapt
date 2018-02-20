@@ -70,7 +70,8 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 	@Override
 	public void handle() throws Exception {
 
-
+		kpiComputer.startComputingKPI();
+		
 		String fmURI = ""; 
 		String fcURI = "";
 		
@@ -82,12 +83,14 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		FeatureModel fm = null;
 		
 		// Load currently enacted Feature Configuration
-		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);
-		log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
+		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConfig ;
 		
 		//Change this variable if you should call to the model repository
 		boolean test = true;
 		if (!test){
+			featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);
+			log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
+
 			List<FeatureModel> featuremodels = mr.getFeatureModelsForSystem(system);
 			if(featuremodels.size()>0){
 				fm = featuremodels.get(0);//the only one?				
@@ -109,6 +112,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 			fmURI = obtainFMURI(alert.getTenant());
 			fcURI = obtainNameCurrentConfig(alert.getTenant());
 			fm = mm.loadFeatureModel(fmURI);
+			featureConfig = mm.loadFeatureConfiguration(fcURI);
 		}
 
 		String alertAttribute = alert.getConditions().get(0).getIdMonitoredData().getNameQualityMonitored();
@@ -160,7 +164,8 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				String.format("%s %s", system.toString(), newFeatureConfigId),
 				system,
 				changedSelections, 
-				kpiComputer.getInitialProcessingTime());
+				kpiComputer.getInitialProcessingTime(),
+				false);
 		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		

@@ -3,11 +3,12 @@ package eu.supersede.dynadapt.dm.integration;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.URI;
 
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
@@ -15,6 +16,7 @@ import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.types.ActionOnAttribute;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import cz.zcu.yafmt.model.fc.AttributeValue;
 import cz.zcu.yafmt.model.fc.BooleanValue;
 import cz.zcu.yafmt.model.fc.DoubleValue;
@@ -34,16 +36,32 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 	@Override
 	public void handle() throws Exception {
 		
-		//String fmURI, 
-		//String fcURI, 
-		//List<ActionOnFeature> features = alert.getActionFeatures();
-		List<ActionOnAttribute> attributes = alert.getActionAttributes();
-		
 		kpiComputer.startComputingKPI();
 		
-		// Load currently enacted Feature Configuration
-		FeatureConfiguration newFeatureConfig = mr.getLastEnactedFeatureConfigurationForSystem(ModelSystem.SenerconFGcat);		
+		List<ActionOnAttribute> attributes = alert.getActionAttributes();
+		
+		//Creating temporary folder for serialized models
+		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+		Path temporaryFolder = Files.createTempDirectory(path, "");
+		String temp = temporaryFolder.toString();
+		
+		FeatureConfiguration newFeatureConfig, featureConfig ;
+		//Change this variable if you should call to the model repository
+		boolean test = true;
+		if (!test){
+			// Load currently enacted Feature Configuration
+			newFeatureConfig = mr.getLastEnactedFeatureConfigurationForSystem(ModelSystem.SenerconFGcat);
+			//Copy model in a temporary folder
+			saveFC(newFeatureConfig, URI.createFileURI(temp + "/" + newFeatureConfig.getName() + ".yafc"));
+			featureConfig = mm.loadFeatureConfiguration(temp + "/" + newFeatureConfig.getName() + ".yafc");
+		}
+		else{
+			String fcURI = obtainNameCurrentConfig(alert.getTenant());
+			newFeatureConfig = mm.loadFeatureConfiguration(fcURI);
+			featureConfig = new ModelManager().loadFC(fcURI);
+		}
 		log.info("Currently enacted feature configuration " + newFeatureConfig.getName() + " downloaded from repository");
+		
 		
 		
 		//*****Update feature configuration*****
@@ -114,8 +132,8 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		log.info("New optimal feature configuration " + newFeatureConfigId + " uploaded to repository");			
 		
 		// Load currently enacted Feature Configuration
-		FeatureConfiguration featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);		
-		log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
+		//FeatureConfiguration featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);		
+		//log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
 	
 		// Notify Adaptation to the Dashboard 
 		List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(featureConfig, newFeatureConfig);
@@ -123,7 +141,8 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 				String.format("%s %s", system.toString(), newFeatureConfigId),
 				system,
 				changedSelections, 
-				kpiComputer.getInitialProcessingTime());
+				kpiComputer.getInitialProcessingTime(),
+				true);
 		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		

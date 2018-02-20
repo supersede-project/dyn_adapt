@@ -82,9 +82,12 @@ public abstract class AbstractHandler {
 	protected String uploadLatestComputedFC(cz.zcu.yafmt.model.fc.FeatureConfiguration fc,
 			String fcName) throws IOException, Exception {
 		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
-		String modelId = prm.populateModel(fc, fcName, modelAuthor, system, Status.Computed,
-				modelsLocation.get("configurations"), cz.zcu.yafmt.model.fc.FeatureConfiguration.class,
-				ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		String modelId = prm.populateModel(fc, fcName, 
+				modelAuthor, system, Status.Computed,
+				modelsLocation.get("configurations"), 
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class,
+				ModelType.FeatureConfiguration, 
+				FeatureConfiguration.class);
 		return modelId;
 	}
 
@@ -145,7 +148,7 @@ public abstract class AbstractHandler {
 		case SenerconFGcat:
 		case SiemensFGcat:
 		case AtosFGcat:
-			uri = "input/siemensFG/category/";
+			uri = "input/senerconFG/category/";
 			break;
 		case MonitoringReconfiguration:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
@@ -180,7 +183,7 @@ public abstract class AbstractHandler {
 		case SenerconFGcat:
 		case SiemensFGcat:
 		case AtosFGcat:
-			uri = "input/siemensFG/FeedbackGatheringConfigCategory.yafm";
+			uri = "input/senerconFG/FeedbackGatheringConfigCategory.yafm";
 			break;
 		case MonitoringReconfiguration:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
@@ -215,7 +218,7 @@ public abstract class AbstractHandler {
 		case SenerconFGcat:
 		case SiemensFGcat:
 		case AtosFGcat:
-			uri = "input/siemensFG/FeedbackGatheringConfigCategory.yafc";
+			uri = "input/senerconFG/FeedbackGatheringConfigCategory.yafc";
 			break;
 		case MonitoringReconfiguration:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
