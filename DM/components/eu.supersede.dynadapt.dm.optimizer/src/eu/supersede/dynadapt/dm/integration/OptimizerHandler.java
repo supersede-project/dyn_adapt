@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 					break;
 				}
 			}
-		}else if(system == ModelSystem.MonitoringReconfiguration) {
+		}else if(system == ModelSystem.AtosMonitoring) {
 			for(Condition cond: alert.getConditions()){
 				switch (cond.getIdMonitoredData().getNameQualityMonitored()){
 				case "timeSlot":
@@ -161,6 +162,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				system,
 				changedSelections, 
 				kpiComputer.getInitialProcessingTime());
+		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
 		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		
