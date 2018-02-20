@@ -4,19 +4,14 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
-import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
-import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
-import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
-import eu.supersede.integration.api.adaptation.types.ActionOnAttribute;
-import eu.supersede.integration.api.adaptation.types.Alert;
-import eu.supersede.integration.api.adaptation.types.ModelSystem;
-import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
 import cz.zcu.yafmt.model.fc.AttributeValue;
 import cz.zcu.yafmt.model.fc.BooleanValue;
 import cz.zcu.yafmt.model.fc.DoubleValue;
@@ -24,6 +19,16 @@ import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fc.IntegerValue;
 import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fc.StringValue;
+import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
+import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
+import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
+import eu.supersede.dynadapt.poc.feature.builder.ModelManager;
+import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
+import eu.supersede.integration.api.adaptation.types.ActionOnAttribute;
+import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.Condition;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class DeterministicHandler extends AbstractHandler implements DecisionHandler {
 	private static final String MODELS_AUTHOR = "dmDeterministic";
@@ -38,6 +43,25 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		
 		kpiComputer.startComputingKPI();
 		
+		switch (alert.getTenant()) {
+		case SenerconFGcat:
+			handleFG();
+			break;
+		case AtosMonitoring:
+			handleMonitoring();
+			break;
+		default:
+			// unhandled case, thorw runtime exception?
+			break;
+		}
+		
+				
+	}
+
+	/**
+	 * 
+	 */
+	private void handleFG() throws Exception {
 		List<ActionOnAttribute> attributes = alert.getActionAttributes();
 		
 		//Creating temporary folder for serialized models
@@ -153,6 +177,104 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		
 		
 		//Delete temporary files
+
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void handleMonitoring() throws Exception {
+		String applicationId = alert.getApplicationId();
+		ModelSystem tenant = alert.getTenant();
+
+		double action = 0;
+		for(Condition cond: alert.getConditions()){
+			if ("startMonitor".equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
+				action = cond.getValue(); // value of 1d expected here ==> enable monitor
+				break;
+			}
+		}
+		
+		if (action == 1d) {
+		
+			// First determine the default configuration depending on the tenant
+			String defaultConfig = "";
+			switch (tenant) {
+			case AtosMonitoring:
+				defaultConfig = "low_timeslot";
+				break;
+			default:
+				log.error("unsupported tenant: {}", tenant);
+				break;
+			}
+			
+			
+			//Creating temporary folder for storing models
+			Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+			Path temporaryFolder = Files.createTempDirectory(path, "");
+			String temp = temporaryFolder.toString();
+			
+			
+			List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(defaultConfig.split("\\s+")));
+			selectedFeatureIds.removeAll(Arrays.asList(null,"")); //Remove empty entries
+			
+			String fmURI = obtainFMURI(alert.getTenant());
+			FeatureModel fm = mm.loadFeatureModel(fmURI);
+			FeatureConfigurationBuilder featureConfigurationBuilder = new FeatureConfigurationBuilder();
+			FeatureConfiguration newFeatureConfig = featureConfigurationBuilder.buildFeatureConfiguration(fm, selectedFeatureIds);
+			
+			List<String> currentConfigIds = new ArrayList<String>(); //monitor is disabled 
+			FeatureConfiguration currentConfig = featureConfigurationBuilder.buildFeatureConfiguration(fm, currentConfigIds);
+			
+			String newFeatureConfigFileName = getFileNameOfPath(fmURI).replace (".yafm", "_optimized.yafc");
+			String newFeatureConfigPath = Paths.get(temp, newFeatureConfigFileName).toString();
+			
+			//Copy the new configuration in a temporary folder
+			saveFC(newFeatureConfig, org.eclipse.emf.common.util.URI.createFileURI(newFeatureConfigPath));
+			
+			kpiComputer.stopComputingKPI();
+			kpiComputer.reportComputedKPI();
+			
+			//******** Call WP4********
+			// Upload the YAMFT Fature Configuration to the ModelRepository 
+			String newFeatureConfigId = uploadLatestComputedFC(newFeatureConfig, newFeatureConfigFileName); // Populate metadata, status=Computed
+			log.info("New optimal feature configuration " + newFeatureConfigId + " uploaded to repository");			
+			
+			// Notify Adaptation to the Dashboard 
+			List<Selection> changedSelections = FeatureConfigurationUtility.diffFeatureConfigurations(currentConfig, newFeatureConfig);
+			Adaptation adaptation = DashboardNotificationFactory.createAdaptation(newFeatureConfigId,
+					String.format("%s %s", system.toString(), newFeatureConfigId),
+					system,
+					changedSelections, 
+					kpiComputer.getInitialProcessingTime(),
+					false);
+		
+			adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+			log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
+			
+			boolean processEnactment = Boolean.valueOf(
+					DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
+			if (processEnactment)
+				proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+			
+			//Remove temporary file
+			boolean removeTemp = Boolean.valueOf(
+					DMOptimizationConfiguration.getProperty("temp_file.remove_after_computing"));
+			
+			if (removeTemp){
+				//Remove all files within the temporary folder
+				Files.walk(temporaryFolder).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+				Files.deleteIfExists(temporaryFolder);
+			}
+			
+			log.debug("DETERMINISTIC: {} : start monitor with configuration: {}", applicationId, defaultConfig);
+				
+		
+		}else {
+			// received disable monitor action? stop monitor?
+			log.debug("DETERMINISTIC : {} stop monitor.", applicationId);
+		}
 		
 	}
 	

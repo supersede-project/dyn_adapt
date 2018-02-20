@@ -168,10 +168,6 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				kpiComputer.getInitialProcessingTime(),
 				false);
 		
-//		kpiComputer.getInitialProcessingTime());
-//		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
-//>>>>>>> 749f81cbb05d5cd9e763bf496b2f45a73fa9048e
-	
 		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		
