@@ -23,44 +23,44 @@
       <node xmi:type="uml:OpaqueAction" xmi:id="_ji6YwEIeEeeARqO5grQuCQ" name="Callback CB1" incoming="_CC8MkEIfEeeARqO5grQuCQ" outgoing="_C03YwEIfEeeARqO5grQuCQ"/>
       <node xmi:type="uml:OpaqueAction" xmi:id="_ov1JkEIeEeeARqO5grQuCQ" name="Service s0_1" incoming="_C03YwEIfEeeARqO5grQuCQ" outgoing="_Ebf_YEIfEeeARqO5grQuCQ"/>
     </packagedElement>
-    <profileApplication xmi:id="_VRICQEIrEeec6v6KFh1zWA">
-      <eAnnotations xmi:id="_VRJ3cEIrEeec6v6KFh1zWA" source="PapyrusVersion">
-        <details xmi:id="_VRJ3cUIrEeec6v6KFh1zWA" key="Version" value="0.1.1"/>
-        <details xmi:id="_VRJ3ckIrEeec6v6KFh1zWA" key="Comment" value=""/>
-        <details xmi:id="_VRJ3c0IrEeec6v6KFh1zWA" key="Copyright" value=""/>
-        <details xmi:id="_VRJ3dEIrEeec6v6KFh1zWA" key="Date" value="2016-07-19"/>
-        <details xmi:id="_VRJ3dUIrEeec6v6KFh1zWA" key="Author" value=""/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_VRICQEIrEeec6v6KFh1zWA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VRJ3cEIrEeec6v6KFh1zWA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRJ3cUIrEeec6v6KFh1zWA" key="Version" value="0.1.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRJ3ckIrEeec6v6KFh1zWA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRJ3c0IrEeec6v6KFh1zWA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRJ3dEIrEeec6v6KFh1zWA" key="Date" value="2016-07-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRJ3dUIrEeec6v6KFh1zWA" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:id="_VRJQYEIrEeec6v6KFh1zWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VRJQYEIrEeec6v6KFh1zWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
-      <appliedProfile href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+      <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
-    <profileApplication xmi:id="_VRKegEIrEeec6v6KFh1zWA">
-      <eAnnotations xmi:id="_VRLsoEIrEeec6v6KFh1zWA" source="PapyrusVersion">
-        <details xmi:id="_VRLsoUIrEeec6v6KFh1zWA" key="Version" value="0.0.8"/>
-        <details xmi:id="_VRLsokIrEeec6v6KFh1zWA" key="Comment" value=""/>
-        <details xmi:id="_VRLso0IrEeec6v6KFh1zWA" key="Copyright" value=""/>
-        <details xmi:id="_VRLspEIrEeec6v6KFh1zWA" key="Date" value="2016-10-07"/>
-        <details xmi:id="_VRLspUIrEeec6v6KFh1zWA" key="Author" value=""/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_VRKegEIrEeec6v6KFh1zWA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VRLsoEIrEeec6v6KFh1zWA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRLsoUIrEeec6v6KFh1zWA" key="Version" value="0.0.8"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRLsokIrEeec6v6KFh1zWA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRLso0IrEeec6v6KFh1zWA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRLspEIrEeec6v6KFh1zWA" key="Date" value="2016-10-07"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VRLspUIrEeec6v6KFh1zWA" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:id="_VRKegUIrEeec6v6KFh1zWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VRKegUIrEeec6v6KFh1zWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/model.profile.uml#_WP2rUYyEEeakeNQxQLNPog"/>
       </eAnnotations>
-      <appliedProfile href="../umlmodels-validation-profiles/model.profile.uml#_oEx4oHp0EeaT-K0PSf103Q"/>
+      <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/model.profile.uml#_oEx4oHp0EeaT-K0PSf103Q"/>
     </profileApplication>
-    <profileApplication xmi:id="_VRMTsEIrEeec6v6KFh1zWA">
-      <eAnnotations xmi:id="_VROv8EIrEeec6v6KFh1zWA" source="PapyrusVersion">
-        <details xmi:id="_VROv8UIrEeec6v6KFh1zWA" key="Version" value="0.0.8"/>
-        <details xmi:id="_VROv8kIrEeec6v6KFh1zWA" key="Comment" value=""/>
-        <details xmi:id="_VROv80IrEeec6v6KFh1zWA" key="Copyright" value=""/>
-        <details xmi:id="_VROv9EIrEeec6v6KFh1zWA" key="Date" value="2016-10-07"/>
-        <details xmi:id="_VROv9UIrEeec6v6KFh1zWA" key="Author" value=""/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_VRMTsEIrEeec6v6KFh1zWA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VROv8EIrEeec6v6KFh1zWA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VROv8UIrEeec6v6KFh1zWA" key="Version" value="0.0.8"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VROv8kIrEeec6v6KFh1zWA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VROv80IrEeec6v6KFh1zWA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VROv9EIrEeec6v6KFh1zWA" key="Date" value="2016-10-07"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VROv9UIrEeec6v6KFh1zWA" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:id="_VROI4EIrEeec6v6KFh1zWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VROI4EIrEeec6v6KFh1zWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
       </eAnnotations>
-      <appliedProfile href="../umlmodels-validation-profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+      <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
   </uml:Model>
   <GetMeteorologicalData:Service xmi:id="_wK-bMH57Eeac2-gti3SYOg" base_OpaqueAction="_fZqzcH52Eeac2-gti3SYOg" endpoint="&quot;http://localhost:4567/relay/https://nike.erd.siemens.at/supersede/geonames-countryCode/unavailable10&quot;"/>
@@ -70,7 +70,7 @@
   <GetMeteorologicalData:Service xmi:id="_8pPlkLAGEea1750BS59zjg" base_Activity="_YklK8H52Eeac2-gti3SYOg" endpoint="&quot;http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/format/&quot;"/>
   <ADM:Joinpoint xmi:id="_5R7e8DGAEeeHY9q5UfA53w" base_RedefinableElement="_Y2__IK_jEea1750BS59zjg" base_NamedElement="_Y2__IK_jEea1750BS59zjg"/>
   <GetMeteorologicalData:Callback xmi:id="_jjDisEIeEeeARqO5grQuCQ" base_OpaqueAction="_ji6YwEIeEeeARqO5grQuCQ" function="exports.setup = function() {&#xD;&#xA;&#x9;this.input('input');&#xD;&#xA;&#x9;this.output('output');&#xD;&#xA;};&#xD;&#xA;exports.fire = function () {&#xD;&#xA;&#xD;&#xA;   var value = this.get('input');&#xD;&#xA;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#xD;&#xA;   var response=&quot;&quot;;&#xD;&#xA;&#xD;&#xA;   request=JSON.parse(request);&#xD;&#xA;&#xD;&#xA;   var south=request.geonames[0].south;&#xD;&#xA;   var north=request.geonames[0].north;&#xD;&#xA;   var east=request.geonames[0].east;&#xD;&#xA;   var west=request.geonames[0].west;&#xD;&#xA;&#xD;&#xA;   var BoundingBox = {};&#xD;&#xA;   BoundingBox[&quot;south&quot;]= String(south);&#xD;&#xA;   BoundingBox[&quot;north&quot;]= String(north);&#xD;&#xA;   BoundingBox[&quot;east&quot;]= String(east);&#xD;&#xA;   BoundingBox[&quot;west&quot;]= String(west);&#xD;&#xA;&#xD;&#xA;   var reqRes = {};&#xD;&#xA;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#xD;&#xA;   reqRes=JSON.stringify(reqRes);&#xD;&#xA;    &#xD;&#xA;   this.send('output', reqRes);  &#xD;&#xA;}"/>
-  <GetMeteorologicalData:Service xmi:id="_ov6pIEIeEeeARqO5grQuCQ" base_OpaqueAction="_ov1JkEIeEeeARqO5grQuCQ" endpoint="&quot;http://localhost:4567/relay/https://nike.erd.siemens.at/supersede/geonames-countryCode/unavailable5&quot;"/>
+  <GetMeteorologicalData:Service xmi:id="_ov6pIEIeEeeARqO5grQuCQ" base_OpaqueAction="_ov1JkEIeEeeARqO5grQuCQ" endpoint="&quot;http://api.geonames.org/earthquakesJSON?&quot;"/>
   <GetMeteorologicalData:Service xmi:id="_dyTZIEIrEeec6v6KFh1zWA" base_Activity="_YklK8H52Eeac2-gti3SYOg" endpoint="&quot;http://localhost:4567/adapt/https://nike.erd.siemens.at/supersede/format/&quot;"/>
   <GetMeteorologicalData:Service xmi:id="_lMMX0EIrEeec6v6KFh1zWA" base_OpaqueAction="_fZqzcH52Eeac2-gti3SYOg" endpoint="&quot;http://localhost:4567/relay/https://nike.erd.siemens.at/supersede/geonames-countryCode/unavailable10&quot;"/>
   <GetMeteorologicalData:Callback xmi:id="_q7CJ8EIrEeec6v6KFh1zWA" base_OpaqueAction="_ji6YwEIeEeeARqO5grQuCQ" function="exports.setup = function() {&#xD;&#xA;&#x9;this.input('input');&#xD;&#xA;&#x9;this.output('output');&#xD;&#xA;};&#xD;&#xA;exports.fire = function () {&#xD;&#xA;&#xD;&#xA;   var value = this.get('input');&#xD;&#xA;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#xD;&#xA;   var response=&quot;&quot;;&#xD;&#xA;&#xD;&#xA;   request=JSON.parse(request);&#xD;&#xA;&#xD;&#xA;   var south=request.geonames[0].south;&#xD;&#xA;   var north=request.geonames[0].north;&#xD;&#xA;   var east=request.geonames[0].east;&#xD;&#xA;   var west=request.geonames[0].west;&#xD;&#xA;&#xD;&#xA;   var BoundingBox = {};&#xD;&#xA;   BoundingBox[&quot;south&quot;]= String(south);&#xD;&#xA;   BoundingBox[&quot;north&quot;]= String(north);&#xD;&#xA;   BoundingBox[&quot;east&quot;]= String(east);&#xD;&#xA;   BoundingBox[&quot;west&quot;]= String(west);&#xD;&#xA;&#xD;&#xA;   var reqRes = {};&#xD;&#xA;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#xD;&#xA;   reqRes=JSON.stringify(reqRes);&#xD;&#xA;    &#xD;&#xA;   this.send('output', reqRes);  &#xD;&#xA;}"/>

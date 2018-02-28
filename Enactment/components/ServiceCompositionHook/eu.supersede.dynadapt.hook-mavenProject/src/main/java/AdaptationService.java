@@ -49,9 +49,11 @@ public class AdaptationService {
 	//these static variables are just used for manipulating the availability of services used in the "availability scenario"
 	static int unavailable5=0;
 	static int unavailable10=0;
-	static int number_of_times_good=20;
-	static int number_of_times_bad=20;
+	static int number_of_times_good=5;
+	static int number_of_times_bad=5;
 	static final String currentPtolemyWorkflow="currentPtolemyWorkflow.xml"; 
+	static final String testingLogs="testingLogs.txt"; 
+	static final String testingLogsAdaptaion="testingLogsAdaptation.txt"; 
 	
 	public static void main(String[] args) throws ScriptException, FileNotFoundException {
 		
@@ -68,6 +70,13 @@ public class AdaptationService {
 		
 		// GET
 		get("/relay/*", (req, res) -> { 
+			
+			File file=new File (testingLogs);
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+            
 			String url = Util.getServiceURL(req);
 			if(adaptations.containsKey(url))
 			{
@@ -96,7 +105,7 @@ public class AdaptationService {
 			{
 				res.body(Util.sendGet(url));
 			}
-			
+	    
 			//for the validation purpose (make a service unavailable 5% of the time)
 			if(url.contains("unavailable5"))
 			{
@@ -116,21 +125,34 @@ public class AdaptationService {
 			    }
 
 			    if(unavailable5>number_of_times_good+number_of_times_bad) unavailable5=0;
+			    
+			    System.out.println("The unavalable5 service is used\n");
+	            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), true);
+	            fileWriter.write("The unavalable5 service is used\n");	            
+	            fileWriter.flush();
+	            if(fileWriter!=null) fileWriter.close();
+
+			    
 			}
 			//for the validation purpose (make a service unavailable 10% of the time)
-			if(url.contains("unavailable10"))
+			else if(url.contains("unavailable10"))
 			{
 			    //Random numbers from the range 0..99 is generated
 			    Random randomGenerator = new Random();
 			    int randomInt = randomGenerator.nextInt(100);
 			    unavailable10++;
-			    if(randomInt<10) 
+			    if(randomInt<0) 
 			    {
 			    	res.status(500);
 			    	res.body("Service is unavailable at the moment!");
 			    }
+	            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(),true);
+	            fileWriter.write("The unavalable10 service is used\n");	            
+	            fileWriter.flush();
+	            if(fileWriter!=null) fileWriter.close();
+
 			}
-		    
+			
 			return res.body();						
 		});
 		
@@ -170,6 +192,28 @@ public class AdaptationService {
 			    e1.printStackTrace();
 			}
 			adaptations.put(url, decodedString);
+			
+			File file=new File (testingLogsAdaptaion);
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(),true);
+            fileWriter.write("The current addaptation is:\n");
+            for (String name: adaptations.keySet()){
+
+                String key =name.toString();
+                String value = adaptations.get(name).toString(); 
+                fileWriter.write("Key : \n");
+                fileWriter.write(key); 
+                fileWriter.write("Value : \n");	            
+                fileWriter.write(value);                
+            } 
+            fileWriter.flush();
+            if(fileWriter!=null) fileWriter.close();
+
+ 
+			
 			
 			//File file = new File("./ramda.js");
 			//Reader reader = new FileReader(file);

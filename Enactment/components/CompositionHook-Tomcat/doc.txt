@@ -1,0 +1,4 @@
+To generate the SuperAdapt-1.jar file which need to be renamed to the SuperAdapt.jar to be deploy on the Tomcat server running on ASCR do the following:
+- in this eclipse project execute the configured Maven build configuration called "CompositionHook-Tomcat" by right clicking on the project then RunAs/Maven build and select the given configuration.
+- when the file SuperAdapt-1.war is generated rename it as mentioned and copy to the Tomcat webapp directory of the ASCR demo_grid machine
+- configure the ASCR "terminal machine" (nb2viesm40.ptdea.siemens.com) to use the ssh-tunelling (simply load the preconfigured putty configuration called "supersed"; in the part Tunnelling in putty you can see the configured tunnels) (for user and pass see Tudors email to the siemens account), from ASCR terminal machine remote desktop to demo_grid, user:ctuser2, pass: CTU2@123. To cennect with remote desktop to the terminal machine use your own username and pass for your laptop.
