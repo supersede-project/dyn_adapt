@@ -42,7 +42,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
@@ -72,6 +71,7 @@ public class ModelManager implements IModelManager {
 	private void initCache (){
 		//Setting up cache
 		if (cache){
+			log.debug("Activating cache");
 			//Model Cache
 			modelCache = CacheBuilder.newBuilder()
 		            .maximumSize(1000)
@@ -106,6 +106,7 @@ public class ModelManager implements IModelManager {
 	
 	private Optional<Model> getUMLModel(String modelPath) {
 		//TODO Use cache
+		log.debug ("Retrieving model from path " + modelPath);
 		Model model = null;
 		if (modelPath.startsWith("http")){
 			model = resourceSet.loadModel(downloadModel(modelPath), Model.class);
@@ -134,9 +135,13 @@ public class ModelManager implements IModelManager {
 				                Files.delete(file);
 				                return FileVisitResult.CONTINUE;
 				            }
+				            @Override
+				            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+								log.debug("deleting temporary folder: " + dir);
+								Files.delete(dir);
+							    return FileVisitResult.CONTINUE;
+				            }
 				        }); 
-						log.debug("deleting temporary directory: " + temp);
-						Files.deleteIfExists(temp);
 		        	}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -251,10 +256,19 @@ public class ModelManager implements IModelManager {
 	
 	@Override
 	public <T extends EObject> T loadModel(String path, Class<T> clazz){
-		if (path.startsWith("http")){
-			return resourceSet.loadModel(downloadModel(path), clazz);
+		URI uri = null;
+		if (path.startsWith("http")) {
+			uri = downloadModel(path);
 		}
-		return resourceSet.loadModel(URI.createURI(path), clazz);
+		else if (path.startsWith("platform") || path.startsWith("file")) {
+			uri = URI.createURI(path);
+		}
+		else {
+			uri = URI.createFileURI(path);
+		}
+		T object = resourceSet.loadModel(uri, clazz);
+		log.debug("Model " + path + " loaded by model manager is " + object);
+		return object;
 	}
 	
 	@Override
@@ -380,39 +394,48 @@ public class ModelManager implements IModelManager {
 	 */
 	//TODO: Simplify this method using Java8 io library
 	private File createOutputFile(URI outputModelURI, String suffixe) throws Exception {
-		String fileSeparator = System.getProperty("file.separator");
-		String inputFileName = outputModelURI.lastSegment();
-		if (inputFileName == null){
-			inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
-		}
-		String inputFilePath = outputModelURI.path();
-		if (inputFilePath == null){
-			inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
-		}
-
-		// Find output directory
-		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf(fileSeparator) + 1));
-		//Create outputDirectory if it doesn't exist
-		Path outDir = Paths.get(outputDirectory);
-		if (Files.notExists(outDir)) {
-			Files.createDirectory(outDir);
-		}
+//		String fileSeparator = System.getProperty("file.separator");
+//		String inputFileName = outputModelURI.lastSegment();
+//		if (inputFileName == null){
+//			inputFileName = outputModelURI.toString().substring (outputModelURI.toString().lastIndexOf(fileSeparator)+1);
+//		}
+//		String inputFilePath = outputModelURI.path();
+//		if (inputFilePath == null){
+//			inputFilePath = outputModelURI.toString().substring(0, outputModelURI.toString().lastIndexOf(fileSeparator));
+//		}
+//
+//		// Find output directory
+//		String outputDirectory = inputFilePath.substring(0, (inputFilePath.lastIndexOf(fileSeparator) + 1));
+//		//Create outputDirectory if it doesn't exist
+//		Path outDir = Paths.get(outputDirectory);
+//		if (Files.notExists(outDir)) {
+//			Files.createDirectory(outDir);
+//		}
 		
-		// Create the output filename
-		String outputFileName = inputFileName;
+//		// Create the output filename
+//		String outputFileName = inputFileName;
+//		if (suffixe != null){
+//			if (inputFileName.lastIndexOf('.')>=0)
+//				outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
+//			else
+//				outputFileName = inputFileName + suffixe;
+//		}
+		
+		String outputFilePath = outputModelURI.path();
 		if (suffixe != null){
-			if (inputFileName.lastIndexOf('.')>=0)
-				outputFileName = inputFileName.substring(0, inputFileName.lastIndexOf('.')) + suffixe;
-			else
-				outputFileName = inputFileName + suffixe;
+			if (outputFilePath.lastIndexOf('.') >= 0) {
+				outputFilePath = outputFilePath.substring(0, outputFilePath.lastIndexOf('.')) + suffixe;
+			}
+			else {
+				outputFilePath = outputFilePath + suffixe;
+			}
 		}
-		
-		File outputFile = new File(outputDirectory + outputFileName);
-
+		File outputFile = new File(outputFilePath);
+//		File outputFile = new File(outputDirectory + outputFileName);
 		if (!outputFile.exists()) {
+			outputFile.getParentFile().mkdirs();
 			outputFile.createNewFile();
 		}
-
 		return outputFile;
 	}
 	

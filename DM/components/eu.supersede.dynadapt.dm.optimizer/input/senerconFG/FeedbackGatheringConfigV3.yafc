@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringConfigV3" version="1.0.0">
+  <featureModel href="FeedbackGatheringConfigV3.yafm#/"/>
+  <featureModelCopy name="FeedbackGatheringConfig" version="1.0.0">
+    <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+      <attribute id="diskc" name="diskC" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="18000" weight="1.0" objectiveFunctionAggregator="sum" alert="true"/>
+      <attribute id="quality" name="quality" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+      <feature id="mechanism" name="Mechanism" lower="1" upper="1">
+        <feature id="attachment" name="Attachment" lower="1" upper="1">
+          <attribute id="id" name="id" type="string" defaultValue="15"/>
+          <attribute id="type" name="type" type="string" defaultValue="ATTACHMENT_TYPE"/>
+          <attribute id="order" name="order" type="integer" defaultValue="5"/>
+          <group lower="1" upper="1">
+            <feature id="lowattachment" name="LowAttachment" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="5000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="sizefile" name="sizeFile" type="integer" description="Size of the attached file (in MB)" defaultValue="5" minRangeValue="0" maxRangeValue="18"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+            <feature id="mediumattachment" name="MediumAttachment" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="10000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="sizefile" name="sizeFile" type="integer" description="Size of the attached file (in MB)" defaultValue="10" minRangeValue="0" maxRangeValue="18"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+            <feature id="highattachment" name="HighAttachment" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="15000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="sizefile" name="sizeFile" type="integer" description="Size of the attached file (in MB)" defaultValue="15" minRangeValue="0" maxRangeValue="18"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+          </group>
+        </feature>
+        <feature id="screenshot" name="ScreenShot" lower="1" upper="1">
+          <attribute id="id" name="id" type="string" defaultValue="16"/>
+          <attribute id="type" name="type" type="string" defaultValue="SCREENSHOT_TYPE"/>
+          <attribute id="order" name="order" type="integer" defaultValue="3"/>
+          <group lower="1" upper="1">
+            <feature id="lowscreen" name="LowScreen" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="5000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="sizepicture" name="sizePicture" type="integer" description="Size of the attached picture (in MB)" defaultValue="5" minRangeValue="0" maxRangeValue="18"/>
+              <attribute id="quality" name="quality" type="string" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+            <feature id="mediumscreen" name="MediumScreen" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="10000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="sizepicture" name="sizePicture" type="integer" description="Size of the attached picture (in MB)" defaultValue="10" minRangeValue="0" maxRangeValue="18"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+            <feature id="highscreen" name="HighScreen" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="15000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="sizepicture" name="sizePicture" type="integer" description="Size of the attached picture (in MB)" defaultValue="15" minRangeValue="0" maxRangeValue="18"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+          </group>
+        </feature>
+        <feature id="audio" name="Audio" lower="1" upper="1">
+          <attribute id="id" name="id" type="string" defaultValue="17"/>
+          <attribute id="type" name="type" type="string" defaultValue="AUDIO_TYPE"/>
+          <attribute id="order" name="order" type="integer" defaultValue="2"/>
+          <group lower="1" upper="1">
+            <feature id="highaudio" name="HighAudio" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="string" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="15000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="a_1395623473" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="300" minRangeValue="0" maxRangeValue="360"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+            <feature id="mediumaudio" name="MediumAudio" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="10000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="a_414330553" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="180" minRangeValue="0" maxRangeValue="360"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+            <feature id="lowaudio" name="LowAudio" lower="0" upper="1">
+              <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="5000" minRangeValue="0" maxRangeValue="18000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+              <attribute id="a_1469268762" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="60" minRangeValue="0" maxRangeValue="360"/>
+              <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
+            </feature>
+          </group>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="feedbackconfiguration">
+    <selection id="mechanism">
+      <selection id="attachment">
+        <selection id="mediumattachment">
+          <attributeValue xsi:type="fc:double" id="diskc" value="0.0"/>
+          <attributeValue xsi:type="fc:integer" id="sizefile" value="0"/>
+          <attributeValue xsi:type="fc:double" id="quality" value="0.0"/>
+        </selection>
+      </selection>
+      <selection id="screenshot">
+        <selection id="mediumscreen">
+          <attributeValue xsi:type="fc:double" id="diskc" value="0.0"/>
+          <attributeValue xsi:type="fc:integer" id="sizepicture" value="0"/>
+          <attributeValue xsi:type="fc:double" id="quality" value="0.0"/>
+        </selection>
+      </selection>
+      <selection id="audio">
+        <selection id="mediumaudio">
+          <attributeValue xsi:type="fc:double" id="diskc" value="0.0"/>
+          <attributeValue xsi:type="fc:integer" id="a_414330553" value="0"/>
+          <attributeValue xsi:type="fc:double" id="quality" value="0.0"/>
+        </selection>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

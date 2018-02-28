@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="29 44 190 30">
+    <key href="HttpMonitoringSystemEnableFeatureModel.yafm#//@root"/>
+  </mapping>
+  <mapping value="259 45 120 30">
+    <key href="HttpMonitoringSystemEnableFeatureModel.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="421 44 120 30">
+    <key href="HttpMonitoringSystemEnableFeatureModel.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="582 -7 212 171">
+    <key href="HttpMonitoringSystemEnableFeatureModel.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+</layout:LayoutData>

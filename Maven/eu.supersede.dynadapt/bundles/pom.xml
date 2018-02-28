@@ -34,5 +34,9 @@
 	<module>../../../Enactment/components/enactor/eu.supersede.dynadapt.enactor.Enactor</module>
 	<module>../../../Enactment/components/enactor/eu.supersede.dynadapt.enactor.EnactorFactory</module>
 	<module>../../../Enactment/components/enactor/eu.supersede.dynadapt.enactor.HypervisorEnactor</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.monitor.reconfiguration.enactor</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.monitor.reconfiguration.executor</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.reconfiguration.enactor.uml2json</module>
+	<module>../../../Enactment/components/enactor/eu.supersede.feedbackgathering.reconfiguration.enactor</module>
     </modules>
 </project>

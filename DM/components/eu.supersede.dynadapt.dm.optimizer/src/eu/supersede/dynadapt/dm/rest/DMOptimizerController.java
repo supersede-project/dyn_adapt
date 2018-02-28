@@ -5,14 +5,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.dynadapt.dm.integration.ModuleLoader;
+import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 public class DMOptimizerController {
-	ModuleLoader ml = new ModuleLoader();
+	ModuleLoader ml;
 	
-	@RequestMapping("/optimize")
-	public FeatureConfiguration optimize (
+	public DMOptimizerController () throws Exception {
+		this.ml = new ModuleLoader();
+		//Registering dashboard proxy to initialize Front-end session
+		//ml.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+	}
+	
+	//@RequestMapping("/optimize")
+	/*public FeatureConfiguration optimize (
 			@RequestParam(value="system", defaultValue="") String system,
 			@RequestParam(value="featureModelURI", defaultValue="") String fmURI, 
 			@RequestParam(value="featureConfigurationURI", defaultValue="") String fcURI,
@@ -21,5 +28,5 @@ public class DMOptimizerController {
 			@RequestParam(value="multiObjective", defaultValue="false") boolean multiObjective) throws Exception {
 
 		return ml.processOptimization(ModelSystem.valueOf(system), fmURI, fcURI, alertAttribute, Double.valueOf(alertThresholdValue));
-	}
+	}*/
 }

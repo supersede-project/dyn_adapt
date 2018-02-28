@@ -12,6 +12,14 @@ public class OptimizerKPIComputer {
 	private Date initialProcessingTime = null;
 	private Date finalProcessingTime = null;
 	
+	public Date getInitialProcessingTime() {
+		return initialProcessingTime;
+	}
+
+	public Date getFinalProcessingTime() {
+		return finalProcessingTime;
+	}
+
 	public void stopComputingKPI() {
 		finalProcessingTime = Calendar.getInstance().getTime();
 	}
@@ -19,7 +27,7 @@ public class OptimizerKPIComputer {
 	public void reportComputedKPI() {
 		if (initialProcessingTime != null && finalProcessingTime != null){
 			long processTime = finalProcessingTime.getTime() - initialProcessingTime.getTime();
-			log.info("Enactment KPI: Adaptation Enactment Time: " + processTime + " miliseconds");
+			log.info("Decision-Making KPI: Optimization Time: " + processTime + " miliseconds");
 		}else{
 			
 		}

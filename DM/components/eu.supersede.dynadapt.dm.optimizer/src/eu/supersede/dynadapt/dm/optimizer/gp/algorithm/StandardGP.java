@@ -33,7 +33,9 @@ import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.optimizer.gp.chromosome.ChromosomeFactory;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionAtos;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionSiemens;
 import eu.supersede.dynadapt.dm.optimizer.gp.fitness.FitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.operators.CrossoverFunction;
@@ -81,7 +83,13 @@ public class StandardGP {
 
 			break;
 		case FEEDBACK_GATHERING:
-			fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
+			//The same case for the 3 uses cases
+			//fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
+			fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration(currentConfiguration);
+			break;
+		case MONITORING:
+			// handles the case of monitor reconfiguration for ATOS
+			fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration(currentConfiguration);
 			break;
 		}
 		

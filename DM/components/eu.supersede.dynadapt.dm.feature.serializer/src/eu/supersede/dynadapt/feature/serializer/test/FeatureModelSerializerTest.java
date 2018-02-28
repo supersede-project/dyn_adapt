@@ -24,6 +24,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.zcu.yafmt.model.fc.impl.FeatureConfigurationImpl;
 import eu.supersede.dynadapt.serializer.FMSerializer;
 
 public class FeatureModelSerializerTest {	
@@ -84,6 +85,19 @@ public class FeatureModelSerializerTest {
 		fms.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 		
 		fms = new FMSerializer();
+		fms.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
+		fms.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
+	}
+	
+	@Test
+	public void SerializeFGReconfig () throws IOException{		
+		// NOTE: Edit this absolute paths before testing
+		String absoluteFCModelPath = 
+				"/workspaceSTS/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/senerconFG/FeedbackGatheringConfigV3.yafc";
+		String absoluteFMModelPath = 
+				"/workspaceSTS/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer/input/senerconFG/FeedbackGatheringConfigV3.yafm";
+		String absolutetargetFolderPath = "/workspaceSTS/dyn_adapt/DM/components/eu.supersede.dynadapt.dm.feature.serializer/serialization";
+		FMSerializer fms = new FMSerializer();
 		fms.serializeFMToArtifactsInFolder(absoluteFMModelPath, absolutetargetFolderPath);
 		fms.serializeFCToArtifactsInFolder(absoluteFCModelPath, absoluteFMModelPath, absolutetargetFolderPath);
 	}

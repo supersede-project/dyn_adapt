@@ -158,6 +158,12 @@ public class Parameters {
 	public static double ATOS_HSK_CONST5 = 0.0025; //1;
 	public static double ATOS_HSK_CONST6 = 0.002; //1000;
 	
+	
+	// parameters specific to FG reconfiguration
+	public static double FG_DISKC_ATTACHMENT = 100;	
+	public static double FG_DISKC_SCREENSHOT = 100;	
+	public static double FG_DISKC_AUDIO= 100;	
+	
 	public void loadFromFile(String parametersFile){
 		
 	}

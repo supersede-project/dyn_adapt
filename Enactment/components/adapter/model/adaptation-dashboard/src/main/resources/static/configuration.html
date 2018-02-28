@@ -1,13 +1,16 @@
-<script src="decision-making-dashboard/js/configuration.js"></script>
+<script src="adaptation-dashboard/js/configuration.js"></script>
+
+ <style>
+      .jqx-grid-cell-alt {
+       background: #e5e8ea;
+      }
+ </style>
+ 
 <div ng-controller="configuration">
 	<h1>Configuration</h1>
-		<div style="float:left;" id='rbtnSupervised'>Supervised Enactment</div>
-		<div style="margin-right: 400px; float:right;" id='rbtnAutomatic'>Automated Enactment</div>
+		<div style="float:left;" id='rbtnSupervised' ng-click="setConfiguration()"><b>Supervised Enactment</b></div>
+		<div style="margin-right: 400px; float:right;" id='rbtnAutomatic' ng-click="setConfiguration()"><b>Automated Enactment</b></div>
 		<br><br>
-		<div id="supervision">
-			<jqx-grid id="jqxGrid" jqx-create="createWidget" jqx-settings="gridSettings"></jqx-grid>
-			<br>
-			<jqx-button id="btnEnable" ng-click="">Enable</jqx-button>
-			<jqx-button id="btnDisable" ng-click="">Disable</jqx-button>
-		</div>
+		
+		<input type="text" disabled="disabled" style="width:50%;" id="typeConf" value="";>
 </div>

@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.aom.dsl.util.SupersedeDSLResourceUtil;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
@@ -52,6 +53,13 @@ public class AdaptationParser implements IAdaptationParser{
 		return resource;
 	}
 	
+	public Aspect loadAspectResource (String path){
+		Aspect resource = modelManager.loadAspectModel(path);
+		if (resource != null)
+			EcoreUtil.resolveAll (resource);
+		return resource;
+	}
+	
 	public Profile loadProfileResource (String path){
 		Profile resource = modelManager.loadProfile(path);
 		if (resource != null)
@@ -66,8 +74,15 @@ public class AdaptationParser implements IAdaptationParser{
 		return resource;
 	}
 	
-	public FeatureModel loadFeatureResource (String path){
+	public FeatureModel loadFeatureModelResource (String path){
 		FeatureModel resource = modelManager.loadFeatureModel(path);
+		if (resource != null)
+			EcoreUtil.resolveAll (resource);
+		return resource;
+	}
+	
+	public FeatureConfiguration loadFeatureConfigurationResource (String path){
+		FeatureConfiguration resource = modelManager.loadFeatureConfiguration(path);
 		if (resource != null)
 			EcoreUtil.resolveAll (resource);
 		return resource;

@@ -56,7 +56,7 @@ import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class ModelRepositoryTest {
 
-	String repository = "platform:/resource/eu.supersede.dynadapt.modelrepository/models/";
+	String repository = "platform:/resource/eu.supersede.dynadapt.modelrepository/repository/";
 	String repositoryRelativePath = "repository";
 
 	Map<String, String> modelsLocation;
@@ -168,38 +168,45 @@ public class ModelRepositoryTest {
 	
 	@Test
 	public void testGetLastEnactedBaseModelForSystem() throws Exception {
-		Model baseModel = mr.getLastEnactedBaseModelForSystem (ModelSystem.Atos);
+		Model baseModel = mr.getLastEnactedBaseModelForSystem (ModelSystem.Atos_HSK);
 		Assert.assertNotNull(baseModel);
 	}
 	
 	@Test
 	public void testGetLastBaseModelForSystem() throws Exception {
-		Model baseModel = mr.getLastBaseModelForSystem (ModelSystem.Atos);
+		Model baseModel = mr.getLastBaseModelForSystem (ModelSystem.Atos_HSK);
 		Assert.assertNotNull(baseModel);
 	}
 	
 	@Test
 	public void testGetLastEnactedFeatureConfigurationForSystem() throws Exception {
-		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.Atos);
+		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.SenerconFG);
 		Assert.assertNotNull(fc);
 	}
 	
 	@Test
 	public void testGetLastComputedFeatureConfigurationForSystem() throws Exception {		
-		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos);
+		FeatureConfiguration fc = mr.getLastComputedFeatureConfigurationForSystem (ModelSystem.Atos_HSK);
+		Assert.assertNotNull(fc);
+	}
+	
+	@Test
+	public void testGetFeatureConfigurationModel() throws Exception {
+		String id = "620";
+		FeatureConfiguration fc = mr.getFeatureConfigurationModel(id);
 		Assert.assertNotNull(fc);
 	}
 	
 	@Test
 	public void testGetAspectModelsForSystem() throws Exception {
-		List<Aspect> models = mr.getAspectModelsForSystem (ModelSystem.Atos);
+		List<Aspect> models = mr.getAspectModelsForSystem (ModelSystem.Atos_HSK);
 		Assert.assertNotNull(models);
 		Assert.assertTrue(!models.isEmpty());
 	}
 	
 	@Test
 	public void testGetVariantModelsForSystem() throws Exception {
-		List<Model> models = mr.getVariantModelsForSystem (ModelSystem.Atos);
+		List<Model> models = mr.getVariantModelsForSystem (ModelSystem.Atos_HSK);
 		Assert.assertNotNull(models);
 		Assert.assertTrue(!models.isEmpty());
 	} 
@@ -223,7 +230,7 @@ public class ModelRepositoryTest {
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
-		Map<String, String> values = new HashMap<>();
+		Map<String, Object> values = new HashMap<>();
 		values.put("authorId", "yosu");
 		values.put("featureId", "GooglePlay_API");
 		mum.setValues(values);
@@ -236,7 +243,7 @@ public class ModelRepositoryTest {
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
-		Map<String, String> values = new HashMap<>();
+		Map<String, Object> values = new HashMap<>();
 		values.put("authorId", "burak");
 		values.put("status", "adapted");
 		mum.setValues(values);

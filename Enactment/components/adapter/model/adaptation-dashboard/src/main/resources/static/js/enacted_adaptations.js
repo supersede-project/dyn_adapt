@@ -74,70 +74,85 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			pageable: true,
 			autoheight: true,
 			autorowheight: true,
+			altrows: true,
 			source: dataAdapter,
 			columnsresize: true,
 			selectionmode: 'checkbox',
 			columns: [
-			    { text: 'Adaptation id', align: 'center', datafield: 'fc_id' , width: 110},
-			    { text: 'Action id', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
+			    { text: '<b>Adaptation id</b>', align: 'center', datafield: 'fc_id' , width: 110},
+			    { text: '<b>Action id</b>', columngroup: 'Actions', align: 'center', datafield: 'action_ids',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="height:100%; width:100%">';
+			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
+			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action name', columngroup: 'Actions', align: 'center', datafield: 'action_names',
+				{ text: '<b>Action name</b>', columngroup: 'Actions', align: 'center', datafield: 'action_names',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="height:100%; width:100%">';
+			    		var grid = '<table style="width:100%;table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
+			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action description', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
+				{ text: '<b>Action description</b>', columngroup: 'Actions', align: 'center', datafield: 'action_descriptions',
 			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="height:100%; width:100%">';
+			    		var grid = '<table style="width:100%;%table-layout: fixed;">';
 			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
+			    			if (i == 0) grid += '<tr><td><div style="height: 25px;">' + value[i] + '</div></td></tr>';
+			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;"><div style="height: 25px;">' + value[i] + '</div></td></tr>';
 			    		}
 			    		grid += '</table>'
 			    		return grid;
 					} },
-				{ text: 'Action enabled', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
-			    	cellsRenderer: function (row, columnDataField, value) {
-			    		var grid = '<table style="height:100%; width:100%">';
-			    		for (var i = 0; i < value.length; i++) {
-			    			if (i == 0) grid += '<tr><td>' + value[i] + '<tr><td>';
-			    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">' + value[i] + '<tr><td>';
-			    		}
-			    		grid += '</table>'
-			    		return grid;
-					} },
-			    { text: 'Enactment request time', align: 'center', datafield: 'enactment_request_time', width: 240},
-			    { text: 'Enactment completion time', align: 'center', datafield: 'enactment_completion_time', width: 200},
-				{ text: 'Result', align: 'center', datafield: 'result', width: 70,  
+				{ text: '<b>Action enabled</b>', columngroup: 'Actions', align: 'center', datafield: 'action_enableds',
+						cellsRenderer: function (row, columnDataField, value) {
+				    		var grid = '<table style="width:100%;%table-layout: fixed;">';
+				    		for (var i = 0; i < value.length; i++) {
+				    			//painting borders
+				    			if (i == 0) grid += '<tr><td><div style="height: 25px;">';
+				    			else grid += '<tr><td style="border-top:1px solid #DDDDDD;">';
+				    				
+				    			//checkbox
+				    			if(value[i]==true){
+				    				grid += '<div style="height: 25px;"><input type="checkbox" checked="checked" disabled="disabled"></div></td></tr>';
+				    			}
+				    			else
+				    				grid += '<div style="height: 25px;"><input type="checkbox" disabled="disabled"></div></td></tr>';
+				    		}
+				    		grid += '</table>'
+				    		return grid;
+						} },
+			    { text: '<b>Enactment request time</b>', align: 'center', datafield: 'enactment_request_time', width: 200},
+			    { text: '<b>Enactment completion time</b>', align: 'center', datafield: 'enactment_completion_time', width: 200},
+				{ text: '<b>Result</b>', align: 'center', datafield: 'result', width: 70,
 					cellsRenderer: function (row, columnDataField, value) {
+						console.log(row);
+						
 						if (value) {
-							var color = 'green';
-							var text = 'SUCCESS'
+							//var color = 'green';
+							//var text = 'SUCCESS';
+							var img = './jqx/styles/images/check_black.png';
 						}
 						else {
-							var color = 'red';
-							var text = 'FAILURE';
+							//var color = 'red';
+							//var text = 'FAILURE';
+							var img = './jqx/styles/images/close_black.png';
 						}
-						return '<div class="jqx-grid-cell-left-align" style="color:' + color + ';'
-						+ 'height: 100%; display: flex; align-items: center;">' + text + '</div>';
+						return '<img style= width: 60 height: 30 align: center; src="'+img+'"/> ';
+						//'<div class="jqx-grid-cell-left-align" style="color:' + color + ';'
+						//+ 'display: flex; align-items: center;vertical-align: middle; margin-top:20%;">' + text + '</div>'
+						
 					} }
 			],
 			columngroups: 
                 [
-                  { text: 'Actions', align: 'center', name: 'Actions' }
+                  { text: '<b>Actions</b>', align: 'center', name: 'Actions' }
                 ],
 			ready: function()
 			{
@@ -166,6 +181,7 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 			}
 		};
 		
+		
 		$scope.deleteSuggestedAdaptations = function() {
 			var indexes = $('#jqxGrid').jqxGrid('selectedrowindexes');
 			var count = 0;
@@ -186,6 +202,8 @@ app.controllerProvider.register('enacted_adaptations', function($scope, $http) {
 		        $('#jqxGrid').jqxGrid('deleterow', row_data['fc_id']);
 			}
 		}
+		
+
 		
 		$scope.createWidget = true;
 	 }).error(function (data, status) {

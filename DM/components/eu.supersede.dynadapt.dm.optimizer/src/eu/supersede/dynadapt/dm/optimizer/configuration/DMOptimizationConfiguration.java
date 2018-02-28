@@ -19,7 +19,12 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.dm.optimizer.configuration;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -57,6 +62,27 @@ public class DMOptimizationConfiguration {
 		}else{
 			throw new RuntimeException("Property '" + key + "' not found exception");
 		}
+	}
+	
+	public static void setProperty (String key, String value) throws URISyntaxException, IOException{
+		prop.put(key, value);
+		URL url = DMOptimizationConfiguration.class.getClassLoader().getResource(propFileName);
+		File fileObject = new File(url.toURI());
+		FileOutputStream out = new FileOutputStream(fileObject);
+		prop.store(out, null);
+	}
+	
+	public static AdaptationMode getAdaptationConfigurationMode(){
+		Boolean automated = Boolean.valueOf(getProperty("enactment.automatic_processing"));
+		if (automated) 
+			return AdaptationMode.AUTOMATED;
+		else 
+			return AdaptationMode.SUPERVISED;
+	}
+	
+	public static void setAdaptationConfigurationMode(AdaptationMode mode) throws URISyntaxException, IOException{
+		Boolean automated = mode == AdaptationMode.AUTOMATED?true:false;
+		setProperty("enactment.automatic_processing", automated.toString());
 	}
 
 }

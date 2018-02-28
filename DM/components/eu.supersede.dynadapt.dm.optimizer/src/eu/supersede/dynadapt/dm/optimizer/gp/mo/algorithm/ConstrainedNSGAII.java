@@ -36,9 +36,13 @@ import org.slf4j.LoggerFactory;
 
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionAtos;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration;
+import eu.supersede.dynadapt.dm.optimizer.gp.fitness.ConstrainedSingleObjectiveFitnessFunctionSiemens;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.Chromosome;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.chromosome.ChromosomeFactory;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.ConstrainedMultiObjectiveFitnessFunction;
+import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.ConstrainedMultiObjectiveFitnessFunctionFGReconfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.FitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.fitness.MultiObjectiveFitnessFunction;
 import eu.supersede.dynadapt.dm.optimizer.gp.mo.operators.MultiObjectiveTournamentSelection;
@@ -88,8 +92,17 @@ public class ConstrainedNSGAII {
 			List<String> currentConfiguration) {
 		chromosomeFactory = new ChromosomeFactory(grammarFile, depth,
 				probRecursive);
-		fitnessFunction = new ConstrainedMultiObjectiveFitnessFunction(
-				currentConfiguration);
+		switch(Parameters.APPLICATION){
+			case FEEDBACK_GATHERING:
+				//The same case for the 3 uses cases
+				//fitnessFunction = new ConstrainedSingleObjectiveFitnessFunctionFeedbackReconfiguration(currentConfiguration);
+				fitnessFunction = new ConstrainedMultiObjectiveFitnessFunctionFGReconfiguration(currentConfiguration);
+				break;
+			default:
+				fitnessFunction = new ConstrainedMultiObjectiveFitnessFunction(currentConfiguration);
+				break;
+		}
+		
 		selectionFunction = new MultiObjectiveTournamentSelection();
 		crossoverFunction = new SubtreeCrossover();
 		mutationFunction = new SubtreeMutation(

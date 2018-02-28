@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_FpTvMJG7EeaWjrXtPkhLHg" name="FeedbackGathering">
+  <packagedElement xmi:type="uml:Class" xmi:id="_GZnKwJG7EeaWjrXtPkhLHg" name="Audio">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PcVvgJG7EeaWjrXtPkhLHg" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_UCrBcJG7EeaWjrXtPkhLHg" name="order">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7bV6QKJsEeaxxe0z_ECQHg" name="active">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_d_UhwKSIEea0LfYkq0ZDeA" name="type">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_H2mGIJG7EeaWjrXtPkhLHg" name="Rating">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VUTBYJG7EeaWjrXtPkhLHg" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_WQu0cJG7EeaWjrXtPkhLHg" name="order">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_MykEwKJtEeaxxe0z_ECQHg" name="active">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_mtnuoKSIEea0LfYkq0ZDeA" name="type">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_JCnNUJG7EeaWjrXtPkhLHg" name="TextFeedback">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XZOGgJG7EeaWjrXtPkhLHg" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_YKRwAJG7EeaWjrXtPkhLHg" name="order">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_UJM7IKJtEeaxxe0z_ECQHg" name="active">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_p6esMKSIEea0LfYkq0ZDeA" name="type">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LFDmMJG7EeaWjrXtPkhLHg" name="Screenshot">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Y5_VsJG7EeaWjrXtPkhLHg" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ZjF9EJG7EeaWjrXtPkhLHg" name="order">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_YQDbwKJtEeaxxe0z_ECQHg" name="active">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_t_Z6MKSIEea0LfYkq0ZDeA" name="type">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_CygEsJG8EeaWjrXtPkhLHg" name="AUDIO_TYPE" classifier="_GZnKwJG7EeaWjrXtPkhLHg">
+    <slot xmi:type="uml:Slot" xmi:id="_SMu-EJG8EeaWjrXtPkhLHg" definingFeature="_PcVvgJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_becaAJG8EeaWjrXtPkhLHg" name="id" value="15"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_c-IEEJG8EeaWjrXtPkhLHg" definingFeature="_UCrBcJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_hFPqcJG8EeaWjrXtPkhLHg" name="order" value="2"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_oPD2IKJtEeaxxe0z_ECQHg" definingFeature="_7bV6QKJsEeaxxe0z_ECQHg">
+      <value xmi:type="uml:LiteralBoolean" xmi:id="_nd0J8KJuEeaxxe0z_ECQHg" name="active" value="true"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_1KBGwKSIEea0LfYkq0ZDeA" definingFeature="_d_UhwKSIEea0LfYkq0ZDeA">
+      <value xmi:type="uml:LiteralString" xmi:id="_5XSYcKSIEea0LfYkq0ZDeA" name="type" value="AUDIO_TYPE"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_PcsbMJHDEeaNbLBqn4_c-g" name="RATING_TYPE" classifier="_H2mGIJG7EeaWjrXtPkhLHg">
+    <slot xmi:type="uml:Slot" xmi:id="_WEl8QJHDEeaNbLBqn4_c-g" definingFeature="_VUTBYJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_ZgFLsJHDEeaNbLBqn4_c-g" name="id" value="17"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_aNMJUJHDEeaNbLBqn4_c-g" definingFeature="_WQu0cJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_d3TqoJHDEeaNbLBqn4_c-g" name="order" value="4"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_I_H9cKJvEeaxxe0z_ECQHg" definingFeature="_MykEwKJtEeaxxe0z_ECQHg">
+      <value xmi:type="uml:LiteralBoolean" xmi:id="_Lk1bcKJvEeaxxe0z_ECQHg" name="active" value="true"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_6ITlsKSIEea0LfYkq0ZDeA" definingFeature="_mtnuoKSIEea0LfYkq0ZDeA">
+      <value xmi:type="uml:LiteralString" xmi:id="_-r1bQKSIEea0LfYkq0ZDeA" name="type" value="RATING_TYPE"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_gxJlkJHDEeaNbLBqn4_c-g" name="TEXT_TYPE" classifier="_JCnNUJG7EeaWjrXtPkhLHg">
+    <slot xmi:type="uml:Slot" xmi:id="_lUktcJHDEeaNbLBqn4_c-g" definingFeature="_XZOGgJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_pOJAAJHDEeaNbLBqn4_c-g" name="id" value="14"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_qk9pAJHDEeaNbLBqn4_c-g" definingFeature="_YKRwAJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_tyt-cJHDEeaNbLBqn4_c-g" name="order" value="1"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_zl2SwKJuEeaxxe0z_ECQHg" definingFeature="_UJM7IKJtEeaxxe0z_ECQHg">
+      <value xmi:type="uml:LiteralBoolean" xmi:id="_3UcrcKJuEeaxxe0z_ECQHg" name="active" value="true"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="__UaeMKSIEea0LfYkq0ZDeA" definingFeature="_p6esMKSIEea0LfYkq0ZDeA">
+      <value xmi:type="uml:LiteralString" xmi:id="_EUd3sKSJEea0LfYkq0ZDeA" name="type" value="TEXT_TYPE"/>
+    </slot>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_wZw5MJHDEeaNbLBqn4_c-g" name="SCREENSHOT_TYPE" classifier="_LFDmMJG7EeaWjrXtPkhLHg">
+    <slot xmi:type="uml:Slot" xmi:id="_zS9T4JHDEeaNbLBqn4_c-g" definingFeature="_Y5_VsJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_2AIr0JHDEeaNbLBqn4_c-g" name="id" value="16"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_2x8jQJHDEeaNbLBqn4_c-g" definingFeature="_ZjF9EJG7EeaWjrXtPkhLHg">
+      <value xmi:type="uml:LiteralInteger" xmi:id="_6YH_wJHDEeaNbLBqn4_c-g" name="order" value="3"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_7k7pMKJuEeaxxe0z_ECQHg" definingFeature="_YQDbwKJtEeaxxe0z_ECQHg">
+      <value xmi:type="uml:LiteralBoolean" xmi:id="_-qRpgKJuEeaxxe0z_ECQHg" name="active" value="true"/>
+    </slot>
+    <slot xmi:type="uml:Slot" xmi:id="_EzjncKSJEea0LfYkq0ZDeA" definingFeature="_t_Z6MKSIEea0LfYkq0ZDeA">
+      <value xmi:type="uml:LiteralString" xmi:id="_KyY9YKSJEea0LfYkq0ZDeA" name="type" value="SCREENSHOT_TYPE"/>
+    </slot>
+  </packagedElement>
+</uml:Model>

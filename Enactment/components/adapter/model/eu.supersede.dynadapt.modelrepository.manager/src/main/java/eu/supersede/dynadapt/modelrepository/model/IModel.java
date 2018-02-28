@@ -1,14 +1,15 @@
 package eu.supersede.dynadapt.modelrepository.model;
 
 import java.lang.reflect.Field;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public abstract class IModel {
+	final static Logger logger = Logger.getLogger(IModel.class);
 
 	public void setValue(String property, Object value) throws Exception {
 		
@@ -64,7 +65,10 @@ public abstract class IModel {
 		List<Field> fields = getFields();
 		for (Field f: fields) {
 			f.setAccessible(true);
-			if (!f.getName().equals("id") && f.get(this) == null) return false;
+			if (!f.getName().equals("id") && f.get(this) == null){
+				logger.debug("Validation error. Empty field: " + f.getName());
+				return false;
+			}
 		}
 		return true;
 	}

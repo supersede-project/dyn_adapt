@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.repositoryaccess;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
@@ -9,11 +10,15 @@ import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.ProfileModel;
+import eu.supersede.integration.api.adaptation.types.VariantModel;
 
 /*
  * Defines CRUD operations for specialized models, including UML, YAFMT, Viatra, AdaptabilityModels
@@ -92,10 +97,12 @@ public interface IModelRepository {
 	List<Model> getVariantModelsForSystem (ModelSystem system) throws Exception;
 	List<Profile> getProfilesForSystem (ModelSystem system) throws Exception;
 	List<PatternModel> getPatternModelsForSystem (ModelSystem system) throws Exception;
+	List<FeatureModel> getFeatureModelsForSystem(ModelSystem system) throws Exception;
 	
 	//Repository clean-up
 	void cleanUpRepository();
 	
 	//Reading models from string
 	public <T extends EObject> T readModelFromString(String modelContent, ModelType type, Class<T> modelClass) throws Exception;
+
 }

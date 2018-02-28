@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -37,7 +37,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
-import eu.supersede.dynadapt.dm.optimizer.gp.fitness.SingleObjectiveFitnessFunction;
 import eu.supersede.dynadapt.dm.util.FeatureAttributeMetadata.Aggregators;
 
 public class ConfigurationLoader {
@@ -88,14 +87,16 @@ public class ConfigurationLoader {
 
 				boolean alert = Boolean.parseBoolean(valueMap.get("alert").toString());
 				double weight = Double.parseDouble(valueMap.get("weight").toString());
-				double minimumValue = Double.parseDouble(valueMap.get("min").toString());
-				double maximumValue = Double.parseDouble(valueMap.get("max").toString());
+				double minimumValue = parseDouble(valueMap.get("min").toString());
+				double maximumValue = parseDouble(valueMap.get("max").toString());
 				String strDomain = (String) valueMap.get("domain");
 				Class domain;
 				if ("int".equalsIgnoreCase(strDomain)){
 					domain = Integer.class;
-				}else{
+				}else if ("double".equalsIgnoreCase(strDomain)){
 					domain = Double.class;
+				}else {
+					domain = String.class;
 				}
 				Aggregators aggregator = Aggregators.valueOf((String) valueMap.get("aggregator"));
 				boolean minimize = Boolean.parseBoolean(valueMap.get("minimize").toString());
@@ -117,6 +118,16 @@ public class ConfigurationLoader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private double parseDouble (String s) {
+		double d = 0d;
+		if (s.contains("%")) {
+			d = Double.parseDouble(s.trim().replace("%", "")) / 100d;
+		}else {
+			d = Double.parseDouble(s);
+		}
+		return d;
 	}
 	
 	// Load the quality attributes corresponding to a given feature

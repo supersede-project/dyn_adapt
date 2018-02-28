@@ -1,0 +1,63 @@
+[comment encoding = UTF-8 /]
+[**
+ * /*******************************************************************************
+ * Copyright (c) 2018 FBK
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Denisse Muñante (FBK) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+ */]
+[**
+ * common: this is the common module to provide useful queriesused by others modules.
+ */]
+[module common('http://zcu.cz/yafmt/model/fc')]
+
+[**
+ * Method to write the comma when there is at least a following attribute siblings 
+ */]
+[template public writeComma(oAttribute : AttributeValue)]
+[if(not oAttribute.followingSiblings()->isEmpty())][if(oAttribute.followingSiblings()->filter(AttributeValue)->exists(p | not p.attribute.qualityAttribute))],[/if][/if]
+[/template]
+
+[**
+ * Returns the value of the attribute value of a selected feature
+ */]
+[query public  getValue(oAttribute : AttributeValue) : String =
+	oAttribute.toString().tokenize('(')->at(3).replace('value: ', '').substitute(')', '')/]
+
+[**
+ * Evaluates if the selected feature has attribute values
+ */]
+[query public hasAttributes(oSelection : Selection) : Boolean = 
+	not oSelection.values->isEmpty() /]
+
+[**
+ * Evaluates if the selected feature has sub selected features
+ */]
+[query public hasSubFeatures(oSelection : Selection) : Boolean = 
+	not oSelection.selections->isEmpty() /]
+
+[**
+ * Evaluates if the selected feature is a feature to be configured
+ */]
+[query public isFeatureToConfigure(oSelection : Selection) : Boolean = 
+	oSelection.selections->size()=1 and oSelection.selections->first().selections->isEmpty() /]
+
+[**
+ * Evaluates if the selected feature is a configuration profile (leaf feature)
+ */]
+[query public isConfigurationProfile(oSelection : Selection) : Boolean = oSelection.selections->isEmpty() /]
+

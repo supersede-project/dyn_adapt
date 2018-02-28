@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeatureConfiguration" version="1.0.0">
+  <featureModel href="../models/HttpMonitoringSystemEnableFeatureModel.yafm#/"/>
+  <featureModelCopy name="FeatureModel" version="1.0.0">
+    <rootFeature id="featuremodel" name="HttpMonitoringSystem" lower="1" upper="1">
+      <feature id="f_1491900337" name="QoS" lower="1" upper="1">
+        <feature id="f_783832620" name="HttpMonitor" lower="1" upper="1">
+          <feature id="f_873247801" name="MonitoringConfiguration" lower="0" upper="1">
+            <attribute id="a_1719660450" name="timeSlot" type="integer"/>
+            <attribute id="a_1573653273" name="url" type="string"/>
+            <attribute id="a_1718932528" name="kafkaTopic" type="string"/>
+            <attribute id="a_1987703328" name="toolName" type="string"/>
+            <attribute id="a_862064591" name="method" type="string"/>
+            <attribute id="a_209552934" name="responseTime" type="integer"/>
+            <attribute id="a_2105636004" name="availability" type="string"/>
+          </feature>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="featuremodel">
+    <selection id="f_1491900337">
+      <selection id="f_783832620">
+        <selection id="f_873247801">
+          <attributeValue xsi:type="fc:integer" id="a_1719660450" value="1000"/>
+          <attributeValue xsi:type="fc:string" id="a_1573653273" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
+          <attributeValue xsi:type="fc:string" id="a_1718932528" value="handshake-test"/>
+          <attributeValue xsi:type="fc:string" id="a_1987703328" value="ApacheHttp"/>
+          <attributeValue xsi:type="fc:string" id="a_862064591" value="GET"/>
+          <attributeValue xsi:type="fc:integer" id="a_209552934" value="100"/>
+          <attributeValue xsi:type="fc:string" id="a_2105636004" value="99%"/>
+        </selection>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

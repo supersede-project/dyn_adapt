@@ -1,4 +1,4 @@
-<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
 # [![SUPERSEDE](images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Dynamic Adaptation and Personalization DM support and Enactment
 This repository contains code, artefacts, configuration, and so on, developed in SUPERSEDE T3.4 and T4.2, that provides techniques and tools supporting the dynamic adaptation and personalization decision making and enactment.
 
@@ -18,4 +18,4 @@ Dynamic Adaptation and Personalization Decision Making and Enactment framework i
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](images/european.union.logo.png)</center>
+![Project funded by the European Union](images/european.union.logo.png)

@@ -23,6 +23,7 @@
       <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.realizations"/>
       <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.monitors"/>
       <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.twitterTimeSlot"/>
+      <query-specification fqn="eu.supersede.dynadapt.usecases.patterns.httpTimeSlot"/>
     </group>
   </extension>
   <extension id="eu.supersede.dynadapt.usecases.patterns.Siemens_queries" point="org.eclipse.viatra.query.runtime.queryspecification">

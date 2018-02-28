@@ -1,0 +1,13 @@
+{
+	"": {
+		"timeStamp":"Sat June 08 02:16:57 2016",
+		"configSender":"WP4"
+	},
+	"QoS": {
+		"timeSlot":"100",
+		"kafkaTopic":"http-kafka-topic",
+		"toolName":"ApacheHttp",
+		"url":"http://lab-supersede.atos-sports.tv:8000/handshake_test.php",
+		"method": "GET"
+	}
+}

@@ -16,11 +16,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import ptolemy.kernel.util.IllegalActionException;
 import ptolemy.kernel.util.NameDuplicationException;
 import ptolemy.kernel.util.Workspace;
 
 import java.nio.file.Paths;
+
+import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 
 
 @SuppressWarnings("restriction")
@@ -430,15 +433,12 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 				
 	}
 	
+	@Override
 	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
 		log.debug("Enacting model: " + adaptedModel.getName());
 		this.umlEnactingModel=adaptedModel;
 		this.injectUMLModelsForValidation();
 		this.getEnactmentCode();
-	}
-
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
-		enactAdaptedModel (adaptedModel, demo);		
 	}
 
 }

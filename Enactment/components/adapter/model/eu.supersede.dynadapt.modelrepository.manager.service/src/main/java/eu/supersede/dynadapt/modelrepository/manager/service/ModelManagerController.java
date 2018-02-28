@@ -124,6 +124,7 @@ public class ModelManagerController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String updateModel(@PathVariable String modelType, @PathVariable String modelId, 
 			@RequestBody String input) throws Exception {
+		logger.debug("updateModel input: " + input);
 		JSONObject jsonObject = new JSONObject(input);
 		try {
 			IModel updateModel = jsonToModel(jsonObject.getJSONObject("values"), ModelType.valueOf(modelType));

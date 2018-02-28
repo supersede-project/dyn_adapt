@@ -39,6 +39,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
@@ -51,6 +52,7 @@ import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.ElementImpl;
 import org.eclipse.uml2.uml.internal.impl.GeneralizationImpl;
 import org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl;
+import org.eclipse.uml2.uml.internal.impl.RealizationImpl;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
 import eu.supersede.dynadapt.model.query.ModelQuery;
@@ -90,6 +92,31 @@ class ComposableClass extends ComposableImpl implements Composable {
 		// Add elements connected to classVariant through relationships:
 		// associations|generalizations (include relationships themselves)
 		addGeneralizations(classVariant, classBase);
+		
+		// Add elements connected to classVariant through relationships:
+		// realizations (include relationships themselves)
+		addRealizations(classVariant, classBase);
+	}
+
+	private void addRealizations(Element fromElement, Element toElement) {
+		Model model = toElement.getModel();
+
+		for (Relationship r : fromElement.getRelationships()) {
+			if (!(r instanceof RealizationImpl)) {
+				continue;
+			}
+			for (Element e : r.getRelatedElements()) {
+				if (e == fromElement) {
+					continue;
+				}
+				if (!ModelAdapterUtilities.elementMatchesInModel(model, (PackageableElement) e)) {
+					Element createdElement = addElementToModel(model, (PackageableElement) e);
+
+					//FIXME: missing method, previous implementation did nothing.
+//					createRealizationInClass((Realization) r, toElement, createdElement);
+				}
+			}
+		}
 	}
 
 	private void addGeneralizations(Element fromElement, Element toElement) {
