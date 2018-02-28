@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/org/eclipse/emf/mapping/ecore2xml/org-eclipse-emf-mapping-ecore2xml/2.9.0.v20160526-0356/org-eclipse-emf-mapping-ecore2xml-2.9.0.v20160526-0356.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/eclipse/uml2/common/org-eclipse-uml2-common/2.1.0.v20161114-0827/org-eclipse-uml2-common-2.1.0.v20161114-0827.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/eclipse/emf/common/org-eclipse-emf-common/2.12.0.v20160420-0247/org-eclipse-emf-common-2.12.0.v20160420-0247.jar"/>
@@ -19,6 +28,17 @@
 	<classpathentry kind="var" path="M2_REPO/org/apache/servicemix/bundles/org-apache-servicemix-bundles-gwt-user/2.4.0_1/org-apache-servicemix-bundles-gwt-user-2.4.0_1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/eclipse/uml2/types/org-eclipse-uml2-types/2.0.0.v20161114-0827/org-eclipse-uml2-types-2.0.0.v20161114-0827.jar"/>
 	<classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.enactor.Enactor/1.0.0-SNAPSHOT/eu.supersede.dynadapt.enactor.Enactor-1.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

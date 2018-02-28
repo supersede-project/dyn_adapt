@@ -1,0 +1,163 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE entity PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
+    "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd">
+<entity name="test" class="ptolemy.actor.TypedCompositeActor">
+    <property name="_createdBy" class="ptolemy.kernel.attributes.VersionAttribute" value="11.0.devel">
+    </property>
+    <property name="DEdirector" class="ptolemy.domains.de.kernel.DEDirector">
+        <property name="localClock" class="ptolemy.actor.LocalClock">
+            <property name="globalTimeResolution" class="ptolemy.actor.parameters.SharedParameter" value="1E-10">
+            </property>
+            <property name="clockRate" class="ptolemy.data.expr.Parameter" value="1.0">
+            </property>
+        </property>
+        <property name="stopTime" class="ptolemy.data.expr.Parameter" value="10.0">
+        </property>
+        <property name="stopWhenQueueIsEmpty" class="ptolemy.data.expr.Parameter" value="true">
+        </property>
+        <property name="synchronizeToRealTime" class="ptolemy.data.expr.Parameter" value="false">
+        </property>
+        <property name="isCQAdaptive" class="ptolemy.data.expr.Parameter" value="true">
+        </property>
+        <property name="minBinCount" class="ptolemy.data.expr.Parameter" value="2">
+        </property>
+        <property name="binCountFactor" class="ptolemy.data.expr.Parameter" value="2">
+        </property>
+        <property name="enforceMicrostepSemantics" class="ptolemy.data.expr.Parameter" value="false">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{0.0, -5.0}">
+        </property>
+    </property>
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={498, 283, 1162, 734}, maximized=false}">
+    </property>
+    <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[946, 616]">
+    </property>
+    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0">
+    </property>
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{410.0, 262.375}">
+    </property>
+    <entity name="singleEvent1" class="ptolemy.actor.lib.SingleEvent">
+        <property name="time" class="ptolemy.data.expr.Parameter" value="0.0">
+        </property>
+        <property name="value" class="ptolemy.data.expr.Parameter" value="true">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{-20.0, 160.0}">
+        </property>
+    </entity>
+    <entity name="display4" class="ptolemy.actor.lib.gui.Display">
+        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute">
+        </property>
+        <property name="_paneSize" class="ptolemy.actor.gui.SizeAttribute">
+        </property>
+        <property name="rowsDisplayed" class="ptolemy.data.expr.Parameter" value="10">
+        </property>
+        <property name="columnsDisplayed" class="ptolemy.data.expr.Parameter" value="40">
+        </property>
+        <property name="suppressBlankLines" class="ptolemy.data.expr.Parameter" value="false">
+        </property>
+        <property name="title" class="ptolemy.data.expr.StringParameter" value="">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[715.0, 150.0]">
+        </property>
+    </entity>
+    <entity name="recorder5" class="ptolemy.actor.lib.Recorder">
+        <property name="capacity" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[730.0, 75.0]">
+        </property>
+    </entity>
+    <entity name="Query Database" class="srdjan.supersede.extension.RESTGet">
+        <property name="initial" class="ptolemy.data.expr.Parameter" value="0">
+        </property>
+        <property name="endpoint" class="ptolemy.data.expr.Parameter" value="&quot;http://api.geonames.org/countryInfoJSON?lang=en&amp;country=FR&amp;username=srdjan.stevanetic&quot;">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="{140.0, 60.0}">
+        </property>
+    </entity>
+    <entity name="Update Cached Data" class="ptolemy.actor.lib.jjs.JavaScript">
+        <property name="script" class="ptolemy.actor.parameters.PortParameter" value="exports.setup = function() {&#13;&#10;	this.input('input');&#13;&#10;	this.output('output');&#13;&#10;};&#13;&#10;exports.fire = function () {&#13;&#10;&#13;&#10;   var value = this.get('input');&#13;&#10;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#13;&#10;   var response=&quot;&quot;;&#13;&#10;&#13;&#10;   request=JSON.parse(request);&#13;&#10;&#13;&#10;   var south=request.geonames[0].south;&#13;&#10;   var north=request.geonames[0].north;&#13;&#10;   var east=request.geonames[0].east;&#13;&#10;   var west=request.geonames[0].west;&#13;&#10;&#13;&#10;   var BoundingBox = {};&#13;&#10;   BoundingBox[&quot;south&quot;]= String(south);&#13;&#10;   BoundingBox[&quot;north&quot;]= String(north);&#13;&#10;   BoundingBox[&quot;east&quot;]= String(east);&#13;&#10;   BoundingBox[&quot;west&quot;]= String(west);&#13;&#10;&#13;&#10;   var reqRes = {};&#13;&#10;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#13;&#10;   reqRes=JSON.stringify(reqRes);&#13;&#10;    &#13;&#10;   this.send('output', reqRes);  &#13;&#10;}">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[470.0, 120.0]">
+        </property>
+        <port name="error" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="SOUTH">
+            </property>
+        </port>
+        <port name="script" class="ptolemy.actor.parameters.ParameterPort">
+            <property name="input"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="SOUTH">
+            </property>
+        </port>
+        <port name="output" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+        </port>
+        <port name="input" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+    </entity>
+    <entity name="recordAssembler10" class="ptolemy.actor.lib.RecordAssembler">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[315.0, 100.0]">
+        </property>
+        <port name="input13" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+        <port name="input14" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+    </entity>
+    <entity name="Return Cached Data" class="ptolemy.actor.lib.jjs.JavaScript">
+        <property name="script" class="ptolemy.actor.parameters.PortParameter" value="exports.setup = function() {&#13;&#10;	this.input('input');&#13;&#10;	this.output('output');&#13;&#10;};&#13;&#10;exports.fire = function () {&#13;&#10;&#13;&#10;   var value = this.get('input');&#13;&#10;   var request = (value != null &amp;&amp; !value.equals(&quot;&quot;)) ? value : &quot;{\&quot;request\&quot;:\&quot;null\&quot;}&quot;;&#13;&#10;   var response=&quot;&quot;;&#10;   var request_new = request.replace(/\&quot;/g, &quot;\&quot;&quot;);&#13;&#10;   &#10;   request=JSON.parse(request_new);&#13;&#10;&#13;&#10;   var south=request.geonames[0].south;&#13;&#10;   var north=request.geonames[0].north;&#13;&#10;   var east=request.geonames[0].east;&#13;&#10;   var west=request.geonames[0].west;&#13;&#10;&#13;&#10;   var BoundingBox = {};&#13;&#10;   BoundingBox[&quot;south&quot;]= String(south);&#13;&#10;   BoundingBox[&quot;north&quot;]= String(north);&#13;&#10;   BoundingBox[&quot;east&quot;]= String(east);&#13;&#10;   BoundingBox[&quot;west&quot;]= String(west);&#13;&#10;&#13;&#10;   var reqRes = {};&#13;&#10;   reqRes[&quot;URLParameters&quot;]=BoundingBox;&#13;&#10;   reqRes=JSON.stringify(reqRes);&#13;&#10;    &#13;&#10;   this.send('output', reqRes);  &#13;&#10;}">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[155.0, 160.0]">
+        </property>
+        <port name="error" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="SOUTH">
+            </property>
+        </port>
+        <port name="script" class="ptolemy.actor.parameters.ParameterPort">
+            <property name="input"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="SOUTH">
+            </property>
+        </port>
+        <port name="input" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+        <port name="output" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+        </port>
+    </entity>
+    <relation name="IOrelation3" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="Auto">
+        </property>
+        <vertex name="vertex" value="[570.0, 115.0]">
+        </vertex>
+    </relation>
+    <relation name="IOrelation9" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="Auto">
+        </property>
+        <vertex name="vertex" value="{50.0, 160.0}">
+        </vertex>
+        <property name="_layoutHint" class="ptolemy.vergil.actor.LayoutHint" value="{ { head={id=&quot;restGet2.trigger&quot;,x=140.0,y=160.0}, tail={id=&quot;IOrelation9.vertex&quot;,x=80.0,y=160.0}, points={} },{ head={id=&quot;singleEvent1.output&quot;,x=-20.0,y=160.0}, tail={id=&quot;IOrelation9.vertex&quot;,x=80.0,y=160.0}, points={} },{ head={id=&quot;restGet6.trigger&quot;,x=140.0,y=60.0}, tail={id=&quot;IOrelation9.vertex&quot;,x=80.0,y=160.0}, points={80.0,60.0} } }">
+        </property>
+    </relation>
+    <relation name="relation" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation2" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation3" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <link port="singleEvent1.output" relation="IOrelation9"/>
+    <link port="display4.input" relation="IOrelation3"/>
+    <link port="recorder5.input" relation="IOrelation3"/>
+    <link port="Query Database.trigger" relation="IOrelation9"/>
+    <link port="Query Database.output" relation="relation2"/>
+    <link port="Update Cached Data.output" relation="IOrelation3"/>
+    <link port="Update Cached Data.input" relation="relation"/>
+    <link port="recordAssembler10.output" relation="relation"/>
+    <link port="recordAssembler10.input13" relation="relation2"/>
+    <link port="recordAssembler10.input14" relation="relation3"/>
+    <link port="Return Cached Data.input" relation="IOrelation9"/>
+    <link port="Return Cached Data.output" relation="relation3"/>
+</entity>

@@ -227,7 +227,15 @@ public class AdaptationService implements SparkApplication {
 			    // TODO Auto-generated catch block
 			    e1.printStackTrace();
 			}
-			adaptations.put(url, decodedString);
+			
+			if(adaptations.containsKey(url))
+			{
+				adaptations.replace(url, adaptations.get(url), decodedString);
+			}
+			else
+			{
+				adaptations.put(url, decodedString);
+			}
 			
 			LoggingPtolemy.getLogger().info("The current addaptation (not running in background) is: ");
 			LoggingPtolemy.getLogger().info("Key: " + url);
@@ -259,8 +267,7 @@ public class AdaptationService implements SparkApplication {
 			} catch (UnsupportedEncodingException e1) {
 			    // TODO Auto-generated catch block
 			    e1.printStackTrace();
-			}
-			adaptations.put(url, decodedString);
+			}		
 			
 			LoggingPtolemy.getLogger().info("The current addaptation (running in background) is: ");
 			LoggingPtolemy.getLogger().info("Key: " + url);
@@ -278,10 +285,19 @@ public class AdaptationService implements SparkApplication {
 			
 	        //Srdjan's version with ptolemy .xml file
 			//Running the Ptolemy adaptation in background in a separate thread
-	        String newResponse = processSteps_ptolemy(url,req,true);
+			if(adaptations.containsKey(url))
+			{
+				return "The provided adaptation already exists in the system. Please make sure it is appropriatelly stopped and inject the adaptation again."
+						+ "To stop the adaptation call the appropriate service of the Hook component (*/stop-in-background/*).";				
+			}
+			else
+			{
+				adaptations.put(url, decodedString);
+				String newResponse = processSteps_ptolemy(url,req,true);
+				history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
+				return "The service " + url + " has been successfully adapted." + newResponse;
+			}
 	        	
-			history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
-			return "The service " + url + " has been successfully adapted." + newResponse;
 		});
 
 		// STOP THE CONTINUOUS ADAPTATION RUNNING IN BACKGROUND
@@ -298,8 +314,8 @@ public class AdaptationService implements SparkApplication {
 			}
 			else
 			{
-				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has not been found.");
-				return "The background Thread running the service with URL: " + url + " has not been found.";
+				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has not been found or has been successfully stopped.");
+				return "The background Thread running the service with URL: " + url + " has not been found or has been successfully stopped.";
 			}
 			
 			
