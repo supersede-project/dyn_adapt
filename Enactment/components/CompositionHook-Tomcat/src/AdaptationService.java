@@ -283,41 +283,62 @@ public class AdaptationService implements SparkApplication {
 			history.put(url, new CopyOnWriteArrayList<String>());
 			errorLog.put(url, new CopyOnWriteArrayList<String>());
 			
-	        //Srdjan's version with ptolemy .xml file
-			//Running the Ptolemy adaptation in background in a separate thread
-			if(adaptations.containsKey(url))
-			{
-				return "The provided adaptation already exists in the system. Please make sure it is appropriatelly stopped and inject the adaptation again."
-						+ "To stop the adaptation call the appropriate service of the Hook component (*/stop-in-background/*).";				
+			if(threadsInBackground.containsKey(url))
+			{	
+				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
+				backgroundThread.stopModelExecution();		
+				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + "needs first to be stopped before injecting the new adaptation");
+				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully stopped.");				
+
+			}
+
+			adaptations.put(url, decodedString);				
+			String newResponse = processSteps_ptolemy(url,req,true);
+			history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
+			LoggingPtolemy.getLogger().info("The service " + url + " has been successfully adapted." + newResponse);
+			return "The service " + url + " has been successfully adapted." + newResponse;	
+       	
+		});
+		
+		// CONTINUOUS ADAPTATION IN BACKGROUND, RESUMING THE THREAD ALREADY RUNNING IN BACKGROUND
+		get("/adapt-in-background/*", (req, res) -> {
+			
+			String url = Util.getServiceURL(req);
+			
+			if(threadsInBackground.containsKey(url))
+			{								
+				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
+				backgroundThread.resumeModelExecution();										
+				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully resumed.");
+				return "The background Thread running the service with URL: " + url + " has been successfully resumed.";
 			}
 			else
 			{
-				adaptations.put(url, decodedString);
-				String newResponse = processSteps_ptolemy(url,req,true);
-				history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
-				return "The service " + url + " has been successfully adapted." + newResponse;
+					
+				LoggingPtolemy.getLogger().info("The acquired background service adaptation with the URL: " + url + "to be resumed does NOT run in the background Thread.");
+				return "The acquired background service adaptation with the URL: " + url + "to be resumed does NOT run in the background Thread.";
 			}
+		
 	        	
 		});
 
 		// STOP THE CONTINUOUS ADAPTATION RUNNING IN BACKGROUND
 		get("/stop-in-background/*", (req, res) -> {
 			
-			String url = Util.getServiceURL(req);
+			String url = Util.getServiceURL(req);			
+
 			if(threadsInBackground.containsKey(url))
 			{
 				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
-				backgroundThread.stopModelExecution();
-				threadsInBackground.remove(url);
+				backgroundThread.stopModelExecution();		
 				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully stopped.");
 				return "The background Thread running the service with URL: " + url + " has been successfully stopped.";
 			}
 			else
 			{
-				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has not been found or has been successfully stopped.");
-				return "The background Thread running the service with URL: " + url + " has not been found or has been successfully stopped.";
-			}
-			
+				LoggingPtolemy.getLogger().info("The acquired background service adaptation with the URL: " + url + "to be stopped does NOT run in the background Thread.");
+				return "The acquired background service adaptation with the URL: " + url + "to be stopped does NOT run in the background Thread.";
+			}		
 			
 		});
 		
@@ -381,8 +402,8 @@ public class AdaptationService implements SparkApplication {
 	            //running Ptolemy in a new thread when it need to be executed n the background (previously the commented code below is used)
 	            MoMLThreadSupersede runPtolemyRunnable=new MoMLThreadSupersede (adaptation,ptolemyRecorder);
 	            Thread runPtolemyThread= new Thread (runPtolemyRunnable);
-	            runPtolemyThread.start();
 	            threadsInBackground.put(url, runPtolemyRunnable);
+	            runPtolemyThread.start();	            
 	            LoggingPtolemy.getLogger().info("Injected adaptation is succesfully started in background in another thread!");
 	            reqRes="Injected adaptation is succesfully started in background in another thread!";
 	            //reqRes=runPtolemyRunnable.getOutputFromRecorder();
@@ -412,7 +433,7 @@ public class AdaptationService implements SparkApplication {
 	                LoggingPtolemy.getLogger().info(reqRes);
 	                //this is added for updating the executed MOML file in the adaptation list: the reason is because after execution some parameters can be updated and need to be saved if they are used in the next execution
 	                String new_Moml_file = runPtolemy.getExecutedMOMLModel();
-	                adaptations.put(url, new_Moml_file);
+	                adaptations.replace(url, adaptations.get(url), new_Moml_file);
 	                
 	            }
             }

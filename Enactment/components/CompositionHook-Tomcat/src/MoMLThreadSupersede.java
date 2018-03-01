@@ -6,11 +6,16 @@ public class MoMLThreadSupersede implements Runnable {
 	private String adaptation;
 	private String ptolemyRecorder;
 	private MoMLSimpleApplication2 runPtolemy=null;
+	private boolean stopped=false;
 	
 	MoMLThreadSupersede (String adaptation, String ptolemyRecorder)
 	{
 		this.adaptation=adaptation;
 		this.ptolemyRecorder=adaptation;
+	}
+	public boolean hasBeenStopped()
+	{		
+		return stopped;
 	}
 	public String getOutputFromRecorder()
 	{
@@ -31,12 +36,22 @@ public class MoMLThreadSupersede implements Runnable {
 	
 	public void stopModelExecution()
 	{
-		if(this.runPtolemy!=null)
-		{
-			this.runPtolemy.stopModelExecution();
+		if(runPtolemy!=null && !stopped)
+		{			
+			runPtolemy.stopModelExecution();
+			stopped=true;
 		}
 	}
 	
+	public void resumeModelExecution()
+	{
+		if(runPtolemy!=null && stopped)
+		{
+			runPtolemy.resumeModelExecution();
+			stopped=false;
+		}
+	}
+
 	@Override
 	public void run() {	
 		
