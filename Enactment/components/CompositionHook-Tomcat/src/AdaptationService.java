@@ -211,7 +211,7 @@ public class AdaptationService implements SparkApplication {
 			return res.body();			
 		});		
 
-		// ADAPT
+		// ADAPT: INJECTING THE ADAPTATION, ALSO FOR THE BACKGROUND RUNNING ADAPTATIONS THAT RUN IN A SEPARATE THREAD
 
 		post("/adapt/*", (req, res) -> {
 			
@@ -228,18 +228,21 @@ public class AdaptationService implements SparkApplication {
 			    e1.printStackTrace();
 			}
 			
-			if(adaptations.containsKey(url))
-			{
-				adaptations.replace(url, adaptations.get(url), decodedString);
-			}
-			else
-			{
-				adaptations.put(url, decodedString);
-			}
+			adaptations.put(url, decodedString);
+			
 			
 			LoggingPtolemy.getLogger().info("The current addaptation (not running in background) is: ");
 			LoggingPtolemy.getLogger().info("Key: " + url);
 			LoggingPtolemy.getLogger().info("Value: " + decodedString);
+			
+			//in order to inject the new adaptation strategy for the background running adaptations, the background threads need first to be stopped and removed from the list "threadsInBackground"
+			if(threadsInBackground.containsKey(url))
+			{
+				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
+				backgroundThread.stopModelExecution();										
+				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been stopped in order to update its adaptation strategy with a new one.");
+				threadsInBackground.remove(url);		
+			}
 			
 			//File file = new File("./ramda.js");
 			//Reader reader = new FileReader(file);
@@ -255,68 +258,82 @@ public class AdaptationService implements SparkApplication {
 			return "The service " + url + " has been successfully adapted.";
 		});
 	
-		// CONTINUOUS ADAPTATION IN BACKGROUND
-		post("/adapt-in-background/*", (req, res) -> {
-			
-			String url = Util.getServiceURL(req);
-	
-			//decoding the string (the content of the ptolemy xml-file)
-			String decodedString=null;
-			try {
-			    decodedString = URLDecoder.decode(req.body(), "UTF-8");
-			} catch (UnsupportedEncodingException e1) {
-			    // TODO Auto-generated catch block
-			    e1.printStackTrace();
-			}		
-			
-			LoggingPtolemy.getLogger().info("The current addaptation (running in background) is: ");
-			LoggingPtolemy.getLogger().info("Key: " + url);
-			LoggingPtolemy.getLogger().info("Value: " + decodedString);
-			          
-			
-			//File file = new File("./ramda.js");
-			//Reader reader = new FileReader(file);
-			//engine.eval(reader);
-			//engine.eval("print(R.add(2, 3))"); 			
-			//engines.put(url, engine);
-			
-			history.put(url, new CopyOnWriteArrayList<String>());
-			errorLog.put(url, new CopyOnWriteArrayList<String>());
-			
-			if(threadsInBackground.containsKey(url))
-			{	
-				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
-				backgroundThread.stopModelExecution();		
-				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + "needs first to be stopped before injecting the new adaptation");
-				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully stopped.");				
-
-			}
-
-			adaptations.put(url, decodedString);				
-			String newResponse = processSteps_ptolemy(url,req,true);
-			history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
-			LoggingPtolemy.getLogger().info("The service " + url + " has been successfully adapted." + newResponse);
-			return "The service " + url + " has been successfully adapted." + newResponse;	
-       	
-		});
+//		// CONTINUOUS ADAPTATION IN BACKGROUND
+//		post("/adapt-in-background/*", (req, res) -> {
+//			
+//			String url = Util.getServiceURL(req);
+//	
+//			//decoding the string (the content of the ptolemy xml-file)
+//			String decodedString=null;
+//			try {
+//			    decodedString = URLDecoder.decode(req.body(), "UTF-8");
+//			} catch (UnsupportedEncodingException e1) {
+//			    // TODO Auto-generated catch block
+//			    e1.printStackTrace();
+//			}		
+//			
+//			LoggingPtolemy.getLogger().info("The current addaptation (running in background) is: ");
+//			LoggingPtolemy.getLogger().info("Key: " + url);
+//			LoggingPtolemy.getLogger().info("Value: " + decodedString);
+//			          
+//			
+//			//File file = new File("./ramda.js");
+//			//Reader reader = new FileReader(file);
+//			//engine.eval(reader);
+//			//engine.eval("print(R.add(2, 3))"); 			
+//			//engines.put(url, engine);
+//			
+//			history.put(url, new CopyOnWriteArrayList<String>());
+//			errorLog.put(url, new CopyOnWriteArrayList<String>());
+//			
+//			if(threadsInBackground.containsKey(url))
+//			{	
+//				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
+//				backgroundThread.stopModelExecution();		
+//				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + "needs first to be stopped before injecting the new adaptation");
+//				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully stopped.");				
+//
+//			}
+//
+//			adaptations.put(url, decodedString);				
+//			String newResponse = processSteps_ptolemy(url,req,true);
+//			history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
+//			LoggingPtolemy.getLogger().info("The service " + url + " has been successfully adapted." + newResponse);
+//			return "The service " + url + " has been successfully adapted." + newResponse;	
+//       	
+//		});
 		
-		// CONTINUOUS ADAPTATION IN BACKGROUND, RESUMING THE THREAD ALREADY RUNNING IN BACKGROUND
-		get("/adapt-in-background/*", (req, res) -> {
+		// CONTINUOUS ADAPTATION IN BACKGROUND: IF THE THREAD ALREADY EXISTS IN THE LIST "threadsInBackground" IT MEANS THAT IT IS RUNNING OR IT IS STOPPED BUT PREVIOUSLY RUNNED
+		//IF THE THREAD IS NOT IN THE LIST "threadsInBackground" IT MENAS THAT IT IS TO BE STARTED THE FIRST TIME
+		get("/run-in-background/*", (req, res) -> {
 			
 			String url = Util.getServiceURL(req);
 			
 			if(threadsInBackground.containsKey(url))
-			{								
+			{
 				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
-				backgroundThread.resumeModelExecution();										
-				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully resumed.");
-				return "The background Thread running the service with URL: " + url + " has been successfully resumed.";
+				if(backgroundThread.hasBeenStopped())
+				{	
+					backgroundThread.resumeModelExecution();										
+					LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully resumed.");
+					return "The background Thread running the service with URL: " + url + " has been successfully resumed.";
+				}
+				else
+				{
+					LoggingPtolemy.getLogger().info("The acquired background service adaptation with the URL: " + url + "is already running.");
+					return "The acquired background service adaptation with the URL: " + url + "is already running.";
+
+					//LoggingPtolemy.getLogger().info("The acquired background service adaptation with the URL: " + url + "to be resumed does NOT run in the background Thread.");
+					//return "The acquired background service adaptation with the URL: " + url + "to be resumed does NOT run in the background Thread.";
+				}
 			}
 			else
 			{
-					
-				LoggingPtolemy.getLogger().info("The acquired background service adaptation with the URL: " + url + "to be resumed does NOT run in the background Thread.");
-				return "The acquired background service adaptation with the URL: " + url + "to be resumed does NOT run in the background Thread.";
+				String newResponse = processSteps_ptolemy(url,req,true);
+				history.get(url).add("[" + LocalDateTime.now() + "][" + url + "]" + req.body() + "<hr>");
+				LoggingPtolemy.getLogger().info("The service " + url + " has been successfully started." + newResponse);
+				return "The service " + url + " has been successfully started." + newResponse;	
+
 			}
 		
 	        	
@@ -330,7 +347,7 @@ public class AdaptationService implements SparkApplication {
 			if(threadsInBackground.containsKey(url))
 			{
 				MoMLThreadSupersede backgroundThread = threadsInBackground.get(url);
-				backgroundThread.stopModelExecution();		
+				backgroundThread.stopModelExecution();				
 				LoggingPtolemy.getLogger().info("The background Thread running the service with URL: " + url + " has been successfully stopped.");
 				return "The background Thread running the service with URL: " + url + " has been successfully stopped.";
 			}
@@ -373,18 +390,19 @@ public class AdaptationService implements SparkApplication {
 	 */
 	public static String processSteps_ptolemy(String url, Request req, boolean runInBackgrund) throws Exception
     {
-
-	String reqRes=null;
-    synchronized(url)
+		File file;
+		Random randomGenerator = new Random();
+        file = new File("test-"+String.valueOf(randomGenerator.nextInt(10000))+".xml");
+        
+		String reqRes=null;
+		synchronized(url)
         {
         String adaptation = adaptations.get(url);
         
         //creating a contemporary File from an XML String representing the adaptation (just for testing purposes)
-        try {
-        	Random randomGenerator = new Random();
-		    //int randomInt = randomGenerator.nextInt(1000);
-            //file = new File("test-"+randomInt+".txt");
-            FileWriter fileWriterPtolemy = new FileWriter(ptolemyExecutionFile.getAbsoluteFile(), false);
+        try {        	
+            FileWriter fileWriterPtolemy = new FileWriter(file, false);
+            //FileWriter fileWriterPtolemy = new FileWriter(ptolemyExecutionFile.getAbsoluteFile(), false);
             fileWriterPtolemy.write(adaptation);
             fileWriterPtolemy.flush();
             if(fileWriterPtolemy!=null) fileWriterPtolemy.close();
@@ -393,7 +411,8 @@ public class AdaptationService implements SparkApplication {
         }
           
             //geting the name of the Recorder actor from the executed xml file in order to query it for the output results
-            String ptolemyRecorder=ReadXML.getRecorderName(ptolemyExecutionFile.getAbsoluteFile());
+            //String ptolemyRecorder=ReadXML.getRecorderName(ptolemyExecutionFile.getAbsoluteFile());
+        	String ptolemyRecorder=ReadXML.getRecorderName(file.getAbsoluteFile());
 
 			LoggingPtolemy.getLogger().info("Recorder actor name of the executed Ptolemy worlflow is: " + ptolemyRecorder + "\n");
             
