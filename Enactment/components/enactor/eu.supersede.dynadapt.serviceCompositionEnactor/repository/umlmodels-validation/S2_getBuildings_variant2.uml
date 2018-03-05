@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5 ../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA">
   <uml:Model xmi:id="_Po4BsB4kEeiwu_Z12biwCA" name="RootElement">
-    <packagedElement xmi:type="uml:Activity" xmi:id="_PqkDwB4kEeiwu_Z12biwCA" name="S2_getBuildings_variant2" node="_tHwhkB4kEeiwu_Z12biwCA _7eCqoB4kEeiwu_Z12biwCA _8a8-0B4kEeiwu_Z12biwCA _rUUjIB4mEeiwu_Z12biwCA">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_PqkDwB4kEeiwu_Z12biwCA" name="S2_getBuildingsWithoutCaching" node="_tHwhkB4kEeiwu_Z12biwCA _7eCqoB4kEeiwu_Z12biwCA _8a8-0B4kEeiwu_Z12biwCA _rUUjIB4mEeiwu_Z12biwCA">
       <edge xmi:type="uml:ControlFlow" xmi:id="_-9dX0B4kEeiwu_Z12biwCA" target="_8a8-0B4kEeiwu_Z12biwCA" source="_tHwhkB4kEeiwu_Z12biwCA"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_9EbGsB4xEeiwu_Z12biwCA" target="_rUUjIB4mEeiwu_Z12biwCA" source="_7eCqoB4kEeiwu_Z12biwCA"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_96Aq4B4xEeiwu_Z12biwCA" target="_tHwhkB4kEeiwu_Z12biwCA" source="_rUUjIB4mEeiwu_Z12biwCA"/>
@@ -37,7 +37,7 @@
       <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
   </uml:Model>
-  <GetMeteorologicalData:Service xmi:id="_pAa4wB4kEeiwu_Z12biwCA" base_Activity="_PqkDwB4kEeiwu_Z12biwCA" endpoint="&quot;http://localhost:7080/SuperAdapt/adapt/http://trends/buildings/variant2&quot;"/>
+  <GetMeteorologicalData:Service xmi:id="_pAa4wB4kEeiwu_Z12biwCA" base_Activity="_PqkDwB4kEeiwu_Z12biwCA" endpoint="&quot;http://localhost:7080/SuperAdapt/adapt/http://trends/buildings/variants&quot;"/>
   <GetMeteorologicalData:Service xmi:id="_34NzcB4kEeiwu_Z12biwCA" base_OpaqueAction="_tHwhkB4kEeiwu_Z12biwCA" endpoint="&quot;http://localhost:7080/building-data-rest/trends/buildings&quot;"/>
   <GetMeteorologicalData:Service xmi:id="_yZxi4B4mEeiwu_Z12biwCA" base_OpaqueAction="_rUUjIB4mEeiwu_Z12biwCA" endpoint="&quot;http://localhost:7080/SuperAdapt/stop-in-background/http://buildings/caching-strategy1&quot;"/>
   <ADM:Joinpoint xmi:id="_cNRiwCBbEeiZZc7pTJM2kQ" base_RedefinableElement="_rUUjIB4mEeiwu_Z12biwCA" base_NamedElement="_rUUjIB4mEeiwu_Z12biwCA"/>

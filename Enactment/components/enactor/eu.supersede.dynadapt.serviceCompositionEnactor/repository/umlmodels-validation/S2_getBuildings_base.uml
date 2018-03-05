@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
+  <uml:Model xmi:id="__OR-4CCREeiZZc7pTJM2kQ" name="RootElement">
+    <packagedElement xmi:type="uml:Activity" xmi:id="__Q5OACCREeiZZc7pTJM2kQ" name="GetBuildingsBaseModel" node="_EYKCwCCSEeiZZc7pTJM2kQ _eZRbQCCSEeiZZc7pTJM2kQ _gEWdACCSEeiZZc7pTJM2kQ">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MLkUsCCSEeiZZc7pTJM2kQ" name="GetBuildingsCaching"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_iE28MCCSEeiZZc7pTJM2kQ" target="_EYKCwCCSEeiZZc7pTJM2kQ" source="_eZRbQCCSEeiZZc7pTJM2kQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_i-mnoCCSEeiZZc7pTJM2kQ" target="_gEWdACCSEeiZZc7pTJM2kQ" source="_EYKCwCCSEeiZZc7pTJM2kQ"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_EYKCwCCSEeiZZc7pTJM2kQ" name="GetBuildingsDataCaching" incoming="_iE28MCCSEeiZZc7pTJM2kQ" outgoing="_i-mnoCCSEeiZZc7pTJM2kQ" behavior="_MLkUsCCSEeiZZc7pTJM2kQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_eZRbQCCSEeiZZc7pTJM2kQ" name="" outgoing="_iE28MCCSEeiZZc7pTJM2kQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_gEWdACCSEeiZZc7pTJM2kQ" name="" incoming="_i-mnoCCSEeiZZc7pTJM2kQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_rObv0CCSEeiZZc7pTJM2kQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rOlg0CCSEeiZZc7pTJM2kQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rOlg0SCSEeiZZc7pTJM2kQ" key="Version" value="0.1.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rOlg0iCSEeiZZc7pTJM2kQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rOlg0yCSEeiZZc7pTJM2kQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rOlg1CCSEeiZZc7pTJM2kQ" key="Date" value="2016-07-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rOlg1SCSEeiZZc7pTJM2kQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rOjEkCCSEeiZZc7pTJM2kQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+  </uml:Model>
+  <ADM:Joinpoint xmi:id="_szMHICCSEeiZZc7pTJM2kQ" base_RedefinableElement="_EYKCwCCSEeiZZc7pTJM2kQ" base_NamedElement="_EYKCwCCSEeiZZc7pTJM2kQ"/>
+</xmi:XMI>
