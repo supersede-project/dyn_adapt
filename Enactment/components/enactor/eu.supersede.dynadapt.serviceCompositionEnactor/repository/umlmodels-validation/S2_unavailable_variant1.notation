@@ -35,7 +35,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Z-3XoX52Eeac2-gti3SYOg"/>
           <element xmi:type="uml:InitialNode" href="S2_unavailable_variant1.uml#_Z-ngAH52Eeac2-gti3SYOg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z-3Xon52Eeac2-gti3SYOg" x="1" y="83"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z-3Xon52Eeac2-gti3SYOg" x="1" y="86"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_fZz9YH52Eeac2-gti3SYOg" type="OpaqueAction_Shape">
           <children xmi:type="notation:DecorationNode" xmi:id="_fZz9Y352Eeac2-gti3SYOg" type="OpaqueAction_NameLabel">
@@ -60,7 +60,7 @@
           </children>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_gADrwX57Eeac2-gti3SYOg"/>
           <element xmi:type="uml:ActivityFinalNode" href="S2_unavailable_variant1.uml#_f_2QYH57Eeac2-gti3SYOg"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gADrwn57Eeac2-gti3SYOg" x="735" y="99"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gADrwn57Eeac2-gti3SYOg" x="735" y="94"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_wLD6xn57Eeac2-gti3SYOg" type="StereotypeComment">
           <styles xmi:type="notation:TitleStyle" xmi:id="_wLD6x357Eeac2-gti3SYOg" showTitle="true"/>
@@ -218,15 +218,6 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k_NDELAPEea1750BS59zjg" source="PapyrusCSSForceValue">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k_NDEbAPEea1750BS59zjg" key="visible" value="true"/>
       </eAnnotations>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_8pXhZrAGEea1750BS59zjg" visible="false" type="StereotypeCompartment">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k-_AoLAPEea1750BS59zjg" source="PapyrusCSSForceValue">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k-_AobAPEea1750BS59zjg" key="visible" value="true"/>
-        </eAnnotations>
-        <styles xmi:type="notation:TitleStyle" xmi:id="_8pXhZ7AGEea1750BS59zjg" showTitle="true"/>
-        <styles xmi:type="notation:StringValueStyle" xmi:id="_8pXhaLAGEea1750BS59zjg" name="stereotype" stringValue="RootElement::Get Meteorological Data::Service"/>
-        <element xmi:type="uml:Stereotype" href="platform:/resource/Supersede-Profile/model.profile.uml#_vPtOQHp0EeaT-K0PSf103Q"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8pXhabAGEea1750BS59zjg"/>
-      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_8pW6UbAGEea1750BS59zjg" showTitle="true"/>
       <styles xmi:type="notation:EObjectValueStyle" xmi:id="_8pW6U7AGEea1750BS59zjg" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:Activity" href="S2_unavailable_variant1.uml#_YklK8H52Eeac2-gti3SYOg"/>
@@ -298,20 +289,24 @@
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_aKkf0K_jEea1750BS59zjg" type="ControlFlow_Edge" source="_Z-3XoH52Eeac2-gti3SYOg" target="_Y3UvQK_jEea1750BS59zjg">
       <children xmi:type="notation:DecorationNode" xmi:id="_aKkf06_jEea1750BS59zjg" type="ControlFlow_NameLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_LZ1TsAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_aKKQIK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKkf1K_jEea1750BS59zjg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKkf1K_jEea1750BS59zjg" x="-8" y="20"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_aKkf1a_jEea1750BS59zjg" type="ControlFlow_WeightLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_Lb6-YAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_aKKQIK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKlG4K_jEea1750BS59zjg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKlG4K_jEea1750BS59zjg" x="1" y="18"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_aKlG4a_jEea1750BS59zjg" type="ControlFlow_GuardLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_Ldqq0AaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_aKKQIK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKlG4q_jEea1750BS59zjg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKlG4q_jEea1750BS59zjg" x="10" y="18"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_aKlG46_jEea1750BS59zjg" type="ControlFlow_StereotypeLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_LfJRgAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_aKKQIK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKlG5K_jEea1750BS59zjg" y="-20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_aKlG5K_jEea1750BS59zjg" x="-1" y="-18"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_aKkf0a_jEea1750BS59zjg"/>
       <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_aKKQIK_jEea1750BS59zjg"/>
@@ -394,20 +389,24 @@
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_lMMaMK_jEea1750BS59zjg" type="ControlFlow_Edge" source="_gC4XAK_jEea1750BS59zjg" target="_gADrwH57Eeac2-gti3SYOg">
       <children xmi:type="notation:DecorationNode" xmi:id="_lMNBQK_jEea1750BS59zjg" type="ControlFlow_NameLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_KDwRkAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_lLvuQK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBQa_jEea1750BS59zjg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBQa_jEea1750BS59zjg" x="-15" y="19"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_lMNBQq_jEea1750BS59zjg" type="ControlFlow_WeightLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_KEyMUAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_lLvuQK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBQ6_jEea1750BS59zjg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBQ6_jEea1750BS59zjg" x="1" y="18"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_lMNBRK_jEea1750BS59zjg" type="ControlFlow_GuardLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_KF6NsAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_lLvuQK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBRa_jEea1750BS59zjg" y="20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBRa_jEea1750BS59zjg" x="15" y="19"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_lMNBRq_jEea1750BS59zjg" type="ControlFlow_StereotypeLabel">
+        <styles xmi:type="notation:BooleanValueStyle" xmi:id="_KG8vgAaREeiEcovXezrjBQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_lLvuQK_jEea1750BS59zjg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBR6_jEea1750BS59zjg" y="-20"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_lMNBR6_jEea1750BS59zjg" x="1" y="-18"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_lMMaMa_jEea1750BS59zjg"/>
       <element xmi:type="uml:ControlFlow" href="S2_unavailable_variant1.uml#_lLvuQK_jEea1750BS59zjg"/>

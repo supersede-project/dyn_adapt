@@ -5,11 +5,11 @@ yes | cp -rf /home/user/workspace_eclipseOxygenEE/CompositionHook-Tomcat /home/u
 
 # copying the Enactor related files
 
-yes | cp -rf /home/user/workspace_RCP/eu.supersede.dynadapt.serviceCompositionEnactor/lib /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/lib
+yes | cp -rf /home/user/workspace_RCP/eu.supersede.dynadapt.serviceCompositionEnactor/lib /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/
 
-yes | cp -rf /home/user/workspace_RCP/eu.supersede.dynadapt.serviceCompositionEnactor/repository /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/repository
+yes | cp -rf /home/user/workspace_RCP/eu.supersede.dynadapt.serviceCompositionEnactor/repository /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/
 
-yes | cp -rf /home/user/workspace_RCP/eu.supersede.dynadapt.serviceCompositionEnactor/src /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/src
+yes | cp -rf /home/user/workspace_RCP/eu.supersede.dynadapt.serviceCompositionEnactor/src /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/
 
 # copying the updated .jar files to the repo
 cp /home/user/workspace_RCP/ptII/ptolemy/vergil/vergil.jar /home/user/SUPERSEDE/Repo-develop-brunch/Enactment/components/required-JARS/vergil.jar

@@ -16,14 +16,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
-import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import ptolemy.kernel.util.IllegalActionException;
 import ptolemy.kernel.util.NameDuplicationException;
 import ptolemy.kernel.util.Workspace;
 
 import java.nio.file.Paths;
-
-import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 
 
 @SuppressWarnings("restriction")
@@ -249,8 +246,8 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/SiemensBaseModel_32bd5fab-9aa7-481c-b1a0-10ea63a5b8a3.uml"), true);
 	
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-		String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable_variant1.uml";
-		System.out.println("Enacting model: " + res2_3_path_initial_variant);
+		String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/S2_getBuildings_variant1.uml";
+		//log.debug("Enacting model: " + res2_3_path_initial_variant);
 		Resource res2 = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 		
 		
@@ -315,8 +312,11 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		List <ActivityNode> activity_nodes=activity.getNodes();
 		//CURLcode.analyze(activity, activity_nodes);
 		//CURLcode.inject();
-		ptolemyModel.analyze(activity, activity_nodes);
-		ptolemyModel.inject();
+		if(ptolemyModel!=null)
+		{
+			ptolemyModel.analyze(activity, activity_nodes);
+			ptolemyModel.inject();
+		}
 		
 						
 		return "";
@@ -356,18 +356,30 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		//Resource res2_2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable10.uml"), true);
 
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable5.uml";
-		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable10.uml";
-		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
-		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
+//		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable5.uml";
+//		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable10.uml";
+		String res2_3_path=umlModelsPath+"/repository/umlmodels-validation/S2_getBuildings_variant2.uml";
+		String res2_4_path=umlModelsPath+"/repository/umlmodels-validation/S2_getBuildings_caching_strategy1.uml";
+
+//		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
+//		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
+		Resource res2_3 = set.getResource(URI.createFileURI(res2_3_path), true);
+		Resource res2_4 = set.getResource(URI.createFileURI(res2_4_path), true);
+
 		//Resource res2_3_initial_variant = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 
-		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
-		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
+//		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
+//		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_3 = (Model)EcoreUtil.getObjectByType(res2_3.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_4 = (Model)EcoreUtil.getObjectByType(res2_4.getContents(), UMLPackage.Literals.MODEL);
+
 		//Model umlModel_3_initial_variant = (Model)EcoreUtil.getObjectByType(res2_3_initial_variant.getContents(), UMLPackage.Literals.MODEL);
 		List<Model> uml_models_to_inject=new ArrayList<Model>();
-		uml_models_to_inject.add(umlModel_1);
-		uml_models_to_inject.add(umlModel_2);
+//		uml_models_to_inject.add(umlModel_1);
+//		uml_models_to_inject.add(umlModel_2);
+		uml_models_to_inject.add(umlModel_3);
+		uml_models_to_inject.add(umlModel_4);
+
 		//uml_models_to_inject.add(umlModel_3_initial_variant);
 		
 		/*
@@ -405,27 +417,30 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 //		Profile sopraProfile = (Profile)profile.getOwnedMember("RootElement");
 //		Stereotype Stereotype1 = (Stereotype)profile.getPackagedElements().get(0);
 //		Stereotype Stereotype2 = (Stereotype)profile.getPackagedElements().get(1);
-
-		PtolemyGenerator ptolemyModel = null;
-		try {
-                    ptolemyModel = new PtolemyGenerator(new Workspace());
-		} catch (IllegalActionException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-		} catch (NameDuplicationException e) {
-		    // TODO Auto-generated catch block
-                    e.printStackTrace();
-		}
 		
+		PtolemyGenerator ptolemyModel = null;
 		//CURLGenerator CURLcode = new CURLGenerator();
 		for(int i=0;i<uml_models_to_inject.size();i++)
-		{		
+		{	
+			ptolemyModel = null;
+			try {
+                ptolemyModel = new PtolemyGenerator(new Workspace());
+			} catch (IllegalActionException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+			} catch (NameDuplicationException e) {
+				// TODO Auto-generated catch block
+                e.printStackTrace();
+			}
 			ActivityImpl activity=(ActivityImpl)uml_models_to_inject.get(i).getPackagedElements().get(0);
 			List <ActivityNode> activity_nodes=activity.getNodes();
 			//CURLcode.analyze(activity, activity_nodes);
 			//CURLcode.inject();
-			ptolemyModel.analyze(activity, activity_nodes);
-			ptolemyModel.inject();
+			if(ptolemyModel!=null)
+			{
+				ptolemyModel.analyze(activity, activity_nodes);
+				ptolemyModel.inject();
+			}
 		}
 						
 		return "";
@@ -433,12 +448,15 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 				
 	}
 	
-	@Override
 	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
 		log.debug("Enacting model: " + adaptedModel.getName());
 		this.umlEnactingModel=adaptedModel;
 		this.injectUMLModelsForValidation();
 		this.getEnactmentCode();
+	}
+
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
+		enactAdaptedModel (adaptedModel, demo);		
 	}
 
 }

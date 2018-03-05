@@ -80,15 +80,6 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k_NDELAPEea1750BS59zjg" source="PapyrusCSSForceValue">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k_NDEbAPEea1750BS59zjg" key="visible" value="true"/>
       </eAnnotations>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_8pXhZrAGEea1750BS59zjg" visible="false" type="StereotypeCompartment">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k-_AoLAPEea1750BS59zjg" source="PapyrusCSSForceValue">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k-_AobAPEea1750BS59zjg" key="visible" value="true"/>
-        </eAnnotations>
-        <styles xmi:type="notation:TitleStyle" xmi:id="_8pXhZ7AGEea1750BS59zjg" showTitle="true"/>
-        <styles xmi:type="notation:StringValueStyle" xmi:id="_8pXhaLAGEea1750BS59zjg" name="stereotype" stringValue="RootElement::Get Meteorological Data::Service"/>
-        <element xmi:type="uml:Stereotype" href="platform:/resource/Supersede-Profile/model.profile.uml#_vPtOQHp0EeaT-K0PSf103Q"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8pXhabAGEea1750BS59zjg"/>
-      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_8pW6UbAGEea1750BS59zjg" showTitle="true"/>
       <styles xmi:type="notation:EObjectValueStyle" xmi:id="_8pW6U7AGEea1750BS59zjg" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:Activity" href="S2_unavailable10.uml#_YklK8H52Eeac2-gti3SYOg"/>

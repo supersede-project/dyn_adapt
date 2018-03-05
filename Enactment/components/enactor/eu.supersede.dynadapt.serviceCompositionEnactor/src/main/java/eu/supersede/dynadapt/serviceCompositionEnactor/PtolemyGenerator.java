@@ -38,6 +38,7 @@ import srdjan.supersede.extension.RESTGet;
 import ptolemy.actor.lib.SingleEvent;
 import ptolemy.actor.lib.jjs.JavaScript;
 import ptolemy.actor.lib.gui.Display;
+import ptolemy.actor.lib.DiscreteClock;
 import ptolemy.actor.lib.RecordAssembler;
 import ptolemy.actor.lib.SingleEvent;
 import ptolemy.actor.lib.gui.Display;
@@ -52,8 +53,8 @@ public class PtolemyGenerator extends TypedCompositeActor {
      * all created entities 
     */
     
-    private static List<ActivityNode> UMLActivityNodes = new ArrayList <ActivityNode> ();
-    private static List<NamedObj> PtolemyNodes = new ArrayList <NamedObj> ();
+    private List<ActivityNode> UMLActivityNodes = new ArrayList <ActivityNode> ();
+    private List<NamedObj> PtolemyNodes = new ArrayList <NamedObj> ();
     private int totalNumberNamedEntities;
     private String XMLPtolemyModel;
     private String serviceEndpoint;
@@ -69,7 +70,10 @@ public class PtolemyGenerator extends TypedCompositeActor {
             
             DEDirector director = new DEDirector(this, "DEdirector");
             setDirector(director);
-            director.stopTime.setExpression("10.0");           
+            director.stopTime.setExpression("Infinity");
+            director.startTime.setExpression("0.0");
+            director.stopWhenQueueIsEmpty.setExpression("true");
+            director.synchronizeToRealTime.setExpression("true");
     
     }
     
@@ -153,7 +157,6 @@ public class PtolemyGenerator extends TypedCompositeActor {
         
     }
     
-
     
     /** adding actors to the ptolemy model based on the nodes in the activity diagram
      * The logic for translating the activity diagram to the ptolemy model is the following: 
@@ -165,7 +168,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
      * @param stereotype
      * @param endpoint_callback
      */
-    public void addActors (ActivityNode activityElement, String stereotype, String endpoint_callback)
+    public void addActors (ActivityNode activityElement, String stereotype, String stereotype_attribute)
     {
         try 
         {
@@ -193,7 +196,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
             {
                 RESTGet restGet = new RESTGet (this, "restGet"+Integer.toString(this.totalNumberNamedEntities++));
                 //restGet.endpoint.setExpression("\"http://api.geonames.org/countryInfoJSON?lang=en&country=DE&username=srdjan.stevanetic\"");
-                restGet.endpoint.setExpression(endpoint_callback);
+                restGet.endpoint.setExpression(stereotype_attribute);
                 UMLActivityNodes.add(activityElement);
                 PtolemyNodes.add(restGet);      
                 
@@ -202,17 +205,29 @@ public class PtolemyGenerator extends TypedCompositeActor {
             else if ((activityElement instanceof OpaqueAction) && (stereotype.equals("Callback")))
             {
                 JavaScript javaScript = new JavaScript (this,"javaScript"+Integer.toString(this.totalNumberNamedEntities++));
-                javaScript.script.setExpression(endpoint_callback);
+                javaScript.script.setExpression(stereotype_attribute);
                 UMLActivityNodes.add(activityElement);
                 PtolemyNodes.add(javaScript);              
                 
             }
-            else if (activityElement instanceof InitialNode)
+            else if (activityElement instanceof InitialNode && (stereotype.equals("")))
             {
                 
                 SingleEvent singleEvevnt = new SingleEvent (this,"singleEvent"+Integer.toString(this.totalNumberNamedEntities++));
                 UMLActivityNodes.add(activityElement);
                 PtolemyNodes.add(singleEvevnt);    
+                
+            }
+            else if (activityElement instanceof InitialNode && (stereotype.equals("TriggeringFrequency")))
+            {
+                
+                DiscreteClock discreteClock = new DiscreteClock (this,"discreteClock"+Integer.toString(this.totalNumberNamedEntities++));
+                discreteClock.stopTime.setExpression("Infinity");
+                discreteClock.offsets.setExpression("{0.0}");
+                discreteClock.values.setExpression("{1}");
+                discreteClock.period.setExpression(stereotype_attribute);
+                UMLActivityNodes.add(activityElement);
+                PtolemyNodes.add(discreteClock);    
                 
             }
             else if (activityElement instanceof FinalNode)
@@ -314,6 +329,10 @@ public class PtolemyGenerator extends TypedCompositeActor {
                     TypedIOPort InputPort=new TypedIOPort(recAss, "input"+Integer.toString(this.totalNumberNamedEntities++), true, false);
                     return InputPort;
                 }
+                else if (ptolemyActor instanceof DiscreteClock)
+                {
+                    return ((DiscreteClock)ptolemyActor).trigger;
+                }
                 else if (ptolemyActor instanceof Display)
                 {
                     return ((Display)ptolemyActor).input;
@@ -342,6 +361,10 @@ public class PtolemyGenerator extends TypedCompositeActor {
                 else if (ptolemyActor instanceof RecordAssembler)
                 {                   
                     return ((RecordAssembler)ptolemyActor).output;                    
+                }
+                else if (ptolemyActor instanceof DiscreteClock)
+                {
+                    return ((DiscreteClock)ptolemyActor).output;
                 }
                 else
                 {
@@ -421,6 +444,12 @@ public class PtolemyGenerator extends TypedCompositeActor {
 	                    this.addActors(activity_nodes_backup.get(0), "Callback", activity_nodes_backup.get(0).getValue(service_stereotype, "function").toString());
 	                    
 	                }
+	                else if (service_stereotypes.get(i).getName().equals("TriggeringFrequency"))
+	                {
+	                	Stereotype service_stereotype=service_stereotypes.get(i);
+	                	this.addActors(activity_nodes_backup.get(0), "TriggeringFrequency", activity_nodes_backup.get(0).getValue(service_stereotype, "frequency").toString());
+	                	
+	                }
 	                //this else is added in case that element has some other stereotype that is not Service or Callback (e.g. <<Jointpoint>> in SUPERSEDE)
 	                else
 	                {
@@ -456,7 +485,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
          */
         try {
             file = new File("ptolemyModelFromJava.xml");
-            FileWriter fileWriter = new FileWriter(file);
+            FileWriter fileWriter = new FileWriter(file, false);
             fileWriter.write(xml_content);
             fileWriter.flush();
             fileWriter.close();
@@ -480,7 +509,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
            String encodedString = URLEncoder.encode(this.XMLPtolemyModel, "UTF-8");
            String URLString = this.serviceEndpoint.substring(1, this.serviceEndpoint.length()-1);
            URL url = new URL(URLString);
-           log.debug("Opening connection with server: " + url);
+        
            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
            conn.setDoOutput(true);
            conn.setRequestMethod("POST");
@@ -501,9 +530,9 @@ public class PtolemyGenerator extends TypedCompositeActor {
                            (conn.getInputStream())));
    
            String output;
-           log.debug("Injecting the Ptolemy model - output from Server .... \n");
+           System.out.println("Injecting the Ptolemy model - output from Server .... \n");
            while ((output = br.readLine()) != null) {
-                   log.debug(output);
+                   System.out.println(output);
            }
    
            conn.disconnect();
@@ -530,8 +559,7 @@ public class PtolemyGenerator extends TypedCompositeActor {
     {
         this.serviceEndpoint=endpointStr;
     }
- 
-  
+
 }
 
 

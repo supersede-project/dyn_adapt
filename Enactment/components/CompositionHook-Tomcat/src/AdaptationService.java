@@ -452,21 +452,23 @@ public class AdaptationService implements SparkApplication {
 	                LoggingPtolemy.getLogger().info(reqRes);
 	                //this is added for updating the executed MOML file in the adaptation list: the reason is because after execution some parameters can be updated and need to be saved if they are used in the next execution
 	                String new_Moml_file = runPtolemy.getExecutedMOMLModel();
-	                adaptations.replace(url, adaptations.get(url), new_Moml_file);
+	                LoggingPtolemy.getLogger().info("New MOML model updated after the execution finished: " + new_Moml_file);
+	                //adaptations.replace(url, adaptations.get(url), new_Moml_file);
+	                adaptations.put(url, new_Moml_file);
 	                
 	            }
             }
            
         }
  
-    //deleting a contemporary file    
-/*    if(file != null) 
-    {  
-        file.delete();
-    }
-*/    
+	    //deleting a contemporary file    
+	    if(file != null) 
+	    {  
+	        file.delete();
+	    }
     
-    return reqRes;
+    
+	    return reqRes;
     }
 	
 	//service adaptation using "steps" keyword in the cURL command (made by Tudor)

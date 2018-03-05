@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5 ../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA">
+  <uml:Model xmi:id="_h_-EABoiEei-Srx062A-Rw" name="RootElement">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_k0D8QBoiEei-Srx062A-Rw" name="getMaxDate" node="_xrDc0BoiEei-Srx062A-Rw _zYDxMBoiEei-Srx062A-Rw _1l_BUBoiEei-Srx062A-Rw">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_3h1NgBojEei-Srx062A-Rw" target="_zYDxMBoiEei-Srx062A-Rw" source="_xrDc0BoiEei-Srx062A-Rw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_4xJgUBojEei-Srx062A-Rw" target="_1l_BUBoiEei-Srx062A-Rw" source="_zYDxMBoiEei-Srx062A-Rw"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_xrDc0BoiEei-Srx062A-Rw" name="" outgoing="_3h1NgBojEei-Srx062A-Rw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_zYDxMBoiEei-Srx062A-Rw" name="GetCachedResult" incoming="_3h1NgBojEei-Srx062A-Rw" outgoing="_4xJgUBojEei-Srx062A-Rw"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_1l_BUBoiEei-Srx062A-Rw" name="" incoming="_4xJgUBojEei-Srx062A-Rw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_9vLWABoiEei-Srx062A-Rw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9vbNoBoiEei-Srx062A-Rw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vbNoRoiEei-Srx062A-Rw" key="Version" value="0.1.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vbNohoiEei-Srx062A-Rw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vbNoxoiEei-Srx062A-Rw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vbNpBoiEei-Srx062A-Rw" key="Date" value="2016-07-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vbNpRoiEei-Srx062A-Rw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9vZYcBoiEei-Srx062A-Rw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_9vcbwBoiEei-Srx062A-Rw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9vffEBoiEei-Srx062A-Rw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vffERoiEei-Srx062A-Rw" key="Version" value="0.0.10"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vffEhoiEei-Srx062A-Rw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vffExoiEei-Srx062A-Rw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vffFBoiEei-Srx062A-Rw" key="Date" value="2018-02-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9vffFRoiEei-Srx062A-Rw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9ve4ABoiEei-Srx062A-Rw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../umlmodels-validation-profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+    </profileApplication>
+  </uml:Model>
+  <ADM:Joinpoint xmi:id="_FZR68BojEei-Srx062A-Rw" base_RedefinableElement="_zYDxMBoiEei-Srx062A-Rw" base_NamedElement="_zYDxMBoiEei-Srx062A-Rw"/>
+  <GetMeteorologicalData:Callback xmi:id="_FcOhQBojEei-Srx062A-Rw" base_OpaqueAction="_zYDxMBoiEei-Srx062A-Rw" function="exports.setup = function() {&#xA;&#x9;this.input('input');&#xA;&#x9;this.output('output');&#xA;};&#xA;exports.fire = function () {&#xA;&#x9;&#xA;   var MyJavaClass = Java.type('srdjan.supersede.extension.FileReadWrite');&#xA;   var result = MyJavaClass.readFile('cachingResult.txt');&#xA;   this.send('output',result);&#xA;}"/>
+  <GetMeteorologicalData:Service xmi:id="_LOryoBokEei-Srx062A-Rw" base_Activity="_k0D8QBoiEei-Srx062A-Rw" endpoint="&quot;http://localhost:6081/SuperAdapt/adapt/vienna/timezone/cached-result&quot;"/>
+</xmi:XMI>
