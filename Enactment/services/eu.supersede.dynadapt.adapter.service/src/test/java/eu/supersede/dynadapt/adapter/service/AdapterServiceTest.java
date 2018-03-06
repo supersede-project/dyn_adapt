@@ -186,6 +186,20 @@ public class AdapterServiceTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void testMonitoringReconfigurationAtosUCAdaptation() {
+		try {
+			// FIXME featureConfigurationId is ignored. Use correct one
+			// once Model Repository is available as service.
+			String featureConfigurationId = "1020";
+			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoring.toString(), featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	private String uploadLatestComputedFC(String fcName) throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
