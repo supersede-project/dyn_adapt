@@ -26,8 +26,8 @@
       <selection id="httpmonitor">
         <selection id="low_timeslot">
           <attributeValue xsi:type="fc:integer" id="timeslot_at" value="30"/>
-          <attributeValue xsi:type="fc:integer" id="a_961504395" value="1500"/>
-          <attributeValue xsi:type="fc:double" id="a_1710769427" value="0.6"/>
+          <attributeValue xsi:type="fc:integer" id="a_961504395" value="15000"/>
+          <attributeValue xsi:type="fc:double" id="a_1710769427" value="0.7"/>
         </selection>
       </selection>
     </selection>
