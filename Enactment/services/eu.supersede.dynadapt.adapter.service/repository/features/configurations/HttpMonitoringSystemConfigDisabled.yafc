@@ -8,7 +8,7 @@
           <feature id="f_873247801" name="MonitoringConfiguration" lower="0" upper="1">
             <attribute id="a_1719660450" name="timeSlot" type="integer"/>
             <attribute id="a_209552934" name="responseTime" type="integer"/>
-            <attribute id="a_2105636004" name="availability" type="string"/>
+            <attribute id="a_2105636004" name="availability" type="double"/>
           </feature>
         </feature>
       </feature>
