@@ -219,6 +219,11 @@ public class Adapter implements IAdapter {
 			}
 			changedSelections.removeAll(droppedSelections);
 		}
+		
+		if (changedSelections.isEmpty()){
+			//There are not adaptation changes to enact, reporting as an exception
+			throw new EnactmentException("No adaptation changes for enactment between enacted and computed FCs have been detected");
+		}
 
 		// BASE MODEL ADAPTATION
 		Model model = adapt(system, changedSelections, baseModel);
