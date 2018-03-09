@@ -24,6 +24,10 @@
   <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.enactor.EnactorFactory/1.0.0-SNAPSHOT/eu.supersede.dynadapt.enactor.EnactorFactory-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.dynadapt.enactor.HypervisorEnactor/1.0.0-SNAPSHOT/eu.supersede.dynadapt.enactor.HypervisorEnactor-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/eu/supersede/serviceCompositionEnactor/ServiceCompositionEnactor/0.0.1-SNAPSHOT/ServiceCompositionEnactor-0.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.monitor.reconfiguration.enactor/1.0.0-SNAPSHOT/eu.supersede.monitor.reconfiguration.enactor-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.monitor.reconfiguration.executor/1.0.0-SNAPSHOT/eu.supersede.monitor.reconfiguration.executor-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.reconfiguration.enactor.uml2json/1.0.0-SNAPSHOT/eu.supersede.reconfiguration.enactor.uml2json-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/eu/supersede/dynadapt/eu.supersede.feedbackgathering.reconfiguration.enactor/1.0.0-SNAPSHOT/eu.supersede.feedbackgathering.reconfiguration.enactor-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.mwe.utils/1.3.20.v201605261103/org.eclipse.emf.mwe.utils-1.3.20.v201605261103.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.ecore/2.12.0.v20160420-0247/org.eclipse.emf.ecore-2.12.0.v20160420-0247.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.common/2.12.0.v20160420-0247/org.eclipse.emf.common-2.12.0.v20160420-0247.jar"/>
@@ -65,6 +69,7 @@
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.xtext.xbase.lib/2.13.0.v20171020-0659/org.eclipse.xtext.xbase.lib-2.13.0.v20171020-0659.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.eclipse.emf.codegen.ecore/2.12.0.v20160526-0356/org.eclipse.emf.codegen.ecore-2.12.0.v20160526-0356.jar"/>
   <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/org.objectweb.asm/5.1.0.v20160914-0701/org.objectweb.asm-5.1.0.v20160914-0701.jar"/>
+  <classpathentry kind="var" path="M2_REPO/p2/osgi/bundle/com.google.gson/2.7.0.v20170129-0911/com.google.gson-2.7.0.v20170129-0911.jar"/>
   <classpathentry kind="var" path="M2_REPO/cz/zcu/yafmt/cz.zcu.yafmt.model/0.3.0-SNAPSHOT/cz.zcu.yafmt.model-0.3.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-web/1.4.2.RELEASE/spring-boot-starter-web-1.4.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-web/1.4.2.RELEASE/spring-boot-starter-web-1.4.2.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter/1.4.2.RELEASE/spring-boot-starter-1.4.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter/1.4.2.RELEASE/spring-boot-starter-1.4.2.RELEASE-sources.jar"/>
