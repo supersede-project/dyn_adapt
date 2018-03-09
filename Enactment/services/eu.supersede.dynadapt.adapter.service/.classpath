@@ -111,7 +111,7 @@
   <classpathentry kind="var" path="M2_REPO/org/skyscreamer/jsonassert/1.3.0/jsonassert-1.3.0.jar" sourcepath="M2_REPO/org/skyscreamer/jsonassert/1.3.0/jsonassert-1.3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/json/json/20160212/json-20160212.jar" sourcepath="M2_REPO/org/json/json/20160212/json-20160212-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/4.3.4.RELEASE/spring-test-4.3.4.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-test/4.3.4.RELEASE/spring-test-4.3.4.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/eu/supersede/if/eu.supersede.if.api/0.3.0-SNAPSHOT/eu.supersede.if.api-0.3.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/eu/supersede/if/eu.supersede.if.api/0.4.0-SNAPSHOT/eu.supersede.if.api-0.4.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar" sourcepath="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/axis2/axis2/1.6.1/axis2-1.6.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/axis2/axis2-transport-http/1.6.1/axis2-transport-http-1.6.1.jar" sourcepath="M2_REPO/org/apache/axis2/axis2-transport-http/1.6.1/axis2-transport-http-1.6.1-sources.jar"/>
