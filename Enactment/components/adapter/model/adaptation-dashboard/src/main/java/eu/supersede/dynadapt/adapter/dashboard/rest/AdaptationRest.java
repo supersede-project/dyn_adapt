@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.dynadapt.adapter.dashboard.jpa.ActionsJpa;
@@ -41,8 +42,15 @@ public class AdaptationRest
     }
     
     @RequestMapping(value = "/suggested", method = RequestMethod.GET)
-    public List<Adaptation> getSuggestedAdaptations(Authentication authentication)
+    public List<Adaptation> getSuggestedAdaptations(Authentication authentication, 
+    		@RequestParam(required = false) String modelSystem)
     {
+    	ModelSystem mSystem;
+    	try {
+    		mSystem = ModelSystem.valueOf(modelSystem);
+    	} catch (Exception e) {
+    		mSystem = null;
+    	}
     	//Returning only adaptations that having been enacted
     	List<Adaptation> adapts = adaptations.findAll();
     	
@@ -53,7 +61,8 @@ public class AdaptationRest
     	for (Adaptation ad: adapts){
     		if (enactments.findOne(ad.getFc_id()) == null
     				&& ad.getModel_system().getTenant().toString().equals(tenantId)){
-    			result.add(ad);
+    			if (mSystem == null || mSystem!= null && ad.getModel_system().equals(mSystem))
+    				result.add(ad);
     		}
     	}
     	

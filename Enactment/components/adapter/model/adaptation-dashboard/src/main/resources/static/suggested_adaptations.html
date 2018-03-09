@@ -6,6 +6,13 @@
  </style>
 <div ng-controller="suggested_adaptations">
 	<h1>Suggested Adaptations</h1>
+	<table>
+		<tr>
+			<td><b>Model System   </b></td>
+			<td><div id='jqxDropDownList'></div></td>
+		</tr>
+	</table>
+	<br>
 	<jqx-grid id="jqxGrid" jqx-create="createWidget" jqx-settings="gridSettings"></jqx-grid>
 	<br>
 	<jqx-button id="btnEnact" ng-click="enactSuggestedAdaptations()">Enact</jqx-button>
