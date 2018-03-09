@@ -11,6 +11,7 @@
       <attribute id="a_1633003892" name="data_quality" type="boolean" defaultValue="true"/>
       <attribute id="a_2082545476" name="lastCachedData_latency_min" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="60" minimize="true"/>
       <attribute id="a_294849487" name="lastCachedData_latency_max" type="double" qualityAttribute="true"/>
+      <attribute id="a_1487359507" name="data_in_DB_update_rate" type="double"/>
       <group lower="1" upper="1">
         <feature id="c3" name="SC3" lower="0" upper="1">
           <attribute id="a_2122442494" name="availability" type="double" defaultValue="0.95"/>
@@ -21,6 +22,7 @@
           <attribute id="a_1984860055" name="data_quality" type="boolean" defaultValue="true"/>
           <attribute id="a_1938349467" name="lastCachedData_latency_min" type="double" qualityAttribute="true"/>
           <attribute id="a_1866904671" name="lastCachedData_latency_max" type="double" qualityAttribute="true"/>
+          <attribute id="a_62840439" name="data_in_DB_update_rate" type="double" qualityAttribute="true"/>
         </feature>
         <feature id="c1" name="SC1" lower="0" upper="1">
           <attribute id="a_182741991" name="availability" type="double" defaultValue="0.95" minRangeValue="" maxRangeValue=""/>
@@ -31,6 +33,7 @@
           <attribute id="a_174256061" name="data_quality" type="boolean" defaultValue="true"/>
           <attribute id="a_86430051" name="lastCachedData_latency_min" type="double" qualityAttribute="true"/>
           <attribute id="a_358716030" name="lastCachedData_latency_max" type="double" qualityAttribute="true"/>
+          <attribute id="a_1733277979" name="data_in_DB_update_rate" type="double"/>
         </feature>
         <feature id="c2" name="SC2" lower="0" upper="1">
           <attribute id="a_1812276745" name="availability" type="double" defaultValue="0.95"/>
@@ -41,6 +44,7 @@
           <attribute id="a_1856709452" name="data_quality" type="boolean" defaultValue="true"/>
           <attribute id="a_111283596" name="lastCachedData_latency_min" type="double" qualityAttribute="true"/>
           <attribute id="a_1611296515" name="lastCachedData_latency_max" type="double" qualityAttribute="true"/>
+          <attribute id="a_1783723894" name="data_in_DB_update_rate" type="double"/>
         </feature>
         <feature id="c4" name="SC4" lower="0" upper="1">
           <attribute id="a_1956533590" name="availability" type="double" defaultValue="0.95"/>
@@ -51,6 +55,7 @@
           <attribute id="a_1187272621" name="data_quality" type="boolean" defaultValue="true"/>
           <attribute id="a_1582321080" name="lastCachedData_latency_min" type="double" qualityAttribute="true"/>
           <attribute id="a_761351291" name="lastCachedData_latency_max" type="double" qualityAttribute="true"/>
+          <attribute id="a_584656137" name="data_in_DB_update_rate" type="double"/>
         </feature>
       </group>
     </rootFeature>
@@ -64,6 +69,7 @@
     <attributeValue xsi:type="fc:boolean" id="a_1633003892" value="false"/>
     <attributeValue xsi:type="fc:double" id="a_2082545476" value="0.0"/>
     <attributeValue xsi:type="fc:double" id="a_294849487" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_1487359507" value="0.0"/>
     <selection id="c2">
       <attributeValue xsi:type="fc:double" id="a_1812276745" value="0.99"/>
       <attributeValue xsi:type="fc:boolean" id="a_1036441300" value="true"/>
@@ -73,6 +79,7 @@
       <attributeValue xsi:type="fc:boolean" id="a_1856709452" value="false"/>
       <attributeValue xsi:type="fc:double" id="a_111283596" value="120.0"/>
       <attributeValue xsi:type="fc:double" id="a_1611296515" value="240.0"/>
+      <attributeValue xsi:type="fc:double" id="a_1783723894" value="10.0"/>
     </selection>
   </rootSelection>
 </fc:FeatureConfiguration>
