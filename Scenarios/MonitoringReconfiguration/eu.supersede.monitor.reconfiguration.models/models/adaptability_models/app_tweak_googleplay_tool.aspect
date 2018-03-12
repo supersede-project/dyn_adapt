@@ -1,0 +1,16 @@
+aspect apptweak {
+	feature MonitoringSystem.MonitoringSystem.Market_Places.GooglePlay.Tool.AppTweak,
+	pointcuts{	
+		pointcut AppTweak{
+			pattern patterns.monitors,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition addAppTweak{
+			feature_enabled true,
+			jointpointRole ADM.Joinpoint,
+			action update value '67g'
+		}
+	}
+}
