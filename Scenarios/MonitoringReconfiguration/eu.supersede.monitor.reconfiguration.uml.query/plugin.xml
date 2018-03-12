@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="queries.Monitoring_reconfiguration_queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:queries.Monitoring_reconfiguration_queries" id="queries.Monitoring_reconfiguration_queries">
+      <query-specification fqn="queries.classes"/>
+      <query-specification fqn="queries.classGeneralizations"/>
+      <query-specification fqn="queries.instances"/>
+      <query-specification fqn="queries.realizations"/>
+      <query-specification fqn="queries.monitors"/>
+    </group>
+  </extension>
+</plugin>

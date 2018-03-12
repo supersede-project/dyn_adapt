@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
+  <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <feature id="feedbackissue" name="FeedbackIssue" lower="1" upper="1">
+      <attribute id="language" name="language" type="string"/>
+      <feature id="mechanism" name="Mechanism" lower="1" upper="1">
+        <group lower="1" upper="-1">
+          <feature id="attachment" name="Attachment" lower="0" upper="1"/>
+          <feature id="category" name="Category" lower="0" upper="1"/>
+          <feature id="screenshot" name="ScreenShot" lower="0" upper="1"/>
+          <feature id="audio" name="Audio" lower="0" upper="1"/>
+          <feature id="rating" name="Rating" lower="0" upper="1"/>
+          <feature id="textfeedback" name="TextFeedback" lower="1" upper="1"/>
+        </group>
+      </feature>
+      <feature id="receiver" name="Receiver" lower="1" upper="1">
+        <group lower="1" upper="1">
+          <feature id="sharewithworkteam" name="ShareWithWorkTeam" lower="0" upper="1"/>
+          <feature id="sharewithallhelpdesk" name="ShareWithAll" lower="0" upper="1">
+            <attribute id="anonymous" name="anonymous" type="boolean"/>
+          </feature>
+        </group>
+      </feature>
+      <feature id="presentation" name="Presentation" lower="1" upper="1">
+        <group lower="1" upper="1">
+          <feature id="link" name="Link" lower="0" upper="1"/>
+          <feature id="popup" name="Pop-Up" lower="0" upper="1"/>
+        </group>
+      </feature>
+      <feature id="confirmationmessage" name="ConfirmationMessage" description="" lower="0" upper="1">
+        <attribute id="content" name="content" type="string"/>
+        <attribute id="title" name="title" type="string"/>
+      </feature>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
+  <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <feature id="feedbackissue" name="FeedbackIssue" lower="1" upper="1">
+      <attribute id="language" name="language" type="string"/>
+      <feature id="mechanism" name="Mechanism" lower="1" upper="1">
+        <group lower="1" upper="-1">
+          <feature id="audio" name="Audio" lower="0" upper="1">
+            <attribute id="a_1692518866" name="order" type="integer"/>
+            <attribute id="a_1827679124" name="title" type="string"/>
+            <attribute id="a_1525523262" name="maxTime" type="integer" description=""/>
+          </feature>
+          <feature id="rating" name="Rating" lower="0" upper="1">
+            <attribute id="a_689581445" name="order" type="integer"/>
+            <attribute id="a_139048492" name="title" type="string"/>
+            <attribute id="a_683258672" name="ratingIcon" type="string"/>
+            <attribute id="a_343221669" name="maxRating" type="integer"/>
+          </feature>
+          <feature id="textfeedback" name="TextFeedback" lower="0" upper="1">
+            <attribute id="position" name="order" type="integer"/>
+            <attribute id="title" name="title" type="string"/>
+            <attribute id="lenght" name="maxLenght" type="integer"/>
+            <attribute id="a_2124229747" name="hint" type="string"/>
+            <attribute id="a_1296725815" name="label" type="string"/>
+          </feature>
+          <feature id="screenshot" name="ScreenShot" lower="0" upper="1">
+            <attribute id="a_1025825262" name="order" type="integer"/>
+            <attribute id="a_591881697" name="title" type="string"/>
+            <feature id="annotation" name="Annotation" lower="1" upper="1"/>
+            <feature id="basicselectionshapes" name="BasicShapes" lower="0" upper="1"/>
+            <feature id="selectioncolor" name="SelectionColor" lower="0" upper="1"/>
+            <feature id="f_947289622" name="FreeHandDrawing" lower="0" upper="1"/>
+            <feature id="f_79118959" name="BasicEditionOption" lower="0" upper="1"/>
+          </feature>
+        </group>
+      </feature>
+      <feature id="category" name="Category" lower="1" upper="1">
+        <feature id="selectcategory" name="SelectCategory" lower="1" upper="1"/>
+        <feature id="newcategory" name="NewCategory" lower="0" upper="1"/>
+      </feature>
+      <feature id="attachment" name="Attachment" lower="0" upper="1"/>
+      <feature id="receiver" name="Receiver" lower="1" upper="1">
+        <group lower="1" upper="1">
+          <feature id="sharewithworkteam" name="ShareWithWorkTeam" lower="0" upper="1"/>
+          <feature id="sharewithallhelpdesk" name="ShareWithAll" lower="0" upper="1">
+            <attribute id="anonymous" name="anonymous" type="boolean"/>
+          </feature>
+        </group>
+      </feature>
+      <feature id="presentation" name="Presentation" lower="1" upper="1">
+        <group lower="1" upper="1">
+          <feature id="link" name="Link" lower="0" upper="1"/>
+          <feature id="popup" name="Pop-Up" lower="0" upper="1"/>
+        </group>
+      </feature>
+      <feature id="confirmationmessage" name="ConfirmationMessage" description="" lower="0" upper="1">
+        <attribute id="content" name="content" type="string"/>
+        <attribute id="title" name="title" type="string"/>
+      </feature>
+    </feature>
+  </rootFeature>
+</fm:featureModel>
