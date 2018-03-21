@@ -6,3 +6,9 @@ pattern GetMeteorologicalDataServices(action : CallBehaviorAction) {
 	CallBehaviorAction.name(action, name);
 	check(name.equals("GetMteorologicalData"));
 }
+
+pattern GetCachingDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("GetBuildingsDataCaching"));
+}
+
