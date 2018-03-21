@@ -6,6 +6,13 @@
  </style>
 <div ng-controller="enacted_adaptations">
 	<h1>Enacted Adaptations</h1>
+	<table>
+		<tr>
+			<td><b>Model System   </b></td>
+			<td><div id='jqxDropDownList'></div></td>
+		</tr>
+	</table>
+	<br>
 	<jqx-grid id="jqxGrid" jqx-create="createWidget" jqx-settings="gridSettings"></jqx-grid>
 	<br>
 	<jqx-button id="btnDelete" ng-click="deleteSuggestedAdaptations()">Delete</jqx-button>

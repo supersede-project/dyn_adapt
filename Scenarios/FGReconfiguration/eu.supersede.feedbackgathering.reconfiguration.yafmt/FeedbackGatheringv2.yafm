@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringv2" version="1.0.0">
+  <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
+    <feature id="feedbackissue" name="FeedbackIssue" lower="1" upper="1">
+      <feature id="rating" name="Rating" lower="0" upper="1"/>
+      <feature id="attachment" name="Attachment" lower="0" upper="1">
+        <group lower="1" upper="-1">
+          <feature id="audio" name="Audio" lower="0" upper="1"/>
+          <feature id="video" name="Video" lower="0" upper="1"/>
+          <feature id="screenshot" name="ScreenShot" lower="0" upper="1"/>
+          <feature id="other" name="Other" lower="0" upper="1"/>
+        </group>
+      </feature>
+      <feature id="format" name="Format" lower="1" upper="1">
+        <group lower="1" upper="1">
+          <feature id="semistructured" name="SemiStructured" lower="0" upper="1">
+            <feature id="mediumdescription" name="MediumDescription" lower="1" upper="1"/>
+          </feature>
+          <feature id="structured" name="Structured" lower="0" upper="1">
+            <feature id="category" name="Category" lower="1" upper="1"/>
+            <feature id="smalldescription" name="SmallDescription" lower="1" upper="1"/>
+          </feature>
+        </group>
+      </feature>
+    </feature>
+    <feature id="presentation" name="Presentation" lower="1" upper="1">
+      <group lower="1" upper="1">
+        <feature id="link" name="Link" lower="0" upper="1"/>
+        <feature id="popup" name="PopUp" lower="0" upper="1"/>
+      </group>
+    </feature>
+  </rootFeature>
+</fm:featureModel>

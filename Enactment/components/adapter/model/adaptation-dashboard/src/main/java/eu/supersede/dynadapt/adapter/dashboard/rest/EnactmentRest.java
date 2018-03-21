@@ -20,6 +20,7 @@ import eu.supersede.dynadapt.adapter.dashboard.model.Adaptation;
 import eu.supersede.dynadapt.adapter.dashboard.model.Enactment;
 import eu.supersede.fe.security.DatabaseUser;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 @RestController
 @RequestMapping("/enactment")
@@ -31,8 +32,14 @@ public class EnactmentRest
     AdaptationsJpa adaptations;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Enactment> getEnactments(Authentication authentication)
+    public List<Enactment> getEnactments(Authentication authentication, @RequestParam(required = false) String modelSystem)
     {
+    	ModelSystem mSystem;
+    	try {
+    		mSystem = ModelSystem.valueOf(modelSystem);
+    	} catch (Exception e) {
+    		mSystem = null;
+    	}
     	List<Enactment> list = enactments.findAll();
     	List<Enactment> result = new ArrayList<>();
     	DatabaseUser currentUser = (DatabaseUser) authentication.getPrincipal();
@@ -40,7 +47,8 @@ public class EnactmentRest
 
     	for (Enactment e : list) {
     		if (e.getAdaptation().getModel_system().getTenant().toString().equals(tenantId)) {
-    			result.add(e);
+    			if (mSystem == null || mSystem!= null && e.getAdaptation().getModel_system().equals(mSystem))
+    				result.add(e);
     		}
     	}
     	
