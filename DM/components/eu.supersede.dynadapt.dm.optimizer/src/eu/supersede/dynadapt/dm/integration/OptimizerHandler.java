@@ -54,14 +54,24 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				}
 			}
 		}else if(system == ModelSystem.AtosMonitoring) {
+			String alertAttr = "responseTime";
 			for(Condition cond: alert.getConditions()){
-				switch (cond.getIdMonitoredData().getNameQualityMonitored()){
-				case "timeSlot":
-					Parameters.ALERT_ATTRIBUTE = "timeSlot";
+				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())){
+//				case "timeSlot":
+//					Parameters.ALERT_ATTRIBUTE = "timeSlot";
+//					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+//					break;
+//				case "responseTime": 
+					Parameters.ALERT_ATTRIBUTE = alertAttr;
 					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
 					break;
-				case "responseTime": 
-					Parameters.ALERT_ATTRIBUTE = "responseTime";
+				}
+			}
+		}else if (system == ModelSystem.Siemens) {
+			String alertAttr = "response_time";
+			for (Condition cond: alert.getConditions()) {
+				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
+					Parameters.ALERT_ATTRIBUTE = alertAttr;
 					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
 					break;
 				}

@@ -136,7 +136,7 @@ public abstract class AbstractHandler {
 		case Siemens:
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION;
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
-			uri = "input/siemens/";
+			uri = "input/siemens_cache/";
 			break;
 		case Senercon:
 		case SenerconFG:
@@ -171,7 +171,7 @@ public abstract class AbstractHandler {
 		case Siemens:
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION;
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
-			uri = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafm";
+			uri = "input/siemens_cache/FeatureModel-SiemensCaching.yafm";
 			break;
 		case Senercon:
 		case SenerconFG:
@@ -207,7 +207,7 @@ public abstract class AbstractHandler {
 			break;
 		case Siemens:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
-			uri = "../../../Scenarios/Siemens/SiemensModels/FeatureModel-S1c_dm.yafc";
+			uri = "input/siemens_cache/FeatureConfiguration-SiemensCaching-Strategy1.yafc";
 			break;	
 		case Senercon:
 		case SenerconFG:

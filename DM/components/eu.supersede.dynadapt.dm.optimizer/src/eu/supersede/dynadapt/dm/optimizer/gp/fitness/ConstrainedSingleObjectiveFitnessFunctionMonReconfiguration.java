@@ -57,13 +57,13 @@ public class ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration  extend
 		Map<String, Double> aggregateValues = new HashMap<String, Double>();
 		
 		// create and initialize
-		String costAttribute = "timeSlot";
+//		String costAttribute = "timeSlot";
+//		double costMinMax[] = new double[2];
+//		aggregateValues.put(costAttribute, 0d);
+		
+		String costAttribute = "responseTime";
 		double costMinMax[] = new double[2];
 		aggregateValues.put(costAttribute, 0d);
-		
-		String valueAttribute = "responseTime";
-		double valueMinMax[] = new double[2];
-		aggregateValues.put(valueAttribute, 0d);
 		
 		String valueAttribute2 = "availability";
 		double value2MinMax[] = new double[2];
@@ -79,16 +79,16 @@ public class ConstrainedSingleObjectiveFitnessFunctionMonReconfiguration  extend
 			cost = (cost - costMinMax[0]) / (costMinMax[1] - costMinMax[0]);
 			aggregateValues.put(costAttribute, aggregateValues.get(costAttribute) + cost * weight);
 			
-			double value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
-			// normalize to a value in [0, 1]
-			FeatureAttributeMetadata valueAttributeMetadata = featureAttributeMetadata.get(valueAttribute);
-			valueMinMax[0] = valueAttributeMetadata.getMinimumValue();
-			valueMinMax[1] = valueAttributeMetadata.getMaximumValue();
-			weight = valueAttributeMetadata.getWeight();
-			value = (value - valueMinMax[0]) / (valueMinMax[1] - valueMinMax[0]);
-			value = 1d - value; // convert to minimization ??
-			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
-			aggregateValues.put(valueAttribute, aggregateValues.get(valueAttribute) + value * weight);
+//			double value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
+//			// normalize to a value in [0, 1]
+//			FeatureAttributeMetadata valueAttributeMetadata = featureAttributeMetadata.get(valueAttribute);
+//			valueMinMax[0] = valueAttributeMetadata.getMinimumValue();
+//			valueMinMax[1] = valueAttributeMetadata.getMaximumValue();
+//			weight = valueAttributeMetadata.getWeight();
+//			value = (value - valueMinMax[0]) / (valueMinMax[1] - valueMinMax[0]);
+//			value = 1d - value; // convert to minimization ??
+//			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
+//			aggregateValues.put(valueAttribute, aggregateValues.get(valueAttribute) + value * weight);
 			
 //			double value2 = Double.parseDouble(valueAttribute2==null?"0":valueAttribute2);
 //			FeatureAttributeMetadata value2AttributeMetadata = featureAttributeMetadata.get(valueAttribute2);
