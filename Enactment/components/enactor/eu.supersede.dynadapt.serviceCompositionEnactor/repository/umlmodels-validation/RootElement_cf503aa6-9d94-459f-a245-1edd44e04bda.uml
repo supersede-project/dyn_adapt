@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5 ../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA">
+  <uml:Model xmi:id="_3tdicDcyEeiJ_6Dm9wGs-g" name="RootElement">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_3tdicTcyEeiJ_6Dm9wGs-g" name="GetBuildingsBaseModel" node="_3tdidjcyEeiJ_6Dm9wGs-g _3tdidzcyEeiJ_6Dm9wGs-g _4ulBMDcyEeiJ_6Dm9wGs-g _4uvZQjcyEeiJ_6Dm9wGs-g">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_3tdicjcyEeiJ_6Dm9wGs-g" name="GetBuildingsCaching"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_3tdiczcyEeiJ_6Dm9wGs-g" target="_4ulBMDcyEeiJ_6Dm9wGs-g" source="_3tdidjcyEeiJ_6Dm9wGs-g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_3tdidDcyEeiJ_6Dm9wGs-g" target="_3tdidzcyEeiJ_6Dm9wGs-g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_4uvZQTcyEeiJ_6Dm9wGs-g" target="_4uvZQjcyEeiJ_6Dm9wGs-g" source="_4ulBMDcyEeiJ_6Dm9wGs-g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_4uwnYTcyEeiJ_6Dm9wGs-g" target="_3tdidzcyEeiJ_6Dm9wGs-g" source="_4uvZQjcyEeiJ_6Dm9wGs-g"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_3tdidjcyEeiJ_6Dm9wGs-g" name="" outgoing="_3tdiczcyEeiJ_6Dm9wGs-g"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_3tdidzcyEeiJ_6Dm9wGs-g" name="" incoming="_3tdidDcyEeiJ_6Dm9wGs-g _4uwnYTcyEeiJ_6Dm9wGs-g"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_4ulBMDcyEeiJ_6Dm9wGs-g" name="GetBuildingsCachingStop" incoming="_3tdiczcyEeiJ_6Dm9wGs-g" outgoing="_4uvZQTcyEeiJ_6Dm9wGs-g"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_4uvZQjcyEeiJ_6Dm9wGs-g" name="getBuildings" incoming="_4uvZQTcyEeiJ_6Dm9wGs-g" outgoing="_4uwnYTcyEeiJ_6Dm9wGs-g"/>
+    </packagedElement>
+    <profileApplication xmi:id="_3tdieDcyEeiJ_6Dm9wGs-g">
+      <eAnnotations xmi:id="_3tdieTcyEeiJ_6Dm9wGs-g" source="PapyrusVersion">
+        <details xmi:id="_3tdiejcyEeiJ_6Dm9wGs-g" key="Version" value="0.1.1"/>
+        <details xmi:id="_3tdiezcyEeiJ_6Dm9wGs-g" key="Comment" value=""/>
+        <details xmi:id="_3tdifDcyEeiJ_6Dm9wGs-g" key="Copyright" value=""/>
+        <details xmi:id="_3tdifTcyEeiJ_6Dm9wGs-g" key="Date" value="2016-07-19"/>
+        <details xmi:id="_3tdifjcyEeiJ_6Dm9wGs-g" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_3tdifzcyEeiJ_6Dm9wGs-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+    <profileApplication xmi:id="_3tdigDcyEeiJ_6Dm9wGs-g">
+      <eAnnotations xmi:id="_3tdigTcyEeiJ_6Dm9wGs-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile href="../umlmodels-validation-profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+    <profileApplication xmi:id="_4ugIsDcyEeiJ_6Dm9wGs-g">
+      <eAnnotations xmi:id="_4ujMADcyEeiJ_6Dm9wGs-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA"/>
+      </eAnnotations>
+      <appliedProfile href="../umlmodels-validation-profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+    </profileApplication>
+  </uml:Model>
+  <ADM:Joinpoint xmi:id="_4uuLIDcyEeiJ_6Dm9wGs-g" base_RedefinableElement="_4ulBMDcyEeiJ_6Dm9wGs-g" base_NamedElement="_4ulBMDcyEeiJ_6Dm9wGs-g"/>
+  <GetMeteorologicalData:Service xmi:id="_4uvZQDcyEeiJ_6Dm9wGs-g" base_OpaqueAction="_4ulBMDcyEeiJ_6Dm9wGs-g"/>
+  <GetMeteorologicalData:Service xmi:id="_4uwnYDcyEeiJ_6Dm9wGs-g" base_OpaqueAction="_4uvZQjcyEeiJ_6Dm9wGs-g"/>
+</xmi:XMI>

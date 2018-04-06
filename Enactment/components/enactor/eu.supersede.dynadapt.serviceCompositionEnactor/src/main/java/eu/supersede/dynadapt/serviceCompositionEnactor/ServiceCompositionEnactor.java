@@ -115,7 +115,7 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		
 		ServiceCompositionEnactor main_class=new ServiceCompositionEnactor();
 		main_class.injectUMLModelsForValidation();
-		main_class.getEnactmentCodeHardCoded();
+		//main_class.getEnactmentCodeHardCoded();
         
 	}
 	
@@ -246,7 +246,9 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		//Resource res2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/UmlModelsSUPERSEDE/SiemensBaseModel_32bd5fab-9aa7-481c-b1a0-10ea63a5b8a3.uml"), true);
 	
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-		String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/S2_getBuildings_variant1.uml";
+		String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_variant1.uml";
+		//String res2_3_path_initial_variant=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_variant2.uml";
+		
 		//log.debug("Enacting model: " + res2_3_path_initial_variant);
 		Resource res2 = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 		
@@ -355,30 +357,39 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		//Resource res2_1 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable5.uml"), true);
 		//Resource res2_2 = set.getResource(URI.createFileURI("/home/user/workspace_RCP/eu.supersede.dynadapt.enactor-mavenProject/umlmodels-validation/S2_unavailable10.uml"), true);
 
-		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();
-//		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable5.uml";
-//		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/S2_unavailable10.uml";
-//		String res2_3_path=umlModelsPath+"/repository/umlmodels-validation/S2_getBuildings_variant2.uml";
-		String res2_4_path=umlModelsPath+"/repository/umlmodels-validation/S2_getBuildings_caching_strategy1.uml";
+		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();		
+//		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_caching.uml";
+		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_caching.uml";
+		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_variant2.uml";
+		String res2_3_path=umlModelsPath+"/repository/umlmodels-validation/UI_getTypes_caching.uml";
+		String res2_4_path=umlModelsPath+"/repository/umlmodels-validation/UI_getTypes_variant2.uml";
+		String res2_5_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_caching.uml";
+		String res2_6_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_variant2.uml";
 
-//		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
-//		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
-//		Resource res2_3 = set.getResource(URI.createFileURI(res2_3_path), true);
+		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
+		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
+		Resource res2_3 = set.getResource(URI.createFileURI(res2_3_path), true);
 		Resource res2_4 = set.getResource(URI.createFileURI(res2_4_path), true);
+		Resource res2_5 = set.getResource(URI.createFileURI(res2_5_path), true);
+		Resource res2_6 = set.getResource(URI.createFileURI(res2_6_path), true);
 
 		//Resource res2_3_initial_variant = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 
-//		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
-//		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
-//		Model umlModel_3 = (Model)EcoreUtil.getObjectByType(res2_3.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_3 = (Model)EcoreUtil.getObjectByType(res2_3.getContents(), UMLPackage.Literals.MODEL);
 		Model umlModel_4 = (Model)EcoreUtil.getObjectByType(res2_4.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_5 = (Model)EcoreUtil.getObjectByType(res2_5.getContents(), UMLPackage.Literals.MODEL);
+		Model umlModel_6 = (Model)EcoreUtil.getObjectByType(res2_6.getContents(), UMLPackage.Literals.MODEL);
 
 		//Model umlModel_3_initial_variant = (Model)EcoreUtil.getObjectByType(res2_3_initial_variant.getContents(), UMLPackage.Literals.MODEL);
 		List<Model> uml_models_to_inject=new ArrayList<Model>();
-//		uml_models_to_inject.add(umlModel_1);
-//		uml_models_to_inject.add(umlModel_2);
-//		uml_models_to_inject.add(umlModel_3);
+		uml_models_to_inject.add(umlModel_1);
+		uml_models_to_inject.add(umlModel_2);
+		uml_models_to_inject.add(umlModel_3);
 		uml_models_to_inject.add(umlModel_4);
+		uml_models_to_inject.add(umlModel_5);
+		uml_models_to_inject.add(umlModel_6);
 
 		//uml_models_to_inject.add(umlModel_3_initial_variant);
 		

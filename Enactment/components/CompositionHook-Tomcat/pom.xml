@@ -57,6 +57,16 @@
     	<version>11.0</version>
   	</dependency> 
   	<dependency>
+    	<groupId>ptolemy.diva</groupId>
+    	<artifactId>ptolemy-diva</artifactId>
+    	<version>11.0</version>
+  	</dependency> 
+  	<dependency>
+    	<groupId>ptolemy.vergil</groupId>
+    	<artifactId>ptolemy-vergil</artifactId>
+    	<version>11.0</version>
+  	</dependency> 
+  	<dependency>
     	<groupId>ptolemy.json</groupId>
     	<artifactId>ptolemy-json</artifactId>
     	<version>11.0</version>
