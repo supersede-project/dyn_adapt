@@ -28,7 +28,7 @@
         <value xmi:type="uml:LiteralString" xmi:id="_D277Mr4dEeeTe87ONvFCCA" name="toolName" value="ApacheHttp"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_D277Nb4dEeeTe87ONvFCCA" definingFeature="_D27UJr4dEeeTe87ONvFCCA">
-        <value xmi:type="uml:LiteralString" xmi:id="_D277Nr4dEeeTe87ONvFCCA" name="kafkaTopic" value="http-kafka-topic"/>
+        <value xmi:type="uml:LiteralString" xmi:id="_D277Nr4dEeeTe87ONvFCCA" name="kafkaTopic" value="e70160af-ed3b-4ee2-8ef8-ab9fdb5e2dee"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_D277Ob4dEeeTe87ONvFCCA" definingFeature="_D27UJL4dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralInteger" xmi:id="_D277Or4dEeeTe87ONvFCCA" name="timeSlot" value="100"/>
