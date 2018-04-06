@@ -66,7 +66,7 @@
       <value xmi:type="uml:LiteralString" xmi:id="_XEJMIJerEeet2rpbr-vMrQ" name="toolName" value="ApacheHttp"/>
     </slot>
     <slot xmi:type="uml:Slot" xmi:id="_v7s7kJerEeet2rpbr-vMrQ" definingFeature="_Eid2JpeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralString" xmi:id="_zutTIJerEeet2rpbr-vMrQ" name="kafkaTopic" value="http-kafka-topic"/>
+      <value xmi:type="uml:LiteralString" xmi:id="_zutTIJerEeet2rpbr-vMrQ" name="kafkaTopic" value="e70160af-ed3b-4ee2-8ef8-ab9fdb5e2dee"/>
     </slot>
     <slot xmi:type="uml:Slot" xmi:id="_1pY3IJerEeet2rpbr-vMrQ" definingFeature="_Eid2IZeqEeet2rpbr-vMrQ">
       <value xmi:type="uml:LiteralString" xmi:id="_4WjA8JerEeet2rpbr-vMrQ" name="id" value="1"/>

@@ -10,43 +10,43 @@
       <node xmi:type="uml:OpaqueAction" xmi:id="_thX4QB4gEeiwu_Z12biwCA" name="GetCachedResult" incoming="_rQt0gB4xEeiwu_Z12biwCA" outgoing="_78jIYB4gEeiwu_Z12biwCA"/>
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_4vJ_UB4gEeiwu_Z12biwCA" name="" incoming="_78jIYB4gEeiwu_Z12biwCA"/>
     </packagedElement>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0oruoB4fEeiwu_Z12biwCA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tjJ8gDcwEeisj8Ez4nWBRQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8gTcwEeisj8Ez4nWBRQ" key="Version" value="0.1.1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8gjcwEeisj8Ez4nWBRQ" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8gzcwEeisj8Ez4nWBRQ" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8hDcwEeisj8Ez4nWBRQ" key="Date" value="2016-07-19"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8hTcwEeisj8Ez4nWBRQ" key="Author" value=""/>
+    <profileApplication xmi:id="_0oruoB4fEeiwu_Z12biwCA">
+      <eAnnotations xmi:id="_0oxOMB4fEeiwu_Z12biwCA" source="PapyrusVersion">
+        <details xmi:id="_0oxOMR4fEeiwu_Z12biwCA" key="Version" value="0.1.1"/>
+        <details xmi:id="_0oxOMh4fEeiwu_Z12biwCA" key="Comment" value=""/>
+        <details xmi:id="_0oxOMx4fEeiwu_Z12biwCA" key="Copyright" value=""/>
+        <details xmi:id="_0oxONB4fEeiwu_Z12biwCA" key="Date" value="2016-07-19"/>
+        <details xmi:id="_0oxONR4fEeiwu_Z12biwCA" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0ovZAB4fEeiwu_Z12biwCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      <eAnnotations xmi:id="_0ovZAB4fEeiwu_Z12biwCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+      <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0oycUB4fEeiwu_Z12biwCA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tjJ8hjcwEeisj8Ez4nWBRQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8hzcwEeisj8Ez4nWBRQ" key="Version" value="0.0.8"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8iDcwEeisj8Ez4nWBRQ" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8iTcwEeisj8Ez4nWBRQ" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8ijcwEeisj8Ez4nWBRQ" key="Date" value="2016-10-07"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tjJ8izcwEeisj8Ez4nWBRQ" key="Author" value=""/>
+    <profileApplication xmi:id="_0oycUB4fEeiwu_Z12biwCA">
+      <eAnnotations xmi:id="_0ozDYB4fEeiwu_Z12biwCA" source="PapyrusVersion">
+        <details xmi:id="_0ozDYR4fEeiwu_Z12biwCA" key="Version" value="0.0.10"/>
+        <details xmi:id="_0ozDYh4fEeiwu_Z12biwCA" key="Comment" value=""/>
+        <details xmi:id="_0ozDYx4fEeiwu_Z12biwCA" key="Copyright" value=""/>
+        <details xmi:id="_0ozDZB4fEeiwu_Z12biwCA" key="Date" value="2018-02-23"/>
+        <details xmi:id="_0ozDZR4fEeiwu_Z12biwCA" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0oycUR4fEeiwu_Z12biwCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_WP3SYYyEEeakeNQxQLNPog"/>
+      <eAnnotations xmi:id="_0oycUR4fEeiwu_Z12biwCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+      <appliedProfile href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_BCKlQCzxEeiW1dvY8VshCA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BCQE0CzxEeiW1dvY8VshCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_BCKlQCzxEeiW1dvY8VshCA">
+      <eAnnotations xmi:id="_BCQE0CzxEeiW1dvY8VshCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../../umlmodels-validation-profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+      <appliedProfile href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_DulvQCzxEeiW1dvY8VshCA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DurO0CzxEeiW1dvY8VshCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_DulvQCzxEeiW1dvY8VshCA">
+      <eAnnotations xmi:id="_DurO0CzxEeiW1dvY8VshCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+      <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
   </uml:Model>
   <GetMeteorologicalData:Service xmi:id="_4Qfi0B4fEeiwu_Z12biwCA" base_Activity="_mjANYB4fEeiwu_Z12biwCA" endpoint="&quot;http://localhost:7080/SuperAdapt/adapt/http://trends/buildings/variants&quot;"/>
