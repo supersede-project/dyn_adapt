@@ -1,0 +1,17 @@
+aspect siemens_minmaxdates_caching_sc1 {
+	feature FeatureModel.Service_caching.SC1,
+	advice UI_getMinMaxDates_variant2,
+	pointcuts{	
+		pointcut GMDService{
+			pattern eu.supersede.dynadapt.usecases.patterns.UIGetMinMaxDatesGetCachingDataServices,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition replaceCachingServiceBySC1{
+			feature_enabled true,
+			adviceRole ADM.Joinpoint,
+			action replace
+		}
+	}
+}
