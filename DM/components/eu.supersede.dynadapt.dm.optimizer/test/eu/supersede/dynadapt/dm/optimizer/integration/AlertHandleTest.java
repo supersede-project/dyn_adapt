@@ -29,6 +29,13 @@ public class AlertHandleTest {
 		optimizer.handleAlert(alert);
 	}
 
+	@Test
+	public void AtosMonitoringOptimizationTest() throws Exception {
+		ModuleLoader optimizer = new ModuleLoader();
+		Alert alert = createAtosMonitoringAlert();
+		optimizer.handleAlert(alert);
+	}
+	
     protected Alert createAtosHSKAlert() {
         Alert alert = new Alert();
 
@@ -39,6 +46,24 @@ public class AlertHandleTest {
 
         List<Condition> conditions = new ArrayList<Condition>();
         conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
+        // response_time: quality attribute
+        // 10.0: threshold
+
+        alert.setConditions(conditions);
+        
+        return alert;
+    }
+    
+    protected Alert createAtosMonitoringAlert() {
+        Alert alert = new Alert();
+
+        alert.setId("id"+ System.currentTimeMillis());
+        alert.setApplicationId("dynamic");
+        alert.setTimestamp(Calendar.getInstance().getTimeInMillis());
+        alert.setTenant(ModelSystem.AtosMonitoring);
+
+        List<Condition> conditions = new ArrayList<Condition>();
+        conditions.add (new Condition(new DataID("Tool", "responseTime"), Operator.GEq, 1.0));
         // response_time: quality attribute
         // 10.0: threshold
 
