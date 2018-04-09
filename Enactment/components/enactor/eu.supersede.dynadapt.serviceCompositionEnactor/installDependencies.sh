@@ -34,3 +34,7 @@ mvn install:install-file -DgroupId=ptolemy.json -DartifactId=ptolemy-json -Dvers
 
 mvn install:install-file -DgroupId=ptolemy.org.json -DartifactId=ptolemy-org-json -Dversion=11.0 -Dfile=../../required-JARS/org-json.jar -Dpackaging=jar
 
+mvn install:install-file -DgroupId=ptolemy.diva -DartifactId=ptolemy-diva -Dversion=11.0 -Dfile=/home/user/workspace_RCP/ptII/lib/diva.jar -Dpackaging=jar
+
+mvn install:install-file -DgroupId=ptolemy.vergil -DartifactId=ptolemy-vergil -Dversion=11.0 -Dfile=/home/user/workspace_RCP/ptII/ptolemy/vergil/vergil.jar -Dpackaging=jar
+
