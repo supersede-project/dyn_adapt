@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import eu.supersede.integration.api.monitoring.manager.types.Method;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorConfiguration;
 
 public class MonitorInfo {
@@ -67,8 +68,8 @@ public class MonitorInfo {
 			//AppStore
 			else if (e.getKey().equals("appId")) configuration.setAppId(e.getValue().getAsString()); 
 			//HttpMonitor
-			//else if (e.getKey().equals("url")) configuration.setUrl(e.getValue().getAsString()); 
-			//else if (e.getKey().equals("method")) configuration.setMethod(e.getValue().getAsString());
+			else if (e.getKey().equals("url")) configuration.setUrl(e.getValue().getAsString()); 
+			else if (e.getKey().equals("method")) configuration.setMethod(Method.valueOf(e.getValue().getAsString()));
 
 		}
 	}

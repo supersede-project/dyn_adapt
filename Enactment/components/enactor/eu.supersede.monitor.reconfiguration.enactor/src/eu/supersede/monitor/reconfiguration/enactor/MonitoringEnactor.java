@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import cz.zcu.yafmt.model.fc.FeatureConfiguration;
+//import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.uml2.uml.Model;

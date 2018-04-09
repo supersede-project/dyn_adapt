@@ -134,56 +134,39 @@ public class PopulateModelRepositoryTest {
 		
 		log.debug("Loading " + ModelSystem.AtosMonitoring.toString());
 		
-		//BaseModel
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModel.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "models/base", Model.class,
-			ModelType.BaseModel, BaseModel.class);
+				Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModel.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
+			
+			//Profile
+			prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/profiles", Profile.class,
+				ModelType.ProfileModel, ProfileModel.class);
+			
+			//Variant FIXME used for avoid null error
+			prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "HttpAddConf.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 		
-		//Profile
-		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/profiles", Profile.class,
-			ModelType.ProfileModel, ProfileModel.class);
+		//populateAtosMonitoringScennario1(repositoryPath);
+		populateAtosMonitoringScennario2(repositoryPath);
+
+		log.debug(ModelSystem.AtosMonitoring.toString() + " models loaded");
 		
-		//Variant FIXME used for avoid null error
-		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/variants", "HttpAddConf.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/variants", Model.class,
-			ModelType.VariantModel, VariantModel.class);
+	}
+
+	private void populateAtosMonitoringScennario2(Path repositoryPath) throws Exception {
 
 		//Feature Model
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
-				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "features/models",
-				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemEnableFeatureModel.yafm"), 
 				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
 				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 
 		//Feature Configurations
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigLowTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
-				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
-				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Enacted, "features/configurations",
-				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigDisabled.yafc"), 
 				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
@@ -202,17 +185,41 @@ public class PopulateModelRepositoryTest {
 
 		//Adaptability models
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "adaptability_models", "timeslot_http_monitor.aspect"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
-				ModelType.AdaptabilityModel, AdaptabilityModel.class);
-		
-		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "enable_http_monitor.aspect"), 
 				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
 				ModelType.AdaptabilityModel, AdaptabilityModel.class);
-		
+	}
 
-		log.debug(ModelSystem.AtosMonitoring.toString() + " models loaded");
+	private void populateAtosMonitoringScennario1(Path repositoryPath) throws Exception {
+
+		//Feature Model
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+
+		//Feature Configurations
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigLowTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		//Patterns
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "monitoring_reconfiguration_queries.vql"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "timeslot_http_monitor.aspect"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		
 	}
 
