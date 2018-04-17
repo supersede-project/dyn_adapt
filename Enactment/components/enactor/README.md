@@ -1,4 +1,4 @@
-# [![SUPERSEDE](../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Dynamic Adaptation and Personalization DM support and Enactment
+# [![SUPERSEDE](../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Dynamic Adaptation and Reconfiguration Enactment
 This folder contains the Enactor tools developed in SUPERSEDE T4.2, T4.3 and T4.4. These tools supporting the dynamic adaptation and reconfiguration enactment.
 
 See deliverables D4.6 and D4.9 in [Supersede Portal](https://www.supersede.eu/) for more details about this framework, including its functional description, its architecture and its components.
