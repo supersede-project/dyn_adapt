@@ -435,12 +435,12 @@ public class PopulateModelRepositoryTest {
 //			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCaching-Strategy2.yafc"), 
+				Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCaching-Strategy1.yafc"), 
 				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCaching-Strategy1.yafc"), 
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCaching-Strategy2.yafc"), 
 			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Computed, "features/configurations",
 			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
