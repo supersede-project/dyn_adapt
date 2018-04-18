@@ -63,7 +63,7 @@ public class AlertHandleTest {
         alert.setTenant(ModelSystem.AtosMonitoring);
 
         List<Condition> conditions = new ArrayList<Condition>();
-        conditions.add (new Condition(new DataID("Tool", "responseTime"), Operator.GEq, 1.0));
+        conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
         // response_time: quality attribute
         // 10.0: threshold
 

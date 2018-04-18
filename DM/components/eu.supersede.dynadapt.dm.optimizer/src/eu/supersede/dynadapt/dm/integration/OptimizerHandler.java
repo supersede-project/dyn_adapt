@@ -54,7 +54,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				}
 			}
 		}else if(system == ModelSystem.AtosMonitoring) {
-			String alertAttr = "responseTime";
+			String alertAttr = "response_time";
 			for(Condition cond: alert.getConditions()){
 				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())){
 //				case "timeSlot":
@@ -62,20 +62,22 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 //					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
 //					break;
 //				case "responseTime": 
-					Parameters.ALERT_ATTRIBUTE = alertAttr;
-					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+					// TODO here I'm changing the name of the quality attribute to be compatible with the name in the
+					// feature model. May be change the name in the feature model to avoid such hacking?
+					cond.getIdMonitoredData().setNameQualityMonitored("responseTime");
 					break;
 				}
 			}
 		}else if (system == ModelSystem.Siemens) {
-			String alertAttr = "response_time";
-			for (Condition cond: alert.getConditions()) {
-				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
-					Parameters.ALERT_ATTRIBUTE = alertAttr;
-					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
-					break;
-				}
-			}
+			// TODO nothing to do here, all should be handled later
+//			String alertAttr = "response_time";
+//			for (Condition cond: alert.getConditions()) {
+//				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
+//					Parameters.ALERT_ATTRIBUTE = alertAttr;
+//					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+//					break;
+//				}
+//			}
 		}
 	}
 	
