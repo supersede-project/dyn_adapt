@@ -88,7 +88,7 @@ public class MonitoringEnactor implements IEnactor {
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
+	public Model enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
 				
 		URI adaptedModelURI = mm.saveModelInTemporaryFolder(adaptedModel, adaptedModel.getName() + ".uml");
 		Path temporaryFolder = createTemporaryDirectoryInFolder(temp);
@@ -103,11 +103,11 @@ public class MonitoringEnactor implements IEnactor {
 		
 		JsonObject jsonObject = (new JsonParser()).parse(json).getAsJsonObject();
 		
-		executor.executeMonitorReconfiguration(jsonObject);
+		executor.executeMonitorReconfiguration(jsonObject, adaptedModel);
 		System.out.println(jsonObject);
 		log.debug("Monitor updated correctly");
 		
-		
+		return adaptedModel;
 	}
 	
 	private List<Path> findFilesInFolderWithExtension(Path temporaryFolder, String extension) throws IOException {
@@ -142,8 +142,9 @@ public class MonitoringEnactor implements IEnactor {
 
 
 	@Override
-	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
+	public Model enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
 		// Ignored
+		return adaptedModel;
 	}
 
 }

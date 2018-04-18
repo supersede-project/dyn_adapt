@@ -24,8 +24,11 @@ package eu.supersede.dynadapt.adapter;
 
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -69,9 +72,13 @@ import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.dashboad.types.Enactment;
 import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
+import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 import eu.supersede.integration.api.adaptation.types.Status;
+import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class Adapter implements IAdapter {
 
@@ -245,7 +252,14 @@ public class Adapter implements IAdapter {
 			kpiComputerEnactor.startComputingKPI();
 			try {
 				log.debug("Invoking enactor for system " + system);	
-				EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
+				Model enactedModel = EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
+				if (enactedModel != null) {
+					//Update enacted model into repository
+					BaseModel metadata = mr.getMetadataOfLastBaseModelForSystem(system);
+//					mr.updateBaseModel(enactedModel, createBaseModelUpdateMetadata(metadata), (String) metadata.getValue("id"));
+					String id = mr.storeModel(model, ModelType.BaseModel, createBaseModelMetadata(metadata), metadata.getRelativePath());
+					log.debug("Adapted model has been stored in the repository with id: " + id);
+				}
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -664,6 +678,40 @@ public class Adapter implements IAdapter {
 			resource.save(null); // no save options needed
 		} catch (IOException ioe) {
 		}
+	}
+	
+	private ModelMetadata createBaseModelMetadata(BaseModel baseModel) throws Exception {
+		ModelMetadata metadata = new ModelMetadata();
+		metadata.setSender("Adapter");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
+		List<IModel> modelInstances = new ArrayList<>();
+		//Update modification time
+		baseModel.setLastModificationDate(Calendar.getInstance().getTime());
+		modelInstances.add(baseModel);
+		metadata.setModelInstances(modelInstances);
+		
+		return metadata;
+	}
+	
+	private ModelUpdateMetadata createBaseModelUpdateMetadata(BaseModel metadata) {
+		ModelUpdateMetadata mum = new ModelUpdateMetadata();
+		mum.setSender("Adapter");
+		mum.setTimeStamp(Calendar.getInstance().getTime());
+		
+		Map<String, Object> values = new HashMap<>();
+		values.put("authorId", metadata.getAuthorId());
+		values.put("status", "Enacted");
+		values.put("name", metadata.getName());
+		values.put("creationDate", metadata.getCreationDate());
+		values.put("LastModificationDate", Calendar.getInstance().getTime());
+		values.put("fileExtension", ModelType.BaseModel.getExtension());
+		values.put("systemId", metadata.getSystemId());
+		values.put("relativePath", metadata.getRelativePath());
+		values.put("dependencies", metadata.getDependencies());
+		
+		mum.setValues(values);
+		
+		return mum;
 	}
 
 }

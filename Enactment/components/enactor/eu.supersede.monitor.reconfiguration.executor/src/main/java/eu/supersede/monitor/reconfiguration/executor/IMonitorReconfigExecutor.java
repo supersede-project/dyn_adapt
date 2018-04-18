@@ -21,11 +21,13 @@
  *******************************************************************************/
 package eu.supersede.monitor.reconfiguration.executor;
 
+import org.eclipse.uml2.uml.Model;
+
 import com.google.gson.JsonObject;
 
 public interface IMonitorReconfigExecutor {
 	
-	public void executeMonitorReconfiguration(JsonObject inputJson) throws Exception;
+	public void executeMonitorReconfiguration(JsonObject inputJson, Model model) throws Exception;
 	
 /*	public void addMonitorConfiguration(JsonObject inputJson) throws Exception;
 	

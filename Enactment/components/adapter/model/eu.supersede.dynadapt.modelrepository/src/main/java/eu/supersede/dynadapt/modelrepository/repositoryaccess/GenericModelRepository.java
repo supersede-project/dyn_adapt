@@ -407,7 +407,7 @@ public abstract class GenericModelRepository {
 //				((PatternModel) model).setPackageName(s);
 //			results.add (model);
 		}
-		// FIXME la lista siempre se devuelve vacía
+		// FIXME la lista siempre se devuelve vacï¿½a
 		return results;
 	}
 	
@@ -421,6 +421,30 @@ public abstract class GenericModelRepository {
 			return null;
 		}
 		return getModel((String)iModel.getValue("id"), modelType, modelClass);
+	}
+	
+	protected <T extends EObject, S extends IModel> String getIdOfLatestModelOfTypeForSystemWithStatus(ModelType modelType, ModelSystem system, Status status, Class<T> modelClass) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<S> metadata = (List<S>) proxy.getModelInstances(modelType, system, status);
+		Collections.sort (metadata); //Sorted by modification date, or creating date or id, inverse order
+		IModel iModel = metadata.get(0);
+		if (iModel.getValue("id") == null){
+			log.error ("Model repository return a model with null identifier and metadatum: " + iModel);
+			return null;
+		}
+		return (String)iModel.getValue("id");
+	}
+	
+	protected <T extends EObject, S extends IModel> IModel getMetadataOfLatestModelOfTypeForSystemWithStatus(ModelType modelType, ModelSystem system, Status status, Class<T> modelClass) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<S> metadata = (List<S>) proxy.getModelInstances(modelType, system, status);
+		Collections.sort (metadata); //Sorted by modification date, or creating date or id, inverse order
+		IModel iModel = metadata.get(0);
+		if (iModel.getValue("id") == null){
+			log.error ("Model repository return a model with null identifier and metadatum: " + iModel);
+			return null;
+		}
+		return iModel;
 	}
 	
 	protected <T extends EObject, S extends IModel> List<T> getModelsFromMetadata(ModelType modelType, GenericModel modelMetadata, Class<T> modelClass) throws Exception {

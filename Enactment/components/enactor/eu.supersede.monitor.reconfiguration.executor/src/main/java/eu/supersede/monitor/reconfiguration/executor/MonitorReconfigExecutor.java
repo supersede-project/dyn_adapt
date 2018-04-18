@@ -23,6 +23,16 @@ package eu.supersede.monitor.reconfiguration.executor;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.StructuralFeature;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.internal.impl.InstanceSpecificationImpl;
 
 import com.google.gson.JsonObject;
 
@@ -38,7 +48,7 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 	private final static Logger log = LogManager.getLogger(MonitorReconfigExecutor.class);
 	
 	@Override
-	public void executeMonitorReconfiguration(JsonObject inputJson) throws Exception {
+	public void executeMonitorReconfiguration(JsonObject inputJson, Model model) throws Exception {
 		log.debug("Started monitor reconfiguration executor");
 		MonitorList monitorList = new MonitorList(inputJson);
 		log.debug("Parsed update JSON object with " + monitorList.getMonitors().size() + " reconfigurations");
@@ -51,14 +61,24 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 			String user = "superadmin";
 			String password = "password";
 			MonitoringOrchestratorProxy<?, ?> proxy = new MonitoringOrchestratorProxy<Object, Object>(user, password);
+			MonitorConfiguration mc;
 			switch (monitor.getOperation()) {
 				case CREATE:
 					log.debug("Create new configuration");
-					proxy.createMonitorConfigurationForMonitorToolAndMonitorType(monitor.getConfiguration(), monitor.getMonitorTool(), monitor.getMonitorType());
+					mc = proxy.createMonitorConfigurationForMonitorToolAndMonitorType(monitor.getConfiguration(), monitor.getMonitorTool(), monitor.getMonitorType());
+					//TODO update MonitorConfiguration Id in base model
+//					if (mc == null)
+//						throw new Exception("MonitorConfiguration with id " + monitor.getConfiguration().getId() + " could not be updated");
+//					Integer id = mc.getId();
+					Integer id = 1;//TWEAK for debugging
+					
+					updateMonitorConfigurationId (id, monitor.getConfiguration(), model);
 					break;
 				case UPDATE:
 					log.debug("Update configuration");
-					proxy.updateMonitorConfigurationForMonitorToolAndMonitorType(monitor.getConfiguration(), monitor.getMonitorTool(), monitor.getMonitorType());
+					mc = proxy.updateMonitorConfigurationForMonitorToolAndMonitorType(monitor.getConfiguration(), monitor.getMonitorTool(), monitor.getMonitorType());
+//					if (mc == null)
+//						throw new Exception("MonitorConfiguration with id " + monitor.getConfiguration().getId() + " could not be updated");
 					break;
 				case DELETE:
 					throw new Exception("Not supported operation at executor");
@@ -66,6 +86,33 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 					throw new Exception("Not supported operation at executor");
 			}
 		}
+	}
+
+	private void updateMonitorConfigurationId(Integer id, MonitorConfiguration configuration, Model model) {
+		//Find InstanceSpecification HttpMonitorConfiguration and slot for defining feature id
+		if (model == null) return;
+		for (Element element:model.getOwnedElements()){
+			if (element instanceof InstanceSpecificationImpl){
+				if (((InstanceSpecificationImpl) element).getName().equals("HttpMonitorConfiguration")){
+					//Get Slot for defining feature Id
+					for (Slot slot: ((InstanceSpecificationImpl) element).getSlots()){
+						StructuralFeature df = slot.getDefiningFeature();
+						if (df == null) continue;
+						if (df.getName()!=null && df.getName().equalsIgnoreCase("id")){
+							EList<ValueSpecification> values = slot.getValues();
+							if (!values.isEmpty()){
+								ValueSpecification value = values.get(0);
+								if (value instanceof LiteralString){
+									LiteralString ls = (LiteralString)value;
+									((LiteralString) value).setValue(id.toString());
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
 	}
 	
 }
