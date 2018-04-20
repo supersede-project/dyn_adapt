@@ -1,5 +1,5 @@
 aspect siemens_buildings_caching_sc2 {
-	feature FeatureModel.Service_caching.SC2,
+	feature FeatureModel.Service_caching_buildings.SC2,
 	advice UI_getBuildings_variant1,
 	pointcuts{	
 		pointcut GMDService{

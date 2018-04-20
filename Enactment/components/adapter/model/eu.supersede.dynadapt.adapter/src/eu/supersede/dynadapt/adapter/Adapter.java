@@ -253,7 +253,7 @@ public class Adapter implements IAdapter {
 			try {
 				log.debug("Invoking enactor for system " + system);	
 				Model enactedModel = EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
-				if (enactedModel != null) {
+				if (enactedModel != null && isSiemensSystem (system)) {
 					//Update enacted model into repository
 					BaseModel metadata = mr.getMetadataOfLastBaseModelForSystem(system);
 //					mr.updateBaseModel(enactedModel, createBaseModelUpdateMetadata(metadata), (String) metadata.getValue("id"));
@@ -302,6 +302,14 @@ public class Adapter implements IAdapter {
 		}
 	}
 	
+	private boolean isSiemensSystem(ModelSystem system) {
+		// TODO Auto-generated method stub
+		return system == ModelSystem.Siemens || 
+			system == ModelSystem.Siemens_Buildings || 
+			system == ModelSystem.Siemens_Types ||
+			system == ModelSystem.Siemens_GetMinMaxDates;
+	}
+
 	private void doEnactmentWithEnactor(ModelSystem system, String featureConfigurationId, String featureConfigurationAsString) 
 			throws EnactmentException, Exception, IOException {
 		
