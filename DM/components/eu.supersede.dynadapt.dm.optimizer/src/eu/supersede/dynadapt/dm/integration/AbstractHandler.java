@@ -159,7 +159,7 @@ public abstract class AbstractHandler {
 		
 		return uri;
 	}
-	protected String obtainFMURI(ModelSystem system){	
+	protected String obtainFMURI(ModelSystem system, boolean deterministic){	
 		String uri = "";
 		switch (system) {
 		case Atos:
@@ -188,7 +188,11 @@ public abstract class AbstractHandler {
 		case AtosMonitoring:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			uri = "input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
+			if (deterministic) {
+				uri = "input/httpMR/Scenario2/HttpMonitoringSystemEnableFeatureModel.yafm";
+			} else {
+				uri = "input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
+			}
 			break;
 		}
 		

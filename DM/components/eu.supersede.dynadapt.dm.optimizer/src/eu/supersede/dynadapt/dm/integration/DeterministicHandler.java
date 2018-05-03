@@ -187,7 +187,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 	private void handleMonitoring() throws Exception {
 		String applicationId = alert.getApplicationId();
 		ModelSystem tenant = alert.getTenant();
-
+		boolean deterministic = true;
 		double action = 0;
 		for(Condition cond: alert.getConditions()){
 			if ("startMonitor".equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
@@ -202,7 +202,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			String defaultConfig = "";
 			switch (tenant) {
 			case AtosMonitoring:
-				defaultConfig = "low_timeslot";
+				defaultConfig = "f_873247801"; // enable monitor TODO rename to something meaningful
 				break;
 			default:
 				log.error("unsupported tenant: {}", tenant);
@@ -219,7 +219,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(defaultConfig.split("\\s+")));
 			selectedFeatureIds.removeAll(Arrays.asList(null,"")); //Remove empty entries
 			
-			String fmURI = obtainFMURI(alert.getTenant());
+			String fmURI = obtainFMURI(alert.getTenant(), deterministic);
 			FeatureModel fm = mm.loadFeatureModel(fmURI);
 			FeatureConfigurationBuilder featureConfigurationBuilder = new FeatureConfigurationBuilder();
 			FeatureConfiguration newFeatureConfig = featureConfigurationBuilder.buildFeatureConfiguration(fm, selectedFeatureIds);

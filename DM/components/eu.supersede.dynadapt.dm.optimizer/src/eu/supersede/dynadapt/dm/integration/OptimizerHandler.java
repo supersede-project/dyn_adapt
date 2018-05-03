@@ -86,6 +86,8 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 
 		kpiComputer.startComputingKPI();
 		
+		boolean deterministic = false;
+		
 		String fmURI = ""; 
 		String fcURI = "";
 		
@@ -110,7 +112,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				fm = featuremodels.get(0);//the only one?				
 			}
 			else{
-				fmURI = obtainFMURI(alert.getTenant());
+				fmURI = obtainFMURI(alert.getTenant(), deterministic);
 				fm = mm.loadFeatureModel(fmURI);
 			}
 			
@@ -123,7 +125,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		}
 		else
 		{
-			fmURI = obtainFMURI(alert.getTenant());
+			fmURI = obtainFMURI(alert.getTenant(), deterministic);
 			fcURI = obtainNameCurrentConfig(alert.getTenant());
 			fm = mm.loadFeatureModel(fmURI);
 			featureConfig = mm.loadFeatureConfiguration(fcURI);

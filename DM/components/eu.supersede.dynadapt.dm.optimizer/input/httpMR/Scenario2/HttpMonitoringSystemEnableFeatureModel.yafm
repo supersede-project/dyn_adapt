@@ -6,7 +6,7 @@
         <feature id="f_873247801" name="MonitoringConfiguration" lower="0" upper="1">
           <attribute id="a_1719660450" name="timeSlot" type="integer" defaultValue="1000" minRangeValue="10" maxRangeValue="10000"/>
           <attribute id="a_209552934" name="responseTime" type="integer" defaultValue="99" minRangeValue=""/>
-          <attribute id="a_2105636004" name="availability" type="double" defaultValue="100%"/>
+          <attribute id="a_2105636004" name="availability" type="double" defaultValue="1"/>
         </feature>
       </feature>
     </feature>

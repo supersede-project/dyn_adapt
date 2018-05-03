@@ -6,8 +6,12 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.google.common.collect.Lists;
+
 import eu.supersede.dynadapt.dm.integration.ModuleLoader;
+import eu.supersede.integration.api.adaptation.types.ActionOnAttribute;
 import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.AttributeAction;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.DataID;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -33,6 +37,13 @@ public class AlertHandleTest {
 	public void AtosMonitoringOptimizationTest() throws Exception {
 		ModuleLoader optimizer = new ModuleLoader();
 		Alert alert = createAtosMonitoringAlert();
+		optimizer.handleAlert(alert);
+	}
+	
+	@Test
+	public void deterministicAtosMonitoringOptimizationTest() throws Exception {
+		ModuleLoader optimizer = new ModuleLoader();
+		Alert alert = createDeterministicAtosMonitoringAlert();
 		optimizer.handleAlert(alert);
 	}
 	
@@ -68,6 +79,31 @@ public class AlertHandleTest {
         // 10.0: threshold
 
         alert.setConditions(conditions);
+        
+        return alert;
+    }
+    
+    
+    protected Alert createDeterministicAtosMonitoringAlert() {
+    	Alert alert = new Alert();
+
+        alert.setId("id"+ System.currentTimeMillis());
+        alert.setApplicationId("httpMonitor"); 
+        alert.setTimestamp(System.currentTimeMillis());
+        alert.setTenant(ModelSystem.AtosMonitoring);
+
+        List<Condition> conditions = Lists.newArrayList();
+        conditions.add(new Condition(new DataID("HTTPMonitor", "startMonitor"), Operator.EQ, 1.0)); //start http monitors
+
+        alert.setConditions(conditions);
+        
+        // FIXME here I'm adding actions (will not be used) b/c deterministic cases are determined by the presence of actions
+        
+        List<ActionOnAttribute> actions = Lists.newArrayList();
+        // the ids correspond to the parameterId
+        actions.add(new ActionOnAttribute("CATEGORY_TYPE.BUG_CATEGORY.order", AttributeAction.update, 2));
+
+        alert.setActionAttributes(actions);
         
         return alert;
     }
