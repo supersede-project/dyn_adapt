@@ -144,7 +144,7 @@ public class AdapterService {
 			@PathVariable String featureConfigurationId) throws EnactmentException {
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
-		if (featureConfigurationId.equals("null"))
+		if (featureConfigurationId != null && featureConfigurationId.equals("null"))
 			featureConfigurationId = null;
 		adapter.enactAdaptationDecisionActionsForFC(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}
@@ -153,7 +153,7 @@ public class AdapterService {
 	public void enactFeatureConfiguration(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException{
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
-		if (featureConfigurationId.equals("null"))
+		if (featureConfigurationId != null && featureConfigurationId.equals("null"))
 			featureConfigurationId = null;
 		adapter.enactFeatureConfiguration(ModelSystem.valueOf(systemId), featureConfigurationId);
 	}

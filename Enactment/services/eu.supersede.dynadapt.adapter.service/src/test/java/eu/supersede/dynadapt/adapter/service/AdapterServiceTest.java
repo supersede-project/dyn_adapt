@@ -17,6 +17,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
+import eu.supersede.dynadapt.adapter.Adapter;
 import eu.supersede.dynadapt.adapter.exception.EnactmentException;
 import eu.supersede.integration.api.adaptation.dashboad.types.Action;
 import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
@@ -188,12 +189,38 @@ public class AdapterServiceTest {
 	}
 	
 	@Test
-	public void testMonitoringReconfigurationAtosUCAdaptation() {
+	public void testMonitoringReconfigurationAtosUCAdaptationScenario2Enabling() {
 		try {
 			// FIXME featureConfigurationId is ignored. Use correct one
 			// once Model Repository is available as service.
-			String featureConfigurationId = "1043";
+			String featureConfigurationId = "2377";
 			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoring.toString(), featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testMonitoringReconfigurationAtosUCAdaptationScenario1Timestamp() {
+		try {
+			// FIXME featureConfigurationId is ignored. Use correct one
+			// once Model Repository is available as service.
+			String featureConfigurationId = "2370";
+			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoring.toString(), featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSiemensCachingServiceAdaptationStrategy2() {
+		try {
+			String featureConfigurationId = uploadLatestComputedFC("FeatureConfiguration-SiemensCaching-Strategy2.yafc");
+			service.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens.toString(), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

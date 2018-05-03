@@ -256,10 +256,12 @@ public class Adapter implements IAdapter {
 				//Update enacted model into repository
 				if (!demo && enactedModel != null && !isSiemensSystem (system)) {
 					BaseModel metadata = mr.getMetadataOfLastBaseModelForSystem(system);
-					//FIXNE Use update based model instead of creating a new one. Fix the problem found
+					//FIXME Use update based model instead of creating a new one. Fix the problem found
 //					mr.updateBaseModel(enactedModel, createBaseModelUpdateMetadata(metadata), (String) metadata.getValue("id"));
 					String id = mr.storeModel(model, ModelType.BaseModel, createBaseModelMetadata(metadata), metadata.getRelativePath());
 					log.debug("Adapted model has been stored in the repository with id: " + id);
+					
+					//TODO update enacted FC
 				}
 			}
 			catch (Exception e) {

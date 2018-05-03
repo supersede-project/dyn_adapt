@@ -202,7 +202,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			String defaultConfig = "";
 			switch (tenant) {
 			case AtosMonitoring:
-				defaultConfig = "f_873247801"; // enable monitor TODO rename to something meaningful
+				defaultConfig = "monitoringconfiguration"; // enable monitor TODO rename to something meaningful
 				break;
 			default:
 				log.error("unsupported tenant: {}", tenant);

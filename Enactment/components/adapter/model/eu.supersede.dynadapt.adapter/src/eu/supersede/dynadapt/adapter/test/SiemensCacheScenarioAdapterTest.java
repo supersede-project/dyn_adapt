@@ -41,7 +41,7 @@ public class SiemensCacheScenarioAdapterTest {
 	URL url = null;
 	
 	@Test
-	public void testSiemensCachingServiceAdaptation() {
+	public void testSiemensCachingServiceAdaptationStrategy1() {
 		try {
 			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
 			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
@@ -49,6 +49,21 @@ public class SiemensCacheScenarioAdapterTest {
 			String featureConfigurationId = uploadLatestComputedFC("FeatureConfiguration-SiemensCaching-Strategy1.yafc");
 			adapter.enactAdaptationDecisionActions(
 					ModelSystem.Siemens, Arrays.asList(adaptationDecisionActionIds), featureConfigurationId);
+			
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSiemensCachingServiceAdaptationStrategy2() {
+		try {
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
+			String featureConfigurationId = uploadLatestComputedFC("FeatureConfiguration-SiemensCaching-Strategy2.yafc");
+			adapter.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens, featureConfigurationId);
 			
 		} catch (EnactmentException e) {
 			e.printStackTrace();
