@@ -217,6 +217,7 @@ public class AdapterServiceTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testSiemensCachingServiceAdaptationStrategy2() {
 		try {
 			String featureConfigurationId = uploadLatestComputedFC("FeatureConfiguration-SiemensCaching-Strategy2.yafc");
