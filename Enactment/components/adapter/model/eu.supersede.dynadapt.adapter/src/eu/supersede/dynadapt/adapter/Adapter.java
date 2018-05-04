@@ -249,12 +249,14 @@ public class Adapter implements IAdapter {
 			log.debug("Saved updated model in " + uri);
 		
 			// Ask Enactor to enact adapted model
-			kpiComputerEnactor.startComputingKPI();
 			try {
 				log.debug("Invoking enactor for system " + system);	
+				kpiComputerEnactor.startComputingKPI();
 				Model enactedModel = EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel, demo);
+				kpiComputerEnactor.stopComputingKPI();
+				kpiComputerEnactor.reportComputedKPI();
 				//Update enacted model into repository
-				if (!demo && enactedModel != null && !isSiemensSystem (system)) {
+				if (!demo && enactedModel != null) {
 					BaseModel metadata = mr.getMetadataOfLastBaseModelForSystem(system);
 					//FIXME Use update based model instead of creating a new one. Fix the problem found
 //					mr.updateBaseModel(enactedModel, createBaseModelUpdateMetadata(metadata), (String) metadata.getValue("id"));
@@ -269,30 +271,29 @@ public class Adapter implements IAdapter {
 				ee = new EnactmentException(e);
 			}
 			
-			kpiComputerEnactor.stopComputingKPI();
-			kpiComputerEnactor.reportComputedKPI();
-		
-			// Recover the adaptation corresponding to the latest feature configuration
-			String adaptationId = featureConfigurationId;
-			Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
-			if (adaptation == null) {
-				log.warn("Adaptation with id " + adaptationId + " not found in dashboard");
-				adaptation = createAdaptation(adaptationId,
-						String.format("%s %s", system.toString(), featureConfigurationId),
-						system,
-						changedSelections, 
-						kpiComputerAdapter.getInitialProcessingTime());
-				adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+			if (!demo){
+				// Recover the adaptation corresponding to the latest feature configuration
+				String adaptationId = featureConfigurationId;
+				Adaptation adaptation = adaptationDashboardProxy.getAdaptation(adaptationId);
+				if (adaptation == null) {
+					log.warn("Adaptation with id " + adaptationId + " not found in dashboard");
+					adaptation = createAdaptation(adaptationId,
+							String.format("%s %s", system.toString(), featureConfigurationId),
+							system,
+							changedSelections, 
+							kpiComputerAdapter.getInitialProcessingTime());
+					adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
+				}
+				
+				// Notify dashboard the enactment of the FC
+				//TODO Do we need to report more data to dashboard in case of failure?
+				Enactment enactment = createEnactment(adaptationId,
+						ee == null, 
+						kpiComputerAdapter.getInitialProcessingTime(),
+						kpiComputerEnactor.getFinalProcessingTime());
+				// Populate Enactment data
+				adaptationDashboardProxy.addEnactment(enactment);
 			}
-			
-			// Notify dashboard the enactment of the FC
-			//TODO Do we need to report more data to dashboard in case of failure?
-			Enactment enactment = createEnactment(adaptationId,
-					ee == null, 
-					kpiComputerAdapter.getInitialProcessingTime(),
-					kpiComputerEnactor.getFinalProcessingTime());
-			// Populate Enactment data
-			adaptationDashboardProxy.addEnactment(enactment);
 			
 			//TODO Notify DM that adaptation actions have been enacted
 			log.debug("Notifing back to DM that adaptation actions have been enacted");
