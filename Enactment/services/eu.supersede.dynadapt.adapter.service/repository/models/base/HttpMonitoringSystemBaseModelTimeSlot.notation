@@ -7,11 +7,11 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_EifERJeqEeet2rpbr-vMrQ" type="InstanceSpecification_SlotCompartment">
       <children xmi:type="notation:Shape" xmi:id="_EifERZeqEeet2rpbr-vMrQ" type="Slot_SlotLabel">
-        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_EiedMZeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EiedMZeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EifERpeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EifER5eqEeet2rpbr-vMrQ" type="Slot_SlotLabel">
-        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModel.uml#_EiedM5eqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EiedM5eqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EifESJeqEeet2rpbr-vMrQ"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_EifESZeqEeet2rpbr-vMrQ"/>
@@ -19,7 +19,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_EifES5eqEeet2rpbr-vMrQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EifETJeqEeet2rpbr-vMrQ"/>
     </children>
-    <element xmi:type="uml:InstanceSpecification" href="HttpMonitoringSystemBaseModel.uml#_EiedMJeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:InstanceSpecification" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EiedMJeqEeet2rpbr-vMrQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EifEUJeqEeet2rpbr-vMrQ" x="380" y="20"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_EigSd5eqEeet2rpbr-vMrQ" type="Class_Shape">
@@ -29,15 +29,15 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_EigSe5eqEeet2rpbr-vMrQ" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_EigSfJeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_EicoAZeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EicoAZeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSfZeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSfpeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_EicoApeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EicoApeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSf5eqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSgJeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_EicoA5eqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EicoA5eqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSgZeqEeet2rpbr-vMrQ"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_EigSgpeqEeet2rpbr-vMrQ"/>
@@ -57,7 +57,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_EigSjpeqEeet2rpbr-vMrQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EigSj5eqEeet2rpbr-vMrQ"/>
     </children>
-    <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModel.uml#_EicoAJeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EicoAJeqEeet2rpbr-vMrQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EigSk5eqEeet2rpbr-vMrQ" x="9" y="15" width="273"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_EigSlJeqEeet2rpbr-vMrQ" type="Class_Shape">
@@ -70,27 +70,27 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EigSmpeqEeet2rpbr-vMrQ" key="collapsed" value="true"/>
       </eAnnotations>
       <children xmi:type="notation:Shape" xmi:id="_EigSm5eqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_Eid2IpeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2IpeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSnJeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSnZeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_Eid2I5eqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2I5eqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSnpeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSn5eqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_Eid2JJeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2JJeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSoJeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSoZeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_Eid2JZeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2JZeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSopeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSo5eqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_Eid2JpeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2JpeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSpJeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EigSpZeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_Eid2IZeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2IZeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSppeqEeet2rpbr-vMrQ"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_EigSp5eqEeet2rpbr-vMrQ"/>
@@ -110,7 +110,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_EigSs5eqEeet2rpbr-vMrQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EigStJeqEeet2rpbr-vMrQ"/>
     </children>
-    <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModel.uml#_Eid2IJeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2IJeqEeet2rpbr-vMrQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EigSuJeqEeet2rpbr-vMrQ" x="235" y="195" height="208"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_KOm5kJeqEeet2rpbr-vMrQ" type="Class_Shape">
@@ -123,11 +123,11 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PqxAQZeqEeet2rpbr-vMrQ" key="collapsed" value="true"/>
       </eAnnotations>
       <children xmi:type="notation:Shape" xmi:id="_V8VsAJeqEeet2rpbr-vMrQ" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_V8HCgJeqEeet2rpbr-vMrQ"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_V8HCgJeqEeet2rpbr-vMrQ"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_V8VsAZeqEeet2rpbr-vMrQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_3OMXYL4vEeeTe87ONvFCCA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModel.uml#_3Nl6cL4vEeeTe87ONvFCCA"/>
+        <element xmi:type="uml:Property" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_3Nl6cL4vEeeTe87ONvFCCA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_3OMXYb4vEeeTe87ONvFCCA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_KOpV0ZeqEeet2rpbr-vMrQ"/>
@@ -147,15 +147,53 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_KOpV3ZeqEeet2rpbr-vMrQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KOpV3peqEeet2rpbr-vMrQ"/>
     </children>
-    <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModel.uml#_KOjPMJeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:Class" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_KOjPMJeqEeet2rpbr-vMrQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KOm5kZeqEeet2rpbr-vMrQ" x="489" y="238" width="162" height="116"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_RhQp8FIJEei3Gvkyoc86rA" type="InstanceSpecification_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_RhYlwFIJEei3Gvkyoc86rA" type="InstanceSpecification_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RhZM0FIJEei3Gvkyoc86rA" type="InstanceSpecification_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RhhvsFIJEei3Gvkyoc86rA" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_RhiWwFIJEei3Gvkyoc86rA" type="InstanceSpecification_SlotCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_TREasFIJEei3Gvkyoc86rA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_1pY3IJerEeet2rpbr-vMrQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_TREasVIJEei3Gvkyoc86rA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_TsnuQFIJEei3Gvkyoc86rA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_v7s7kJerEeet2rpbr-vMrQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_TsnuQVIJEei3Gvkyoc86rA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_UDgkQFIJEei3Gvkyoc86rA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_qNWXQL4vEeeTe87ONvFCCA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_UDgkQVIJEei3Gvkyoc86rA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_UcdPwFIJEei3Gvkyoc86rA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_6NwaMJerEeet2rpbr-vMrQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_UcdPwVIJEei3Gvkyoc86rA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_U_FbsFIJEei3Gvkyoc86rA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_MGhA8JerEeet2rpbr-vMrQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_U_FbsVIJEei3Gvkyoc86rA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_VYlg0FIJEei3Gvkyoc86rA" type="Slot_SlotLabel">
+        <element xmi:type="uml:Slot" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_-kS8oJerEeet2rpbr-vMrQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_VYmH4FIJEei3Gvkyoc86rA"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_RhiWwVIJEei3Gvkyoc86rA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_RhiWwlIJEei3Gvkyoc86rA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_RhiWw1IJEei3Gvkyoc86rA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RhiWxFIJEei3Gvkyoc86rA"/>
+    </children>
+    <element xmi:type="uml:InstanceSpecification" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_zINJQJeqEeet2rpbr-vMrQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RhQp8VIJEei3Gvkyoc86rA" x="780" y="240"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_7-HPcZepEeet2rpbr-vMrQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_7-HPcpepEeet2rpbr-vMrQ"/>
   <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_VtOT4FHkEeirQZujNc0Pag" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
-    <owner xmi:type="uml:Model" href="HttpMonitoringSystemBaseModel.uml#_yYG-gJepEeet2rpbr-vMrQ"/>
+    <owner xmi:type="uml:Model" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_yYG-gJepEeet2rpbr-vMrQ"/>
   </styles>
-  <element xmi:type="uml:Model" href="HttpMonitoringSystemBaseModel.uml#_yYG-gJepEeet2rpbr-vMrQ"/>
+  <element xmi:type="uml:Model" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_yYG-gJepEeet2rpbr-vMrQ"/>
   <edges xmi:type="notation:Connector" xmi:id="_EigSYJeqEeet2rpbr-vMrQ" type="Association_Edge" source="_EigSd5eqEeet2rpbr-vMrQ" target="_EigSlJeqEeet2rpbr-vMrQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_EigSYZeqEeet2rpbr-vMrQ" type="Association_StereotypeLabel">
       <styles xmi:type="notation:BooleanValueStyle" xmi:id="_EigSYpeqEeet2rpbr-vMrQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
@@ -182,7 +220,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_EigScpeqEeet2rpbr-vMrQ" x="-38" y="-15"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_EigSc5eqEeet2rpbr-vMrQ"/>
-    <element xmi:type="uml:Association" href="HttpMonitoringSystemBaseModel.uml#_EiedNZeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:Association" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_EiedNZeqEeet2rpbr-vMrQ"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EigSdJeqEeet2rpbr-vMrQ" points="[160, 143, -643984, -643984]$[140, 299, -643984, -643984]$[235, 300, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EigSdZeqEeet2rpbr-vMrQ" id="(0.47985347985347987,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EigSdpeqEeet2rpbr-vMrQ" id="(0.0,0.5048076923076923)"/>
@@ -197,7 +235,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_EigSv5eqEeet2rpbr-vMrQ" x="-1" y="58"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_EigSwJeqEeet2rpbr-vMrQ"/>
-    <element xmi:type="uml:Realization" href="HttpMonitoringSystemBaseModel.uml#_Eid2KJeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:Realization" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_Eid2KJeqEeet2rpbr-vMrQ"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EigSwZeqEeet2rpbr-vMrQ" points="[446, 71, -643984, -643984]$[212, 75, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EigSwpeqEeet2rpbr-vMrQ" id="(0.0,0.6)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EigSw5eqEeet2rpbr-vMrQ" id="(1.0,0.5078125)"/>
@@ -208,9 +246,20 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_Nxz6kZeqEeet2rpbr-vMrQ" x="1" y="38"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_NxzTgZeqEeet2rpbr-vMrQ"/>
-    <element xmi:type="uml:Generalization" href="HttpMonitoringSystemBaseModel.uml#_NxmfMJeqEeet2rpbr-vMrQ"/>
+    <element xmi:type="uml:Generalization" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_NxmfMJeqEeet2rpbr-vMrQ"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NxzTgpeqEeet2rpbr-vMrQ" points="[527, 282, -643984, -643984]$[436, 282, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NyQmgJeqEeet2rpbr-vMrQ" id="(0.0,0.5172413793103449)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NyQmgZeqEeet2rpbr-vMrQ" id="(1.0,0.5048076923076923)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_hnnCcFIJEei3Gvkyoc86rA" type="Dependency_Edge" source="_RhQp8FIJEei3Gvkyoc86rA" target="_KOm5kJeqEeet2rpbr-vMrQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_hnqs0FIJEei3Gvkyoc86rA" type="Dependency_NameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_hnqs0VIJEei3Gvkyoc86rA" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_hnqs0lIJEei3Gvkyoc86rA" type="Dependency_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_hnqs01IJEei3Gvkyoc86rA" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_hnnCcVIJEei3Gvkyoc86rA"/>
+    <element xmi:type="uml:Realization" href="HttpMonitoringSystemBaseModelTimeSlot.uml#_DeyWIJerEeet2rpbr-vMrQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hnnCclIJEei3Gvkyoc86rA" points="[780, 296, -643984, -643984]$[651, 303, -643984, -643984]"/>
   </edges>
 </notation:Diagram>
