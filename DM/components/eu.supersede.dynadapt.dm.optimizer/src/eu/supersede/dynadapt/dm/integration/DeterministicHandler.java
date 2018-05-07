@@ -33,6 +33,7 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 public class DeterministicHandler extends AbstractHandler implements DecisionHandler {
 	private static final String MODELS_AUTHOR = "dmDeterministic";
 	
+	private boolean deterministic = true;
 	public DeterministicHandler(ModelSystem system, Alert alert) throws Exception {
 		
 		super(system, alert, MODELS_AUTHOR);
@@ -65,7 +66,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		List<ActionOnAttribute> attributes = alert.getActionAttributes();
 		
 		//Creating temporary folder for serialized models
-		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system, deterministic));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 		
@@ -80,7 +81,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			featureConfig = mm.loadFeatureConfiguration(temp + "/" + newFeatureConfig.getName() + ".yafc");
 		}
 		else{
-			String fcURI = obtainNameCurrentConfig(alert.getTenant());
+			String fcURI = obtainNameCurrentConfig(alert.getTenant(), deterministic);
 			newFeatureConfig = mm.loadFeatureConfiguration(fcURI);
 			featureConfig = new ModelManager().loadFC(fcURI);
 		}
@@ -187,7 +188,6 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 	private void handleMonitoring() throws Exception {
 		String applicationId = alert.getApplicationId();
 		ModelSystem tenant = alert.getTenant();
-		boolean deterministic = true;
 		double action = 0;
 		for(Condition cond: alert.getConditions()){
 			if ("startMonitor".equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
@@ -211,7 +211,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			
 			
 			//Creating temporary folder for storing models
-			Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+			Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system, deterministic));
 			Path temporaryFolder = Files.createTempDirectory(path, "");
 			String temp = temporaryFolder.toString();
 			

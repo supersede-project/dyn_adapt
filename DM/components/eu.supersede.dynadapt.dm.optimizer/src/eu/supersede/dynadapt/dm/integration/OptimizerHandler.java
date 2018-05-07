@@ -33,7 +33,8 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class OptimizerHandler extends AbstractHandler implements DecisionHandler {
 	private static final String MODELS_AUTHOR = "dmOptimizer";
-	
+
+	private boolean deterministic = false;
 	public OptimizerHandler(ModelSystem system, Alert alert) throws Exception{
 		
 		super(system, alert, MODELS_AUTHOR); 
@@ -68,7 +69,9 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 					break;
 				}
 			}
-		}else if (system == ModelSystem.Siemens) {
+		}else if (system == ModelSystem.Siemens_Buildings ||
+				system == ModelSystem.Siemens_Types ||
+				system == ModelSystem.Siemens_GetMinMaxDates) {
 			// TODO nothing to do here, all should be handled later
 //			String alertAttr = "response_time";
 //			for (Condition cond: alert.getConditions()) {
@@ -86,13 +89,11 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 
 		kpiComputer.startComputingKPI();
 		
-		boolean deterministic = false;
-		
 		String fmURI = ""; 
 		String fcURI = "";
 		
 		//Creating temporary folder for serialized models
-		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system, deterministic));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 
@@ -126,7 +127,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		else
 		{
 			fmURI = obtainFMURI(alert.getTenant(), deterministic);
-			fcURI = obtainNameCurrentConfig(alert.getTenant());
+			fcURI = obtainNameCurrentConfig(alert.getTenant(), deterministic);
 			fm = mm.loadFeatureModel(fmURI);
 			featureConfig = mm.loadFeatureConfiguration(fcURI);
 		}

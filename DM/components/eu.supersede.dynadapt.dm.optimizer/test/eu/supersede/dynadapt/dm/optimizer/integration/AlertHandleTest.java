@@ -20,9 +20,24 @@ import eu.supersede.integration.api.adaptation.types.Operator;
 public class AlertHandleTest {
 
 	@Test
-	public void SiemenesOptimizationTest() throws Exception {
+	public void SiemenesOptimizationBuildingsTest() throws Exception {
 		ModuleLoader optimizer = new ModuleLoader();
-		Alert alert = createSiemensAlert();
+		Alert alert = createSiemensAlert(ModelSystem.Siemens_Buildings);
+		optimizer.handleAlert(alert);
+	}
+	
+	@Test
+	public void SiemenesOptimizationGetMinMaxTest() throws Exception {
+		ModuleLoader optimizer = new ModuleLoader();
+		Alert alert = createSiemensAlert(ModelSystem.Siemens_GetMinMaxDates);
+		optimizer.handleAlert(alert);
+	}
+	
+	
+	@Test
+	public void SiemenesOptimizationTypesTest() throws Exception {
+		ModuleLoader optimizer = new ModuleLoader();
+		Alert alert = createSiemensAlert(ModelSystem.Siemens_Types);
 		optimizer.handleAlert(alert);
 	}
 	
@@ -108,13 +123,13 @@ public class AlertHandleTest {
         return alert;
     }
     
-    protected Alert createSiemensAlert() {
+    protected Alert createSiemensAlert(ModelSystem system) {
         Alert alert = new Alert();
 
         alert.setId("id"+ System.currentTimeMillis());
         alert.setApplicationId("dynamic");
         alert.setTimestamp(Calendar.getInstance().getTimeInMillis());
-        alert.setTenant(ModelSystem.Siemens);
+        alert.setTenant(system); //ModelSystem.Siemens);
 
         List<Condition> conditions = new ArrayList<Condition>();
         // response_time: quality attribute
