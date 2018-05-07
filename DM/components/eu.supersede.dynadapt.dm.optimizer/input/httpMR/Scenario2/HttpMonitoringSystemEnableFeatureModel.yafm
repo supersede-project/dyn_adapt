@@ -4,7 +4,7 @@
     <feature id="qos" name="QoS" lower="1" upper="1">
       <feature id="httpmonitor" name="HttpMonitor" lower="1" upper="1">
         <feature id="monitoringconfiguration" name="MonitoringConfiguration" lower="0" upper="1">
-          <attribute id="a_1719660450" name="timeSlot" type="integer" defaultValue="1000" minRangeValue="10" maxRangeValue="10000"/>
+          <attribute id="a_1719660450" name="timeSlot" type="integer" defaultValue="5" minRangeValue="5" maxRangeValue="10000"/>
           <attribute id="a_209552934" name="responseTime" type="integer" defaultValue="99" minRangeValue=""/>
           <attribute id="a_2105636004" name="availability" type="double" defaultValue="1"/>
         </feature>

@@ -24,7 +24,9 @@ package eu.supersede.monitor.reconfiguration.executor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Slot;
@@ -91,7 +93,8 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 		if (model == null) return;
 		for (Element element:model.getOwnedElements()){
 			if (element instanceof InstanceSpecificationImpl){
-				if (((InstanceSpecificationImpl) element).getName().equals("HttpMonitorConfiguration")){
+				//Detect correct instance by detecting if its classifier generalization is AMonitorConfiguration 
+				if (hasClassifierGeneralization ((InstanceSpecificationImpl) element, "AMonitorConfiguration")){
 					//Get Slot for defining feature Id
 					for (Slot slot: ((InstanceSpecificationImpl) element).getSlots()){
 						StructuralFeature df = slot.getDefiningFeature();
@@ -111,6 +114,19 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 			}
 		}
 		
+	}
+
+	private boolean hasClassifierGeneralization(InstanceSpecificationImpl element, String name) {
+		boolean result = false;
+		for (Classifier classifier: element.getClassifiers()){
+			for (Generalization generalization: classifier.getGeneralizations()){
+				if (generalization.getGeneral().getName().equals(name)){
+					result = true;
+					break;
+				}
+			}
+		}
+		return result;
 	}
 	
 }

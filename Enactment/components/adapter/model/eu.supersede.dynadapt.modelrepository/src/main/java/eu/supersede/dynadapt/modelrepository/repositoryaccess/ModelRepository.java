@@ -483,6 +483,11 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	public FeatureConfiguration getLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
 		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Computed, FeatureConfiguration.class);
 	}
+	
+	@Override
+	public eu.supersede.integration.api.adaptation.types.FeatureConfiguration getMetadataOfLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception {
+		return (eu.supersede.integration.api.adaptation.types.FeatureConfiguration) getMetadataOfLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Computed, FeatureConfiguration.class);
+	}
 
 	@Override
 	public List<Aspect> getAspectModelsForSystem(ModelSystem system) throws Exception{

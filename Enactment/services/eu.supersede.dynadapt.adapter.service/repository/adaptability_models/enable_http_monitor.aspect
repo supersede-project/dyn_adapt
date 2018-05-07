@@ -11,12 +11,12 @@ aspect enable_http {
 		composition EnableConf{
 			feature_enabled false,
 			adviceRole ADM.Joinpoint,
-			action add
+			action delete
 		},
 		composition DisableConf{
 			feature_enabled true,
 			adviceRole ADM.Joinpoint,
-			action delete
+			action add
 		}
 	}
 }
