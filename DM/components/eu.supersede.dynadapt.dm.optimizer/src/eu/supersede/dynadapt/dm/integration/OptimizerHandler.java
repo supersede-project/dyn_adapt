@@ -54,7 +54,8 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 					break;
 				}
 			}
-		}else if(system == ModelSystem.AtosMonitoring) {
+		}else if(system == ModelSystem.AtosMonitoringEnabling ||
+				system == ModelSystem.AtosMonitoringTimeSlot) {
 			String alertAttr = "response_time";
 			for(Condition cond: alert.getConditions()){
 				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())){

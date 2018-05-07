@@ -121,7 +121,8 @@ public abstract class AbstractHandler {
 		case Atos_HSK:
 		case AtosFG:
 		case AtosFGcat:
-		case AtosMonitoring:
+		case AtosMonitoringEnabling:
+		case AtosMonitoringTimeSlot:
 			tenant = "atos"; break;
 		}
 		return tenant;
@@ -155,14 +156,15 @@ public abstract class AbstractHandler {
 		case AtosFGcat:
 			uri = "input/senerconFG/category/";
 			break;
-		case AtosMonitoring:
+		case AtosMonitoringEnabling:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			if (deterministic) {
-				uri = "input/httpMR/Scenario2/";
-			} else {
-				uri = "input/httpMR/Scenario1/";
-			}
+			uri = "input/httpMR/Scenario2/";
+			break;
+		case AtosMonitoringTimeSlot:
+			Parameters.APPLICATION = Parameters.Applications.MONITORING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/httpMR/Scenario1/";
 			break;
 		}
 		
@@ -204,14 +206,15 @@ public abstract class AbstractHandler {
 		case AtosFGcat:
 			uri = "input/senerconFG/FeedbackGatheringConfigCategory.yafm";
 			break;
-		case AtosMonitoring:
+		case AtosMonitoringEnabling:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			if (deterministic) {
-				uri = "input/httpMR/Scenario2/HttpMonitoringSystemEnableFeatureModel.yafm";
-			} else {
-				uri = "input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
-			}
+			uri = "input/httpMR/Scenario2/HttpMonitoringSystemEnableFeatureModel.yafm";
+			break;
+		case AtosMonitoringTimeSlot:
+			Parameters.APPLICATION = Parameters.Applications.MONITORING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/httpMR/Scenario1/HttpMonitoringSystemTimeslotFeatureModel.yafm";
 			break;
 		}
 		
@@ -251,14 +254,15 @@ public abstract class AbstractHandler {
 		case AtosFGcat:
 			uri = "input/senerconFG/FeedbackGatheringConfigCategory.yafc";
 			break;
-		case AtosMonitoring:
+		case AtosMonitoringEnabling:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			if (deterministic) {
-				uri = "input/httpMR/Scenario2/HttpMonitoringSystemConfigDisabled.yafc";
-			} else {
-				uri = "input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";
-			}
+			uri = "input/httpMR/Scenario2/HttpMonitoringSystemConfigDisabled.yafc";
+			break;
+		case AtosMonitoringTimeSlot:
+			Parameters.APPLICATION = Parameters.Applications.MONITORING;
+			Parameters.TENANT = Parameters.Tenants.ATOS;
+			uri = "input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";
 			break;	
 		}
 		return uri;

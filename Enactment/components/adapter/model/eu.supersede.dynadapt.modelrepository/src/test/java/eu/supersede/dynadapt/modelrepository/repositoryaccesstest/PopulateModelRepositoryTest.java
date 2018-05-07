@@ -184,7 +184,7 @@ public class PopulateModelRepositoryTest {
 		
 		populateAtosMonitoringTimeSlotScenario(repositoryPath);
 
-		log.debug(ModelSystem.AtosMonitoringEnabling.toString() + " models loaded");
+		log.debug(ModelSystem.AtosMonitoringTimeSlot.toString() + " models loaded");
 		
 	}
 

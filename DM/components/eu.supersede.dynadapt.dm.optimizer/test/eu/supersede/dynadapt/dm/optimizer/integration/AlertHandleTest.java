@@ -86,7 +86,7 @@ public class AlertHandleTest {
         alert.setId("id"+ System.currentTimeMillis());
         alert.setApplicationId("dynamic");
         alert.setTimestamp(Calendar.getInstance().getTimeInMillis());
-        alert.setTenant(ModelSystem.AtosMonitoring);
+        alert.setTenant(ModelSystem.AtosMonitoringTimeSlot);
 
         List<Condition> conditions = new ArrayList<Condition>();
         conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 1.0));
@@ -105,7 +105,7 @@ public class AlertHandleTest {
         alert.setId("id"+ System.currentTimeMillis());
         alert.setApplicationId("httpMonitor"); 
         alert.setTimestamp(System.currentTimeMillis());
-        alert.setTenant(ModelSystem.AtosMonitoring);
+        alert.setTenant(ModelSystem.AtosMonitoringEnabling);
 
         List<Condition> conditions = Lists.newArrayList();
         conditions.add(new Condition(new DataID("HTTPMonitor", "startMonitor"), Operator.EQ, 1.0)); //start http monitors
@@ -114,11 +114,11 @@ public class AlertHandleTest {
         
         // FIXME here I'm adding actions (will not be used) b/c deterministic cases are determined by the presence of actions
         
-        List<ActionOnAttribute> actions = Lists.newArrayList();
-        // the ids correspond to the parameterId
-        actions.add(new ActionOnAttribute("CATEGORY_TYPE.BUG_CATEGORY.order", AttributeAction.update, 2));
+//        List<ActionOnAttribute> actions = Lists.newArrayList();
+//        // the ids correspond to the parameterId
+//        actions.add(new ActionOnAttribute("CATEGORY_TYPE.BUG_CATEGORY.order", AttributeAction.update, 2));
 
-        alert.setActionAttributes(actions);
+//        alert.setActionAttributes(actions);
         
         return alert;
     }

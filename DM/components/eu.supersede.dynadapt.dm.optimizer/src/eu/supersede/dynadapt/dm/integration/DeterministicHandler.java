@@ -48,7 +48,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		case SenerconFGcat:
 			handleFG();
 			break;
-		case AtosMonitoring:
+		case AtosMonitoringEnabling:
 			handleMonitoring();
 			break;
 		default:
@@ -196,12 +196,12 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			}
 		}
 		
-		if (action == 1d) {
+//		if (action == 1d) { // TODO no need for this case b/c now alerts for deterministic and non-deterministic are separated
 		
 			// First determine the default configuration depending on the tenant
 			String defaultConfig = "";
 			switch (tenant) {
-			case AtosMonitoring:
+			case AtosMonitoringEnabling:
 				defaultConfig = "monitoringconfiguration"; // enable monitor TODO rename to something meaningful
 				break;
 			default:
@@ -271,10 +271,10 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			log.debug("DETERMINISTIC: {} : start monitor with configuration: {}", applicationId, defaultConfig);
 				
 		
-		}else {
+//		}else {
 			// received disable monitor action? stop monitor?
-			log.debug("DETERMINISTIC : {} stop monitor.", applicationId);
-		}
+//			log.debug("DETERMINISTIC : {} stop monitor.", applicationId);
+//		}
 		
 	}
 	

@@ -10,7 +10,7 @@ aspect timeslot_http {
 		composition updateTimeSlot{
 			feature_enabled true,
 			jointpointRole ADM.Joinpoint,
-			action update value '30'
+			action update value '10000'
 		}
 	}
 }
