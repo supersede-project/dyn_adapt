@@ -113,6 +113,9 @@ public abstract class AbstractHandler {
 		case SiemensFG:
 		case SiemensFGcat:
 		case SiemensMonitoring:
+		case Siemens_Buildings:
+		case Siemens_GetMinMaxDates:
+		case Siemens_Types:
 			tenant = "siemens"; break;
 		case Atos:
 		case Atos_HSK:
@@ -124,7 +127,7 @@ public abstract class AbstractHandler {
 		return tenant;
 	}
 	
-	protected String obtainTemporaryURI(ModelSystem system){	
+	protected String obtainTemporaryURI(ModelSystem system, boolean deterministic){	
 		String uri = "";
 		switch (system) {
 		case Atos:
@@ -133,7 +136,9 @@ public abstract class AbstractHandler {
 			Parameters.TENANT= Parameters.Tenants.ATOS; 
 			uri = "input/atos_hsk/";
 			break;
-		case Siemens:
+		case Siemens_Buildings:
+		case Siemens_GetMinMaxDates:
+		case Siemens_Types:
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION;
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
 			uri = "input/siemens_cache/";
@@ -153,7 +158,11 @@ public abstract class AbstractHandler {
 		case AtosMonitoring:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			uri = "input/httpMR/Scenario1/";
+			if (deterministic) {
+				uri = "input/httpMR/Scenario2/";
+			} else {
+				uri = "input/httpMR/Scenario1/";
+			}
 			break;
 		}
 		
@@ -168,10 +177,20 @@ public abstract class AbstractHandler {
 			Parameters.TENANT= Parameters.Tenants.ATOS; 
 			uri = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
 			break;
-		case Siemens:
+		case Siemens_Buildings:
 			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION;
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
-			uri = "input/siemens_cache/FeatureModel-SiemensCaching.yafm";
+			uri = "input/siemens_cache/FeatureModel-SiemensCachingBuildings.yafm";
+			break;
+		case Siemens_GetMinMaxDates:
+			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION;
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			uri = "input/siemens_cache/FeatureModel-SiemensCachingGetMinMaxDates.yafm";
+			break;
+		case Siemens_Types:
+			Parameters.APPLICATION = Parameters.Applications.DYNAMIC_ADAPTATION;
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			uri = "input/siemens_cache/FeatureModel-SiemensCachingTypes.yafm";
 			break;
 		case Senercon:
 		case SenerconFG:
@@ -199,7 +218,7 @@ public abstract class AbstractHandler {
 		return uri;
 	} 
 	
-	protected String obtainNameCurrentConfig(ModelSystem tenant){
+	protected String obtainNameCurrentConfig(ModelSystem tenant, boolean deterministic){
 		//TODO: Call Model Repository with these two parameters
 		String uri = Parameters.INPUT_DIR + "fc/FeedbackGatheringConfigCurrent.yafc";		
 		
@@ -209,9 +228,17 @@ public abstract class AbstractHandler {
 			Parameters.TENANT= Parameters.Tenants.ATOS; 
 			uri = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
 			break;
-		case Siemens:
+		case Siemens_Buildings:
 			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
-			uri = "input/siemens_cache/FeatureConfiguration-SiemensCaching-Strategy1.yafc";
+			uri = "input/siemens_cache/FeatureConfiguration-SiemensCachingBuildings-Strategy1.yafc";
+			break;
+		case Siemens_GetMinMaxDates:
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			uri = "input/siemens_cache/FeatureConfiguration-SiemensCachingGetMinMaxDates-Strategy1.yafc";
+			break;
+		case Siemens_Types:
+			Parameters.TENANT= Parameters.Tenants.SIEMENS; 
+			uri = "input/siemens_cache/FeatureConfiguration-SiemensCachingTypes-Strategy1.yafc";
 			break;	
 		case Senercon:
 		case SenerconFG:
@@ -227,7 +254,11 @@ public abstract class AbstractHandler {
 		case AtosMonitoring:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
 			Parameters.TENANT = Parameters.Tenants.ATOS;
-			uri = "input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";
+			if (deterministic) {
+				uri = "input/httpMR/Scenario2/HttpMonitoringSystemConfigDisabled.yafc";
+			} else {
+				uri = "input/httpMR/Scenario1/HttpMonitoringSystemConfigLowTimeslot.yafc";
+			}
 			break;	
 		}
 		return uri;
