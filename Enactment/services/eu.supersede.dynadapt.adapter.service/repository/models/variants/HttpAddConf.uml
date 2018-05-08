@@ -40,7 +40,7 @@
         <value xmi:type="uml:LiteralString" xmi:id="_Hm9Vkb4wEeeTe87ONvFCCA" name="method" value="GET"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_wGNWoFHgEei5LP5vlyioXQ" definingFeature="_D27UIb4dEeeTe87ONvFCCA">
-        <value xmi:type="uml:LiteralString" xmi:id="_2iT3YFHgEei5LP5vlyioXQ" value=""/>
+        <value xmi:type="uml:LiteralString" xmi:id="_2iT3YFHgEei5LP5vlyioXQ" name="id" value=""/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_D277Pb4dEeeTe87ONvFCCA" name="QoS">
