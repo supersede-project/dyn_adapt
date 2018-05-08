@@ -80,6 +80,10 @@ public class PopulateModelRepositoryTest {
 
 	//IFeatureConfigLAO fcLAO = null;
 	
+	public PopulateModelRepositoryTest (String repositoryRelativePath){
+		this.repositoryRelativePath = repositoryRelativePath;
+	}
+	
 	public static void main (String[] args){
 		//Ignored, added to permit the creation of an executable Java for tests
 	}
