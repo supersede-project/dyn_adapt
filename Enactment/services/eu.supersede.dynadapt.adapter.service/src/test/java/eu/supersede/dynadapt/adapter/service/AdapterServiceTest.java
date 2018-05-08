@@ -193,7 +193,7 @@ public class AdapterServiceTest {
 		try {
 			// FIXME featureConfigurationId is ignored. Use correct one
 			// once Model Repository is available as service.
-			String featureConfigurationId = "2576";
+			String featureConfigurationId = "2669";
 			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoringEnabling.toString(), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();
@@ -207,7 +207,7 @@ public class AdapterServiceTest {
 		try {
 			// FIXME featureConfigurationId is ignored. Use correct one
 			// once Model Repository is available as service.
-			String featureConfigurationId = "2581";
+			String featureConfigurationId = "2671";
 			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoringTimeSlot.toString(), featureConfigurationId);
 		} catch (EnactmentException e) {
 			e.printStackTrace();

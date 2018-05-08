@@ -268,14 +268,7 @@ public class Adapter implements IAdapter {
 				kpiComputerEnactor.reportComputedKPI();
 				// Update enacted model into repository
 				if (!demo && enactedModel != null) {
-					BaseModel baseModelMetadata = mr.getMetadataOfLastBaseModelForSystem(system);
-					// FIXME Use update based model instead of creating a new
-					// one. Fix the problem found
-					// mr.updateBaseModel(enactedModel,
-					// createBaseModelUpdateMetadata(metadata), (String)
-					// metadata.getValue("id"));
-					String id = mr.storeModel(model, ModelType.BaseModel, createModelMetadata(baseModelMetadata, Status.Enacted),
-							baseModelMetadata.getRelativePath());
+					String id = storeAdaptedModelInRepository(system, model);
 					log.debug("Adapted model has been stored in the repository with id: " + id);
 
 					// Update enacted FC
@@ -323,6 +316,22 @@ public class Adapter implements IAdapter {
 			if (model == null)
 				throw new EnactmentException("Adaptation model was not computed");
 		}
+	}
+
+	private String storeAdaptedModelInRepository(ModelSystem system, Model model) throws Exception {
+		BaseModel baseModelMetadata = mr.getMetadataOfLastBaseModelForSystem(system);
+		// FIXME Use update based model instead of creating a new
+		// one. Fix the problem found
+		// mr.updateBaseModel(enactedModel,
+		// createBaseModelUpdateMetadata(metadata), (String)
+		// metadata.getValue("id"));
+		String id = mr.storeModel(model, ModelType.BaseModel, createModelMetadata(baseModelMetadata, Status.Enacted),
+				baseModelMetadata.getRelativePath());
+		//Refresh adapted model for associated system.
+		if (system == ModelSystem.AtosMonitoringEnabling){
+			storeAdaptedModelInRepository(ModelSystem.AtosMonitoringTimeSlot, model);
+		}
+		return id;
 	}
 
 	private boolean isSiemensSystem(ModelSystem system) {
