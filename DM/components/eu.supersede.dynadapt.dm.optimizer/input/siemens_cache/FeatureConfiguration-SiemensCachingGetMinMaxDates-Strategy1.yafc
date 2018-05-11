@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeatureConfiguration-SiemensCachingGetMinMaxDates-Strategy1" version="1.0.0">
+  <featureModel href="FeatureModel-SiemensCachingGetMinMaxDates.yafm#/"/>
+  <featureModelCopy name="FeatureModel" version="1.0.0" description="Supersede feature model">
+    <rootFeature id="service_caching_getminmaxdates" name="Service_caching_getMinMaxDates" lower="1" upper="1">
+      <attribute id="a_2086265440" name="availability" type="double" defaultValue="0.95" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="product" alert="true"/>
+      <attribute id="a_380800399" name="caching" type="boolean" qualityAttribute="true" defaultValue="false" minRangeValue="0" maxRangeValue="1" weight="1.0" alert="true"/>
+      <attribute id="a_1234415761" name="response_time" type="double" qualityAttribute="true" defaultValue="0" minRangeValue="0" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="max" alert="true"/>
+      <attribute id="a_829616488" name="output_format" type="string" defaultValue="JSON" minRangeValue=""/>
+      <attribute id="a_2114188380" name="input_format" type="string" defaultValue="JSON"/>
+      <attribute id="a_1633003892" name="data_quality" type="boolean" defaultValue="true"/>
+      <attribute id="a_2082545476" name="lastCachedData_latency_min" type="double" qualityAttribute="true" defaultValue="0" minRangeValue="0" maxRangeValue="1000" minimize="true"/>
+      <attribute id="a_294849487" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="0" minRangeValue="0" maxRangeValue="1000"/>
+      <attribute id="a_1487359507" name="data_in_DB_update_rate" type="double" defaultValue="0" minRangeValue="0" maxRangeValue="1000"/>
+      <group lower="1" upper="1">
+        <feature id="c3" name="SC3" lower="0" upper="1">
+          <attribute id="a_2122442494" name="availability" type="double" defaultValue="0.95"/>
+          <attribute id="a_1175736421" name="caching" type="boolean" qualityAttribute="true" defaultValue="false"/>
+          <attribute id="a_494394555" name="response_time" type="double" qualityAttribute="true" defaultValue="10" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_1388777777" name="output_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_1186336666" name="input_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_1984860055" name="data_quality" type="boolean" defaultValue="true"/>
+          <attribute id="a_1938349467" name="lastCachedData_latency_min" type="double" qualityAttribute="true" defaultValue="50" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_1866904671" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="50" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_62840439" name="data_in_DB_update_rate" type="double" qualityAttribute="true" defaultValue="20" minRangeValue="0" maxRangeValue="1000"/>
+        </feature>
+        <feature id="c1" name="SC1" lower="0" upper="1">
+          <attribute id="a_182741991" name="availability" type="double" defaultValue="0.99" minRangeValue="" maxRangeValue=""/>
+          <attribute id="a_1452436217" name="caching" type="boolean" qualityAttribute="true" defaultValue="false"/>
+          <attribute id="a_2062902699" name="response_time" type="double" qualityAttribute="true" defaultValue="30" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_197827321" name="output_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_36301957" name="input_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_174256061" name="data_quality" type="boolean" defaultValue="false"/>
+          <attribute id="a_86430051" name="lastCachedData_latency_min" type="double" qualityAttribute="true" defaultValue="30" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_358716030" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="30" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_1733277979" name="data_in_DB_update_rate" type="double" defaultValue="10" minRangeValue="0" maxRangeValue="1000"/>
+        </feature>
+        <feature id="c2" name="SC2" lower="0" upper="1">
+          <attribute id="a_1812276745" name="availability" type="double" defaultValue="0.99"/>
+          <attribute id="a_1036441300" name="caching" type="boolean" qualityAttribute="true" defaultValue="true" minRangeValue=""/>
+          <attribute id="a_708416225" name="response_time" type="double" qualityAttribute="true" resourceAttribute="true" defaultValue="1.5" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_440094044" name="output_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_2005608050" name="input_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_1856709452" name="data_quality" type="boolean" defaultValue="false"/>
+          <attribute id="a_111283596" name="lastCachedData_latency_min" type="double" qualityAttribute="true" defaultValue="120" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_1611296515" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="240" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_1783723894" name="data_in_DB_update_rate" type="double" defaultValue="10" minRangeValue="0" maxRangeValue="1000"/>
+        </feature>
+        <feature id="c4" name="SC4" lower="0" upper="1">
+          <attribute id="a_1956533590" name="availability" type="double" defaultValue="0.95"/>
+          <attribute id="a_1093963413" name="caching" type="boolean" qualityAttribute="true" defaultValue="false"/>
+          <attribute id="a_462630483" name="response_time" type="double" qualityAttribute="true" defaultValue="100" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_1651442309" name="output_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_1505175206" name="input_format" type="string" defaultValue="JSON"/>
+          <attribute id="a_1187272621" name="data_quality" type="boolean" defaultValue="true"/>
+          <attribute id="a_1582321080" name="lastCachedData_latency_min" type="double" qualityAttribute="true" defaultValue="10" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_761351291" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="20" minRangeValue="0" maxRangeValue="1000"/>
+          <attribute id="a_584656137" name="data_in_DB_update_rate" type="double" defaultValue="200" minRangeValue="0" maxRangeValue="1000"/>
+        </feature>
+      </group>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="service_management">
+    <attributeValue xsi:type="fc:double" id="a_2086265440" value="0.0"/>
+    <attributeValue xsi:type="fc:boolean" id="a_380800399" value="false"/>
+    <attributeValue xsi:type="fc:double" id="a_1234415761" value="0.0"/>
+    <attributeValue xsi:type="fc:string" id="a_829616488" value=""/>
+    <attributeValue xsi:type="fc:string" id="a_2114188380" value=""/>
+    <attributeValue xsi:type="fc:boolean" id="a_1633003892" value="false"/>
+    <attributeValue xsi:type="fc:double" id="a_2082545476" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_294849487" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_1487359507" value="0.0"/>
+    <selection id="c1">
+      <attributeValue xsi:type="fc:double" id="a_182741991" value="0.99"/>
+      <attributeValue xsi:type="fc:boolean" id="a_1452436217" value="false"/>
+      <attributeValue xsi:type="fc:double" id="a_2062902699" value="30.0"/>
+      <attributeValue xsi:type="fc:string" id="a_197827321" value="JSON"/>
+      <attributeValue xsi:type="fc:string" id="a_36301957" value="JSON"/>
+      <attributeValue xsi:type="fc:boolean" id="a_174256061" value="false"/>
+      <attributeValue xsi:type="fc:double" id="a_86430051" value="30.0"/>
+      <attributeValue xsi:type="fc:double" id="a_358716030" value="30.0"/>
+      <attributeValue xsi:type="fc:double" id="a_1733277979" value="10.0"/>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>
