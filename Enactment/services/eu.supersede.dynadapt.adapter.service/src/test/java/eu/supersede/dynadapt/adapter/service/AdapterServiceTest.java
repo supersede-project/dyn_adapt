@@ -200,7 +200,7 @@ public class AdapterServiceTest {
 		try {
 			// FIXME featureConfigurationId is ignored. Use correct one
 			// once Model Repository is available as service.
-			String featureConfigurationId = "3235";
+			String featureConfigurationId = "3274";
 			service.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_Buildings.toString(),
 					featureConfigurationId);
 		} catch (EnactmentException e) {
