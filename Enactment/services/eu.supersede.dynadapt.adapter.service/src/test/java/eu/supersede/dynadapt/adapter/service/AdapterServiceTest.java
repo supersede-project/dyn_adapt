@@ -45,9 +45,10 @@ public class AdapterServiceTest {
 		modelRepositoryProxy = new ModelRepositoryProxy<Object, Object>();
 
 		// Reset model repository population
-//		PopulateModelRepositoryTest pmRtest = new PopulateModelRepositoryTest("./repository/");
-//		pmRtest.setUp();
-//		pmRtest.testPopulateRepository();
+		// PopulateModelRepositoryTest pmRtest = new
+		// PopulateModelRepositoryTest("./repository/");
+		// pmRtest.setUp();
+		// pmRtest.testPopulateRepository();
 	}
 
 	@Test
@@ -194,13 +195,27 @@ public class AdapterServiceTest {
 		}
 	}
 
-	@Ignore
+	@Test
+	public void testSiemensGetBuildingsUCAdaptation() {
+		try {
+			// FIXME featureConfigurationId is ignored. Use correct one
+			// once Model Repository is available as service.
+			String featureConfigurationId = "3235";
+			service.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_Buildings.toString(),
+					featureConfigurationId);
+		} catch (EnactmentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Test
 	public void testMonitoringReconfigurationAtosUCAdaptationScenario2Enabling() {
 		try {
 			// FIXME featureConfigurationId is ignored. Use correct one
 			// once Model Repository is available as service.
-			String featureConfigurationId = "2669";
+			String featureConfigurationId = "3078";
 			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoringEnabling.toString(),
 					featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -210,13 +225,12 @@ public class AdapterServiceTest {
 		}
 	}
 
-	@Ignore
 	@Test
 	public void testMonitoringReconfigurationAtosUCAdaptationScenario1Timestamp() {
 		try {
 			// FIXME featureConfigurationId is ignored. Use correct one
 			// once Model Repository is available as service.
-			String featureConfigurationId = "2671";
+			String featureConfigurationId = "2774";
 			service.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoringTimeSlot.toString(),
 					featureConfigurationId);
 		} catch (EnactmentException e) {
