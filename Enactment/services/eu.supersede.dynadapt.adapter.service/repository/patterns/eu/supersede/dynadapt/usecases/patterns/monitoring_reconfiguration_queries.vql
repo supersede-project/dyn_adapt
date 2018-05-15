@@ -36,7 +36,7 @@ pattern monitors(client, supplier, generalization) {
 
 pattern httpConf(class) {
 	Class.name(class, name);
-	check(name.equals("HttpMonitor"));
+	check(name.equals("QoS"));
 }
 
 pattern twitterTimeSlot(slot) {

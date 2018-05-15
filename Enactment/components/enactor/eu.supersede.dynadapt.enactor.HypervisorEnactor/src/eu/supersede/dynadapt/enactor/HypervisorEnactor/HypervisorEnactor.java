@@ -121,7 +121,7 @@ public class HypervisorEnactor implements IEnactor{
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
+	public Model enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
 		//Compute model differences
 		log.debug("Comparing base and adapted models");
 		Map<DiffType,Set<Element>> diffElements = mc.computeDifferencesBetweenModels (adaptedModel, originalModel);
@@ -137,15 +137,19 @@ public class HypervisorEnactor implements IEnactor{
 		//Invoke enactment artifacts in Hypervisor Hook
 		log.debug("Enacting hypervisor scripts");
 		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts, demo);
+		
+		return adaptedModel;
 	}
 	
 	@Override
-	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
+	public Model enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {
 		//Enact adapted Model
 		List<Path> enactmentArfifacts = createEnactmentArtefactsForAdaptedModel(adaptedModel);
 		
 		//Invoke enactment artifacts in Hypervisor Hook
 		invokeEnactmentArtefactsInHypervisorHook(enactmentArfifacts, demo);
+		
+		return adaptedModel;
 	}
 	
 	private Properties loadHypervisorHookProperties() throws IOException{

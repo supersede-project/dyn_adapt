@@ -1,0 +1,17 @@
+aspect siemens_caching_sc2 {
+	feature FeatureModel.Service_caching.SC2,
+	advice S2_getBuildings_variant1,
+	pointcuts{	
+		pointcut GMDService{
+			pattern eu.supersede.dynadapt.usecases.patterns.GetCachingDataServices,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition replaceCachingServiceBySC2{
+			feature_enabled true,
+			adviceRole ADM.Joinpoint,
+			action replace
+		}
+	}
+}

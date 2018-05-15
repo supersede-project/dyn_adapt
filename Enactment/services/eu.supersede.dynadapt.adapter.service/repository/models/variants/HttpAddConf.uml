@@ -28,16 +28,19 @@
         <value xmi:type="uml:LiteralString" xmi:id="_D277Mr4dEeeTe87ONvFCCA" name="toolName" value="ApacheHttp"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_D277Nb4dEeeTe87ONvFCCA" definingFeature="_D27UJr4dEeeTe87ONvFCCA">
-        <value xmi:type="uml:LiteralString" xmi:id="_D277Nr4dEeeTe87ONvFCCA" name="kafkaTopic" value="http-kafka-topic"/>
+        <value xmi:type="uml:LiteralString" xmi:id="_D277Nr4dEeeTe87ONvFCCA" name="kafkaTopic" value="e70160af-ed3b-4ee2-8ef8-ab9fdb5e2dee"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_D277Ob4dEeeTe87ONvFCCA" definingFeature="_D27UJL4dEeeTe87ONvFCCA">
-        <value xmi:type="uml:LiteralInteger" xmi:id="_D277Or4dEeeTe87ONvFCCA" name="timeSlot" value="100"/>
+        <value xmi:type="uml:LiteralInteger" xmi:id="_D277Or4dEeeTe87ONvFCCA" name="timeSlot" value="5"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_D277O74dEeeTe87ONvFCCA" definingFeature="_D277P74dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_D277PL4dEeeTe87ONvFCCA" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
       </slot>
       <slot xmi:type="uml:Slot" xmi:id="_Hm9VkL4wEeeTe87ONvFCCA" definingFeature="_DWLc4L4wEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_Hm9Vkb4wEeeTe87ONvFCCA" name="method" value="GET"/>
+      </slot>
+      <slot xmi:type="uml:Slot" xmi:id="_wGNWoFHgEei5LP5vlyioXQ" definingFeature="_D27UIb4dEeeTe87ONvFCCA">
+        <value xmi:type="uml:LiteralString" xmi:id="_2iT3YFHgEei5LP5vlyioXQ" name="id" value=""/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_D277Pb4dEeeTe87ONvFCCA" name="QoS">

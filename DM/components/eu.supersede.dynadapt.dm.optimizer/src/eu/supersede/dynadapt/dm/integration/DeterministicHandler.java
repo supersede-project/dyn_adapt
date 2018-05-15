@@ -33,6 +33,7 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 public class DeterministicHandler extends AbstractHandler implements DecisionHandler {
 	private static final String MODELS_AUTHOR = "dmDeterministic";
 	
+	private boolean deterministic = true;
 	public DeterministicHandler(ModelSystem system, Alert alert) throws Exception {
 		
 		super(system, alert, MODELS_AUTHOR);
@@ -47,7 +48,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		case SenerconFGcat:
 			handleFG();
 			break;
-		case AtosMonitoring:
+		case AtosMonitoringEnabling:
 			handleMonitoring();
 			break;
 		default:
@@ -65,7 +66,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		List<ActionOnAttribute> attributes = alert.getActionAttributes();
 		
 		//Creating temporary folder for serialized models
-		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system, deterministic));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 		
@@ -80,7 +81,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			featureConfig = mm.loadFeatureConfiguration(temp + "/" + newFeatureConfig.getName() + ".yafc");
 		}
 		else{
-			String fcURI = obtainNameCurrentConfig(alert.getTenant());
+			String fcURI = obtainNameCurrentConfig(alert.getTenant(), deterministic);
 			newFeatureConfig = mm.loadFeatureConfiguration(fcURI);
 			featureConfig = new ModelManager().loadFC(fcURI);
 		}
@@ -187,7 +188,6 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 	private void handleMonitoring() throws Exception {
 		String applicationId = alert.getApplicationId();
 		ModelSystem tenant = alert.getTenant();
-
 		double action = 0;
 		for(Condition cond: alert.getConditions()){
 			if ("startMonitor".equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
@@ -196,13 +196,13 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			}
 		}
 		
-		if (action == 1d) {
+//		if (action == 1d) { // TODO no need for this case b/c now alerts for deterministic and non-deterministic are separated
 		
 			// First determine the default configuration depending on the tenant
 			String defaultConfig = "";
 			switch (tenant) {
-			case AtosMonitoring:
-				defaultConfig = "low_timeslot";
+			case AtosMonitoringEnabling:
+				defaultConfig = "monitoringconfiguration"; // enable monitor TODO rename to something meaningful
 				break;
 			default:
 				log.error("unsupported tenant: {}", tenant);
@@ -211,7 +211,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			
 			
 			//Creating temporary folder for storing models
-			Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+			Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system, deterministic));
 			Path temporaryFolder = Files.createTempDirectory(path, "");
 			String temp = temporaryFolder.toString();
 			
@@ -219,7 +219,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			List<String> selectedFeatureIds = new ArrayList<String>(Arrays.asList(defaultConfig.split("\\s+")));
 			selectedFeatureIds.removeAll(Arrays.asList(null,"")); //Remove empty entries
 			
-			String fmURI = obtainFMURI(alert.getTenant());
+			String fmURI = obtainFMURI(alert.getTenant(), deterministic);
 			FeatureModel fm = mm.loadFeatureModel(fmURI);
 			FeatureConfigurationBuilder featureConfigurationBuilder = new FeatureConfigurationBuilder();
 			FeatureConfiguration newFeatureConfig = featureConfigurationBuilder.buildFeatureConfiguration(fm, selectedFeatureIds);
@@ -271,10 +271,10 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			log.debug("DETERMINISTIC: {} : start monitor with configuration: {}", applicationId, defaultConfig);
 				
 		
-		}else {
+//		}else {
 			// received disable monitor action? stop monitor?
-			log.debug("DETERMINISTIC : {} stop monitor.", applicationId);
-		}
+//			log.debug("DETERMINISTIC : {} stop monitor.", applicationId);
+//		}
 		
 	}
 	

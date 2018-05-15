@@ -28,6 +28,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityFinalNode;
@@ -37,6 +38,8 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.internal.impl.OpaqueActionImpl;
 
@@ -67,6 +70,12 @@ class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 		List<ActivityEdge> incomingEdges = baseModelAction.getIncomings();
 		List<ActivityEdge> outgoingEdges = variantModelAction.getOutgoings();
 		
+		//Apply profiles
+		for (Profile p : usingVariantModel.getAppliedProfiles()) {
+			log.debug("Applying " + p.getName());
+			if (!inBaseModel.getAppliedProfiles().contains(p)) inBaseModel.applyProfile(p);
+		}
+		
 		//Starting from the already created incomingEdges in baseModel, appends the new
 		//variantModelAction and creates the new outgoingEdges from the variantModel
 		List<ActivityNode> finalNodes = appendElementToBaseModel(activity, variantModelAction, incomingEdges, outgoingEdges);
@@ -76,7 +85,7 @@ class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 			List<ActivityEdge> edges = ModelAdapterUtilities.setOutgoingEdges(activity, baseModelAction.getOutgoings(), (OpaqueAction) node);
 			for (ActivityEdge edge : baseModelAction.getOutgoings()) ModelAdapterUtilities.setIncomingEdges(edges, edge.getTarget());
 		}
-		
+						
 		log.debug("Destroying " + baseModelAction.getName());
 		baseModelAction.destroy();
 		
@@ -100,7 +109,12 @@ class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 			originAction = (OpaqueAction) activity.createOwnedNode(variantModelAction.getName(), variantModelAction.eClass());
 			log.debug("Appending " + originAction.getName());
 			ModelAdapterUtilities.setIncomingEdges(incomingEdges, originAction);
-
+			
+			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
+				log.debug("... with stereotype " + s.getName());
+				originAction.applyStereotype(s);
+			}
+			
 			//Recursive call for appending following actions
 			for (int i = 0; i < variantModelAction.getOutgoings().size(); ++i) {
 				ActivityEdge edge = variantModelAction.getOutgoings().get(i);

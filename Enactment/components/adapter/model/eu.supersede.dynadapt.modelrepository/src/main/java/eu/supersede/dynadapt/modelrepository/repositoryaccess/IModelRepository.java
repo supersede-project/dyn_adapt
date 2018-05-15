@@ -13,6 +13,8 @@ import cz.zcu.yafmt.model.fm.FeatureModel;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.BaseModel;
+import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
@@ -90,9 +92,12 @@ public interface IModelRepository {
 	
 	//Query Operations
 	Model getLastEnactedBaseModelForSystem (ModelSystem system) throws Exception;
+	String getIdOfLastBaseModelForSystem(ModelSystem system) throws Exception;
+	BaseModel getMetadataOfLastBaseModelForSystem(ModelSystem system) throws Exception;
 	Model getLastBaseModelForSystem(ModelSystem system) throws Exception;
 	FeatureConfiguration getLastEnactedFeatureConfigurationForSystem (ModelSystem system) throws Exception; 
 	FeatureConfiguration getLastComputedFeatureConfigurationForSystem (ModelSystem system) throws Exception; 
+	eu.supersede.integration.api.adaptation.types.FeatureConfiguration getMetadataOfLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception;
 	List<Aspect> getAspectModelsForSystem (ModelSystem system) throws Exception; 
 	List<Model> getVariantModelsForSystem (ModelSystem system) throws Exception;
 	List<Profile> getProfilesForSystem (ModelSystem system) throws Exception;

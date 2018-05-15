@@ -46,6 +46,7 @@ import eu.supersede.dynadapt.aom.dsl.parser.AdaptationParser;
 import eu.supersede.dynadapt.aom.dsl.parser.IAdaptationParser;
 import eu.supersede.dynadapt.dsl.aspect.Aspect;
 import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.integration.api.adaptation.types.BaseModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -462,6 +463,16 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	public Model getLastBaseModelForSystem(ModelSystem system) throws Exception {
 		return getLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, null, Model.class);
 	}
+	
+	@Override
+	public String getIdOfLastBaseModelForSystem(ModelSystem system) throws Exception {
+		return getIdOfLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, null, Model.class);
+	}
+	
+	@Override
+	public BaseModel getMetadataOfLastBaseModelForSystem(ModelSystem system) throws Exception {
+		return (BaseModel) getMetadataOfLatestModelOfTypeForSystemWithStatus (ModelType.BaseModel, system, null, Model.class);
+	}
 
 	@Override
 	public FeatureConfiguration getLastEnactedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
@@ -471,6 +482,11 @@ public class ModelRepository extends GenericModelRepository implements IModelRep
 	@Override
 	public FeatureConfiguration getLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception{
 		return getLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Computed, FeatureConfiguration.class);
+	}
+	
+	@Override
+	public eu.supersede.integration.api.adaptation.types.FeatureConfiguration getMetadataOfLastComputedFeatureConfigurationForSystem(ModelSystem system) throws Exception {
+		return (eu.supersede.integration.api.adaptation.types.FeatureConfiguration) getMetadataOfLatestModelOfTypeForSystemWithStatus (ModelType.FeatureConfiguration, system, Status.Computed, FeatureConfiguration.class);
 	}
 
 	@Override

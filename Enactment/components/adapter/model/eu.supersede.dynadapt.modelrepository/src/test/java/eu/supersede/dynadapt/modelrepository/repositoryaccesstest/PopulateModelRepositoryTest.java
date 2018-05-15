@@ -80,6 +80,10 @@ public class PopulateModelRepositoryTest {
 
 	//IFeatureConfigLAO fcLAO = null;
 	
+//	public PopulateModelRepositoryTest (String repositoryRelativePath){
+//		this.repositoryRelativePath = repositoryRelativePath;
+//	}
+	
 	public static void main (String[] args){
 		//Ignored, added to permit the creation of an executable Java for tests
 	}
@@ -123,96 +127,136 @@ public class PopulateModelRepositoryTest {
 //		populateRepository();
 		populateAtosModels();
 		populateSiemenesModels();
-		populateAtosMonitoringModels();
+		populateSiemens_UI_Buildings_Models();
+		populateSiemens_UI_MinMaxDates_Models();
+		populateSiemens_UI_Types_Models();
+		populateAtosMonitoringReconfigurationEnabligModels();
+		populateAtosMonitoringReconfigurationTimeslotModels();
 		populateFGReconfigurationModels();
 	}
 	
-	private void populateAtosMonitoringModels() throws Exception {
+	private void populateAtosMonitoringReconfigurationEnabligModels() throws Exception {
 		
 		String userdir = System.getProperty("user.dir");
 		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
 		
-		log.debug("Loading " + ModelSystem.AtosMonitoring.toString());
+		log.debug("Loading " + ModelSystem.AtosMonitoringEnabling.toString());
 		
-		//BaseModel
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModel.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "models/base", Model.class,
-			ModelType.BaseModel, BaseModel.class);
+				Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModelEnabling.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
+			
+			//Profile
+			prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Designed, "models/profiles", Profile.class,
+				ModelType.ProfileModel, ProfileModel.class);
+			
+			//Variant FIXME used for avoid null error
+			prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "HttpAddConf.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
 		
-		//Profile
-		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/profiles", Profile.class,
-			ModelType.ProfileModel, ProfileModel.class);
+			populateAtosMonitoringEnablingScenario(repositoryPath);
+
+		log.debug(ModelSystem.AtosMonitoringEnabling.toString() + " models loaded");
 		
-		//Variant FIXME used for avoid null error
+	}
+	
+	private void populateAtosMonitoringReconfigurationTimeslotModels() throws Exception {
+		
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		
+		log.debug("Loading " + ModelSystem.AtosMonitoringTimeSlot.toString());
+		
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/variants", "HttpAddConf.uml"), 
-			MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "models/variants", Model.class,
-			ModelType.VariantModel, VariantModel.class);
+				Paths.get(repositoryPath.toString(), "models/base", "HttpMonitoringSystemBaseModelTimeSlot.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
+			
+			//Profile
+			prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Designed, "models/profiles", Profile.class,
+				ModelType.ProfileModel, ProfileModel.class);
+			
+			//Variant FIXME used for avoid null error
+			prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "HttpAddConf.uml"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+		
+		populateAtosMonitoringTimeSlotScenario(repositoryPath);
+
+		log.debug(ModelSystem.AtosMonitoringTimeSlot.toString() + " models loaded");
+		
+	}
+
+	private void populateAtosMonitoringEnablingScenario(Path repositoryPath) throws Exception {
 
 		//Feature Model
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
-				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Designed, "features/models",
-				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-		
-		/*prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemEnableFeatureModel.yafm"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "features/models",
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Designed, "features/models",
 				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-*/
+
 		//Feature Configurations
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigLowTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
-				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
-				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.MonitoringReconfiguration, Status.Enacted, "features/configurations",
-				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-		
-		/*prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigDisabled.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Computed, "features/configurations",
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Enacted, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigEnabled.yafc"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Enacted, "features/configurations",
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Computed, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
-*/
+
 		//Patterns
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "monitoring_reconfiguration_queries.vql"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "enable_http_monitor.aspect"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringEnabling, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+	}
+
+	private void populateAtosMonitoringTimeSlotScenario(Path repositoryPath) throws Exception {
+
+		//Feature Model
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "HttpMonitoringSystemTimeslotFeatureModel.yafm"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+
+		//Feature Configurations
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigHighTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HttpMonitoringSystemConfigLowTimeslot.yafc"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		//Patterns
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "monitoring_reconfiguration_queries.vql"), 
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
 				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
 
 		//Adaptability models
 		prm.populateModel(
 				Paths.get(repositoryPath.toString(), "adaptability_models", "timeslot_http_monitor.aspect"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
+				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoringTimeSlot, Status.Designed, "adaptability_models", Aspect.class,
 				ModelType.AdaptabilityModel, AdaptabilityModel.class);
-		
-		/*prm.populateModel(
-				Paths.get(repositoryPath.toString(), "adaptability_models", "enable_http_monitor.aspect"), 
-				MONITORING_MODELS_AUTHOR, ModelSystem.AtosMonitoring, Status.Designed, "adaptability_models", Aspect.class,
-				ModelType.AdaptabilityModel, AdaptabilityModel.class);*/
-		
-
-		log.debug(ModelSystem.AtosMonitoring.toString() + " models loaded");
 		
 	}
 
@@ -346,6 +390,218 @@ public class PopulateModelRepositoryTest {
 
 		log.debug(ModelSystem.Atos_HSK.toString() + " models loaded");	
 	}
+	
+	private void populateSiemens_UI_Buildings_Models() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+
+		log.debug("Loading " + ModelSystem.Siemens_Buildings.toString());
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/base", "UI_getBuildings_base.uml"),
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
+		
+		//Profiles
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "model.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		//Variants
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "UI_getBuildings_variant1.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "UI_getBuildings_variant2.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-SiemensCachingBuildings.yafm"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
+		//Feature Configurations		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCachingBuildings-Strategy1.yafc"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCachingBuildings-Strategy2.yafc"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Computed, "features/configurations",
+			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		//Patterns
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "siemens_queries.vql"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+			org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_UI_buildings_SC1.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_UI_buildings_SC2.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Buildings, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		log.debug(ModelSystem.Siemens_Buildings.toString() + " models loaded");	
+	}
+	
+	private void populateSiemens_UI_MinMaxDates_Models() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+
+		log.debug("Loading " + ModelSystem.Siemens_GetMinMaxDates.toString());
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/base", "UI_getMinMaxDates_base.uml"),
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
+		
+		//Profiles
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "model.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		//Variants
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "UI_getMinMaxDates_variant1.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "UI_getMinMaxDates_variant2.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-SiemensCachingGetMinMaxDates.yafm"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
+		//Feature Configurations		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCachingGetMinMaxDates-Strategy1.yafc"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCachingGetMinMaxDates-Strategy2.yafc"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Computed, "features/configurations",
+			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		//Patterns
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "siemens_queries.vql"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+			org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_UI_minmaxdates_SC1.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_UI_minmaxdates_SC2.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_GetMinMaxDates, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		log.debug(ModelSystem.Siemens_GetMinMaxDates.toString() + " models loaded");	
+	}
+	
+	private void populateSiemens_UI_Types_Models() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+
+		log.debug("Loading " + ModelSystem.Siemens_Types.toString());
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/base", "UI_getTypes_base.uml"),
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
+		
+		//Profiles
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "adm.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "model.profile.uml"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+
+		//Variants	
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "UI_getTypes_variant1.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "UI_getTypes_variant2.uml"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-SiemensCachingTypes.yafm"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+		
+		//Feature Configurations		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCachingTypes-Strategy1.yafc"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCachingTypes-Strategy2.yafc"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Computed, "features/configurations",
+			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		//Patterns
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "siemens_queries.vql"), 
+			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+			org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_UI_types_SC1.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_UI_types_SC2.aspect"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens_Types, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		log.debug(ModelSystem.Siemens_Types.toString() + " models loaded");	
+	}
 
 	private void populateSiemenesModels() throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
@@ -353,11 +609,10 @@ public class PopulateModelRepositoryTest {
 
 		log.debug("Loading " + ModelSystem.Siemens.toString());
 		
-		//BaseModel
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/base", "BaseModel-S2.uml"),
-			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "models/base", Model.class,
-			ModelType.BaseModel, BaseModel.class);
+				Paths.get(repositoryPath.toString(), "models/base", "S2_getBuildings_base.uml"),
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "models/base", Model.class,
+				ModelType.BaseModel, BaseModel.class);
 		
 		//Profiles
 		prm.populateModel(
@@ -371,40 +626,31 @@ public class PopulateModelRepositoryTest {
 			ModelType.ProfileModel, ProfileModel.class);
 
 		//Variants
-		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "models/variants", "S2.uml"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
-			ModelType.VariantModel, VariantModel.class);
 		
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "models/variants", "S2_unavailable_variant1.uml"), 
+				Paths.get(repositoryPath.toString(), "models/variants", "S2_getBuildings_variant1.uml"), 
 				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
 				ModelType.VariantModel, VariantModel.class);
 		
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "models/variants", "S2_unavailable_variant2.uml"), 
+				Paths.get(repositoryPath.toString(), "models/variants", "S2_getBuildings_variant2.uml"), 
 				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "models/variants", Model.class,
 				ModelType.VariantModel, VariantModel.class);
 
-		//Feature Model
+		//Feature Model		
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-S1c_dm.yafm"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "features/models",
-			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
-
-		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-S1c.yafm"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "features/models",
-			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+				Paths.get(repositoryPath.toString(), "features/models", "FeatureModel-SiemensCaching.yafm"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 		
-		//Feature Configurations
+		//Feature Configurations		
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureModel-S1c_dm.yafc"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "features/configurations",
-			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+				Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCaching-Strategy1.yafc"), 
+				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureModel-S1c_dm_optimized.yafc"), 
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeatureConfiguration-SiemensCaching-Strategy2.yafc"), 
 			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Computed, "features/configurations",
 			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
@@ -416,17 +662,12 @@ public class PopulateModelRepositoryTest {
 
 		//Adaptability models
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2.aspect"), 
-			SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
-			ModelType.AdaptabilityModel, AdaptabilityModel.class);
-		
-		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2_SC2.aspect"), 
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_SC1.aspect"), 
 				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
 				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition2_SC3.aspect"), 
+				Paths.get(repositoryPath.toString(), "adaptability_models", "aspectComposition_Siemens_caching_SC2.aspect"), 
 				SIEMENS_MODELS_AUTHOR, ModelSystem.Siemens, Status.Designed, "adaptability_models", Aspect.class,
 				ModelType.AdaptabilityModel, AdaptabilityModel.class);
 		

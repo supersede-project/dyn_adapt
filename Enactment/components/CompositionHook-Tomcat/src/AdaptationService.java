@@ -454,7 +454,7 @@ public class AdaptationService implements SparkApplication {
 	                String new_Moml_file = runPtolemy.getExecutedMOMLModel();
 	                LoggingPtolemy.getLogger().info("New MOML model updated after the execution finished: " + new_Moml_file);
 	                //adaptations.replace(url, adaptations.get(url), new_Moml_file);
-	                adaptations.put(url, new_Moml_file);
+	                //adaptations.put(url, new_Moml_file);
 	                
 	            }
             }

@@ -6,3 +6,23 @@ pattern GetMeteorologicalDataServices(action : CallBehaviorAction) {
 	CallBehaviorAction.name(action, name);
 	check(name.equals("GetMteorologicalData"));
 }
+
+pattern GetCachingDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("GetBuildingsDataCaching"));
+}
+
+pattern UIBuildingsGetCachingDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("UIGetBuildingsCaching"));
+}
+
+pattern UITypesGetCachingDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("UIGetTypesCaching"));
+}
+
+pattern UIGetMinMaxDatesGetCachingDataServices(action : CallBehaviorAction) {
+	CallBehaviorAction.name(action, name);
+	check(name.equals("UIGetMinMaxDatesCaching"));
+}

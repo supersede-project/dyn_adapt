@@ -7,5 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.google.gson,
  org.apache.log4j,
  org.eclipse.emf.emfstore.common,
- org.junit
+ org.junit,
+ org.eclipse.uml2.uml
 Export-Package: eu.supersede.monitor.reconfiguration.executor
+Bundle-ClassPath: lib/feedback_library.jar,
+ .

@@ -33,7 +33,8 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class OptimizerHandler extends AbstractHandler implements DecisionHandler {
 	private static final String MODELS_AUTHOR = "dmOptimizer";
-	
+
+	private boolean deterministic = false;
 	public OptimizerHandler(ModelSystem system, Alert alert) throws Exception{
 		
 		super(system, alert, MODELS_AUTHOR); 
@@ -53,19 +54,35 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 					break;
 				}
 			}
-		}else if(system == ModelSystem.AtosMonitoring) {
+		}else if(system == ModelSystem.AtosMonitoringTimeSlot) {
+			String alertAttr = "response_time";
 			for(Condition cond: alert.getConditions()){
-				switch (cond.getIdMonitoredData().getNameQualityMonitored()){
-				case "timeSlot":
-					Parameters.ALERT_ATTRIBUTE = "timeSlot";
-					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
-					break;
-				case "responseTime": 
-					Parameters.ALERT_ATTRIBUTE = "responseTime";
-					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())){
+//				case "timeSlot":
+//					Parameters.ALERT_ATTRIBUTE = "timeSlot";
+//					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+//					break;
+//				case "responseTime": 
+					// TODO here I'm changing the name of the quality attribute to be compatible with the name in the
+					// feature model. May be change the name in the feature model to avoid such hacking?
+					cond.getIdMonitoredData().setNameQualityMonitored("responseTime");
 					break;
 				}
 			}
+		}else if(system == ModelSystem.AtosMonitoringEnabling) {
+			// nothing to do here
+		}else if (system == ModelSystem.Siemens_Buildings ||
+				system == ModelSystem.Siemens_Types ||
+				system == ModelSystem.Siemens_GetMinMaxDates) {
+			// TODO nothing to do here, all should be handled later
+//			String alertAttr = "response_time";
+//			for (Condition cond: alert.getConditions()) {
+//				if (alertAttr.equalsIgnoreCase(cond.getIdMonitoredData().getNameQualityMonitored())) {
+//					Parameters.ALERT_ATTRIBUTE = alertAttr;
+//					Parameters.CONSTRAINT_THRESHOLD = cond.getValue();
+//					break;
+//				}
+//			}
 		}
 	}
 	
@@ -78,7 +95,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		String fcURI = "";
 		
 		//Creating temporary folder for serialized models
-		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system));
+		Path path = Paths.get(System.getProperty("user.dir"), obtainTemporaryURI(system, deterministic));
 		Path temporaryFolder = Files.createTempDirectory(path, "");
 		String temp = temporaryFolder.toString();
 
@@ -98,7 +115,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				fm = featuremodels.get(0);//the only one?				
 			}
 			else{
-				fmURI = obtainFMURI(alert.getTenant());
+				fmURI = obtainFMURI(alert.getTenant(), deterministic);
 				fm = mm.loadFeatureModel(fmURI);
 			}
 			
@@ -111,8 +128,8 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		}
 		else
 		{
-			fmURI = obtainFMURI(alert.getTenant());
-			fcURI = obtainNameCurrentConfig(alert.getTenant());
+			fmURI = obtainFMURI(alert.getTenant(), deterministic);
+			fcURI = obtainNameCurrentConfig(alert.getTenant(), deterministic);
 			fm = mm.loadFeatureModel(fmURI);
 			featureConfig = mm.loadFeatureConfiguration(fcURI);
 		}

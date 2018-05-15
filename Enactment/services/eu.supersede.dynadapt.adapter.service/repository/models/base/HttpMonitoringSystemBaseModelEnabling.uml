@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_yYG-gJepEeet2rpbr-vMrQ" name="HttpMonitoring">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_zDH3EFIJEei3Gvkyoc86rA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_EicoAJeqEeet2rpbr-vMrQ" name="MonitoringSystemConfiguration">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_EicoAZeqEeet2rpbr-vMrQ" name="timeStamp">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
@@ -61,27 +64,6 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zINJQJeqEeet2rpbr-vMrQ" name="HttpMonitorConfiguration" classifier="_KOjPMJeqEeet2rpbr-vMrQ">
-    <slot xmi:type="uml:Slot" xmi:id="_MGhA8JerEeet2rpbr-vMrQ" definingFeature="_Eid2IpeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralString" xmi:id="_XEJMIJerEeet2rpbr-vMrQ" name="toolName" value="ApacheHttp"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_v7s7kJerEeet2rpbr-vMrQ" definingFeature="_Eid2JpeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralString" xmi:id="_zutTIJerEeet2rpbr-vMrQ" name="kafkaTopic" value="http-kafka-topic"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_1pY3IJerEeet2rpbr-vMrQ" definingFeature="_Eid2IZeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralString" xmi:id="_4WjA8JerEeet2rpbr-vMrQ" name="id" value="1"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_6NwaMJerEeet2rpbr-vMrQ" definingFeature="_Eid2JJeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralInteger" xmi:id="_9DGPoJerEeet2rpbr-vMrQ" name="timeSlot" value="100"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_-kS8oJerEeet2rpbr-vMrQ" definingFeature="_V8HCgJeqEeet2rpbr-vMrQ">
-      <value xmi:type="uml:LiteralString" xmi:id="_BU3m0JesEeet2rpbr-vMrQ" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
-    </slot>
-    <slot xmi:type="uml:Slot" xmi:id="_qNWXQL4vEeeTe87ONvFCCA" definingFeature="_3Nl6cL4vEeeTe87ONvFCCA">
-      <value xmi:type="uml:LiteralString" xmi:id="_qNWXQb4vEeeTe87ONvFCCA" name="method" value="GET"/>
-    </slot>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Realization" xmi:id="_DeyWIJerEeet2rpbr-vMrQ" client="_zINJQJeqEeet2rpbr-vMrQ" supplier="_KOjPMJeqEeet2rpbr-vMrQ"/>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8AJ20JepEeet2rpbr-vMrQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8AOvUJepEeet2rpbr-vMrQ" source="PapyrusVersion">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8AOvUZepEeet2rpbr-vMrQ" key="Version" value="0.1.1"/>

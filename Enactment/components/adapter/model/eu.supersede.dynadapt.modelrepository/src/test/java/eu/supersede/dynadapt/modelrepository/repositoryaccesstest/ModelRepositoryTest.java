@@ -180,7 +180,7 @@ public class ModelRepositoryTest {
 	
 	@Test
 	public void testGetLastEnactedFeatureConfigurationForSystem() throws Exception {
-		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.SenerconFG);
+		FeatureConfiguration fc = mr.getLastEnactedFeatureConfigurationForSystem (ModelSystem.SenerconFGcat);
 		Assert.assertNotNull(fc);
 	}
 	

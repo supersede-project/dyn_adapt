@@ -51,12 +51,12 @@ public class ConstrainedSingleObjectiveFitnessFunctionSiemens extends AbstractFi
 		
 		Map<String, Double> aggregateValues = new HashMap<String, Double>();
 		
-		// create and initialize
-		String priceAttribute = "price";
-		aggregateValues.put(priceAttribute, 0d);
-		
-		String availabilityAttribute = "availability";
-		aggregateValues.put(availabilityAttribute, 1d);
+//		// create and initialize
+//		String priceAttribute = "price";
+//		aggregateValues.put(priceAttribute, 0d);
+//		
+//		String availabilityAttribute = "availability";
+//		aggregateValues.put(availabilityAttribute, 1d);
 		
 		String responseTimeAttribute = "response_time";
 		aggregateValues.put(responseTimeAttribute, 0d);
@@ -66,22 +66,22 @@ public class ConstrainedSingleObjectiveFitnessFunctionSiemens extends AbstractFi
 				// no quality attributes for some features
 				continue;
 			}
-			double price = Double.parseDouble(attributes.getProperty(priceAttribute));
-			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(priceAttribute);
-			double minimum = costAttributeMetadata.getMinimumValue();
-			double maximum = costAttributeMetadata.getMaximumValue();
-			double weight = costAttributeMetadata.getWeight();
-			// normalize to a value in [0, 1]
-//			price = price / (maximum - minimum);
-			aggregateValues.put(priceAttribute, aggregateValues.get(priceAttribute) + price * weight);
-			
-			double availability = Double.parseDouble(attributes.getProperty(availabilityAttribute)); // already in [0,1]
-			availability = 1d - availability; // convert to minimization
-			weight = featureAttributeMetadata.get(availabilityAttribute).getWeight();
-			aggregateValues.put(availabilityAttribute, aggregateValues.get(availabilityAttribute) * availability * weight);
+//			double price = Double.parseDouble(attributes.getProperty(priceAttribute));
+//			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(priceAttribute);
+//			double minimum = costAttributeMetadata.getMinimumValue();
+//			double maximum = costAttributeMetadata.getMaximumValue();
+//			double weight = costAttributeMetadata.getWeight();
+//			// normalize to a value in [0, 1]
+////			price = price / (maximum - minimum);
+//			aggregateValues.put(priceAttribute, aggregateValues.get(priceAttribute) + price * weight);
+//			
+//			double availability = Double.parseDouble(attributes.getProperty(availabilityAttribute)); // already in [0,1]
+//			availability = 1d - availability; // convert to minimization
+//			weight = featureAttributeMetadata.get(availabilityAttribute).getWeight();
+//			aggregateValues.put(availabilityAttribute, aggregateValues.get(availabilityAttribute) * availability * weight);
 			
 			double responseTime = Double.parseDouble(attributes.getProperty(responseTimeAttribute));
-			weight = featureAttributeMetadata.get(responseTimeAttribute).getWeight();
+			double weight = featureAttributeMetadata.get(responseTimeAttribute).getWeight();
 			aggregateValues.put(responseTimeAttribute, aggregateValues.get(responseTimeAttribute) + responseTime * weight);
 		}
 		

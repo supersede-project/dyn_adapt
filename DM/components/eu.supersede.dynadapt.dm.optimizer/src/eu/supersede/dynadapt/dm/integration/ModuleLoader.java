@@ -97,10 +97,11 @@ public class ModuleLoader {
 		
 		// According to the type of alert (if alert contains actions, it is deterministic): 
 		boolean deterministicAlert = false;	
-		if (alert.getActionAttributes()!=null || alert.getActionFeatures()!=null){
+		if (system == ModelSystem.AtosMonitoringEnabling) {
 			deterministicAlert = true;
-		}
-		else if(alert.getConditions()==null && alert.getAttachedValues()!=null){
+		} else if (alert.getActionAttributes()!=null || alert.getActionFeatures()!=null){
+			deterministicAlert = true;
+		} else if(alert.getConditions()==null && alert.getAttachedValues()!=null){
 			deterministicAlert = true;
 		}
 				

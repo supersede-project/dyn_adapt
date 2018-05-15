@@ -18,11 +18,14 @@ public class EnactorFactory {
 		case Atos_HSK:
 			return new HypervisorEnactor();
 		case Siemens:
+		case Siemens_Buildings:
+		case Siemens_GetMinMaxDates:
+		case Siemens_Types:
 			return new ServiceCompositionEnactor();
 		case SiemensMonitoring:
 			return new MonitoringEnactor();
-		case AtosMonitoring:
-			return new MonitoringEnactor();
+		case AtosMonitoringEnabling:
+		case AtosMonitoringTimeSlot:
 		case MonitoringReconfiguration:
 			return new MonitoringEnactor();
 		case AtosFG:

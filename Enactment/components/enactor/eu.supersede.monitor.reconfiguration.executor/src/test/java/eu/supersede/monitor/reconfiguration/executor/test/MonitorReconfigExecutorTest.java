@@ -51,7 +51,7 @@ public class MonitorReconfigExecutorTest {
 		try {
 			JsonObject jsonObject = getJSON("scenario1.json");
 			IMonitorReconfigExecutor executor = new MonitorReconfigExecutor();
-			executor.executeMonitorReconfiguration(jsonObject);
+			executor.executeMonitorReconfiguration(jsonObject, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}  
@@ -61,7 +61,7 @@ public class MonitorReconfigExecutorTest {
 		try {
 			JsonObject jsonObject = getJSON("scenario2.json");
 			IMonitorReconfigExecutor executor = new MonitorReconfigExecutor();
-			executor.executeMonitorReconfiguration(jsonObject);
+			executor.executeMonitorReconfiguration(jsonObject, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
