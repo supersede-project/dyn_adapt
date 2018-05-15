@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.supersede.feedbackgathering.reconfiguration.enactor</groupId>
+  <artifactId>eu.supersede.feedbackgathering.reconfiguration.enactor</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>FGReconfigurationEnactor</name>
+  <url>http://www.supersede.eu</url>
+  <description>The feedback gathering (FG) enactor for runtime reconfiguration</description>
+  <packaging>jar</packaging>
+  
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+    <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<java.version>1.8</java.version>
+  </properties>
+  
+    
+  <repositories>
+    <repository>
+        <id>spring-releases</id>
+        <url>https://repo.spring.io/libs-release</url>
+    </repository>
+    <repository>
+        <id>central</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/libs-release</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>snapshots</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/libs-snapshot</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    <pluginRepository>
+        <id>central</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/plugins-release</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+        <id>snapshots</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/plugins-snapshot</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  <dependencies>
+ 	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20160810</version>
+	    <!-- scope>system</scope>
+	    <systemPath>${project.basedir}/lib/json.jar</systemPath -->
+	</dependency>
+     <!-- SUPERSEDE Integration Framework -->
+    <dependency>
+    	<groupId>eu.supersede.if</groupId>
+    	<artifactId>eu.supersede.if.api</artifactId>
+    	<version>0.4.0-SNAPSHOT</version>
+		<exclusions>
+              <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+              </exclusion>
+        </exclusions>
+     </dependency>
+     <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.12</version>
+     </dependency>
+     <dependency>
+    	<groupId>javax.jms</groupId>
+    	<artifactId>jms</artifactId>
+    	<version>1.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.apache.geronimo.specs.wso2</groupId>
+    	<artifactId>geronimo-jms_1.1_spec</artifactId>
+    	<version>1.1.0.wso2v1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.andes.wso2</groupId>
+    	<artifactId>andes-client</artifactId>
+    	<version>3.1.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.carbon</groupId>
+    	<artifactId>org.wso2.carbon.logging</artifactId>
+   		<version>4.4.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.securevault</groupId>
+    	<artifactId>org.wso2.securevault</artifactId>
+    	<version>1.0.0-wso2v2</version>
+     </dependency>
+     
+     <dependency>
+        <groupId>com.google.inject.extensions</groupId>
+        <artifactId>guice-multibindings</artifactId>
+        <version>3.0</version>
+     </dependency>
+
+     <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <version>2.2.0</version>
+        <scope>test</scope>
+     </dependency>
+     
+  </dependencies>
+</project>
