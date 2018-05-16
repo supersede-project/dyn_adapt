@@ -1,6 +1,7 @@
 package eu.supersede.dynadapt.modelrepository.manager.service;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,7 @@ public class ModelRepositoryControllerTest {
 				.andExpect(status().isCreated());
     }*/
     
+    @Ignore
     @Test
     public void listModels() throws Exception {
     	mockMvc.perform(get("/models/AdaptabilityModel"))
