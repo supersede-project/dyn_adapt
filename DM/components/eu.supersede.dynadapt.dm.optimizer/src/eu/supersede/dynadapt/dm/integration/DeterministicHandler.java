@@ -72,7 +72,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		
 		FeatureConfiguration newFeatureConfig, featureConfig ;
 		//Change this variable if you should call to the model repository
-		boolean test = true;
+		boolean test = false;
 		if (!test){
 			// Load currently enacted Feature Configuration
 			newFeatureConfig = mr.getLastEnactedFeatureConfigurationForSystem(ModelSystem.SenerconFGcat);

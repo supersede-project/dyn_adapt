@@ -196,6 +196,10 @@ public abstract class AbstractHandler {
 			break;
 		case Senercon:
 		case SenerconFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SENERCON;
+			uri = "input/senerconFG/FeedbackGatheringConfigV6.yafm";
+			break;
 		case SiemensFG:
 		case AtosFG:
 			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
@@ -245,6 +249,10 @@ public abstract class AbstractHandler {
 			break;	
 		case Senercon:
 		case SenerconFG:
+			Parameters.APPLICATION = Parameters.Applications.FEEDBACK_GATHERING;
+			Parameters.TENANT = Parameters.Tenants.SENERCON;
+			uri = "input/senerconFG/FeedbackGatheringConfigV6.yafc";
+			break;
 		case SiemensFG:
 		case AtosFG:
 			uri = "input/senerconFG/FeedbackGatheringConfigV5.yafc";

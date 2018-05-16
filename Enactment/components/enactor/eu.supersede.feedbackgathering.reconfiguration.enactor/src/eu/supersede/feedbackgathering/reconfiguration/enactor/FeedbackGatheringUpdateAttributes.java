@@ -2,8 +2,6 @@ package eu.supersede.feedbackgathering.reconfiguration.enactor;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,13 +13,21 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.junit.Assert;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.json.JSONArray;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
 import eu.supersede.dynadapt.enactor.IEnactor;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.compare.ModelCompare;
 import eu.supersede.feedbackgathering.reconfiguration.util.ReconfigurationCommon;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+import eu.supersede.integration.api.feedback.orchestrator.types.MechanismType;
+import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
+import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 import eu.supersede.reconfiguration.updateAttributes.Main;
 
 public class FeedbackGatheringUpdateAttributes implements IEnactor{
@@ -38,12 +44,22 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 	//String hypervisor_account_passwd;
 	String supersede_platform_host;
 	
-	boolean remoteConnection;
+	String server;
 	boolean simulated_execution;
 	
-	public FeedbackGatheringUpdateAttributes() throws IOException{
+	private ResourceSet resourceSet;
+	
+	//Orchestrator for the FG tool
+	private FeedbackOrchestratorProxy<?, ?> proxy;
+	//private String token;
+	private long idApplication;
+	
+	public FeedbackGatheringUpdateAttributes(ModelSystem system) throws Exception{
+		
+		resourceSet = new ResourceSetImpl();
+		
 		// Properties
-		/*feedbackProperties = loadProperties();
+		feedbackProperties = loadProperties();
 		
 		// TODO Take passwords and all configurations for secure place		
 		supersede_account_user = feedbackProperties.getProperty("supersede_account_user");
@@ -52,14 +68,19 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 		//hypervisor_account_passwd = hypervisorProperties.getProperty("hypervisor_account_passwd");
 		supersede_platform_host = feedbackProperties.getProperty("supersede_platform_host");
 				
-		remoteConnection = Boolean.valueOf(feedbackProperties.getProperty("remote_connection"));
-		simulated_execution = Boolean.valueOf(feedbackProperties.getProperty("simulated_execution"));*/
+		server = feedbackProperties.getProperty("server");
+		simulated_execution = Boolean.valueOf(feedbackProperties.getProperty("simulated_execution"));
 		
 		//ModelManager
 		mm = new ModelManager(false);
 				
 		//Create Temporary directory to store models 
 		temp = ReconfigurationCommon.createTemporaryDirectory();
+		
+		//Instantiation of Orchestrator
+		proxy = new FeedbackOrchestratorProxy<Object, Object>(supersede_account_user, supersede_account_passwd);
+		//token = "";
+		idApplication = ReconfigurationCommon.getIdApplication(system, server);
 		
 		//Shutdown hook to clean up temporary folder
 		Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -79,18 +100,16 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 		});	
 	}
 	
-	/*private Path createTemporaryDirectory() throws IOException{
-		String userdir = System.getProperty("user.dir");
-		Path path = FileSystems.getDefault().getPath(userdir);
-		Path temp = Files.createTempDirectory(path, "");
-		Assert.assertNotNull("There was a problem creating a temporary directory", temp);
-		return temp;
-	}*/
-	
 	private Properties loadProperties() throws IOException{
 		final Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("feedback.properties"));
 		return properties;
+	}
+
+	protected void saveFC(cz.zcu.yafmt.model.fc.FeatureConfiguration fc, URI fcURI) throws IOException{
+		Resource resource = resourceSet.createResource(fcURI);
+        resource.getContents().add(fc);
+        resource.save(null);
 	}
 	
 	/**
@@ -111,20 +130,72 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 	@Override
 	public void enactFeatureConfiguration(FeatureConfiguration newFeatureConfig, boolean demo) throws Exception{
 		
-		//Enact adapted Model
-		log.debug("Generating JSON for update attributes: ");
-		//String absoluteModelPath = "/workspaceSTS/monitor_feedback_reconfig/feedback_reconf/ModelSystem/FC/FeedbackGatheringConfigV5_optimized.yafc";
-		//String absolutetargetFolderPath = "/workspaceSTS/monitor_feedback_reconfig/feedback_reconf/ModelSystem/json/";
+		String temporaryFile = "";
+		long idParam = 0;
+		long idParentParam = 0;
+		int order = 0;
 		
-		// Store new FC model in temporary folder
-		String temporaryFolder = temp.toString();
-		PrintWriter out = new PrintWriter(temporaryFolder + newFeatureConfig.getName() + ".yafc");
-		out.print(newFeatureConfig.toString());
-
+		//Enact adapted Model
+		log.debug("Generating JSON for configuration profil: ");
+		
+		// Save new FC model in temporary folder
+		temporaryFile = temp + "/" + newFeatureConfig.getName() + ".yafc";
+		saveFC(newFeatureConfig, URI.createFileURI(temporaryFile));
+		
 		// Generates the Json File 
-		updateFeatureAttributesFC2JsonInFolder(temporaryFolder + newFeatureConfig.getName() + ".yafc", temporaryFolder);
+		updateFeatureAttributesFC2JsonInFolder(temporaryFile, temp.toString());		
+		
+		//Read the Json file
+		JSONArray oArr = ReconfigurationCommon.readJsonArray(temp.toString() + "/", newFeatureConfig.getName() + ".json");
 		
 		//Invoke Orchestrator for reconfiguration
+		Mechanism objMechanism = null;
+		List<Mechanism> mechanisms = proxy.getMechanismsOfApplication(idApplication);
+		for(Mechanism m : mechanisms){
+			if(m.getType().equals(MechanismType.CATEGORY_TYPE)){
+				objMechanism = m;
+				break;
+			}
+		}
 		
+		if(objMechanism!=null){
+			//if they have the same id
+			if(oArr.length()>0){
+				if(oArr.getJSONObject(0).getString("id").equals(Long.toString(objMechanism.getId()))){
+					// Read the mechanisms to update
+					List<Parameter> lstOptions = null;
+					for(Parameter p : objMechanism.getParameters()){
+						if(p.getKey().equals("options")){
+							idParentParam = p.getId();
+							lstOptions = p.getParameters();
+							break;
+						}
+					}
+					if(lstOptions!=null){
+						//Get the category options from JSON
+						JSONArray arr = oArr.getJSONObject(0).getJSONArray("parameters").getJSONObject(0)
+								.getJSONArray("value");
+						//For each category in the array
+						for (int i = 0; i < arr.length(); i++)
+						{
+							//Search the category option in the mechanism parameters
+							for(Parameter p : lstOptions){
+								//if they are the same category option
+								if(p.getKey().equals(arr.getJSONObject(i).getString("key"))){
+									idParam = p.getId();
+									order = Integer.parseInt(arr.getJSONObject(i).get("order").toString());
+									break;
+								}
+							}
+							if(order != 0){
+								//Invoke Orchestrator for reconfiguration
+								proxy.reorderParameterOfParameter(idApplication, idParentParam, idParam, order);
+								order = 0;
+							}
+						}
+					}
+				}
+			}			
+		}
 	}
 }

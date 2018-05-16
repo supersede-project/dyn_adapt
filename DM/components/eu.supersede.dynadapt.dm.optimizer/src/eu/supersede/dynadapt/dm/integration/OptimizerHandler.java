@@ -105,7 +105,7 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		cz.zcu.yafmt.model.fc.FeatureConfiguration featureConfig ;
 		
 		//Change this variable if you should call to the model repository
-		boolean test = true;
+		boolean test = false;
 		if (!test){
 			featureConfig = mr.getLastEnactedFeatureConfigurationForSystem(system);
 			log.info("Currently enacted feature configuration " + featureConfig.getName() + " downloaded from repository");
