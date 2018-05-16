@@ -11,7 +11,6 @@ import java.util.Properties;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Assert;
-import org.springframework.context.ApplicationContextException;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class ReconfigurationCommon {
@@ -83,7 +82,7 @@ public class ReconfigurationCommon {
 				return new JSONObject(sb.toString());
 		    }
 		    else{
-		    	throw new ApplicationContextException("Json file is empty!");
+		    	throw new Exception("Json file is empty!");
 		    }
 		} finally {
 		    br.close();
@@ -105,7 +104,7 @@ public class ReconfigurationCommon {
 				return new JSONArray(sb.toString());
 		    }
 		    else{
-		    	throw new ApplicationContextException("Json file is empty!");
+		    	throw new Exception("Json file is empty!");
 		    }
 		} finally {
 		    br.close();

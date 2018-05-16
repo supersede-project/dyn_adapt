@@ -5,9 +5,9 @@ Bundle-SymbolicName: eu.supersede.feedbackgathering.reconfiguration.enactor
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: eu.supersede.feedbackgathering.reconfiguration.enactor.Activator
 Bundle-Vendor: Eclipse Modeling Project
-Require-Bundle: org.eclipse.core.runtime, 
+Require-Bundle: org.eclipse.core.runtime,
  cz.zcu.yafmt.model,
- org.eclipse.uml2.uml, 
+ org.eclipse.uml2.uml,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ocl,
@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit;bundle-version="4.12.0",
  eu.supersede.dynadapt.model,
  eu.supersede.dynadapt.enactor.Enactor,
- eu.supersede.dynadapt.modelrepository
+ eu.supersede.dynadapt.modelrepository,
+ org.json;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

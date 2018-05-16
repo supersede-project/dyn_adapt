@@ -12,7 +12,7 @@ import eu.supersede.monitor.reconfiguration.enactor.MonitoringEnactor;
 
 
 public class EnactorFactory {
-	public static IEnactor getEnactorForSystem(ModelSystem system) throws IOException{
+	public static IEnactor getEnactorForSystem(ModelSystem system) throws Exception{
 		switch (system){
 		case Atos:
 		case Atos_HSK:
@@ -31,11 +31,11 @@ public class EnactorFactory {
 		case AtosFG:
 		case SiemensFG:
 		case SenerconFG:
-			return new FeedbackGatheringConfigurationProfile();
+			return new FeedbackGatheringConfigurationProfile(system);
 		case AtosFGcat:
 		case SiemensFGcat:
 		case SenerconFGcat:
-			return new FeedbackGatheringUpdateAttributes();
+			return new FeedbackGatheringUpdateAttributes(system);
 		default:
 			throw new UnsupportedOperationException();
 		}
