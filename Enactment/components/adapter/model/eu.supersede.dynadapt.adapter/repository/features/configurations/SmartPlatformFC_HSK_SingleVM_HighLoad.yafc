@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_LowLoad" version="1.0.0">
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="SmartPlatformFC_HSK_HighLoad" version="1.0.0">
   <featureModel href="../models/SmartPlatformFM_HSK.yafm#/"/>
   <featureModelCopy name="SmartPlatformFM" version="1.0.0" description="">
     <rootFeature id="smartplatform" name="SmartPlatform" description="" lower="1" upper="1">
