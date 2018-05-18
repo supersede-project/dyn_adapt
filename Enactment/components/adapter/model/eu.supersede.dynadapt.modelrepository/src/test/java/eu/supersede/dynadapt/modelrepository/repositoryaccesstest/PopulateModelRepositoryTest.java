@@ -691,7 +691,7 @@ public class PopulateModelRepositoryTest {
 
 		//Feature Model
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/models", "FeedbackGatheringConfigV5.yafm"), 
+			Paths.get(repositoryPath.toString(), "features/models", "FeedbackGatheringConfigV6.yafm"), 
 			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Designed, "features/models",
 			cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
 		
@@ -702,7 +702,7 @@ public class PopulateModelRepositoryTest {
 		
 		//Feature Configurations
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV5.yafc"), 
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV6.yafc"), 
 			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Enacted, "features/configurations",
 			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
