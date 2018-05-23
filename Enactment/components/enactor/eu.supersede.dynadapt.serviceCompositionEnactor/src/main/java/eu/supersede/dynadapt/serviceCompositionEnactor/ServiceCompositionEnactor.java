@@ -460,11 +460,16 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 	}
 	
 	public Model enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
-		log.debug("Enacting model: " + adaptedModel.getName());
-		this.umlEnactingModel=adaptedModel;
-		this.injectUMLModelsForValidation();
-		this.getEnactmentCode();
-		return adaptedModel;
+		try {
+			log.debug("Enacting model: " + adaptedModel.getName());
+			this.umlEnactingModel = adaptedModel;
+			this.injectUMLModelsForValidation();
+			this.getEnactmentCode();
+			return adaptedModel;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	public Model enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
