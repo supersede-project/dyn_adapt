@@ -14,15 +14,15 @@ pattern GetCachingDataServices(action : CallBehaviorAction) {
 
 pattern UIBuildingsGetCachingDataServices(action : CallBehaviorAction) {
 	CallBehaviorAction.name(action, name);
-	check(name.equals("UIGetBuildingsCaching"));
+	check(name.equals("UIGetBuildingsCachingAction"));
 }
 
 pattern UITypesGetCachingDataServices(action : CallBehaviorAction) {
 	CallBehaviorAction.name(action, name);
-	check(name.equals("UIGetTypesCaching"));
+	check(name.equals("UIGetTypesCachingAction"));
 }
 
 pattern UIGetMinMaxDatesGetCachingDataServices(action : CallBehaviorAction) {
 	CallBehaviorAction.name(action, name);
-	check(name.equals("UIGetMinMaxDatesCaching"));
+	check(name.equals("UIGetMinMaxDatesCachingAction"));
 }
