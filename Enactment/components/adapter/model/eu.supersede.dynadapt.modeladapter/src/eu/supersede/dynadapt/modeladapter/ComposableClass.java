@@ -59,7 +59,7 @@ import eu.supersede.dynadapt.model.query.ModelQuery;
 
 import org.eclipse.uml2.uml.Package;
 
-class ComposableClass extends ComposableImpl implements Composable {
+public class ComposableClass extends ComposableImpl implements Composable {
 
 	public ComposableClass(IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints) {
 		super(modelQuery, baseJointpoints);

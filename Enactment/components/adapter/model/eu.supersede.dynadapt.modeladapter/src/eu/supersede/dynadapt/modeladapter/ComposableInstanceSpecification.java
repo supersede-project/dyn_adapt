@@ -54,7 +54,7 @@ import eu.supersede.dynadapt.modeladapter.queries.util.InstanceOfInstanceSpecifi
 //import eu.supersede.dynadapt.model.query.test.InstanceOfInstanceSpecificationLinkMatcher;
 //import eu.supersede.dynadapt.model.query.test.util.InstanceOfInstanceSpecificationLinkQuerySpecification;
 
-class ComposableInstanceSpecification extends ComposableImpl implements Composable{
+public class ComposableInstanceSpecification extends ComposableImpl implements Composable{
 	private final static Logger log = LogManager.getLogger(ComposableInstanceSpecification.class);
 	
 	public ComposableInstanceSpecification (IModelQuery modelQuery, HashMap<Stereotype, List<Element>> baseJointpoints){

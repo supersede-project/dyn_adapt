@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 import eu.supersede.dynadapt.model.query.IModelQuery;
 
-class ComposableFactory {
+public class ComposableFactory {
 	private final static String INSTANCE = "InstanceSpecificationImpl";
 	private final static String CLASS = "ClassImpl";
 	private final static String OPAQUE_ACTION = "OpaqueActionImpl";

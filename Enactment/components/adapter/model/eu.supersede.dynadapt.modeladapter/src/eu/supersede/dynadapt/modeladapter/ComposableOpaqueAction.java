@@ -34,16 +34,19 @@ import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.internal.impl.OpaqueActionImpl;
 
-class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
+public class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 	
 	private final static Logger log = LogManager.getLogger(ComposableOpaqueAction.class);
 	
@@ -113,6 +116,12 @@ class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 			for (Stereotype s : variantModelAction.getAppliedStereotypes()) {
 				log.debug("... with stereotype " + s.getName());
 				originAction.applyStereotype(s);
+				if (s.getName().equals("Service")) {
+					originAction.setValue(s, "endpoint", variantModelAction.getValue(s, "endpoint"));
+				}
+				else if (s.getName().equals("Callback")) {
+					originAction.setValue(s, "function", variantModelAction.getValue(s, "function"));
+				}
 			}
 			
 			//Recursive call for appending following actions
@@ -131,4 +140,5 @@ class ComposableOpaqueAction extends OpaqueActionImpl implements Composable{
 		}
 		return finalNodes;
 	}
+
 }

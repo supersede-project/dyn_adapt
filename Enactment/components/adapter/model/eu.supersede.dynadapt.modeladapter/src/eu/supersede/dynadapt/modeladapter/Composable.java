@@ -26,7 +26,7 @@ package eu.supersede.dynadapt.modeladapter;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 
-interface Composable{
+public interface Composable{
 	void applyAddComposition(Model inBaseModel, Element jointpointBaseModelElement,
 			Model usingVariantModel, Element jointpointVariantModelElement);
 	void applyDeleteComposition(Model inBaseModel, Element jointpointBaseModelElement,

@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.internal.impl.ActivityImpl;
 import org.eclipse.uml2.uml.internal.impl.ActivityNodeImpl;
 import org.eclipse.uml2.uml.internal.impl.NodeImpl;
 
-class ComposableActivityNode extends ActivityNodeImpl implements Composable{
+public class ComposableActivityNode extends ActivityNodeImpl implements Composable{
 	
 	private final static Logger log = LogManager.getLogger(ComposableActivityNode.class);
 	
