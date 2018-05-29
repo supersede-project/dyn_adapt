@@ -22,6 +22,8 @@
  *******************************************************************************/
 package eu.supersede.dynadapt.adapter;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -37,6 +39,7 @@ import java.util.UUID;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -44,6 +47,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.junit.Assert;
@@ -64,6 +70,7 @@ import eu.supersede.dynadapt.enactor.factory.EnactorFactory;
 import eu.supersede.dynadapt.model.ModelManager;
 import eu.supersede.dynadapt.model.query.ModelQuery;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
+import eu.supersede.dynadapt.modeladapter.ModelAdapterUtilities;
 import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.dashboad.types.Action;
@@ -242,6 +249,7 @@ public class Adapter implements IAdapter {
 		}
 
 		// BASE MODEL ADAPTATION
+
 		Model model = adapt(system, changedSelections, baseModel);
 		kpiComputerAdapter.stopComputingKPI();
 		kpiComputerAdapter.reportComputedKPI();
@@ -327,8 +335,8 @@ public class Adapter implements IAdapter {
 		// metadata.getValue("id"));
 		String id = mr.storeModel(model, ModelType.BaseModel, createModelMetadata(baseModelMetadata, Status.Enacted),
 				baseModelMetadata.getRelativePath());
-		//Refresh adapted model for associated system.
-		if (system == ModelSystem.AtosMonitoringEnabling){
+		// Refresh adapted model for associated system.
+		if (system == ModelSystem.AtosMonitoringEnabling) {
 			storeAdaptedModelInRepository(ModelSystem.AtosMonitoringTimeSlot, model);
 		}
 		return id;
@@ -570,8 +578,15 @@ public class Adapter implements IAdapter {
 		Model model = null;
 		// Clone base model
 		Model clonnedModel = (Model) EcoreUtil.copy(baseModel);
+
 		// Create a model manager targeting cloned model
 		ModelManager clonedModelManager = new ModelManager(clonnedModel, mm.getTargetModelAsResource().getURI());
+
+		// Preserving stereotypes in cloned model
+		// checkStereotypesInModel(baseModel);
+		copyStereotypes(baseModel, clonnedModel);
+		// checkStereotypesInModel(clonnedModel);
+
 		// Create modelQuery targeting cloned Model
 		this.mq = new ModelQuery(clonedModelManager);
 
@@ -624,6 +639,7 @@ public class Adapter implements IAdapter {
 			}
 		}
 
+		checkStereotypesInModel(model);
 		return model;
 
 	}
@@ -771,4 +787,68 @@ public class Adapter implements IAdapter {
 		return mum;
 	}
 
+	private void copyStereotypes(Model originalModel, Model clonedModel) {
+		// Applying profiles
+		for (Profile p : originalModel.getAppliedProfiles()) {
+			log.debug("Applying " + p.getName());
+			if (!clonedModel.getAppliedProfiles().contains(p))
+				clonedModel.applyProfile(p);
+		}
+
+		// Applying stereotypes
+		for (Element e : originalModel.getOwnedElements()) {
+			if (e instanceof NamedElement)
+				applyStereotypesInElement((NamedElement) e, clonedModel);
+		}
+	}
+
+	private void applyStereotypesInElement(NamedElement element, Model clonedModel) {
+		for (Element e : element.getOwnedElements()) {
+			if (e instanceof NamedElement)
+				applyStereotypesInElement((NamedElement) e, clonedModel);
+		}
+		if (element.getAppliedStereotypes().size() > 0) {
+			List<String> stereotypes = element.getAppliedStereotypes().stream().map(Stereotype::getName)
+					.collect(toList());
+			log.debug("Model: " + element.getModel().getName() + ". Base element: " + element.getName()
+					+ " is stereotyped with " + stereotypes);
+			applyStereoTypesInModel(element, element.getAppliedStereotypes(), clonedModel);
+		}
+	}
+
+	private void applyStereoTypesInModel(NamedElement element, EList<Stereotype> appliedStereotypes, Model model) {
+		// Find element in model
+		Element newElement = ModelAdapterUtilities.findElementInModel(element, model);
+
+		// Apply stereotypes and properties
+		for (Stereotype s : appliedStereotypes) {
+			newElement.applyStereotype(s);
+			for (Property p : s.getAllAttributes()) {
+				if (p.getAssociation() == null) { // Skipping Stereotype
+													// property associations.
+					String propertyName = p.getName();
+					newElement.setValue(s, propertyName, element.getValue(s, propertyName));
+				}
+			}
+		}
+	}
+
+	private void checkStereotypesInModel(Model model) {
+		for (Element e : model.getOwnedElements()) {
+			if (e instanceof NamedElement)
+				checkScheckStereotypesInElement((NamedElement) e);
+		}
+	}
+
+	private void checkScheckStereotypesInElement(NamedElement element) {
+		for (Element e : element.getOwnedElements()) {
+			if (e instanceof NamedElement)
+				checkScheckStereotypesInElement((NamedElement) e);
+		}
+		if (element.getAppliedStereotypes().size() > 0) {
+			List<String> stereotypes = element.getAppliedStereotypes().stream().map(Stereotype::getName)
+					.collect(toList());
+			log.debug("Base element: " + element.getName() + " is stereotyped with " + stereotypes);
+		}
+	}
 }
