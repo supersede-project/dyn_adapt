@@ -86,12 +86,20 @@ public class ComposableOpaqueAction extends OpaqueActionImpl implements Composab
 		List<ActivityNode> finalNodes = appendElementToBaseModel(activity, variantModelAction, incomingEdges, outgoingEdges);
 				
 		//For every final node in the new variant, appends it to the references of the previous Element
+		List<ActivityEdge> edgesToRemove = new ArrayList<>();
 		for (ActivityNode node : finalNodes) {
 			List<ActivityEdge> edges = ModelAdapterUtilities.setOutgoingEdges(activity, baseModelAction.getOutgoings(), (OpaqueAction) node);
 			for (ActivityEdge edge : baseModelAction.getOutgoings()) {
 				ModelAdapterUtilities.setIncomingEdges(edges, edge.getTarget());
-				edge.destroy();
+				edgesToRemove.add (edge);
 			}
+		}
+		
+		//Destroying outgoing edges from baseModelAction
+		for (ActivityEdge edge : edgesToRemove) {
+			edge.setSource(null);
+			edge.setTarget(null);
+			edge.destroy();
 		}
 						
 		log.debug("Destroying " + baseModelAction.getName());
