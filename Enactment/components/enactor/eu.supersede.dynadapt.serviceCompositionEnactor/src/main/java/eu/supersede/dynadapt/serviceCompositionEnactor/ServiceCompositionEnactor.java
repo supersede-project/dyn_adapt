@@ -360,36 +360,39 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 		String umlModelsPath=Paths.get(".").toAbsolutePath().normalize().toString();		
 //		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_caching.uml";
 		String res2_1_path=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_caching.uml";
-		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_variant2.uml";
+		
+//		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_base_yosu.uml";
+//		String res2_2_path=umlModelsPath+"/repository/umlmodels-validation/UI_getBuildings_variant2.uml";
+		
 		String res2_3_path=umlModelsPath+"/repository/umlmodels-validation/UI_getTypes_caching.uml";
-		String res2_4_path=umlModelsPath+"/repository/umlmodels-validation/UI_getTypes_variant2.uml";
+//		String res2_4_path=umlModelsPath+"/repository/umlmodels-validation/UI_getTypes_variant2.uml";
 		String res2_5_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_caching.uml";
-		String res2_6_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_variant2.uml";
+//		String res2_6_path=umlModelsPath+"/repository/umlmodels-validation/UI_getMinMaxDates_variant2.uml";
 
 		Resource res2_1 = set.getResource(URI.createFileURI(res2_1_path), true);
-		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
+//		Resource res2_2 = set.getResource(URI.createFileURI(res2_2_path), true);
 		Resource res2_3 = set.getResource(URI.createFileURI(res2_3_path), true);
-		Resource res2_4 = set.getResource(URI.createFileURI(res2_4_path), true);
+//		Resource res2_4 = set.getResource(URI.createFileURI(res2_4_path), true);
 		Resource res2_5 = set.getResource(URI.createFileURI(res2_5_path), true);
-		Resource res2_6 = set.getResource(URI.createFileURI(res2_6_path), true);
+//		Resource res2_6 = set.getResource(URI.createFileURI(res2_6_path), true);
 
 		//Resource res2_3_initial_variant = set.getResource(URI.createFileURI(res2_3_path_initial_variant), true);
 
 		Model umlModel_1 = (Model)EcoreUtil.getObjectByType(res2_1.getContents(), UMLPackage.Literals.MODEL);
-		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
+//		Model umlModel_2 = (Model)EcoreUtil.getObjectByType(res2_2.getContents(), UMLPackage.Literals.MODEL);
 		Model umlModel_3 = (Model)EcoreUtil.getObjectByType(res2_3.getContents(), UMLPackage.Literals.MODEL);
-		Model umlModel_4 = (Model)EcoreUtil.getObjectByType(res2_4.getContents(), UMLPackage.Literals.MODEL);
+//		Model umlModel_4 = (Model)EcoreUtil.getObjectByType(res2_4.getContents(), UMLPackage.Literals.MODEL);
 		Model umlModel_5 = (Model)EcoreUtil.getObjectByType(res2_5.getContents(), UMLPackage.Literals.MODEL);
-		Model umlModel_6 = (Model)EcoreUtil.getObjectByType(res2_6.getContents(), UMLPackage.Literals.MODEL);
+//		Model umlModel_6 = (Model)EcoreUtil.getObjectByType(res2_6.getContents(), UMLPackage.Literals.MODEL);
 
 		//Model umlModel_3_initial_variant = (Model)EcoreUtil.getObjectByType(res2_3_initial_variant.getContents(), UMLPackage.Literals.MODEL);
 		List<Model> uml_models_to_inject=new ArrayList<Model>();
 		uml_models_to_inject.add(umlModel_1);
-		uml_models_to_inject.add(umlModel_2);
+//		uml_models_to_inject.add(umlModel_2);
 		uml_models_to_inject.add(umlModel_3);
-		uml_models_to_inject.add(umlModel_4);
+//		uml_models_to_inject.add(umlModel_4);
 		uml_models_to_inject.add(umlModel_5);
-		uml_models_to_inject.add(umlModel_6);
+//		uml_models_to_inject.add(umlModel_6);
 
 		//uml_models_to_inject.add(umlModel_3_initial_variant);
 		
@@ -459,21 +462,15 @@ public class ServiceCompositionEnactor implements eu.supersede.dynadapt.enactor.
 				
 	}
 	
-	public Model enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
-		try {
-			log.debug("Enacting model: " + adaptedModel.getName());
-			this.umlEnactingModel = adaptedModel;
-			this.injectUMLModelsForValidation();
-			this.getEnactmentCode();
-			return adaptedModel;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
+	public void enactAdaptedModel(Model adaptedModel, boolean demo) throws Exception {	
+		log.debug("Enacting model: " + adaptedModel.getName());
+		this.umlEnactingModel=adaptedModel;
+		this.injectUMLModelsForValidation();
+		this.getEnactmentCode();
 	}
 
-	public Model enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
-		return enactAdaptedModel (adaptedModel, demo);		
+	public void enactAdaptedModel(Model adaptedModel, Model originalModel, boolean demo) throws Exception {
+		enactAdaptedModel (adaptedModel, demo);		
 	}
 
 }
