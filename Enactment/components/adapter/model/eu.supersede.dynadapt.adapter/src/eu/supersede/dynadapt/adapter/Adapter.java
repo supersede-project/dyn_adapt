@@ -337,7 +337,9 @@ public class Adapter implements IAdapter {
 		String id = mr.storeModel(model, ModelType.BaseModel, createModelMetadata(baseModelMetadata, Status.Enacted),
 				baseModelMetadata.getRelativePath());
 		// Refresh adapted model for associated system.
+		log.debug("Stored updated model for " + system);
 		if (system == ModelSystem.AtosMonitoringEnabling) {
+			log.debug("Stored updated model for AtosMonitoringEnabling");
 			storeAdaptedModelInRepository(ModelSystem.AtosMonitoringTimeSlot, model);
 		}
 		return id;

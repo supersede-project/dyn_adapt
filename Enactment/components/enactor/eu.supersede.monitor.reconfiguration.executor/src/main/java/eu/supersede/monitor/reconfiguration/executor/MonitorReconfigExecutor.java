@@ -71,7 +71,8 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 					//TODO update MonitorConfiguration Id in base model
 					if (mc == null)
 						throw new Exception("MonitorConfiguration " + monitor.getConfiguration() + " could not be updated");
-					Integer id = mc.getMonitorManagerId();					
+					Integer id = mc.getMonitorManagerId();		
+					log.debug("Injecting new monitor configuration id: " + id + " into base model");
 					updateMonitorConfigurationId (id, monitor.getConfiguration(), model);
 					break;
 				case UPDATE:
