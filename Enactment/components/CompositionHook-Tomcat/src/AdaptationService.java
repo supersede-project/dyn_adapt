@@ -100,6 +100,7 @@ public class AdaptationService implements SparkApplication {
 		// GET
 		get("/relay/*", (req, res) -> { 
 			
+			long startTime = System.currentTimeMillis();
 			String url = Util.getServiceURL(req);
 			if(adaptations.containsKey(url))
 			{
@@ -174,6 +175,8 @@ public class AdaptationService implements SparkApplication {
 
 			}
 			
+			long stopTime = System.currentTimeMillis();
+			LoggingPtolemy.getLogger().info("The response time of the service with url: " + url + " is: " + (stopTime - startTime)/1000.0 + "seconds.\n");
 			return res.body();						
 		});
 		
