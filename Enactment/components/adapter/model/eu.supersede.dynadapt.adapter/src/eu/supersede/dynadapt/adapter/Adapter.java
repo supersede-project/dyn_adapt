@@ -196,7 +196,8 @@ public class Adapter implements IAdapter {
 			throws EnactmentException, Exception, IOException {
 
 		// Registering dashboard proxy to initialize Front-end session
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>(
+			"adaptation", "adaptation", system.getTenant().getId());
 
 		kpiComputerAdapter.startComputingKPI();
 
@@ -352,7 +353,7 @@ public class Adapter implements IAdapter {
 			String featureConfigurationAsString) throws EnactmentException, Exception, IOException {
 
 		// Registering dashboard proxy to initialize Front-end session
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", system.getTenant().getId());
 
 		kpiComputerAdapter.startComputingKPI();
 
