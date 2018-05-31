@@ -25,6 +25,7 @@ package eu.supersede.dynadapt.modeladapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import static java.util.stream.Collectors.*;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -76,7 +77,8 @@ public class ComposableOpaqueAction extends OpaqueActionImpl implements Composab
 		//Apply profiles
 		for (Profile p : usingVariantModel.getAppliedProfiles()) {
 			log.debug("Applying " + p.getName());
-			if (!inBaseModel.getAppliedProfiles().contains(p)) inBaseModel.applyProfile(p);
+			if (!inBaseModel.getAppliedProfiles().contains(p)) 
+				inBaseModel.applyProfile(p);
 		}
 		
 		//Starting from the already created incomingEdges in baseModel, appends the new
@@ -84,9 +86,20 @@ public class ComposableOpaqueAction extends OpaqueActionImpl implements Composab
 		List<ActivityNode> finalNodes = appendElementToBaseModel(activity, variantModelAction, incomingEdges, outgoingEdges);
 				
 		//For every final node in the new variant, appends it to the references of the previous Element
+		List<ActivityEdge> edgesToRemove = new ArrayList<>();
 		for (ActivityNode node : finalNodes) {
 			List<ActivityEdge> edges = ModelAdapterUtilities.setOutgoingEdges(activity, baseModelAction.getOutgoings(), (OpaqueAction) node);
-			for (ActivityEdge edge : baseModelAction.getOutgoings()) ModelAdapterUtilities.setIncomingEdges(edges, edge.getTarget());
+			for (ActivityEdge edge : baseModelAction.getOutgoings()) {
+				ModelAdapterUtilities.setIncomingEdges(edges, edge.getTarget());
+				edgesToRemove.add (edge);
+			}
+		}
+		
+		//Destroying outgoing edges from baseModelAction
+		for (ActivityEdge edge : edgesToRemove) {
+			edge.setSource(null);
+			edge.setTarget(null);
+			edge.destroy();
 		}
 						
 		log.debug("Destroying " + baseModelAction.getName());

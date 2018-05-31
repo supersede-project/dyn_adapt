@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_F9lk4DdOEeiu89_iLo_YdQ" type="PapyrusUMLActivityDiagram" name="Activity Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_F9lk4DdOEeiu89_iLo_YdQ" type="PapyrusUMLActivityDiagram" name="Activity Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_F9lk4TdOEeiu89_iLo_YdQ" type="Activity_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_F9lk4jdOEeiu89_iLo_YdQ" type="Activity_NameLabel"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_F9lk5DdOEeiu89_iLo_YdQ" type="Activity_ParameterCompartment">
@@ -62,9 +62,17 @@
     <element xmi:type="uml:Activity" href="UI_getTypes_base.uml#_F9O_kDdOEeiu89_iLo_YdQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_F9lk8jdOEeiu89_iLo_YdQ" width="534" height="229"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_F9lk8zdOEeiu89_iLo_YdQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <children xmi:type="notation:Shape" xmi:id="_VUbAUGJhEeiYeOVwdQizgg" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_VUbAUWJhEeiYeOVwdQizgg"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_VUbnYGJhEeiYeOVwdQizgg" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Activity" href="UI_getTypes_base.uml#_F9O_kDdOEeiu89_iLo_YdQ"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VUbAUmJhEeiYeOVwdQizgg" x="200"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_F9lk8zdOEeiu89_iLo_YdQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_F9lk9DdOEeiu89_iLo_YdQ"/>
-  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_F9lk9TdOEeiu89_iLo_YdQ">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_K-EQgGJhEeiYeOVwdQizgg" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
     <owner xmi:type="uml:Model" href="UI_getTypes_base.uml#_FsYgIDdOEeiu89_iLo_YdQ"/>
   </styles>
   <element xmi:type="uml:Activity" href="UI_getTypes_base.uml#_F9O_kDdOEeiu89_iLo_YdQ"/>
@@ -115,5 +123,15 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_J2XtkjveEeigA55HG1gX-A" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_J2Y7sDveEeigA55HG1gX-A"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_J2ZiwDveEeigA55HG1gX-A"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_VUbnYWJhEeiYeOVwdQizgg" type="StereotypeCommentLink" source="_F9lk4TdOEeiu89_iLo_YdQ" target="_VUbAUGJhEeiYeOVwdQizgg">
+    <styles xmi:type="notation:FontStyle" xmi:id="_VUbnYmJhEeiYeOVwdQizgg"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_VUcOcGJhEeiYeOVwdQizgg" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Activity" href="UI_getTypes_base.uml#_F9O_kDdOEeiu89_iLo_YdQ"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_VUbnY2JhEeiYeOVwdQizgg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VUbnZGJhEeiYeOVwdQizgg"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VUbnZWJhEeiYeOVwdQizgg"/>
   </edges>
 </notation:Diagram>

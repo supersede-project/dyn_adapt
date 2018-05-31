@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:GetMeteorologicalData="http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA http://RootElement/schemas/GetMeteorologicalData/_o8_7IBivEei7tLC54SeBwA/5 ../profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA">
   <uml:Model xmi:id="_FsYgIDdOEeiu89_iLo_YdQ" name="UI_getBuildings_base">
-    <packagedElement xmi:type="uml:Activity" xmi:id="_F9O_kDdOEeiu89_iLo_YdQ" name="UI_getBuildingsBase" node="_bgRDMDdOEeiu89_iLo_YdQ _iB9OkDdOEeiu89_iLo_YdQ _wnIvQDdOEeiu89_iLo_YdQ">
-      <ownedBehavior xmi:type="uml:Activity" xmi:id="_tZbdIDdOEeiu89_iLo_YdQ" name="UIGetBuildingsCaching"/>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_F9O_kDdOEeiu89_iLo_YdQ" name="UI_getBuildingsWithCaching" node="_bgRDMDdOEeiu89_iLo_YdQ _iB9OkDdOEeiu89_iLo_YdQ _wnIvQDdOEeiu89_iLo_YdQ">
       <edge xmi:type="uml:ControlFlow" xmi:id="_x7sucDdOEeiu89_iLo_YdQ" target="_iB9OkDdOEeiu89_iLo_YdQ" source="_bgRDMDdOEeiu89_iLo_YdQ"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_yoAa0DdOEeiu89_iLo_YdQ" target="_wnIvQDdOEeiu89_iLo_YdQ" source="_iB9OkDdOEeiu89_iLo_YdQ"/>
       <node xmi:type="uml:InitialNode" xmi:id="_bgRDMDdOEeiu89_iLo_YdQ" name="" outgoing="_x7sucDdOEeiu89_iLo_YdQ"/>
-      <node xmi:type="uml:CallBehaviorAction" xmi:id="_iB9OkDdOEeiu89_iLo_YdQ" name="UIGetBuildingsCachingAction" incoming="_x7sucDdOEeiu89_iLo_YdQ" outgoing="_yoAa0DdOEeiu89_iLo_YdQ" behavior="_tZbdIDdOEeiu89_iLo_YdQ"/>
+      <node xmi:type="uml:CallBehaviorAction" xmi:id="_iB9OkDdOEeiu89_iLo_YdQ" name="UIGetBuildingsCachingAction" incoming="_x7sucDdOEeiu89_iLo_YdQ" outgoing="_yoAa0DdOEeiu89_iLo_YdQ"/>
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_wnIvQDdOEeiu89_iLo_YdQ" name="" incoming="_yoAa0DdOEeiu89_iLo_YdQ"/>
     </packagedElement>
     <profileApplication xmi:id="_BAMBUDdPEeiu89_iLo_YdQ">
@@ -28,6 +27,21 @@
       </eAnnotations>
       <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
+    <profileApplication xmi:id="_Enfs0GJdEeiYeOVwdQizgg">
+      <eAnnotations xmi:id="_Enpd0GJdEeiYeOVwdQizgg" source="PapyrusVersion">
+        <details xmi:id="_Enpd0WJdEeiYeOVwdQizgg" key="Version" value="0.0.10"/>
+        <details xmi:id="_Enpd0mJdEeiYeOVwdQizgg" key="Comment" value=""/>
+        <details xmi:id="_Enpd02JdEeiYeOVwdQizgg" key="Copyright" value=""/>
+        <details xmi:id="_Enpd1GJdEeiYeOVwdQizgg" key="Date" value="2018-02-23"/>
+        <details xmi:id="_Enpd1WJdEeiYeOVwdQizgg" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_EnoPsGJdEeiYeOVwdQizgg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profiles/model.profile.uml#_o9BJQBivEei7tLC54SeBwA"/>
+      </eAnnotations>
+      <appliedProfile href="../profiles/model.profile.uml#_l52VgH0OEeaA2JoHm1A4Qg"/>
+    </profileApplication>
   </uml:Model>
   <ADM:Joinpoint xmi:id="_Di09MDdPEeiu89_iLo_YdQ" base_RedefinableElement="_iB9OkDdOEeiu89_iLo_YdQ" base_NamedElement="_iB9OkDdOEeiu89_iLo_YdQ"/>
+  <GetMeteorologicalData:Service xmi:id="_GPxSMGJdEeiYeOVwdQizgg" endpoint="&quot;http://localhost:7080/SuperAdapt/adapt/http://caching-data/trends/buildings&quot;"/>
+  <GetMeteorologicalData:Service xmi:id="_ph2qUGJeEeiYeOVwdQizgg" base_Activity="_F9O_kDdOEeiu89_iLo_YdQ" endpoint="&quot;http://localhost:7080/SuperAdapt/adapt/http://caching-data/trends/buildings&quot;"/>
 </xmi:XMI>

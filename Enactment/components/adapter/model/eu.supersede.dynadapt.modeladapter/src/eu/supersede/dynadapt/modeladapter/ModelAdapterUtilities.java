@@ -167,6 +167,70 @@ public class ModelAdapterUtilities {
 	public static void addElementInPackage(PackageableElement element, Package pack) {
 		pack.getPackagedElements().add(element);
 	}
+	
+	public static Element findElementInModel(NamedElement element, Model model) {
+		Element result = null;
+		String qname = getQualifiedName(element);
+		for (Element e: model.getOwnedElements()){
+			if (e instanceof NamedElement){
+				if (getQualifiedName((NamedElement)e).equals(qname)){
+					result = e;
+					break;
+				}else{
+					result = findElement(element, (NamedElement)e);
+				}
+			}
+		}
+		return result;
+	}
+
+	private static Element findElement(NamedElement element, NamedElement target) {
+		Element result = null;
+		String qname = getQualifiedName(element);
+		for (Element e: target.getOwnedElements()){
+			if (e instanceof NamedElement){
+				if (getQualifiedName((NamedElement)e).equals(qname)){
+					result = e;
+					break;
+				}else{
+					result = findElement(element, (NamedElement)e);
+				}
+			}
+		}
+		return result;
+	}
+
+	public static String getQualifiedName(NamedElement element) {
+		String qname = getQualifiedName ("", element);
+		return inverseStringWithDelimiter (qname, "::");
+	}
+
+	private static String getQualifiedName(String qname, Element element) {
+		String name = element instanceof NamedElement? ((NamedElement)element).getName():"UnamedElement";
+		if (name == null) name = "UnamedElement";
+		if (qname.length() == 0)
+			qname = name;
+		else 
+			qname = qname + "::" + name;
+		if (element instanceof Model)
+			return qname;
+		else 
+			return getQualifiedName (qname, element.getOwner());
+	}
+	
+	private static String inverseStringWithDelimiter (String string, String delimiter){
+		String[] split = string.split (delimiter);
+		String[] reverse = new String[split.length];
+		int j = 0;
+		for (int i = split.length - 1; i >= 0; i--){
+			reverse[j++] = split[i];
+		}
+		String result = "";
+		for (int k = 0; k < reverse.length; k++)
+			result += reverse[k] + delimiter;
+		result = result.substring(0, result.length() - 2);
+		return result;
+	}
 
 	public static Element getEquivalentElementInModel(NamedElement element, Model model) {
 		// PrimitiveTypes are equivalent among models
