@@ -339,7 +339,7 @@ public class Adapter implements IAdapter {
 		// Refresh adapted model for associated system.
 		log.debug("Stored updated model for " + system);
 		if (system == ModelSystem.AtosMonitoringEnabling) {
-			log.debug("Stored updated model for AtosMonitoringEnabling");
+			log.debug("Stored updated model for AtosMonitoringTimeSlot");
 			storeAdaptedModelInRepository(ModelSystem.AtosMonitoringTimeSlot, model);
 		}
 		return id;

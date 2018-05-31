@@ -76,7 +76,7 @@ public class MonitorReconfigExecutor implements IMonitorReconfigExecutor {
 					updateMonitorConfigurationId (id, monitor.getConfiguration(), model);
 					break;
 				case UPDATE:
-					log.debug("Update configuration");
+					log.debug("Update monitor configuration for monitor id = " + monitor.getConfiguration().getId());
 					mc = proxy.updateMonitorConfigurationForMonitorToolAndMonitorType(monitor.getConfiguration(), monitor.getMonitorTool(), monitor.getMonitorType());
 //					if (mc == null)
 //						throw new Exception("MonitorConfiguration with id " + monitor.getConfiguration().getId() + " could not be updated");
