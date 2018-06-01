@@ -32,6 +32,7 @@ public class AdapterService {
 	String repositoryRelativePath;
 	// String repositoryResolverPath;
 	String platformRelativePath;
+	boolean demo;
 
 	Map<String, String> modelsLocation;
 
@@ -46,14 +47,15 @@ public class AdapterService {
 	}
 
 	public AdapterService(boolean demo) throws Exception {
+		this.demo = demo;
 		if (demo)
 			log.debug("Starting Adapter Service in demo mode");
 		else
 			log.debug("Starting Adapter Service in production mode");
-		setUp(demo);
+//		setUp(demo);
 	}
 
-	private void setUp(boolean demo) throws Exception {
+	public void setUp(boolean demo) throws Exception {
 		setupPlatform();
 		mm = new ModelManager();
 		mr = new ModelRepository(repository, repositoryRelativePath, mm);
@@ -97,6 +99,11 @@ public class AdapterService {
 	public void enactAdaptationDecisionAction(@PathVariable String systemId,
 			@PathVariable String adaptationDecisionActionId, @PathVariable String featureConfigurationId)
 			throws EnactmentException {
+		try {
+			setUp (this.demo);
+		} catch (Exception e) {
+			throw new EnactmentException(e);
+		}
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
 		if (featureConfigurationId.equals("null"))
@@ -109,6 +116,11 @@ public class AdapterService {
 	public void enactAdaptationDecisionActions(@PathVariable String systemId,
 			@RequestParam(value = "adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
+		try {
+			setUp (this.demo);
+		} catch (Exception e) {
+			throw new EnactmentException(e);
+		}
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
 		// if (featureConfigurationId.equals("null")) featureConfigurationId =
@@ -122,6 +134,13 @@ public class AdapterService {
 			@RequestParam(value = "fc") String featureConfigurationAsString,
 			@RequestParam(value = "adaptationDecisionActionIds") List<String> adaptationDecisionActionIds,
 			@RequestParam(value = "fc_id") String featureConfigurationId) throws EnactmentException {
+		try {
+			setUp (this.demo);
+		} catch (Exception e) {
+			throw new EnactmentException(e);
+		}
+		log.debug("featureConfigurationId: "
+				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
 		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), adaptationDecisionActionIds,
 				featureConfigurationAsString, featureConfigurationId);
 	}
@@ -130,6 +149,13 @@ public class AdapterService {
 	public void enactFCasString(@PathVariable String systemId, 
 			@RequestParam(value = "fc") String featureConfigurationAsString,
 			@RequestParam(value = "fc_id") String featureConfigurationId) throws EnactmentException {
+		try {
+			setUp (this.demo);
+		} catch (Exception e) {
+			throw new EnactmentException(e);
+		}
+		log.debug("featureConfigurationId: "
+				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
 		adapter.enactAdaptationDecisionActionsInFCasString(ModelSystem.valueOf(systemId), null,
 				featureConfigurationAsString, featureConfigurationId);
 	}
@@ -142,6 +168,11 @@ public class AdapterService {
 	@RequestMapping(value = "/adaptationDecisionActionsForFC/featureConfiguration/{featureConfigurationId}/system/{systemId}", method = RequestMethod.POST)
 	public void enactAdaptationDecisionActionsForFC(@PathVariable String systemId,
 			@PathVariable String featureConfigurationId) throws EnactmentException {
+		try {
+			setUp (this.demo);
+		} catch (Exception e) {
+			throw new EnactmentException(e);
+		}
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
 		if (featureConfigurationId != null && featureConfigurationId.equals("null"))
@@ -151,6 +182,11 @@ public class AdapterService {
 	
 	@RequestMapping(value = "/featureConfiguration/{featureConfigurationId}/system/{systemId}", method = RequestMethod.POST)
 	public void enactFeatureConfiguration(@PathVariable String systemId, @PathVariable String featureConfigurationId) throws EnactmentException{
+		try {
+			setUp (this.demo);
+		} catch (Exception e) {
+			throw new EnactmentException(e);
+		}
 		log.debug("featureConfigurationId: "
 				+ (featureConfigurationId == null ? "Null pointer" : featureConfigurationId));
 		if (featureConfigurationId != null && featureConfigurationId.equals("null"))
