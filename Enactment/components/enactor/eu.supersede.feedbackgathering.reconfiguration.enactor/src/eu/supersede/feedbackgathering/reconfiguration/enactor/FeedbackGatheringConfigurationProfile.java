@@ -151,7 +151,7 @@ public class FeedbackGatheringConfigurationProfile implements IEnactor {
 		List<Mechanism> mechanisms = proxy.getMechanismsOfApplication(idApplication);
 		for (int i = 0; i < arr.length(); i++){
 			for(Mechanism m : mechanisms){
-				if(m.getType().name().equals(arr.getJSONObject(i).getString("type"))){
+				if(m.isActive() && m.getType().name().equals(arr.getJSONObject(i).getString("type"))){
 					objMechanism = m;
 					break;
 				}
