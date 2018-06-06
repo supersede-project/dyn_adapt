@@ -152,7 +152,7 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 		Mechanism objMechanism = null;
 		List<Mechanism> mechanisms = proxy.getMechanismsOfApplication(idApplication);
 		for(Mechanism m : mechanisms){
-			if(m.getType().equals(MechanismType.CATEGORY_TYPE)){
+			if(m.isActive() && m.getType().equals(MechanismType.CATEGORY_TYPE)){
 				objMechanism = m;
 				break;
 			}
