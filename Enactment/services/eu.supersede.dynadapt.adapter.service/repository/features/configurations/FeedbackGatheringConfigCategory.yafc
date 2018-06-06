@@ -24,7 +24,7 @@
   </featureModelCopy>
   <rootSelection id="feedbackgatheringconfigcategory">
     <selection id="category_type">
-      <attributeValue xsi:type="fc:string" id="id" value="32"/>
+      <attributeValue xsi:type="fc:string" id="id" value="92"/>
       <attributeValue xsi:type="fc:string" id="type" value="CATEGORY_TYPE"/>
       <attributeValue xsi:type="fc:string" id="order" value="2"/>
       <selection id="id_514">
