@@ -81,6 +81,7 @@ public class DMOptimizationConfiguration {
 	}
 	
 	public static void setAdaptationConfigurationMode(AdaptationMode mode) throws URISyntaxException, IOException{
+		log.info("Setting dynamic adaptation configuration to " + mode);
 		Boolean automated = mode == AdaptationMode.AUTOMATED?true:false;
 		setProperty("enactment.automatic_processing", automated.toString());
 	}
