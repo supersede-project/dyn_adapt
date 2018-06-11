@@ -177,7 +177,7 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 				DMOptimizationConfiguration.getAdaptationConfigurationMode();
 		if (processEnactment == AdaptationMode.AUTOMATED){
 			log.info("Automated adaptation->Adaptation " + newFeatureConfigId + " sent to Adapter");
-			proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+			proxy.enactFeatureConfiguration(system, newFeatureConfigId);
 		}
 		
 		

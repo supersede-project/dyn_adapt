@@ -114,16 +114,15 @@ public class AdaptationRest {
 			adaptation.getModel_system() == ModelSystem.SiemensFGcat ||
 			adaptation.getModel_system() == ModelSystem.AtosFG || 
 			adaptation.getModel_system() == ModelSystem.AtosFGcat) {
-			log.info("Invoking Adapter: enactAdaptationDecisionActionsForFC for system " + adaptation.getModel_system()
+			log.info("Invoking Adapter: enactFeatureConfiguration for system " + adaptation.getModel_system()
 					+ " and FC id: " + adaptation.getFc_id());
-			if (!proxy.enactAdaptationDecisionActionsForFC(adaptation.getModel_system(), adaptation.getFc_id())) {
+			if (!proxy.enactFeatureConfiguration(adaptation.getModel_system(), adaptation.getFc_id())) {
 				throw new Exception("Adaptation: " + id + " could not be enacted. Check backend service log");
 			}
 		} else {
-			log.info("Invoking Adapter: enactAdaptationDecisionActions for system " + adaptation.getModel_system()
-			+ " actionIds: " + actionIds
+			log.info("Invoking Adapter: enactAdaptationDecisionActionsForFC for system " + adaptation.getModel_system()
 			+ " and FC id: " + adaptation.getFc_id());
-			if (!proxy.enactAdaptationDecisionActions(adaptation.getModel_system(), actionIds, adaptation.getFc_id())) {
+			if (!proxy.enactAdaptationDecisionActionsForFC(adaptation.getModel_system(), adaptation.getFc_id())) {
 				throw new Exception("Adaptation: " + id + " could not be enacted. Check backend service log");
 			}
 		}
