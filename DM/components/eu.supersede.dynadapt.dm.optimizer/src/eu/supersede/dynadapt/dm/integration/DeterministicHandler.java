@@ -20,6 +20,7 @@ import cz.zcu.yafmt.model.fc.IntegerValue;
 import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fc.StringValue;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dm.optimizer.configuration.AdaptationMode;
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationBuilder;
 import eu.supersede.dynadapt.poc.feature.builder.FeatureConfigurationUtility;
@@ -172,9 +173,12 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		
 		// ******Send FC to Adapter******
-		boolean processEnactment = Boolean.valueOf(DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
-		if (processEnactment)
+		AdaptationMode processEnactment = 
+				DMOptimizationConfiguration.getAdaptationConfigurationMode();
+		if (processEnactment == AdaptationMode.AUTOMATED){
+			log.info("Automated adaptation->Adaptation " + newFeatureConfigId + " sent to Adapter");
 			proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+		}
 		
 		
 		//Delete temporary files
@@ -253,10 +257,12 @@ public class DeterministicHandler extends AbstractHandler implements DecisionHan
 			adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 			log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 			
-			boolean processEnactment = Boolean.valueOf(
-					DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
-			if (processEnactment)
+			AdaptationMode processEnactment = 
+					DMOptimizationConfiguration.getAdaptationConfigurationMode();
+			if (processEnactment == AdaptationMode.AUTOMATED){
+				log.info("Automated adaptation->Adaptation " + newFeatureConfigId + " sent to Adapter");
 				proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+			}
 			
 			//Remove temporary file
 			boolean removeTemp = Boolean.valueOf(
