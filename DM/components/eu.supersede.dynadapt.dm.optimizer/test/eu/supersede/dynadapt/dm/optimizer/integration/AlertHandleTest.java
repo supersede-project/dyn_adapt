@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import eu.supersede.dynadapt.dm.integration.ModuleLoader;
 import eu.supersede.integration.api.adaptation.types.ActionOnAttribute;
 import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.AttachedValue;
 import eu.supersede.integration.api.adaptation.types.AttributeAction;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.DataID;
@@ -18,6 +19,21 @@ import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.Operator;
 
 public class AlertHandleTest {
+	
+	
+	@Test
+	public void SenerconNonDeterministicFGOptimization() throws Exception {
+		ModuleLoader optimizer = new ModuleLoader();
+		Alert alert = createSenerconNonDeterministicFGAlert();
+		optimizer.handleAlert(alert);
+	}
+	
+	@Test
+	public void SenerconDeterministicFGCatOptimization() throws Exception {
+		ModuleLoader optimizer = new ModuleLoader();
+		Alert alert = createSenerconDeterministicFGAlert();
+		optimizer.handleAlert(alert);
+	}
 
 	@Test
 	public void SiemenesOptimizationBuildingsTest() throws Exception {
@@ -136,6 +152,53 @@ public class AlertHandleTest {
         // 10.0: threshold
         conditions.add (new Condition(new DataID("Tool", "response_time"), Operator.GEq, 10.0));
         alert.setConditions(conditions);
+        
+        return alert;
+    }
+    
+    protected Alert createSenerconNonDeterministicFGAlert() {
+        Alert alert = new Alert();
+
+        alert.setId("id"+ System.currentTimeMillis());
+        alert.setApplicationId("feedback"); 
+        alert.setTimestamp(1481717773760L);
+        alert.setTenant(ModelSystem.SenerconFG);
+
+        List<Condition> conditions = Lists.newArrayList();
+        conditions.add(new Condition(new DataID("FGTool", "diskC"), Operator.GT, 30000.0));//33460.0
+        
+        alert.setConditions(conditions);
+        
+        List<AttachedValue> attach = Lists.newArrayList();
+        attach.add(new AttachedValue("attachment", "7000.0"));
+        //attach.add(new AttachedValue("screenshot", "8000.0"));
+        attach.add(new AttachedValue("audio", "23000.0"));        
+        
+        alert.setAttachedValues(attach);
+        
+        return alert;
+    }
+    
+    private static Alert createSenerconDeterministicFGAlert() {
+        Alert alert = new Alert();
+
+        alert.setId("id"+ System.currentTimeMillis());
+        alert.setApplicationId("feedback"); 
+        alert.setTimestamp(1481717773760L);
+        alert.setTenant(ModelSystem.SenerconFGcat);
+
+        List<Condition> conditions = Lists.newArrayList();
+        conditions.add(new Condition(new DataID("FGTool", "category"), Operator.GT, 1.0)); //feature category
+
+        alert.setConditions(conditions);
+        
+        List<ActionOnAttribute> actions = Lists.newArrayList();
+        // the ids correspond to the parameterId
+        actions.add(new ActionOnAttribute("category_type.id_514.order", AttributeAction.update, 3));
+        actions.add(new ActionOnAttribute("category_type.id_515.order", AttributeAction.update, 1));
+        actions.add(new ActionOnAttribute("category_type.id_516.order", AttributeAction.update, 2));
+
+        alert.setActionAttributes(actions);
         
         return alert;
     }
