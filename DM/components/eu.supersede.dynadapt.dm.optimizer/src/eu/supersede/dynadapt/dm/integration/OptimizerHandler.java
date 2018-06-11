@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.eclipse.emf.common.util.URI;
 
 import cz.zcu.yafmt.model.fc.Selection;
 import cz.zcu.yafmt.model.fm.FeatureModel;
+import eu.supersede.dynadapt.dm.optimizer.configuration.AdaptationMode;
 import eu.supersede.dynadapt.dm.optimizer.configuration.DMOptimizationConfiguration;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters;
 import eu.supersede.dynadapt.dm.optimizer.gp.Parameters.BudgetType;
@@ -189,10 +189,12 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 		adaptation = adaptationDashboardProxy.addAdaptation(adaptation);
 		log.info("Adaptation " + newFeatureConfigId + " report sent to dashboard");
 		
-		boolean processEnactment = Boolean.valueOf(
-				DMOptimizationConfiguration.getProperty("enactment.automatic_processing")); 
-		if (processEnactment)
+		AdaptationMode processEnactment = 
+				DMOptimizationConfiguration.getAdaptationConfigurationMode();
+		if (processEnactment == AdaptationMode.AUTOMATED){
+			log.info("Automated adaptation->Adaptation " + newFeatureConfigId + " sent to Adapter");
 			proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+		}
 		
 		//Remove temporary file
 		boolean removeTemp = Boolean.valueOf(
