@@ -193,7 +193,17 @@ public class OptimizerHandler extends AbstractHandler implements DecisionHandler
 				DMOptimizationConfiguration.getAdaptationConfigurationMode();
 		if (processEnactment == AdaptationMode.AUTOMATED){
 			log.info("Automated adaptation->Adaptation " + newFeatureConfigId + " sent to Adapter");
-			proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+			
+			if (system == ModelSystem.AtosFG || system == ModelSystem.AtosFGcat ||
+				system == ModelSystem.SiemensFG || system == ModelSystem.SiemensFGcat ||
+				system == ModelSystem.SenerconFG || system == ModelSystem.SenerconFGcat 
+					){
+				log.info("Feedback reconfiguration case. Invoking enactFeatureConfiguration in Adapter");
+				proxy.enactFeatureConfiguration(system, newFeatureConfigId);
+			}else{
+				log.info("Normal adaptation case. Invoking enactAdaptationDecisionActionsForFC in Adapter");
+				proxy.enactAdaptationDecisionActionsForFC(system, newFeatureConfigId);
+			}
 		}
 		
 		//Remove temporary file
