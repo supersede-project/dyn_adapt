@@ -3,6 +3,7 @@ package eu.supersede.feedbackgathering.reconfiguration.util;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,7 +18,8 @@ public class ReconfigurationCommon {
 
 	public static Path createTemporaryDirectory() throws IOException{
 		String userdir = System.getProperty("user.dir");
-		Path path = Paths.get(userdir, "model");//FileSystems.getDefault().getPath(userdir);
+		//Path path = Paths.get(userdir, "model");
+		Path path = FileSystems.getDefault().getPath(userdir);
 		Path temp = Files.createTempDirectory(path, "");
 		Assert.assertNotNull("There was a problem creating a temporary directory", temp);
 		return temp;
