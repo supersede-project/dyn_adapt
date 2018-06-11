@@ -29,7 +29,7 @@ public class ReconfigurationCommon {
 		return properties;
 	}
 	
-	public static long getIdApplication(ModelSystem system, String server) {
+	public static long getIdApplication(ModelSystem system, String server, Properties feedbackProperties) {
 		int idApplication = 0;
 		switch(system){
 		case Senercon:
@@ -37,9 +37,9 @@ public class ReconfigurationCommon {
 		case SenerconFGcat:
 			switch(server){
 			case "develop": 
-				idApplication = 25; break;
+				idApplication = Integer.parseInt(feedbackProperties.getProperty("senercon_application_development")); break;
 			case "production":
-				idApplication = 20; break;
+				idApplication = Integer.parseInt(feedbackProperties.getProperty("senercon_application_production")); break;
 			}
 			break;
 		case Siemens:
@@ -47,9 +47,9 @@ public class ReconfigurationCommon {
 		case SiemensFGcat:
 			switch(server){
 			case "develop": 
-				idApplication = 25; break;
+				idApplication = Integer.parseInt(feedbackProperties.getProperty("siemens_application_development")); break;
 			case "production":
-				idApplication = 20; break;
+				idApplication = Integer.parseInt(feedbackProperties.getProperty("siemens_application_production")); break;
 			}
 			break;		
 		case Atos:
@@ -57,14 +57,50 @@ public class ReconfigurationCommon {
 		case AtosFGcat:
 			switch(server){
 			case "develop": 
-				idApplication = 25; break;
+				idApplication = Integer.parseInt(feedbackProperties.getProperty("atos_application_development")); break;
 			case "production":
-				idApplication = 14; break;
+				idApplication = Integer.parseInt(feedbackProperties.getProperty("atos_application_production")); break;
 			}
 			break;		
         }
-		
 		return idApplication;
+	}
+	
+	public static long getIdConfiguration(ModelSystem system, String server, Properties feedbackProperties) {
+		int idConfiguration = 0;
+		switch(system){
+		case Senercon:
+		case SenerconFG:
+		case SenerconFGcat:
+			switch(server){
+			case "develop": 
+				idConfiguration = Integer.parseInt(feedbackProperties.getProperty("senercon_configuration_development")); break;
+			case "production":
+				idConfiguration = Integer.parseInt(feedbackProperties.getProperty("senercon_configuration_production")); break;
+			}
+			break;
+		case Siemens:
+		case SiemensFG:
+		case SiemensFGcat:
+			switch(server){
+			case "develop": 
+				idConfiguration = Integer.parseInt(feedbackProperties.getProperty("siemens_configuration_development")); break;
+			case "production":
+				idConfiguration = Integer.parseInt(feedbackProperties.getProperty("siemens_configuration_production")); break;
+			}
+			break;		
+		case Atos:
+		case AtosFG:
+		case AtosFGcat:
+			switch(server){
+			case "develop": 
+				idConfiguration = Integer.parseInt(feedbackProperties.getProperty("atos_configuration_development")); break;
+			case "production":
+				idConfiguration = Integer.parseInt(feedbackProperties.getProperty("atos_configuration_production")); break;
+			}
+			break;		
+        }
+		return idConfiguration;
 	}
 	
 	public static JSONObject readJsonObject(String absoluteTargetPath, String targetModel) throws Exception{

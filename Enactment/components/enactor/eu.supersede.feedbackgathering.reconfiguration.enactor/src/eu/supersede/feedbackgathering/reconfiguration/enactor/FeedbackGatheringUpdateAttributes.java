@@ -53,6 +53,7 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 	private FeedbackOrchestratorProxy<?, ?> proxy;
 	//private String token;
 	private long idApplication;
+	private long idConfiguration;
 	
 	public FeedbackGatheringUpdateAttributes(ModelSystem system) throws Exception{
 		
@@ -71,6 +72,9 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 		server = feedbackProperties.getProperty("server");
 		simulated_execution = Boolean.valueOf(feedbackProperties.getProperty("simulated_execution"));
 		
+		idApplication = ReconfigurationCommon.getIdApplication(system, server, feedbackProperties);
+		idConfiguration = ReconfigurationCommon.getIdConfiguration(system, server, feedbackProperties);
+
 		//ModelManager
 		mm = new ModelManager(false);
 				
@@ -80,7 +84,6 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 		//Instantiation of Orchestrator
 		proxy = new FeedbackOrchestratorProxy<Object, Object>(supersede_account_user, supersede_account_passwd);
 		//token = "";
-		idApplication = ReconfigurationCommon.getIdApplication(system, server);
 		
 		//Shutdown hook to clean up temporary folder
 		Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -150,7 +153,8 @@ public class FeedbackGatheringUpdateAttributes implements IEnactor{
 		
 		//Invoke Orchestrator for reconfiguration
 		Mechanism objMechanism = null;
-		List<Mechanism> mechanisms = proxy.getMechanismsOfApplication(idApplication);
+		List<Mechanism> mechanisms = proxy.getConfiguration(idApplication, idConfiguration).getMechanisms();
+		//proxy.getMechanismsOfApplication(idApplication);
 		for(Mechanism m : mechanisms){
 			if(m.isActive() && m.getType().equals(MechanismType.CATEGORY_TYPE)){
 				objMechanism = m;
