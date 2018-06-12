@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringDefault" version="1.0.0">
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringDefault.yafc" version="1.0.0">
   <featureModel href="FeedbackGatheringConfigV6.yafm#/"/>
   <featureModelCopy name="FeedbackGatheringConfig" version="1.0.0">
     <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
