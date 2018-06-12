@@ -154,7 +154,7 @@ public abstract class AbstractHandler {
 		case SenerconFGcat:
 		case SiemensFGcat:
 		case AtosFGcat:
-			uri = "input/senerconFG/category/";
+			uri = "input/senerconFG/";
 			break;
 		case AtosMonitoringEnabling:
 			Parameters.APPLICATION = Parameters.Applications.MONITORING;
