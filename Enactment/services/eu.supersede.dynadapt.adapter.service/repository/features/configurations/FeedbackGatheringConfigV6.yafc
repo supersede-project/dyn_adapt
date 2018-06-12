@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeedbackGatheringConfigV6" version="1.0.0">
-  <featureModel href="FeedbackGatheringConfigV6.yafm#/"/>
+  <featureModel href="../models/FeedbackGatheringConfigV6.yafm#/"/>
   <featureModelCopy name="FeedbackGatheringConfig" version="1.0.0">
     <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
       <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" minRangeValue="0" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
