@@ -702,7 +702,7 @@ public class PopulateModelRepositoryTest {
 		
 		//Feature Configurations
 		prm.populateModel(
-			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringDefault.yafc"), 
+			Paths.get(repositoryPath.toString(), "features/configurations", "FeedbackGatheringConfigV6.yafc"), 
 			SENERCON_MODELS_AUTHOR, ModelSystem.SenerconFG, Status.Enacted, "features/configurations",
 			cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		
