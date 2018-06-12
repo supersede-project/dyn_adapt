@@ -44,7 +44,7 @@ public class FeedbackGatheringReconfigurationTest {
 		FGenactor.enactFeatureConfiguration(featureConfig, true);
 	}*/
 	
-	@Test
+	/*@Test
 	public void testFGEnactorProfile() throws Exception {
 		mm = new ModelManager();
 				
@@ -54,5 +54,23 @@ public class FeedbackGatheringReconfigurationTest {
 		FeatureConfiguration featureConfig = mm.loadFeatureConfiguration(fcURI);
 
 		FGenactor.enactFeatureConfiguration(featureConfig, true);
+	}*/
+	
+	@Test
+	public void testSetDefaultFGConfiguration() throws Exception {
+		mm = new ModelManager();
+				
+		FeatureConfiguration featureConfig;
+		String fcURI;
+		
+		FeedbackGatheringConfigurationProfile FGenactor = new FeedbackGatheringConfigurationProfile(ModelSystem.SenerconFG);
+		fcURI = "/workspaceSTS/dyn_adapt/Enactment/components/enactor/eu.supersede.feedbackgathering.reconfiguration.enactor/model/default/FeedbackGatheringConfigV6.yafc";
+		featureConfig = mm.loadFeatureConfiguration(fcURI);
+		FGenactor.enactFeatureConfiguration(featureConfig, true);
+		
+		FeedbackGatheringUpdateAttributes FGAtt = new FeedbackGatheringUpdateAttributes(ModelSystem.SenerconFG);
+		fcURI = "/workspaceSTS/dyn_adapt/Enactment/components/enactor/eu.supersede.feedbackgathering.reconfiguration.enactor/model/default/FeedbackGatheringConfigCategory.yafc";
+		featureConfig = mm.loadFeatureConfiguration(fcURI);
+		FGAtt.enactFeatureConfiguration(featureConfig, true);
 	}
 }
