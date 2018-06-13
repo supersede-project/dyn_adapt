@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
   <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
-    <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" minRangeValue="0" maxRangeValue="207360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+    <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" minRangeValue="0" maxRangeValue="36168" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
     <attribute id="quality" name="quality" type="double" description="Quality of the information in [0,1]" qualityAttribute="true" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
     <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
     <feature id="mechanism" name="Mechanism" lower="1" upper="1">

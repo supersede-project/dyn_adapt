@@ -79,21 +79,27 @@ public class ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration  extends
 			// calculate the weight (importance) of the feature for the new configuration
 			switch(attributes.getProperty("mechanism")){
 			case "attachment": 
-				weight = (Parameters.FG_DISKC_ATTACHMENT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
-				weight = 1/weight;
+				//weight = (Parameters.FG_DISKC_ATTACHMENT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
+				weight = Parameters.FG_DISKC_ATTACHMENT / costMinMax[1] ;
+				weight = 1 - weight;
 				break;
 			case "screenshot": 
-				weight = (Parameters.FG_DISKC_SCREENSHOT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
-				weight = 1/weight;
+				//weight = (Parameters.FG_DISKC_SCREENSHOT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
+				weight = Parameters.FG_DISKC_SCREENSHOT / costMinMax[1] ;
+				weight = 1 - weight;
 				break;
 			case "audio": 
-				weight = (Parameters.FG_DISKC_AUDIO - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
-				weight = 1/weight;
+				//weight = (Parameters.FG_DISKC_AUDIO - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
+				weight = Parameters.FG_DISKC_AUDIO / costMinMax[1] ;
+				weight = 1-weight;
 				break;
 			}
 			
 			double value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
 			value = 1d - value; // convert to minimization
+			
+			logger.info("\n Weight " + valueAttribute + ":" + weight + "Value:" + value);
+
 			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
 			aggregateValues.put(valueAttribute, aggregateValues.get(valueAttribute) + value * weight);
 		}
@@ -103,7 +109,7 @@ public class ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration  extends
 		result[0] = sumAll(aggregateValues.values()); // fitness value
 		result[1] = aggregateValues.get(Parameters.ALERT_ATTRIBUTE); // constraint value that comes from the alert
 
-		logger.debug("\n Features:" + features + "fitnes value: " + result[0] + " constraint value " + result[1] + " ");
+		logger.info("\n Features:" + features + "fitnes value: " + result[0] + " constraint value " + result[1] + " ");
 
 		return result;		
 	}
