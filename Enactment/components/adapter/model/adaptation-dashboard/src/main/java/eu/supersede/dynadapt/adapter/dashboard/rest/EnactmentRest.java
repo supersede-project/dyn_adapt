@@ -30,6 +30,8 @@ public class EnactmentRest
     EnactmentsJpa enactments;
     @Autowired
     AdaptationsJpa adaptations;
+    @Autowired
+	ActionsJpa actions;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Enactment> getEnactments(Authentication authentication, @RequestParam(required = false) String modelSystem)
@@ -65,6 +67,15 @@ public class EnactmentRest
     public void deleteEnactment(@PathVariable("id") String id)
     {
     	enactments.delete(id);
+    	//Remove associate adaptation;
+    	Adaptation adaptation = adaptations.findOne(id);
+    	if (adaptation != null){
+    		List<Action> actionList = adaptation.getActions();
+			for (Action a : actionList) {
+				actions.delete(a);
+			}
+			adaptations.delete(id);
+    	}	
     }
     
     @RequestMapping(value = "", method = RequestMethod.POST )
