@@ -2,71 +2,71 @@
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
   <uml:Model xmi:id="_3J8EIL4cEeeTe87ONvFCCA" name="HttpConf">
     <packagedElement xmi:type="uml:Class" xmi:id="_D27UIL4dEeeTe87ONvFCCA" name="AMonitorConfiguration" visibility="private" isAbstract="true">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D27UIb4dEeeTe87ONvFCCA" name="id">
+      <ownedAttribute xmi:id="_D27UIb4dEeeTe87ONvFCCA" name="id">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D27UIr4dEeeTe87ONvFCCA" name="toolName">
+      <ownedAttribute xmi:id="_D27UIr4dEeeTe87ONvFCCA" name="toolName">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D27UI74dEeeTe87ONvFCCA" name="state">
+      <ownedAttribute xmi:id="_D27UI74dEeeTe87ONvFCCA" name="state">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D27UJL4dEeeTe87ONvFCCA" name="timeSlot">
+      <ownedAttribute xmi:id="_D27UJL4dEeeTe87ONvFCCA" name="timeSlot">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D27UJb4dEeeTe87ONvFCCA" name="kafkaEndpoint">
+      <ownedAttribute xmi:id="_D27UJb4dEeeTe87ONvFCCA" name="kafkaEndpoint">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D27UJr4dEeeTe87ONvFCCA" name="kafkaTopic">
+      <ownedAttribute xmi:id="_D27UJr4dEeeTe87ONvFCCA" name="kafkaTopic">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <qualifier xmi:type="uml:Property" xmi:id="_D27UJ74dEeeTe87ONvFCCA"/>
+        <qualifier xmi:id="_D27UJ74dEeeTe87ONvFCCA"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Realization" xmi:id="_D27UKL4dEeeTe87ONvFCCA" client="_D277ML4dEeeTe87ONvFCCA" supplier="_D277Pb4dEeeTe87ONvFCCA"/>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_D277ML4dEeeTe87ONvFCCA" name="HttpNewMonitorConfiguration" classifier="_D277Pb4dEeeTe87ONvFCCA">
-      <slot xmi:type="uml:Slot" xmi:id="_D277Mb4dEeeTe87ONvFCCA" definingFeature="_D27UIr4dEeeTe87ONvFCCA">
+      <slot xmi:id="_D277Mb4dEeeTe87ONvFCCA" definingFeature="_D27UIr4dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_D277Mr4dEeeTe87ONvFCCA" name="toolName" value="ApacheHttp"/>
       </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_D277Nb4dEeeTe87ONvFCCA" definingFeature="_D27UJr4dEeeTe87ONvFCCA">
+      <slot xmi:id="_D277Nb4dEeeTe87ONvFCCA" definingFeature="_D27UJr4dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_D277Nr4dEeeTe87ONvFCCA" name="kafkaTopic" value="e70160af-ed3b-4ee2-8ef8-ab9fdb5e2dee"/>
       </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_D277Ob4dEeeTe87ONvFCCA" definingFeature="_D27UJL4dEeeTe87ONvFCCA">
-        <value xmi:type="uml:LiteralInteger" xmi:id="_D277Or4dEeeTe87ONvFCCA" name="timeSlot" value="5"/>
+      <slot xmi:id="_D277Ob4dEeeTe87ONvFCCA" definingFeature="_D27UJL4dEeeTe87ONvFCCA">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_D277Or4dEeeTe87ONvFCCA" name="timeSlot" value="100"/>
       </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_D277O74dEeeTe87ONvFCCA" definingFeature="_D277P74dEeeTe87ONvFCCA">
+      <slot xmi:id="_D277O74dEeeTe87ONvFCCA" definingFeature="_D277P74dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_D277PL4dEeeTe87ONvFCCA" name="url" value="http://lab-supersede.atos-sports.tv:8000/handshake_test.php"/>
       </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_Hm9VkL4wEeeTe87ONvFCCA" definingFeature="_DWLc4L4wEeeTe87ONvFCCA">
+      <slot xmi:id="_Hm9VkL4wEeeTe87ONvFCCA" definingFeature="_DWLc4L4wEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_Hm9Vkb4wEeeTe87ONvFCCA" name="method" value="GET"/>
       </slot>
-      <slot xmi:type="uml:Slot" xmi:id="_wGNWoFHgEei5LP5vlyioXQ" definingFeature="_D27UIb4dEeeTe87ONvFCCA">
+      <slot xmi:id="_wGNWoFHgEei5LP5vlyioXQ" definingFeature="_D27UIb4dEeeTe87ONvFCCA">
         <value xmi:type="uml:LiteralString" xmi:id="_2iT3YFHgEei5LP5vlyioXQ" name="id" value=""/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_D277Pb4dEeeTe87ONvFCCA" name="QoS">
-      <generalization xmi:type="uml:Generalization" xmi:id="_D277Pr4dEeeTe87ONvFCCA" general="_D27UIL4dEeeTe87ONvFCCA"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D277P74dEeeTe87ONvFCCA" name="url" visibility="public">
+      <generalization xmi:id="_D277Pr4dEeeTe87ONvFCCA" general="_D27UIL4dEeeTe87ONvFCCA"/>
+      <ownedAttribute xmi:id="_D277P74dEeeTe87ONvFCCA" name="url" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <qualifier xmi:type="uml:Property" xmi:id="__ygh0L4vEeeTe87ONvFCCA" name="url" visibility="public">
+        <qualifier xmi:id="__ygh0L4vEeeTe87ONvFCCA" name="url" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </qualifier>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_DWLc4L4wEeeTe87ONvFCCA" name="method">
+      <ownedAttribute xmi:id="_DWLc4L4wEeeTe87ONvFCCA" name="method">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
     </packagedElement>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_9gfWgL4cEeeTe87ONvFCCA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9gqVoL4cEeeTe87ONvFCCA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9gqVob4cEeeTe87ONvFCCA" key="Version" value="0.1.1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9gqVor4cEeeTe87ONvFCCA" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9gqVo74cEeeTe87ONvFCCA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9gqVpL4cEeeTe87ONvFCCA" key="Date" value="2016-07-19"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9gqVpb4cEeeTe87ONvFCCA" key="Author" value=""/>
+    <profileApplication xmi:id="_9gfWgL4cEeeTe87ONvFCCA">
+      <eAnnotations xmi:id="_9gqVoL4cEeeTe87ONvFCCA" source="PapyrusVersion">
+        <details xmi:id="_9gqVob4cEeeTe87ONvFCCA" key="Version" value="0.1.1"/>
+        <details xmi:id="_9gqVor4cEeeTe87ONvFCCA" key="Comment" value=""/>
+        <details xmi:id="_9gqVo74cEeeTe87ONvFCCA" key="Copyright" value=""/>
+        <details xmi:id="_9gqVpL4cEeeTe87ONvFCCA" key="Date" value="2016-07-19"/>
+        <details xmi:id="_9gqVpb4cEeeTe87ONvFCCA" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9gjn8L4cEeeTe87ONvFCCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:id="_9gjn8L4cEeeTe87ONvFCCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+      <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
     </profileApplication>
   </uml:Model>
   <ADM:Joinpoint xmi:id="_VD_DwL4iEeeTe87ONvFCCA" base_RedefinableElement="_D277Pb4dEeeTe87ONvFCCA" base_NamedElement="_D277Pb4dEeeTe87ONvFCCA"/>
