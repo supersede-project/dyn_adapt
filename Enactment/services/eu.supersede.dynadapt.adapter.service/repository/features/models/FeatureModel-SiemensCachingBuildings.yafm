@@ -11,7 +11,7 @@
     <attribute id="a_294849487" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="0" minRangeValue="0" maxRangeValue="1000"/>
     <attribute id="a_1487359507" name="data_in_DB_update_rate" type="double" defaultValue="0" minRangeValue="0" maxRangeValue="1000"/>
     <group lower="1" upper="1">
-      <feature id="c3" name="SC3" lower="0" upper="1">
+      <feature id="c3" name="SC3" description="" lower="0" upper="1">
         <attribute id="a_2122442494" name="availability" type="double" defaultValue="0.95"/>
         <attribute id="a_1175736421" name="caching" type="boolean" qualityAttribute="true" defaultValue="false"/>
         <attribute id="a_494394555" name="response_time" type="double" qualityAttribute="true" defaultValue="10" minRangeValue="0" maxRangeValue="1000"/>
@@ -22,7 +22,7 @@
         <attribute id="a_1866904671" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="50" minRangeValue="0" maxRangeValue="1000"/>
         <attribute id="a_62840439" name="data_in_DB_update_rate" type="double" qualityAttribute="true" defaultValue="20" minRangeValue="0" maxRangeValue="1000"/>
       </feature>
-      <feature id="c1" name="SC1" lower="0" upper="1">
+      <feature id="c1" name="SC1" description="No cache-enabled buildings service" lower="0" upper="1">
         <attribute id="a_182741991" name="availability" type="double" defaultValue="0.99" minRangeValue="" maxRangeValue=""/>
         <attribute id="a_1452436217" name="caching" type="boolean" qualityAttribute="true" defaultValue="false"/>
         <attribute id="a_2062902699" name="response_time" type="double" qualityAttribute="true" defaultValue="30" minRangeValue="0" maxRangeValue="1000"/>
@@ -33,7 +33,7 @@
         <attribute id="a_358716030" name="lastCachedData_latency_max" type="double" qualityAttribute="true" defaultValue="30" minRangeValue="0" maxRangeValue="1000"/>
         <attribute id="a_1733277979" name="data_in_DB_update_rate" type="double" defaultValue="10" minRangeValue="0" maxRangeValue="1000"/>
       </feature>
-      <feature id="c2" name="SC2" lower="0" upper="1">
+      <feature id="c2" name="SC2" description="Cache-enabled buildings service" lower="0" upper="1">
         <attribute id="a_1812276745" name="availability" type="double" defaultValue="0.99"/>
         <attribute id="a_1036441300" name="caching" type="boolean" qualityAttribute="true" defaultValue="true" minRangeValue=""/>
         <attribute id="a_708416225" name="response_time" type="double" qualityAttribute="true" resourceAttribute="true" defaultValue="1.5" minRangeValue="0" maxRangeValue="1000"/>
