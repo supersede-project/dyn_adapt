@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fm:featureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fm="http://zcu.cz/yafmt/model/fm" name="FeedbackGatheringConfig" version="1.0.0">
   <rootFeature id="feedbackconfiguration" name="FeedbackConfiguration" lower="1" upper="1">
-    <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" minRangeValue="0" maxRangeValue="36168" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+    <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" minRangeValue="0" maxRangeValue="240008" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
     <attribute id="quality" name="quality" type="double" description="Quality of the information in [0,1]" qualityAttribute="true" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
     <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
     <feature id="mechanism" name="Mechanism" lower="1" upper="1">
@@ -11,20 +11,20 @@
         <attribute id="order" name="order" type="integer" defaultValue="5"/>
         <group lower="1" upper="1">
           <feature id="lowattachment" name="LowAttachment" description="Profile for mechanism attachment" lower="0" upper="1">
-            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="15000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
-            <attribute id="maximumTotalFileSize" name="maximumTotalFileSize" type="integer" description="Size of the attached file (in Bytes)" defaultValue="1024000" minRangeValue="" maxRangeValue=""/>
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="1024" minRangeValue="0" maxRangeValue="15360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maximumTotalFileSize" name="maximumTotalFileSize" type="integer" description="Size of the attached file (in Bytes)" defaultValue="1048576" minRangeValue="" maxRangeValue=""/>
             <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
             <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="attachment" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
           </feature>
           <feature id="mediumattachment" name="MediumAttachment" description="Profile for mechanism attachment" lower="0" upper="1">
-            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="8000" minRangeValue="1000" maxRangeValue="15000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
-            <attribute id="maximumTotalFileSize" name="maximumTotalFileSize" type="integer" description="Size of the attached file (in Bytes)" defaultValue="8192000" minRangeValue="" maxRangeValue=""/>
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB per minute)" qualityAttribute="true" defaultValue="7168" minRangeValue="0" maxRangeValue="15360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maximumTotalFileSize" name="maximumTotalFileSize" type="integer" description="Size of the attached file (in Bytes)" defaultValue="7340032" minRangeValue="" maxRangeValue=""/>
             <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.6" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
             <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="attachment" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
           </feature>
           <feature id="highattachment" name="HighAttachment" description="Profile for mechanism attachment" lower="0" upper="1">
-            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="15000" minRangeValue="1000" maxRangeValue="15000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
-            <attribute id="maximumTotalFileSize" name="maximumTotalFileSize" type="integer" description="Size of the attached file (in KB)" defaultValue="15360000" minRangeValue="" maxRangeValue=""/>
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="15360" minRangeValue="0" maxRangeValue="15360" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maximumTotalFileSize" name="maximumTotalFileSize" type="integer" description="Size of the attached file (in KB)" defaultValue="15728640" minRangeValue="" maxRangeValue=""/>
             <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="1" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
             <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="attachment" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
           </feature>
@@ -36,22 +36,22 @@
         <attribute id="order" name="order" type="integer" defaultValue="4"/>
         <group lower="1" upper="1">
           <feature id="shortcdaudio" name="ShortAudio" description="Profile for mechanism audio" lower="0" upper="1">
-            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="5292" minRangeValue="5292" maxRangeValue="21168" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="5292" minRangeValue="0" maxRangeValue="15876" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
             <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="30" minRangeValue="0" maxRangeValue="120"/>
             <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.2" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
             <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1411.2" minRangeValue="" maxRangeValue=""/>
             <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
           </feature>
           <feature id="mediumcdaudio" name="MediumAudio" description="Profile for mechanism audio" lower="0" upper="1">
-            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="10584" minRangeValue="5292" maxRangeValue="21168" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="10584" minRangeValue="0" maxRangeValue="15876" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
             <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="60" minRangeValue="0" maxRangeValue="120"/>
             <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.3" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
             <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1411.2"/>
             <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
           </feature>
-          <feature id="highcdaudio" name="LongAudio" description="Profile for mechanism audio" lower="0" upper="1">
-            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="21168" minRangeValue="10584" maxRangeValue="21168" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
-            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="120" minRangeValue="0" maxRangeValue="120"/>
+          <feature id="longaudio" name="LongAudio" description="Profile for mechanism audio" lower="0" upper="1">
+            <attribute id="diskc" name="diskC" type="double" description="Quota of disk consumption (in KB)" qualityAttribute="true" defaultValue="15876" minRangeValue="0" maxRangeValue="15876" weight="1.0" minimize="true" objectiveFunctionAggregator="sum" alert="true"/>
+            <attribute id="maxtime" name="maxTime" type="integer" description="Maximun time for the audio recording (in seconds)" defaultValue="90" minRangeValue="0" maxRangeValue="120"/>
             <attribute id="quality" name="quality" type="double" description="Quality of the information from 0 to 1" qualityAttribute="true" defaultValue="0.4" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="min"/>
             <attribute id="bitrate" name="bitRate" type="double" description="This attribute is expressed in Kbps. It depends on the audio format." defaultValue="1411.2"/>
             <attribute id="mechanism" name="mechanism" type="string" qualityAttribute="true" defaultValue="audio" minRangeValue="0" maxRangeValue="0" weight="1.0" objectiveFunctionAggregator="sum"/>
