@@ -63,25 +63,23 @@ public class ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration  extends
 		
 		String valueAttribute = "quality";
 		aggregateValues.put(valueAttribute, 0d);
-		
-		String mechanism = "";
-				
+						
 		for (Properties attributes : attributesOfAllFeatures){
-			double cost = Double.parseDouble(attributes.getProperty(costAttribute));
+			double cost, value, weight = 1.0;
+			
+			cost = Double.parseDouble(attributes.getProperty(costAttribute));
 			FeatureAttributeMetadata costAttributeMetadata = featureAttributeMetadata.get(costAttribute);
-			costMinMax[0] = costAttributeMetadata.getMinimumValue();
+			costMinMax[0] = 0;//costAttributeMetadata.getMinimumValue();
 			costMinMax[1] = costAttributeMetadata.getMaximumValue();
-			double weight = costAttributeMetadata.getWeight();
-			// normalize to a value in [0, 1]
-			cost = (cost - costMinMax[0]) / (costMinMax[1] - costMinMax[0]);
-			aggregateValues.put(costAttribute, aggregateValues.get(costAttribute) + cost * weight);
 			
 			// calculate the weight (importance) of the feature for the new configuration
 			switch(attributes.getProperty("mechanism")){
 			case "attachment": 
 				//weight = (Parameters.FG_DISKC_ATTACHMENT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
-				weight = Parameters.FG_DISKC_ATTACHMENT / costMinMax[1] ;
-				weight = 1 - weight;
+				if(cost < Parameters.FG_DISKC_ATTACHMENT)
+					weight = (Parameters.FG_DISKC_ATTACHMENT-cost)/costMinMax[1];//Math.abs(Parameters.FG_DISKC_ATTACHMENT-cost) / (costMinMax[1] - cost) ;
+				else 
+					weight = 1;//1 - weight;
 				break;
 			case "screenshot": 
 				//weight = (Parameters.FG_DISKC_SCREENSHOT - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
@@ -90,18 +88,26 @@ public class ConstrainedSingleObjectiveFitnessFunctionFGReconfiguration  extends
 				break;
 			case "audio": 
 				//weight = (Parameters.FG_DISKC_AUDIO - costMinMax[0]) / (costMinMax[1] - costMinMax[0]) ;
-				weight = Parameters.FG_DISKC_AUDIO / costMinMax[1] ;
-				weight = 1-weight;
+				if(cost < Parameters.FG_DISKC_AUDIO)
+					weight = (Parameters.FG_DISKC_AUDIO - cost) / costMinMax[1] ;
+				else 
+					weight = 1; //1-weight;
 				break;
 			}
+
+			//weight = costAttributeMetadata.getWeight();
 			
-			double value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
+			// normalize to a value in [0, 1]
+			cost = (cost - costMinMax[0]) / (costMinMax[1] - costMinMax[0]);
+			aggregateValues.put(costAttribute, aggregateValues.get(costAttribute) + cost * weight);
+			
+			
+			value = Double.parseDouble(attributes.getProperty(valueAttribute)); // already in [0,1]
 			value = 1d - value; // convert to minimization
 			
-			logger.info("\n Weight " + valueAttribute + ":" + weight + "Value:" + value);
-
-			//weight = featureAttributeMetadata.get(valueAttribute).getWeight();
 			aggregateValues.put(valueAttribute, aggregateValues.get(valueAttribute) + value * weight);
+			
+			//logger.info("\n Weight " + costAttribute + ":" + weight + "Value:" + value);
 		}
 		
 		// overall aggregate sum of all attribute values

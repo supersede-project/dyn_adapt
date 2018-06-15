@@ -64,7 +64,7 @@ public class FeedbackGatheringReconfigurationTest {
 		String fcURI;
 		
 		FeedbackGatheringConfigurationProfile FGenactor = new FeedbackGatheringConfigurationProfile(ModelSystem.SenerconFG);
-		fcURI = "/workspaceSTS/dyn_adapt/Enactment/components/enactor/eu.supersede.feedbackgathering.reconfiguration.enactor/model/default/FeedbackGatheringConfigV6.yafc";
+		fcURI = "/workspaceSTS/dyn_adapt/Enactment/components/enactor/eu.supersede.feedbackgathering.reconfiguration.enactor/model/default/FeedbackGatheringDefault.yafc";
 		featureConfig = mm.loadFeatureConfiguration(fcURI);
 		FGenactor.enactFeatureConfiguration(featureConfig, true);
 		
