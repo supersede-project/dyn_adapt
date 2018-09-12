@@ -56,12 +56,12 @@ public abstract class SubClassOfMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("subclass".equals(parameterName) ) {
-    	this.fSubclass = (Classifier) newValue;
-    	return true;
+        this.fSubclass = (Classifier) newValue;
+        return true;
     }
     if ("superclass".equals(parameterName) ) {
-    	this.fSuperclass = (org.eclipse.uml2.uml.Class) newValue;
-    	return true;
+        this.fSuperclass = (org.eclipse.uml2.uml.Class) newValue;
+        return true;
     }
     return false;
   }
@@ -118,18 +118,18 @@ public abstract class SubClassOfMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof SubClassOfMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     SubClassOfMatch other = (SubClassOfMatch) obj;
     if (fSubclass == null) {if (other.fSubclass != null) return false;}
@@ -142,10 +142,10 @@ public abstract class SubClassOfMatch extends BasePatternMatch {
   @Override
   public SubClassOfQuerySpecification specification() {
     try {
-    	return SubClassOfQuerySpecification.instance();
+        return SubClassOfQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

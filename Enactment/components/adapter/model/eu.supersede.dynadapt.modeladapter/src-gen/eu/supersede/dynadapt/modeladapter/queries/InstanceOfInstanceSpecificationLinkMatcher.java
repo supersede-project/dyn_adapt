@@ -56,7 +56,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
     // check if matcher already exists
     InstanceOfInstanceSpecificationLinkMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (InstanceOfInstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
+        matcher = (InstanceOfInstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -174,7 +174,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<InstanceSpecification> rawAccumulateAllValuesOflink(final Object[] parameters) {
@@ -185,7 +185,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOflink() {
@@ -194,7 +194,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOflink(final InstanceOfInstanceSpecificationLinkMatch partialMatch) {
@@ -203,7 +203,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOflink(final InstanceSpecification pInstance) {
@@ -215,7 +215,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for instance.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<InstanceSpecification> rawAccumulateAllValuesOfinstance(final Object[] parameters) {
@@ -226,7 +226,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for instance.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfinstance() {
@@ -235,7 +235,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for instance.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfinstance(final InstanceOfInstanceSpecificationLinkMatch partialMatch) {
@@ -244,7 +244,7 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   
   /**
    * Retrieve the set of values that occur in matches for instance.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfinstance(final InstanceSpecification pLink) {
@@ -257,30 +257,30 @@ public class InstanceOfInstanceSpecificationLinkMatcher extends BaseMatcher<Inst
   @Override
   protected InstanceOfInstanceSpecificationLinkMatch tupleToMatch(final Tuple t) {
     try {
-    	return InstanceOfInstanceSpecificationLinkMatch.newMatch((InstanceSpecification) t.get(POSITION_LINK), (InstanceSpecification) t.get(POSITION_INSTANCE));
+        return InstanceOfInstanceSpecificationLinkMatch.newMatch((InstanceSpecification) t.get(POSITION_LINK), (InstanceSpecification) t.get(POSITION_INSTANCE));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected InstanceOfInstanceSpecificationLinkMatch arrayToMatch(final Object[] match) {
     try {
-    	return InstanceOfInstanceSpecificationLinkMatch.newMatch((InstanceSpecification) match[POSITION_LINK], (InstanceSpecification) match[POSITION_INSTANCE]);
+        return InstanceOfInstanceSpecificationLinkMatch.newMatch((InstanceSpecification) match[POSITION_LINK], (InstanceSpecification) match[POSITION_INSTANCE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected InstanceOfInstanceSpecificationLinkMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return InstanceOfInstanceSpecificationLinkMatch.newMutableMatch((InstanceSpecification) match[POSITION_LINK], (InstanceSpecification) match[POSITION_INSTANCE]);
+        return InstanceOfInstanceSpecificationLinkMatch.newMutableMatch((InstanceSpecification) match[POSITION_LINK], (InstanceSpecification) match[POSITION_INSTANCE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

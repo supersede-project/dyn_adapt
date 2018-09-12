@@ -54,17 +54,15 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
     // check if matcher already exists
     InstanceSpecificationLinkMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (InstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
+        matcher = (InstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
   
   /**
-   * Initializes the pattern matcher within an existing VIATRA Query engine.
-   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-   * The match set will be incrementally refreshed upon updates.
-   * @param engine the existing VIATRA Query engine in which this matcher will be created.
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
   public static InstanceSpecificationLinkMatcher create() throws ViatraQueryException {
@@ -165,7 +163,7 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<InstanceSpecification> rawAccumulateAllValuesOflink(final Object[] parameters) {
@@ -176,7 +174,7 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOflink() {
@@ -186,30 +184,30 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   @Override
   protected InstanceSpecificationLinkMatch tupleToMatch(final Tuple t) {
     try {
-    	return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) t.get(POSITION_LINK));
+        return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) t.get(POSITION_LINK));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected InstanceSpecificationLinkMatch arrayToMatch(final Object[] match) {
     try {
-    	return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) match[POSITION_LINK]);
+        return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) match[POSITION_LINK]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected InstanceSpecificationLinkMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return InstanceSpecificationLinkMatch.newMutableMatch((InstanceSpecification) match[POSITION_LINK]);
+        return InstanceSpecificationLinkMatch.newMutableMatch((InstanceSpecification) match[POSITION_LINK]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

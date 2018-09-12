@@ -53,17 +53,15 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
     // check if matcher already exists
     NodesMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (NodesMatcher)engine.getMatcher(querySpecification());
+        matcher = (NodesMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
   
   /**
-   * Initializes the pattern matcher within an existing VIATRA Query engine.
-   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-   * The match set will be incrementally refreshed upon updates.
-   * @param engine the existing VIATRA Query engine in which this matcher will be created.
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
   public static NodesMatcher create() throws ViatraQueryException {
@@ -173,7 +171,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for node.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Node> rawAccumulateAllValuesOfnode(final Object[] parameters) {
@@ -184,7 +182,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for node.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Node> getAllValuesOfnode() {
@@ -193,7 +191,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for node.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Node> getAllValuesOfnode(final NodesMatch partialMatch) {
@@ -202,7 +200,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for node.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Node> getAllValuesOfnode(final String pName) {
@@ -214,7 +212,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<String> rawAccumulateAllValuesOfname(final Object[] parameters) {
@@ -225,7 +223,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<String> getAllValuesOfname() {
@@ -234,7 +232,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<String> getAllValuesOfname(final NodesMatch partialMatch) {
@@ -243,7 +241,7 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<String> getAllValuesOfname(final Node pNode) {
@@ -256,30 +254,30 @@ public class NodesMatcher extends BaseMatcher<NodesMatch> {
   @Override
   protected NodesMatch tupleToMatch(final Tuple t) {
     try {
-    	return NodesMatch.newMatch((Node) t.get(POSITION_NODE), (String) t.get(POSITION_NAME));
+        return NodesMatch.newMatch((Node) t.get(POSITION_NODE), (String) t.get(POSITION_NAME));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected NodesMatch arrayToMatch(final Object[] match) {
     try {
-    	return NodesMatch.newMatch((Node) match[POSITION_NODE], (String) match[POSITION_NAME]);
+        return NodesMatch.newMatch((Node) match[POSITION_NODE], (String) match[POSITION_NAME]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected NodesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return NodesMatch.newMutableMatch((Node) match[POSITION_NODE], (String) match[POSITION_NAME]);
+        return NodesMatch.newMutableMatch((Node) match[POSITION_NODE], (String) match[POSITION_NAME]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

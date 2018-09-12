@@ -57,12 +57,12 @@ public abstract class ArtifactManifestationsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("artifact".equals(parameterName) ) {
-    	this.fArtifact = (Artifact) newValue;
-    	return true;
+        this.fArtifact = (Artifact) newValue;
+        return true;
     }
     if ("manifestationTarget".equals(parameterName) ) {
-    	this.fManifestationTarget = (NamedElement) newValue;
-    	return true;
+        this.fManifestationTarget = (NamedElement) newValue;
+        return true;
     }
     return false;
   }
@@ -119,18 +119,18 @@ public abstract class ArtifactManifestationsMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof ArtifactManifestationsMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     ArtifactManifestationsMatch other = (ArtifactManifestationsMatch) obj;
     if (fArtifact == null) {if (other.fArtifact != null) return false;}
@@ -143,10 +143,10 @@ public abstract class ArtifactManifestationsMatch extends BasePatternMatch {
   @Override
   public ArtifactManifestationsQuerySpecification specification() {
     try {
-    	return ArtifactManifestationsQuerySpecification.instance();
+        return ArtifactManifestationsQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

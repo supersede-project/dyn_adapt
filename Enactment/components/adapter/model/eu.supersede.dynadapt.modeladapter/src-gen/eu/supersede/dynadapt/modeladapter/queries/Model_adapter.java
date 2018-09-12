@@ -24,7 +24,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
 /**
- * A pattern group formed of all patterns defined in model_adapter.vql.
+ * A pattern group formed of all public patterns defined in model_adapter.vql.
  * 
  * <p>Use the static instance as any {@link org.eclipse.viatra.query.runtime.api.IPatternGroup}, to conveniently prepare
  * a VIATRA Query engine for matching all patterns originally defined in file model_adapter.vql,
@@ -55,7 +55,7 @@ public final class Model_adapter extends BaseGeneratedPatternGroup {
    */
   public static Model_adapter instance() throws ViatraQueryException {
     if (INSTANCE == null) {
-    	INSTANCE = new Model_adapter();
+        INSTANCE = new Model_adapter();
     }
     return INSTANCE;
   }

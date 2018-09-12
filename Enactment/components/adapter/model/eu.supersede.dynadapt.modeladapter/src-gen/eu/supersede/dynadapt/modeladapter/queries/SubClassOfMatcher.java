@@ -59,7 +59,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
     // check if matcher already exists
     SubClassOfMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (SubClassOfMatcher)engine.getMatcher(querySpecification());
+        matcher = (SubClassOfMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -177,7 +177,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for subclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Classifier> rawAccumulateAllValuesOfsubclass(final Object[] parameters) {
@@ -188,7 +188,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for subclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Classifier> getAllValuesOfsubclass() {
@@ -197,7 +197,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for subclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Classifier> getAllValuesOfsubclass(final SubClassOfMatch partialMatch) {
@@ -206,7 +206,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for subclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Classifier> getAllValuesOfsubclass(final org.eclipse.uml2.uml.Class pSuperclass) {
@@ -218,7 +218,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for superclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<org.eclipse.uml2.uml.Class> rawAccumulateAllValuesOfsuperclass(final Object[] parameters) {
@@ -229,7 +229,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for superclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<org.eclipse.uml2.uml.Class> getAllValuesOfsuperclass() {
@@ -238,7 +238,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for superclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<org.eclipse.uml2.uml.Class> getAllValuesOfsuperclass(final SubClassOfMatch partialMatch) {
@@ -247,7 +247,7 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for superclass.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<org.eclipse.uml2.uml.Class> getAllValuesOfsuperclass(final Classifier pSubclass) {
@@ -260,30 +260,30 @@ public class SubClassOfMatcher extends BaseMatcher<SubClassOfMatch> {
   @Override
   protected SubClassOfMatch tupleToMatch(final Tuple t) {
     try {
-    	return SubClassOfMatch.newMatch((Classifier) t.get(POSITION_SUBCLASS), (org.eclipse.uml2.uml.Class) t.get(POSITION_SUPERCLASS));
+        return SubClassOfMatch.newMatch((Classifier) t.get(POSITION_SUBCLASS), (org.eclipse.uml2.uml.Class) t.get(POSITION_SUPERCLASS));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected SubClassOfMatch arrayToMatch(final Object[] match) {
     try {
-    	return SubClassOfMatch.newMatch((Classifier) match[POSITION_SUBCLASS], (org.eclipse.uml2.uml.Class) match[POSITION_SUPERCLASS]);
+        return SubClassOfMatch.newMatch((Classifier) match[POSITION_SUBCLASS], (org.eclipse.uml2.uml.Class) match[POSITION_SUPERCLASS]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected SubClassOfMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return SubClassOfMatch.newMutableMatch((Classifier) match[POSITION_SUBCLASS], (org.eclipse.uml2.uml.Class) match[POSITION_SUPERCLASS]);
+        return SubClassOfMatch.newMutableMatch((Classifier) match[POSITION_SUBCLASS], (org.eclipse.uml2.uml.Class) match[POSITION_SUPERCLASS]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

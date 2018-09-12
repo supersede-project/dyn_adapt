@@ -57,12 +57,12 @@ public abstract class NodeArtifactsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("node".equals(parameterName) ) {
-    	this.fNode = (Node) newValue;
-    	return true;
+        this.fNode = (Node) newValue;
+        return true;
     }
     if ("artifact".equals(parameterName) ) {
-    	this.fArtifact = (Artifact) newValue;
-    	return true;
+        this.fArtifact = (Artifact) newValue;
+        return true;
     }
     return false;
   }
@@ -119,18 +119,18 @@ public abstract class NodeArtifactsMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof NodeArtifactsMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     NodeArtifactsMatch other = (NodeArtifactsMatch) obj;
     if (fNode == null) {if (other.fNode != null) return false;}
@@ -143,10 +143,10 @@ public abstract class NodeArtifactsMatch extends BasePatternMatch {
   @Override
   public NodeArtifactsQuerySpecification specification() {
     try {
-    	return NodeArtifactsQuerySpecification.instance();
+        return NodeArtifactsQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

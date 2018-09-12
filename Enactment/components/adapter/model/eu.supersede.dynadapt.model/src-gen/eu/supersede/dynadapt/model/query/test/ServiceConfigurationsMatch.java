@@ -56,12 +56,12 @@ public abstract class ServiceConfigurationsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("service".equals(parameterName) ) {
-    	this.fService = (InstanceSpecification) newValue;
-    	return true;
+        this.fService = (InstanceSpecification) newValue;
+        return true;
     }
     if ("configuration".equals(parameterName) ) {
-    	this.fConfiguration = (InstanceSpecification) newValue;
-    	return true;
+        this.fConfiguration = (InstanceSpecification) newValue;
+        return true;
     }
     return false;
   }
@@ -118,18 +118,18 @@ public abstract class ServiceConfigurationsMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof ServiceConfigurationsMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     ServiceConfigurationsMatch other = (ServiceConfigurationsMatch) obj;
     if (fService == null) {if (other.fService != null) return false;}
@@ -142,10 +142,10 @@ public abstract class ServiceConfigurationsMatch extends BasePatternMatch {
   @Override
   public ServiceConfigurationsQuerySpecification specification() {
     try {
-    	return ServiceConfigurationsQuerySpecification.instance();
+        return ServiceConfigurationsQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

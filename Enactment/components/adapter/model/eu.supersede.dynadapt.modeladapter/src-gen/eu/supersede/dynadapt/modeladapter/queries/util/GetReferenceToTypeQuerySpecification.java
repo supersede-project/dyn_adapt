@@ -48,9 +48,9 @@ public final class GetReferenceToTypeQuerySpecification extends BaseGeneratedEMF
    */
   public static GetReferenceToTypeQuerySpecification instance() throws ViatraQueryException {
     try{
-    	return LazyHolder.INSTANCE;
+        return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
-    	throw processInitializerError(err);
+        throw processInitializerError(err);
     }
   }
   
@@ -76,8 +76,8 @@ public final class GetReferenceToTypeQuerySpecification extends BaseGeneratedEMF
   
   /**
    * Inner class allowing the singleton instance of {@link GetReferenceToTypeQuerySpecification} to be created 
-   * 	<b>not</b> at the class load time of the outer class, 
-   * 	but rather at the first call to {@link GetReferenceToTypeQuerySpecification#instance()}.
+   *     <b>not</b> at the class load time of the outer class, 
+   *     but rather at the first call to {@link GetReferenceToTypeQuerySpecification#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -129,24 +129,24 @@ public final class GetReferenceToTypeQuerySpecification extends BaseGeneratedEMF
       setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
-      	{
-      		PBody body = new PBody(this);
-      		PVariable var_element = body.getOrCreateVariableByName("element");
-      		PVariable var_type = body.getOrCreateVariableByName("type");
-      		new TypeConstraint(body, new FlatTuple(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Element")));
-      		new TypeConstraint(body, new FlatTuple(var_type), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Class")));
-      		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_element, parameter_pElement),
-      		   new ExportedParameter(body, var_type, parameter_pType)
-      		));
-      		// 	find referencesToType(element, type)
-      		new PositivePatternCall(body, new FlatTuple(var_element, var_type), ReferencesToTypeQuerySpecification.instance().getInternalQueryRepresentation());
-      		bodies.add(body);
-      	}
-      	// to silence compiler error
-      	if (false) throw new ViatraQueryException("Never", "happens");
+          {
+              PBody body = new PBody(this);
+              PVariable var_element = body.getOrCreateVariableByName("element");
+              PVariable var_type = body.getOrCreateVariableByName("type");
+              new TypeConstraint(body, new FlatTuple(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Element")));
+              new TypeConstraint(body, new FlatTuple(var_type), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Class")));
+              body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+                 new ExportedParameter(body, var_element, parameter_pElement),
+                 new ExportedParameter(body, var_type, parameter_pType)
+              ));
+              // 	find referencesToType(element, type)
+              new PositivePatternCall(body, new FlatTuple(var_element, var_type), ReferencesToTypeQuerySpecification.instance().getInternalQueryRepresentation());
+              bodies.add(body);
+          }
+          // to silence compiler error
+          if (false) throw new ViatraQueryException("Never", "happens");
       } catch (ViatraQueryException ex) {
-      	throw processDependencyException(ex);
+          throw processDependencyException(ex);
       }
       return bodies;
     }

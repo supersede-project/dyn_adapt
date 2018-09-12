@@ -9,16 +9,18 @@ import eu.supersede.dynadapt.model.query.test.ServiceConfigurationsMatch;
 import eu.supersede.dynadapt.model.query.test.ServiceConfigurationsMatcher;
 import eu.supersede.dynadapt.model.query.test.util.InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
@@ -55,9 +57,9 @@ public final class ServiceConfigurationsQuerySpecification extends BaseGenerated
    */
   public static ServiceConfigurationsQuerySpecification instance() throws ViatraQueryException {
     try{
-    	return LazyHolder.INSTANCE;
+        return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
-    	throw processInitializerError(err);
+        throw processInitializerError(err);
     }
   }
   
@@ -83,8 +85,8 @@ public final class ServiceConfigurationsQuerySpecification extends BaseGenerated
   
   /**
    * Inner class allowing the singleton instance of {@link ServiceConfigurationsQuerySpecification} to be created 
-   * 	<b>not</b> at the class load time of the outer class, 
-   * 	but rather at the first call to {@link ServiceConfigurationsQuerySpecification#instance()}.
+   *     <b>not</b> at the class load time of the outer class, 
+   *     but rather at the first call to {@link ServiceConfigurationsQuerySpecification#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -133,73 +135,78 @@ public final class ServiceConfigurationsQuerySpecification extends BaseGenerated
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
-      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
-      	{
-      		PBody body = new PBody(this);
-      		PVariable var_service = body.getOrCreateVariableByName("service");
-      		PVariable var_configuration = body.getOrCreateVariableByName("configuration");
-      		PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-      		PVariable var_slot = body.getOrCreateVariableByName("slot");
-      		PVariable var_instance = body.getOrCreateVariableByName("instance");
-      		PVariable var_feature = body.getOrCreateVariableByName("feature");
-      		PVariable var_featureName = body.getOrCreateVariableByName("featureName");
-      		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_service, parameter_pService),
-      		   new ExportedParameter(body, var_configuration, parameter_pConfiguration)
-      		));
-      		// 	find instanceSpecificationsAsManifestationsOfNodeArtifacts(_, service)
-      		new PositivePatternCall(body, new FlatTuple(var___0_, var_service), InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	InstanceSpecification.slot (service, slot)
-      		new TypeConstraint(body, new FlatTuple(var_service), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));
-      		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-      		new TypeConstraint(body, new FlatTuple(var_service, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification", "slot")));
-      		new Equality(body, var__virtual_0_, var_slot);
-      		// 	Slot.value (slot, instance)
-      		new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
-      		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-      		new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "value")));
-      		new Equality(body, var__virtual_1_, var_instance);
-      		// 	Slot.definingFeature (slot, feature)
-      		new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
-      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-      		new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "definingFeature")));
-      		new Equality(body, var__virtual_2_, var_feature);
-      		// 	Property.name (feature, featureName)
-      		new TypeConstraint(body, new FlatTuple(var_feature), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Property")));
-      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-      		new TypeConstraint(body, new FlatTuple(var_feature, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "NamedElement", "name")));
-      		new Equality(body, var__virtual_3_, var_featureName);
-      		// 	InstanceValue.instance (instance, configuration)
-      		new TypeConstraint(body, new FlatTuple(var_instance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceValue")));
-      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
-      		new TypeConstraint(body, new FlatTuple(var_instance, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceValue", "instance")));
-      		new Equality(body, var__virtual_4_, var_configuration);
-      		// 	check (		featureName == "conf"	)
-      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
-      		
-      		    @Override
-      		    public String getShortDescription() {
-      		        return "Expression evaluation from pattern serviceConfigurations";
-      		    }
-      		    
-      		    @Override
-      		    public Iterable<String> getInputParameterNames() {
-      		        return Arrays.asList("featureName");}
-      		
-      		    @Override
-      		    public Object evaluateExpression(IValueProvider provider) throws Exception {
-      		        String featureName = (String) provider.getValue("featureName");
-      		        return evaluateExpression_1_1(featureName);
-      		    }
-      		},  null); 
-      		bodies.add(body);
-      	}
-      	// to silence compiler error
-      	if (false) throw new ViatraQueryException("Never", "happens");
+          {
+              PBody body = new PBody(this);
+              PVariable var_service = body.getOrCreateVariableByName("service");
+              PVariable var_configuration = body.getOrCreateVariableByName("configuration");
+              PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
+              PVariable var_slot = body.getOrCreateVariableByName("slot");
+              PVariable var_instance = body.getOrCreateVariableByName("instance");
+              PVariable var_feature = body.getOrCreateVariableByName("feature");
+              PVariable var_featureName = body.getOrCreateVariableByName("featureName");
+              body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+                 new ExportedParameter(body, var_service, parameter_pService),
+                 new ExportedParameter(body, var_configuration, parameter_pConfiguration)
+              ));
+              // 	find instanceSpecificationsAsManifestationsOfNodeArtifacts(_, service)
+              new PositivePatternCall(body, new FlatTuple(var___0_, var_service), InstanceSpecificationsAsManifestationsOfNodeArtifactsQuerySpecification.instance().getInternalQueryRepresentation());
+              // 	InstanceSpecification.slot (service, slot)
+              new TypeConstraint(body, new FlatTuple(var_service), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));
+              PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+              new TypeConstraint(body, new FlatTuple(var_service, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification", "slot")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
+              new Equality(body, var__virtual_0_, var_slot);
+              // 	Slot.value (slot, instance)
+              new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
+              PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+              new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "value")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "ValueSpecification")));
+              new Equality(body, var__virtual_1_, var_instance);
+              // 	Slot.definingFeature (slot, feature)
+              new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
+              PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+              new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "definingFeature")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_2_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "StructuralFeature")));
+              new Equality(body, var__virtual_2_, var_feature);
+              // 	Property.name (feature, featureName)
+              new TypeConstraint(body, new FlatTuple(var_feature), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Property")));
+              PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+              new TypeConstraint(body, new FlatTuple(var_feature, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "NamedElement", "name")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/Types", "String")));
+              new Equality(body, var__virtual_3_, var_featureName);
+              // 	InstanceValue.instance (instance, configuration)
+              new TypeConstraint(body, new FlatTuple(var_instance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceValue")));
+              PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+              new TypeConstraint(body, new FlatTuple(var_instance, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceValue", "instance")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_4_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));
+              new Equality(body, var__virtual_4_, var_configuration);
+              // 	check (		featureName == "conf"	)
+              new ExpressionEvaluation(body, new IExpressionEvaluator() {
+              
+                  @Override
+                  public String getShortDescription() {
+                      return "Expression evaluation from pattern serviceConfigurations";
+                  }
+                  
+                  @Override
+                  public Iterable<String> getInputParameterNames() {
+                      return Arrays.asList("featureName");}
+              
+                  @Override
+                  public Object evaluateExpression(IValueProvider provider) throws Exception {
+                      String featureName = (String) provider.getValue("featureName");
+                      return evaluateExpression_1_1(featureName);
+                  }
+              },  null); 
+              bodies.add(body);
+          }
+          // to silence compiler error
+          if (false) throw new ViatraQueryException("Never", "happens");
       } catch (ViatraQueryException ex) {
-      	throw processDependencyException(ex);
+          throw processDependencyException(ex);
       }
       return bodies;
     }

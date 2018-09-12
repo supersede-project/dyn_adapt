@@ -48,8 +48,8 @@ public abstract class InstanceSpecificationLinkMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("link".equals(parameterName) ) {
-    	this.fLink = (InstanceSpecification) newValue;
-    	return true;
+        this.fLink = (InstanceSpecification) newValue;
+        return true;
     }
     return false;
   }
@@ -98,18 +98,18 @@ public abstract class InstanceSpecificationLinkMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof InstanceSpecificationLinkMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     InstanceSpecificationLinkMatch other = (InstanceSpecificationLinkMatch) obj;
     if (fLink == null) {if (other.fLink != null) return false;}
@@ -120,10 +120,10 @@ public abstract class InstanceSpecificationLinkMatch extends BasePatternMatch {
   @Override
   public InstanceSpecificationLinkQuerySpecification specification() {
     try {
-    	return InstanceSpecificationLinkQuerySpecification.instance();
+        return InstanceSpecificationLinkQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

@@ -8,13 +8,13 @@ import eu.supersede.dynadapt.model.query.test.ServiceInstancesMatch;
 import eu.supersede.dynadapt.model.query.test.ServiceInstancesMatcher;
 import eu.supersede.dynadapt.model.query.test.util.ArtifactManifestationsQuerySpecification;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
@@ -46,9 +46,9 @@ public final class ServiceInstancesQuerySpecification extends BaseGeneratedEMFQu
    */
   public static ServiceInstancesQuerySpecification instance() throws ViatraQueryException {
     try{
-    	return LazyHolder.INSTANCE;
+        return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
-    	throw processInitializerError(err);
+        throw processInitializerError(err);
     }
   }
   
@@ -74,8 +74,8 @@ public final class ServiceInstancesQuerySpecification extends BaseGeneratedEMFQu
   
   /**
    * Inner class allowing the singleton instance of {@link ServiceInstancesQuerySpecification} to be created 
-   * 	<b>not</b> at the class load time of the outer class, 
-   * 	but rather at the first call to {@link ServiceInstancesQuerySpecification#instance()}.
+   *     <b>not</b> at the class load time of the outer class, 
+   *     but rather at the first call to {@link ServiceInstancesQuerySpecification#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -124,25 +124,25 @@ public final class ServiceInstancesQuerySpecification extends BaseGeneratedEMFQu
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
-      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
-      	{
-      		PBody body = new PBody(this);
-      		PVariable var_service = body.getOrCreateVariableByName("service");
-      		PVariable var_instance = body.getOrCreateVariableByName("instance");
-      		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_service, parameter_pService),
-      		   new ExportedParameter(body, var_instance, parameter_pInstance)
-      		));
-      		// 	find artifactManifestations(service, instance)
-      		new PositivePatternCall(body, new FlatTuple(var_service, var_instance), ArtifactManifestationsQuerySpecification.instance().getInternalQueryRepresentation());
-      		bodies.add(body);
-      	}
-      	// to silence compiler error
-      	if (false) throw new ViatraQueryException("Never", "happens");
+          {
+              PBody body = new PBody(this);
+              PVariable var_service = body.getOrCreateVariableByName("service");
+              PVariable var_instance = body.getOrCreateVariableByName("instance");
+              body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+                 new ExportedParameter(body, var_service, parameter_pService),
+                 new ExportedParameter(body, var_instance, parameter_pInstance)
+              ));
+              // 	find artifactManifestations(service, instance)
+              new PositivePatternCall(body, new FlatTuple(var_service, var_instance), ArtifactManifestationsQuerySpecification.instance().getInternalQueryRepresentation());
+              bodies.add(body);
+          }
+          // to silence compiler error
+          if (false) throw new ViatraQueryException("Never", "happens");
       } catch (ViatraQueryException ex) {
-      	throw processDependencyException(ex);
+          throw processDependencyException(ex);
       }
       return bodies;
     }

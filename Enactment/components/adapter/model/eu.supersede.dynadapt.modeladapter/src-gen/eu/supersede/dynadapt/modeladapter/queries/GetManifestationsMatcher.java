@@ -56,7 +56,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
     // check if matcher already exists
     GetManifestationsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (GetManifestationsMatcher)engine.getMatcher(querySpecification());
+        matcher = (GetManifestationsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -183,7 +183,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for manifestation.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Manifestation> rawAccumulateAllValuesOfmanifestation(final Object[] parameters) {
@@ -194,7 +194,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for manifestation.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Manifestation> getAllValuesOfmanifestation() {
@@ -203,7 +203,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for manifestation.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Manifestation> getAllValuesOfmanifestation(final GetManifestationsMatch partialMatch) {
@@ -212,7 +212,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for manifestation.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Manifestation> getAllValuesOfmanifestation(final ExecutionEnvironment pClient, final InstanceSpecification pSupplier) {
@@ -225,7 +225,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for client.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<ExecutionEnvironment> rawAccumulateAllValuesOfclient(final Object[] parameters) {
@@ -236,7 +236,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for client.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<ExecutionEnvironment> getAllValuesOfclient() {
@@ -245,7 +245,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for client.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<ExecutionEnvironment> getAllValuesOfclient(final GetManifestationsMatch partialMatch) {
@@ -254,7 +254,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for client.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<ExecutionEnvironment> getAllValuesOfclient(final Manifestation pManifestation, final InstanceSpecification pSupplier) {
@@ -267,7 +267,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for supplier.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<InstanceSpecification> rawAccumulateAllValuesOfsupplier(final Object[] parameters) {
@@ -278,7 +278,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for supplier.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfsupplier() {
@@ -287,7 +287,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for supplier.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfsupplier(final GetManifestationsMatch partialMatch) {
@@ -296,7 +296,7 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   
   /**
    * Retrieve the set of values that occur in matches for supplier.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfsupplier(final Manifestation pManifestation, final ExecutionEnvironment pClient) {
@@ -310,30 +310,30 @@ public class GetManifestationsMatcher extends BaseMatcher<GetManifestationsMatch
   @Override
   protected GetManifestationsMatch tupleToMatch(final Tuple t) {
     try {
-    	return GetManifestationsMatch.newMatch((Manifestation) t.get(POSITION_MANIFESTATION), (ExecutionEnvironment) t.get(POSITION_CLIENT), (InstanceSpecification) t.get(POSITION_SUPPLIER));
+        return GetManifestationsMatch.newMatch((Manifestation) t.get(POSITION_MANIFESTATION), (ExecutionEnvironment) t.get(POSITION_CLIENT), (InstanceSpecification) t.get(POSITION_SUPPLIER));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected GetManifestationsMatch arrayToMatch(final Object[] match) {
     try {
-    	return GetManifestationsMatch.newMatch((Manifestation) match[POSITION_MANIFESTATION], (ExecutionEnvironment) match[POSITION_CLIENT], (InstanceSpecification) match[POSITION_SUPPLIER]);
+        return GetManifestationsMatch.newMatch((Manifestation) match[POSITION_MANIFESTATION], (ExecutionEnvironment) match[POSITION_CLIENT], (InstanceSpecification) match[POSITION_SUPPLIER]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected GetManifestationsMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return GetManifestationsMatch.newMutableMatch((Manifestation) match[POSITION_MANIFESTATION], (ExecutionEnvironment) match[POSITION_CLIENT], (InstanceSpecification) match[POSITION_SUPPLIER]);
+        return GetManifestationsMatch.newMutableMatch((Manifestation) match[POSITION_MANIFESTATION], (ExecutionEnvironment) match[POSITION_CLIENT], (InstanceSpecification) match[POSITION_SUPPLIER]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

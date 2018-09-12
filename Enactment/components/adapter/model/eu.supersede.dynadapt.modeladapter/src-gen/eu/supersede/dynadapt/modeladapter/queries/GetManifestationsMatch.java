@@ -66,16 +66,16 @@ public abstract class GetManifestationsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("manifestation".equals(parameterName) ) {
-    	this.fManifestation = (Manifestation) newValue;
-    	return true;
+        this.fManifestation = (Manifestation) newValue;
+        return true;
     }
     if ("client".equals(parameterName) ) {
-    	this.fClient = (ExecutionEnvironment) newValue;
-    	return true;
+        this.fClient = (ExecutionEnvironment) newValue;
+        return true;
     }
     if ("supplier".equals(parameterName) ) {
-    	this.fSupplier = (InstanceSpecification) newValue;
-    	return true;
+        this.fSupplier = (InstanceSpecification) newValue;
+        return true;
     }
     return false;
   }
@@ -140,18 +140,18 @@ public abstract class GetManifestationsMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof GetManifestationsMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     GetManifestationsMatch other = (GetManifestationsMatch) obj;
     if (fManifestation == null) {if (other.fManifestation != null) return false;}
@@ -166,10 +166,10 @@ public abstract class GetManifestationsMatch extends BasePatternMatch {
   @Override
   public GetManifestationsQuerySpecification specification() {
     try {
-    	return GetManifestationsQuerySpecification.instance();
+        return GetManifestationsQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

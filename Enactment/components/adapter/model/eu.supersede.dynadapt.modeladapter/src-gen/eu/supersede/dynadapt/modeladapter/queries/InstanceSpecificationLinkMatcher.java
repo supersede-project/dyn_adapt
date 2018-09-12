@@ -54,7 +54,7 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
     // check if matcher already exists
     InstanceSpecificationLinkMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (InstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
+        matcher = (InstanceSpecificationLinkMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -163,7 +163,7 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<InstanceSpecification> rawAccumulateAllValuesOflink(final Object[] parameters) {
@@ -174,7 +174,7 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   
   /**
    * Retrieve the set of values that occur in matches for link.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOflink() {
@@ -184,30 +184,30 @@ public class InstanceSpecificationLinkMatcher extends BaseMatcher<InstanceSpecif
   @Override
   protected InstanceSpecificationLinkMatch tupleToMatch(final Tuple t) {
     try {
-    	return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) t.get(POSITION_LINK));
+        return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) t.get(POSITION_LINK));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected InstanceSpecificationLinkMatch arrayToMatch(final Object[] match) {
     try {
-    	return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) match[POSITION_LINK]);
+        return InstanceSpecificationLinkMatch.newMatch((InstanceSpecification) match[POSITION_LINK]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected InstanceSpecificationLinkMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return InstanceSpecificationLinkMatch.newMutableMatch((InstanceSpecification) match[POSITION_LINK]);
+        return InstanceSpecificationLinkMatch.newMutableMatch((InstanceSpecification) match[POSITION_LINK]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

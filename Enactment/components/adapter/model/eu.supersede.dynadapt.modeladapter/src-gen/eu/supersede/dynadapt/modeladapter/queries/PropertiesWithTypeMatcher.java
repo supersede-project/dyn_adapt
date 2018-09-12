@@ -59,7 +59,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
     // check if matcher already exists
     PropertiesWithTypeMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (PropertiesWithTypeMatcher)engine.getMatcher(querySpecification());
+        matcher = (PropertiesWithTypeMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -177,7 +177,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for property.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Property> rawAccumulateAllValuesOfproperty(final Object[] parameters) {
@@ -188,7 +188,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for property.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Property> getAllValuesOfproperty() {
@@ -197,7 +197,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for property.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Property> getAllValuesOfproperty(final PropertiesWithTypeMatch partialMatch) {
@@ -206,7 +206,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for property.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Property> getAllValuesOfproperty(final Type pType) {
@@ -218,7 +218,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Type> rawAccumulateAllValuesOftype(final Object[] parameters) {
@@ -229,7 +229,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Type> getAllValuesOftype() {
@@ -238,7 +238,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Type> getAllValuesOftype(final PropertiesWithTypeMatch partialMatch) {
@@ -247,7 +247,7 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Type> getAllValuesOftype(final Property pProperty) {
@@ -260,30 +260,30 @@ public class PropertiesWithTypeMatcher extends BaseMatcher<PropertiesWithTypeMat
   @Override
   protected PropertiesWithTypeMatch tupleToMatch(final Tuple t) {
     try {
-    	return PropertiesWithTypeMatch.newMatch((Property) t.get(POSITION_PROPERTY), (Type) t.get(POSITION_TYPE));
+        return PropertiesWithTypeMatch.newMatch((Property) t.get(POSITION_PROPERTY), (Type) t.get(POSITION_TYPE));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected PropertiesWithTypeMatch arrayToMatch(final Object[] match) {
     try {
-    	return PropertiesWithTypeMatch.newMatch((Property) match[POSITION_PROPERTY], (Type) match[POSITION_TYPE]);
+        return PropertiesWithTypeMatch.newMatch((Property) match[POSITION_PROPERTY], (Type) match[POSITION_TYPE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected PropertiesWithTypeMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return PropertiesWithTypeMatch.newMutableMatch((Property) match[POSITION_PROPERTY], (Type) match[POSITION_TYPE]);
+        return PropertiesWithTypeMatch.newMutableMatch((Property) match[POSITION_PROPERTY], (Type) match[POSITION_TYPE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

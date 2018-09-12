@@ -8,16 +8,18 @@ import eu.supersede.dynadapt.model.query.test.MaxThreadValuesInCMSConfigurations
 import eu.supersede.dynadapt.model.query.test.MaxThreadValuesInCMSConfigurationsMatcher;
 import eu.supersede.dynadapt.model.query.test.util.CMSConfigurationInstancesQuerySpecification;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.backend.IQueryBackendFactory;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.context.IInputKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
@@ -54,9 +56,9 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
    */
   public static MaxThreadValuesInCMSConfigurationsQuerySpecification instance() throws ViatraQueryException {
     try{
-    	return LazyHolder.INSTANCE;
+        return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
-    	throw processInitializerError(err);
+        throw processInitializerError(err);
     }
   }
   
@@ -82,8 +84,8 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
   
   /**
    * Inner class allowing the singleton instance of {@link MaxThreadValuesInCMSConfigurationsQuerySpecification} to be created 
-   * 	<b>not</b> at the class load time of the outer class, 
-   * 	but rather at the first call to {@link MaxThreadValuesInCMSConfigurationsQuerySpecification#instance()}.
+   *     <b>not</b> at the class load time of the outer class, 
+   *     but rather at the first call to {@link MaxThreadValuesInCMSConfigurationsQuerySpecification#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -134,73 +136,78 @@ public final class MaxThreadValuesInCMSConfigurationsQuerySpecification extends 
     
     @Override
     public Set<PBody> doGetContainedBodies() throws QueryInitializationException {
-      setEvaluationHints(new QueryEvaluationHint(null, Collections.<String,Object>emptyMap()));
+      setEvaluationHints(new QueryEvaluationHint(null, (IQueryBackendFactory)null));
       Set<PBody> bodies = Sets.newLinkedHashSet();
       try {
-      	{
-      		PBody body = new PBody(this);
-      		PVariable var_configuration = body.getOrCreateVariableByName("configuration");
-      		PVariable var_name = body.getOrCreateVariableByName("name");
-      		PVariable var_value = body.getOrCreateVariableByName("value");
-      		PVariable var_slot = body.getOrCreateVariableByName("slot");
-      		PVariable var_feature = body.getOrCreateVariableByName("feature");
-      		PVariable var_integer = body.getOrCreateVariableByName("integer");
-      		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-      		   new ExportedParameter(body, var_configuration, parameter_pConfiguration),
-      		   new ExportedParameter(body, var_name, parameter_pName),
-      		   new ExportedParameter(body, var_value, parameter_pValue)
-      		));
-      		// 	find CMSConfigurationInstances(configuration)
-      		new PositivePatternCall(body, new FlatTuple(var_configuration), CMSConfigurationInstancesQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	InstanceSpecification.slot (configuration, slot)
-      		new TypeConstraint(body, new FlatTuple(var_configuration), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));
-      		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-      		new TypeConstraint(body, new FlatTuple(var_configuration, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification", "slot")));
-      		new Equality(body, var__virtual_0_, var_slot);
-      		// 	Slot.definingFeature (slot, feature)
-      		new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
-      		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-      		new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "definingFeature")));
-      		new Equality(body, var__virtual_1_, var_feature);
-      		// 	Property.name (feature, name)
-      		new TypeConstraint(body, new FlatTuple(var_feature), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Property")));
-      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-      		new TypeConstraint(body, new FlatTuple(var_feature, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "NamedElement", "name")));
-      		new Equality(body, var__virtual_2_, var_name);
-      		// 	Slot.value (slot, integer)
-      		new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
-      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-      		new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "value")));
-      		new Equality(body, var__virtual_3_, var_integer);
-      		// 	LiteralInteger.value (integer, value)
-      		new TypeConstraint(body, new FlatTuple(var_integer), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "LiteralInteger")));
-      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
-      		new TypeConstraint(body, new FlatTuple(var_integer, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "LiteralInteger", "value")));
-      		new Equality(body, var__virtual_4_, var_value);
-      		// 	check (		name.equals("max_threads")	)
-      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
-      		
-      		    @Override
-      		    public String getShortDescription() {
-      		        return "Expression evaluation from pattern maxThreadValuesInCMSConfigurations";
-      		    }
-      		    
-      		    @Override
-      		    public Iterable<String> getInputParameterNames() {
-      		        return Arrays.asList("name");}
-      		
-      		    @Override
-      		    public Object evaluateExpression(IValueProvider provider) throws Exception {
-      		        String name = (String) provider.getValue("name");
-      		        return evaluateExpression_1_1(name);
-      		    }
-      		},  null); 
-      		bodies.add(body);
-      	}
-      	// to silence compiler error
-      	if (false) throw new ViatraQueryException("Never", "happens");
+          {
+              PBody body = new PBody(this);
+              PVariable var_configuration = body.getOrCreateVariableByName("configuration");
+              PVariable var_name = body.getOrCreateVariableByName("name");
+              PVariable var_value = body.getOrCreateVariableByName("value");
+              PVariable var_slot = body.getOrCreateVariableByName("slot");
+              PVariable var_feature = body.getOrCreateVariableByName("feature");
+              PVariable var_integer = body.getOrCreateVariableByName("integer");
+              body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+                 new ExportedParameter(body, var_configuration, parameter_pConfiguration),
+                 new ExportedParameter(body, var_name, parameter_pName),
+                 new ExportedParameter(body, var_value, parameter_pValue)
+              ));
+              // 	find CMSConfigurationInstances(configuration)
+              new PositivePatternCall(body, new FlatTuple(var_configuration), CMSConfigurationInstancesQuerySpecification.instance().getInternalQueryRepresentation());
+              // 	InstanceSpecification.slot (configuration, slot)
+              new TypeConstraint(body, new FlatTuple(var_configuration), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification")));
+              PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+              new TypeConstraint(body, new FlatTuple(var_configuration, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "InstanceSpecification", "slot")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
+              new Equality(body, var__virtual_0_, var_slot);
+              // 	Slot.definingFeature (slot, feature)
+              new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
+              PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+              new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "definingFeature")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "StructuralFeature")));
+              new Equality(body, var__virtual_1_, var_feature);
+              // 	Property.name (feature, name)
+              new TypeConstraint(body, new FlatTuple(var_feature), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Property")));
+              PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+              new TypeConstraint(body, new FlatTuple(var_feature, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "NamedElement", "name")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/Types", "String")));
+              new Equality(body, var__virtual_2_, var_name);
+              // 	Slot.value (slot, integer)
+              new TypeConstraint(body, new FlatTuple(var_slot), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot")));
+              PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+              new TypeConstraint(body, new FlatTuple(var_slot, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "Slot", "value")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_3_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "ValueSpecification")));
+              new Equality(body, var__virtual_3_, var_integer);
+              // 	LiteralInteger.value (integer, value)
+              new TypeConstraint(body, new FlatTuple(var_integer), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "LiteralInteger")));
+              PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+              new TypeConstraint(body, new FlatTuple(var_integer, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.eclipse.org/uml2/5.0.0/UML", "LiteralInteger", "value")));
+              new TypeConstraint(body, new FlatTuple(var__virtual_4_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/uml2/5.0.0/Types", "Integer")));
+              new Equality(body, var__virtual_4_, var_value);
+              // 	check (		name.equals("max_threads")	)
+              new ExpressionEvaluation(body, new IExpressionEvaluator() {
+              
+                  @Override
+                  public String getShortDescription() {
+                      return "Expression evaluation from pattern maxThreadValuesInCMSConfigurations";
+                  }
+                  
+                  @Override
+                  public Iterable<String> getInputParameterNames() {
+                      return Arrays.asList("name");}
+              
+                  @Override
+                  public Object evaluateExpression(IValueProvider provider) throws Exception {
+                      String name = (String) provider.getValue("name");
+                      return evaluateExpression_1_1(name);
+                  }
+              },  null); 
+              bodies.add(body);
+          }
+          // to silence compiler error
+          if (false) throw new ViatraQueryException("Never", "happens");
       } catch (ViatraQueryException ex) {
-      	throw processDependencyException(ex);
+          throw processDependencyException(ex);
       }
       return bodies;
     }

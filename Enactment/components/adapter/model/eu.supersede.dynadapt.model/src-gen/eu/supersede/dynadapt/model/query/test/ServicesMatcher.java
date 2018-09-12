@@ -53,17 +53,15 @@ public class ServicesMatcher extends BaseMatcher<ServicesMatch> {
     // check if matcher already exists
     ServicesMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (ServicesMatcher)engine.getMatcher(querySpecification());
+        matcher = (ServicesMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
   
   /**
-   * Initializes the pattern matcher within an existing VIATRA Query engine.
-   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-   * The match set will be incrementally refreshed upon updates.
-   * @param engine the existing VIATRA Query engine in which this matcher will be created.
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
   public static ServicesMatcher create() throws ViatraQueryException {
@@ -164,7 +162,7 @@ public class ServicesMatcher extends BaseMatcher<ServicesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for service.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Artifact> rawAccumulateAllValuesOfservice(final Object[] parameters) {
@@ -175,7 +173,7 @@ public class ServicesMatcher extends BaseMatcher<ServicesMatch> {
   
   /**
    * Retrieve the set of values that occur in matches for service.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Artifact> getAllValuesOfservice() {
@@ -185,30 +183,30 @@ public class ServicesMatcher extends BaseMatcher<ServicesMatch> {
   @Override
   protected ServicesMatch tupleToMatch(final Tuple t) {
     try {
-    	return ServicesMatch.newMatch((Artifact) t.get(POSITION_SERVICE));
+        return ServicesMatch.newMatch((Artifact) t.get(POSITION_SERVICE));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected ServicesMatch arrayToMatch(final Object[] match) {
     try {
-    	return ServicesMatch.newMatch((Artifact) match[POSITION_SERVICE]);
+        return ServicesMatch.newMatch((Artifact) match[POSITION_SERVICE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected ServicesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return ServicesMatch.newMutableMatch((Artifact) match[POSITION_SERVICE]);
+        return ServicesMatch.newMutableMatch((Artifact) match[POSITION_SERVICE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

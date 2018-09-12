@@ -48,8 +48,8 @@ public abstract class ServicesMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("service".equals(parameterName) ) {
-    	this.fService = (Artifact) newValue;
-    	return true;
+        this.fService = (Artifact) newValue;
+        return true;
     }
     return false;
   }
@@ -98,18 +98,18 @@ public abstract class ServicesMatch extends BasePatternMatch {
   @Override
   public boolean equals(final Object obj) {
     if (this == obj)
-    	return true;
+        return true;
     if (!(obj instanceof ServicesMatch)) { // this should be infrequent
-    	if (obj == null) {
-    		return false;
-    	}
-    	if (!(obj instanceof IPatternMatch)) {
-    		return false;
-    	}
-    	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!specification().equals(otherSig.specification()))
-    		return false;
-    	return Arrays.deepEquals(toArray(), otherSig.toArray());
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof IPatternMatch)) {
+            return false;
+        }
+        IPatternMatch otherSig  = (IPatternMatch) obj;
+        if (!specification().equals(otherSig.specification()))
+            return false;
+        return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
     ServicesMatch other = (ServicesMatch) obj;
     if (fService == null) {if (other.fService != null) return false;}
@@ -120,10 +120,10 @@ public abstract class ServicesMatch extends BasePatternMatch {
   @Override
   public ServicesQuerySpecification specification() {
     try {
-    	return ServicesQuerySpecification.instance();
+        return ServicesQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
-     	// This cannot happen, as the match object can only be instantiated if the query specification exists
-     	throw new IllegalStateException (ex);
+         // This cannot happen, as the match object can only be instantiated if the query specification exists
+         throw new IllegalStateException (ex);
     }
   }
   

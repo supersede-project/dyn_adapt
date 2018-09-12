@@ -58,7 +58,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
     // check if matcher already exists
     GetReferenceToTypeMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (GetReferenceToTypeMatcher)engine.getMatcher(querySpecification());
+        matcher = (GetReferenceToTypeMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -176,7 +176,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for element.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Element> rawAccumulateAllValuesOfelement(final Object[] parameters) {
@@ -187,7 +187,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for element.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Element> getAllValuesOfelement() {
@@ -196,7 +196,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for element.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Element> getAllValuesOfelement(final GetReferenceToTypeMatch partialMatch) {
@@ -205,7 +205,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for element.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Element> getAllValuesOfelement(final org.eclipse.uml2.uml.Class pType) {
@@ -217,7 +217,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<org.eclipse.uml2.uml.Class> rawAccumulateAllValuesOftype(final Object[] parameters) {
@@ -228,7 +228,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<org.eclipse.uml2.uml.Class> getAllValuesOftype() {
@@ -237,7 +237,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<org.eclipse.uml2.uml.Class> getAllValuesOftype(final GetReferenceToTypeMatch partialMatch) {
@@ -246,7 +246,7 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<org.eclipse.uml2.uml.Class> getAllValuesOftype(final Element pElement) {
@@ -259,30 +259,30 @@ public class GetReferenceToTypeMatcher extends BaseMatcher<GetReferenceToTypeMat
   @Override
   protected GetReferenceToTypeMatch tupleToMatch(final Tuple t) {
     try {
-    	return GetReferenceToTypeMatch.newMatch((Element) t.get(POSITION_ELEMENT), (org.eclipse.uml2.uml.Class) t.get(POSITION_TYPE));
+        return GetReferenceToTypeMatch.newMatch((Element) t.get(POSITION_ELEMENT), (org.eclipse.uml2.uml.Class) t.get(POSITION_TYPE));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected GetReferenceToTypeMatch arrayToMatch(final Object[] match) {
     try {
-    	return GetReferenceToTypeMatch.newMatch((Element) match[POSITION_ELEMENT], (org.eclipse.uml2.uml.Class) match[POSITION_TYPE]);
+        return GetReferenceToTypeMatch.newMatch((Element) match[POSITION_ELEMENT], (org.eclipse.uml2.uml.Class) match[POSITION_TYPE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected GetReferenceToTypeMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return GetReferenceToTypeMatch.newMutableMatch((Element) match[POSITION_ELEMENT], (org.eclipse.uml2.uml.Class) match[POSITION_TYPE]);
+        return GetReferenceToTypeMatch.newMutableMatch((Element) match[POSITION_ELEMENT], (org.eclipse.uml2.uml.Class) match[POSITION_TYPE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

@@ -61,17 +61,15 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
     // check if matcher already exists
     MaxThreadValuesInCMSConfigurationsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (MaxThreadValuesInCMSConfigurationsMatcher)engine.getMatcher(querySpecification());
+        matcher = (MaxThreadValuesInCMSConfigurationsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
   
   /**
-   * Initializes the pattern matcher within an existing VIATRA Query engine.
-   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-   * The match set will be incrementally refreshed upon updates.
-   * @param engine the existing VIATRA Query engine in which this matcher will be created.
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
   public static MaxThreadValuesInCMSConfigurationsMatcher create() throws ViatraQueryException {
@@ -190,7 +188,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for configuration.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<InstanceSpecification> rawAccumulateAllValuesOfconfiguration(final Object[] parameters) {
@@ -201,7 +199,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for configuration.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfconfiguration() {
@@ -210,7 +208,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for configuration.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfconfiguration(final MaxThreadValuesInCMSConfigurationsMatch partialMatch) {
@@ -219,7 +217,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for configuration.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<InstanceSpecification> getAllValuesOfconfiguration(final String pName, final Integer pValue) {
@@ -232,7 +230,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<String> rawAccumulateAllValuesOfname(final Object[] parameters) {
@@ -243,7 +241,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<String> getAllValuesOfname() {
@@ -252,7 +250,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<String> getAllValuesOfname(final MaxThreadValuesInCMSConfigurationsMatch partialMatch) {
@@ -261,7 +259,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for name.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<String> getAllValuesOfname(final InstanceSpecification pConfiguration, final Integer pValue) {
@@ -274,7 +272,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for value.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Integer> rawAccumulateAllValuesOfvalue(final Object[] parameters) {
@@ -285,7 +283,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for value.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Integer> getAllValuesOfvalue() {
@@ -294,7 +292,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for value.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Integer> getAllValuesOfvalue(final MaxThreadValuesInCMSConfigurationsMatch partialMatch) {
@@ -303,7 +301,7 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   
   /**
    * Retrieve the set of values that occur in matches for value.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Integer> getAllValuesOfvalue(final InstanceSpecification pConfiguration, final String pName) {
@@ -317,30 +315,30 @@ public class MaxThreadValuesInCMSConfigurationsMatcher extends BaseMatcher<MaxTh
   @Override
   protected MaxThreadValuesInCMSConfigurationsMatch tupleToMatch(final Tuple t) {
     try {
-    	return MaxThreadValuesInCMSConfigurationsMatch.newMatch((InstanceSpecification) t.get(POSITION_CONFIGURATION), (String) t.get(POSITION_NAME), (Integer) t.get(POSITION_VALUE));
+        return MaxThreadValuesInCMSConfigurationsMatch.newMatch((InstanceSpecification) t.get(POSITION_CONFIGURATION), (String) t.get(POSITION_NAME), (Integer) t.get(POSITION_VALUE));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected MaxThreadValuesInCMSConfigurationsMatch arrayToMatch(final Object[] match) {
     try {
-    	return MaxThreadValuesInCMSConfigurationsMatch.newMatch((InstanceSpecification) match[POSITION_CONFIGURATION], (String) match[POSITION_NAME], (Integer) match[POSITION_VALUE]);
+        return MaxThreadValuesInCMSConfigurationsMatch.newMatch((InstanceSpecification) match[POSITION_CONFIGURATION], (String) match[POSITION_NAME], (Integer) match[POSITION_VALUE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected MaxThreadValuesInCMSConfigurationsMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return MaxThreadValuesInCMSConfigurationsMatch.newMutableMatch((InstanceSpecification) match[POSITION_CONFIGURATION], (String) match[POSITION_NAME], (Integer) match[POSITION_VALUE]);
+        return MaxThreadValuesInCMSConfigurationsMatch.newMutableMatch((InstanceSpecification) match[POSITION_CONFIGURATION], (String) match[POSITION_NAME], (Integer) match[POSITION_VALUE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   

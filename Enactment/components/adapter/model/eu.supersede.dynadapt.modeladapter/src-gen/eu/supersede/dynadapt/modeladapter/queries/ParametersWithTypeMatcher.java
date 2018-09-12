@@ -59,7 +59,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
     // check if matcher already exists
     ParametersWithTypeMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-    	matcher = (ParametersWithTypeMatcher)engine.getMatcher(querySpecification());
+        matcher = (ParametersWithTypeMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -177,7 +177,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for parameter.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Parameter> rawAccumulateAllValuesOfparameter(final Object[] parameters) {
@@ -188,7 +188,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for parameter.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Parameter> getAllValuesOfparameter() {
@@ -197,7 +197,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for parameter.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Parameter> getAllValuesOfparameter(final ParametersWithTypeMatch partialMatch) {
@@ -206,7 +206,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for parameter.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Parameter> getAllValuesOfparameter(final Type pType) {
@@ -218,7 +218,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   protected Set<Type> rawAccumulateAllValuesOftype(final Object[] parameters) {
@@ -229,7 +229,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Type> getAllValuesOftype() {
@@ -238,7 +238,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Type> getAllValuesOftype(final ParametersWithTypeMatch partialMatch) {
@@ -247,7 +247,7 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   
   /**
    * Retrieve the set of values that occur in matches for type.
-   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * @return the Set of all values or empty set if there are no matches
    * 
    */
   public Set<Type> getAllValuesOftype(final Parameter pParameter) {
@@ -260,30 +260,30 @@ public class ParametersWithTypeMatcher extends BaseMatcher<ParametersWithTypeMat
   @Override
   protected ParametersWithTypeMatch tupleToMatch(final Tuple t) {
     try {
-    	return ParametersWithTypeMatch.newMatch((Parameter) t.get(POSITION_PARAMETER), (Type) t.get(POSITION_TYPE));
+        return ParametersWithTypeMatch.newMatch((Parameter) t.get(POSITION_PARAMETER), (Type) t.get(POSITION_TYPE));
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in tuple not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected ParametersWithTypeMatch arrayToMatch(final Object[] match) {
     try {
-    	return ParametersWithTypeMatch.newMatch((Parameter) match[POSITION_PARAMETER], (Type) match[POSITION_TYPE]);
+        return ParametersWithTypeMatch.newMatch((Parameter) match[POSITION_PARAMETER], (Type) match[POSITION_TYPE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
   @Override
   protected ParametersWithTypeMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return ParametersWithTypeMatch.newMutableMatch((Parameter) match[POSITION_PARAMETER], (Type) match[POSITION_TYPE]);
+        return ParametersWithTypeMatch.newMutableMatch((Parameter) match[POSITION_PARAMETER], (Type) match[POSITION_TYPE]);
     } catch(ClassCastException e) {
-    	LOGGER.error("Element(s) in array not properly typed!",e);
-    	return null;
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
     }
   }
   
