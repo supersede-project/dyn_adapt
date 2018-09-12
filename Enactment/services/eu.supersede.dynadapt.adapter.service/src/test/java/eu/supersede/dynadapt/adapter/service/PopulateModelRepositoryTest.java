@@ -175,12 +175,12 @@ public class PopulateModelRepositoryTest {
 
 		//Feature Configurations
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HealthAuthenticatedFeatureConfiguration.yafc"), 
+				Paths.get(repositoryPath.toString(), "features/configurations", "HealthNotAuthenticatedFeatureConfiguration.yafc"), 
 				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Enacted, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 
 		prm.populateModel(
-				Paths.get(repositoryPath.toString(), "features/configurations", "HealthNotAuthenticatedFeatureConfiguration.yafc"), 
+				Paths.get(repositoryPath.toString(), "features/configurations", "HealthAuthenticatedFeatureConfiguration.yafc"), 
 				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Computed, "features/configurations",
 				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
 		

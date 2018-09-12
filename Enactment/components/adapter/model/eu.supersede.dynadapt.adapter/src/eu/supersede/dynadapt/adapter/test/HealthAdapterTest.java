@@ -64,11 +64,12 @@ public class HealthAdapterTest {
 	@Test
 	public void testAuthenticatedHealthUCAdaptation() {
 		try {
-			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath);
+			boolean demo = true; //Required in test, demo flag will be transmitted to Enactor to simulate the enactment process on real UC systems
+			adapter = new Adapter(mr, mm, modelsLocation, repositoryRelativePath, demo);
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
-			String featureConfigurationId = uploadLatestComputedFC("HealthNotAuthenticatedFeatureConfiguration.yafc");
+			String featureConfigurationId = uploadLatestComputedFC("HealthAuthenticatedFeatureConfiguration.yafc");
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.Health, adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {

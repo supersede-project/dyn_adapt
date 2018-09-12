@@ -271,8 +271,13 @@ public class Adapter implements IAdapter {
 			try {
 				log.debug("Invoking enactor for system " + system);
 				kpiComputerEnactor.startComputingKPI();
-				Model enactedModel = EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel,
-						demo);
+				Model enactedModel = null;
+				try {
+					enactedModel = EnactorFactory.getEnactorForSystem(system).enactAdaptedModel(model, baseModel,
+							demo);
+				} catch (UnsupportedOperationException ex) {
+					log.info("There is not enactor registered for system: " + system + " . Skipping");
+				}
 				kpiComputerEnactor.stopComputingKPI();
 				kpiComputerEnactor.reportComputedKPI();
 				// Update enacted model into repository
