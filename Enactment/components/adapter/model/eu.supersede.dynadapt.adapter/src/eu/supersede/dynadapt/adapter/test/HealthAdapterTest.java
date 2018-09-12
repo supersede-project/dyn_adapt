@@ -2,6 +2,9 @@ package eu.supersede.dynadapt.adapter.test;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,6 +20,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cz.zcu.yafmt.model.fc.FeatureConfiguration;
@@ -33,11 +37,15 @@ import eu.supersede.dynadapt.adapter.system.RepositoryMetadata;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceTimestamp;
 import eu.supersede.dynadapt.adapter.system.RepositoryMetadata.ResourceType;
 import eu.supersede.dynadapt.model.ModelManager;
+import eu.supersede.dynadapt.modelrepository.populate.PopulateRepositoryManager;
 import eu.supersede.dynadapt.modelrepository.repositoryaccess.ModelRepository;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.Status;
 
 public class HealthAdapterTest {
 	private final static Logger log = LogManager.getLogger(HealthAdapterTest.class);
+	private static final String MODELS_AUTHOR = "Yosu";
 	
 //	String baseModelPath;
 	String repository;
@@ -60,7 +68,7 @@ public class HealthAdapterTest {
 			//FIXME featureConfigurationId is ignored. Use correct one
 			//once Model Repository is available as service.
 			String[] adaptationDecisionActionIds = new String[]{"authenticated"};
-			String featureConfigurationId = "HealthAuthenticatedFeatureConfiguration";
+			String featureConfigurationId = uploadLatestComputedFC("HealthNotAuthenticatedFeatureConfiguration.yafc");
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.Health, adaptationDecisionActionIds[0], featureConfigurationId);
 		} catch (EnactmentException e) {
@@ -70,7 +78,7 @@ public class HealthAdapterTest {
 		}
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testNotAuthenticatedHealthUCAdaptation() {
 		try {
 			//Setting input models for the test (overlapping default test models)
@@ -115,10 +123,8 @@ public class HealthAdapterTest {
 	}
 
 	private void setupPlatform() {
-//		baseModelPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository/models/base/health_watcher.uml";
 		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
 		repositoryRelativePath = "./repository";
-		repositoryResolverPath = "platform:/resource/eu.supersede.dynadapt.adapter/repository";
 		platformRelativePath = "../";
 
 		new StandaloneSetup().setPlatformUri(platformRelativePath);
@@ -127,8 +133,10 @@ public class HealthAdapterTest {
 		modelsLocation.put("variants", "models/variants/");
 		modelsLocation.put("base", "models/base/");
 		modelsLocation.put("profiles", "models/profiles/");
-		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/health/");
+		modelsLocation.put("patterns", "patterns/eu/supersede/dynadapt/usecases/patterns/");
 		modelsLocation.put("features", "features/models/");
+		modelsLocation.put("configurations", "features/configurations/");
+		modelsLocation.put("adapted", "models/adapted/");
 	}
 	
 	private List<Selection> diffFeatureConfigurations(FeatureConfiguration originalFeatureConfig, FeatureConfiguration newFeatureConfig) {
@@ -201,5 +209,28 @@ public class HealthAdapterTest {
         } catch (IOException ioe) {
         }
     }
+	
+	/** 
+	 * Load a given configuration model as the latest ComputedModel for Siemens system,
+	 * simulating it is the result of the last decision-making optimization update
+	 * @param fcName the name of the feature configuration file
+	 * @return the id of the new model in the model repository
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	private String uploadLatestComputedFC(String fcName) throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir, repositoryRelativePath);
+		PopulateRepositoryManager prm = new PopulateRepositoryManager (mm, mr);
+		String modelId = prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", fcName), 
+				MODELS_AUTHOR,
+				ModelSystem.Atos_HSK, Status.Computed,
+				modelsLocation.get("configurations"), 
+				FeatureConfiguration.class,
+				ModelType.FeatureConfiguration, 
+				eu.supersede.integration.api.adaptation.types.FeatureConfiguration.class);
+		return modelId;
+	}
 
 }

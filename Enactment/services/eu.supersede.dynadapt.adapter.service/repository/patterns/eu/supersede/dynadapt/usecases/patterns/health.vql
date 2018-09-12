@@ -1,0 +1,17 @@
+package eu.supersede.dynadapt.usecases.patterns
+
+import "http://www.eclipse.org/uml2/5.0.0/UML"
+
+pattern authenticated_system(class) {
+	Class.name (class, name);
+	check (
+		name.equals("HealthWatcher")
+	);
+}
+
+pattern authenticated_user(user) {
+	Class.name (user, name);
+	check (
+		name.equals("Employee")
+	);
+}

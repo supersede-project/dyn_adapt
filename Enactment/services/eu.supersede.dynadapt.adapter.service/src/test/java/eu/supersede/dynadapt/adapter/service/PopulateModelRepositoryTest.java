@@ -58,6 +58,8 @@ import eu.supersede.integration.api.adaptation.types.VariantModel;
 public class PopulateModelRepositoryTest {
 
 	private static final String ATOS_HSK_MODELS_AUTHOR = "Yosu";
+	
+	private static final String HEALTH_MODELS_AUTHOR = "Yosu";
 
 	private static final String SIEMENS_MODELS_AUTHOR = "Orlando";
 	
@@ -125,14 +127,81 @@ public class PopulateModelRepositoryTest {
 	@Test
 	public void testPopulateRepository() throws Exception {
 //		populateRepository();
-		populateAtosModels();
-		populateSiemenesModels();
-		populateSiemens_UI_Buildings_Models();
-		populateSiemens_UI_MinMaxDates_Models();
-		populateSiemens_UI_Types_Models();
-		populateAtosMonitoringReconfigurationEnabligModels();
-		populateAtosMonitoringReconfigurationTimeslotModels();
-		populateFGReconfigurationModels();
+		populateHealthModels();
+//		populateAtosModels();
+//		populateSiemenesModels();
+//		populateSiemens_UI_Buildings_Models();
+//		populateSiemens_UI_MinMaxDates_Models();
+//		populateSiemens_UI_Types_Models();
+//		populateAtosMonitoringReconfigurationEnabligModels();
+//		populateAtosMonitoringReconfigurationTimeslotModels();
+//		populateFGReconfigurationModels();
+	}
+	
+	private void populateHealthModels() throws IOException, Exception {
+		String userdir = System.getProperty("user.dir");
+		Path repositoryPath = FileSystems.getDefault().getPath(userdir,repositoryRelativePath);
+		
+		log.debug("Loading " + ModelSystem.Health.toString());
+		
+		//BaseModel
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/base", "health_watcher.uml"), 
+			HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Enacted, "models/base", Model.class,
+			ModelType.BaseModel, BaseModel.class);
+		
+		//Profile
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/profiles", "authentication.profile.uml"), 
+			HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "models/profiles", Profile.class,
+			ModelType.ProfileModel, ProfileModel.class);
+		
+		//Variants
+		prm.populateModel(
+			Paths.get(repositoryPath.toString(), "models/variants", "authentication_advice.uml"), 
+			HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "models/variants", Model.class,
+			ModelType.VariantModel, VariantModel.class);
+
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "models/variants", "authentication_advice2.uml"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "models/variants", Model.class,
+				ModelType.VariantModel, VariantModel.class);
+
+		//Feature Model
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/models", "HealthFeatureModel.yafm"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "features/models",
+				cz.zcu.yafmt.model.fm.FeatureModel.class, ModelType.FeatureModel, FeatureModel.class);
+
+		//Feature Configurations
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HealthAuthenticatedFeatureConfiguration.yafc"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Enacted, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "features/configurations", "HealthNotAuthenticatedFeatureConfiguration.yafc"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Computed, "features/configurations",
+				cz.zcu.yafmt.model.fc.FeatureConfiguration.class, ModelType.FeatureConfiguration, FeatureConfiguration.class);
+		
+		//Patterns
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "patterns/eu/supersede/dynadapt/usecases/patterns", "health.vql"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "patterns/eu/supersede/dynadapt/usecases/patterns",
+				org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel.class, ModelType.PatternModel, PatternModel.class);
+
+		//Adaptability models
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "authenticated_health.aspect"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+		
+		prm.populateModel(
+				Paths.get(repositoryPath.toString(), "adaptability_models", "not_authenticated_health.aspect"), 
+				HEALTH_MODELS_AUTHOR, ModelSystem.Health, Status.Designed, "adaptability_models", Aspect.class,
+				ModelType.AdaptabilityModel, AdaptabilityModel.class);
+
+		log.debug(ModelSystem.Atos_HSK.toString() + " models loaded");	
 	}
 	
 	private void populateAtosMonitoringReconfigurationEnabligModels() throws Exception {
