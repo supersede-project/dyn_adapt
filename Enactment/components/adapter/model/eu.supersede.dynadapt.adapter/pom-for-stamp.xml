@@ -85,9 +85,9 @@
 			<version>3.0.0.v201605172100</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.clang</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -100,9 +100,9 @@
 			<version>3.12.2.v20170113-2113</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.model</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -115,9 +115,9 @@
 			<version>2.12.0.v20160420-0247</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.model.edit</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -130,14 +130,14 @@
 			<version>2.12.0.v20160526-0356</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.model.validation</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.model.editor</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -155,9 +155,9 @@
 			<version>3.12.3.v20170119-0935</version>
 		</dependency>	
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.ui</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -175,9 +175,9 @@
 			<version>3.8.102.v20170111-0801</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
+			<groupId>cz.zcu.yafmt</groupId>
 			<artifactId>cz.zcu.yafmt.ui.editors.fm</artifactId>
-			<version>0.3.0.201809121157</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>

@@ -22,27 +22,27 @@ mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/com.goo
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/com.google.inject.multibindings/3.0.0.v201605172100/com.google.inject.multibindings-3.0.0.v201605172100.jar  -DgroupId=org.eclipse -DartifactId=com.google.inject.multibindings -Dversion=3.0.0.v201605172100 -Dpackaging=jar
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.clang/0.3.0.201809121157/cz.zcu.yafmt.clang-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.clang -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.clang/0.3.0-SNAPSHOT/cz.zcu.yafmt.clang-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.clang -Dversion=0.3.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.core.runtime/3.12.0.v20160606-1342/org.eclipse.core.runtime-3.12.0.v20160606-1342.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.core.runtime -Dversion=3.12.0.v20160606-1342 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.jface/3.12.2.v20170113-2113/org.eclipse.jface-3.12.2.v20170113-2113.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.jface -Dversion=3.12.2.v20170113-2113 -Dpackaging=jar
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.model/0.3.0.201809121157/cz.zcu.yafmt.model-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.model -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.model/0.3.0-SNAPSHOT/cz.zcu.yafmt.model-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.model -Dversion=0.3.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.emf.ecore/2.12.0.v20160420-0247/org.eclipse.emf.ecore-2.12.0.v20160420-0247.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.emf.ecore -Dversion=2.12.0.v20160420-0247 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.emf.ecore.xmi/2.12.0.v20160420-0247/org.eclipse.emf.ecore.xmi-2.12.0.v20160420-0247.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.emf.ecore.xmi -Dversion=2.12.0.v20160420-0247 -Dpackaging=jar
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.model.edit/0.3.0.201809121157/cz.zcu.yafmt.model.edit-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.model.edit -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.model.edit/0.3.0-SNAPSHOT/cz.zcu.yafmt.model.edit-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.model.edit -Dversion=0.3.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.emf.edit.ui/2.12.0.v20160526-0356/org.eclipse.emf.edit.ui-2.12.0.v20160526-0356.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.emf.edit.ui -Dversion=2.12.0.v20160526-0356 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.emf.edit/2.12.0.v20160526-0356/org.eclipse.emf.edit-2.12.0.v20160526-0356.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.emf.edit -Dversion=2.12.0.v20160526-0356 -Dpackaging=jar
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.model.validation/0.3.0.201809121157/cz.zcu.yafmt.model.validation-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.model.validation -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.model.validation/0.3.0-SNAPSHOT/cz.zcu.yafmt.model.validation-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.model.validation -Dversion=0.3.0 -Dpackaging=jar
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.model.editor/0.3.0.201809121157/cz.zcu.yafmt.model.editor-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.model.editor -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.model.editor/0.3.0-SNAPSHOT/cz.zcu.yafmt.model.editor-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.model.editor -Dversion=0.3.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.ui/3.108.1.v20160929-1045/org.eclipse.ui-3.108.1.v20160929-1045.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.ui -Dversion=3.108.1.v20160929-1045 -Dpackaging=jar
 
@@ -50,7 +50,7 @@ mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.ecl
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.ui.ide/3.12.3.v20170119-0935/org.eclipse.ui.ide-3.12.3.v20170119-0935.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.ui.ide -Dversion=3.12.3.v20170119-0935 -Dpackaging=jar	
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.ui/0.3.0.201809121157/cz.zcu.yafmt.ui-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.ui -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.ui/0.3.0-SNAPSHOT/cz.zcu.yafmt.ui-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.ui -Dversion=0.3.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.gef/3.11.0.201606061308/org.eclipse.gef-3.11.0.201606061308.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.gef -Dversion=3.11.0.201606061308 -Dpackaging=jar
 
@@ -58,7 +58,7 @@ mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.ecl
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.ui.views/3.8.102.v20170111-0801/org.eclipse.ui.views-3.8.102.v20170111-0801.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.ui.views -Dversion=3.8.102.v20170111-0801 -Dpackaging=jar
 
-mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/cz.zcu.yafmt.ui.editors.fm/0.3.0.201809121157/cz.zcu.yafmt.ui.editors.fm-0.3.0.201809121157.jar  -DgroupId=org.eclipse -DartifactId=cz.zcu.yafmt.ui.editors.fm -Dversion=0.3.0.201809121157 -Dpackaging=jar
+mvn install:install-file -Dfile=/home/yosu/.m2/repository/cz/zcu/yafmt/cz.zcu.yafmt.ui.editors.fm/0.3.0-SNAPSHOT/cz.zcu.yafmt.ui.editors.fm-0.3.0-SNAPSHOT.jar  -DgroupId=cz.zcu.yafmt -DartifactId=cz.zcu.yafmt.ui.editors.fm -Dversion=0.3.0 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/org.eclipse.emf.common/2.12.0.v20160420-0247/org.eclipse.emf.common-2.12.0.v20160420-0247.jar  -DgroupId=org.eclipse -DartifactId=org.eclipse.emf.common -Dversion=2.12.0.v20160420-0247 -Dpackaging=jar
 
