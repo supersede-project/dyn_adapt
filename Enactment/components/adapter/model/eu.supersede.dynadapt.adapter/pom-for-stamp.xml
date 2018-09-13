@@ -6,10 +6,10 @@
 	<artifactId>adapter</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<build>
-		<sourceDirectory>src-gen</sourceDirectory>
+		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
-				<directory>src-gen</directory>
+				<directory>src</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
@@ -30,9 +30,30 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+				  <excludes>
+				    <exclude>**/Test*.java</exclude>
+				  </excludes>
+				</configuration>
+			      </plugin>
 		</plugins>
+
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>eu.supersede.if</groupId>
+			<artifactId>eu.supersede.if.api</artifactId>
+			<version>0.4.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>com.fasterxml.jackson.core.jackson-annotations</artifactId>
