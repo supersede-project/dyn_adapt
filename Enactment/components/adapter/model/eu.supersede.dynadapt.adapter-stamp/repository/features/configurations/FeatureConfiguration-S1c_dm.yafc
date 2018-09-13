@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeatureModel-S1c_dm" version="1.0.0">
+  <featureModel href="FeatureModel-S1c_dm.yafm#/"/>
+  <featureModelCopy name="FeatureModel" version="1.0.0" description="Supersede feature model">
+    <rootFeature id="service_management" name="Service_management" lower="1" upper="1">
+      <attribute id="a_2086265440" name="availability" type="double" qualityAttribute="true" defaultValue="0.95" minRangeValue="0" maxRangeValue="1" weight="1.0" objectiveFunctionAggregator="product"/>
+      <attribute id="a_380800399" name="price" type="double" qualityAttribute="true" defaultValue="0.5" minRangeValue="0" maxRangeValue="1" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+      <attribute id="a_1234415761" name="response_time" type="double" qualityAttribute="true" defaultValue="0.1" minRangeValue="0" maxRangeValue="1" weight="1.0" minimize="true" objectiveFunctionAggregator="max"/>
+      <attribute id="a_829616488" name="output_format" type="string" defaultValue="F1"/>
+      <attribute id="a_2114188380" name="input_format" type="string"/>
+      <attribute id="a_1633003892" name="data_quality" type="boolean" defaultValue="true"/>
+      <group lower="1" upper="1">
+        <feature id="c3" name="SC3" lower="0" upper="1">
+          <attribute id="a_2122442494" name="availability" type="double" qualityAttribute="true" defaultValue="0.95"/>
+          <attribute id="a_1175736421" name="price" type="double" qualityAttribute="true" defaultValue="0.5"/>
+          <attribute id="a_494394555" name="response_time" type="double" qualityAttribute="true" defaultValue="0.1"/>
+          <attribute id="a_1388777777" name="output_format" type="string" defaultValue="F1"/>
+          <attribute id="a_1186336666" name="input_format" type="string"/>
+          <attribute id="a_1984860055" name="data_quality" type="boolean" defaultValue="true"/>
+        </feature>
+        <feature id="c1" name="SC1" lower="0" upper="1">
+          <attribute id="a_182741991" name="availability" type="double" qualityAttribute="true" defaultValue="0.95" minRangeValue="" maxRangeValue=""/>
+          <attribute id="a_1452436217" name="price" type="double" qualityAttribute="true" defaultValue="0.5"/>
+          <attribute id="a_2062902699" name="response_time" type="double" qualityAttribute="true" defaultValue="0.5"/>
+          <attribute id="a_197827321" name="output_format" type="string" defaultValue="F1"/>
+          <attribute id="a_36301957" name="input_format" type="string"/>
+          <attribute id="a_174256061" name="data_quality" type="boolean" defaultValue="true"/>
+        </feature>
+        <feature id="c2" name="SC2" lower="0" upper="1">
+          <attribute id="a_1812276745" name="availability" type="double" qualityAttribute="true" defaultValue="0.95"/>
+          <attribute id="a_1036441300" name="price" type="double" qualityAttribute="true" defaultValue="0.5" minRangeValue=""/>
+          <attribute id="a_708416225" name="response_time" type="double" qualityAttribute="true" defaultValue="0.1"/>
+          <attribute id="a_440094044" name="output_format" type="string" defaultValue="F1"/>
+          <attribute id="a_2005608050" name="input_format" type="string"/>
+          <attribute id="a_1856709452" name="data_quality" type="boolean" defaultValue="true"/>
+        </feature>
+        <feature id="c4" name="SC4" lower="0" upper="1">
+          <attribute id="a_1956533590" name="availability" type="double" qualityAttribute="true" defaultValue="0.95"/>
+          <attribute id="a_1093963413" name="price" type="double" qualityAttribute="true" defaultValue="0.5"/>
+          <attribute id="a_462630483" name="response_time" type="double" qualityAttribute="true" defaultValue="0.1"/>
+          <attribute id="a_1651442309" name="output_format" type="string" defaultValue="F1"/>
+          <attribute id="a_1505175206" name="input_format" type="string"/>
+          <attribute id="a_1187272621" name="data_quality" type="boolean" defaultValue="true"/>
+        </feature>
+      </group>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="service_management">
+    <attributeValue xsi:type="fc:double" id="a_2086265440" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_380800399" value="0.0"/>
+    <attributeValue xsi:type="fc:double" id="a_1234415761" value="0.0"/>
+    <attributeValue xsi:type="fc:string" id="a_829616488" value="F1"/>
+    <attributeValue xsi:type="fc:string" id="a_2114188380" value="F1"/>
+    <attributeValue xsi:type="fc:boolean" id="a_1633003892" value="true"/>
+    <selection id="c2">
+      <attributeValue xsi:type="fc:double" id="a_1812276745" value="0.95"/>
+      <attributeValue xsi:type="fc:double" id="a_1036441300" value="0.0"/>
+      <attributeValue xsi:type="fc:double" id="a_708416225" value="0.0"/>
+      <attributeValue xsi:type="fc:string" id="a_440094044" value="F1"/>
+      <attributeValue xsi:type="fc:string" id="a_2005608050" value="F1"/>
+      <attributeValue xsi:type="fc:boolean" id="a_1856709452" value="true"/>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

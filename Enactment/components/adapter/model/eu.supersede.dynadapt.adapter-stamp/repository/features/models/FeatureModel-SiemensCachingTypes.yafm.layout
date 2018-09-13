@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="615 222 45 45">
+    <key href="FeatureModel-SiemensCachingTypes.yafm#//@root/@groups.0"/>
+  </mapping>
+  <mapping value="494 15 290 229">
+    <key href="FeatureModel-SiemensCachingTypes.yafm#//@root"/>
+  </mapping>
+  <mapping value="36 334 290 229">
+    <key href="FeatureModel-SiemensCachingTypes.yafm#//@root/@groups.0/@features.0"/>
+  </mapping>
+  <mapping value="341 334 290 229">
+    <key href="FeatureModel-SiemensCachingTypes.yafm#//@root/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="646 334 290 229">
+    <key href="FeatureModel-SiemensCachingTypes.yafm#//@root/@groups.0/@features.2"/>
+  </mapping>
+  <mapping value="951 334 290 229">
+    <key href="FeatureModel-SiemensCachingTypes.yafm#//@root/@groups.0/@features.3"/>
+  </mapping>
+</layout:LayoutData>

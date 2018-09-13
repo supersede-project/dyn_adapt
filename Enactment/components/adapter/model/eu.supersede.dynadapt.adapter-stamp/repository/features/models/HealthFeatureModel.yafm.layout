@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="110 15 170 30">
+    <key href="HealthFeatureModel.yafm#//@root"/>
+  </mapping>
+  <mapping value="127 135 135 30">
+    <key href="HealthFeatureModel.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="43 255 129 30">
+    <key href="HealthFeatureModel.yafm#//@root/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="187 255 158 30">
+    <key href="HealthFeatureModel.yafm#//@root/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping/>
+  <mapping value="172 143 45 45">
+    <key href="HealthFeatureModel.yafm#//@root/@features.0/@groups.0"/>
+  </mapping>
+</layout:LayoutData>

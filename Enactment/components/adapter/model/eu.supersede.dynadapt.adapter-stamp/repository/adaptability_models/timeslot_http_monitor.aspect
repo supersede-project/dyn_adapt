@@ -1,0 +1,16 @@
+aspect timeslot_http {
+	feature HttpMonitoringSystemFeatureModel.HttpMonitoringSystem.QoS.HttpMonitor.HighTimeSlot,
+	pointcuts{	
+		pointcut Http{
+			pattern eu.supersede.dynadapt.usecases.patterns.httpTimeSlot,
+			role ADM.Joinpoint
+		}
+	},
+	compositions{
+		composition updateTimeSlot{
+			feature_enabled true,
+			jointpointRole ADM.Joinpoint,
+			action update value '1000'
+		}
+	}
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeatureConfiguration" version="1.0.0">
+  <featureModel href="../models/HttpMonitoringSystemTimeslotFeatureModel.yafm#/"/>
+  <featureModelCopy name="HttpMonitoringSystemFeatureModel" version="1.0.0">
+    <rootFeature id="httpmonitoringsystem" name="HttpMonitoringSystem" lower="1" upper="1">
+      <feature id="qos" name="QoS" lower="1" upper="1">
+        <feature id="httpmonitor" name="HttpMonitor" lower="1" upper="1">
+          <group lower="1" upper="1">
+            <feature id="low_timeslot" name="Low_timeSlot" lower="0" upper="1">
+              <attribute id="timeslot_at" name="timeSlot" type="integer" defaultValue="" minRangeValue=""/>
+              <attribute id="a_961504395" name="responseTime" type="integer"/>
+              <attribute id="a_1710769427" name="availability" type="string"/>
+            </feature>
+            <feature id="high_timeslot" name="High_timeSlot" lower="0" upper="1">
+              <attribute id="timeslot_at" name="timeSlot" type="integer"/>
+              <attribute id="a_321587787" name="responseTime" type="integer"/>
+              <attribute id="a_2078625014" name="availability" type="string"/>
+            </feature>
+          </group>
+        </feature>
+      </feature>
+    </rootFeature>
+  </featureModelCopy>
+  <rootSelection id="httpmonitoringsystem">
+    <selection id="qos">
+      <selection id="httpmonitor">
+        <selection id="low_timeslot">
+          <attributeValue xsi:type="fc:integer" id="timeslot_at" value="10"/>
+          <attributeValue xsi:type="fc:integer" id="a_961504395" value="1500"/>
+          <attributeValue xsi:type="fc:string" id="a_1710769427" value="60%"/>
+        </selection>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>

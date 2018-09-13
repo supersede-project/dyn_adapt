@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<layout:LayoutData xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:layout="http://zcu.cz/yafmt/ui/editors/fm/layout">
+  <mapping value="23 117 190 30">
+    <key href="HttpMonitoringSystemFeatureModel.yafm#//@root"/>
+  </mapping>
+  <mapping value="260 118 120 30">
+    <key href="HttpMonitoringSystemFeatureModel.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="426 118 120 30">
+    <key href="HttpMonitoringSystemFeatureModel.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="570 27 188 95">
+    <key href="HttpMonitoringSystemFeatureModel.yafm#//@root/@features.0/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="570 152 188 95">
+    <key href="HttpMonitoringSystemFeatureModel.yafm#//@root/@features.0/@features.0/@features.1"/>
+  </mapping>
+  <mapping value="147 15 200 30">
+    <key href="HttpMonitoringSystemTimeslotFeatureModel.yafm#//@root"/>
+  </mapping>
+  <mapping value="202 135 90 30">
+    <key href="HttpMonitoringSystemTimeslotFeatureModel.yafm#//@root/@features.0"/>
+  </mapping>
+  <mapping value="184 255 125 30">
+    <key href="HttpMonitoringSystemTimeslotFeatureModel.yafm#//@root/@features.0/@features.0"/>
+  </mapping>
+  <mapping value="50 375 188 95">
+    <key href="HttpMonitoringSystemTimeslotFeatureModel.yafm#//@root/@features.0/@features.0/@groups.0/@features.1"/>
+  </mapping>
+  <mapping value="253 375 188 95">
+    <key href="HttpMonitoringSystemTimeslotFeatureModel.yafm#//@root/@features.0/@features.0/@groups.0/@features.0"/>
+  </mapping>
+  <mapping/>
+  <mapping value="224 263 45 45">
+    <key href="HttpMonitoringSystemTimeslotFeatureModel.yafm#//@root/@features.0/@features.0/@groups.0"/>
+  </mapping>
+</layout:LayoutData>

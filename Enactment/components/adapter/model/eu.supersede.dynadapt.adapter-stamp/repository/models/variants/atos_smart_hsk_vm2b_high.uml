@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADM="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADM/_iwW54E2LEeaP5-UsI9oFuA/2 ../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA">
+  <uml:Model xmi:id="_eI-nEEFXEeet78OpOk9sUQ" name="atos_smart_hsk_vm2b_high">
+    <packageImport xmi:id="_eKFaUEFXEeet78OpOk9sUQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_tNWIsEFYEeet78OpOk9sUQ" name="Instances">
+      <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ie9fwEFZEeet78OpOk9sUQ" name="OVP BO VM2_B">
+        <classifier xmi:type="uml:Component" href="../base/atos_smart_base_model.uml#_JbMksOlYEea6tPfvbkvCTg"/>
+        <slot xmi:id="_QXm3AEFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_FzsL4ATKEeeo4rafDiNNWw"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_V6LHsEFZEeet78OpOk9sUQ" value="OVP BO_2"/>
+        </slot>
+        <slot xmi:id="_QjW0AEFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_tKIGUOlYEea6tPfvbkvCTg"/>
+          <value xmi:type="uml:InstanceValue" xmi:id="_7Bv3QEFZEeet78OpOk9sUQ" instance="_IzTYEEFZEeet78OpOk9sUQ"/>
+        </slot>
+      </packagedElement>
+      <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IzTYEEFZEeet78OpOk9sUQ" name="HighLoadConfigurationInBOVM2_B">
+        <classifier xmi:type="uml:Class" href="../base/atos_smart_base_model.uml#_MmaAoOlREea6tPfvbkvCTg"/>
+        <slot xmi:id="_bVA_wEFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_PWe7kOlREea6tPfvbkvCTg"/>
+          <value xmi:type="uml:LiteralString" xmi:id="_-ogikEFZEeet78OpOk9sUQ" value="OVP BO2"/>
+        </slot>
+        <slot xmi:id="_bj8MkEFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_SasTcOlREea6tPfvbkvCTg"/>
+          <value xmi:type="uml:LiteralInteger" xmi:id="_AwI9cEFaEeet78OpOk9sUQ" value="1"/>
+        </slot>
+        <slot xmi:id="_b0KZ4EFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_U8Y0IOlREea6tPfvbkvCTg"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_CwiH4EFaEeet78OpOk9sUQ" value="2.5"/>
+        </slot>
+        <slot xmi:id="_cDkH0EFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_ZefGUOlREea6tPfvbkvCTg"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_HOyb4EFaEeet78OpOk9sUQ" value="50.0"/>
+        </slot>
+        <slot xmi:id="_cTbv0EFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_dqxVwATKEeeo4rafDiNNWw"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_ItkHAEFaEeet78OpOk9sUQ" value="5.0"/>
+        </slot>
+        <slot xmi:id="_ciHsEEFZEeet78OpOk9sUQ">
+          <definingFeature xmi:type="uml:Property" href="../base/atos_smart_base_model.uml#_fTGlgATKEeeo4rafDiNNWw"/>
+          <value xmi:type="uml:LiteralReal" xmi:id="_JrRFYEFaEeet78OpOk9sUQ" value="5.0"/>
+        </slot>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_voQr8EFYEeet78OpOk9sUQ" name="Nodes">
+      <packagedElement xmi:type="uml:Node" xmi:id="_7hEtAEFYEeet78OpOk9sUQ" name="Smart Platform">
+        <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="__hvGEEFYEeet78OpOk9sUQ" name="Virtual Execution Environment 2"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xmXXYEFYEeet78OpOk9sUQ" name="Relationships">
+      <packagedElement xmi:type="uml:Manifestation" xmi:id="_ZEYkcEFaEeet78OpOk9sUQ" client="__hvGEEFYEeet78OpOk9sUQ" supplier="_Ie9fwEFZEeet78OpOk9sUQ" utilizedElement="_Ie9fwEFZEeet78OpOk9sUQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="__b29AEFXEeet78OpOk9sUQ">
+      <eAnnotations xmi:id="__b4LIEFXEeet78OpOk9sUQ" source="PapyrusVersion">
+        <details xmi:id="__b4LIUFXEeet78OpOk9sUQ" key="Version" value="0.1.1"/>
+        <details xmi:id="__b4LIkFXEeet78OpOk9sUQ" key="Comment" value=""/>
+        <details xmi:id="__b4LI0FXEeet78OpOk9sUQ" key="Copyright" value=""/>
+        <details xmi:id="__b4LJEFXEeet78OpOk9sUQ" key="Date" value="2016-07-19"/>
+        <details xmi:id="__b4LJUFXEeet78OpOk9sUQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:id="__b3kEEFXEeet78OpOk9sUQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profiles/adm.profile.uml#_iwYvEE2LEeaP5-UsI9oFuA"/>
+      </eAnnotations>
+      <appliedProfile href="../profiles/adm.profile.uml#_FBfLAMsaEeWV9Z56kvmkdg"/>
+    </profileApplication>
+  </uml:Model>
+  <ADM:Joinpoint xmi:id="_D9rs8EFZEeet78OpOk9sUQ" base_RedefinableElement="__hvGEEFYEeet78OpOk9sUQ" base_NamedElement="__hvGEEFYEeet78OpOk9sUQ"/>
+</xmi:XMI>

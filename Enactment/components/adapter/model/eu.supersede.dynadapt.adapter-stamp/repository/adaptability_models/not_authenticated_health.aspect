@@ -1,0 +1,28 @@
+aspect NotAuthenticatedHealth {
+	feature HealthFeatureModel.HealthFeatureModel.HealthWatcher.NotAuthenticated,
+	advice AuthenticationAdvice2,
+	pointcuts{
+		pointcut AuthenticatedSystem {
+			pattern eu.supersede.dynadapt.usecases.patterns.authenticated_system,
+			role Authentication.Authenticated_System
+		},
+		pointcut AuthenticatedUser {
+			pattern eu.supersede.dynadapt.usecases.patterns.authenticated_user,
+			role Authentication.Authenticated_User
+		}
+	},
+	compositions{
+		composition disableAuthenticationOnSystem {
+			feature_enabled true,
+			jointpointRole Authentication.Authenticated_System,
+			adviceRole Authentication.Authenticated_System,
+			action delete
+		},
+		composition DisableAuthenticationOnUser {
+			feature_enabled true,
+			jointpointRole Authentication.Authenticated_User,
+			adviceRole Authentication.Authenticated_User,
+			action delete
+		}	
+	}
+}

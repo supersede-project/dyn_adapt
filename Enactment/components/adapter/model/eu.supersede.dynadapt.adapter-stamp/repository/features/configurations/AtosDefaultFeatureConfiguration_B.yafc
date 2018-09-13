@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fc:FeatureConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fc="http://zcu.cz/yafmt/model/fc" name="FeatureConfiguration" version="1.0.0">
+  <featureModel href="../models/AtosUCFeatureModel_B.yafm#/"/>
+  <featureModelCopy name="AtosUCFeatureModel" version="1.0.0" description="">
+    <rootFeature id="atosucfeaturemodel" name="AtosUCFeatureModelB" lower="1" upper="1">
+      <feature id="smart_platform" name="Smart Platform" lower="0" upper="1">
+        <feature id="behaviour" name="Behaviour" lower="1" upper="1">
+          <feature id="concurrency" name="Concurrency" lower="0" upper="1">
+            <group lower="1" upper="1">
+              <feature id="low_concurrency" name="Low Concurrency" description="" lower="0" upper="1">
+                <attribute id="duration" name="average_duration" type="double" description="" defaultValue="2.0" minRangeValue="1.0" maxRangeValue="4.0">
+                  <comment>unit=seconds</comment>
+                </attribute>
+                <attribute id="a_1342994313" name="average_concurrent_users" type="integer" defaultValue="1000000" minRangeValue="0" maxRangeValue="2000000">
+                  <comment>unit=users</comment>
+                </attribute>
+              </feature>
+              <feature id="average_concurrency" name="Average Concurrency" lower="0" upper="1">
+                <attribute id="a_1817185456" name="average_duration" type="double" defaultValue="2.0" minRangeValue="1.0" maxRangeValue="4.0">
+                  <comment>unit=seconds</comment>
+                </attribute>
+                <attribute id="a_1010072638" name="average_concurrent_users" type="integer" defaultValue="3000000" minRangeValue="2000000" maxRangeValue="4000000">
+                  <comment>unit=users</comment>
+                </attribute>
+              </feature>
+              <feature id="high_concurrency" name="High Concurrency" lower="0" upper="1">
+                <attribute id="a_604995701" name="average_duration" type="double" defaultValue="5.0" minRangeValue="4.0" maxRangeValue="6.0">
+                  <comment>unit=seconds</comment>
+                </attribute>
+                <attribute id="a_738944109" name="average_concurrent_users" type="integer" defaultValue="5000000" minRangeValue="4000000" maxRangeValue="6000000">
+                  <comment>unit=users</comment>
+                </attribute>
+              </feature>
+            </group>
+          </feature>
+          <feature id="latency" name="Latency" lower="0" upper="1">
+            <feature id="latency_threshold" name="Latency Threshold" lower="1" upper="1">
+              <attribute id="a_844117948" name="audience_threshold" type="double" defaultValue="10" minRangeValue="10" maxRangeValue="100">
+                <comment>unit=percentage</comment>
+              </attribute>
+              <attribute id="a_854622864" name="latency_threshold" type="double" defaultValue="260.0" minRangeValue="260.0" maxRangeValue="" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                <comment>unit=miliseconds</comment>
+              </attribute>
+            </feature>
+          </feature>
+          <feature id="capacity" name="Capacity" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="capacity_cms" name="Capacity CMS" lower="0" upper="1">
+                <group lower="1" upper="1">
+                  <feature id="capacity_cms_low" name="Capacity CMS Low" lower="0" upper="1">
+                    <attribute id="a_1091342646" name="memory_threshold" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="50" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_1145478449" name="cpu_overload_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0.0" maxRangeValue="50.0" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_237526754" name="service" type="string" defaultValue="CMS"/>
+                  </feature>
+                  <feature id="capacity_cms_average" name="Capacity CMS Average" lower="0" upper="1">
+                    <attribute id="a_914865138" name="memory_threshold" type="double" qualityAttribute="true" minRangeValue="50" maxRangeValue="80" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_2042827869" name="cpu_overload_threshold" type="double" qualityAttribute="true" minRangeValue="50.0" maxRangeValue="75.0" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_95233076" name="service" type="string" defaultValue="CMS"/>
+                  </feature>
+                  <feature id="capacity_cms_high" name="Capacity CMS High" lower="0" upper="1">
+                    <attribute id="a_1687638285" name="memory_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="80" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_776365166" name="cpu_overload_threshold" type="double" qualityAttribute="true" minRangeValue="75.0" maxRangeValue="100.0" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_209325174" name="service" type="string" defaultValue="CMS"/>
+                  </feature>
+                </group>
+              </feature>
+              <feature id="capacity_spr" name="Capacity SPR" lower="0" upper="1">
+                <group lower="1" upper="1">
+                  <feature id="capacity_spr_low" name="Capacity SPR Low" lower="0" upper="1">
+                    <attribute id="a_1099391289" name="memory_threshold" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="60" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_1254713667" name="cpu_overload_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="40" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_2103560960" name="service" type="string" defaultValue="SPR2"/>
+                  </feature>
+                  <feature id="capacity_spr_average" name="Capacity SPR Average" lower="0" upper="1">
+                    <attribute id="a_1766306281" name="memory_threshold" type="double" qualityAttribute="true" minRangeValue="60" maxRangeValue="90" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_2090999452" name="cpu_overload_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="40" maxRangeValue="70" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_175047447" name="service" type="string" defaultValue="SPR2"/>
+                  </feature>
+                  <feature id="capacity_spr_high" name="Capacity SPR High" lower="0" upper="1">
+                    <attribute id="a_1085195071" name="memory_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="90" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_501222138" name="cpu_overload_threshold" type="double" qualityAttribute="true" minRangeValue="70" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_329157523" name="service" type="string" defaultValue="SPR2"/>
+                  </feature>
+                </group>
+              </feature>
+            </group>
+          </feature>
+          <feature id="temperature" name="Temperature" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="temperature_bc1" name="Temperature BC1" lower="0" upper="1">
+                <attribute id="a_722396405" name="node" type="string" defaultValue="BC1"/>
+                <attribute id="a_1653828460" name="temperature_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="50" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=celsius degrees</comment>
+                </attribute>
+              </feature>
+              <feature id="temperature_dc1" name="Temperature DC1" lower="0" upper="1">
+                <attribute id="a_1400697492" name="node" type="string" defaultValue="DC1"/>
+                <attribute id="a_854432644" name="temperature_threshold" type="string" qualityAttribute="true" minRangeValue="50" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=celsius degrees</comment>
+                </attribute>
+              </feature>
+            </group>
+          </feature>
+          <feature id="connectivity" name="Connectivity" lower="0" upper="1">
+            <group lower="1" upper="-1">
+              <feature id="connectivity_bc1" name="Connectivity BC1" lower="0" upper="1">
+                <attribute id="a_1692554681" name="node" type="string" defaultValue="BC1"/>
+                <attribute id="a_714810708" name="bandwith_threshold" type="double" qualityAttribute="true" defaultValue="" minRangeValue="85" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+              </feature>
+              <feature id="f_1563160320" name="Connectivity DC1" lower="0" upper="1">
+                <attribute id="a_1213705103" name="node" type="string" defaultValue="DC1"/>
+                <attribute id="a_1595178653" name="bandwith_threshold" type="string" qualityAttribute="true" minRangeValue="85" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+              </feature>
+            </group>
+          </feature>
+        </feature>
+        <feature id="infrastructure" name="Infrastructure" lower="1" upper="1">
+          <feature id="vm_configurations" name="VM Configurations" lower="1" upper="1">
+            <feature id="hsk_configuration" name="HSK Configuration" lower="0" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="hsk_standard_configuration" name="HSK_Standard_Configuration" lower="0" upper="1">
+                  <attribute id="number_cores" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="memory" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="storage" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="bandwidth" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+                <feature id="hsk_optimal_configuration" name="HSK_Optimal_Configuration" lower="0" upper="1">
+                  <attribute id="a_29902074" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_1605826203" name="memory" type="double" description="" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_1034723842" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_1920764702" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+              </group>
+            </feature>
+            <feature id="lb_configuration" name="LB Configuration" lower="0" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="lb_standard_configuration" name="LB_Standard_Configuration" lower="0" upper="1">
+                  <attribute id="a_2117129726" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_1152865514" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_1906249887" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_1429160399" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+                <feature id="lb_optimal_configuration" name="LB_Optimal_Configuration" lower="0" upper="1">
+                  <attribute id="a_1770208397" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_788664747" name="memory" type="double" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_3323496" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_1422878792" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+              </group>
+            </feature>
+            <feature id="sga_configuration" name="SGA Configuration" lower="0" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="sga_standard_configuration" name="SGA_Standard_Configuration" lower="0" upper="1">
+                  <attribute id="a_489688453" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_870342316" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_1943704051" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_386358561" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+                <feature id="sga_optimal_configuration" name="SGA_Optimal_Configuration" lower="0" upper="1">
+                  <attribute id="a_1116084945" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_973097227" name="memory" type="double" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_896633346" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_1967483184" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+              </group>
+            </feature>
+            <feature id="cms_configuration" name="CMS Configuration" lower="0" upper="1">
+              <group lower="1" upper="-1">
+                <feature id="cms_standard_configuration" name="CMS_Standard_Configuration" lower="0" upper="1">
+                  <attribute id="a_1731440037" name="number_cores" type="integer" resourceAttribute="true" defaultValue="2" minRangeValue="1" maxRangeValue="4" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_1152630234" name="memory" type="double" resourceAttribute="true" defaultValue="4" minRangeValue="4" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_1581630567" name="storage" type="double" resourceAttribute="true" defaultValue="500" minRangeValue="500" maxRangeValue="1000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_1774097776" name="bandwidth" type="double" resourceAttribute="true" defaultValue="10" minRangeValue="10" maxRangeValue="20" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+                <feature id="cms_optimal_configuration" name="CMS_Optimal_Configuration" lower="0" upper="1">
+                  <attribute id="a_1451712971" name="number_cores" type="integer" resourceAttribute="true" defaultValue="4" minRangeValue="2" maxRangeValue="8" weight="1.0" minimize="true" objectiveFunctionAggregator="sum"/>
+                  <attribute id="a_35063786" name="memory" type="double" resourceAttribute="true" defaultValue="8" minRangeValue="8" maxRangeValue="16" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=gigabytes</comment>
+                  </attribute>
+                  <attribute id="a_2130879428" name="storage" type="double" resourceAttribute="true" defaultValue="1000" minRangeValue="1000" maxRangeValue="2000" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Gb</comment>
+                  </attribute>
+                  <attribute id="a_1937523407" name="bandwidth" type="double" resourceAttribute="true" defaultValue="20" minRangeValue="20" maxRangeValue="30" weight="1.0" minimize="true" objectiveFunctionAggregator="sum">
+                    <comment>unit=Mbps</comment>
+                  </attribute>
+                </feature>
+              </group>
+            </feature>
+          </feature>
+          <feature id="nodes" name="Nodes" lower="1" upper="1">
+            <feature id="data_center" name="Data Center" lower="1" upper="1">
+              <feature id="dc1" name="DC1" lower="1" upper="1">
+                <attribute id="a_942174481" name="CPU overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_1040542835" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=celsius degrees</comment>
+                </attribute>
+                <attribute id="a_985459650" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max"/>
+                <attribute id="a_221035660" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <feature id="cms" name="CMS" lower="0" upper="1">
+                  <group lower="1" upper="1">
+                    <feature id="cms_low" name="CMS (Low)" lower="0" upper="1">
+                      <attribute id="a_1027143618" name="number_cms" type="integer" defaultValue="1" minRangeValue="1" maxRangeValue="2"/>
+                      <attribute id="a_64208970" name="VMConfiguration" type="string" defaultValue="CMS_Standard_Configuration"/>
+                    </feature>
+                    <feature id="cms_average" name="CMS (Average)" lower="0" upper="1">
+                      <attribute id="a_1251520554" name="number_cms" type="string" description="" defaultValue="2" minRangeValue="2" maxRangeValue="4"/>
+                      <attribute id="a_1226436969" name="VMConfiguration" type="string" defaultValue="CMS_Standard_Configuration"/>
+                    </feature>
+                    <feature id="cms_high" name="CMS (High)" lower="0" upper="1">
+                      <attribute id="a_580826517" name="number_cms" type="string" defaultValue="4" minRangeValue="4" maxRangeValue="8"/>
+                      <attribute id="a_183241826" name="VMConfiguration" type="string" defaultValue="CMS_Optimal_Configuration"/>
+                    </feature>
+                  </group>
+                </feature>
+                <feature id="spr" name="SPR" lower="1" upper="1">
+                  <feature id="spr1" name="SPR1" lower="1" upper="1">
+                    <attribute id="a_297697201" name="cdn" type="string" defaultValue="Akamai"/>
+                    <attribute id="a_2132706357" name="cpu_overload" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_1260743401" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                  </feature>
+                  <feature id="spr2" name="SPR2" lower="1" upper="1">
+                    <attribute id="a_506186491" name="cdn" type="string" defaultValue="Akamai"/>
+                    <attribute id="a_245523864" name="cpu_overload" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                    <attribute id="a_2064146230" name="memory" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                      <comment>unit=percentage</comment>
+                    </attribute>
+                  </feature>
+                </feature>
+                <feature id="sga" name="SGA" lower="0" upper="1">
+                  <group lower="1" upper="1">
+                    <feature id="sga_low" name="SGA (Low)" lower="0" upper="1">
+                      <attribute id="a_1451159970" name="number_sgas" type="integer" defaultValue="1" minRangeValue="1" maxRangeValue="2"/>
+                      <attribute id="a_960654815" name="VMConfiguration" type="string" defaultValue="SGA_Standard_Configuration" maxRangeValue=""/>
+                    </feature>
+                    <feature id="sga_average" name="SGA (Average)" lower="0" upper="1">
+                      <attribute id="a_1789873139" name="number_sgas" type="integer" defaultValue="2" minRangeValue="2" maxRangeValue="4"/>
+                      <attribute id="a_1827343064" name="VMConfiguration" type="string" defaultValue="SGA_Standard_Configuration" maxRangeValue=""/>
+                    </feature>
+                    <feature id="sga_high" name="SGA (High)" lower="0" upper="1">
+                      <attribute id="a_224290714" name="number_sgas" type="integer" defaultValue="4" minRangeValue="4" maxRangeValue="8"/>
+                      <attribute id="a_696292157" name="VMConfiguration" type="string" defaultValue="SGA_Optimal_Configuration"/>
+                    </feature>
+                  </group>
+                </feature>
+              </feature>
+            </feature>
+            <feature id="broadcast_center" name="Broadcast Center" lower="1" upper="1">
+              <feature id="bc1" name="BC1" lower="1" upper="1">
+                <attribute id="a_1015099579" name="CPU overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_1518990154" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=celsius degrees</comment>
+                </attribute>
+                <attribute id="a_286890545" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_598827580" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+              </feature>
+            </feature>
+            <feature id="lb" name="LB" lower="1" upper="1">
+              <feature id="lbnode1" name="LBNode1" lower="1" upper="1">
+                <attribute id="a_1644548477" name="CPU overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_643309707" name="temperature" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=celsius degrees</comment>
+                </attribute>
+                <attribute id="a_1783049222" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_13166753" name="memory" type="double" qualityAttribute="true" defaultValue="" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <group lower="1" upper="1">
+                  <feature id="lb_low" name="LB (Low)" lower="0" upper="1">
+                    <attribute id="a_512052611" name="number_lbs" type="integer" defaultValue="1" minRangeValue="1" maxRangeValue="2"/>
+                    <attribute id="lb_vmconfiguration" name="VMConfiguration" type="string" defaultValue="LB_Standard_Configuration"/>
+                  </feature>
+                  <feature id="lb_average" name="LB (Average)" lower="0" upper="1">
+                    <attribute id="a_1759762415" name="number_lbs" type="integer" defaultValue="2" minRangeValue="2" maxRangeValue="4"/>
+                    <attribute id="a_1948846419" name="VMConfiguration" type="string" defaultValue="LB_Standard_Configuration"/>
+                  </feature>
+                  <feature id="lb_high" name="LB (High)" lower="0" upper="1">
+                    <attribute id="a_478391514" name="number_lbs" type="integer" defaultValue="4" minRangeValue="4" maxRangeValue="8"/>
+                    <attribute id="a_612085461" name="VMConfiguration" type="string" defaultValue="LB_Optimal_Configuration"/>
+                  </feature>
+                </group>
+              </feature>
+            </feature>
+            <feature id="hsk" name="HSK" lower="1" upper="1">
+              <feature id="hsknode1" name="HSKNode1" lower="1" upper="1">
+                <attribute id="a_1041090282" name="CPU overload" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_1124394929" name="temperature" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=celsius degrees</comment>
+                </attribute>
+                <attribute id="a_82407481" name="bandwith" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <attribute id="a_402248714" name="memory" type="double" qualityAttribute="true" minRangeValue="0" maxRangeValue="100" weight="1.0" minimize="true" objectiveFunctionAggregator="max">
+                  <comment>unit=percentage</comment>
+                </attribute>
+                <group lower="1" upper="1">
+                  <feature id="hsk_low" name="HSK (Low)" lower="0" upper="1">
+                    <attribute id="a_304948751" name="number_hsks" type="integer" defaultValue="1" minRangeValue="1" maxRangeValue="2"/>
+                    <attribute id="hsk_vmconfiguration" name="VMConfiguration" type="string" defaultValue="HSK_Standard_Configuration"/>
+                  </feature>
+                  <feature id="hsk_average" name="HSK (Average)" lower="0" upper="1">
+                    <attribute id="a_1671329125" name="number_hsks" type="integer" defaultValue="2" minRangeValue="2" maxRangeValue="4"/>
+                    <attribute id="a_1715848079" name="VMConfiguration" type="string" defaultValue="HSK_Standard_Configuration"/>
+                  </feature>
+                  <feature id="hsk_high" name="HSK (High)" lower="0" upper="1">
+                    <attribute id="a_2040561053" name="number_hsks" type="integer" defaultValue="4" minRangeValue="4" maxRangeValue="8"/>
+                    <attribute id="a_468586259" name="VMConfiguration" type="string" defaultValue="HSK_Optimal_Configuration"/>
+                  </feature>
+                </group>
+              </feature>
+            </feature>
+            <feature id="player" name="Player" lower="1" upper="1">
+              <feature id="player_configuration" name="Player_Configuration" lower="1" upper="1">
+                <attribute id="cdn" name="cdn" type="string" defaultValue="Akamai"/>
+              </feature>
+            </feature>
+            <feature id="cdn" name="CDN" lower="1" upper="1">
+              <group lower="1" upper="1">
+                <feature id="level3" name="Level3" lower="0" upper="1"/>
+                <feature id="akamai" name="Akamai" lower="0" upper="1"/>
+              </group>
+            </feature>
+          </feature>
+        </feature>
+      </feature>
+    </rootFeature>
+    <constraint value="hsk implies hsk_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="lb implies lb_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="latency implies (cdn and player_configuration)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage" description=""/>
+    <constraint value="player_configuration implies cdn" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="cms implies cms_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="sga implies sga_configuration" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="capacity implies (spr or cms)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="concurrency implies (sga and hsk and lb)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="temperature implies (data_center or broadcast_center)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+    <constraint value="connectivity implies (data_center or broadcast_center)" language="cz.zcu.yafmt.clang.BooleanConstraintLanguage"/>
+  </featureModelCopy>
+  <rootSelection id="atosucfeaturemodel">
+    <selection id="smart_platform">
+      <selection id="behaviour">
+        <selection id="concurrency">
+          <selection id="low_concurrency">
+            <attributeValue xsi:type="fc:double" id="duration" value="2.0"/>
+            <attributeValue xsi:type="fc:integer" id="a_1486249175" value="1000"/>
+            <attributeValue xsi:type="fc:integer" id="a_1342994313" value="0"/>
+          </selection>
+        </selection>
+        <selection id="latency">
+          <selection id="latency_threshold">
+            <attributeValue xsi:type="fc:double" id="a_844117948" value="10.0"/>
+            <attributeValue xsi:type="fc:double" id="a_854622864" value="260.0"/>
+          </selection>
+        </selection>
+        <selection id="capacity">
+          <selection id="capacity_cms">
+            <selection id="capacity_cms_low">
+              <attributeValue xsi:type="fc:double" id="a_1091342646" value="80.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1145478449" value="85.0"/>
+              <attributeValue xsi:type="fc:string" id="a_237526754" value="cms"/>
+            </selection>
+          </selection>
+          <selection id="capacity_spr">
+            <selection id="capacity_spr_average">
+              <attributeValue xsi:type="fc:double" id="a_1766306281" value="90.0"/>
+              <attributeValue xsi:type="fc:double" id="a_2090999452" value="90.0"/>
+              <attributeValue xsi:type="fc:string" id="a_175047447" value="spr"/>
+            </selection>
+          </selection>
+        </selection>
+        <selection id="temperature">
+          <selection id="temperature_bc1">
+            <attributeValue xsi:type="fc:string" id="a_722396405" value="bc1"/>
+            <attributeValue xsi:type="fc:double" id="a_1653828460" value="80.0"/>
+          </selection>
+          <selection id="temperature_dc1">
+            <attributeValue xsi:type="fc:string" id="a_1400697492" value="dc1"/>
+            <attributeValue xsi:type="fc:string" id="a_854432644" value="90"/>
+          </selection>
+        </selection>
+        <selection id="connectivity">
+          <selection id="connectivity_bc1">
+            <attributeValue xsi:type="fc:string" id="a_1692554681" value="bc1"/>
+            <attributeValue xsi:type="fc:double" id="a_714810708" value="5.0"/>
+          </selection>
+        </selection>
+      </selection>
+      <selection id="infrastructure">
+        <selection id="vm_configurations">
+          <selection id="hsk_configuration">
+            <selection id="hsk_standard_configuration">
+              <attributeValue xsi:type="fc:integer" id="number_cores" value="2"/>
+              <attributeValue xsi:type="fc:double" id="memory" value="1.0"/>
+              <attributeValue xsi:type="fc:double" id="storage" value="100.0"/>
+              <attributeValue xsi:type="fc:double" id="bandwidth" value="1.0"/>
+            </selection>
+          </selection>
+          <selection id="lb_configuration">
+            <selection id="lb_standard_configuration">
+              <attributeValue xsi:type="fc:integer" id="a_2117129726" value="1"/>
+              <attributeValue xsi:type="fc:double" id="a_1152865514" value="0.5"/>
+              <attributeValue xsi:type="fc:double" id="a_1906249887" value="50.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1429160399" value="1.0"/>
+            </selection>
+          </selection>
+          <selection id="sga_configuration">
+            <selection id="sga_optimal_configuration">
+              <attributeValue xsi:type="fc:integer" id="a_1116084945" value="4"/>
+              <attributeValue xsi:type="fc:double" id="a_973097227" value="4.0"/>
+              <attributeValue xsi:type="fc:double" id="a_896633346" value="500.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1967483184" value="3.0"/>
+            </selection>
+          </selection>
+          <selection id="cms_configuration">
+            <selection id="cms_standard_configuration">
+              <attributeValue xsi:type="fc:integer" id="a_1731440037" value="1"/>
+              <attributeValue xsi:type="fc:double" id="a_1152630234" value="1.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1581630567" value="500.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1774097776" value="1.0"/>
+            </selection>
+          </selection>
+        </selection>
+        <selection id="nodes">
+          <selection id="data_center">
+            <selection id="dc1">
+              <attributeValue xsi:type="fc:double" id="a_942174481" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1040542835" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_985459650" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_221035660" value="0.0"/>
+              <selection id="cms">
+                <selection id="cms_low">
+                  <attributeValue xsi:type="fc:integer" id="a_1027143618" value="2"/>
+                  <attributeValue xsi:type="fc:string" id="a_64208970" value="CMS_Standard_Configuration"/>
+                </selection>
+              </selection>
+              <selection id="spr">
+                <selection id="spr1">
+                  <attributeValue xsi:type="fc:string" id="a_297697201" value="Akamai"/>
+                  <attributeValue xsi:type="fc:double" id="a_2132706357" value="0.0"/>
+                  <attributeValue xsi:type="fc:double" id="a_1260743401" value="0.0"/>
+                </selection>
+                <selection id="spr2">
+                  <attributeValue xsi:type="fc:string" id="a_506186491" value="level3"/>
+                  <attributeValue xsi:type="fc:double" id="a_245523864" value="0.0"/>
+                  <attributeValue xsi:type="fc:double" id="a_2064146230" value="0.0"/>
+                </selection>
+              </selection>
+              <selection id="sga">
+                <selection id="sga_average">
+                  <attributeValue xsi:type="fc:integer" id="a_1789873139" value="2"/>
+                  <attributeValue xsi:type="fc:string" id="a_1827343064" value="SGA_Optimal_Configuration"/>
+                </selection>
+              </selection>
+            </selection>
+          </selection>
+          <selection id="broadcast_center">
+            <selection id="bc1">
+              <attributeValue xsi:type="fc:double" id="a_1015099579" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1518990154" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_286890545" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_598827580" value="0.0"/>
+            </selection>
+          </selection>
+          <selection id="lb">
+            <selection id="lbnode1">
+              <attributeValue xsi:type="fc:double" id="a_1644548477" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_643309707" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1783049222" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_13166753" value="0.0"/>
+              <selection id="lb_average">
+                <attributeValue xsi:type="fc:integer" id="a_1759762415" value="1"/>
+                <attributeValue xsi:type="fc:string" id="a_1948846419" value="LB_Standard_Configuration"/>
+              </selection>
+            </selection>
+          </selection>
+          <selection id="hsk">
+            <selection id="hsknode1">
+              <attributeValue xsi:type="fc:double" id="a_1041090282" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_1124394929" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_82407481" value="0.0"/>
+              <attributeValue xsi:type="fc:double" id="a_402248714" value="0.0"/>
+              <selection id="hsk_average">
+                <attributeValue xsi:type="fc:integer" id="a_1671329125" value="1"/>
+                <attributeValue xsi:type="fc:string" id="a_1715848079" value="HSK_Standard_Configuration"/>
+              </selection>
+            </selection>
+          </selection>
+          <selection id="player">
+            <selection id="player_configuration">
+              <attributeValue xsi:type="fc:string" id="cdn" value="Akamai"/>
+            </selection>
+          </selection>
+          <selection id="cdn">
+            <selection id="akamai"/>
+          </selection>
+        </selection>
+      </selection>
+    </selection>
+  </rootSelection>
+</fc:FeatureConfiguration>
