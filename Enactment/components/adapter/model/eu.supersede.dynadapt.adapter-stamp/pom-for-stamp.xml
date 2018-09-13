@@ -21,7 +21,13 @@
 				<version>2.22.0</version>
 				<configuration>
 				  <excludes>
-				    <exclude>**/*Test*.java</exclude>
+				    <exclude>**/ATOSAdapterTest.java</exclude>
+				    <exclude>**/AtosSmartPlatformHSKAdapterTest.java</exclude>
+				    <exclude>**/HttpMonitoringAdapterTest.java</exclude>
+				    <exclude>**/MonitoringAdapterTest.java</exclude>
+				    <exclude>**/SiemensAdapterTest.java</exclude>
+				    <exclude>**/SiemensCacheScenarioAdapterTest.java</exclude>
+				    <exclude>**/SiemensEnactAdapterTest.java</exclude>
 				  </excludes>
 				</configuration>
 			      </plugin>
