@@ -1,5 +1,7 @@
 package eu.supersede.dynadapt.adapter.test;
 
+import static org.junit.Assert.fail;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystems;
@@ -72,10 +74,9 @@ public class HealthAdapterTest {
 			String featureConfigurationId = uploadLatestComputedFC("HealthAuthenticatedFeatureConfiguration.yafc");
 			adapter.enactAdaptationDecisionAction(
 					ModelSystem.Health, adaptationDecisionActionIds[0], featureConfigurationId);
-		} catch (EnactmentException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+			fail (e.getMessage());
 		}
 	}
 	
@@ -124,7 +125,7 @@ public class HealthAdapterTest {
 	}
 
 	private void setupPlatform() {
-		repository = "platform:/resource/eu.supersede.dynadapt.adapter/repository/";
+		repository = "platform:/resource/eu.supersede.dynadapt.adapter-stamp/repository/";
 		repositoryRelativePath = "./repository";
 		platformRelativePath = "../";
 

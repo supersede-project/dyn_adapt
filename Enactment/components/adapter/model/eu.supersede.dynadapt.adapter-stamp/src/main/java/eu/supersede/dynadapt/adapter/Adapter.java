@@ -196,8 +196,9 @@ public class Adapter implements IAdapter {
 			throws EnactmentException, Exception, IOException {
 
 		// Registering dashboard proxy to initialize Front-end session
-		this.adaptationDashboardProxy = new AdaptationDashboardProxy<>(
-			"adaptation", "adaptation", system.getTenant().getId());
+		if (!demo) 
+			this.adaptationDashboardProxy = new AdaptationDashboardProxy<>(
+					"adaptation", "adaptation", system.getTenant().getId());
 
 		kpiComputerAdapter.startComputingKPI();
 
