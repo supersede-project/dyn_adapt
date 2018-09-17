@@ -2,6 +2,8 @@
 
 #
 
+mvn install:install-file -Dfile=./lib/eu.supersede.if.api-0.4.0-SNAPSHOT.jar -DgroupId=eu.supersede.if -DartifactId=eu.supersede.if.api -Dversion=0.4.0 -Dpackaging=jar
+
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/com.fasterxml.jackson.core.jackson-annotations/2.6.2.v20161117-2150/com.fasterxml.jackson.core.jackson-annotations-2.6.2.v20161117-2150.jar -DgroupId=org.eclipse -DartifactId=com.fasterxml.jackson.core.jackson-annotations -Dversion=2.6.2.v20161117-2150 -Dpackaging=jar
 
 mvn install:install-file -Dfile=/home/yosu/.m2/repository/p2/osgi/bundle/com.fasterxml.jackson.core.jackson-core/2.6.2.v20161117-2150/com.fasterxml.jackson.core.jackson-core-2.6.2.v20161117-2150.jar  -DgroupId=org.eclipse -DartifactId=com.fasterxml.jackson.core.jackson-core -Dversion=2.6.2.v20161117-2150 -Dpackaging=jar
