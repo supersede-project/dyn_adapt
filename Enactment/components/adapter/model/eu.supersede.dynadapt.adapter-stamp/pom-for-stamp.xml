@@ -28,6 +28,7 @@
 				    <exclude>**/SiemensAdapterTest.java</exclude>
 				    <exclude>**/SiemensCacheScenarioAdapterTest.java</exclude>
 				    <exclude>**/SiemensEnactAdapterTest.java</exclude>
+				    <exclude>**/HealthAdapterTest.java</exclude>
 				  </excludes>
 				</configuration>
 			      </plugin>

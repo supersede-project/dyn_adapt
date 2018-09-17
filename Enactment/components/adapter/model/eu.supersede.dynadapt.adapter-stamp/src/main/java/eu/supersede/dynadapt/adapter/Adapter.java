@@ -582,7 +582,7 @@ public class Adapter implements IAdapter {
 		return enactment;
 	}
 
-	private Model adapt(ModelSystem modelSystem, List<Selection> selections, Model baseModel) throws Exception {
+	public Model adapt(ModelSystem modelSystem, List<Selection> selections, Model baseModel) throws Exception {
 
 		Model model = null;
 		// Clone base model
