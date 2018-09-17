@@ -55,7 +55,7 @@ import eu.supersede.dynadapt.modeladapter.IModelAdapter;
 import eu.supersede.dynadapt.modeladapter.ModelAdapter;
 
 @SuppressWarnings("restriction")
-public class ModelAdapterTest {
+public class ModelAdapterTestOutDated {
 
 	String umlModelPath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/atos_base_model.uml";
 	String defaultVariantPath = "platform:/resource/eu.supersede.dynadapt.modeladapter/models/atos_cms_default_variant.uml";
