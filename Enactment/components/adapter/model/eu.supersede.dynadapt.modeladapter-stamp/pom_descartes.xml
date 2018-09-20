@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.supersede.dynadapt</groupId>
-	<artifactId>adapter-stamp</artifactId>
+	<artifactId>modeladapter-stamp</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<build>
 		<plugins>
@@ -21,16 +21,36 @@
 				<version>2.22.0</version>
 				<configuration>
 				  <excludes>
-				    <exclude>**/ATOSAdapterTest.java</exclude>
-				    <exclude>**/AtosSmartPlatformHSKAdapterTest.java</exclude>
-				    <exclude>**/HttpMonitoringAdapterTest.java</exclude>
-				    <exclude>**/MonitoringAdapterTest.java</exclude>
-				    <exclude>**/SiemensAdapterTest.java</exclude>
-				    <exclude>**/SiemensCacheScenarioAdapterTest.java</exclude>
-				    <exclude>**/SiemensEnactAdapterTest.java</exclude>
-				    <exclude>**/HealthAdapterTest.java</exclude>
+				    <exclude>**/ModelAdapterQueryTest.java</exclude>
+				    <exclude>**/ModelAdapterTestOutDated.java</exclude>
 				  </excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.pitest</groupId>
+			    <artifactId>pitest-maven</artifactId>
+			    <version>1.4.0</version>
+			    <configuration>
+					<excludedClasses>
+					    <param>eu.supersede.dynadapt.modeladapter.queries*</param>
+					</excludedClasses>
+					<targetTests>
+					    <param>eu.supersede.dynadapt.modeladapter.test.ModelAdapterTest</param>
+					</targetTests>
+					<mutationEngine>descartes</mutationEngine>
+					<outputFormats>
+				      <value>JSON</value>
+				      <value>METHODS</value>
+				      <value>ISSUES</value>
+				    </outputFormats>
+			    </configuration>
+			    <dependencies>
+				    <dependency>
+				      <groupId>eu.stamp-project</groupId>
+				      <artifactId>descartes</artifactId>
+				      <version>1.2.4</version>
+				    </dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 
@@ -201,11 +221,6 @@
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.viatra.query.runtime</artifactId>
 			<version>1.7.2.201803211255</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.supersede.dynadapt</groupId>
-			<artifactId>modeladapter-stamp</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>eu.supersede.dynadapt</groupId>
