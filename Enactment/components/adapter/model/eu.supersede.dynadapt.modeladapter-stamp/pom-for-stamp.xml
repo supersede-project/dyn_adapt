@@ -254,17 +254,17 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext</artifactId>
-			<version>2.14.0.v20180522-1821</version>
+			<version>2.15.0.v20180916-0722</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.xbase</artifactId>
-			<version>2.14.0.v20180522-1833</version>
+			<version>2.15.0.v20180916-1104</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.generator</artifactId>
-			<version>2.14.0.v20180522-1833</version>
+			<version>2.15.0.v20180916-1104</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -279,7 +279,7 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-			<version>2.14.0.v20180522-1629</version>
+			<version>2.15.0.v20180916-1130</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -289,17 +289,17 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.util</artifactId>
-			<version>2.14.0.v20180522-1821</version>
+			<version>2.15.0.v20180916-0722</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>2.14.0.v20180522-1629</version>
+			<version>2.15.0.v20180916-1130</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.common.types</artifactId>
-			<version>2.14.0.v20180522-1833</version>
+			<version>2.15.0.v20180916-1104</version>
 		</dependency>
 		<dependency>
 			<groupId>eu.supersede.dynadapt</groupId>
@@ -419,12 +419,12 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.ui</artifactId>
-			<version>2.14.0.v20180523-0437</version>
+			<version>2.15.0.v20180916-1016</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.ui.shared</artifactId>
-			<version>2.14.0.v20180523-0437</version>
+			<version>2.15.0.v20180916-1016</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -474,7 +474,7 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.objectweb.asm</artifactId>
-			<version>6.1.1.v20180414-0329</version>
+			<version>6.2.1.v20180823-1831</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -976,11 +976,11 @@
 			<artifactId>org.eclipse.equinox.p2.engine</artifactId>
 			<version>2.4.100.v20160419-0834</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.equinox.p2.director.app</artifactId>
 			<version>1.0.500.v20160419-0834</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.equinox.p2.metadata.repository</artifactId>
@@ -1084,7 +1084,7 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.builder</artifactId>
-			<version>2.14.0.v20180523-0437</version>
+			<version>2.15.0.v20180916-1016</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -1164,7 +1164,7 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtend.lib.macro</artifactId>
-			<version>2.14.0.v20180522-1629</version>
+			<version>2.15.0.v20180916-1130</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -1174,32 +1174,32 @@
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.smap</artifactId>
-			<version>2.14.0.v20180522-1833</version>
+			<version>2.15.0.v20180916-1104</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.common.types.ui</artifactId>
-			<version>2.14.0.v20180523-0437</version>
+			<version>2.15.0.v20180916-1016</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.common.types.edit</artifactId>
-			<version>2.14.0.v20180523-0437</version>
+			<version>2.15.0.v20180916-1016</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.ecore</artifactId>
-			<version>2.14.0.v20180522-1833</version>
+			<version>2.15.0.v20180916-1104</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.xtext.generator</artifactId>
-			<version>2.14.0.v20180522-1821</version>
+			<version>2.15.0.v20180916-0722</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>org.eclipse.xtext.ide</artifactId>
-			<version>2.14.0.v20180522-1821</version>
+			<version>2.15.0.v20180916-0722</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
