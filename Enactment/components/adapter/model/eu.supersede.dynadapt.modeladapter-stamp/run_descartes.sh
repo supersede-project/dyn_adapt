@@ -6,7 +6,7 @@ mvn -f pom-for-stamp.xml clean package
 
 #Configuration
 DATE=`date '+%Y%m%d%H%M'`
-RESULTS_DIR=/home/stamp/Git/descartes-usecases-output/atos/supersede/descartes/$DATE/
+RESULTS_DIR=/home/stamp/Git/descartes-usecases-output/atos/supersede/modeladapter/descartes/$DATE/
 OUT=./target/pit-reports/$DATE/*
 LOG=$DATE"_descartes.log"
 mkdir -p $RESULTS_DIR

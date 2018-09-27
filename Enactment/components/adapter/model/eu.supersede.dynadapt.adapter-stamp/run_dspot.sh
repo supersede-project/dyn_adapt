@@ -3,11 +3,10 @@ set -e # Any subsequent(*) commands which fail will cause the shell script to ex
 mvn -f pom-for-stamp.xml clean package
 
 #Configuration
-RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede
+RESULTS_DIR=/home/dspot/Git/dspot-usecases-output/atos/supersede
 DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
 DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
-mkdir -p $DSPOT_OUT
 TIMEOUT=30000
 
 #Selectors: PitMutantScoreSelector | ExecutedMutantSelector | CloverCoverageSelector | JacocoCoverageSelector | TakeAllSelector | ChangeDetectorSelector
