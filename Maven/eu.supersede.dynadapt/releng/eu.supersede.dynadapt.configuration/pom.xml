@@ -6,7 +6,8 @@
  <packaging>pom</packaging>
 
  <properties>
-  <tycho.version>0.26.0</tycho.version>
+<!--  <tycho.version>0.26.0</tycho.version> -->
+  <tycho.version>1.2.0</tycho.version>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <neon-repo.url>http://download.eclipse.org/releases/neon</neon-repo.url>
   <mars-repo.url>http://download.eclipse.org/releases/mars</mars-repo.url>
@@ -119,7 +120,7 @@
     <plugin>
        <groupId>org.eclipse.tycho</groupId>
        <artifactId>tycho-packaging-plugin</artifactId>
-       <version>0.26.0</version>
+       <version>${tycho.version}</version>
        <configuration>
     	  <additionalFileSets>
  	    <fileSet>
